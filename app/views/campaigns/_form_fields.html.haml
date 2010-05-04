@@ -1,0 +1,64 @@
+- content_for :append_to_head do
+  = javascript_include_tag 'colorpicker'
+  = javascript_include_tag 'campaigns'
+  = stylesheet_link_tag 'campaigns'
+
+- if campaign.errors.size > 0
+  = error_messages_for :campaign
+
+%p
+  %label Campaign name
+  = f.text_field :name
+
+%p
+  %label Player ID
+  = f.select :player_id, @players, :prompt => "Choose one"
+  
+%p
+  %label locale
+  = f.select :locale, @locales, :prompt => "Choose one"
+
+%p
+  %label Campaign Code
+  = f.text_field :code
+
+.fieldset
+  %h4 Style Settings
+  = custom_image_field :form => f, :label => 'Header Logo:', :field => 'header_logo', :model_instance => @campaign
+  = custom_image_field :form => f, :label => 'Index Logo:', :field => 'index_logo', :model_instance => @campaign
+  = custom_image_field :form => f, :label => 'Footer Logo:', :field => 'footer_logo', :model_instance => @campaign
+  
+  %br
+  
+  %p
+    %label Hexcolor
+    = f.text_field :hexcolor
+    = text_field 'empty', 'hexcolor', {:disabled => 'disabled'}
+        
+    
+.fieldset
+  %h4 Ad/Analytics
+  = custom_text_field :form => f, :label => 'Ad Zone ID:', :field => 'ad_zone_id', :model_instance => @campaign, :example => '"123", "205"'
+  
+  = custom_text_field :form => f, :label => 'Promo Code:', :field => 'promo_code', :model_instance => @campaign, :example => '"coke", "shakira"'
+  
+  = custom_text_field :form => f, :label => 'Google Profile ID:', :field => 'google_profile_id', :model_instance => @campaign, :example => 'UA-410870-40'
+
+
+.fieldset
+  %h4 Campaigns Status/Dates
+  %p
+    %label Start Date
+    = f.date_select :start, :use_month_numbers => true
+
+  %p
+    %label End Date
+    = f.date_select :end, :use_month_numbers => true
+
+  %p
+    %label Status
+    = f.select :campaign_status_id, @statuses, :prompt => "Choose one"
+
+/  %p
+/    %label Site
+/    = f.select :site_id, @sites, :prompt => "Choose one"

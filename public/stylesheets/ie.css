@@ -1,0 +1,145 @@
+.iefix .grey_button span span img {
+    margin-top: 4px;
+    position: relative;
+}
+
+.iefix .grey_button span span i {
+    font-style: normal;
+    vertical-align: middle;
+    display: inline-block;
+    position: relative;
+    top: 0px !important;
+    top: 3px;
+}
+
+.iefix .grey_button i img {
+    top: -2px;
+}
+
+label.label_holder {
+  margin-right: 90px;
+}
+
+#avatar_delete{
+  position:absolute;
+  padding-top: 55px;
+  padding-left: 0px !important;
+}
+
+#avatar_upload_info {
+  margin-top: 30px;
+  margin-left: 10px;
+  font-weight: bold;
+  color: green;
+  position:absolute;
+}
+
+.artist_box {
+  width: 150px;
+  overflow: hidden;
+}
+
+.last_box {
+  float: right;
+  margin-right: 0!important;
+}
+
+.four_thumbs_big {
+  overflow: hidden;
+}
+#msn_second_nav_bar ul{
+  margin: 0;
+  width: 860px !important;
+}
+
+/* Registration Layers */
+.registration_layer .stats ul {
+  background-image: none;
+  filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(enabled=true, sizingMethod=scale, src='/images/layers/transparency.png');  
+}
+.registration_layer .stats li.listen span {
+  background-image: url(../images/layers/listen.gif);
+}
+.registration_layer .stats li.discover span {
+  background-image: url(../images/layers/discover.gif);
+}
+.registration_layer .stats li.know span {
+  background-image: url(../images/layers/know.gif);
+}
+.registration_layer .stats li.share span {
+  background: transparent url(../images/layers/share.gif) no-repeat top center;
+}
+.registration_layer .close { 
+  background-image: url(../images/layers/close.gif); 
+  margin-top: -236px;
+  height: 14px;
+}
+.registration_layer .top h2 { 
+  background: transparent url(../images/layers/cyloop_powered.gif) no-repeat top 465px;
+  height: 200px;
+  margin-left: 10px;
+}
+.registration_layer .bottom {
+  margin: 0;
+  padding-bottom: 0;
+}
+.registration_layer .bottom p {
+  margin-top: 10px;
+}
+
+/* Facebox fix */
+#facebox .b,
+#facebox .tl,
+#facebox .tr,
+#facebox .bl,
+#facebox .br {
+  background-image: none;
+  filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(enabled=true, sizingMethod=scale, src='/images/layers/transparency.png');  
+}
+
+#sidebox ul .discover {
+  background-image: url(../images/registration/discover.gif) !important;
+}
+
+#sidebox ul .radio {
+  background-image: url(../images/registration/radio.gif) !important;
+}
+#sidebox ul .playlist {
+  background-image: url(../images/registration/playlist.gif) !important;
+}
+#sidebox ul .follow {
+  background-image: url(../images/registration/follow.gif) !important;
+}
+#sidebox ul .chat {
+  background-image: url(../images/registration/chat.gif) !important;
+}
+
+#main_content.registration {
+  border-right: 1px solid #ddd;
+  width: 0px !important;
+  padding: 0px 30px !important;
+  float: left;
+}
+
+#sidebox {
+  padding: 0px;
+  padding-right: 0px;
+  float: right !important;
+  width: 400px !important;
+  text-align: left;
+}
+
+a.settings_button {
+  position: relative;
+  top: 5px !important;
+}
+
+.actions_settings {
+  position: relative;
+  top: 5px !important;
+}
+
+span.checkbox {
+  color: black !important;
+}
+

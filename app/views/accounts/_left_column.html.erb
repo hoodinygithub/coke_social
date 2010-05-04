@@ -1,0 +1,11 @@
+<div id="left_column">
+  <%= render profile_user? ? 'users/info'    : 'artists/info' %>
+  <%= render profile_user? ? 'users/stats'   : 'artists/stats' %>
+  <%= render profile_user? ? 'users/buttons' : 'artists/buttons' %>
+  <%= render 'accounts/buttons' %>
+  <%= if profile_user?
+   user_sidebar_links
+  else
+    artist_sidebar_links
+  end %>
+</div><!--/end left_column -->

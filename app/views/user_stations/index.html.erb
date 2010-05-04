@@ -1,0 +1,27 @@
+<%= render 'shared/ajax_modules' %>
+<% content_for :title do %>
+  <% if params[:slug] %>
+    <%= t("possessives.third_person.stations", :subject => artist_or_user_name(profile_account)) %>
+  <% else %>
+    <%= t("possessives.first_person.stations") %>
+  <% end %>
+<% end %>
+
+<% content_for :sorting do %>
+  <%= sort_link_to :latest %>
+  /
+  <%= sort_link_to :top %>
+  /
+  <%= sort_link_to :alphabetical %>
+<% end %>
+
+<% content_for :list do %>
+  <ul class="stations_list">
+    <%= render :partial => profile_artist? ? 'user_stations/artist_user_station' : 'user_stations/user_station', :collection =>  @user_stations %>
+  </ul>
+  <%= will_paginate @user_stations, pagination_args %>
+<% end %>
+
+
+<%= render 'shared/internal_content' %>
+

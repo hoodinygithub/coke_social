@@ -1,0 +1,22 @@
+<div class="accordion_title"><%= t('account_settings.delete_account') %></div>
+<div class="accordion_box">
+  <% form_for @user, :html => { :method => :delete, :class => "account_settings", :id => 'delete_account_form' }, :url => my_cancellation_path do |f| %>
+    <div class="form_row">
+      <%= render :partial => 'password_confirmation' if cyloop_login? %>
+      <input type="checkbox"
+             class="{required:true,messages:{required:'<%= t('account_settings.delete_info_required') %>'}}"
+             id="delete_info_accepted"
+             name="delete_info_accepted" />
+      <span class="delete_info"><label for="delete_info_accepted"><%= t('account_settings.delete_info') %></label></span>
+    </div><!--/end form_row -->
+    <div class="form_row last">
+      <div class="align_right right_side">
+        <a href="#" class="cancel_button"><%= t('account_settings.cancel') %></a>
+        <a href="#" class="blue_button" id="delete_account_submit">
+          <span><span><%= t('account_settings.delete_my_account') %></span></span>
+        </a>
+      </div>
+      <br class="clearer" />
+    </div><!--/end form_row -->
+  <% end %>
+</div><!--/end accordion_box -->

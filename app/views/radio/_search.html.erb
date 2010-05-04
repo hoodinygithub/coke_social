@@ -1,0 +1,88 @@
+
+<!-- 
+- cache("#{site_cache_key}/radio/default_artist_info", :expires_in => EXPIRATION_TIMES['radio_default_artist_info']) do
+  .artist_radio_info
+    = render :partial => "default_artist_info"
+     -->
+<% content_for :head do %>
+<%= stylesheet_link_tag 'jquery.autocomplete' %>
+<%= javascript_include_tag 'jquery.autocomplete' %>
+
+<script type="text/javascript">
+  $(document).ready(function() {
+    var artistSearch = $("input[name='search_station_name']");
+    var stationID = $("input[name='search_station_id']");
+    var stationQueue = $("input[name='search_station_queue']");
+    var listenButton = $("#create_station_submit");
+
+    listenButton.click(function(e) {
+      if(parseInt($(this).attr('can_post'), 10)) {
+        Base.radio.launchRadio($(this).attr('station_id'));
+        //listenButton.attr('can_post', 0);
+      }
+    });
+
+    artistSearch.autocomplete("/stations.js", {
+      formatItem: function(item) {
+        return item[1];
+      },        
+      formatResult: function(item) {
+        return item[1];
+      }        
+    }).result(function(event, item) {
+      Base.radio.set_station_search_details(item[0], item[2], false);
+      listenButton.attr('can_post', 1);
+      listenButton.removeClass('grey_button_big').addClass('blue_button');
+    });
+
+    artistSearch.css('color', '#c0d6e2');
+    artistSearch.focus(function() {
+      if(artistSearch.val() == "<%= t('radio.search_hint') %>") {
+        artistSearch.attr('value', '')
+      }
+      if (artistSearch.attr("touched") != 'true') {
+        artistSearch.attr("touched", 'true');
+        artistSearch.css('color', '#025d8c');
+        artistSearch.attr('value', '')
+      }
+    });
+    
+    artistSearch.blur(function() {
+      if(artistSearch.val() == "") {
+        artistSearch.attr("touched", 'false');
+        artistSearch.css('color', '#c0d6e2');
+        artistSearch.attr('value', "<%= t('radio.search_hint') %>")
+        listenButton.attr('can_post', 0).removeClass('blue_button').addClass('grey_button_big');
+        stationID.val("");
+        stationQueue.val("");
+      }
+    });
+  });
+</script>
+<% end %>
+<div class="two_columns">
+    <div class="search_box light_grey">
+      <% form_for(:abstractstation, :html => {:class => "search_station"}, :url => search_radio_path) do %>
+          <div align="center" class="title">
+            <%= image_tag "cyloop_logo_transparent.gif" %>&nbsp;<%= t('basics.radio').downcase %>
+          </div>
+          <br/>
+          <div class="title"><%= t('radio.getting_started') %></div>
+          <%= hidden_field_tag :search_station_id %>
+          <span class="text_input_placeholder">
+              <input type="text" name="search_station_name" value="<%= t('radio.search_hint') %>">
+          </span>            
+          <span class="btn_placeholder">
+              <%= grey_button(t('actions.listen').upcase, :id => 'create_station_submit', :can_post => 0) %>
+          </span>
+          <br/><br/>
+          <div class="medium_text grey2">
+            <%= t('radio.select_recommended_stations_below') %>                
+          </div>
+      <% end %>
+    </div><!--/end search_box -->
+
+    <h1><%= t('modules.recommended_stations.title') %></h1>
+    <%= render :partial => 'shared/abstract_station', :collection => @recommended_stations, :locals => { :columns => 4 } %>    
+    <br class="clearer" />
+</div><!--/end two_columns -->

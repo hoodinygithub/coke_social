@@ -1,0 +1,23 @@
+<!-- Leave profile visists until include mixes -->
+<div class="black_box left_side">
+  <big class="blue">
+    <%= number_with_delimiter(profile_account.visit_count) %>
+  </big>
+  <br />
+  <%= t('user.visits', :default => "visits") %>
+</div>
+<!-- Remove mixes
+  <div class="black_box left_side">
+    <big class="blue"><a href="#">12,3698</a></big><br>
+    Mixes
+  </div> -->
+
+<div class="black_box right_side">
+  <big class="blue">
+    <%= link_to("#{profile_user.total_user_stations}", user_stations_path(profile_account)) if profile_user? %>
+    <%= link_to("#{profile_artist.total_user_stations}", artist_stations_path(profile_account)) if profile_artist? %>
+  </big>
+  <br />
+  <%= t('basics.stations') %>
+</div>
+

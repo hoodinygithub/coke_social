@@ -1,0 +1,20 @@
+<% form_for :search, :url => search_path, :html => { :onsubmit => 'return Base.main_search.buildSearchUrl();', :method => :get, :id => :main_search_form } do |f| %>
+  <div class="title"><%= t('actions.search_text') %></div>
+
+  <span class="text_input_placeholder">
+      <%= text_field_tag :q, @query.nil? ? t('search.search_hint') : @query ,  {:id => :search_query, :class => "search_input", :onfocus => "clearInput('#{t('search.search_hint')}', this);", :onblur => "restoreInput('#{t('search.search_hint')}', this);"} %>
+      <%= f.hidden_field :scope, :name => :scope, :value => @active_scope.to_s %>
+      <%= f.hidden_field :sort, :name => :sort, :value => @sort_type.to_s %>
+  </span>
+
+  <span class="btn_placeholder">
+      <a href="#" onclick="return Base.main_search.buildSearchUrl();" class="blue_button"><span><span><%= t('actions.search').upcase %></span></span></a>
+  </span>
+  <br/>
+
+  <div class="sorting scope">
+      <% @search_types.each_with_index do |type, index| %>
+      <%= link_to(t("basics.#{type}"), "#", :id => "search_#{type.to_s}")%> <%= index == @search_types.size - 1 ? "" : "/" %>
+      <% end %>
+  </div>
+<% end %>

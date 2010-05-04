@@ -1,0 +1,21 @@
+<div id="slides_banner">
+  <ul id="slides">
+    <% @feed_featured.each_with_index do |slide, index| %>
+      <li class="slide">
+        <%= link_to image_tag(slide.image("630x250", msn_site_code)), slide.link %>
+          <div class="band_details">
+            <div class="band_name"><%= slide.artist %></div>
+            <div class="band_slogan"><%= slide.text %></div>
+          </div>
+        </li><!--/end slide -->
+    <% end %>
+  </ul><!--/end slides -->
+  <div class="band_ad_box">
+    <%= banner_ad("square_banner") %>
+  </div>  
+  <div id="pager">
+    <img src="images/pager_left.png" class="png_fix" alt="" />
+    <span id="pager_links" class="png_fix"></span>
+    <img src="images/pager_right.png" class="png_fix" alt="" />
+  </div>
+  </div><!--/end slides_banner -->

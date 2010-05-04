@@ -1,0 +1,35 @@
+<h1><%= t('basics.artists')%></h1>
+
+<div class="sorting">
+  <%= sort_link_to :relevance %> /
+  <%= sort_link_to :alphabetical %>
+</div>
+
+<ul class="followers_list">
+  <% @results[:artists].each do |artist|%>
+    <li>
+        <%= link_to(avatar_for(artist, :search, :alt => " #{artist.name}", :class =>"follower_image"), artist) %>
+        <div class="follower_text">
+            <b><%= link_to artist.name, artist %></b><br/>
+            <% unless artist.country.nil? %>
+            <span><%= artist.country.name %></span><br/>
+            <% end %>
+            <% unless artist.genre.nil? %>
+            <span><%= artist.genre.name %></span>
+            <% end %>
+        </div>
+
+        <div class="follower_actions w_settings">
+            <!-- phase 2 <a href="#"><img src="/images/play_button.png" class="png_fix" alt="" /></a> -->
+            <%= follow_button(:account => artist, :remove_div => false) %>
+            <br/>
+        </div>
+        <br class="clearer" />
+        <div class="long_text"><%= link_to number_with_delimiter(artist.total_user_stations), user_stations_path(artist) %> <%= t('basics.stations') %> / <%= link_to number_with_delimiter(artist.follower_count), user_followers_path(artist) %> <%= t('users.stats.followers') %></div>
+    </li>
+  <% end %>
+</ul><!--/end followers_list -->
+<div class="pagination">
+  <%= will_paginate @results[:artists], pagination_args %>
+</div>
+

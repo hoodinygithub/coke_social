@@ -1,0 +1,22 @@
+<div class="side_user_box">
+  <%= avatar_for(profile_account, :album, :class => 'side_user_image', :width => "150", :disable_default_css => true) %>
+  <div class="overlay png_fix">
+    <div class="overlay_content">
+      <big>
+        <%= link_to(profile_account.name, "") %>
+      </big>
+      <br />
+      <%= profile_account.country.name unless profile_account.country.nil? %>
+      <% if profile_artist? %>
+        <br />
+        <%= profile_account.genre.name unless profile_account.genre.nil?  %>
+      <% end %>
+    </div>
+  </div>
+</div>
+<%  if profile_user? %> 
+  <div class="big_black_box">
+    <%= render 'dashboards/user_info'%>
+    <%= render 'dashboards/websites'  if profile_account.websites %>
+  </div>
+<% end %>
