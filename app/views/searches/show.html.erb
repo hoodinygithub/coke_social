@@ -8,9 +8,14 @@
     <div class="search_box">
       <%= render :partial =>'search_form' %>
     </div><!--/end search_box -->
+    
+    
     <% unless @query.nil? %>
-      <h3 class="search_result"><%= "#{t('search.search_results_for')} \"#{@query.nil? ? '' : @query}\"" %></h3>
+      <div class="search_term">
+          <%= "#{t('search.search_results_for')} \"#{@query.nil? ? '' : @query}\"" %>
+      </div>
     <% end %>
+
     <div id="left_column">
       <% unless @query.nil? %>
         <%= render 'scope_toggle' %>

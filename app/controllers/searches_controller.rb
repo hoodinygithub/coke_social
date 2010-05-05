@@ -2,7 +2,7 @@ class SearchesController < ApplicationController
 
   def show
     @query = params[:q]    
-    @search_types ||= [:artists, :stations, :users]    
+    @search_types ||= [:playlists, :users]    
     @sort_type = params.fetch(:sort_by, nil).to_sym rescue :relevance
     @sort_types = { :latest => 'created_at DESC', :alphabetical => 'name ASC', :relevance => nil }
 

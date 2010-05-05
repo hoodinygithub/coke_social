@@ -343,7 +343,6 @@ Base.layout.bind_events = function() {
   $('#userdata_arrow').click(function() {
       $('#userdata_box .links').slideToggle(200);
       $('#userdata_arrow .arrow_up').toggleClass('visible');
-
       return false;
   });
 
@@ -1410,21 +1409,8 @@ Base.radio.init_edit_station_layer = function() {
  */
 jQuery(document).ready(function() {
   // Effects and Layout fixes
-  $('#slides').cycle({fx: 'fade', timeout: 5000, pager: '#pager_links'});
   $('.png_fix').supersleight({shim: '/images/blank.gif'});
-
-  // Popups
-  $('.simple_popup').simple_popup();
-  $('.popup').popup();
   
-  //MSN header behaviors
-  $('#msn_header .portal').hide();
-  $('#msn_header li.more a').click(function() {
-    $("#msn_header .portal").toggle();
-    $("#msn_header li.more").toggleClass('open');
-    return false;
-  });
-
   Base.stations.close_button_event_binder();
   Base.layout.bind_events();
   Base.layout.hide_success_and_error_messages();
