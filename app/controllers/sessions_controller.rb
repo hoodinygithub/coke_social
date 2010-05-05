@@ -1,7 +1,6 @@
 require 'cgi'
 class SessionsController < ApplicationController
   before_filter :set_return_to, :only => :new
-  layout 'none'
 
   # GET /session/new
   def new

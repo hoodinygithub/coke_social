@@ -25,6 +25,7 @@ module DashboardsHelper
       :activities    => my_activities_path,
       :followers     => my_followers_path,
       :following     => my_following_index_path,
+      :logout        => logout_path,
       :settings      => my_settings_path
     }
 
@@ -36,7 +37,9 @@ module DashboardsHelper
      {:menu => :activity,      :label => "#{t('profile.navigation.activity')}",         :url => links[:activities]},
      {:menu => :followers,     :label => "#{t('profile.navigation.followers')}",        :url => links[:followers]},
      {:menu => :following,     :label => "#{t('profile.navigation.following')}",        :url => links[:following]},
-     {:menu => :settings,      :label => "#{t('profile.navigation.account_settings')}", :url => links[:settings]}]
+     {:menu => :settings,      :label => "#{t('profile.navigation.account_settings')}", :url => links[:settings]},
+     {:menu => :logout,        :label => "Logout", :url => links[:logout]}
+     ]
   end
   
   def user_top_navegation
