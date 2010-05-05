@@ -89,7 +89,8 @@ class User < Account
   
   has_many :playlists, :foreign_key => :owner_id, :order => 'created_at DESC'
 
-  has_many :song_listens, :foreign_key => :listener_id
+  has_many :badge_awards, :foreign_key => :winner_id
+  has_many :badges, :through => :badge_awards
 
   has_many :followings, :foreign_key => 'follower_id'
   has_many :followees, :through => :followings, :conditions => "followings.approved_at IS NOT NULL", :source => :followee do
