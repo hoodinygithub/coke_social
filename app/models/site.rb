@@ -14,15 +14,16 @@
 #
 
 class Site < ActiveRecord::Base
+  include Site::AllowedEntryPoints
+  #include SongListen::Most  
+  include ProfileVisit::Most
+
   def self._load(*args)
     find(*args) rescue nil
   end
   
   index :name
   serialize :default_locale, Symbol
-
-  include SongListen::Most
-  include ProfileVisit::Most
 
   validates_presence_of :name
   validates_uniqueness_of :name
@@ -49,7 +50,7 @@ class Site < ActiveRecord::Base
   has_many :campaigns
   
   belongs_to :login_type
-  
+
   # Things I hate in life: this method
   def default_locale
     @attributes['default_locale'].gsub('--- :', '').strip.to_sym

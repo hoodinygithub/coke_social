@@ -13,6 +13,16 @@
 #
 
 class Playlist < ActiveRecord::Base
+  include AvatarImporter
+
+  define_index do
+    where "deleted_at IS NULL"
+    indexes :name, :sortable => true
+    set_property :min_prefix_len => 1
+    set_property :enable_star => 1
+    set_property :allow_star => 1
+    has created_at
+  end
 
   belongs_to :owner, :class_name => 'User'
 
@@ -20,7 +30,34 @@ class Playlist < ActiveRecord::Base
   has_many :items, :class_name => 'PlaylistItem', :order => "playlist_items.position ASC", :include => :song
   has_one :editorial_station, :foreign_key => 'mix_id'
   
+  has_attached_file :avatar, :styles => { :album => "300x300#", :medium => "86x86#", :small => "60x60#" }
+  validates_attachment_content_type :avatar,
+    :content_type => ["image/jpeg", "image/png", "image/gif", "image/pjpeg", "image/x-png"]
+    
   validates_presence_of :name
+
+  def includes(limit=3)
+    songs.all(:limit => limit).uniq_by { |s| s.artist_id }
+  end
+  
+  def deactivate!
+    update_attribute(:deleted_at, Time.now)
+  end
+
+  def activate!
+    update_attribute(:deleted_at, nil)
+  end
+
+  def owner_is?(user)
+    is_owner = false
+    unless user.nil?
+      is_owner = owner == user 
+    end
+  end
+  
+  def station_queue(params={})
+    "/playlists/#{id}.xml"
+  end  
   
   def artists_contained(options = {})
     options[:limit] ||= 4
@@ -34,8 +71,12 @@ class Playlist < ActiveRecord::Base
     @artists ||= Artist.find_by_sql( [ ARTISTS_FROM_PLAYLIST, self.id ] ).uniq
   end
 
-  def avatar
-    owner && owner.avatar || User.new.avatar
+  def avatar_with_default
+    if avatar_file_name.blank? && owner && !owner.avatar_file_name.blank?
+      owner.avatar
+    else
+      avatar_without_default
+    end
   end
 
   def gender

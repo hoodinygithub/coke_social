@@ -147,7 +147,9 @@ class User < Account
     cached_pending_followee_ids.include?(followee_id)
   end
 
-  #TODO MUST BE REVISITED WHEN IMPLEMENTING LOCALES
+  def can_enter?(site)
+    site && site.allowed_entry_points.include?(entry_point_id) ? true : false
+  end
 
   def create_user_station(options={})
     user_station = nil
