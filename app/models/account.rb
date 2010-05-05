@@ -130,6 +130,7 @@ class Account < ActiveRecord::Base
 
   has_many :account_slugs, :dependent => :destroy
   belongs_to :site, :foreign_key => :entry_point_id
+  delegate :networks, :to => :site
 
   def follow_requests
     followings_as_followee.pending

@@ -25,7 +25,8 @@ class Playlist < ActiveRecord::Base
   end
 
   belongs_to :owner, :class_name => 'User'
-
+  delegate :networks, :to => :owner
+  
   has_many :songs, :through => :items, :order => "playlist_items.position ASC"
   has_many :items, :class_name => 'PlaylistItem', :order => "playlist_items.position ASC", :include => :song
   has_one :editorial_station, :foreign_key => 'mix_id'
