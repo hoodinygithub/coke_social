@@ -1,21 +1,41 @@
 module DashboardsHelper
+  def menu_items(links)
+    items = [{:menu => :home,          :label => "#{t('profile.navigation.home')}",             :url => links[:home]},
+     {:menu => :playlists,     :label => "Playlists",                                   :url => links[:stations]},
+     {:menu => :badges,        :label => "Badges",                                      :url => links[:badges]},
+     {:menu => :reviews,       :label => "Reviews",                                     :url => links[:reviews]},
+     {:menu => :subscriptions, :label => "Subscriptions",                               :url => links[:subscriptions]},
+     {:menu => :activity,      :label => "#{t('profile.navigation.activity')}",         :url => links[:activities]},
+     {:menu => :followers,     :label => "#{t('profile.navigation.followers')}",        :url => links[:followers]},
+     {:menu => :following,     :label => "#{t('profile.navigation.following')}",        :url => links[:following]},
+     ]
+     
+     if links[:settings]
+       items << {:menu => :settings,      :label => "#{t('profile.navigation.account_settings')}", :url => links[:settings]}
+     end
+     
+     if links[:logout]
+       items << {:menu => :logout,        :label => "Logout", :url => links[:logout]}
+     end
+     
+     items
+  end
+  
   def user_nav_links
     links = {
       :home     => user_path,
-      :stations => user_stations_path,
+      :playlists     => '#',
+      :badges        => '#',
+      :reviews       => '#',
+      :subscriptions => '#',
       :activities => activities_path,
       :followers  => followers_path,
       :following  => following_index_path
     }    
-    
-    [{:menu => :home,          :label => "#{t('profile.navigation.home')}",       :url => links[:home]      },
-     {:menu => :stations,      :label => "#{t('profile.navigation.stations')}",   :url => links[:stations]  },
-     {:menu => :activity,      :label => "#{t('profile.navigation.activity')}",   :url => links[:activities]},
-     {:menu => :followers,     :label => "#{t('profile.navigation.followers')}",  :url => links[:followers] },
-     {:menu => :following,     :label => "#{t('profile.navigation.following')}",  :url => links[:following] }]
+    menu_items(links)
   end
   
-  def my_nav_links
+  def my_nav_links(options = {})
     links = {
       :home          => my_dashboard_path,
       :playlists     => '#',
@@ -28,36 +48,39 @@ module DashboardsHelper
       :logout        => logout_path,
       :settings      => my_settings_path
     }
-
-    [{:menu => :home,          :label => "#{t('profile.navigation.home')}",             :url => links[:home]},
-     {:menu => :playlists,     :label => "Playlists",                                   :url => links[:stations]},
-     {:menu => :badges,        :label => "Badges",                                      :url => links[:badges]},
-     {:menu => :reviews,       :label => "Reviews",                                     :url => links[:reviews]},
-     {:menu => :subscriptions, :label => "Subscription",                                :url => links[:subscriptions]},
-     {:menu => :activity,      :label => "#{t('profile.navigation.activity')}",         :url => links[:activities]},
-     {:menu => :followers,     :label => "#{t('profile.navigation.followers')}",        :url => links[:followers]},
-     {:menu => :following,     :label => "#{t('profile.navigation.following')}",        :url => links[:following]},
-     {:menu => :settings,      :label => "#{t('profile.navigation.account_settings')}", :url => links[:settings]},
-     {:menu => :logout,        :label => "Logout", :url => links[:logout]}
-     ]
+    
+    if options[:simple]
+      links.delete(:logout)
+      links.delete(:settings)
+    end
+    
+    menu_items(links)
   end
   
   def user_top_navegation
     ul_list_to('links', 'current', my_nav_links)
   end
 
-  def user_sidebar_links
-    ul_list_to('side_links', 'active', user_nav_links)
+  def user_navegation
+    return unless ['accounts', 'dashboards'].include? params[:controller]
+    
+    links = if profile_account and current_user and profile_account == current_user
+      my_nav_links(:simple => true)
+    else
+      user_nav_links
+    end
+
+    html_links = []
+    links.each do |link|
+      css_class = ""
+      css_class << " active" if request.request_uri == link[:url]
+      css_class << " last"   if links.last == link
+      html_links << link_to(link[:label], link[:url], :class => css_class)
+    end
+    
+    content_tag(:div, html_links.join("\n"), :class => 'top_nav w_spacer upriv_page')
   end
   
-  def artist_sidebar_links
-    ul_list_to('side_links', 'active', artist_nav_links)
-  end
-
-  def account_sidebar_links
-     ul_list_to('side_links', 'active', my_nav_links)
-  end
-
   def ul_list_to(ul_class, active_class, nav_links)
     items = []
     nav_links.each do |item|

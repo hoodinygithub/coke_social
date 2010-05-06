@@ -1,7 +1,7 @@
 module ApplicationHelper
 
   include PopupHelper
-  
+
   def is_index?
     request.request_uri == "/"
   end

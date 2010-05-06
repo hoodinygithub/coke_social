@@ -26,8 +26,8 @@
             <div class="clearer"></div>
         </div><!--/end header -->
         
+        <%= user_navegation %>
         <%= yield :header_space_content %> 
-        
         <div id="main_content"><%= yield %></div>
         <%= render :partial => 'shared/footer.html.erb' %>
     </div><!--/end container -->
