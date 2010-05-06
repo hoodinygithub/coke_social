@@ -4,8 +4,8 @@ class PagesController < ApplicationController
 
   def home
     @latest_badges = {} 
-    @top_djs = current_site.top_djs.limited_to(6)
-    @top_playlists = current_site.top_playlists.limited_to(6)
+    @top_djs = current_site.top_djs.all(:limit => 6)
+    @top_playlists = current_site.top_playlists.all(:limit => 6)
     
     # respond_to do |format|
     #   format.html do
