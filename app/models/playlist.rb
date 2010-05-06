@@ -15,9 +15,12 @@
 class Playlist < ActiveRecord::Base
   include AvatarImporter
 
+  acts_as_taggable
+
   define_index do
     where "deleted_at IS NULL"
     indexes :name, :sortable => true
+    indexes :cached_tag_list
     set_property :min_prefix_len => 1
     set_property :enable_star => 1
     set_property :allow_star => 1
@@ -26,7 +29,7 @@ class Playlist < ActiveRecord::Base
 
   belongs_to :owner, :class_name => 'User'
   delegate :networks, :to => :owner
-  
+    
   has_many :songs, :through => :items, :order => "playlist_items.position ASC"
   has_many :items, :class_name => 'PlaylistItem', :order => "playlist_items.position ASC", :include => :song
   has_one :editorial_station, :foreign_key => 'mix_id'
@@ -77,6 +80,17 @@ class Playlist < ActiveRecord::Base
       owner.avatar
     else
       avatar_without_default
+    end
+  end
+
+  def add_tags(tags)
+    tags = tags.split(/('.*?'|".*?"|\s+)/).map { |m| m.gsub(/\"/,"") unless m.blank? }.compact
+    unless tags.empty?
+      transaction do
+        self.tag_list.add(tags) 
+        self.save
+        owner.update_cached_tag_list
+      end
     end
   end
 

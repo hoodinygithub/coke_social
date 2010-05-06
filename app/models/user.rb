@@ -88,6 +88,7 @@ class User < Account
            :conditions => 'abstract_stations.deleted_at IS NULL AND user_stations.deleted_at IS NULL'
   
   has_many :playlists, :foreign_key => :owner_id, :order => 'created_at DESC'
+  has_many :taggings, :through => :playlists
 
   has_many :badge_awards, :foreign_key => :winner_id
   has_many :badges, :through => :badge_awards
@@ -122,6 +123,14 @@ class User < Account
 
   def <=>(b)
     id <=> b.id
+  end
+
+  def tags_from_playlists
+    taggings.map(&:tag)
+  end
+
+  def update_cached_tag_list
+    update_attribute(:cached_tag_list, TagList.new(tags_from_playlists.map(&:name)).to_s)
   end
 
   def follow(followee)
