@@ -21,7 +21,7 @@ set :password,            "Xh00d17ME71z"
 set :deploy_to,           "#{deploy_base}/#{application}"
 set :monit_group,         ENV['DEPLOY_SITE'] || ARGV[0]
 set :runner,              "hoodiny"
-set :repository,          "git@github.com:hoodinygithub/cyloop_social.git"
+set :repository,          "git@github.com:hoodinygithub/coke_social.git"
 set :cyqueue,             "/data/cyqueue/current"
 
 set :git_shallow_clone,   1
@@ -36,11 +36,7 @@ set :dbuser,              "hoodiny_db"
 set :dbpass,              "Q97t42WGDj8a"
 
 set :shared_path,         "#{deploy_to}/shared"
-set :sites,               [
-                              "mexico_cs", "brazil_cs", "canada_fr_cs", "canada_en_cs", 
-                              "cyloop_cs", "cyloopes_cs", "latino_cs", "latam_cs", "tvn_cs", 
-                              "brazil_cs", "argentina_cs"
-                          ]
+set :sites,               ["coke_brazil", "coke_latam"]
 
 
 # comment out if it gives you trouble. newest net/ssh needs this set.
@@ -56,122 +52,29 @@ ssh_options[:paranoid] = false
 
 set :branch, "master"
 
-#EY06 All Sites
-task :production do
-  role :app, "70.42.33.4:8129", :no_release => true, :no_symlink => true
-  role :app, "70.42.33.4:8130", :no_release => true, :no_symlink => true
-  role :app, "70.42.33.4:8131", :no_release => true, :no_symlink => true
-  role :app, "70.42.33.4:8132", :no_release => true, :no_symlink => true
-  role :app, "70.42.33.4:8133", :no_release => true, :no_symlink => true
-  role :app, "70.42.33.4:8134", :no_release => true, :no_symlink => true
-  role :app, "70.42.33.4:8135", :no_release => true, :no_symlink => true
-  role :app, "70.42.33.4:8136", :no_release => true, :no_symlink => true
-  role :app, "70.42.33.4:8137", :no_release => true, :no_symlink => true
-  role :app, "70.42.33.4:8138", :no_release => true, :no_symlink => true
-
-  set :branch, "release-10-001"
-  set :rails_env, "production"
-  set :environment_database, defer { production_database }
-  set :environment_dbhost, defer { production_dbhost }
-end
-
-#EY06 Brazil
-task :brazil do
-  role :web, "70.42.33.4:8129"
-  role :app, "70.42.33.4:8129", :memcached => true, :sphinx => true
-  role :db , "70.42.33.4:8129", :primary => true
-  role :app, "70.42.33.4:8130", :memcached => true, :sphinx => true
-
-  set :rails_env, "production"
-  set :environment_database, defer { production_database }
-  set :environment_dbhost, defer { production_dbhost }
-end
-
-#EY06 Mexico
-task :mexico do
-  role :web, "70.42.33.4:8131"
-  role :app, "70.42.33.4:8131", :memcached => true, :sphinx => true
-  role :db , "70.42.33.4:8131", :primary => true
-  role :app, "70.42.33.4:8132", :memcached => true, :sphinx => true
-
-  set :rails_env, "production"
-  set :environment_database, defer { production_database }
-  set :environment_dbhost, defer { production_dbhost }
-end
-
-#EY06 Latam
-task :latam do
-  role :web, "70.42.33.4:8133"
-  role :app, "70.42.33.4:8133", :memcached => true, :sphinx => true
-  role :db , "70.42.33.4:8133", :primary => true
-  role :app, "70.42.33.4:8134", :memcached => true, :sphinx => true
-
-  set :rails_env, "production"
-  set :environment_database, defer { production_database }
-  set :environment_dbhost, defer { production_dbhost }
-end
-
-
-#EY06 US Latin
-task :latino do
-  role :web, "70.42.33.4:8135"
-  role :app, "70.42.33.4:8135", :memcached => true, :sphinx => true
-  role :db , "70.42.33.4:8135", :primary => true
-  role :app, "70.42.33.4:8136", :memcached => true, :sphinx => true
-
-  set :rails_env, "production"
-  set :environment_database, defer { production_database }
-  set :environment_dbhost, defer { production_dbhost }
-end
-
-#EY06 Argentina
-task :argentina do
-  role :web, "70.42.33.4:8135"
-  role :app, "70.42.33.4:8135", :memcached => true, :sphinx => true
-  role :db , "70.42.33.4:8135", :primary => true
-  role :app, "70.42.33.4:8136", :memcached => true, :sphinx => true
-
-  set :rails_env, "production"
-  set :environment_database, defer { production_database }
-  set :environment_dbhost, defer { production_dbhost }
-end
-
-#EY06 US Cyloop.com
-task :cyloop do
-  role :web, "70.42.33.4:8135"
-  role :app, "70.42.33.4:8135", :memcached => true, :sphinx => true
-  role :db , "70.42.33.4:8135", :primary => true
-  role :app, "70.42.33.4:8136", :memcached => true, :sphinx => true
-
-  set :rails_env, "production"
-  set :environment_database, defer { production_database }
-  set :environment_dbhost, defer { production_dbhost }
-end
-
-
-#EY06 Canada
-task :canada do
-  role :web, "70.42.33.4:8137"
-  role :app, "70.42.33.4:8137", :memcached => true, :sphinx => true
-  role :db , "70.42.33.4:8137", :primary => true
-  role :app, "70.42.33.4:8138", :memcached => true, :sphinx => true
-
-  set :rails_env, "production"
-  set :environment_database, defer { production_database }
-  set :environment_dbhost, defer { production_dbhost }
-end
-
-#EY06 Cyloop ES
-task :cyloopes do
-  role :web, "70.42.33.4:8137"
-  role :app, "70.42.33.4:8137", :memcached => true, :sphinx => true
-  role :db , "70.42.33.4:8137", :primary => true
-  role :app, "70.42.33.4:8138", :memcached => true, :sphinx => true
-
-  set :rails_env, "production"
-  set :environment_database, defer { production_database }
-  set :environment_dbhost, defer { production_dbhost }
-end
+# #EY06 Brazil
+# task :coke_brazil do
+#   role :web, "70.42.33.4:8129"
+#   role :app, "70.42.33.4:8129", :memcached => true, :sphinx => true
+#   role :db , "70.42.33.4:8129", :primary => true
+#   role :app, "70.42.33.4:8130", :memcached => true, :sphinx => true
+# 
+#   set :rails_env, "production"
+#   set :environment_database, defer { production_database }
+#   set :environment_dbhost, defer { production_dbhost }
+# end
+# 
+# #EY06 Latam
+# task :coke_latam do
+#   role :web, "70.42.33.4:8133"
+#   role :app, "70.42.33.4:8133", :memcached => true, :sphinx => true
+#   role :db , "70.42.33.4:8133", :primary => true
+#   role :app, "70.42.33.4:8134", :memcached => true, :sphinx => true
+# 
+#   set :rails_env, "production"
+#   set :environment_database, defer { production_database }
+#   set :environment_dbhost, defer { production_dbhost }
+# end
 
 task :staging do
   role :web, "70.42.33.4:8139"
@@ -218,7 +121,6 @@ task :symlink_remaining, :roles => :app, :except => {:no_release => true, :no_sy
 end
 
 namespace :deploy do
-  
   # Try and get around EY gem
   task :symlink_configs, :roles => :app, :except => {:no_release => true} do
     run <<-CMD
@@ -237,7 +139,7 @@ namespace :deploy do
   end
 
   task :post_announce do
-    #campfire_notification "#{ENV['USER']} finished deploying #{application} to #{rails_env} (#{branch})"
+    campfire_notification "#{ENV['USER']} finished deploying #{application} to #{rails_env} (#{branch})"
   end
 
   task :restart do
