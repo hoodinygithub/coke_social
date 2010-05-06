@@ -146,9 +146,11 @@ ActionController::Routing::Routes.draw do |map|
     end
     profile.queue_my_station '/stations/:station_id/queue', :controller => 'user_stations', :action => "queue"
     profile.resources :albums, :controller => 'albums', :only => [:index, :show]
+
     map.with_options(:controller => 'albums') do |url|
       url.queue_song ':slug/albums/:id/:song_id', :action => 'show'
     end
+
     profile.resources :stations, :controller => 'user_stations'
 
     profile.resources :biography, :only => :index
@@ -181,12 +183,7 @@ ActionController::Routing::Routes.draw do |map|
       my.resource :customizations, :collection => { :restore_defaults => :get, :remove_background_image => :get }, :path_prefix => 'my/settings'
     end
   end
-
-  map.with_options(:controller => 'custom_artists') do |url|
-    url.detour '/detour', :action => 'detour'
-    url.invasion '/invasion', :action => 'invasion'
-  end
-
+  
   map.msn_refresh '/msn/refresh', :controller => 'msn/refresh', :action => 'index'
   map.msn_channel '/msn/refresh/channel', :controller => 'msn/refresh', :action => 'channel'
 
