@@ -1,3 +1,9 @@
+<% content_for :header_space_content do %>
+  <%= render :partial => 'shared/create_playlist' %>
+  <div class="clearer"></div>
+  <%= render :partial => 'black_banner' if is_index? %>
+<% end %>
+
 <%= render :partial => 'shared/tag_cloud' %>
 <%= render :partial => 'today_top_playlists' %>
 <%= render :partial => 'today_top_djs' %>

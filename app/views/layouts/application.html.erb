@@ -26,9 +26,8 @@
             <div class="clearer"></div>
         </div><!--/end header -->
         
-        <%= render :partial => 'shared/create_playlist' %>
-        <div class="clearer"></div>
-        <%= render :partial => 'pages/black_banner' if is_index? %>
+        <%= yield :header_space_content %> 
+        
         <div id="main_content"><%= yield %></div>
         <%= render :partial => 'shared/footer.html.erb' %>
     </div><!--/end container -->
