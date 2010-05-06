@@ -2,6 +2,10 @@ module ApplicationHelper
 
   include PopupHelper
   
+  def is_index?
+    request.request_uri == "/"
+  end
+  
   def filter_link_by(link_label, options)
     type = options.delete(:type).to_s
 
@@ -355,27 +359,13 @@ module ApplicationHelper
 
   def gatracker_id
     case current_site.name
-    when "MSN Mexico"
-      "UA-410780-31"
     when "MSN Brazil"
-      "UA-410780-29"
+      "UA-410780-61"
     when "MSN Latam"
-      "UA-410780-32"
-    when "MSN US Latin"
-      "UA-410780-33"
-    when "MSN Canada EN"
-      "UA-410780-34"
-    when "MSN Canada FR"
-      "UA-410780-35"
-    when "Cyloop"
-      "UA-410780-11"
-    when "Cyloop ES"
-      "UA-410780-38"
-    when "MSN Argentina"
-      "UA-410780-46"
+      "UA-410780-62"
     end
   end
-
+  
   def messenger_player_gatracker_id
     case current_site.name
     when "MSN Brazil"

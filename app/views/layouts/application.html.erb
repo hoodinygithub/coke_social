@@ -9,17 +9,17 @@
     <%= stylesheet_link_tag 'application', 'application_ext' %>
     
     <% ['jquery-1.4.1.min', 'jquery.cycle.all.min', 'supersleight.plugin', 'functions', 'base'].each do |javascript| %>
-      <%= javascript_include_tag javascript %>
+      <%= javascript_include_tag javascript -%>
     <% end %>
 </head>
   <body>
     <div id="container">
         <div id="header">
-            <a href="#"><img src="images/logo.png" id="logo" class="png_fix" alt="Coca-Cola" title="Coca-Cola" /></a>
+            <%= link_to(image_tag('logo.png', :id => 'logo', :class => 'png_fix', :alt => 'Coca-cola', :title => 'Coca-cola'), root_path) %>
             <ul id="header_nav">
-                <li><a href="#" class="active">Home</a></li>
-                <li><a href="#">Playlists</a></li>
-                <li><a href="#">Search</a></li>
+                <li><%= link_to 'Home', root_path, :class => 'active' %></li>
+                <li><%= link_to 'Playlists', '#' %></li>
+                <li><%= link_to 'Search', '#' %></li>
             </ul>
             <%= render :partial => 'shared/search_form' %>
             <%= render :partial => 'users/box' %>
@@ -27,13 +27,9 @@
         </div><!--/end header -->
         
         <%= render :partial => 'shared/create_playlist' %>
-        
         <div class="clearer"></div>
-        
-        <%= render 'pages/home_banner' if controller_name == "pages" and action_name == "home" %>
-        
+        <%= render :partial => 'pages/black_banner' if is_index? %>
         <div id="main_content"><%= yield %></div>
-
         <%= render :partial => 'shared/footer.html.erb' %>
     </div><!--/end container -->
   </body>
