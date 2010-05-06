@@ -30,17 +30,7 @@
         
         <div class="clearer"></div>
         
-        <div class="black_banner">
-          <div class="banner_flash_box">
-            <a href="#"><img src="images/banner_flash_box1.jpg" alt="" /></a>
-          </div>
-            
-          <div class="open_happiness_box">
-            <a href="#"><img src="images/open_happiness.jpg" alt="" /></a>
-          </div>
-            
-          <div class="clearer"></div>
-        </div><!--/end black_banner -->
+        <%= render 'pages/home_banner' if controller_name == "pages" and action_name == "home" %>
         
         <div id="main_content"><%= yield %></div>
 

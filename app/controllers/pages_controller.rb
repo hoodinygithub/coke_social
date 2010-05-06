@@ -3,6 +3,7 @@ class PagesController < ApplicationController
   before_filter :authenticate, :only => [:x46b]
 
   def home
+    @latest_badges = @top_djs = @top_playlists = {}
     # respond_to do |format|
     #   format.html do
     #     @latest_stations       = UserStation.latest_stations
