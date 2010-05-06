@@ -6,7 +6,7 @@ class AddTopPlaylistsAndDjs < ActiveRecord::Migration
       t.integer :total_requests
       t.timestamps
     end
-    add_index :top_djs, [:site_id, :request_count]
+    add_index :top_djs, [:site_id, :total_requests]
     add_index :top_djs, :dj_id
 
     create_table :top_playlists do |t|
@@ -15,7 +15,7 @@ class AddTopPlaylistsAndDjs < ActiveRecord::Migration
       t.integer :total_requests
       t.timestamps
     end
-    add_index :top_playlists, [:site_id, :request_count]
+    add_index :top_playlists, [:site_id, :total_requests]
     add_index :top_playlists, :playlist_id
 
   end
