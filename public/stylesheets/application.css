@@ -7,11 +7,14 @@ b, u, i, center,
 dl, dt, dd, ol, ul, li,
 fieldset, form, label, legend,
 table, caption, tbody, tfoot, thead, tr, th, td {
-    margin: 0;
-    padding: 0;
-    border: 0;
-    outline: 0;
-    background: transparent;
+	margin: 0;
+	border: 0;
+	outline: 0;
+	background: transparent;
+	padding-top: 0;
+	padding-right: 0px;
+	padding-bottom: 0;
+	padding-left: 0;
 }
 
 html, body {
@@ -19,8 +22,8 @@ html, body {
 }
 
 body {
-	font-size: 12px;
-	font-family: Helvetica, Arial, sans-serif;
+	font-size: 11px;
+	font-family: Arial, Helvetica, sans-serif;
 	text-align: center;
 	background: #ececec;
 	color: #333333;
@@ -1289,7 +1292,7 @@ h2 {
     margin-top: -3px;
 }
 
-.red_button, .green_button, .black_button {
+.red_button, .green_button, .orange_button, .black_button {
     display: inline-block;
     height: 28px;
     line-height: 28px;
@@ -1307,6 +1310,10 @@ h2 {
     background: url("../images/red_button_left.gif") no-repeat left top;
 }
 
+.orange_button {
+    background: url("../images/orange_button_left.gif") no-repeat left top;
+}
+
 .green_button {
     background: url("../images/green_button_left.gif") no-repeat left top;
 }
@@ -1315,7 +1322,7 @@ h2 {
     background: url("../images/black_button_left.gif") no-repeat left top;
 }
 
-.red_button span, .green_button span, .black_button span {
+.red_button span, .green_button span, .orange_button span, .black_button span {
     display: inline-block;
     height: 28px;
     color: #fff;
@@ -1327,6 +1334,10 @@ h2 {
     background: url("../images/red_button_right.gif") no-repeat right top;
 }
 
+.orange_button span {
+    background: url("../images/orange_button_right.gif") no-repeat right top;
+}
+
 .green_button span {
     background: url("../images/green_button_right.gif") no-repeat right top;
 }
@@ -1335,7 +1346,7 @@ h2 {
     background: url("../images/black_button_right.gif") no-repeat right top;
 }
 
-.red_button span span, .green_button span span, .black_button span span {
+.red_button span span, .green_button span span, .orange_button span span, .black_button span span {
     padding: 0px 10px;
 }
 
@@ -1343,6 +1354,9 @@ h2 {
     background: #ff0014;
 }
 
+.orange_button span span {
+    background: #FF9900;
+}
 .green_button span span {
     background: #33cc33;
 }
@@ -1710,8 +1724,8 @@ h2 {
 }
 
 .susbcription_creator {
-    line-height: 18px;
-    font-size: 11px;
+	font-size: 11px;
+    /* font-size: 12px;*/
 }
 
 .susbcription_creator b {
@@ -1805,7 +1819,23 @@ h2 {
 	position: relative;
 }
 
-.followers_list .follower_actions .red_button span span, .followers_list .follower_actions .green_button span span {
+/*
+.followers_list .follower_text {
+    float: left;
+    width: 260px;
+    padding-left: 10px;
+    margin-right: -20px;
+}
+
+.followers_list .follower_actions {
+    float: right;
+    width: 155px;
+    text-align: right;
+    position: relative;
+}
+*/
+
+.followers_list .follower_actions .red_button span span, .followers_list .follower_actions .green_button span span, .followers_list .follower_actions .orange_button span span {
     padding: 0px;
     width: 100px;
 }
@@ -1858,19 +1888,13 @@ h2 {
 	vertical-align: middle;
 	-moz-border-radius: 4px;
 	-webkit-border-radius: 4px;
-	padding-top: 0px;
-	padding-right: 20px;
-	padding-bottom: 0px;
-	padding-left: 20px;
+	padding: 0px 20px;
 }
 
 .top_follow .grey_bg a {
 	color: #ccc;
 	text-decoration: none;
-	margin-top: 0px;
-	margin-right: 20px;
-	margin-bottom: 0px;
-	margin-left: 20px;
+	margin: 0px 20px;
 }
 
 .top_follow .grey_bg a:hover {
@@ -2121,8 +2145,9 @@ h2 {
 .review_item .review_creator {
 	float: left;
 	width: 100px;
+	/* 90px*/
 	padding-left: 8px;
-	font-size: 12px;
+	font-size: 11px;
 	line-height: 15px;
 }
 
@@ -2135,6 +2160,7 @@ h2 {
 .review_item .review_text {
 	float: right;
 	width: 120px;
+	/* 130px*/
 	padding-right: 10px;
 	font-size: 11px;
 	line-height: 13px;
@@ -2190,12 +2216,14 @@ h2 {
     margin-right: 0px;
 }
 
-.followers_list .follower_actions.w_settings .red_button.settings_button span span, .followers_list .follower_actions.w_settings .green_button.settings_button span span, .followers_list .follower_actions.w_settings .black_button.settings_button span span {
+.followers_list .follower_actions.w_settings .red_button.settings_button span span, .followers_list .follower_actions.w_settings .green_button.settings_button span span, 
+.followers_list .follower_actions.w_settings .orange_button.settings_button span span, .followers_list .follower_actions.w_settings .black_button.settings_button span span {
     padding: 0px 2px;
     width: 20px;
 }
 
-.followers_list .follower_actions.w_settings .red_button.settings_button img, .followers_list .follower_actions.w_settings .green_button.settings_button img, .followers_list .follower_actions.w_settings .black_button.settings_button img {
+.followers_list .follower_actions.w_settings .red_button.settings_button img, .followers_list .follower_actions.w_settings .green_button.settings_button img, 
+followers_list .follower_actions.w_settings .orange_button.settings_button img, .followers_list .follower_actions.w_settings .black_button.settings_button img {
     position: relative;
     vertical-align: top;
     top: 5px;
@@ -2312,6 +2340,7 @@ h2 {
 
 .top_follow.w_spacer {
 	padding-right: 30px;
+		/* 35px*/
 }
 
 .search_results_box .grey_spacer {
@@ -2641,4 +2670,174 @@ h2 {
 .lock_box big {
     font-size: 18px;
     line-height: 20px;
+}
+.two_columns .tags_column, .two_columns .top_playlists_column {
+    margin-right: 15px;
+}
+
+.big_item_number {
+    display: block;
+    width: 50px;
+    height: 130px;
+    line-height: 45px;
+    float: left;
+    margin-right: 1px;
+    background: #999;
+    color: #fff;
+    text-align: center;
+    text-decoration: none;
+    font-size: 43.5px;
+    font-weight: bold;
+    padding: 10px 0px;
+}
+
+.big_item_number:hover {
+    background: #ff0014;
+    text-decoration: none;
+}
+
+.playlist_item {
+    float: left;
+    margin: 0px 13px 10px 0px;
+}
+
+.playlist_item.last_item {
+    margin-right: 0px;
+    float: right;
+}
+
+.playlist_item .artist_box {
+    margin: 0px;
+}
+
+.account_settings .form_row .input.half_width2 {
+    margin-left:10px;
+    width:325px;
+}
+
+.left_side .grey_round_box {
+    float:left;
+    height:20px;
+    margin-right:10px;
+    padding:11px 10px;
+}
+
+.privacy_check {
+    float: left;
+    margin-left: 20px;
+}
+
+.privacy_text {
+    float: right;
+    width: 390px;
+    color: #666;
+    font-size: 11px;
+}
+
+.privacy_text big {
+    font-size: 14px;
+}
+
+.icons_list {
+    list-style-type: none;
+}
+
+.icons_list li {
+    padding: 5px 0px 35px 80px;
+    width: 320px;
+    line-height: 16px;
+}
+
+.icons_list li big {
+    font-size: 18px;
+    line-height: 20px;
+}
+
+.icons_list li.loop {
+    background: url("../images/icon_loop.gif") no-repeat left top;
+}
+
+.icons_list li.badges {
+    background: url("../images/icon_badges.gif") no-repeat left top;
+}
+
+.icons_list li.friends {
+    background: url("../images/icon_friends.gif") no-repeat left top;
+}
+
+.icons_list li.create {
+    background: url("../images/icon_create.gif") no-repeat left 8px;
+}
+
+.icons_list li.work {
+    background: url("../images/icon_work.gif") no-repeat left top;
+}
+
+.big_badges_list {
+    list-style-type: none;
+    padding-bottom: 50px;
+}
+
+.big_badges_list li {
+    padding: 8px 0px;
+    border-bottom: solid 1px #ccc;
+    color: #000;
+}
+
+.big_badges_list li .icon {
+    float: left;
+}
+
+.big_badges_list li .text {
+    float: right;
+    width: 370px;
+}
+
+.big_badges_list li .text big {
+    line-height: 14px;
+}
+
+.big_badges_list li .text .grey_text {
+    color: #999;
+    line-height: 17px;
+    display: inline-block;
+    padding-bottom: 10px;
+    margin-right: 60px;
+}
+
+.badge_detail {
+    padding-bottom: 40px;
+}
+
+.badge_detail .detail_img {
+    float: left;
+}
+
+.badge_detail .detail_text {
+    float: right;
+    width: 410px;
+}
+
+.badge_detail .detail_text .title {
+    font-size: 28px;
+    font-weight: bold;
+    color: #000;
+    margin-bottom: 10px;
+}
+
+.badge_detail .detail_text big {
+    font-size: 24px;
+    line-height: 30px;
+    margin-right: 10px;
+    display: inline-block;
+}
+
+.badge_detail .small_icon {
+    float: left;
+}
+
+.badge_detail .small_text {
+    float: right;
+    width: 340px;
+    margin-right: 15px;
 }
