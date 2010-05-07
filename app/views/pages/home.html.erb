@@ -1,3 +1,7 @@
+<% content_for :head do %>
+  <%= render :partial => 'shared/logged_in_callback' %>
+<% end %>
+
 <% content_for :header_space_content do %>
   <%= render :partial => 'shared/create_playlist' %>
   <div class="clearer"></div>
