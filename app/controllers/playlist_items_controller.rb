@@ -32,7 +32,7 @@ class PlaylistItemsController < ApplicationController
       if request.xhr?
         render :nothing => true
       else
-        redirect_to [@song[0].artist, @song[0].album] rescue root_path
+        redirect_to [@song[0].artist, @song[0].album] rescue home_path
       end
     else
       @error = t('playlist_items.create.errors.click_checkbox_first')

@@ -36,7 +36,7 @@ class ApplicationController < ActionController::Base
     `rm -rdf /data/canada_en/current/public/index.html`    
     `rm -rdf /data/canada_fr/current/public/index.html`            
     `rm -rdf /data/cyloopes/current/public/index.html`                
-    redirect_to root_path
+    redirect_to home_path
   end
 
   helper_method :site_includes
@@ -332,7 +332,7 @@ class ApplicationController < ActionController::Base
 
   helper_method :rec_engine, :recommended_artists, :recommended_stations, :recommended_artists_existing
 
-  def redirect_back(default = root_path)
+  def redirect_back(default = home_path)
     redirect_to :back
   rescue ActionController::RedirectBackError
     redirect_to default

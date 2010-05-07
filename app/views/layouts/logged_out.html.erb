@@ -9,9 +9,9 @@
   <body locale="<%= current_site.default_locale %>" market="<%= current_site.code %>">
     <div id="container">
       <div id="header">
-          <%= link_to(image_tag('logo.png', :id => 'logo', :class => 'png_fix', :alt => 'Coca-cola', :title => 'Coca-cola'), root_path) %>
+          <%= link_to(image_tag('logo.png', :id => 'logo', :class => 'png_fix', :alt => 'Coca-cola', :title => 'Coca-cola'), home_path) %>
           <ul id="header_nav">
-              <li><%= link_to 'Home', root_path, :class => 'active' %></li>
+              <li><%= link_to 'Home', home_path, :class => 'active' %></li>
               <li><%= link_to 'Playlists', '#' %></li>
               <li><%= link_to 'Search', '#' %></li>
           </ul>

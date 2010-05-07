@@ -3,7 +3,7 @@ module ApplicationHelper
   include PopupHelper
 
   def is_index?
-    request.request_uri == "/"
+    request.request_uri == "/home"
   end
   
   def filter_link_by(link_label, options)
