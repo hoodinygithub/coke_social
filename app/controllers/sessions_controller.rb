@@ -70,7 +70,6 @@ private
     elsif account
       if account.part_of_network?
         self.current_user = account
-      
         AccountLogin.create!( :account_id => account.id, :site_id => current_site.id )
 
         if remember_me == "1"

@@ -14,6 +14,10 @@ class PlaylistsController < ApplicationController
     end
   end
 
+  def create
+    
+  end
+  
   def edit
     @playlist = profile_user.playlists.find(params[:id])
     render :layout => false
