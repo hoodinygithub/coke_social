@@ -1,0 +1,29 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" <%= application_html_attrs %>>
+  <head>
+    <%= render 'shared/meta' %>
+    <%= render 'shared/javascripts' %>
+    <%= render 'shared/stylesheets' %>
+    <%= yield :head %>
+  </head>
+  <body locale="<%= current_site.default_locale %>" market="<%= current_site.code %>">
+    <div id="container">
+      <div id="header">
+          <%= link_to(image_tag('logo.png', :id => 'logo', :class => 'png_fix', :alt => 'Coca-cola', :title => 'Coca-cola'), root_path) %>
+          <ul id="header_nav">
+              <li><%= link_to 'Home', root_path, :class => 'active' %></li>
+              <li><%= link_to 'Playlists', '#' %></li>
+              <li><%= link_to 'Search', '#' %></li>
+          </ul>
+          <%= render 'shared/search_form' %>
+          <%= render :partial => 'shared/user_data', :locals => {:logged_out => true} %>
+          <div class="clearer"></div>
+      </div><!--/end header -->
+      
+      <%= user_navegation %>
+      <%= yield :header_space_content %> 
+      <div id="main_content"><%= yield %></div>
+      <%= render 'shared/footer' %>
+    </div><!--/end container -->
+  </body>
+</html>
