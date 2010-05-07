@@ -1,0 +1,5 @@
+<ul id="header_nav">
+    <li><%= link_to 'Home', home_path, :class => (controller_name == "pages" and action_name == "home" ? 'active' : '') %></li>
+    <li><%= link_to 'Playlists', playlists_path, :class => (controller_name == "playlists" ? 'active' : '') %></li>
+    <li><%= link_to 'Search', search_path, :class => (controller_name == "searches" ? 'active' : '') %></li>
+</ul>

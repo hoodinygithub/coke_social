@@ -61,7 +61,7 @@ module DashboardsHelper
     ul_list_to('links', 'current', my_nav_links)
   end
 
-  def user_navegation
+  def user_navigation
     return unless ['accounts', 'dashboards'].include? params[:controller]
     
     links = if profile_account and current_user and profile_account == current_user

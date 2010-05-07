@@ -29,7 +29,8 @@ module RegistrationLayersHelper
   end
 
   def registered_link_to(text, params)
-    link_to text, registration_layers_path(params), :class => "simple_popup"
+    #link_to text, registration_layers_path(params)
+    link_to text, root_path
   end
 
 end

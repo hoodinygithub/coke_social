@@ -1,19 +1,29 @@
-<% logged_out = false unless local_assigns[:logged_out] %>
-<div id="userdata_box" class="<%= current_user && !logged_out ? "user_data_logged_in" : "user_data_logged_out" %>">
-  <div class="user">
-    <% unless logged_in? %>
-      <%= avatar_for(nil, :tiny, :class => "avatar") %>
-      <%= link_to("Anon", my_dashboard_path, :class => "user_name") %>    
+<% if logged_in? %>
+  <% logged_out = false unless local_assigns[:logged_out] %>
+  <div id="userdata_box" class="<%= current_user && !logged_out ? "user_data_logged_in" : "user_data_logged_out" %>">
+    <div class="user">
+        <%= avatar_for(current_user, :tiny, :class => "avatar") %>
+        <%= link_to(current_user.first_name, my_dashboard_path, :class => "user_name") %>
+    </div>
+
+    <%= user_top_navegation %>
+
+    <a href="#" id="userdata_arrow">
+      <%= image_tag 'userdata_arrow.png', :class => 'png_fix' %>
+      <%= image_tag 'arrow_up.gif', :class => 'arrow_up' %>
+    </a>
+  </div><!--/end userdata_box -->
+<% else %>
+  <div id="login_register_links">
+    <% if @follow_profile %>
+      <%= link_to t("sessions.new.sign_in"), site_login_url(:return_to => nav_aux_login_url, :follow_profile => @follow_profile) %>
+      |
+      <%= registered_link_to t("registration.sign_up"), :return_to => my_dashboard_path, :follow_profile => @follow_profile %>
+    
     <% else %>
-      <%= avatar_for(current_user, :tiny, :class => "avatar") %>
-      <%= link_to(current_user.first_name, my_dashboard_path, :class => "user_name") %>
+      <%= link_to t("sessions.new.sign_in"), site_login_url(:return_to => nav_aux_login_url) %>
+      |
+      <%= registered_link_to t("registration.register"),  :return_to => my_dashboard_path %>
     <% end %>
-  </div>
-
-  <%= user_top_navegation %>
-
-  <a href="#" id="userdata_arrow">
-    <%= image_tag 'userdata_arrow.png', :class => 'png_fix' %>
-    <%= image_tag 'arrow_up.gif', :class => 'arrow_up' %>
-  </a>
-</div><!--/end userdata_box -->
+</div>
+<% end %>
