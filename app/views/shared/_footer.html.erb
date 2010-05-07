@@ -9,7 +9,7 @@
     <%= link_to t('footer.feedback'), contact_us_url %>
   </div>
   <div class="footer_right">
-    <%= link_to(image_tag('cyloop.gif'), '#') %>
+    <%= link_to(image_tag('cyloop.gif', :class => 'cyloop_logo'), '#') %>
   </div>
   <br class="clearer" />
 </div>
@@ -23,4 +23,3 @@
 <% end %>
 <%= render_messenger_live %>
 <%= render :partial => "shared/google_analytics" %>
-

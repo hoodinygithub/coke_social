@@ -112,7 +112,8 @@ class User < Account
   has_many :messages
 
   belongs_to :entry_point, :class_name => 'Site', :foreign_key => 'entry_point_id'
-
+  delegate :networks, :to => :entry_point
+  
   validates_presence_of :entry_point_id
   validates_presence_of :born_on
 
@@ -200,6 +201,16 @@ class User < Account
 
   def user?
     true
+  end
+
+  def part_of_network?
+    valid = false
+    ApplicationController.current_site.networks.each do |n| 
+      if !valid and self.networks.include?(n)  
+        valid = true 
+      end
+    end
+    valid
   end
 
   def private?

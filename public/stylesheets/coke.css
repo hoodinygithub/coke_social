@@ -1,0 +1,42 @@
+#login_error {
+	margin-left: 31px;
+	width: 258px;
+}
+#login_error div.left {	
+ 	background: url("/images/login_error_left.png") no-repeat scroll left top transparent;
+	float: left;
+	height: 47px;
+	width: 26px;
+}
+
+#login_error div.right {	
+ 	background: url("/images/login_error_right.png") no-repeat scroll right top transparent;
+	float: right;
+	width: 26px;
+	height: 47px;
+}
+
+#login_error div.error_message {	
+ 	background-color: #000000;
+	float: left;
+	height: 47px;
+	width: 206px;
+}
+
+#login_error div.error_message span {	
+	color: #FFFFFF;
+	font-size: 14px;
+	font-weight: bold;
+	display: block;
+	margin-top: 14px;
+	text-align: center;
+}
+
+.login_form span.label {
+	float: left;
+	height: 30px;
+	margin-left: 7px;
+	text-align: left;
+	vertical-align: middle;
+	width: 75px;
+}
