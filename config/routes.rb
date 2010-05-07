@@ -1,6 +1,6 @@
 ActionController::Routing::Routes.draw do |map|
   map.root :controller => 'sessions', :action => 'new'
-  map.home "/home", :controller => "home", :action => 'page'
+  map.home "/home", :controller => "pages", :action => 'home'
 
   # Ads - OpenX
   map.messenger_ads '/messenger_ads', :controller => 'ads', :action => 'show', :position => 'messenger', :iframe => 1, :no_padding_and_margin => 1
