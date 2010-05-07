@@ -1,5 +1,5 @@
 class PagesController < ApplicationController
-  caches_page :home, :if => Proc.new { |c| !c.request.format.js? }, :path => "/closed"
+  caches_page :home, :if => Proc.new { |c| !c.request.format.js? }
   before_filter :authenticate, :only => [:x46b]
   before_filter :login_required, :only => [:home]
 

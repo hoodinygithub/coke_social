@@ -1,5 +1,5 @@
 ActionController::Routing::Routes.draw do |map|
-  map.root :controller => 'session', :action => 'new'
+  map.root :controller => 'sessions', :action => 'new'
   map.home "/home", :controller => "home", :action => 'page'
 
   # Ads - OpenX
