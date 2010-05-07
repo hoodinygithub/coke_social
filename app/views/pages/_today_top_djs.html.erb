@@ -1,7 +1,7 @@
 <div class="top_djs_column">
-  <h1>TODAYíS TOP DJ'S</h1>
+  <h1><%= t("home.todays_top_djs") %></h1>
   
   <ul class="list_items">
-    <%= render 'top_dj_items', :collection => @top_djs %>
+    <%= render :partial => 'top_dj_item', :collection => @top_djs %>
   </ul>
 </div>

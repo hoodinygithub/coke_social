@@ -1,0 +1,11 @@
+<li>
+  <%= link_to (top_dj_item_counter + 1), user_path(top_dj_item), :class => "item_number" %>
+  <span class="item_image">
+    <%= avatar_for(top_dj_item, :tiny, :class => "spaced_img tiny", :disable_default_css => true, :width => "50px", :height => "50px") %>
+  </span>
+  <div class="item_text">
+    <big><b><%= link_to top_dj_item.name, user_path(top_dj_item) ,:class => "red" %></b></big><br/>
+    <small><%= top_dj_item.country.name %></small>
+  </div>
+  <br class="clearer" />
+</li>
