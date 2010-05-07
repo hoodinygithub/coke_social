@@ -149,13 +149,13 @@ namespace :deploy do
   task :save_current_branch do
     if rails_env == 'staging'    
       run "echo '#{application} - #{branch}' > #{shared_path}/current_branch.log"
-      run "ln -s #{shared_base}/common_cs/deployments.txt #{latest_release}/public/deployments.txt"      
+      run "ln -s #{shared_base}/common_coke/deployments.txt #{latest_release}/public/deployments.txt"      
     end
   end
   
   task :build_release_html, :roles => :app, :except => {:no_release => true, :no_symlink => true} do
     if rails_env == 'staging'
-      deployments_file = "#{shared_base}/common_cs/deployments.txt"
+      deployments_file = "#{shared_base}/common_coke/deployments.txt"
       run "echo 'CURRENT STAGING BRANCHES' > #{deployments_file}"
       sites.each do |site| 
         run "cat #{shared_base}/#{site}/current_branch.log >> #{deployments_file}"
