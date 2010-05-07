@@ -9,11 +9,13 @@
     <small><%= t("basics.by")%>: <%= link_to top_playlist_item.owner.name, user_path(top_playlist_item.owner) ,:class => "red" %></small><br/>
 
     <span class="rating">
+      <% if false %>
       <img src="images/rating_bottle_full.png" class="png_fix" alt="" />
       <img src="images/rating_bottle_full.png" class="png_fix" alt="" />
       <img src="images/rating_bottle_full.png" class="png_fix" alt="" />
       <img src="images/rating_bottle_full.png" class="png_fix" alt="" />
       <a href="#"><img src="images/rating_bottle_empty.png" class="png_fix" alt="" /></a>
+      <% end %>
     </span>
   </div>
   <br class="clearer" />
