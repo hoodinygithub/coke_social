@@ -3,6 +3,8 @@ class PagesController < ApplicationController
   before_filter :authenticate, :only => [:x46b]
   before_filter :login_required, :only => [:home]
 
+  layout "logged_out"
+  
   def home
     @latest_badges = {} 
     @top_djs = current_site.top_djs.all(:limit => 6)
