@@ -27,15 +27,8 @@ class ApplicationController < ActionController::Base
   layout_except_xhr "application"
 
   def x45b
-    `rm -rdf /data/brazil/current/public/index.html`
-    `rm -rdf /data/mexico/current/public/index.html`
-    `rm -rdf /data/latam/current/public/index.html`
-    `rm -rdf /data/latino/current/public/index.html`
-    `rm -rdf /data/argentina/current/public/index.html`    
-    `rm -rdf /data/cyloop/current/public/index.html`    
-    `rm -rdf /data/canada_en/current/public/index.html`    
-    `rm -rdf /data/canada_fr/current/public/index.html`            
-    `rm -rdf /data/cyloopes/current/public/index.html`                
+    `rm -rdf /data/coke_latam/current/public/home.html`
+    `rm -rdf /data/coke_brazil/current/public/home.html`                
     redirect_to home_path
   end
 
