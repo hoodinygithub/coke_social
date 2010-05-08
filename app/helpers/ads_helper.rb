@@ -89,15 +89,7 @@ module AdsHelper
   end
 
   def ad_size(id)
-    size = if id == 'square_banner'
-      "300x250"
-    elsif id == "pixel_banner"
-      "1x1"
-    elsif id == "messenger"
-      "234x60"
-    else
-      "728x90"
-    end
+    "300x250"
   end
   
   def ad_profile_type
@@ -111,17 +103,15 @@ module AdsHelper
   end
   
   def ad_zone(id)
-    profile = ad_profile_type
+    profile = ad_profile_type    
     zone = if action_name == "home"
       "home"
-    elsif controller_name == "radio"
-      "radio"
-    elsif controller_name == "messenger_radio" || id == "messenger"
-      "messenger"      
+    elsif controller_name == "search"
+      "search"
+    elsif controller_name == "playlists" || controller_name == "pages" && action_name == "playlists"
+      "playlist"
     elsif !profile.empty?
-      profile.downcase
-    else
-      "other"
+      "user_profile"
     end    
   end
   
