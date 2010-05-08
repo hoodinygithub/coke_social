@@ -13,7 +13,6 @@ ActionController::Routing::Routes.draw do |map|
   map.site_and_database_check 'fitter_happier/site_and_database_check', :controller => 'fitter_happier' , :action => "site_and_database_check"
   map.process_with_silence 'fitter_happier/process_with_silence', :controller => 'fitter_happier', :action => "process_with_silence"
 
-
   map.home_recommendations_callback '/home.js', :controller => 'pages', :action => 'home', :format => 'js'
   map.home_flash_callback '/flash.js', :controller => 'pages', :action => 'flash_callback', :format => 'js'
   map.header_state_callback '/header.js', :controller => 'pages', :action => 'header_callback', :format => 'js'
@@ -89,18 +88,12 @@ ActionController::Routing::Routes.draw do |map|
   map.profile_not_found ':profile/profile_not_found', :controller => 'pages', :action => 'profile_not_found'
   map.profile_not_available ':profile/profile_not_available', :controller => 'pages', :action => 'profile_not_available'
   map.sample_flag_desc 'support/sample_flag_desc', :controller => 'pages', :action => 'sample_flag_desc'
-  map.playlists '/playlists', :controller => 'pages', :action => 'playlists'
 
 #  unless RAILS_ENV =~ /production/
   map.with_options(:controller => 'radio') do |url|
-    url.radio 'radio', :action => 'index'
-    url.artist_info 'radio/my_stations_list', :action => 'my_stations_list'
-    url.album_detail 'radio/album_detail', :action => 'album_detail'
-    url.twitstation 'twitstation', :action => 'twitstation'
-    url.search_radio 'radio/search.:format', :action => 'search'
-    url.play_station 'radio/play.:format', :action => 'play'
-    url.radio_xml 'radio/:station_id.:format', :action => 'show'
-    url.artist_info 'radio/info/:station_id/:artist_id', :action => 'artist_info'
+    url.radio 'playlists', :action => 'index'
+    url.search_radio 'playlists/search.:format', :action => 'search'
+    url.artist_info 'playlists/info/:playlist_id/:artist_id', :action => 'artist_info'
   end
 
 #  end
