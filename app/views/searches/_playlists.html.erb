@@ -11,7 +11,7 @@
     <% if playlist.station %>
       <% is_self = (current_user and current_user == playlist.owner) %>
       <li>
-        <%= link_to avatar_for(playlist, :search, :class => 'search'), radio_path(:station_id => playlist.station.id) %>
+        <%= link_to avatar_for(playlist, :medium, :class => 'search'), radio_path(:station_id => playlist.station.id) %>
 
         <div class="transparency_thumbanils png_fix">
             <% if false %><a href="#"><img src="images/listen_button.png" alt="" /></a><% end %>
@@ -32,7 +32,7 @@
             </div>
 
             <div class="susbcription_creator">
-                <%= link_to(avatar_for(playlist.owner, :search, {:alt => "", :class =>"follower_image"}), playlist.owner) %>
+                <%= link_to(avatar_for(playlist.owner, :small, {:alt => "", :class =>"follower_image"}), playlist.owner) %>
                 <div class="creator_text">
                   <b><%= "#{t('basics.created_by')}: #{link_to(playlist.owner.name, user_path(playlist.owner))}" %></b><br/>
                   <%= render :partial =>'shared/user_following', :locals => {:current_user => current_user, :user => playlist.owner} %>

@@ -224,10 +224,12 @@ module ApplicationHelper
     links = []
     tags = item.tags.all(:limit => limit).map{ |tag| link_to(tag.name, search_path(:scope => 'all', :q => tag.name), link_options) }
 
-    if include_text
-      "#{t('basics.tags')}: #{tags.join(", ")}..."
-    else
-      "#{tags.join(", ")}..."
+    unless tags.empty?
+      if include_text
+        "#{t('basics.tags')}: #{tags.join(", ")}..."
+      else
+        "#{tags.join(", ")}..."
+      end
     end
   end
 

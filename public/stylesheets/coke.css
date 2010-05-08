@@ -49,7 +49,7 @@
 .user_data_logged_in  { }
 .user_data_logged_out { display: none!important; }
 
-#search_results_box .search_list img.search.avatar  {
+#search_results_box .search_list img.search.avatar, .item_image img.avatar.tiny {
 	width: 50px;
 	height: 50px;	
 }
@@ -59,7 +59,7 @@
 	height: 50px;
 }
 
-.susbcriptions_list img.search.avatar {
+.susbcriptions_list img.avatar, .playlist_item img.avatar {
 	width: 150px;
 	height: 150px;
 }
@@ -79,4 +79,10 @@ li.scope_toggle .mini_loader{
 	display:none;
 	float:right;
 	margin-right:10px;
+}
+
+.playlist_item .artist_box.empty_item {	
+	background: none repeat scroll 0 0 #CCCCCC;
+	height: 150px;
+	width: 201px;
 }

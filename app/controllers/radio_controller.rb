@@ -15,10 +15,13 @@ class RadioController < ApplicationController
         @station_queue = @station_obj.playable.station_queue(:ip_address => remote_ip)
         @station_obj.playable.track_a_play_for(current_user) if @station_obj.playable
     else
-      @recommended_stations = transformed_recommended_stations(12, 40)
+      @top_djs = current_site.top_djs.all(:limit => 6)
+      @top_playlists = current_site.top_playlists.all(:limit => 6)
+
+      @latest_badges = [0]
+      @playlists = current_site.top_playlists.all(:limit => 6)
+      @top_artists = current_site.top_artists.all(:limit => 6)
     end
-    @top_abstract_stations = current_site.top_abstract_stations.limited_to(5)
-    @msn_stations = current_site.stations
   end
 
   def album_detail

@@ -6,7 +6,7 @@ class PagesController < ApplicationController
   layout "logged_out"
   
   def home
-    @latest_badges = {} 
+    @latest_badges = [0]
     @top_djs = current_site.top_djs.all(:limit => 6)
     @top_playlists = current_site.top_playlists.all(:limit => 6)
   end
@@ -15,9 +15,9 @@ class PagesController < ApplicationController
     @top_djs = current_site.top_djs.all(:limit => 6)
     @top_playlists = current_site.top_playlists.all(:limit => 6)
     
-    @latest_badges = (0..5).to_a 
-    @playlists = (0..5).to_a
-    @top_artists = (0..5).to_a
+    @latest_badges = [0]
+    @playlists = current_site.top_playlists..all(:limit => 6)
+    @top_artists = current_site.top_artists..all(:limit => 6)
   end
 
   def flash_callback

@@ -2,6 +2,6 @@
   <h1><%= t("home.latest_badges_awarded") %></h1>
 
   <ul class="list_items">
-    <%= render 'latest_badge_item', :collection => @latest_badges %>
+    <%= render :partial => 'shared/latest_badge_item', :collection => @latest_badges %>
   </ul>
 </div>
