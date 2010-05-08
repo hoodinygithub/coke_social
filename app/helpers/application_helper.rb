@@ -97,6 +97,10 @@ module ApplicationHelper
   def blue_button(button_label, options = {})
     special_button(:blue_button, button_label, options)
   end
+  
+  def red_button(button_label, options = {})
+    special_button(:red_button, button_label, options)
+  end  
 
   def grey_button(button_label, options = {})
     special_button(:grey_button_big, button_label, options)
@@ -127,7 +131,7 @@ module ApplicationHelper
     else
       action       = 'follow'
       key          = 'follow'
-      button_color = 'blue'
+      button_color = 'red'
     end
 
     locale_key = "actions.#{key}"

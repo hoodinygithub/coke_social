@@ -1,7 +1,9 @@
+<% content_for :header_space_content do %>
+  <%= render 'users/stats' %>
+<% end %>
+
 <%= render 'shared/ajax_modules' %>
-<div id="main_content">
-  <%= render 'left_column' %>
-  <%= render 'center_column' %>
-  <%= render 'right_column' %>
-  <div class="clearer"></div>
-</div><!--/end main_content -->
+<%= render 'left_column' %>
+<%= render 'center_column' %>
+<%= render 'right_column' %>
+<div class="clearer"></div>
