@@ -89,6 +89,7 @@ ActionController::Routing::Routes.draw do |map|
   map.profile_not_found ':profile/profile_not_found', :controller => 'pages', :action => 'profile_not_found'
   map.profile_not_available ':profile/profile_not_available', :controller => 'pages', :action => 'profile_not_available'
   map.sample_flag_desc 'support/sample_flag_desc', :controller => 'pages', :action => 'sample_flag_desc'
+  map.playlists '/playlists', :controller => 'pages', :action => 'playlists'
 
 #  unless RAILS_ENV =~ /production/
   map.with_options(:controller => 'radio') do |url|

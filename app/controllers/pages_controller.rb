@@ -12,6 +12,12 @@ class PagesController < ApplicationController
   end
   
   def playlists
+    @top_djs = current_site.top_djs.all(:limit => 6)
+    @top_playlists = current_site.top_playlists.all(:limit => 6)
+    
+    @latest_badges = (0..5).to_a 
+    @playlists = (0..5).to_a
+    @top_artists = (0..5).to_a
   end
 
   def flash_callback
