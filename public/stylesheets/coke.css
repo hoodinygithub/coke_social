@@ -49,13 +49,19 @@
 .user_data_logged_in  { }
 .user_data_logged_out { display: none!important; }
 
-img.search.avatar {
-	width: 150px;
-	height: 150px;
+#search_results_box .search_list img.search.avatar  {
+	width: 50px;
+	height: 50px;	
 }
-img.search.avatar.follower_image {
+
+.susbcription_creator img.search.avatar.follower_image {
 	width: 50px;
 	height: 50px;
+}
+
+.susbcriptions_list img.search.avatar {
+	width: 150px;
+	height: 150px;
 }
 
 li.scope_toggle .mini_loader{
@@ -67,4 +73,10 @@ li.scope_toggle .mini_loader{
 
 .hide {
 	display: none;
+}
+
+.search_results_ajax  {
+	display:none;
+	float:right;
+	margin-right:10px;
 }
