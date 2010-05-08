@@ -97,6 +97,8 @@ ActionController::Routing::Routes.draw do |map|
     url.artist_info 'playlists/info/:playlist_id/:artist_id', :action => 'artist_info'
   end
 
+  map.social_playlist 'playlists/:id.:format', :controller => 'playlists', :action => 'show'
+
 #  end
 
   # map.namespace :discover do |discover|

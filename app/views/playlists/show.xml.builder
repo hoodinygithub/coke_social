@@ -6,8 +6,8 @@ xml.player :autoStart => 'yes', :canRate => '' do
         xml.idsong item.song_id
         xml.idpl item.playlist_id
         xml.idband item.artist.id
-        xml.songfile item.song.file_name
-        xml.fotofile item.song.album.avatar_file_name
+        xml.songfile "http://media.cyloop.com/storage/storage?fileName=/.elhood.com-2/usr/#{item.song.artist.id}/audio/#{item.song.file_name}"
+        xml.fotofile AvatarsHelper.avatar_path( item.song.album, :album )
         xml.title item.song.title
         xml.band item.artist.name
         xml.genre(item.artist.genre ? item.artist.genre.name : '' )
