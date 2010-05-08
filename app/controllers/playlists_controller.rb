@@ -69,7 +69,7 @@ class PlaylistsController < ApplicationController
     @playlist = profile_user.playlists.find(params[:id])
     #This query is very heavy - checking the existence of the playlist at render-time instead
     #NewActivityStore.delete_all("data like '%\"playlist_id\":#{@playlist.id},%'")
-    @playlist.destroy
+    @playlist.deactivate!
     respond_to do |format|
       format.js
       format.html { redirect_to :back }

@@ -14,21 +14,12 @@
 
 class Playlist < ActiveRecord::Base
   include AvatarImporter
+  include Station::Playable
 
   acts_as_taggable
 
-  define_index do
-    where "deleted_at IS NULL"
-    indexes :name, :sortable => true
-    indexes :cached_tag_list
-    set_property :min_prefix_len => 1
-    set_property :enable_star => 1
-    set_property :allow_star => 1
-    has created_at
-  end
-
-  belongs_to :owner, :class_name => 'User'
-  delegate :networks, :to => :owner
+  belongs_to :owner, :class_name => 'User', :conditions => { :network_id => 2 }
+  delegate :network, :to => :owner
     
   has_many :songs, :through => :items, :order => "playlist_items.position ASC"
   has_many :items, :class_name => 'PlaylistItem', :order => "playlist_items.position ASC", :include => :song
@@ -39,6 +30,26 @@ class Playlist < ActiveRecord::Base
     :content_type => ["image/jpeg", "image/png", "image/gif", "image/pjpeg", "image/x-png"]
     
   validates_presence_of :name
+
+  define_index do
+    where "playlists.deleted_at IS NULL AND accounts.deleted_at IS NULL AND accounts.network_id = 2"
+    indexes :name, :sortable => true
+    indexes :cached_tag_list
+    set_property :min_prefix_len => 1
+    set_property :enable_star => 1
+    set_property :allow_star => 1
+    has created_at, owner(:network_id)
+  end
+  
+  def self.search(*args)
+    if RAILS_ENV =~ /test/ # bad bad bad
+      options = args.extract_options!
+      starts_with(args[0]).paginate :page => (options[:page] || 1)
+    else
+      args[0] = "#{args[0]}*"
+      super(*args).compact        
+    end
+  end
 
   def includes(limit=3)
     songs.all(:limit => limit).uniq_by { |s| s.artist_id }

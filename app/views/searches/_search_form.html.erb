@@ -8,13 +8,15 @@
   </span>
 
   <span class="btn_placeholder">
-      <a href="#" onclick="return Base.main_search.buildSearchUrl();" class="blue_button"><span><span><%= t('actions.search').upcase %></span></span></a>
+      <a href="#" onclick="return Base.main_search.buildSearchUrl();" class="red_button"><span><span><%= t('actions.search').upcase %></span></span></a>
   </span>
   <br/>
-
-  <div class="sorting scope">
-      <% @search_types.each_with_index do |type, index| %>
-      <%= link_to(t("basics.#{type}"), "#", :id => "search_#{type.to_s}")%> <%= index == @search_types.size - 1 ? "" : "/" %>
-      <% end %>
+  <div class="centered">
+      <div class="sorting scope">
+          <% @search_types.each_with_index do |type, index| %>
+          <%= link_to(t("basics.#{type}").upcase, "#", :id => "search_#{type.to_s}")%> <%= index == @search_types.size - 1 ? "" : "/" %>
+          <% end %>
+      </div>
   </div>
+
 <% end %>

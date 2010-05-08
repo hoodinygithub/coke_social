@@ -1,22 +1,22 @@
 <li>
-  <%= link_to (top_playlist_item_counter + 1), user_playlist_path(top_playlist_item.owner, top_playlist_item) ,:class => "item_number" %>
+  <%= link_to (top_playlist_item_counter + 1), radio_path(:station_id => top_playlist_item.station.id), :class => "item_number" %>
   <span class="item_image">
-    <%= avatar_for(top_playlist_item, :tiny, :class => "spaced_img tiny", :disable_default_css => true, :width => "50px", :height => "50px") %>
-    <%= link_to image_tag("play_icon_red.png", :class=> "play_icon png_fix", :title => "Play", :alt => ""), user_playlist_path(top_playlist_item.owner, top_playlist_item) %>
+    <%= link_to avatar_for(top_playlist_item, :tiny, :class => "spaced_img tiny", :disable_default_css => true, :width => "50px", :height => "50px"), radio_path(:station_id => top_playlist_item.station.id) %>
+    <%= link_to image_tag("play_icon_red.png", :class=> "play_icon png_fix", :title => t('basics.play')), radio_path(:station_id => top_playlist_item.station.id) %>
   </span>
   <div class="item_text">
-    <big><b><%= link_to top_playlist_item.name, user_playlist_path(top_playlist_item.owner, top_playlist_item) ,:class => "red" %></b></big><br/>
+    <big><b><%= link_to top_playlist_item.name, radio_path(:station_id => top_playlist_item.station.id) ,:class => "red" %></b></big><br/>
     <small><%= t("basics.by")%>: <%= link_to top_playlist_item.owner.name, user_path(top_playlist_item.owner) ,:class => "red" %></small><br/>
 
+    <% if false #ratings are coming soon %>
     <span class="rating">
-      <% if false %>
       <img src="images/rating_bottle_full.png" class="png_fix" alt="" />
       <img src="images/rating_bottle_full.png" class="png_fix" alt="" />
       <img src="images/rating_bottle_full.png" class="png_fix" alt="" />
       <img src="images/rating_bottle_full.png" class="png_fix" alt="" />
       <a href="#"><img src="images/rating_bottle_empty.png" class="png_fix" alt="" /></a>
-      <% end %>
     </span>
+    <% end %>
   </div>
   <br class="clearer" />
 </li>

@@ -3,14 +3,14 @@
       Base.main_search.initialize_scope_toggle();
     });
 </script>
+<% content_for :header_space_content do %>
+  <div class="search_box">
+    <%= render :partial =>'search_form' %>
+  </div><!--/end search_box -->
+<% end %>
 <div id="main_content">
   <div class="two_columns">
-    <div class="search_box">
-      <%= render :partial =>'search_form' %>
-    </div><!--/end search_box -->
-    
-    
-    <% unless @query.nil? %>
+    <% unless true %>
       <div class="search_term">
           <%= "#{t('search.search_results_for')} \"#{@query.nil? ? '' : @query}\"" %>
       </div>

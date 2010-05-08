@@ -220,6 +220,17 @@ module ApplicationHelper
     end
   end
 
+  def tag_links(item, limit=3, include_text=true, link_options={})
+    links = []
+    tags = item.tags.all(:limit => limit).map{ |tag| link_to(tag.name, search_path(:scope => 'all', :q => tag.name), link_options) }
+
+    if include_text
+      "#{t('basics.tags')}: #{tags.join(", ")}..."
+    else
+      "#{tags.join(", ")}..."
+    end
+  end
+
   def station_contains(item, limit=3, include_text=true, link_options={})
     links = []
     station_artists = item.includes(limit)

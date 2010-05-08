@@ -76,6 +76,7 @@ class User < Account
 
   index [:type]
 
+  default_scope :conditions => { :network_id => 2 }  
   has_one :bio, :autosave => true, :foreign_key => :account_id
   validates_associated :bio
 
@@ -112,7 +113,7 @@ class User < Account
   has_many :messages
 
   belongs_to :entry_point, :class_name => 'Site', :foreign_key => 'entry_point_id'
-  delegate :networks, :to => :entry_point
+  belongs_to :network
   
   validates_presence_of :entry_point_id
   validates_presence_of :born_on
@@ -204,13 +205,7 @@ class User < Account
   end
 
   def part_of_network?
-    valid = false
-    ApplicationController.current_site.networks.each do |n| 
-      if !valid and self.networks.include?(n)  
-        valid = true 
-      end
-    end
-    valid
+    ApplicationController.current_site.networks.include? self.network
   end
 
   def private?
