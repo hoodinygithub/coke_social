@@ -3,10 +3,29 @@
   <div class="ad_box">
     <%= banner_ad("square_banner") %>
   </div>
-  <%= render 'accounts/tweets' %>
 
-  <div class="grey_box">
-    <%= render profile_user? ? 'users/boxes' : 'artists/boxes' %>
-  </div><!--/end grey_box -->
+  <div class="box_content">
+    <h1>ALEX'S BADGES</h1>
 
+    <div class="badges_list">
+      <a href="#"><img src="images/badge_star.gif" alt="" /><img src="images/new.png" class="new" alt="" /></a>
+      <a href="#"><img src="images/badge_king.gif" alt="" /></a>
+      <a href="#"><img src="images/badge_favorite.gif" alt="" /></a>
+      <a href="#"><img src="images/badge_bottle.gif" alt="" /></a>
+      <a href="#"><img src="images/badge_guitar.gif" alt="" /></a>
+      <a href="#"><img src="images/badge_hiphop.gif" alt="" /></a>
+      <a href="#"><img src="images/badge_key.gif" alt="" /></a>
+      <a href="#"><img src="images/badge_microphone.gif" alt="" /></a>
+      <a href="#"><img src="images/badge_fire.gif" alt="" /></a>
+      <a href="#"><img src="images/badge_disc.gif" alt="" /></a>
+      <a href="#"><img src="images/badge_eq.gif" alt="" /></a>
+      <a href="#"><img src="images/badge_playlist.gif" alt="" /></a>
+
+      <br class="clearer" />
+    </div>
+    <div class="align_right"><b class="right_side"><a href="#">view all</a></b><b><a href="#"></a></b></div><BR />
+  </div><!--/end box_content -->  
+
+  <%= render 'users/follows' %>
+  
 </div><!--/end right_column -->
