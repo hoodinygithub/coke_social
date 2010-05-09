@@ -18,7 +18,7 @@ class RadioController < ApplicationController
       @top_djs = current_site.top_djs.all(:limit => 6)
       @top_playlists = current_site.top_playlists.all(:limit => 6)
 
-      @latest_badges = [0]
+      @latest_badges = BadgeAward.latest(7)
       @playlists = current_site.top_playlists.all(:limit => 6)
       @top_artists = current_site.top_artists.all(:limit => 6)
     end
