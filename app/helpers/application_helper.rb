@@ -224,9 +224,9 @@ module ApplicationHelper
     end
   end
 
-  def tag_links(item, limit=3, include_text=true, link_options={})
+  def tag_links(item, active_scope = :all, limit=3, include_text=true, link_options={})
     links = []
-    tags = item.tags.all(:limit => limit).map{ |tag| link_to(tag.name, search_path(:scope => 'all', :q => tag.name), link_options) }
+    tags = item.tags.all(:limit => limit).map{ |tag| link_to(tag.name, search_path(:scope => active_scope.to_s, :q => tag.name), link_options) }
 
     unless tags.empty?
       if include_text

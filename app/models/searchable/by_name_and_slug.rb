@@ -21,6 +21,7 @@ module Searchable::ByNameAndSlug
         where "deleted_at IS NULL and network_id = 2"
         indexes :name, :sortable => true
         indexes :slug
+        indexes :cached_tag_list
         set_property :min_prefix_len => 1
         set_property :enable_star => 1
         set_property :allow_star => 1

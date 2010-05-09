@@ -29,7 +29,7 @@
 
             <div class="tags_contains">
                 <%  %>
-                <%= "#{tag_links(playlist)}<br/>" if playlist.cached_tag_list %>
+                <%= "#{tag_links(playlist, @active_scope)}<br/>" if playlist.cached_tag_list %>
                 <%= station_contains(playlist) %><br/>
             </div>
 
