@@ -8,8 +8,6 @@ jQuery(document).ready(function($){
         Base.account_settings.clear_info_and_errors_on(input);
         if (data.length) {
           Base.account_settings.add_message_on(input, data[0], data[1]);
-        } else {
-          Base.account_settings.add_message_on(input,  data[0], data[2]);
         }
       }, 'json');
     else {
@@ -30,16 +28,16 @@ jQuery(document).ready(function($){
     $(input).data('id', setTimeout(function() {validateEmail.apply(input)},delay));
   }
 
+  function checkAfterSlug(input, delay) {
+    clearTimeout($(input).data("id"));
+    $(input).data('id', setTimeout(function() {validateSlug.apply(input)},delay));
+  }
+
   $("#user_email").keypress(function() {
     checkAfterEmail(this, 1000)
   }).blur(function() {
     checkAfterEmail(this, 0)
   });
-
-  function checkAfterSlug(input, delay) {
-    clearTimeout($(input).data("id"));
-    $(input).data('id', setTimeout(function() {validateSlug.apply(input)},delay));
-  }
 
   $("#user_slug").keypress(function() {
     checkAfterSlug(this, 1000)

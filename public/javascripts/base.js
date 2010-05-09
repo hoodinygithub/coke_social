@@ -1060,29 +1060,39 @@ Base.network.push_update = function() {
 Base.account_settings.highlight_field_with_errors = function() {
   if (typeof(field_with_errors) != 'undefined') {
     for(i=0; i < field_with_errors.length; i++) {
-      field_name = field_with_errors[i][0];
-      error = field_with_errors[i][1];
-      field = jQuery(":input[name*='" + field_name + "']").first();
+      var field_name = field_with_errors[i][0];
+      var error = field_with_errors[i][1];
+      field = $(":visible:input[name*='" + field_name + "']").first();
       Base.account_settings.add_message_on(field, error, 'error');
     }
-    Base.account_settings.focus_first_section_with_error($('span.fieldWithErrors input').first());
   }
 };
 
 Base.account_settings.clear_info_and_errors_on = function(field) {
-  field.removeClass('with_error').removeClass('with_info');
   rounded_box = field.closest('.grey_round_box');
-  rounded_box.removeClass('with_error').removeClass('with_info');
-  $("span.field_message[for=\"" + field.attr('id') + "\"]").prev().remove();
-  $("span.field_message[for=\"" + field.attr('id') + "\"]").remove();
+  rounded_box.removeClass('red_error')
+             .removeClass('green_info')
+             .nextAll('div.clearer,span.red,span.green').remove();
+  rounded_box.children('b').removeClass('white');
 }
 
 Base.account_settings.add_message_on = function(field, message, type) {
-  field.addClass('with_' + type);
-  rounded_box = field.closest('.grey_round_box, div.checkbox div' );
-  rounded_box.addClass('with_' + type);
-  message_span = jQuery("<br /><span class=\"field_message\" for=\"" + field.attr('id') + "\">" + message + "</span>");
-  rounded_box.append(message_span);
+  var color = 'red';
+  if (type == 'info') { color = 'green' }
+
+  if (field.attr('type') != 'checkbox') {
+    var rounded_box = field.closest('.grey_round_box');
+    var label = $("label[for='" + field.attr('name') + "']").children('b');
+    var box_text = rounded_box.children('b');
+    rounded_box.addClass( color + '_' + type);
+    label.addClass(color);
+    box_text.addClass('white');
+    var message_content = $('<div class="clearer" /><span class="' + color + '">' + message + '</span>');
+    rounded_box.after(message_content);
+  } else {
+    var message_content = $('<big><b class="'+ color +'">' + message + '</b></big><br />');
+    field.parent().next().prepend(message_content);
+  }
 }
 
 Base.account_settings.focus_first_section_with_error = function(field_error) {

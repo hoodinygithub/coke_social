@@ -1,0 +1,8 @@
+<ul class="icons_list">
+  <% ['loop', 'badges', 'friends', 'create', 'work'].each do |item| %>
+    <li class="<%= item %>">
+      <big><b><%= t("registration.sidebox.#{item}_title") %></b></big><br />
+      <%= t("registration.sidebox.#{item}_text") %>
+    </li>
+  <% end %>
+</ul>
