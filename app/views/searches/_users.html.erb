@@ -11,7 +11,7 @@
   <% @results[:users].each do |user| %>
   <% is_self = (current_user and current_user == user) %>
     <li>
-      <%= link_to(avatar_for(user, :tiny), user) %>
+      <%= link_to(avatar_for(user, :small, :class => "follower_image"), user) %>
       <div class="follower_text">
           <b><%= link_to user.name, user %></b><br/>
           <span><%= user.country.name %></span><br/>
