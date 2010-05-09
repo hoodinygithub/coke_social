@@ -17,8 +17,16 @@ coke_ES:
     delete_station: 
       title: Eliminar radio
       confirmation_text: "\xC2\xBFConfirmas que quieres eliminar la {{station_name}}?"
+    search:
+      title: Buscar
     top_artists: 
       title: Top Artistas
+    top_djs: 
+      title: Top DJs
+    top_playlists: 
+      title: Top Playlists
+    latest_badge_awards: 
+      title: Premios Nuevos 
     concerts: 
       title: Conciertos
     user_info: 
@@ -837,6 +845,7 @@ coke_ES:
     station: Radio
     followees_of: Seguidor de
     comment: Comentario
+    tags: Tags
     plays: Reproducciones
     play: Escuchar
     created_at: Creada hace {{when}}
@@ -988,8 +997,10 @@ coke_ES:
     edit_your_playlist: Editar tu playlist
   main: 
     navigation: 
+      playlists: Playlists
+      search: Buscar
       stations: Radios
-      home: Principal
+      home: Inicio
       mixes: Mixes
   demographics: 
     edit: 
@@ -1215,6 +1226,9 @@ coke_ES:
         other: "m\xC3\xA1s de {{count}} a\xC3\xB1os"
       half_a_minute: medio minuto
   home: 
+    todays_top_playlists: Top Playlists
+    todays_top_djs: Top Djs
+    todays_badge_awards: Top Badge Awards
     station: Radio
     start_listening: COMENZAR A ESCUCHAR
     create_your_own_personalized_radio_station: Crea Tu Propia Radio Personalizada

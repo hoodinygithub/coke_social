@@ -6,7 +6,7 @@ class SearchesController < ApplicationController
     @sort_type = params.fetch(:sort_by, nil).to_sym rescue :relevance
     @sort_types = { :latest => 'created_at DESC', :alphabetical => 'name ASC', :relevance => nil }
 
-    @active_scope = params[:scope].to_sym unless params[:scope].nil?
+    @active_scope = params[:scope].nil? ? @search_types[0] : params[:scope].to_sym
 
     @counts = {}
     @results = {}
