@@ -208,6 +208,13 @@ class User < Account
     ApplicationController.current_site.networks.include? self.network
   end
 
+  def award_badge(badge)
+    badge = Badge.find_by_name(badge.to_s)
+    if badge
+      
+    end
+  end
+
   def private?
     self.private_profile
   end

@@ -38,7 +38,7 @@ class Playlist < ActiveRecord::Base
     set_property :min_prefix_len => 1
     set_property :enable_star => 1
     set_property :allow_star => 1
-    has created_at, owner(:network_id)
+    has created_at, owner(:network_id), total_plays
   end
   
   def self.search(*args)

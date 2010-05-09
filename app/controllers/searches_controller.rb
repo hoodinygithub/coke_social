@@ -4,7 +4,7 @@ class SearchesController < ApplicationController
     @query = params[:q]    
     @search_types ||= [:playlists, :users]    
     @sort_type = params.fetch(:sort_by, nil).to_sym rescue :relevance
-    @sort_types = { :latest => 'created_at DESC', :alphabetical => 'name ASC', :relevance => nil }
+    @sort_types = { :latest => 'created_at DESC', :alphabetical => 'name ASC', :relevance => nil, :top => { :playlists => 'total_plays DESC', :users => nil } }
 
     @active_scope = params[:scope].nil? ? @search_types[0] : params[:scope].to_sym
 
@@ -29,16 +29,34 @@ class SearchesController < ApplicationController
     def default_active_scope
       @active_scope = @counts.sort{ |a, b| b[1] <=> a[1] }.first[0] unless @search_types.include? @active_scope
     end
+    def default_sort_type
+      @sort_type = :relevance
+    end
     
     def search_only_active_type (per_page = 20)
       opts = { :page => params[:page], :per_page => per_page }
-      opts.merge!(:order => @sort_types[@sort_type]) unless @sort_types[@sort_type].nil?
 
       @search_types.each do |scope|
         obj_scope = scope == :stations ? :abstract_stations : scope
         obj = obj_scope.to_s.classify.constantize
+        active = scope == @active_scope
 
-        @results.store(scope, (scope == @active_scope) ? obj.search(@query, opts) : [])
+        opts.delete(:order)
+        if(@sort_types[@sort_type].is_a? Hash)
+          unless @sort_types[@sort_type][scope].nil?
+            opts.merge!(:order => @sort_types[@sort_type][scope])
+          else
+            default_sort_type if active
+          end
+        else
+          unless @sort_types[@sort_type].nil?
+            opts.merge!(:order => @sort_types[@sort_type]) 
+          else
+            default_sort_type if active
+          end
+        end
+
+        @results.store(scope, (active) ? obj.search(@query, opts) : [])
         @counts.store(scope, obj.search_count("#{@query}*"))
       end
     end
