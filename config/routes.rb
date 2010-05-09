@@ -131,6 +131,8 @@ ActionController::Routing::Routes.draw do |map|
 
 
   map.resources :campaigns, :member => {:activate => :post, :deactivate => :post}
+  
+  map.playlist_create '/playlist/create/:id', :controller => 'playlists', :action => 'create', :id => nil
 
   profile_routes = lambda do |profile|
     profile.resources :comments
