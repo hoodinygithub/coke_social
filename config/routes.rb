@@ -75,6 +75,7 @@ ActionController::Routing::Routes.draw do |map|
   map.logout 'logout', :controller => 'sessions', :action => 'destroy'
 
   map.about 'support/about_cyloop', :controller => 'pages', :action => 'about'
+  map.about_coke 'support/about_coca-cola', :controller => 'pages', :action => 'about_coke'
   map.terms_and_conditions 'support/terms_and_conditions', :controller => 'pages', :action => 'terms_and_conditions'
   map.privacy_policy 'support/privacy_policy', :controller => 'pages', :action => 'privacy_policy'
   map.safety_tips 'support/safety_tips', :controller => 'pages', :action => 'safety_tips'

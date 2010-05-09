@@ -1,12 +1,10 @@
 <div id="footer">
   <div class="footer_left">
-    <%= link_to t('footer.about_hoodiny'), "http://www.hoodiny.com", :target => '_blank' %>
-    <%= link_to t('footer.about_cyloop'), about_url %>
-    <%= link_to t('footer.terms_and_conditions'), terms_and_conditions_url %>
-    <%= link_to t('footer.privacy_policy'), privacy_policy_url %>
-    <%= link_to t('footer.safety_tips'), safety_tips_url %>
-    <%= link_to t('footer.faq'), faq_url %>
-    <%= link_to t('footer.feedback'), contact_us_url %>
+    <%= link_to t('footer.about_coke'), about_coke_url, :target => "_blank"  %>
+    <%= link_to t('footer.terms_and_conditions'), terms_and_conditions_url, :target => "_blank" %>
+    <%= link_to t('footer.privacy_policy'), privacy_policy_url, :target => "_blank" %>
+    <%= link_to t('footer.faq'), faq_url, :target => "_blank" %>
+    <%= link_to t('footer.feedback'), contact_us_url, :target => "_blank" %>
   </div>
   <div class="footer_right">
     <%= link_to(image_tag('cyloop.gif', :class => 'cyloop_logo'), '#') %>

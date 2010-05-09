@@ -21,6 +21,11 @@ class PagesController < ApplicationController
     @title = t 'site.about_cyloop'
     render "pages/#{site_code}/about"
   end
+  
+  def about_coke
+    @title = t 'site.about_coke'
+    render "pages/#{site_code}/about_coke"
+  end
 
   def faq
     @title = t 'site.faq'
