@@ -41,7 +41,7 @@
                 
                 <div class="register_text">
                     <%= t('sessions.new.dont_have_account')%><br/>
-                    <a href="#"><%= t('registration.layers.click_here').titleize%></a>
+                    <%= link_to t('registration.layers.click_here').titleize, signup_path %>
                 </div>
             </div><!--/end login_box -->
         </div><!--/end homepage_box -->
