@@ -14,7 +14,7 @@
       <div class="follower_text">
           <b><%= link_to user.name, user %></b><br/>
           <span><%= user.country.name %></span><br/>
-          <%= link_to number_with_delimiter(user.playlist_count), is_self ? my_playlists_path : user_playlists_path(user) %> <%= t('basics.playlists') %> / <%= link_to number_with_delimiter(user.follower_count), is_self ? my_followers_path : user_followers_path(user) %> <%= t('users.stats.followers') %>
+          <%= link_to number_with_delimiter(user.total_playlists), is_self ? my_playlists_path : user_playlists_path(user) %> <%= t('basics.playlists') %> / <%= link_to number_with_delimiter(user.follower_count), is_self ? my_followers_path : user_followers_path(user) %> <%= t('users.stats.followers') %>
       </div>
       <div class="follower_actions">
         <%= follow_button(:account => user, :remove_div => false) unless is_self %>
