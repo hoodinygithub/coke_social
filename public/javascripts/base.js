@@ -1212,7 +1212,7 @@ Base.header_search.buildSearchUrl = function () {
 
 Base.header_search.dropdown = function() {
   jQuery("#search_query").keyup(function(e) {
-      jQuery('.search_results_ajax').show();
+      //jQuery('.search_results_ajax').show();
       var keyCode = e.keyCode || window.event.keyCode;
       var form_values = jQuery("#header_search_form").serializeArray();
       var q = Base.header_search.getFieldValue(form_values,'q');
@@ -1236,12 +1236,12 @@ Base.header_search.autocomplete = function(last_value) {
   var form_values = jQuery("#header_search_form").serializeArray();
   var q = Base.header_search.getFieldValue(form_values,'q');
   if( last_value != q || q == ''){
-    jQuery('search_results_ajax').hide();
+    jQuery('.search_results_ajax').hide();
     return;
   }
   jQuery.get('/search/all/' + q, function(data) {
       jQuery('.search_results_box').html(data);
-      jQuery('search_results_ajax').hide();
+      jQuery('.search_results_ajax').hide();
   });
 };
 

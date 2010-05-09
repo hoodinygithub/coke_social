@@ -54,12 +54,17 @@
 	height: 50px;	
 }
 
-img.avatar.follower_image {
+img.avatar.follower_image, img.avatar.small  {
 	width: 50px;
 	height: 50px;
 }
 
-.susbcriptions_list img.avatar.search.medium, .playlist_item img.avatar {
+img.avatar.tiny {
+	width: 30px;
+	height: 30px;
+}
+
+img.avatar.medium {
 	width: 150px;
 	height: 150px;
 }
@@ -93,4 +98,12 @@ li.scope_toggle .mini_loader{
 .tags_contains {
 	line-height: 20px;
 	height: 53px;
+}
+
+.search_results_ajax {
+	left: 260px;
+	margin-right: 10px;
+	position: relative;
+	top: -20px;
+	float: none;
 }
