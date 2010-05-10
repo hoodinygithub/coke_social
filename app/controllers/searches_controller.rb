@@ -30,7 +30,7 @@ class SearchesController < ApplicationController
 
   def content
     @query = params[:q]    
-    @search_types ||= [:artists, :albums, :songs]    
+    @search_types ||= [:artists, :songs, :albums]    
     @sort_type = :relevance
     @sort_types = { :relevance => nil }
 
