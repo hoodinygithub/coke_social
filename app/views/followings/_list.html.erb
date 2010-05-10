@@ -1,0 +1,7 @@
+<ul class="followers_list">
+  <%= render :partial => 'followings/item', :collection => @collection %>
+</ul><!--/end followers_list -->
+
+<% if @collection.respond_to? :total_pages %>
+  <%= will_paginate @collection, pagination_args %>
+<% end %>

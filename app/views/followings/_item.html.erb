@@ -1,0 +1,22 @@
+<li>
+  <%= link_to (avatar_for(item, :small, :class => "follower_image" ), item) %>
+  <div class="follower_text">
+    <b><%= link_to item.name, item %></b><br/>
+    <span><%= item.country %></span><br/>
+    <a href="#">3,250</a> Playlists /
+    <a href="#">5,350</a> Badges /
+    <%= link_to item.followers.size, user_followers_path(item) %> <%= t('profile.navigation.followers') %>
+  </div>
+  <div class="follower_actions w_settings">
+    <%= follow_button(:account => item) %>
+    <a href="#" class="black_button settings_button">
+      <span><span>
+        <img src="/images/settings_button.png" class="png_fix" alt="" />
+      </span></span>
+    </a>
+    <br/>
+    <%= render :partial => 'followings/action', :locals => { :item => item } %>
+    <%= render 'followings/blocked' if current_user.blocks?(item) %>
+  </div>
+  <br class="clearer" />
+</li>

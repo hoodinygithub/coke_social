@@ -835,4 +835,9 @@ module ApplicationHelper
   def on_dashboard?
     request.request_uri.match(/\/my\//)
   end
+
+  def action_for(item)
+    current_user.blocks?(item) ? 'unblock' : 'block'
+  end
+
 end
