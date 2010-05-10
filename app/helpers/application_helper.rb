@@ -129,17 +129,20 @@ module ApplicationHelper
   def yellow_button(button_label, options = {})
     special_button(:yellow_button, button_label, options)
   end
+  def orange_button(button_label, options = {})
+    special_button(:orange_button, button_label, options)
+  end
   
   def follow_button(attrs = {})
     account = attrs.delete(:account)
     if current_user and account.follow_requests.collect(&:follower_id).include? current_user.id
       action       = nil
       key          = 'pending'
-      button_color = 'yellow'
+      button_color = 'orange'
     elsif current_user and current_user.follow_requests.collect(&:follower_id).include? account.id
       action       = 'approve'
       key          = 'pending'
-      button_color = 'yellow'
+      button_color = 'orange'
     elsif current_user and current_user.follows?(account)
       action       = 'unfollow'
       key          = 'unfollow'
