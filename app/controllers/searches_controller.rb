@@ -4,14 +4,17 @@ class SearchesController < ApplicationController
     @query = params[:q]    
     @search_types ||= [:playlists, :users]    
     @sort_type = params.fetch(:sort_by, nil).to_sym rescue :relevance
-    @sort_types = { :latest => 'created_at DESC', :alphabetical => 'name ASC', :relevance => nil, :top => { :playlists => 'total_plays DESC', :users => nil } }
+    @sort_types = { :latest => { :playlists => 'updated_at DESC', :users => 'created_at DESC' }, \
+                    :alphabetical => 'name ASC', \
+                    :relevance => nil, \
+                    :top => { :playlists => 'total_plays DESC', :users => nil } }
 
     @active_scope = params[:scope].nil? ? @search_types[0] : params[:scope].to_sym
 
     @counts = {}
     @results = {}
     if request.xhr?
-      @active_scope == :all ? search_all_types(4) : search_only_active_type(20)
+      @active_scope == :all ? search_all_types(4) : search_only_active_type(12)
       
       if params.has_key? :result_only
         render :partial => "searches/#{@active_scope.to_s}"
@@ -33,7 +36,7 @@ class SearchesController < ApplicationController
       @sort_type = :relevance
     end
     
-    def search_only_active_type (per_page = 20)
+    def search_only_active_type (per_page = 12)
       opts = { :page => params[:page], :per_page => per_page }
 
       @search_types.each do |scope|
@@ -61,7 +64,7 @@ class SearchesController < ApplicationController
       end
     end
   
-    def search_all_types (per_page = 20)
+    def search_all_types (per_page = 12)
       opts = { :page => params[:page], :per_page => per_page }
       opts.merge!(:order => @sort_types[@sort_type]) unless @sort_types[@sort_type].nil?
 

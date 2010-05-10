@@ -86,12 +86,12 @@ li.scope_toggle .mini_loader{
 	margin-right:10px;
 }
 
-.red_button, .green_button, .orange_button, .black_button { 
+.red_button, .green_button, .orange_button, .black_button, .grey_button { 
   text-transform: uppercase;
 }
 
 .playlist_item .artist_box.empty_item {	
-	background: none repeat scroll 0 0 #CCCCCC;
+	background: none repeat scroll 0 0 #D8D8D8;
 	height: 150px;
 	width: 201px;
 }
@@ -119,4 +119,8 @@ li.scope_toggle .mini_loader{
 
 .green {
     color: green;
+}
+
+.search_results_box .spacer {
+	height: 20px;
 }

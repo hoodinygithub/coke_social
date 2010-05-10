@@ -1,6 +1,6 @@
 <% last_item = (big_playlist_item_counter + 1) % columns == 0 ? true : false %>
 <div class="playlist_item<%=" last_item" if last_item %>">
-  <%= link_to (big_playlist_item_counter + 1), user_path(big_playlist_item), :class => "big_item_number" %>
+  <%= link_to (big_playlist_item_counter + 1), radio_path(:station_id => big_playlist_item.station.id), :class => "big_item_number" %>
   <div class="artist_box png_fix">
     <%= link_to avatar_for(big_playlist_item, :medium), radio_path(:station_id => big_playlist_item.station.id) %>
     <div class="overlay">

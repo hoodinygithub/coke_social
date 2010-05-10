@@ -17,12 +17,13 @@ class Playlist < ActiveRecord::Base
   include Station::Playable
 
   acts_as_taggable
-
+  before_save :update_cached_artist_list
+  
   belongs_to :owner, :class_name => 'User', :conditions => { :network_id => 2 }
   delegate :network, :to => :owner
     
-  has_many :songs, :through => :items, :order => "playlist_items.position ASC"
   has_many :items, :class_name => 'PlaylistItem', :order => "playlist_items.position ASC", :include => :song
+  has_many :songs, :through => :items, :order => "playlist_items.position ASC"
   has_one :editorial_station, :foreign_key => 'mix_id'
   
   has_attached_file :avatar, :styles => { :album => "300x300#", :medium => "86x86#", :small => "60x60#" }
@@ -35,10 +36,11 @@ class Playlist < ActiveRecord::Base
     where "playlists.deleted_at IS NULL AND accounts.deleted_at IS NULL AND accounts.network_id = 2"
     indexes :name, :sortable => true
     indexes :cached_tag_list
+    indexes :cached_artist_list
     set_property :min_prefix_len => 1
     set_property :enable_star => 1
     set_property :allow_star => 1
-    has created_at, owner(:network_id), total_plays
+    has created_at, updated_at, owner(:network_id), total_plays
   end
   
   def self.search(*args)
@@ -73,7 +75,11 @@ class Playlist < ActiveRecord::Base
   def station_queue(params={})
     "/playlists/#{id}.xml"
   end  
-  
+
+  def update_cached_artist_list
+    update_attribute(:cached_artist_list, songs.find(:all, :group => :artist_id).collect { |s| s.artist.name }.join(', ') ) if cached_artist_list.blank?
+  end
+
   def artists_contained(options = {})
     options[:limit] ||= 4
     options[:random] = true unless options.has_key?(:random)
@@ -82,9 +88,9 @@ class Playlist < ActiveRecord::Base
     artists
   end
 
-  def artists
-    @artists ||= Artist.find_by_sql( [ ARTISTS_FROM_PLAYLIST, self.id ] ).uniq
-  end
+  # def artists
+  #   @artists ||= Artist.find_by_sql( [ ARTISTS_FROM_PLAYLIST, self.id ] ).uniq
+  # end
 
   def avatar_with_default
     if avatar_file_name.blank? && owner && !owner.avatar_file_name.blank?
