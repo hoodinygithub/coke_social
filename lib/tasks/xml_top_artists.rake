@@ -1,7 +1,7 @@
 namespace :db do
   namespace :output do
-    desc "Output Coke Top Artists"
-    task :xml_top_artists => :environment do
+    desc "Output Coke Top Artists Feed"
+    task :coke_top_artists_feed => :environment do
       include Timebox
 
       feed = 'top_artists'
@@ -9,7 +9,7 @@ namespace :db do
 
       size = 100
 
-      Site.all(:conditions => "code like '%coke%'").each do |site|
+      Site.all(:conditions => "code like 'coke%'").each do |site|
         timebox "XML File Created to #{site.name}..." do
           write_rss_artist_feed(feed, site, output_path, size)
         end
@@ -18,7 +18,7 @@ namespace :db do
 
     def write_rss_artist_feed(feed, site, path, limit)
       return if site.nil?
-      items = site.summary_top_artists.limited_to(limit)
+      items = site.top_artists.all(:limit => limit)
       return if items.empty?
 
       file = File.open("#{RAILS_ROOT}/#{path}/top_artists_#{site.code}.xml", 'w')
@@ -27,19 +27,19 @@ namespace :db do
 
       xml.instruct! :xml, :version => "1.0"
       xml.items do
-        items.each do |s|
+        items.each do |artist|
           
-          title = "#{s.artist.name}"
-          link = "http://#{site.domain}/#{s.artist.slug}"
-          thumbnail = s.artist.avatar_file_name.nil? ? "http://assets.cyloop.com/storage?fileName=/.elhood.com-2/usr/#{s.artist_id}/image/thumbnail/x46b.jpg" : s.artist.avatar_file_name.sub(/hires/,'thumbnail')
-          large_image = s.artist.avatar_file_name.nil? ? "http://assets.cyloop.com/storage?fileName=/.elhood.com-2/usr/#{s.artist_id}/image/hi-thumbnail/x46b.jpg" : s.artist.avatar_file_name.sub(/hires/,'hi-thumbnail')
+          title = "#{artist.name}"
+          link = "http://#{site.domain}/playlists/create/?scope=artist&item_id=#{artist.id}"
+          thumbnail = AvatarsHelper.avatar_path(artist, :small) #s.artist.avatar_file_name.nil? ? "http://assets.cyloop.com/storage?fileName=/.elhood.com-2/usr/#{s.artist_id}/image/thumbnail/x46b.jpg" : s.artist.avatar_file_name.sub(/hires/,'thumbnail')
+          large_image = AvatarsHelper.avatar_path(artist, :search)  #s.artist.avatar_file_name.nil? ? "http://assets.cyloop.com/storage?fileName=/.elhood.com-2/usr/#{s.artist_id}/image/hi-thumbnail/x46b.jpg" : s.artist.avatar_file_name.sub(/hires/,'hi-thumbnail')
 
           xml.item do
             xml.thumb thumbnail
             xml.detail large_image
             xml.link link
+            xml.dynamicReflection false
             xml.description title
-            xml.dynamicReflecton false
           end
         end
       end
