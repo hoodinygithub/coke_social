@@ -40,7 +40,8 @@ class Playlist < ActiveRecord::Base
     set_property :min_prefix_len => 1
     set_property :enable_star => 1
     set_property :allow_star => 1
-    has created_at, updated_at, owner(:network_id), total_plays
+    has created_at, updated_at, owner(:network_id)
+    has total_plays, :as => 'playlist_total_plays'
   end
   
   def self.search(*args)
@@ -77,7 +78,7 @@ class Playlist < ActiveRecord::Base
   end  
 
   def update_cached_artist_list
-    update_attribute(:cached_artist_list, songs.find(:all, :group => :artist_id).collect { |s| s.artist.name rescue nil }.compact.join(', ') ) if cached_artist_list.blank?
+    update_attribute(:cached_artist_list, includes.collect{ |s| s.artist.name rescue nil }.compact.join(', ') ) if cached_artist_list.blank?
   end
 
   def artists_contained(options = {})

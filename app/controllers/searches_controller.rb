@@ -7,7 +7,7 @@ class SearchesController < ApplicationController
     @sort_types = { :latest => { :playlists => 'updated_at DESC', :users => 'created_at DESC' }, \
                     :alphabetical => 'name ASC', \
                     :relevance => nil, \
-                    :top => { :playlists => 'total_plays DESC', :users => nil } }
+                    :top => { :playlists => 'playlist_total_plays DESC', :users => nil } }
 
     @active_scope = params[:scope].nil? ? @search_types[0] : params[:scope].to_sym
 

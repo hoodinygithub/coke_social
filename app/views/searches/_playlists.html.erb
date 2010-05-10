@@ -15,14 +15,15 @@
             <% if false %><span class="susbcription_stars right_side"><img src="images/rating_bottle_full.png" alt="" class="png_fix" /><img src="images/rating_bottle_full.png" alt="" class="png_fix" /><img src="images/rating_bottle_full.png" alt="" class="png_fix" /><img src="images/rating_bottle_full.png" alt="" class="png_fix" /><img src="images/rating_bottle_empty.png" alt="" class="png_fix" /></span><% end %>
             <big><%= link_to playlist.name, radio_path(:station_id => playlist.station.id) %></big>
             <br/>
-            <span class="grey"><%= t('basics.created_at', :when => distance_of_time_in_words_to_now(playlist.created_at)) %></span><br/>
-
+            <span class="grey"><%= t('basics.created_at', :when => distance_of_time_in_words_to_now(playlist.created_at)) %></span>
             <div class="tags_contains">
-                <%  %>
-                <%= "#{tag_links(playlist, @active_scope)}<br/>" if playlist.cached_tag_list %>
-                <%= station_contains(playlist) %><br/>
+              <% unless playlist.cached_tag_list.blank? %>
+              <div><%= tag_links(playlist, @active_scope) %></div>
+              <% end %>
+              <% if playlist.songs_count > 0 %>
+              <div><%= station_contains(playlist) %></div>
+              <% end %>
             </div>
-
             <div class="susbcription_creator">
                 <%= link_to(avatar_for(playlist.owner, :small, {:alt => "", :class =>"follower_image"}), playlist.owner) %>
                 <div class="creator_text">
