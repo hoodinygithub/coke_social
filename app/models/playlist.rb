@@ -77,7 +77,7 @@ class Playlist < ActiveRecord::Base
   end  
 
   def update_cached_artist_list
-    update_attribute(:cached_artist_list, songs.find(:all, :group => :artist_id).collect { |s| s.artist.name }.join(', ') ) if cached_artist_list.blank?
+    update_attribute(:cached_artist_list, songs.find(:all, :group => :artist_id).collect { |s| s.artist.name rescue nil }.compact.join(', ') ) if cached_artist_list.blank?
   end
 
   def artists_contained(options = {})

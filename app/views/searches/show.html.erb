@@ -23,7 +23,10 @@
       <% @search_types.each do |type| %>
       <div id="<%= type.to_s %>_result" class="scope_result<%= @active_scope == type ? '' : ' hide' %>" result_count="<%= @counts[type] %>">
         <h1><%= t("basics.#{type.to_s}")%></h1>
-        <%= render type.to_s unless @results[type].empty? %>
+        <%= render :partial => "#{type.to_s}_sorting" %>
+        <div id="<%= type.to_s %>_result_details">
+          <%= render type.to_s unless @results[type].empty? %>
+        </div>
       </div>
       <% end %>
     </div><!--/end center_column -->

@@ -1334,6 +1334,15 @@ Base.main_search.highlight_scope = function() {
     jQuery("#search_" + value).addClass('active')
   };
 
+Base.main_search.highlight_sort = function(scope) {
+		//var scope =  jQuery('#search_scope').val();
+		var sort =  jQuery('#search_sort').val();
+    jQuery("#" + value + "_result div.sorting a").each(function(el) {
+      jQuery(this).removeClass('active');
+    });
+    jQuery("#" + value + "_sort_" + sort).addClass('active')
+  };
+
 Base.main_search.refresh_result = function() {
   $.ajax({
     url: Base.main_search.getSearchUrl(),
@@ -1341,16 +1350,16 @@ Base.main_search.refresh_result = function() {
     data: { result_only: true },
     success: function(result) {
 			var value = jQuery("#search_scope").get(0).value;
-			var ul = $("#" + value + '_result');
+			var ul = $("#" + value + '_result_details');
 			ul.empty();
 			ul.append(result);
-			ul.find('div.sorting a').click(function(e) {
+/*			ul.find('div.sorting a').click(function(e) {
 				e.preventDefault();
 	      $('#search_sort').attr('value', jQuery(this).attr('href').match(/sort_by\=(.*)/)[1]);
 				jQuery("#scope_" + value + "_toggle").parentsUntil('ul').find('img.mini_loader').removeClass('hide');
 				Base.main_search.refresh_result();				
 			})
-			jQuery("#scope_" + value + "_toggle").parentsUntil('ul').find('img.mini_loader').addClass('hide');
+*/			jQuery("#scope_" + value + "_toggle").parentsUntil('ul').find('img.mini_loader').addClass('hide');
 			Base.main_search.toggle_scope(false);
 		},
     error: function(result) { alert("error"); }
@@ -1396,7 +1405,7 @@ Base.main_search.select_scope = function() {
       Base.main_search.highlight_scope();
       return false;
     });
-    $('#main_search_form').submit(function() {
+    $('#main_search_form').submit(function() {	
       scope = $('#search_scope').attr('value');
     });
     Base.main_search.highlight_scope();
@@ -1407,7 +1416,7 @@ Base.main_search.initialize_scope_toggle = function() {
   jQuery(".scope_toggle a").click(function() {
       value = this.id.match(/scope_(.*)_toggle/)[1];
       $('#search_scope').attr('value', value);    
-			if(!(jQuery("#" + value + "_result").children().length - 1) && parseInt(jQuery("#" + value + "_result").attr('result_count'), 10) > 0) {				
+			if(!jQuery("#" + value + "_result_details").children().length && parseInt(jQuery("#" + value + "_result").attr('result_count'), 10) > 0) {				
 				Base.main_search.activate_scope_toggle();
 				jQuery(this).parentsUntil('ul').find('img.mini_loader').removeClass('hide');
 				Base.main_search.refresh_result();
@@ -1418,9 +1427,13 @@ Base.main_search.initialize_scope_toggle = function() {
     });
   jQuery("div.scope_result .sorting a").click(function(e) {						
 			e.preventDefault();
-      $('#search_sort').attr('value', this.href.match(/sort_by\=(.*)/)[1]);
-			jQuery("#scope_" + $('#search_scope').val() + "_toggle").parentsUntil('ul').find('img.mini_loader').removeClass('hide');
-			Base.main_search.refresh_result();				
+			scope = jQuery(this).parent().parent().attr('id').match(/(.*)_result/)[1];
+      jQuery('#search_sort').attr('value', this.href.match(/sort_by\=(.*)/)[1]);
+      Base.main_search.highlight_sort(scope);
+			if(parseInt(jQuery(this).parent().parent().attr('result_count'), 10) > 1) {
+				jQuery("#scope_" + $('#search_scope').val() + "_toggle").parentsUntil('ul').find('img.mini_loader').removeClass('hide');
+				Base.main_search.refresh_result();
+			}
       return false;
     });
 
