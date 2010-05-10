@@ -7,5 +7,5 @@
     </span>
     
     <%= follow_button(:account => profile_account, :full_width => true) unless profile_owner? %>
-    <%= red_button('CREATE PLAYLIST', :href => playlist_create_path) if profile_owner? %>
+    <%= red_button(t('actions.create_a_playlist'), :href => playlist_create_path) if profile_owner? %>
 </div><!--/end top_follow -->

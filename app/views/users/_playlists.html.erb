@@ -1,10 +1,8 @@
 <% if profile_account.playlists.size > 0 %>
   <div class="box_content">
-    <% if profile_owner? %>
-      <h1>MY TOP PLAYLISTS</h1>
-    <% else %>
-      <h1><%= profile_account.name %> TOP PLAYLISTS</h1>
-    <% end %>
+    <h1>
+      <%= profile_owner? ? t('possessives.first_person.playlists') : t('possessives.third_person.playlists', :subject => profile_account.first_name) %>
+    </h1>
 
     <ul class="top_mixes_list">
       <% profile_account.playlists.top.each do |p| %>

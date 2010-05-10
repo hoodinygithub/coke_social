@@ -2,7 +2,7 @@
   <%= link_to('view all', user_playlists_path(profile_account)) %>
 </b>
 
-<h1><%= "#{profile_account.name} LATEST PLAYLISTS" %></h1>
+<h1><%= t('playlists.latest', :subject => profile_account.first_name) %></h1>
 
 <% profile_account.playlists.latest.each_with_index do |p, i| %>
   <% if (i % 3) == 0 %> 
