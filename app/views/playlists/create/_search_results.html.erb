@@ -1,0 +1,17 @@
+<% if @results.empty? %>
+  <h2>Search Results</h2>
+  <div class="empty_results_box">
+    <div class="step_no">1</div>
+    <h2>SELECT YOUR SONGS</h2>
+    <div>
+      Song search results will show up here<br/>drag the songs you like the container to<br/>
+
+      the right to create your playlist
+    </div>
+  </div>
+<% else %>
+  <h2>Search Results for &quot;[<%=@result_text%>]&quot;</h2>
+  <%= render :partial => "playlists/create/#{@results.first.class.to_s.downcase}_results" %>
+
+  
+<% end %>

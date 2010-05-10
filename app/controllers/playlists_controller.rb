@@ -1,6 +1,8 @@
 class PlaylistsController < ApplicationController
   current_tab :playlists
   current_filter :all
+  
+  before_filter :login_required#, :only => [:create]
 
   def index
     begin
@@ -15,7 +17,9 @@ class PlaylistsController < ApplicationController
   end
 
   def create
+    @results,@scope,@result_text = get_seeded_results
     
+    # playlist.create_station after save
   end
   
   def edit
@@ -77,6 +81,26 @@ class PlaylistsController < ApplicationController
       format.html { redirect_to :back }
     end
   end
-
+  
+  private
+    def get_seeded_results
+      results = []
+      result_text = ""
+      
+      scope = (params[:scope] =~ /(song|artist|album)/i) ? params[:scope].to_sym : nil
+      if(scope)
+        obj = scope.to_s.classify.constantize
+        if params[:term]
+          results = obj.search(params[:term]) rescue nil
+          result_text = obj.to_s
+        elsif params[:item_id]
+          obj_list = obj.find(params[:item_id]) rescue nil
+          results = obj_list.songs if obj_list
+          result_text = obj.to_s
+        end
+      end
+      [results, scope, result_text]
+    end
+    
 end
 

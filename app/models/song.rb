@@ -107,5 +107,9 @@ class Song < ActiveRecord::Base
   def to_param
     "#{id}-#{PermalinkFu.escape(title)}"
   end
+  
+  def songs
+    [self]
+  end
 
 end

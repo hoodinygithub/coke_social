@@ -1,0 +1,29 @@
+<div class="songs_list my_mix">
+  <div class="headers">
+    <div class="song_name">SONG NAME</div>
+    <div class="artist_name">ARTIST</div>
+    <div class="album_name">ALBUM</div>
+    <div class="large_bnt">&nbsp;</div>
+    <div class="last">&nbsp;</div>
+
+    <br class="clearer" />
+  </div><!--/end headers -->
+
+  <div class="songs_box medium_height">
+    <ul class="hoverable_list">
+      <% @results.each do |song| %>
+        <li>
+            <div class="song_name">
+                <a href="#"><img src="images/icon_play_button.png" class="png_fix icon_play_button" alt="" /></a> 
+                &nbsp; <%= song.title %>
+            </div>
+
+            <div class="artist_name"><b><%= truncate(song.artist.name, :length => 20) %></b></div>
+            <div class="album_name"><%= truncate(song.album.name, :length => 20) %></div>
+            <div class="large_bnt"><b><a href="#" class="black">+</a></b></div>
+            <br class="clearer" />
+        </li>
+      <% end %>
+    </ul>
+  </div><!--/end songs_box -->
+</div><!--/end songs_list -->
