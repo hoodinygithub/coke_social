@@ -1,0 +1,14 @@
+<%= render 'shared/ajax_modules' %>
+<div id="main_content">
+
+  <%= render 'dashboards/left_column' %>
+
+  <div id="center_column">
+    <%= render 'dashboards/network_activity' %>
+    <%= render 'dashboards/comment_list', :with_title => false %>
+  </div><!--/end center_column -->
+
+  <%= render 'dashboards/right_column' %>
+
+  <div class="clearer"></div>
+</div><!--/end main_content -->
