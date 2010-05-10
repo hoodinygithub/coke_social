@@ -1,5 +1,11 @@
 <div class="box_content">
-  <h1><%= t("dashboards.follows", :user_name => profile_account.first_name.upcase) %></h1>
+  <h1>
+    <% if profile_owner? %>
+      <%= t("dashboards.followers.my_followers") %>
+    <% else %>
+      <%= t("dashboards.follows", :user_name => profile_account.first_name.upcase) %>
+    <% end %>
+  </h1>
 
   <% if profile_account.followee_count < 1 %>
     <div class="big_text">

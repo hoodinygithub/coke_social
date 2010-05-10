@@ -3,10 +3,6 @@
     <%= banner_ad("square_banner") %>
   </div>
   <%= render 'shared/tweets'  if profile_artist? %>
-
-  <div class="grey_box">
-    <%= render profile_owner? ? 'dashboards/owner_sections' : 'dashboards/user_sections' %>
-  </div><!--/end grey_box -->
-
+  <%= render 'users/follows' %>
 </div><!--/end right_column -->
 
