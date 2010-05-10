@@ -104,7 +104,7 @@ class User < Account
   has_many :badges, :through => :badge_awards
 
   has_many :followings, :foreign_key => 'follower_id'
-  has_many :followees, :through => :followings, :conditions => "followings.approved_at IS NOT NULL", :source => :followee do
+  has_many :followees, :through => :followings, :order => 'followings.approved_at desc', :conditions => "followings.approved_at IS NOT NULL", :source => :followee do
     def with_limit(limit=10)
       find(:all, :limit => limit)
     end
