@@ -112,6 +112,10 @@ module ApplicationHelper
   
   def red_button(button_label, options = {})
     special_button(:red_button, button_label, options)
+  end
+  
+  def red_button(button_label, options = {})
+    special_button(:red_button, button_label, options)
   end  
 
   def grey_button(button_label, options = {})

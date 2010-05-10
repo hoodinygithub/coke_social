@@ -13,7 +13,8 @@ var Base = {
   utils: {},
   registration: {},
   radio: {},
-  account: {}
+  account: {},
+  playlists: {}
 };
 
 /*
@@ -1306,6 +1307,14 @@ Base.content_search.autocomplete = function(last_value) {
       jQuery('.create_box').show();
       jQuery('.content_search_results_ajax').hide();
   });
+};
+
+/*
+ * Playlists
+ */
+
+Base.playlists.create = function() {
+  
 };
 
 /*
