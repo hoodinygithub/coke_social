@@ -12,6 +12,6 @@
 </div><!--/end top_buttons -->
 
 <div class="album_actions2">
-  <%= blue_button(t("radio.create_new_station"), :class => "create_new_station", :id => "create_station_button") %><br/>
+  <%= red_button(t("radio.create_new_station"), :class => "create_new_station", :id => "create_station_button") %><br/>
   <b><%= t("basics.created_by") %>: <%= link_to(@station_obj.playable.owner.name, @station_obj.playable.owner, :target => '_blank') %></b>
 </div>
