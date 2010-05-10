@@ -1,0 +1,6 @@
+<a href="<%= playlist_create_path(:item_id => list_song.id, :scope => list_song.class.to_s.downcase) %>">
+    <%= avatar_for(list_song.album, :small, :alt => "#{list_song.title}") %>
+    <b> <%= list_song.title %> </b><br/>
+    <small><%= list_song.artist.name if list_song.artist %> </small>
+    <br class="clearer" />
+</a>

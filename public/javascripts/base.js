@@ -6,6 +6,7 @@ var Base = {
   network: {},
   stations: {},
   header_search: {},
+  content_search: {},
   main_search: {},
   community: {},
   locale: {},
@@ -1258,6 +1259,56 @@ Base.header_search.autocomplete = function(last_value) {
 };
 
 /*
+ * content search
+ */
+
+
+Base.content_search.buildSearchUrl = function () {
+  var form_values = jQuery("#content_search_form").serializeArray();
+  var q     = Base.header_search.getFieldValue(form_values,'q');
+  var url   = "/playlists/create/?term=" + ( q == msg ? "" : q) ;
+  location.href = url;
+  return false;
+};
+
+Base.content_search.dropdown = function() {
+  jQuery("#content_search_query").keyup(function(e) {
+      //jQuery('.search_results_ajax').show();
+      var keyCode = e.keyCode || window.event.keyCode;
+      var form_values = jQuery("#content_search_form").serializeArray();
+      var q = Base.header_search.getFieldValue(form_values,'q');
+      if(keyCode == 37 || keyCode == 38 || keyCode == 39 || keyCode == 40){
+        return;
+	  }
+      if(keyCode == 13 || keyCode == 27 || q.length <= 1){
+        //jQuery('.search_results_ajax').show();
+        jQuery('.content_search_results_ajax').hide();
+        jQuery('.create_box').hide();
+        return;
+  	  }
+      //jQuery('.search_results_box').show();
+      setTimeout(function () {Base.content_search.autocomplete(q)}, 500);
+      return true;
+    });
+};
+
+
+Base.content_search.autocomplete = function(last_value) {
+  jQuery('.content_search_results_ajax').show();
+  var form_values = jQuery("#content_search_form").serializeArray();
+  var q = Base.header_search.getFieldValue(form_values,'q');
+  if( last_value != q || q == ''){
+    jQuery('.content_search_results_ajax').hide();
+    return;
+  }
+  jQuery.get('/search/content/all/' + q, function(data) {
+      jQuery('.create_box').html(data);
+      jQuery('.create_box').show();
+      jQuery('.content_search_results_ajax').hide();
+  });
+};
+
+/*
  * main search
  */
 
@@ -1427,5 +1478,6 @@ jQuery(document).ready(function() {
   Base.layout.bind_events();
   Base.layout.hide_success_and_error_messages();
   Base.header_search.dropdown();
+  Base.content_search.dropdown();
 });
 

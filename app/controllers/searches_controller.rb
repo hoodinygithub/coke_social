@@ -28,6 +28,25 @@ class SearchesController < ApplicationController
     end
   end
 
+  def content
+    @query = params[:q]    
+    @search_types ||= [:artists, :albums, :songs]    
+    @sort_type = :relevance
+    @sort_types = { :relevance => nil }
+
+    @active_scope = params[:scope].nil? ? @search_types[0] : params[:scope].to_sym
+
+    @counts = {}
+    @results = {}
+    if request.xhr?
+      @active_scope == :all ? search_all_types(4) : search_only_active_type(12)
+      
+      render :partial => 'searches/content_list'
+    else
+      render :layout => false
+    end
+  end
+
   private  
     def default_active_scope
       @active_scope = @counts.sort{ |a, b| b[1] <=> a[1] }.first[0] unless @search_types.include? @active_scope

@@ -1,7 +1,8 @@
 <li>
-  <a href="<%= artist_path(list_artist) %>">
-    <%= avatar_for(list_artist, :search, {:alt => " #{list_artist.name}"}) %>
-    <b> <%= list_artist.name %> </b><br/>
+  <a href="<%= playlist_create_path(:item_id => list_artist.id, :scope => list_artist.class.to_s.downcase) %>">
+    <%= avatar_for(list_artist, :small, :alt => "#{list_artist.name}") %>
+    <b><%= list_artist.name %></b><br/>
+    <small><%= list_artist.genre.name if list_artist.genre %></small>
     <br class="clearer" />
   </a>
 </li>
