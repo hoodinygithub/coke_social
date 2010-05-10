@@ -304,7 +304,6 @@ h2 {
     width: 280px;
     border: solid 1px #cccccc;
     padding: 10px 0px 0px;
-    margin: -30px 0px 0px 517px;
     display: none;
     z-index: 5;
 }
@@ -354,8 +353,8 @@ h2 {
 }
 
 .search_results_box .oveflow_list {
-    /*height: 450px;
-        overflow: auto;*/
+    height: 450px;
+    overflow: auto;
     border-bottom: solid 1px #999;
 }
 
@@ -1540,6 +1539,15 @@ h2 {
     vertical-align: middle;
 }
 
+.valign_top {
+	vertical-align: top;
+}
+
+.align_right {
+	align: right;
+}
+
+
 .medium_text {
     color: #ccc;
     font-size: 18px;
@@ -1727,6 +1735,7 @@ h2 {
 .susbcription_creator {
 	font-size: 11px;
     /* font-size: 12px;*/
+    /* line-height: 18px; */
 }
 
 .susbcription_creator b {
@@ -1890,12 +1899,14 @@ h2 {
 	-moz-border-radius: 4px;
 	-webkit-border-radius: 4px;
 	padding: 0px 20px;
+        /* padding: 0px 35px; */
 }
 
 .top_follow .grey_bg a {
 	color: #ccc;
 	text-decoration: none;
 	margin: 0px 20px;
+    /* margin: 0px 35px; */
 }
 
 .top_follow .grey_bg a:hover {
@@ -2595,6 +2606,19 @@ followers_list .follower_actions.w_settings .orange_button.settings_button img, 
     zoom: 1;
 }
 
+.white_msg {
+	font-size: 11px;
+	font-weight: bold;
+	color: #FF0000;
+	margin-bottom: 10px;
+	width: 400px;
+	float: left;
+	zoom: 1;
+	padding-top: 5px;
+	padding-right: 10px;
+	padding-bottom: 5px;
+	padding-left: 5px;
+}
 #login_register_links {
     position: absolute;
     top: 10px;
@@ -2841,4 +2865,41 @@ followers_list .follower_actions.w_settings .orange_button.settings_button img, 
     float: right;
     width: 340px;
     margin-right: 15px;
+}
+
+#congrats_popup {
+    width: 740px;
+    margin-left: -370px;
+}
+
+#congrats_popup .popup_content {
+    background-image: url("../images/popup_h_bg_large.png")
+}
+
+.congrats_box {
+    padding: 30px 0px;
+    border-bottom: solid 1px #dedede;
+    border-top: solid 1px #dedede;
+    margin-bottom: 10px;
+}
+
+.congrats_badge {
+    float: left;
+}
+
+.congrats_text {
+    float: right;
+    width: 490px;
+    font-size: 14px;
+}
+
+.congrats_text .grey {
+    font-size: 22px;
+    line-height: 30px;
+}
+
+.congrats_text big {
+    font-size: 24px;
+    line-height: 30px;
+    margin-bottom: 5px;
 }
