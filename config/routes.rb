@@ -141,6 +141,7 @@ ActionController::Routing::Routes.draw do |map|
   profile_routes = lambda do |profile|
     profile.resources :comments
     profile.resources :follow_requests
+    profile.resources :badges
     profile.resources :playlists, :member => {:delete_confirmation => :get}
     profile.resources :playlist_items,:member => {:delete_confirmation => :get}, :only => [:new, :create]
     profile.resources :playlists do |playlist|

@@ -24,8 +24,8 @@ module DashboardsHelper
   def user_nav_links
     links = {
       :home     => user_path,
-      :playlists     => '#',
-      :badges        => '#',
+      :playlists     => playlists_path,
+      :badges        => badges_path,
       :reviews       => '#',
       :subscriptions => '#',
       :activities => activities_path,
@@ -39,7 +39,7 @@ module DashboardsHelper
     links = {
       :home          => my_dashboard_path,
       :playlists     => my_playlists_path,
-      :badges        => "#",
+      :badges        => my_badges_path,
       :reviews       => "#",
       :subscriptions => "#",
       :activities    => my_activities_path,
