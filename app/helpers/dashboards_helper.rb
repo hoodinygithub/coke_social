@@ -1,10 +1,10 @@
 module DashboardsHelper
   def menu_items(links)
-    items = [{:menu => :home,          :label => "#{t('profile.navigation.home')}",             :url => links[:home]},
-     {:menu => :playlists,     :label => "Playlists",                                   :url => links[:stations]},
-     {:menu => :badges,        :label => "Badges",                                      :url => links[:badges]},
-     {:menu => :reviews,       :label => "Reviews",                                     :url => links[:reviews]},
-     {:menu => :subscriptions, :label => "Subscriptions",                               :url => links[:subscriptions]},
+    items = [{:menu => :home,          :label => "#{t('profile.navigation.home')}",     :url => links[:home]},
+     {:menu => :playlists,     :label => "#{t('profile.navigation.playlists')}",        :url => links[:playlists]},
+     {:menu => :badges,        :label => "#{t('profile.navigation.badges')}",           :url => links[:badges]},
+     {:menu => :reviews,       :label => "#{t('profile.navigation.reviews')}",          :url => links[:reviews]},
+     {:menu => :subscriptions, :label => "#{t('profile.navigation.subscriptions')}",    :url => links[:subscriptions]},
      {:menu => :activity,      :label => "#{t('profile.navigation.activity')}",         :url => links[:activities]},
      {:menu => :followers,     :label => "#{t('profile.navigation.followers')}",        :url => links[:followers]},
      {:menu => :following,     :label => "#{t('profile.navigation.following')}",        :url => links[:following]},
@@ -38,10 +38,10 @@ module DashboardsHelper
   def my_nav_links(options = {})
     links = {
       :home          => my_dashboard_path,
-      :playlists     => '#',
-      :badges        => '#',
-      :reviews       => '#',
-      :subscriptions => '#',
+      :playlists     => my_playlists_path,
+      :badges        => "#",
+      :reviews       => "#",
+      :subscriptions => "#",
       :activities    => my_activities_path,
       :followers     => my_followers_path,
       :following     => my_following_index_path,
