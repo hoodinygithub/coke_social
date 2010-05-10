@@ -414,7 +414,7 @@ Base.layout.bind_events = function() {
 
 Base.layout.spin_image = function(type, no_margin) {
   if (typeof(type) == 'undefined' || !type) {
-    image_name = 'blue_loading.gif';
+    image_name = 'red_loading.gif';
   } else {
     image_name = type + "_loading.gif";
   }
@@ -692,7 +692,7 @@ Base.community.block = function(user_slug, button) {
   var $settings_button = $main_div.find('.settings_button').children().children();
 
   $black_ul.fadeOut();
-  //$settings_button.html("<img src='/images/blue_loading.gif'></img>");
+  //$settings_button.html("<img src='/images/red_loading.gif'></img>");
   $settings_button.html(Base.layout.spin_image(false, false));
 
   jQuery.post('/users/block', params, function(response, status) {
@@ -716,7 +716,7 @@ Base.community.unblock = function(user_slug, button) {
   var $settings_button = $main_div.find('.settings_button').children().children();
 
   $black_ul.fadeOut();
-  // $settings_button.html("<img src='/images/blue_loading.gif'></img>");
+  // $settings_button.html("<img src='/images/red_loading.gif'></img>");
   $settings_button.html(Base.layout.spin_image(false, false));
 
   jQuery.post('/users/unblock', params, function(response, status) {
