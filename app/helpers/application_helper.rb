@@ -8,7 +8,7 @@ module ApplicationHelper
   end
   
   def playlist_contains_to_search(p)
-    search_url = lambda {|t| friendly_search_path(:scope => 'playlists', :q => t)}
+    search_url = lambda {|t| content_search_path(:scope => 'playlists', :q => t)}
     p.cached_artist_list.split(",").collect { |t| link_to(t, search_url.call(t.strip)) }.join(", ")
   end
 
@@ -386,9 +386,9 @@ module ApplicationHelper
 
   def gatracker_id
     case current_site.name
-    when "MSN Brazil"
+    when "Coke Brazil"
       "UA-410780-61"
-    when "MSN Latam"
+    when "Coke Latam"
       "UA-410780-62"
     end
   end
