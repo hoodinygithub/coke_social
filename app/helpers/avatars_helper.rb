@@ -72,6 +72,7 @@ module AvatarsHelper
         path = "/avatars/missing/missing.png"
       end
 
+
       if path =~ /^\/avatars\/(.*)\/missing.png$/
         if target
           if target.is_a?(User)

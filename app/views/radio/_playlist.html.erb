@@ -1,0 +1,23 @@
+<%= render :partial => 'station_details_form' %>
+<%= avatar_for(@station_obj.playable, :comment, :class => 'left_side', :width => '50', :disable_default_css => true) %>
+<div class="album_text2">
+  <b><%= @station_obj.playable.name %></b>
+  <br/>
+  <small class="grey"><%= "last modified: #{@station_obj.playable.updated_at.strftime('%m/%d/%Y')}" %></small>
+  <br/>
+  <small><%= station_contains(@station_obj.playable) %></small>
+</div><!--/end top_buttons -->
+
+<div class="album_actions2">
+  <span class="rating">
+    <img class="png_fix" alt="" src="images/rating_bottle_full.png">
+    <img class="png_fix" alt="" src="images/rating_bottle_full.png">
+    <img class="png_fix" alt="" src="images/rating_bottle_full.png">
+    <img class="png_fix" alt="" src="images/rating_bottle_full.png">
+    <img class="png_fix" alt="" src="images/rating_bottle_empty.png">
+  </span>
+  <br/>
+  <small>200 Reviews</small>
+  <br/>
+  <b>created by: <a href="#"><%= @station_obj.playable.owner.name %></a></b>
+</div>
