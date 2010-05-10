@@ -9,7 +9,9 @@ module ApplicationHelper
   
   def playlist_contains_to_search(p)
     search_url = lambda {|t| content_search_path(:scope => 'playlists', :q => t)}
-    p.cached_artist_list.split(",").collect { |t| link_to(t, search_url.call(t.strip)) }.join(", ")
+    unless p.cached_artist_list.nil?
+      p.cached_artist_list.split(",").collect { |t| link_to(t, search_url.call(t.strip)) }.join(", ")
+    end
   end
 
   def is_index?
