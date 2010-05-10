@@ -1,0 +1,29 @@
+<% if profile_account.playlists.size > 0 %>
+  <div class="box_content">
+    <% if profile_owner? %>
+      <h1>MY TOP PLAYLISTS</h1>
+    <% else %>
+      <h1><%= profile_account.name %> TOP PLAYLISTS</h1>
+    <% end %>
+
+    <ul class="top_mixes_list">
+      <% profile_account.playlists.top.each do |p| %>
+        <li>
+          <a href="#"><img src="images/comment_icon.gif" class="top_mix_image" alt="" /></a>
+          <div class="top_mix_text">
+            <big>
+              <%= link_to(p.name, playlist_path(p)) %>
+            </big>
+            <br/>
+            Contains: <%= playlist_contains_to_search(p) %>
+          </div>
+          <div class="clearer"></div>
+        </li>
+      <% end %>
+    </ul>
+    <div class="align_right">
+      <b class="right_side"><a href="#">view all</a></b><b><a href="#"></a></b>
+    </div>
+    <br />                    
+  </div>
+<% end %>

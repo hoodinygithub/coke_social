@@ -1,6 +1,16 @@
 module ApplicationHelper
 
   include PopupHelper
+  
+  def playlist_tags(p)
+    # TODO - define the corret tag link path
+    p.tags.collect {|t| link_to(t.name, "/tags/#{t.id}")}.join(", ")
+  end
+  
+  def playlist_contains_to_search(p)
+    search_url = lambda {|t| friendly_search_path(:scope => 'playlists', :q => t)}
+    p.cached_artist_list.split(",").collect { |t| link_to(t, search_url.call(t.strip)) }.join(", ")
+  end
 
   def is_index?
     request.request_uri == "/home"

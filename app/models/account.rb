@@ -157,6 +157,7 @@ class Account < ActiveRecord::Base
     :allow_nil => true,
     :message => :can_only_contain_letters_numbers_and_hyphens
 
+  
   def available_at_current_site?( current_site_id = ApplicationController.current_site.id )
     !(self.sites.count( :conditions => { :id => current_site_id } ) > 0)
   end
