@@ -226,7 +226,7 @@ module ApplicationHelper
 
   def tag_links(item, active_scope = :all, limit=3, include_text=true, link_options={})
     links = []
-    tags = item.tags.all(:limit => limit).map{ |tag| link_to(tag.name, search_path(:scope => active_scope.to_s, :q => tag.name), link_options) }
+    tags = item.tags.all(:limit => limit).map{ |tag| link_to(tag.name, main_search_path(:scope => active_scope.to_s, :q => tag.name), link_options) }
 
     unless tags.empty?
       if include_text
@@ -242,7 +242,7 @@ module ApplicationHelper
     station_artists = item.includes(limit)
 
     station_artists.each do |station_artist|
-      links << link_to(station_artist.artist.name, artist_path(station_artist.artist), link_options) unless station_artist.artist.nil?
+      links << link_to(station_artist.artist.name, main_search_path(:scope => 'playlists', :q => CGI::escape(station_artist.artist.name)), link_options) unless station_artist.artist.nil?
     end
 
     if include_text

@@ -1407,7 +1407,7 @@ Base.main_search.initialize_scope_toggle = function() {
   jQuery(".scope_toggle a").click(function() {
       value = this.id.match(/scope_(.*)_toggle/)[1];
       $('#search_scope').attr('value', value);    
-			if(!jQuery("#" + value + "_result").children().length) {				
+			if(!(jQuery("#" + value + "_result").children().length - 1) && parseInt(jQuery("#" + value + "_result").attr('result_count'), 10) > 0) {				
 				Base.main_search.activate_scope_toggle();
 				jQuery(this).parentsUntil('ul').find('img.mini_loader').removeClass('hide');
 				Base.main_search.refresh_result();

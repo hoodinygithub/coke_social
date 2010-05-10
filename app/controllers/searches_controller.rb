@@ -1,7 +1,7 @@
 class SearchesController < ApplicationController
 
   def show
-    @query = params[:q]    
+    @query = CGI::unescape(params[:q]) rescue nil
     @search_types ||= [:playlists, :users]    
     @sort_type = params.fetch(:sort_by, nil).to_sym rescue :relevance
     @sort_types = { :latest => { :playlists => 'updated_at DESC', :users => 'created_at DESC' }, \
@@ -24,7 +24,12 @@ class SearchesController < ApplicationController
     else
       unless @query.nil?
         @active_scope == :all ? search_all_types : search_only_active_type
-      end
+      else
+        @search_types.each do |t| 
+          @results.store(t, [])
+          @counts.store(t, 0)
+        end      
+      end      
     end
   end
 

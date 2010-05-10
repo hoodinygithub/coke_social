@@ -17,17 +17,14 @@
     <% end %>
 
     <div id="left_column">
-      <% unless @query.nil? %>
-        <%= render 'scope_toggle' %>
-      <% end %>
+      <%= render 'scope_toggle' %>
     </div><!--/end left_column -->
     <div id="center_column" class="search_results">
-      <% unless @query.nil? %>
-        <% @search_types.each do |type| %>
-        <div id="<%= type.to_s %>_result" class="scope_result<%= @active_scope == type ? '' : ' hide' %>">
+      <% @search_types.each do |type| %>
+      <div id="<%= type.to_s %>_result" class="scope_result<%= @active_scope == type ? '' : ' hide' %>" result_count="<%= @counts[type] %>">
+        <h1><%= t("basics.#{type.to_s}")%></h1>
         <%= render type.to_s unless @results[type].empty? %>
-        </div>
-        <% end %>
+      </div>
       <% end %>
     </div><!--/end center_column -->
   </div><!--/end two_columns -->

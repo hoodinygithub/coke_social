@@ -30,7 +30,7 @@ namespace :db do
         items.each do |artist|
           
           title = "#{artist.name}"
-          link = "http://#{site.domain}/playlists/create/?scope=artist&item_id=#{artist.id}"
+          link =  CGI::escape("http://#{site.domain}/search/playlists/#{artist.name}")
           thumbnail = AvatarsHelper.avatar_path(artist, :small) #s.artist.avatar_file_name.nil? ? "http://assets.cyloop.com/storage?fileName=/.elhood.com-2/usr/#{s.artist_id}/image/thumbnail/x46b.jpg" : s.artist.avatar_file_name.sub(/hires/,'thumbnail')
           large_image = AvatarsHelper.avatar_path(artist, :search)  #s.artist.avatar_file_name.nil? ? "http://assets.cyloop.com/storage?fileName=/.elhood.com-2/usr/#{s.artist_id}/image/hi-thumbnail/x46b.jpg" : s.artist.avatar_file_name.sub(/hires/,'hi-thumbnail')
 
