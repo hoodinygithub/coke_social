@@ -1,3 +1,7 @@
+<% content_for :header_space_content do %>
+  <div class="header_spacer"></div>
+<% end %>
+
 <% blank_msg = t('modules.edit_station.blank_station_name_message').gsub(/\"/, '\"') %>
 <script type="text/javascript">
   var blank_station_alert = "<%= blank_msg  %>";
