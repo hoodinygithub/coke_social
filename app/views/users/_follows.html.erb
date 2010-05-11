@@ -8,7 +8,7 @@
   </h1>
 
   <% if profile_account.followee_count < 1 %>
-    <div class="big_text">
+    <div class="medium_text">
       <%= t("user.is_not_following_anybody", :user_name => profile_account.first_name) %>
     </div>
   <% else %>
@@ -26,8 +26,8 @@
 
     <% index = (5 - followings.size) %>
     <% index.times do |i| %>
-      <div class="empty_box gb_small <%= "last_box" if i == (index-1) or i == (index-5) %>">
-        &nbsp;
+      <div class="small_thumb <%= "last_thumb" if i == (index-1) or i == (index-5) %>">
+        <img alt="" src="/images/empty_img_50.gif">
       </div>
       <% if i == index-5 %>
         <br class="clearer" />

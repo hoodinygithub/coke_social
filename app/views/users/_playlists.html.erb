@@ -1,8 +1,8 @@
-<% if profile_account.playlists.size > 0 %>
-  <div class="box_content">
-    <h1>
-      <%= profile_owner? ? t('possessives.first_person.playlists') : t('possessives.third_person.playlists', :subject => profile_account.first_name) %>
-    </h1>
+<div class="box_content">
+  <h1>
+    <%= profile_owner? ? t('possessives.first_person.playlists') : t('possessives.third_person.playlists', :subject => profile_account.first_name) %>
+  </h1>
+  <% if profile_account.playlists.size > 0 %>
 
     <ul class="top_mixes_list">
       <% profile_account.playlists.top.each do |p| %>
@@ -19,9 +19,13 @@
         </li>
       <% end %>
     </ul>
-    <div class="align_right">
-      <b class="right_side"><a href="#">view all</a></b><b><a href="#"></a></b>
+  <% else %>
+    <div class="medium_text">
+      <%= t("dashboards.user_has_no_playlists", :name => profile_account.name) %>
     </div>
-    <br />                    
+  <% end %>
+  <div class="align_right">
+    <b class="right_side"><a href="#">view all</a></b><b><a href="#"></a></b>
   </div>
-<% end %>
+  <br />                    
+</div>
