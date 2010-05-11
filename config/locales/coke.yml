@@ -347,6 +347,7 @@ es:
       followees: "Gente que  {{subject}} est\xC3\xA1 siguiendo"
       follow_requests: Pedidos de Gente a Seguir de {{subject}}
       charts: Listas de {{subject}}
+      subscriptions: Subscripciones de {{subject}}
     first_person: 
       stations: Mis Radios
       network_activity: Mi actividad de red
@@ -356,6 +357,7 @@ es:
       followees: "Gente que estoy siguiendo "
       follow_requests: Mis Pedidos de Gente a Seguir
       charts: Mis Listas
+      subscriptions: Mis Subscripciones
   chat: 
     moderator: 
       title: "M\xC3\xB3dulo del Moderador"
@@ -1106,6 +1108,7 @@ es:
     destroy: 
       sign_out: Log out
   user: 
+    doesnt_have_any_subscriptions: "{{user_name}} doesn't have any subscriptions"
     is_not_following_anybody: "{{user_name}} no est\xC3\xA1 siguiendo a nadie"
     doesnt_have_any_followers: "{{user_name}} doesn't have any followers"
     marketing_opt_out: "Por favor no me env\xC3\xADen emails de parte de Cyloop o sus sitios relacionados."
