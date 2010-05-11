@@ -4,7 +4,7 @@
   </div>
   <div class="includes"><%= station_contains(my_playlist_item, 3, false, :target => '_blank')%></div>
   <div class="large_bnt2">
-    <img class="png_fix valign_middle" alt="copy playlist" src="images/copy_button_small.png">
+    <!--img class="png_fix valign_middle" alt="copy playlist" src="images/copy_button_small.png"-->
     <%= link_to_function(image_tag('edit_button_small.png', :alt => t('actions.edit'), :class => 'valign_middle'), "Base.stations.launch_edit_layer(#{my_playlist_item.station.id})")%>
     <%= link_to_function(image_tag('close_red.png', :alt => t('actions.delete'), :class => 'valign_middle'), "Base.stations.remove_from_layer(#{my_playlist_item.station.id})", :class => "grey_button" ) unless my_playlist_item == @station_obj.playable %>
   </div>

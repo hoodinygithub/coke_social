@@ -4,7 +4,7 @@
   <b><%= @station_obj.playable.name %></b>
   <% if logged_in? && current_user.id == @station_obj.playable.owner.id %>
     <img class="png_fix valign_middle" alt="edit playlist" src="images/edit_button_small.png">
-    <img class="png_fix valign_middle" alt="copy playlist" src="images/copy_button_small.png">
+    <!--img class="png_fix valign_middle" alt="copy playlist" src="images/copy_button_small.png"-->
   <% end %>
   <br/>
   <small class="grey"><%= "last modified: #{ l(@station_obj.playable.updated_at.to_date) }" %></small>
