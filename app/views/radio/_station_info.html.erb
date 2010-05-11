@@ -50,7 +50,7 @@
     </div>
 
     <div id="top_playlists_content" class="radio_tabs_content hide">
-      <%= render :partial => "more_playlists", :locals => { :current_playlist => current_site.top_playlists } %>
+      <%= render :partial => "more_playlists", :locals => { :current_playlist => current_site.top_playlists.all(:limit => 20) } %>
     </div>
 
   </div><!--/end radio_right_side -->
