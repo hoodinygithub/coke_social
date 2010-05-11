@@ -1,3 +1,3 @@
 <ul class="followers_list">
-  <%= render :partial => 'followings/item', :collection => @collection.delete_if {|x| x.is_a?(Artist) } %>
+  <%= render :partial => 'followings/item', :collection => @collection %>
 </ul><!--/end followers_list -->
