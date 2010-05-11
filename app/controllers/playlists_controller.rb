@@ -2,7 +2,7 @@ class PlaylistsController < ApplicationController
   current_tab :playlists
   current_filter :all
   
-  before_filter :login_required#, :only => [:create]
+  before_filter :login_required, :except => [:widget]
 
   def index
     begin
@@ -34,6 +34,12 @@ class PlaylistsController < ApplicationController
       format.html { redirect_to my_playlists_path }
       format.js
     end
+  end
+  
+  def widget
+    @playlist = Playlist.find(params["id"])
+    @last_box = params["last_box"] == "true"
+    render :layout => false, :partial => "widget_item"
   end
 
   def show

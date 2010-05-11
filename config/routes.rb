@@ -100,7 +100,8 @@ ActionController::Routing::Routes.draw do |map|
     url.radio_artist_info 'radio/info/:playlist_id/:artist_id', :action => 'artist_info'
   end
 
-  map.social_playlist 'playlists/:id.:format', :controller => 'playlists', :action => 'show'
+  map.playlists_widget 'playlists/widget', :controller => 'playlists', :action => 'widget'
+  map.social_playlist  'playlists/:id.:format', :controller => 'playlists', :action => 'show'
 
 #  end
 
@@ -171,7 +172,7 @@ ActionController::Routing::Routes.draw do |map|
       charts.resources :albums, :only => :index
     end
   end
-
+  
   map.namespace :my do |me|
     me.with_options :namespace => '' do |my|
       my.root :controller => 'pages', :action => 'redirect_home'

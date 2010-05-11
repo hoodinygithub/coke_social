@@ -29,6 +29,8 @@ class Playlist < ActiveRecord::Base
   has_attached_file :avatar, :styles => { :album => "300x300#", :medium => "86x86#", :small => "60x60#" }
   validates_attachment_content_type :avatar,
     :content_type => ["image/jpeg", "image/png", "image/gif", "image/pjpeg", "image/x-png"]
+  
+  named_scope :top, lambda {|limit| {:order => 'reviews_count DESC', :limit => limit}}
     
   validates_presence_of :name
 

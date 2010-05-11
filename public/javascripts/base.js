@@ -1314,8 +1314,35 @@ Base.content_search.autocomplete = function(last_value) {
  */
 
 Base.playlists.create = function() {
-  
 };
+
+Base.playlists.close_button_event_binder = function() {
+  jQuery(".artist_box .close_btn").bind('click', function() { Base.playlists.close_button_handler(this); });
+};
+
+Base.playlists.close_button_handler = function(object) {
+    $button = jQuery(object);
+    
+    $parent_div = $button.parent();
+    $parent_div.html("<img style='margin-top:50px' src='/images/loading.gif'></img>");
+    $parent_div.css({'background':'#cccccc', 'text-align':'center'});
+
+    var new_playlist_id = recommended_playlists_queue.shift();
+
+    if (typeof(new_playlist_id) == 'undefined') {
+      $parent_div.html("");
+      $parent_div.css({'background':'white', 'text-align':'left'});
+      return;
+    }
+
+    var params = {'last_box':$parent_div.hasClass('last_box'), 'id':new_playlist_id};
+    jQuery.get('/playlists/widget', params, function(data) {
+      $parent_div.html(data);
+      $parent_div.css({'background':'white', 'text-align':'left'});
+      Base.stations.close_button_event_binder();
+    });
+};
+
 
 /*
  * main search
@@ -1495,8 +1522,8 @@ Base.radio.init_edit_station_layer = function() {
 jQuery(document).ready(function() {
   // Effects and Layout fixes
   $('.png_fix').supersleight({shim: '/images/blank.gif'});
-  
-  Base.stations.close_button_event_binder();
+
+  Base.playlists.close_button_event_binder();
   Base.layout.bind_events();
   Base.layout.hide_success_and_error_messages();
   Base.header_search.dropdown();

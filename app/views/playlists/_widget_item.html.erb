@@ -1,0 +1,32 @@
+<%
+  p        = @playlist if @playlist
+%>
+
+<% if @last_box %>
+  <div class="artist_box pl last_box png_fix">
+<% elsif defined?(last_box) and last_box %> 
+  <br class="clearer" />
+  <div class="artist_box pl last_box png_fix">
+<% else %>
+  <div class="artist_box pl png_fix">
+<% end %>
+    <span class="close_btn">Close</span>
+    <%= link_to(avatar_for(p, :medium), p) %>
+    <div class="overlay">
+        <div class="hidden">
+            <%= link_to(avatar_for(profile_account, :tiny, :class => 'artist_icon'), profile_account) %>
+            <b>
+              <%= link_to(profile_account.name, profile_account) %>
+            </b>
+            <br />
+            <span class="white"><%= p.created_at.to_s(:short) %></span>
+            <br/><br/>
+            Tags: <%= playlist_tags(p) %>
+            <br/><br/><br/>
+        </div>
+        <div class="visible">
+            <%= link_to(image_tag('play_button.png', :class => 'play_button png_fix'), playlists_path(:station_id => p.id))%>
+            <%= link_to(p.name, playlist_path(p)) %>
+        </div>
+    </div><!--/end overlay -->
+  </div><!--/end artist_box -->
