@@ -646,7 +646,7 @@ Base.community.unfollow = function(user_slug, button, remove_div) {
         $button.parent().parent().slideUp();
       } else {
         $button.removeClass("green_button");
-        $button.addClass("blue_button");
+        $button.addClass("red_button");
         $button_label.html(Base.locale.t('actions.follow'));
         $button.unbind('click');
         $button.bind('click', function() { Base.community.follow(user_slug, this, remove_div); return false; });
