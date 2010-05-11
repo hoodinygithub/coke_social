@@ -6,7 +6,7 @@ class PlaylistsController < ApplicationController
 
   def index
     begin
-      @collection = profile_user.playlists.paginate :page => params[:page], :per_page => 15
+      @collection = profile_user.playlists.paginate :page => params[:page], :per_page => 6
       respond_to do |format|
         format.html
         format.xml { render :layout => false }
