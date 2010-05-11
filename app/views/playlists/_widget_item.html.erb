@@ -21,12 +21,12 @@
             <br />
             <span class="white"><%= p.created_at.to_s(:short) %></span>
             <br/><br/>
-            Tags: <%= playlist_tags(p) %>
+            <%= tag_links(p) %>
             <br/><br/><br/>
         </div>
         <div class="visible">
-            <%= link_to(image_tag('play_button.png', :class => 'play_button png_fix'), playlists_path(:station_id => p.id))%>
-            <%= link_to(p.name, playlist_path(p)) %>
+            <%= link_to(image_tag('play_button.png', :class => 'play_button png_fix'), radio_path(:station_id => p.id))%>
+            <%= link_to(p.name, radio_path(:station_id => p.station.id)) %>
         </div>
     </div><!--/end overlay -->
   </div><!--/end artist_box -->

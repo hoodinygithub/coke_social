@@ -6,7 +6,9 @@
       <%= link_to "#{image_tag(badge_award.image(:small))}#{badge_award.new? ? image_tag("new_#{current_site.default_locale.to_s.downcase}.png", :class => 'new') : ''}", badge_path(badge_award) %>
       <% end %>
     <% else %>
-      <div class="empty_badges">No badges.</div>
+    <div class="medium_text">
+      <%= t("dashboards.user_has_not_won_any_badges", :name => profile_account.name) %>
+    </div>
     <% end %>
     <br class="clearer" />
   </div>

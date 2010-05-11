@@ -13,9 +13,7 @@ class DashboardsController < ApplicationController
     @dashboard_menu = :home
     @mixes_recommended = (1..6).to_a
 
-    @recommended_playlists_queue = Playlist.top(15)
-    @recommended_playlists       = @recommended_playlists_queue[0..RECOMMENDED_PLAYLISTS]
-    @queued_playlists            = @recommended_playlists_queue - @recommended_playlists
+    @queued_playlists = current_site.top_playlists(6)
 
     respond_to do |format|
       format.html

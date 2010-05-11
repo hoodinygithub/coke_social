@@ -1,15 +1,11 @@
-<b class="right_side">
-  <%= link_to(t('actions.view_more', user_playlists_path(profile_account)) %>
-</b>
-
 <h1><%= possessive :latest_playlists %></h1>
 
-<% if profile_account.playlists.latest.blank? %>
+<% if profile_account.total_playlists < 1 %>
   <div class="medium_text">
-    <%= t("dashboards.user_has_no_playlists", :name => profile_account.name) %>
+    <%= t("dashboards.user_has_no_playlists", :name => profile_user.name) %>
   </div>
 <% else %>
-<% profile_account.playlists.latest.each_with_index do |p, i| %>
+<% profile_user.playlists.latest.each_with_index do |p, i| %>
   <% if (i % 3) == 0 %> 
     <br class="clearer" />
     <div class="artist_box pl last_box png_fix">
@@ -35,7 +31,7 @@
           <%= link_to(image_tag('play_button.png'), radio_path(:station_id => p.id))%>
         </div>
         <div class="visible fh">
-          <%= link_to(image_tag('play_button.png', :class => 'play_button png_fix'), playlists_path(:station_id => p.id))%>
+          <%= link_to(image_tag('play_button.png', :class => 'play_button png_fix'), radio_path(:station_id => p.id))%>
           <br />
           <a href="#"><%= p.name %></a><br/>
         </div>
@@ -46,7 +42,7 @@
     <% end %>    
   <% end %>
 
-  <% latest_size = profile_account.playlists.latest.size %>
+  <% latest_size = profile_user.playlists.latest.size %>
   <% if latest_size < 6 and latest_size > 0 %>
     <% (6 - latest_size).times do |i| %>
       <div class="artist_box pl <%= "last_box" if ((i + 1 + latest_size) % 3 == 0) %> png_fix">
