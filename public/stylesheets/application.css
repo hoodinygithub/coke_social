@@ -956,7 +956,10 @@ h2 {
 
 .songs_list {
     border: solid 1px #cccccc;
+    background-color: #FFF;
     margin-bottom: 20px;
+    position: absolute;
+    z-index: 99;
     zoom: 1;
 }
 
@@ -1126,7 +1129,8 @@ h2 {
 }
 
 .songs_box.large_height {
-    height: 495px;
+    height: 524px;
+    width: 627px;
     position: relative;
 }
 
