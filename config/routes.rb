@@ -162,7 +162,9 @@ ActionController::Routing::Routes.draw do |map|
     profile.resources :following, :controller => 'followees'
     profile.resources :followers
     profile.resources :activities, :only => :index
+
     profile.resources :subscriptions
+    profile.resources :reviews
 
     profile.resources :charts, :only => :index
     #profile.charts 'charts', :controller => 'charts', :action => 'index'
