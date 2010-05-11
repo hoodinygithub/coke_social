@@ -423,9 +423,9 @@ module ApplicationHelper
 
   def gatracker_id
     case current_site.name
-    when "Coke Brazil"
-      "UA-410780-61"
     when "Coke Latam"
+      "UA-410780-61"
+    when "Coke Brazil"
       "UA-410780-62"
     end
   end
