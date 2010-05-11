@@ -26,7 +26,7 @@
     </div><!--/end black_boxes -->
 
     <% if logged_in? && current_user != @station_obj.playable.owner || !logged_in? %>
-      <%= follow_button(:account => @station_obj.playable.owner, :full_width => true) %>
+      <%= follow_button(:account => @station_obj.playable.owner, :full_width => true, :radio => true) %>
     <% end %>
 
     <!--a href="#" class="blue_button full_width"><span><span>FOLLOW</span></span></a-->
@@ -41,7 +41,7 @@
 
     <div id="emotions_content" class="radio_tabs_content">
       <% tag_cloud @station_obj.playable.tag_cloud, %w(css1, css2, css3, css4) do |tag, css_class| %>
-        <%= link_to tag.name, main_search_path(:scope => 'playlist', :q => tag.name), :class => css_class %>
+        <%= link_to tag.name, main_search_path(:scope => 'playlist', :q => tag.name), :target => "_blank", :class => css_class %>
       <% end%>
     </div>
 
