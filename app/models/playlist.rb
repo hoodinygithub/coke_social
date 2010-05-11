@@ -101,6 +101,10 @@ class Playlist < ActiveRecord::Base
     end
   end
 
+  def tag_cloud
+    @tags = self.tag_counts
+  end
+
   def add_tags(tags)
     tags = tags.split(/('.*?'|".*?"|\s+)/).map { |m| m.gsub(/\"/,"") unless m.blank? }.compact
     unless tags.empty?

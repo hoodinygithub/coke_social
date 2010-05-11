@@ -1,7 +1,31 @@
 module ApplicationHelper
 
   include PopupHelper
+  include TagsHelper
   
+
+  def redirect_owner(owner, path)
+    path_to = if logged_in? && owner == current_user
+      case path
+        when "profile"
+          "/my/dashboard"
+        when "followers"
+          "/my/followers"
+        when "playlists"
+          "/my/playlists"
+      end
+    else
+      case path
+        when "profile"
+          user_path(owner)
+        when "followers"
+          user_followers_path(owner)
+        when "playlists"
+          user_playlists_path(owner)
+      end
+    end
+  end
+
   def playlist_tags(p)
     # TODO - define the corret tag link path
     p.tags.collect {|t| link_to(t.name, "/tags/#{t.id}")}.join(", ")

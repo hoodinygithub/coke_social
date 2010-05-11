@@ -1,0 +1,26 @@
+<% playlists = current_playlist[0].kind_of? (Playlist) ? current_playlist : current_playlist.playable.owner.playlists.latest(20) %>
+<% playlists.each do |playlist| %>
+  <div class="radio_station_row">
+    <%= link_to_function avatar_for(playlist, :comment, :class => 'left_side station_icon', :width => '50', :disable_default_css => true), "Base.radio.set_station_details(#{playlist.station.id}, '#{playlist.station_queue}')" %>
+    <div class="station_text">
+      <b><%= link_to_function playlist.name, "Base.radio.set_station_details(#{playlist.station.id}, '#{playlist.station_queue}')" %></b></small>
+      <small>Created by: <%= link_to playlist.owner.name, redirect_owner(playlist.owner, 'profile') %></a></small><br/>
+      <small class="grey"><%= "last modified: #{playlist.updated_at.strftime('%m/%d/%Y')}" %></small><br/>
+      <small><%= station_contains(playlist) %></small>
+    </div>
+
+    <div class="station_buttons"> 
+      <span class="rating"> 
+        <img src="images/rating_bottle_full.png" class="png_fix" alt="" /> 
+        <img src="images/rating_bottle_full.png" class="png_fix" alt="" /> 
+        <img src="images/rating_bottle_full.png" class="png_fix" alt="" /> 
+        <img src="images/rating_bottle_full.png" class="png_fix" alt="" /> 
+        <img src="images/rating_bottle_empty.png" class="png_fix" alt="" />
+      </span> 
+      <br />
+      <%= link_to_function image_tag('play_button.png'), "Base.radio.set_station_details(#{playlist.station.id}, '#{playlist.station_queue}')" %>
+      <!--img src="images/play_button.png" /></a!--> 
+     </div>
+     <div class="clearer"></div>
+  </div><!--/end radio_station_row -->
+<% end %>

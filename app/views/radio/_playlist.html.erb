@@ -2,6 +2,10 @@
 <%= avatar_for(@station_obj.playable, :comment, :class => 'left_side', :width => '50', :disable_default_css => true) %>
 <div class="album_text2">
   <b><%= @station_obj.playable.name %></b>
+  <% if logged_in? && current_user.id == @station_obj.playable.owner.id %>
+    <img class="png_fix valign_middle" alt="edit playlist" src="images/edit_button_small.png">
+    <img class="png_fix valign_middle" alt="copy playlist" src="images/copy_button_small.png">
+  <% end %>
   <br/>
   <small class="grey"><%= "last modified: #{@station_obj.playable.updated_at.strftime('%m/%d/%Y')}" %></small>
   <br/>
@@ -17,7 +21,9 @@
     <img class="png_fix" alt="" src="images/rating_bottle_empty.png">
   </span>
   <br/>
-  <small>200 Reviews</small>
+  <small><%= "#{@station_obj.playable.reviews_count} Reviews" %></small>
   <br/>
-  <b>created by: <a href="#"><%= @station_obj.playable.owner.name %></a></b>
+  <% if logged_in? && current_user.id != @station_obj.playable.owner.id %>
+    <b>created by: <a href="#"><%= @station_obj.playable.owner.name %></a></b>
+  <% end %>
 </div>

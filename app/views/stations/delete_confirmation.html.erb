@@ -4,12 +4,12 @@
   }); 
 </script>
 <div id="delete_confirm">
-  <div class="title" style="float:left"><%= t('modules.delete_station.title')%></div>
+  <div class="title" style="float:left"><%= t("modules.delete_#{@station.playable.class.to_s.underscore}.title")%></div>
   <div id="delete_loading" style="float:right;" class="hide">
       <img src="/images/loading.gif" />
   </div>
   <br class="clearer" />
-  <h2><%= t('modules.delete_station.confirmation_text', :station_name => link_to(@station.playable.name, radio_path(:station_id => @station.id)) )%></h2>
+  <h2><%= t("modules.delete_#{@station.playable.class.to_s.underscore}.confirmation_text", :station_name => link_to(@station.playable.name, radio_path(:station_id => @station.id)) )%></h2>
   <br class="clearer">
   <div class="align_right">
       <big><a href="#" class="black valign_middle popup_close_action" onclick="$(document).trigger('close.facebox');return false;"><%= t('actions.cancel').upcase %></a></big>

@@ -96,6 +96,7 @@ ActionController::Routing::Routes.draw do |map|
     url.radio 'playlists', :action => 'index'
     url.search_radio 'playlists/search.:format', :action => 'search'
     url.artist_info 'playlists/info/:playlist_id/:artist_id', :action => 'artist_info'
+    url.station_info 'playlists/info/:station_id', :action => 'station_info'
     url.radio_artist_info 'radio/info/:playlist_id/:artist_id', :action => 'artist_info'
   end
 

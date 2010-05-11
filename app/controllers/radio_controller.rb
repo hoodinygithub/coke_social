@@ -46,7 +46,7 @@ class RadioController < ApplicationController
     if request.xhr?
       if logged_in? 
         @station_obj = Station.find(params[:station_id]) rescue nil
-        render :partial => 'my_stations'
+        render :partial => "my_#{@station_obj.playable.class.to_s.pluralize.underscore}"
       end
     else
       redirect_to radio_path(:station_id => params[:station_id])
@@ -179,6 +179,12 @@ class RadioController < ApplicationController
       @station_obj = Station.find(params[:station_id]) rescue nil
       render :partial => "radio/artist_info"
     end
+  end
+  
+  def station_info
+      @tabs = [:emotions, :more_playlists, :top_playlists] #others are coming.
+      @station_obj = Station.find(params[:station_id]) rescue nil
+      render :partial => "radio/station_info"
   end
 
   private

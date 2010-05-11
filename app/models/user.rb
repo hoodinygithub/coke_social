@@ -87,17 +87,17 @@ class User < Account
            :include => :abstract_station,
            :source => :abstract_station,
            :conditions => 'abstract_stations.deleted_at IS NULL AND user_stations.deleted_at IS NULL'
-  
-  has_many :playlists, :foreign_key => :owner_id, :order => 'created_at DESC' do
+
+  has_many :playlists, :foreign_key => :owner_id, :order => 'created_at DESC', :conditions => 'playlists.deleted_at IS NULL' do
     def top(limit = 4)
       all(:order => 'reviews_count DESC', :limit => limit)
     end
 
     def latest(limit = 6)
-      all(:order => 'created_at DESC', :limit => limit)
+      all(:order => 'updated_at DESC', :limit => limit)
     end
   end
-  
+
   has_many :taggings, :through => :playlists
 
   has_many :badge_awards, :foreign_key => :winner_id
