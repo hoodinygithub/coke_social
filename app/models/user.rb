@@ -93,7 +93,7 @@ class User < Account
       all(:order => 'reviews_count DESC', :limit => limit)
     end
 
-    def latest(limit = 6)
+    def latest(limit = 3)
       all(:order => 'updated_at DESC', :limit => limit)
     end
   end
