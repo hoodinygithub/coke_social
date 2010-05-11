@@ -82,7 +82,7 @@ module AvatarsHelper
               path = '/avatars/missing/female.gif'
             end
           elsif target.is_a?(Playlist)
-              path = AvatarsHelper.avatar_path(target.songs.first.album, (type == :search) ? :album : type) if target.songs.first.album
+              path = AvatarsHelper.avatar_path(target.songs.first.album, (type == :search) ? :album : type) unless target.songs.first.nil?
           else
             path = '/avatars/missing/artist.gif'
           end
