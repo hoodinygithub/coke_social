@@ -1339,7 +1339,7 @@ Base.playlists.close_button_handler = function(object) {
     jQuery.get('/playlists/widget', params, function(data) {
       $parent_div.html(data);
       $parent_div.css({'background':'white', 'text-align':'left'});
-      Base.stations.close_button_event_binder();
+      Base.playlists.close_button_event_binder();
     });
 };
 
