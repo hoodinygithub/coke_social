@@ -9,7 +9,7 @@
 
 <% content_for :list do %>
   <%= @collection.delete_if { |x| x.is_a?(Artist) } %>
-  <%= render @collection.size > 0 ? 'followings/list' : 'followees/blank_slate' %>
+  <%= render !@collection.empty? ? 'followings/list' : 'followees/blank_slate' %>
 <% end %>
 
 <%= render 'shared/list' %>
