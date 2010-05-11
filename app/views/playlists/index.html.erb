@@ -1,0 +1,16 @@
+<% content_for :title do %>
+  <%= possessive :playlists %>
+<% end %>
+
+<% content_for :sorting do %>
+  <%= sort_link_to :top %>
+  <%#= sort_link_to :highest_rated %>
+  <%= sort_link_to :latest %>
+  <%= sort_link_to :alphabetical %>
+<% end %>
+
+<% content_for :list do %>
+  <%= render !@collection.empty? ? 'list' : 'blank_slate' %>
+<% end %>
+
+<%= render 'shared/list' %>
