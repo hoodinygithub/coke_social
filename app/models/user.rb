@@ -90,7 +90,7 @@ class User < Account
 
   has_many :playlists, :foreign_key => :owner_id, :order => 'created_at DESC', :conditions => 'playlists.deleted_at IS NULL' do
     def top(limit = 4)
-      all(:order => 'reviews_count DESC', :limit => limit)
+      all(:order => 'total_plays DESC', :limit => limit)
     end
 
     def latest(limit = 3)
@@ -104,14 +104,21 @@ class User < Account
   has_many :badges, :through => :badge_awards
 
   has_many :followings, :foreign_key => 'follower_id'
-  has_many :followees, :through => :followings, :order => 'followings.approved_at desc', :conditions => "followings.approved_at IS NOT NULL", :source => :followee do
+  has_many :followees, :through => :followings, :order => 'followings.approved_at desc', :conditions => "accounts.type = 'User' AND accounts.network_id = 2 AND followings.approved_at IS NOT NULL", :source => :followee do
+    def with_badge(badge, limit=10)
+      badge = if badge.is_a?(BadgeAward)
+        badge.badge_id
+      elsif badge.is_a?(Badge)
+        badge.id
+      else
+        badge
+      end
+      
+      find(:all, :joins => "INNER JOIN `badge_awards` ON `followings`.`followee_id` = `badge_awards`.`winner_id` AND `badge_awards`.`badge_id` = #{badge}", :limit => limit)
+    end
+
     def with_limit(limit=10)
       find(:all, :limit => limit)
-    end
-    include SongListen::Most
-
-    def song_listens
-      SongListen.for_followees_of(proxy_owner)
     end
   end
 
@@ -217,13 +224,6 @@ class User < Account
     ApplicationController.current_site.networks.include? self.network
   end
 
-  def award_badge(badge)
-    badge = Badge.find_by_name(badge.to_s)
-    if badge
-      
-    end
-  end
-
   def private?
     self.private_profile
   end
@@ -247,6 +247,11 @@ class User < Account
     Rails.cache.fetch("#{cache_key}/pending_followee_ids") do
       followings.pending.find(:all, :select => 'followee_id').map{|f| f.followee_id}
     end
+  end
+
+  def win_badge(badge)
+    badge = badge.is_a?(Badge) ? badge.id : badge
+    BadgeAward.find_or_create_by_badge_id_and_winner_id(:badge_id => badge, :winner_id => self.id)
   end
 
   after_destroy :remove_customizations

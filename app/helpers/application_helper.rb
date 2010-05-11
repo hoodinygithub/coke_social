@@ -2,7 +2,6 @@ module ApplicationHelper
 
   include PopupHelper
   include TagsHelper
-  
 
   def redirect_owner(owner, path)
     path_to = if logged_in? && owner == current_user
@@ -26,17 +25,6 @@ module ApplicationHelper
     end
   end
 
-  def playlist_tags(p)
-    # TODO - define the corret tag link path
-    p.tags.collect {|t| link_to(t.name, "/tags/#{t.id}")}.join(", ")
-  end
-  
-  def playlist_contains_to_search(p)
-    search_url = lambda {|t| content_search_path(:scope => 'playlists', :q => t)}
-    unless p.cached_artist_list.nil?
-      p.cached_artist_list.split(",").collect { |t| link_to(t, search_url.call(t.strip)) }.join(", ")
-    end
-  end
 
   def is_index?
     request.request_uri == "/home"

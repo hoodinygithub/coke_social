@@ -1,7 +1,7 @@
 <div id="center_column">
   <%= render 'users/latest_playlists' %>
 
-  <b class="right_side"><a href="#">view all</a></b>
+  <b class="right_side"><%= link_to t('actions.view_more').downcase, '#' %></b>
   
   <h1><%= t("dashboard.user_latest_reviews")%></h1>
 

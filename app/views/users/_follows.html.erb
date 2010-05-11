@@ -1,21 +1,15 @@
 <div class="box_content">
-  <h1>
-    <% if profile_owner? %>
-      <%= t("dashboards.followers.my_followers") %>
-    <% else %>
-      <%= t("dashboards.follows", :user_name => profile_account.first_name.upcase) %>
-    <% end %>
-  </h1>
+  <h1><%= possessive :followees %></h1>
 
-  <% if profile_account.followee_count < 1 %>
-    <div class="medium_text">
-      <%= t("user.is_not_following_anybody", :user_name => profile_account.first_name) %>
+  <% if profile_user.followee_count < 1 %>
+    <div class="big_text">
+      <%= t("user.is_not_following_anybody", :user_name => profile_user.first_name) %>
     </div>
   <% else %>
-    <% followings = profile_account.followees.all(:limit => 5) %>
+    <% followings = profile_user.followees.with_limit(5) %>
     <% followings.each_with_index do |follow, index| %>
       <div class="small_thumb<%= " last_thumb" if index == 4 %>">
-        <%= link_to avatar_for(follow, :tiny, :class => "spaced_img tiny", :disable_default_css => true, :width => "50px", :height => "50px"), follow %>
+        <%= link_to avatar_for(follow, :small), follow %>
         <%= link_to truncate(follow.name,:length => 18), follow %>
       </div>
       <% if index == 4 %>
@@ -36,7 +30,7 @@
 
   <% end %>
   <br class="clearer" />
-  <% if profile_account.followee_count > 5 %>
+  <% if profile_user.followee_count > 5 %>
       <div class="align_right">
         <b>
           <%= link_to(t('actions.view_more'),  following_index_path ) %>

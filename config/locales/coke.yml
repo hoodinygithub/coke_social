@@ -97,11 +97,21 @@ es:
     song: "Comprar esta canci\xC3\xB3n"
     select_store: Selecciona tu tienda
   badges:
-    dj_on_fire: Dj on Fire
-    master_of_hip_hop: Master of Hip-Hop
-    king_of_djs: King of Djs
-    favorite_dj: Favorite Dj
-    my_first_playlist: My First Playist
+    dj_on_fire: 
+      name: Unbeatable DJ
+      qualification: For having created 5 playists in a span of 24 hours
+    master_of_hip_hop: 
+      name: Master of Hip-Hop
+      qualification: For having collected 100 Hip-Hop songs across all my playlists
+    king_of_djs: 
+      name: King of Djs
+    favorite_dj: 
+      name: Favorite Dj
+    my_first_playlist: 
+      name: My First Playist
+    unlocked_on: Unlocked on
+    unlocked_by_user_on: Unlocked by {{user}} on {{date_won}}
+    others_that_have_this_badge: Otros usarios que han ganado este premio
   actions: 
     create_a_playlist: Create a Playlist
     unfollow_account: Dejar de seguir a {{name}}
@@ -346,11 +356,14 @@ es:
       network_activity: Actividad de {{subject}} en la red
       followers: "Gente que est\xC3\xA1 siguiendo a {{subject}}"
       playlists: Playlists de {{subject}}
+      latest_playlists: Playlists Ultimas de {{subject}}
       albums: "Albumes de {{subject}} "
       followees: "Gente que  {{subject}} est\xC3\xA1 siguiendo"
       follow_requests: Pedidos de Gente a Seguir de {{subject}}
       charts: Listas de {{subject}}
       subscriptions: Subscripciones de {{subject}}
+      badges: Premios de {{subject}}
+      friends_that_have_this_badge: Amigos de {{subject}} que han ganado este premio
     first_person: 
       stations: Mis Radios
       network_activity: Mi actividad de red
@@ -361,6 +374,8 @@ es:
       follow_requests: Mis Pedidos de Gente a Seguir
       charts: Mis Listas
       subscriptions: Mis Subscripciones
+      badges: Mis Premios
+      friends_that_have_this_badge: Mis amigos que han ganado este premio
   chat: 
     moderator: 
       title: "M\xC3\xB3dulo del Moderador"

@@ -1,13 +1,14 @@
 <div id="left_column">
   <div class="side_user_box">
-    <%= avatar_for(current_user, :album, :class => 'side_user_image', :width => "150", :height => "150", :disable_default_css => true) %>
+    <%= avatar_for(profile_user, :medium, :class => 'side_user_image', :width => "150", :height => "150", :disable_default_css => true) %>
     <div class="overlay png_fix">
       <div class="overlay_content">
       <big>
-        <%= profile_user.name %>
+        <%= link_to profile_user.name, profile_user %>
       </big>
       <br />
-      <%= link_to t('profile.navigation.account_settings'), my_settings_path %>
+      <%= profile_user.country.name if profile_user.country %>
+      <%= link_to t('profile.navigation.account_settings'), my_settings_path if profile_owner? %>
     </div>
   </div>
 </div><!--/end side_user_box -->

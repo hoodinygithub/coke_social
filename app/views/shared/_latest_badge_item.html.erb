@@ -4,7 +4,7 @@
     <%= link_to avatar_for(latest_badge_item.winner, :small), latest_badge_item.winner %>
   </span>
   <div class="item_text">
-    <big><b><%= t("badges.#{latest_badge_item.badge_key}") %></b></big><br/>
+    <big><b><%= t("badges.#{latest_badge_item.badge_key}.name") %></b></big><br/>
     <b><%= link_to latest_badge_item.winner.name, latest_badge_item.winner, :class => 'red' %></b><br/>
     <small><%= latest_badge_item.winner.country.name if latest_badge_item.winner.country %></small>
   </div>

@@ -3,34 +3,7 @@
   <div class="ad_box">
     <%= banner_ad("square_banner") %>
   </div>
-
-  <div class="box_content">
-    <h1><%= t("dashboards.user_badges", :name => profile_account.name) %></h1>
-
-    <% if true %>
-      <div class="medium_text">
-        <%= t("dashboards.user_has_not_won_any_badges", :name => profile_account.name) %>
-      </div>
-    <% else %>
-      <div class="badges_list">
-        <a href="#"><img src="images/badge_star.gif" alt="" /><img src="images/new.png" class="new" alt="" /></a>
-        <a href="#"><img src="images/badge_king.gif" alt="" /></a>
-        <a href="#"><img src="images/badge_favorite.gif" alt="" /></a>
-        <a href="#"><img src="images/badge_bottle.gif" alt="" /></a>
-        <a href="#"><img src="images/badge_guitar.gif" alt="" /></a>
-        <a href="#"><img src="images/badge_hiphop.gif" alt="" /></a>
-        <a href="#"><img src="images/badge_key.gif" alt="" /></a>
-        <a href="#"><img src="images/badge_microphone.gif" alt="" /></a>
-        <a href="#"><img src="images/badge_fire.gif" alt="" /></a>
-        <a href="#"><img src="images/badge_disc.gif" alt="" /></a>
-        <a href="#"><img src="images/badge_eq.gif" alt="" /></a>
-        <a href="#"><img src="images/badge_playlist.gif" alt="" /></a>
-        <br class="clearer" />
-      </div>
-    <% end %>
-    <div class="align_right"><b class="right_side"><a href="#">view all</a></b><b><a href="#"></a></b></div><BR />
-  </div><!--/end box_content -->  
-
+  <%= render 'users/badges' %>
   <%= render 'users/follows' %>
   <%= render 'users/playlists' %>
 

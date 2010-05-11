@@ -1,9 +1,9 @@
 <div class="side_user_box">
-  <%= avatar_for(profile_artist, :album, :class => 'side_user_image', :width => "150", :disable_default_css => true) %>
+  <%= avatar_for(profile_user, :album, :class => 'side_user_image', :width => "150", :disable_default_css => true) %>
   <div class="overlay png_fix">
     <div class="overlay_content">
       <big>
-        <%= link_to(profile_artist.name, "") %>
+        <%= link_to(profile_user.name, "") %>
       </big>
       <br />
       <%= profile_artist.country.name if profile_artist.country %>
