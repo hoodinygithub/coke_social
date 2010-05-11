@@ -11,18 +11,12 @@
     <%= t("dashboards.user_has_no_playlists", :name => profile_account.name) %>
   </div>
 <% else %>
-
   <% profile_account.playlists.latest.each_with_index do |p, i| %>
-    <% if (i % 3) == 0 %> 
-      <br class="clearer" />
-      <div class="artist_box pl last_box png_fix">
-    <% else %>
-      <div class="artist_box pl png_fix">
-    <% end %>
-    
-    <%= link_to(avatar_for(p, :medium)) %>
-    <div class="overlay">
-      <div class="hidden fh">
+    <div class="artist_box pl <%= "last_box" if (i+1) % 3 == 0 %> png_fix">
+      <%= link_to(avatar_for(p, :medium)) %>
+      <div class="overlay">
+        <div class="hidden fh">
+
           <b>
             <%= link_to(p.name, playlist_path(p)) %>
           </b>
@@ -44,8 +38,22 @@
         </div>
       </div><!--/end overlay -->
     </div><!--/end artist_box -->
+    <% if ((i+1) % 3) == 0 %> 
+      <br class="clearer" />
+    <% end %>    
   <% end %>
+  <% latest_size = profile_account.playlists.latest.size %>
+  <% if latest_size < 6 and latest_size > 0 %>
+    <% (6 - latest_size).times do |i| %>
+      <div class="artist_box pl <%= "last_box" if ((i + 1 + latest_size) % 3 == 0) %> png_fix">
+        <img alt="" src="images/empty_img.gif">
+      </div>
 
-  <br class="clearer" />
-  <br/><br/>
+      <% if ((i + 1 + latest_size) % 3 == 0) %>
+        <br class="clearer" />
+      <% end %>
+    <% end %>
+  <% end %>
 <% end %>
+<br class="clearer" />
+<br/><br/>
