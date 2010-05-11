@@ -187,7 +187,7 @@ module ApplicationHelper
     remove_div = attrs.has_key?(:remove_div) ? attrs[:remove_div] : page_owner?
 
     # remove_div override when on the radio page to prevent slide
-    remove_div = nil if attrs[:radio] == true
+    remove_div = false if attrs[:radio] == true
 
     onclick_cb = "Base.community.#{action}('#{account.slug}', this, #{remove_div}, '#{layer_path}')" if action
     attrs.merge!({:onclick => onclick_cb, :class => 'follower_btn'})
