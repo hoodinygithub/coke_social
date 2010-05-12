@@ -274,9 +274,12 @@ module ApplicationHelper
 
   def station_contains(item, limit=3, include_text=true, link_options={})
     links = []
+    name_concat = []
     station_artists = item.includes(limit)
 
     station_artists.each do |station_artist|
+      name_concat << station_artist.artist.name
+      break if link_options[:limit] && name_concat.to_s.length > link_options[:limit].to_i
       links << link_to(station_artist.artist.name, main_search_path(:scope => 'playlists', :q => CGI::escape(station_artist.artist.name)), link_options) unless station_artist.artist.nil?
     end
 
