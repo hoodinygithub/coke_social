@@ -1,4 +1,6 @@
-<b class="right_side"><%= link_to "view all", playlists_path %></a></b>
+<% if profile_account.total_playlists > 6 %>
+<b class="right_side"><%= link_to t("actions.view_more"), playlists_path %></a></b>
+<% end %>
 
 <h1><%= possessive :latest_playlists %></h1>
 
