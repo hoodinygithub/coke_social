@@ -6,26 +6,33 @@
 
 <div id="center_column">
     <h1><%= possessive :badges %></h1>
-    
+
     <div class="sorting">
-        <%= sort_link_to(:latest, :default => true) %> /
-        <%= sort_link_to(:alphabetical) %>
+      <%= sort_link_to(:latest, :default => true) %> /
+      <%= sort_link_to(:alphabetical) %>
     </div>
-    
+
+  <% if @badge_awards.empty? %>
+    <div class="medium_text">
+      <%= t("dashboards.user_has_not_won_any_badges", :name => profile_account.name) %>
+    </div>
+
+  <% else %>
     <ul class="big_badges_list">
       <% @badge_awards.each do |badge_award| %>
         <li>
-            <%= image_tag("#{badge_award.image(:big)}") %>
-            <div class="text">
-                <big><b><%= t("badges.#{badge_award.badge_key}.name")%></b></big><br/>
-                <span class="grey_text"><%= t("badges.#{badge_award.badge_key}.qualification")%></span><br/>
-                <small><% t('badges.unlocked_on') %>: <%= l(badge_award.created_at) %></small>
-            </div>
-            <div class="clearer"></div>
+          <%= image_tag("#{badge_award.image(:big)}") %>
+          <div class="text">
+            <big><b><%= t("badges.#{badge_award.badge_key}.name")%></b></big><br/>
+            <span class="grey_text"><%= t("badges.#{badge_award.badge_key}.qualification")%></span><br/>
+            <small><% t('badges.unlocked_on') %>: <%= l(badge_award.created_at) %></small>
+          </div>
+          <div class="clearer"></div>
         </li>
       <% end -%>
     </ul>
     <%= will_paginate @badge_awards, pagination_args %>
+  <% end -%>
 </div><!--/end center_column -->
 
 <%= render 'accounts/right_column' %>
