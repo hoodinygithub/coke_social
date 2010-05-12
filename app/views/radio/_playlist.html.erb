@@ -7,13 +7,13 @@
     <!--img class="png_fix valign_middle" alt="copy playlist" src="images/copy_button_small.png"-->
   <% end %>
   <br/>
-  <small class="grey"><%= "last modified: #{ l(@station_obj.playable.updated_at.to_date) }" %></small>
+  <small class="grey"><%= l(@station_obj.playable.updated_at.to_date) %></small>
   <br/>
   <small><%= station_contains(@station_obj.playable) %></small>
 </div><!--/end top_buttons -->
 
 <div class="album_actions2">
-  <span class="rating">
+  <!--span class="rating">
     <img class="png_fix" alt="" src="images/rating_bottle_full.png">
     <img class="png_fix" alt="" src="images/rating_bottle_full.png">
     <img class="png_fix" alt="" src="images/rating_bottle_full.png">
@@ -22,7 +22,7 @@
   </span>
   <br/>
   <small><%= "#{@station_obj.playable.reviews_count} Reviews" %></small>
-  <br/>
+  <br/-->
   <% if logged_in? && current_user.id != @station_obj.playable.owner.id %>
     <b>created by: <a href="#"><%= @station_obj.playable.owner.name %></a></b>
   <% end %>
