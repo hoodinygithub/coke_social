@@ -1,3 +1,5 @@
+/* @override http://localhost:3000/stylesheets/application.css */
+
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
@@ -955,6 +957,8 @@ h2 {
 .songs_list {
     border: solid 1px #cccccc;
     margin-bottom: 20px;
+    position: absolute;
+    z-index: 99;
     zoom: 1;
 }
 
@@ -1124,7 +1128,9 @@ h2 {
 }
 
 .songs_box.large_height {
-    height: 495px;
+	background-color: #FFF;
+	height: 515px;
+	width: 627px;
     position: relative;
 }
 
