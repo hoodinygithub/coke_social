@@ -40,24 +40,24 @@ coke_EN:
     awaiting_approval: Awaiting Approval
     share: Share
     play: Play
-    add: add
     pending: Pending
+    add: add
     unfollow: Following
     add_song_to_playlist: Add Song to Playlist
     edit: Edit
-    share_with_a_friend: Share this song with a friend
     previous: Previous
+    share_with_a_friend: Share this song with a friend
     select_playlist: Select playlist
     forgot_password: Forgot Password?
     go_with_exclamation: Go!
     alphabetical: ALPHABETICAL
-    enter: Enter
-    cancel: Cancel
     buy_album: Purchase Album
-    close: Close
-    delete: Delete
-    stop: Stop
+    cancel: Cancel
+    enter: Enter
     submit: Submit
+    stop: Stop
+    delete: Delete
+    close: Close
     results_for: Results for
     or: or
     buy_song: Purchase Song
@@ -67,24 +67,24 @@ coke_EN:
     block_this_person: Block This Person
     add_this_song_into_the_following_playlists: Add this song into the following playlists
     search_again: Search again
-    relevance: RELEVANCE
     to: to
+    relevance: RELEVANCE
     view_more_songs: view more songs
     aprove: Approve
     launch_radio: Launch Radio
     add_to_playlist: Add to my Playlist
     newest: NEWEST
-    follow: Follow
     block: Block
+    follow: Follow
     save: Save
     view: View
     send: Send
     filter_by: Filter By
-    create: Create
-    next: Next
     search_text: Search Music on Cyloop
-    approve: Approve
+    next: Next
+    create: Create
     go: Go
+    approve: Approve
     reset: Reset
     follow_account: Follow {{name}}
     add_into_a_new_playlist: Add into a new playlist
@@ -117,17 +117,17 @@ coke_EN:
       title: Recently Created Stations
     top_artists: 
       title: Top Artists
+    concerts: 
+      title: Concerts
     delete_station: 
       title: Delete Station
       confirmation_text: Are you sure you want to delete {{station_name}}?
-    concerts: 
-      title: Concerts
-    top_playlists: 
-      title: Top Playlists
-    recent_listeners: 
-      title: Recent Listeners
     top_activity: 
       title: Top Activity
+    recent_listeners: 
+      title: Recent Listeners
+    top_playlists: 
+      title: Top Playlists
     information: 
       title: Information
     recommended_stations: 
@@ -146,10 +146,10 @@ coke_EN:
       title: Features and Photo Galleries
     news: 
       title: News
-    top_stations: 
-      title: Top Stations
     interviews: 
       title: Interviews
+    top_stations: 
+      title: Top Stations
     top_songs: 
       title: Top Songs
     my_stations: 
@@ -157,10 +157,10 @@ coke_EN:
       station_name: Station Name
     recent_activity: 
       title: RECENT ACTIVITY
-    recommended_artists: 
-      title: Recommended Artists
     biography: 
       title: Biography
+    recommended_artists: 
+      title: Recommended Artists
     search: 
       title: Search
   number: 
@@ -185,6 +185,9 @@ coke_EN:
     percentage: 
       format: 
         delimiter: ""
+    precision: 
+      format: 
+        delimiter: ""
     currency: 
       format: 
         format: "%u%n"
@@ -192,9 +195,6 @@ coke_EN:
         separator: .
         precision: 2
         delimiter: ","
-    precision: 
-      format: 
-        delimiter: ""
   buylink: 
     no_buylinks: Not available to buy
     select_store: Select your store
@@ -238,8 +238,8 @@ coke_EN:
       friends_that_have_this_badge: "{{subject}}'s friends that have this badge"
       subscriptions: "{{subject}}'s Subscriptions"
       stations: "{{subject}}'s Stations"
-      network_activity: "{{subject}}'s Network Activity"
       latest_playlists: "{{subject}}'s Latest Playlists"
+      network_activity: "{{subject}}'s Network Activity"
       followers: People that are following {{subject}}
       playlists: "{{subject}}'s Playlists"
       albums: "{{subject}}'s Albums"
@@ -276,18 +276,18 @@ coke_EN:
         twitter_username: Twitter Username
         playlist_confirmation: Your Playlist has been created, continue searching!
         cyloop_password: Cyloop Password
-        cyloop_email: Cyloop Email
         current_password: Current password
-        female: Female
+        cyloop_email: Cyloop Email
         password_confirmation: Confirm password
+        female: Female
         websites: Websites
         gender: Gender
         short_bio: Short bio
         new_password: New password
         male: Male
         bio: Bio
-        time_zone: Time zone
         city_id: City
+        time_zone: Time zone
         password: Password
         privacy_policy: Privacy Policy
         age: Age
@@ -297,7 +297,7 @@ coke_EN:
         name: Name
         location: Location (City, Country)
         markets: Markets
-        chat_id: ""
+        chat_id: To start the chat
         question: Question
         status: Status
     errors: 
@@ -407,8 +407,8 @@ coke_EN:
       age: Age
       biography: Biography
       mixes: Mixes
-      following: Following
       charts: Charts
+      following: Following
   stations: 
     edit: 
       edit_your_station: Edit Your Station
@@ -437,14 +437,14 @@ coke_EN:
       email: Your Email
       friend: Friend's email
     sign_in: sign in with Windows Live ID
+    buylink: 
+      select_store: Select your store
+      song: Buy this song
     station: 
       name: Station Name
       edit: Edit Station Name
       delete: Delete Station
       would_delete: Would you like to delete this station?
-    buylink: 
-      select_store: Select your store
-      song: Buy this song
     record_not_found: The item you are looking for could not be found
     checkout_today_polular_stations: Checkout Today's Popular Stations
     recengineerror_UNKNOWN: Unknown error
@@ -471,9 +471,9 @@ coke_EN:
   albums: 
     label: Label
     song_count: Song Count
-    year: Year
     show: 
       about_this_album: About this album
+    year: Year
     total_plays: Total Plays
     release_date: Release Date
   time: 
@@ -501,11 +501,11 @@ coke_EN:
     no_more_activity: No more activity
     push_notification_more_than: You have more than {{count}} new updates. {{link}} your feed to view them.
     created_station: "{{creator}} created a new station called: {{station}}"
-    user_following: "{{user}} + Following"
     twitter_following: Tweets from artist {{user}} is following
+    user_following: "{{user}} + Following"
   information: 
-    location: Location
     influences: Influences
+    location: Location
     genre: Genre
   titles: 
     awaiting_approval: Waiting for approval to follow this user
@@ -530,7 +530,7 @@ coke_EN:
       terms: must be accepted
     messages: 
       terms_of_use: must be accepted
-      pivacy_policy: ""
+      pivacy_policy: must be accepted
       privacy_policy: must be accepted
     confirmation: 
       click_here: click here
@@ -581,8 +581,8 @@ coke_EN:
     terms_and_conditions: Terms and conditions
     layers: 
       click_here: click here
-      do_not_have_account: Registration is easy, just {{link}}
       share: Share
+      do_not_have_account: Registration is easy, just {{link}}
       follow_user: To follow {{slug}} and find out what {{gender}} listening to, {{link}} to log in.
       discover_text: more than {{count}} artists, all free
       know: Meet
@@ -593,8 +593,8 @@ coke_EN:
       male: he's
       index: If you already have your Cyloop account, {{link}} to login.
       msn_music_is_free: Cyloop is free, {{link}}
-      max_song: We hope you enjoyed the songs you've heard. To hear more songs, {{link}} to login.
       sign_in_with_your_windows_live_id: sign in with your credentials
+      max_song: We hope you enjoyed the songs you've heard. To hear more songs, {{link}} to login.
       listen_text: over {{count}} songs, all free
       place: Cyloop
       discover: Discover
@@ -725,8 +725,8 @@ coke_EN:
     save: SAVE
     delete_account: DELETE ACCOUNT
     add_update: ADD / UPDATE
-    update: UPDATE
     email_notifications: EMAIL NOTIFICATIONS
+    update: UPDATE
     password: Password
     basic_info: BASIC INFO
     old_password: Old Password
@@ -769,21 +769,21 @@ coke_EN:
       message: Message
       email: Your Email
       friend: Friend's email
-    sign_in: sign in with Windows Live ID
     actions: 
       edit: Edit
-      delete: Delete
-      close: Close
       submit: Submit
+      close: Close
+      delete: Delete
       save: Save
+    sign_in: sign in with Windows Live ID
+    buylink: 
+      select_store: Select your store
+      song: Buy this song
     station: 
       name: Station Name
       edit: Edit Station Name
       delete: Delete Station
       would_delete: Would you like to delete this station?
-    buylink: 
-      select_store: Select your store
-      song: Buy this song
     missing_api_key: You did not provide an API key or your API key is invalid/disabled
     record_not_found: The item you are looking for could not be found
     checkout_today_polular_stations: Checkout Today's Popular Stations
@@ -822,13 +822,13 @@ coke_EN:
     now_playing: Now Playing
     msn_music_is_free: MSN Music is free,
     station_edit_success: Station name successfully updated
-    create_new_station: Create New Station
     basics: 
       by: By
       includes: Includes
       album: Album
       message_sent: You message has been sent
       contains: Contains
+    create_new_station: Create New Station
     recengineerror_NO_PLAYLIST: No playlist could be found
     view_your_stations: To view your stations,
     continue: Continue
@@ -848,8 +848,8 @@ coke_EN:
   block: 
     blockee_id: User
   feedback: 
-    submit: Submit Your Feedback
     country: Country
+    submit: Submit Your Feedback
     title: Feedback
     os: Operating System
     feedback: Feedback
@@ -868,9 +868,9 @@ coke_EN:
       restore_defaults: Restore Defaults
       colors: Colors
       browse: Browse...
-    cancel_my_account: Cancel My Account
     private_profile: 
       description: Description of what 'Keep profile private?' does
+    cancel_my_account: Cancel My Account
     not_saved: Your settings failed to save.
     saved: Your settings have been saved.
     tabs: 
@@ -907,8 +907,8 @@ coke_EN:
     about_cyloop: About Cyloop
     profile_not_available: Profile Not Available
     about_hoodiny: About Hoodiny
-    privacy_policy: Privacy Policy
     profile_not_available_sorry: Sorry but this profile is not available in your country
+    privacy_policy: Privacy Policy
     profile_not_found_sorry: Sorry. We were unable to find a profile for {{profile}}.
     sample_flag_description: Unfortunately this content is restricted for this territory and can't play in full. You should be able to listen to full songs from this artist and others similar in the Radio section.
   demographics: 
@@ -918,8 +918,18 @@ coke_EN:
     email: 
       welcome: Hello {{user}},
       subject: Your Cyloop Password
-      sig: ""
-      message: ""
+      sig: |
+        Keep enjoying and discovering music on Cyloop,
+        
+        The Cyloop Team
+
+      message: |-
+        You are receiving this email because a new password was requested for your Cyloop account. If you did not request a new password for this account, ignore this email and continue to use your current password.
+        
+        If you do wish to reset your password, please use the following link:
+        {{password}}
+        
+        Tip: create a password with a mix of letters and numbers so it's more secure.
   badges: 
     unlocked_by_user_on: Unlocked by {{user}} on {{date_won}}
     favorite_dj: 
@@ -959,8 +969,8 @@ coke_EN:
       category_security: My Safety and Security
       category: Category
       welcome: Welcome to Cyloop Support!
-      submit: Submit Your Message
       country: Country
+      submit: Submit Your Message
       support_form: Support Form
       category_account: My Account
       business_inquires_text: Please contact
@@ -971,38 +981,38 @@ coke_EN:
       privacy_text: Learn about what Cyloop does about Spam, Impersonation, Trademark, Copyright and other violations.
       business_inquires: General Business Inquiries?
       resources: Resources
-      new_cyloop: New to Cyloop?
       information: Please include as much information as you can
+      new_cyloop: New to Cyloop?
       category_photos: About Photos
       category_music: About Music
       feedback: Message
       category_other: Other
       new_cyloop_text: Check out our {{link}} to find answers to the most commonly asked questions.  If your questions are still not answered, then please use the {{link2}} form to get in touch with us.
-      privacy: Privacy and Security?
-      category_feedback: Suggestions, Ideas or Feedback
       browser: Browser
+      category_feedback: Suggestions, Ideas or Feedback
+      privacy: Privacy and Security?
       category_profile: My Profile
       email: Email Address
   basics: 
     plays: Plays
     albums_by: Albums by
-    comment: Comment
     sorry: Sorry!
-    play: Play
-    you_are: You are
+    comment: Comment
     artist: Artist
-    charts_for: Charts for
+    you_are: You are
+    play: Play
     city: City
+    charts_for: Charts for
     station: Station
     followees_of: Followee of
     person: Person
     "no": "No"
     created_at: Created {{when}} ago
     previous: Previous
-    listens: Listens
     by: By
-    songs: Songs
+    listens: Listens
     my: My
+    songs: Songs
     artists: Artists
     created_on: Created On
     welcome: Welcome
@@ -1016,40 +1026,40 @@ coke_EN:
     click_to_unfollow: Click {{follow_link}} to stop following
     playlists: Playlists
     albums: Albums
-    time: Time
     last_modified_at: "Last modified: {{when}} ago"
+    time: Time
     done: Done
     tags: Tags
     created_by: Created By
     radio: Radio
     playlists_created_by: Playlists Created by
-    in: in
     here: here
+    in: in
     followers_of: Followers of
     followees: Followees
     album: Album
-    message_sent: You message has been sent
     "yes": "Yes"
+    message_sent: You message has been sent
     played_by: Played By
     stations_created_by: Stations Created by
     users: Users
     follow_requests_for: Follow Requests for
-    people: People
     next: Next
+    people: People
     click_to_follow: Click {{follow_link}} to follow
     service_unavailable: This service is currently unavailable, please check back later
-    contains: Contains
-    last_modified: Last modified
     and_more: and more...
+    last_modified: Last modified
+    contains: Contains
     follow_requests: Follow Requests
     message: Message
     chart: Chart
     mixes: Mixes
-    more: More
     unknown: Unknown
-    following: following
-    charts: Charts
+    more: More
     song: Song
+    charts: Charts
+    following: following
   footer: 
     faq: FAQ
     help: Help
@@ -1068,12 +1078,12 @@ coke_EN:
       step_1_title: Sign up
       step_2_only: Step - 2
       step_1_vignette_save_radio_stations: Save your personalized radio stations and share them with friends
-      step_3_title: ""
+      step_3_title: LOOK WHO'S ON CYLOOP!
       step_1_vignette_start_collecting_songs: Start collecting songs and creating your own music playlists
       step_2_title: "Step 2: Additional Information"
-      step_2_vignette_with_more_info: ""
+      step_2_vignette_with_more_info: With more information about you, Cyloop can improve the results of the music recommendations picked for you.
       step_1_description: Joining takes just seconds and it's FREE.
-      step_3_description: ""
+      step_3_description: Start following your favorite artists. You probably already are a fan of any of these.<br />Select those names you'd like to start following.
       step_2_vignette_header: What's this for?
       step_2_description: Personalize even more your experience, by providing some more information about you.
       step_1_vignette_header: Why register?
@@ -1126,19 +1136,19 @@ coke_EN:
     discover: Discover
   user: 
     marketing_opt_out: "I don\xE2\x80\x99t wish to receive emails from Cyloop or its partners."
-    color_links: Link Color
     name: Name
+    color_links: Link Color
     background_fixed_false: "No"
-    forgot_message: Cyloop will send password reset instructions to the email address associated with your account.  Please type your email address below.
     slug: Choose your Profile Name
+    forgot_message: Cyloop will send password reset instructions to the email address associated with your account.  Please type your email address below.
+    city_name: City
     background_repeats: 
       horizontal_repeat: Horizontal Repeat
       full_repeat: Full Repeat
       no_repeat: No Repeat
       vertical_repeat: Vertical Repeat
-    city_name: City
-    background_align: Background Align
     is_not_following_anybody: "{{user_name}} is not following anybody"
+    background_align: Background Align
     receives_following_notifications: Alert me when someone follows me
     terms_of_use: Terms of Use
     doesnt_have_any_subscriptions: "{{user_name}} doesn't have any subscriptions"
@@ -1152,36 +1162,36 @@ coke_EN:
     private_profile: Keep profile private?
     forgot_your_password: Forgot your password?
     terms_of_use_instructions: By signing up, you accept the {{link}} and confirm you're 13 or older
-    reset_password: Password Change
     cyloop_password: Cyloop Password
+    reset_password: Password Change
     background_alignments: 
       left: Left
       upper_right: Upper Right
-      lower_right: Lower Right
       center: Center
+      lower_right: Lower Right
       upper_left: Upper Left
       lower_left: Lower Left
       right: Right
       upper_center: Upper Center
       lower_center: Lower Center
     background: Background Image
-    cyloop_email: Cyloop Email
     current_password: Current Password
-    female: Female
+    cyloop_email: Cyloop Email
     password_confirmation: Confirm Password
+    female: Female
     color_bg: Background Color
     doesnt_have_any_followers: "{{user_name}} doesn't have any followers"
-    remove_avatar: Remove Image
     websites: Websites
+    remove_avatar: Remove Image
     terms_and_conditions: terms and conditions
     background_fixed: Background Fixed
     negative_captcha: Don't fill in this field
     background_repeat: Background Repeat
     gender: Gender
-    privacy_policy_instructions: Our {{link}} exists to protect you! Please read and agree to the terms
     avatar: Image
-    color_main_font: Main Font Color
+    privacy_policy_instructions: Our {{link}} exists to protect you! Please read and agree to the terms
     short_bio: Short bio
+    color_main_font: Main Font Color
     new_password: New Password
     has_no_tweet: "{{user_name}} has no tweet"
     has_no_followers: "{{user_name}} has no followers"
@@ -1191,8 +1201,8 @@ coke_EN:
     time_zone: Time zone
     password: Password
     saved: Your settings have been saved.
-    privacy_policy: privacy policy
     hasnt_create_any_station: "{{user_name}} hasn't created any stations"
+    privacy_policy: privacy policy
     color_header_bg: Header Color
     has_no_activity: "{{user_name}} has no activity"
     born_on: Birth date
@@ -1255,8 +1265,8 @@ coke_EN:
     type_artist_name: Type Artist Name
     recommended_mixes: MIXES RECOMMENDED BY CYLOOP
     top_stations: Top Stations
-    create_your_own_station_now: Create Your Own Station now!
     top_songs: Top Songs
+    create_your_own_station_now: Create Your Own Station now!
     radios_recomended_for_you: RADIOS RECOMMENDED FOR YOU
     recommended_artists: Recommended Artists
     cyloop_recommends: CYLOOP RECOMMENDS
