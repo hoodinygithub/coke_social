@@ -11,7 +11,7 @@
 <% end %>
 
 <% if @recommended_playlists.size < 6 %>
-  <% (6 - profile_account.playlists.latest.size).times do |i| %>
+  <% (6 - @recommended_playlists.size).times do |i| %>
     <div class="artist_box pl <%= "last_box" if ((i + 1 + @recommended_playlists.size) % 3 == 0) %> png_fix">
       <%= image_tag "empty_img.gif" %>
     </div>
