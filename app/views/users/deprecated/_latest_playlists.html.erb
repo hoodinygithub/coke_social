@@ -1,0 +1,58 @@
+<h1><%= possessive :latest_playlists %></h1>
+
+<% if profile_account.total_playlists < 1 %>
+  <div class="medium_text">
+    <%= t("dashboards.user_has_no_playlists", :name => profile_user.name) %>
+  </div>
+<% else %>
+<% profile_user.playlists.latest.each_with_index do |p, i| %>
+  <% if (i % 3) == 0 %>
+    <br class="clearer" />
+    <div class="artist_box pl last_box png_fix">
+  <% else %>
+    <div class="artist_box pl png_fix">
+  <% end %>
+
+    <%= link_to avatar_for(p, :small), radio_path(:station_id => p.station.id) %>
+    <div class="overlay">
+      <div class="hidden fh">
+        <b>
+          <%= link_to p.name, radio_path(:station_id => p.station.id) %>
+        </b>
+        <br />
+        <%= tag_links(p) %>
+        <br/><br/><br/>
+
+        <div class="align_right">
+          <% if false %>
+          <a href="#" title = "Subscribe"><img src="images/listen_button.png" class="png_fix" alt="" /></a>
+          <a href="#" title="Copy"><img src="images/duplicate_button.png" class="png_fix" alt="" /></a>
+          <% end %>
+          <%= link_to(image_tag('play_button.png'), radio_path(:station_id => p.id))%>
+        </div>
+        <div class="visible fh">
+          <%= link_to(image_tag('play_button.png', :class => 'play_button png_fix'), radio_path(:station_id => p.id))%>
+          <br />
+          <a href="#"><%= p.name %></a><br/>
+        </div>
+      </div><!--/end overlay -->
+    </div><!--/end artist_box -->
+    <% if ((i+1) % 3) == 0 %>
+      <br class="clearer" />
+    <% end %>
+  <% end %>
+
+  <% latest_size = profile_user.playlists.latest.size %>
+  <% if latest_size < 6 and latest_size > 0 %>
+    <% (6 - latest_size).times do |i| %>
+      <div class="artist_box pl <%= "last_box" if ((i + 1 + latest_size) % 3 == 0) %> png_fix">
+        <img alt="" src="images/empty_img.gif">
+      </div>
+      <% if ((i + 1 + latest_size) % 3 == 0) %>
+        <br class="clearer" />
+      <% end %>
+    <% end %>
+  <% end %>
+<% end %>
+<br class="clearer" />
+<br/><br/>
