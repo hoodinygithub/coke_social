@@ -9,7 +9,7 @@
   <br/>
   <small class="grey"><%= l(@station_obj.playable.updated_at.to_date) %></small>
   <br/>
-  <small><%= station_contains(@station_obj.playable) %></small>
+  <small><%= station_contains(@station_obj.playable, 3, true, :target => '_blank') %></small>
 </div><!--/end top_buttons -->
 
 <div class="album_actions2">
@@ -24,6 +24,6 @@
   <small><%= "#{@station_obj.playable.reviews_count} Reviews" %></small>
   <br/-->
   <% if logged_in? && current_user.id != @station_obj.playable.owner.id %>
-    <b>created by: <a href="#"><%= @station_obj.playable.owner.name %></a></b>
+    <b>created by: <%= link_to @station_obj.playable.owner.name, redirect_owner(@station_obj.playable.owner, 'profile') %></b>
   <% end %>
 </div>

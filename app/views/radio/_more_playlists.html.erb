@@ -5,7 +5,7 @@
     <div class="station_text">
       <b><%= link_to_function playlist.name, "Base.radio.set_station_details(#{playlist.station.id}, '#{playlist.station_queue}')" %></b></small><br/>
     <small class="grey"><%=  l(playlist.updated_at.to_date) %></small><br/>
-      <small><%= station_contains(playlist) %></small>
+    <small><%= station_contains(playlist, 3, true, :target => '_blank') %></small>
     </div>
 
     <div class="station_buttons"> 
