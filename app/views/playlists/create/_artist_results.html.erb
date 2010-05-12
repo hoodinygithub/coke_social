@@ -9,7 +9,7 @@
         <ul class="results_by_artist">
           <% @results.each do |artist| %>
             <li>
-                <%= avatar_for(artist, :tiny, {:class => "icon"}) %>
+                <%= avatar_for(artist, :search_results, {:class => "icon"}) %>
                 <div class="links">
                     <b><a href="#" class="black"><%= truncate(artist.name, :length => 60) %></a></b><br/>
                     <small><a href="#" class="grey"><%= truncate(artist.genre_name, :length => 60) %></a></small>
