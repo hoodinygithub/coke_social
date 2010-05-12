@@ -1,0 +1,22 @@
+<div class="songs_list">
+    <div class="headers">
+        <div class="a_name">ALBUM NAME</div>
+        <div class="last">&nbsp;</div>
+        <br class="clearer" />
+    </div><!--/end headers -->
+
+    <div class="songs_box medium_height">
+        <ul class="results_by_artist">
+          <% @results.each do |album| %>
+            <li>
+                <%= avatar_for(album, :tiny, {:class => "icon"}) %>
+                <div class="links">
+                    <b><a href="#" class="black"><%= truncate(album.name, :length => 60) %></a></b><br/>
+                    <small><a href="#" class="grey"><%= truncate(album.owner.name, :length => 60) %></a></small>
+                </div>
+                <br class="clearer" />
+            </li>
+          <% end %>
+        </ul>
+    </div><!--/end songs_box -->
+</div><!--/end songs_list -->
