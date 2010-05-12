@@ -1,0 +1,22 @@
+<div class="songs_list">
+    <div class="headers">
+        <div class="a_name">ARTIST NAME</div>
+        <div class="last">&nbsp;</div>
+        <br class="clearer" />
+    </div><!--/end headers -->
+
+    <div class="songs_box medium_height">
+        <ul class="results_by_artist">
+          <% @results.each do |artist| %>
+            <li onclick='get_song_list("<%=artist.id %>","artist"); return false;'>
+              <%= avatar_for(artist, :search_results, {:class => "icon"}) %>
+              <div class="links">
+                  <b><a href="#" onclick='get_song_list("<%=artist.id %>","artist"); return false;' class="black"><%= truncate(artist.name, :length => 60) %></a></b><br/>
+                  <small><a href="#" onclick='get_song_list("<%=artist.id %>","artist"); return false;' class="grey"><%= truncate(artist.genre_name, :length => 60) %></a></small>
+              </div>
+              <br class="clearer" />
+            </li>
+          <% end %>
+        </ul>
+    </div><!--/end songs_box -->
+</div><!--/end songs_list -->
