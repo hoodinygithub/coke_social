@@ -7,7 +7,7 @@
 <h1><%= t('home.recommended_playlists') %></h1>
 
 <% @recommended_playlists.each_with_index do |p, i| %>
-  <%= render :partial => 'playlists/widget_item', :locals => {:p => p, :last_box => (i+1 % 3) == 0} %>
+  <%= render :partial => 'playlists/widget_item', :locals => {:p => p, :last_box => ((i+1) % 3) == 0} %>
 <% end %>
 
 <% if @recommended_playlists.size < 6 %>

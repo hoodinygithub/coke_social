@@ -15,7 +15,8 @@ var Base = {
   registration: {},
   radio: {},
   account: {},
-  playlists: {}
+  playlists: {},
+  djs: {}
 };
 
 /*
@@ -875,6 +876,10 @@ Base.stations.close_button_event_binder = function() {
   jQuery("span.recommended_station").bind('click', function() { Base.stations.close_button_handler(this); });
 };
 
+Base.djs.close_button_event_binder = function() {
+  jQuery("span.close_dj").bind('click', function() { Base.djs.close_button_handler(this); });
+};
+
 Base.stations.close_button_handler = function(object) {
     $button = jQuery(object);
     var artist_id = $button.attr('artist_id');
@@ -897,6 +902,31 @@ Base.stations.close_button_handler = function(object) {
       $parent_div.html($new_div.html());
       $parent_div.css({'background':'white', 'text-align':'left'});
       Base.stations.close_button_event_binder();
+    });
+};
+
+Base.djs.close_button_handler = function(object) {
+    $button = jQuery(object);
+    var dj_id = $button.attr('dj_id');
+
+    $parent_div = $button.parent();
+    $parent_div.html("<img style='margin-top:3px' src='/images/loading.gif'></img>");
+    $parent_div.css({'background':'#cccccc', 'text-align':'center'});
+
+    var new_dj_id = recommended_djs_queue.shift();
+
+    if (typeof(new_dj_id) == 'undefined') {
+      $parent_div.html("");
+      $parent_div.css({'background':'white', 'text-align':'left'});
+      return;
+    }
+
+    var params = {'user_id':new_dj_id, 'last_box':$parent_div.hasClass('last_box')};
+    jQuery.get('/users/tiny_box_html', params, function(data) {
+      $new_div = jQuery(data);
+      $parent_div.html($new_div.html());
+      $parent_div.css({'background':'white', 'text-align':'left'});
+      Base.djs.close_button_event_binder();
     });
 };
 
@@ -1575,6 +1605,7 @@ jQuery(document).ready(function() {
   $('.png_fix').supersleight({shim: '/images/blank.gif'});
 
   Base.playlists.close_button_event_binder();
+  Base.djs.close_button_event_binder();
   Base.layout.bind_events();
   Base.layout.hide_success_and_error_messages();
   Base.header_search.dropdown();

@@ -227,6 +227,12 @@ class UsersController < ApplicationController
     current_user.unblock(@account) if current_user.blocks?(@account)
     render :nothing => true
   end
+
+  def tiny_box_html
+    @user = Account.find(params[:user_id])
+    @last_box = true if params[:last_box]
+    render :layout => false
+  end
   
   
   private

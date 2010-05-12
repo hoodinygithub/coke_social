@@ -1,0 +1,5 @@
+<div class="small_thumb<%= " last_thumb" if @last_box %>">
+  <span class="close_btn close_dj" dj_id="<%=@user.id%>">Close</span>
+  <%= link_to avatar_for(@user, :small), @user %>
+  <%= link_to truncate(@user.name,:length => 18), @user %>
+</div>
