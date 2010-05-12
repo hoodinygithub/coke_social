@@ -7,7 +7,7 @@ class DashboardsController < ApplicationController
   current_filter :songs
   layout_except_xhr 'application'
 
-  RECOMMENDED_PLAYLISTS = 6
+  RECOMMENDED_PLAYLISTS = 5
 
   def show
     @dashboard_menu = :home
