@@ -10,6 +10,8 @@ class RadioController < ApplicationController
       AbstractStation.find_by_name(params[:artist_name]) rescue nil
     end
 
+    @section = "player_page" if params[:station_id]
+
     if @station_obj
         @station_obj = create_user_station(@station_obj)
         @station_queue = @station_obj.playable.station_queue(:ip_address => remote_ip)
