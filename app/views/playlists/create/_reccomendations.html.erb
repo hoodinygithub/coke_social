@@ -3,8 +3,8 @@
 <div class="try_list">
   <% @top_artists.each_with_index do |top_artists_item, index| %>
     <div class="small_thumb <%= index==9 ? "last_thumb" : "" %>">
-        <%= link_to avatar_for(top_artists_item, :spaced_img, {:disable_default_css => true}), user_path(top_artists_item) %>
-        <%= link_to truncate(top_artists_item.name, :length => 10), playlist_create_path(:artist_id => top_artists_item.id) %>
+        <%= link_to_function avatar_for(top_artists_item, :spaced_img, {:disable_default_css => true}), "get_song_list('#{top_artists_item.id}','artist')" %>
+        <%= link_to_function truncate(top_artists_item.name, :length => 10), "get_song_list('#{top_artists_item.id}','artist')" %>
     </div>
   <% end %> 
   <br class="clearer" />
