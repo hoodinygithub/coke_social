@@ -63,7 +63,7 @@ module DashboardsHelper
 
 
   def user_navigation
-    return unless ['accounts', 'dashboards', 'followers', 'followees', 'badges', 'subscriptions', 'playlists', 'reviews'].include? params[:controller]
+    return unless ['accounts', 'dashboards', 'activities', 'followers', 'followees', 'badges', 'subscriptions', 'playlists', 'reviews'].include? params[:controller]
 
     links = if profile_account and current_user and profile_account == current_user
       my_nav_links(:simple => true)
