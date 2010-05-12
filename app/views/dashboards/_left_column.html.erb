@@ -4,10 +4,9 @@
     <div class="overlay png_fix">
       <div class="overlay_content">
       <big>
-        <%= link_to profile_user.name, profile_user %>
+        <%= profile_user.name %>
       </big>
       <br />
-      <%= profile_user.country.name if profile_user.country %>
       <%= link_to t('profile.navigation.account_settings'), my_settings_path if profile_owner? %>
     </div>
   </div>
