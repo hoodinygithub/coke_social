@@ -6,8 +6,14 @@ class PlaylistsController < ApplicationController
 
   def index
     @sort_type = params.fetch(:sort_by, nil).to_sym rescue :latest
+
     begin
-      @collection = profile_user.playlists.paginate :page => params[:page], :per_page => 6
+      sort_types  = { :latest => 'playlists.created_at DESC', 
+                      :alphabetical => 'playlists.name',
+                      :top => 'playlists.total_plays DESC'  }
+
+      @collection = profile_user.playlists.paginate :page => params[:page], :per_page => 6, :order => sort_types[@sort_type]
+
       respond_to do |format|
         format.html
         format.xml { render :layout => false }
