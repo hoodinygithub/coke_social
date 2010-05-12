@@ -1,5 +1,4 @@
-<%= "<br class=\"clearer\" />" if last %>
-<div class="artist_box pl png_fix <%= 'last_class' if last %>">
+<div class="artist_box pl png_fix <%= 'last_box' if last %>">
   <%= link_to avatar_for(p, :medium), radio_path(:station_id => p.station.id) %>
 
   <div class="overlay">
@@ -46,3 +45,4 @@
         </div>
     </div><!--/end overlay -->
 </div><!--/end artist_box -->
+<%= "<br class=\"clearer\" />" if last %>
