@@ -1,11 +1,10 @@
 <%
-  p        = @playlist if @playlist
+  p = @playlist if @playlist
 %>
 
 <% if @last_box %>
   <div class="artist_box pl last_box png_fix">
 <% elsif defined?(last_box) and last_box %>
-  <br class="clearer" />
   <div class="artist_box pl last_box png_fix">
 <% else %>
   <div class="artist_box pl png_fix">
@@ -30,3 +29,5 @@
         </div>
     </div><!--/end overlay -->
   </div><!--/end artist_box -->
+<%=  "<br class=\"clearer\" />" if @last_box %>
+
