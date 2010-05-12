@@ -9,10 +9,10 @@
         <ul class="results_by_artist">
           <% @results.each do |album| %>
             <li>
-                <img src="images/search_result_icon.gif" class="icon" alt="" />
+                <%= avatar_for(album, :tiny, {:class => "icon"}) %>
                 <div class="links">
-                    <b><a href="#" class="black"><%= truncate(album.name, :length => 18) %></a></b><br/>
-                    <small><a href="#" class="grey"><%= truncate(album.owner.name, :length => 18) %></a></small>
+                    <b><a href="#" class="black"><%= truncate(album.name, :length => 60) %></a></b><br/>
+                    <small><a href="#" class="grey"><%= truncate(album.owner.name, :length => 60) %></a></small>
                 </div>
                 <br class="clearer" />
             </li>

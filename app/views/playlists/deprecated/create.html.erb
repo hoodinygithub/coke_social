@@ -5,7 +5,9 @@
     <h1>CREATE A NEW PLAYLIST</h1>
     <h2>Search for music to add to your playlist</h2>
     <%= render :partial => 'playlists/create/search_box' %>
-    <%= render :partial => 'playlists/create/search_results' %>
+    <div id="search_results_container">
+      <%= render :partial => 'playlists/create/search_results' %>
+    </div>
     <%= render :partial => 'playlists/create/reccomendations' %>
 </div><!--/end two_columns -->
 
@@ -17,3 +19,20 @@
 
 <div class="clearer"></div>
 
+<script language="javascript">
+  function get_song_list(id,scope)
+  {
+    q = "item_id=" + id + "&scope=" + scope;
+    jQuery.get('/playlist/create?' + q, function(data) {
+        jQuery('#search_results_container').html(data);
+    });
+  }
+  
+  function get_search_results(term,scope)
+  {
+    q = "term=" + term + "&scope=" + scope;
+    jQuery.get('/playlist/create?' + q, function(data) {
+        jQuery('#search_results_container').html(data);
+    });
+  }
+</script>

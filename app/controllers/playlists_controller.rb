@@ -18,8 +18,11 @@ class PlaylistsController < ApplicationController
 
   def create
     @results,@scope,@result_text = get_seeded_results
+    @top_artists = current_site.top_artists.all(:limit => 10)
     
     # playlist.create_station after save
+    
+    render :partial => "/playlists/create/search_results", :layout => false if request.xhr?
   end
   
   def edit
@@ -98,11 +101,11 @@ class PlaylistsController < ApplicationController
         obj = scope.to_s.classify.constantize
         if params[:term]
           results = obj.search(params[:term]) rescue nil
-          result_text = obj.to_s
+          result_text = params[:term]
         elsif params[:item_id]
-          obj_list = obj.find(params[:item_id]) rescue nil
-          results = obj_list.songs if obj_list
-          result_text = obj.to_s
+          obj_item = obj.find(params[:item_id]) rescue nil
+          results = obj_item.songs if obj_item
+          result_text = obj_item.to_s
         end
       end
       [results, scope, result_text]

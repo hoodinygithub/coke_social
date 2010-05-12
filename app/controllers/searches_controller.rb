@@ -43,13 +43,11 @@ class SearchesController < ApplicationController
 
     @counts = {}
     @results = {}
-    if request.xhr?
-      @active_scope == :all ? search_all_types(4) : search_only_active_type(12)
-      
-      render :partial => 'searches/content_list'
-    else
-      render :layout => false
-    end
+
+    @active_scope == :all ? search_all_types(4) : search_only_active_type(12)
+    
+    @local = true if params[:local]
+    render :partial => 'searches/content_list'#, :layout => false
   end
 
   private  

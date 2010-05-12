@@ -1,141 +1,15 @@
-<form class="account_settings search_music" method="post" action="">
-    <div class="form_row last">
-        <div class="grey_round_box align_center">
-            <input type="text" class="input full_width3" value="Enter an Artist or Song Name" onfocus="clearInput( 'Enter an Artist or Song Name', this); $('.create_box').show();" onblur="restoreInput( 'Enter an Artist or Song Name', this); $('.create_box').hide();" />
-        </div>
+<script language="javascript">
+  var content_msg = "<%= t('search.content_search_hint') %>";
+</script>
 
-        <div class="create_box large_width">
-    <a href="#" class="see_link">see all artists with "cold"</a>
-
-    <h1>ARTISTS</h1>
-    <div class="clearer"></div>
-
-    <ul class="search_list">
-        <li>
-            <a href="#">
-                <img src="images/search_result_icon.gif" alt="" />
-                <b>Artist Name</b><br/>
-                <small>Genre</small>
-
-                <br class="clearer" />
-            </a>
-        </li>
-        <li>
-            <a href="#">
-                <img src="images/search_result_icon.gif" alt="" />
-                <b>Artist Name</b><br/>
-                <small>Genre</small>
-
-                <br class="clearer" />
-            </a>
-        </li>
-        <li>
-            <a href="#">
-                <img src="images/search_result_icon.gif" alt="" />
-                <b>Artist Name</b><br/>
-                <small>Genre</small>
-
-                <br class="clearer" />
-            </a>
-        </li>
-        <li>
-            <a href="#">
-                <img src="images/search_result_icon.gif" alt="" />
-                <b>Artist Name</b><br/>
-                <small>Genre</small>
-
-                <br class="clearer" />
-            </a>
-        </li>
-    </ul>
-
-    <a href="#" class="see_link">see all songs with "cold"</a>
-    <h1>SONGS</h1>
-    <div class="clearer"></div>
-
-    <ul class="search_list">
-
-        <li>
-            <a href="#">
-                <img src="images/search_result_icon.gif" alt="" />
-                <b>Song Name</b><br/>
-                <small>Artist Name</small>
-                <br class="clearer" />
-            </a>
-        </li>
-
-        <li>
-            <a href="#">
-                <img src="images/search_result_icon.gif" alt="" />
-                <b>Song Name</b><br/>
-                <small>Artist Name</small>
-                <br class="clearer" />
-            </a>
-        </li>
-
-        <li>
-            <a href="#">
-                <img src="images/search_result_icon.gif" alt="" />
-                <b>Song Name</b><br/>
-                <small>Artist Name</small>
-                <br class="clearer" />
-            </a>
-        </li>
-
-        <li>
-            <a href="#">
-                <img src="images/search_result_icon.gif" alt="" />
-                <b>Song Name</b><br/>
-                <small>Artist Name</small>
-                <br class="clearer" />
-            </a>
-        </li>
-
-    </ul>
-
-    <a href="#" class="see_link">see all albums with "cold"</a>
-    <h1>ALBUMS</h1>
-    <div class="clearer"></div>
-
-    <ul class="search_list">
-        <li>
-            <a href="#">
-                <img src="images/search_result_icon.gif" alt="" />
-
-                <b>Album Name</b><br/>
-                <small>Artist Name</small>
-                <br class="clearer" />
-            </a>
-        </li>
-        <li>
-            <a href="#">
-                <img src="images/search_result_icon.gif" alt="" />
-
-                <b>Album Name</b><br/>
-                <small>Artist Name</small>
-                <br class="clearer" />
-            </a>
-        </li>
-        <li>
-            <a href="#">
-                <img src="images/search_result_icon.gif" alt="" />
-
-                <b>Album Name</b><br/>
-                <small>Artist Name</small>
-                <br class="clearer" />
-            </a>
-        </li>
-        <li>
-            <a href="#">
-                <img src="images/search_result_icon.gif" alt="" />
-
-                <b>Album Name</b><br/>
-                <small>Artist Name</small>
-                <br class="clearer" />
-            </a>
-        </li>
-    </ul>
-        </div><!--/end create_box -->
-    </div><!--/end form_row -->
-
-</form>
+<div class="search_playlist_form">
+  <% form_for :search, :url => search_path, :html => { :onsubmit => 'return Base.playlist_search.buildSearchUrl();', :method => :get, :id => :playlist_search_form, :class => "account_settings search_music" } do |f| %>
+    
+      <div class="form_row last">
+          <div class="grey_round_box align_center"><%= text_field_tag :q, t('search.content_search_hint', :default => ''),  {:id => :playlist_search_query, :class => "input full_width3", :onfocus => " clearInput(content_msg, this);", :onblur => "restoreInput(content_msg, this); setTimeout(function() {$('.create_box').hide();}, 300);", :autocomplete => :off } %></div>
+          <div id="playlist_search_results" class="create_box large_width"></div><!--/end create_box -->
+      </div><!--/end form_row -->
+    
+  <% end %>
+</div>
+<div class="content_search_results_ajax"><%= image_tag "/images/loading.gif" %></div>
