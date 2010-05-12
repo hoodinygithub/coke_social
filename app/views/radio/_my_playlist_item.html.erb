@@ -1,12 +1,16 @@
 <li id="my_station_item_<%= my_playlist_item.station.id %>">
   <div class="song_name_large">
+    <span class="small_btn_box hoverable_item listen_icon_small">
+      <a class="small_btn listen_btn" href="#">Unsubscribe</a>
+    </span>
     <%= link_to("<span><span>" + image_tag("icon_play_small.png", :title => t('actions.play'), :class => 'list_play_button' ) + "</span></span>", "#", :station_id => my_playlist_item.station.id, :station_queue => my_playlist_item.station_queue, :class => "grey_button launch_station", :id => "my_stations_list_play_#{my_playlist_item.station.id}" ) %>&nbsp;&nbsp;<b><%= link_to(my_playlist_item.name, "#", :station_id => my_playlist_item.station.id, :station_queue => my_playlist_item.station_queue, :id => "my_stations_list_name_#{my_playlist_item.station.id}", :class => 'launch_station') %></b>
   </div>
   <div class="includes"><%= station_contains(my_playlist_item, 3, false, :target => '_blank')%></div>
-  <div class="large_bnt2">
-    <!--img class="png_fix valign_middle" alt="copy playlist" src="images/copy_button_small.png"-->
-    <%= link_to_function(image_tag('edit_button_small.png', :alt => t('actions.edit'), :class => 'valign_middle'), "Base.stations.launch_edit_layer(#{my_playlist_item.station.id})")%>
-    <%= link_to_function(image_tag('close_red.png', :alt => t('actions.delete'), :class => 'valign_middle'), "Base.stations.remove_from_layer(#{my_playlist_item.station.id})", :class => "grey_button" ) unless my_playlist_item == @station_obj.playable %>
+
+  <div class="large_btn3">
+    <span class="small_btn_box hoverable_item"><%= link_to_function "Edit", "Base.stations.launch_edit_layer(#{my_playlist_item.station.id})", :class => "small_btn edit_btn" %></span>
+    <span class="small_btn_box hoverable_item"><%= link_to_function "Delete", "Base.stations.remove_from_layer(#{my_playlist_item.station.id})", :class => "small_btn delete_btn" %></span>
   </div>
+
   <br class="clearer" />
 </li>

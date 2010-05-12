@@ -1,59 +1,57 @@
-<div id="radio_label">
-  <div class="radio_left_side">
-    <div class="side_user_box">
-      <%= link_to avatar_for(@station_obj.playable.owner, :medium, :class => 'side_user_image', :width => "150", :disable_default_css => true), redirect_owner(@station_obj.playable.owner, 'profile')  %>
-      <div class="overlay png_fix">
-        <div class="overlay_content">
-          <big><%= link_to @station_obj.playable.owner.name, redirect_owner(@station_obj.playable.owner, 'profile') %></big><br/>
-          <small><%= @station_obj.playable.owner.country unless @station_obj.playable.owner.country.nil? %>
-          </small>
-        </div>
+<div class="radio_left_side">
+  <div class="side_user_box">
+    <%= link_to avatar_for(@station_obj.playable.owner, :medium, :class => 'side_user_image', :width => "150", :disable_default_css => true), redirect_owner(@station_obj.playable.owner, 'profile')  %>
+    <div class="overlay png_fix">
+      <div class="overlay_content">
+        <big><%= link_to @station_obj.playable.owner.name, redirect_owner(@station_obj.playable.owner, 'profile') %></big><br/>
+        <small><%= @station_obj.playable.owner.country unless @station_obj.playable.owner.country.nil? %>
+        </small>
       </div>
-    </div><!--/end side_user_box -->
+    </div>
+  </div><!--/end side_user_box -->
 
-    <div class="black_boxes">
-      <div class="black_box left_side">
-        <big class="blue"><%= link_to number_with_delimiter(@station_obj.playable.owner.total_playlists), redirect_owner(@station_obj.playable.owner, 'playlists'), :target => '_blank' %></big><br/>
-        <%= t('basics.playlists') %>
-      </div>
+  <div class="black_boxes">
+    <div class="black_box left_side">
+      <big class="blue"><%= link_to number_with_delimiter(@station_obj.playable.owner.total_playlists), redirect_owner(@station_obj.playable.owner, 'playlists'), :target => '_blank' %></big><br/>
+      <%= t('basics.playlists') %>
+    </div>
 
-      <div class="black_box right_side">
-        <big class="blue"><%= link_to number_with_delimiter(@station_obj.playable.owner.follower_count), redirect_owner(@station_obj.playable.owner, 'followers'), :target => '_blank' %></big><br/>
-        <%= t('basics.followers') %>
-      </div>
+    <div class="black_box right_side">
+      <big class="blue"><%= link_to number_with_delimiter(@station_obj.playable.owner.follower_count), redirect_owner(@station_obj.playable.owner, 'followers'), :target => '_blank' %></big><br/>
+      <%= t('basics.followers') %>
+    </div>
 
-      <div class="clearer"></div>
-    </div><!--/end black_boxes -->
+    <div class="clearer"></div>
+  </div><!--/end black_boxes -->
 
-    <% if logged_in? && current_user != @station_obj.playable.owner || !logged_in? %>
-      <%= follow_button(:account => @station_obj.playable.owner, :full_width => true, :radio => true) %>
+  <% if logged_in? && current_user != @station_obj.playable.owner || !logged_in? %>
+    <%= follow_button(:account => @station_obj.playable.owner, :full_width => true, :radio => true) %>
+  <% end %>
+
+  <!--a href="#" class="blue_button full_width"><span><span>FOLLOW</span></span></a-->
+</div><!--/end radio_left_side -->
+
+<div class="radio_right_side">
+  <div class="radio_tabs">
+    <% @tabs.each_with_index do |tab, index| %>
+      <a href="#" id="radio_<%= tab.to_s %>_tab" <%= index < 1 ? 'class="first active"': "" %>><span><span><%= t("modules.#{tab.to_s}.title") %></span></span></a>
     <% end %>
+  </div><!--/end radio_tabs -->
 
-    <!--a href="#" class="blue_button full_width"><span><span>FOLLOW</span></span></a-->
-  </div><!--/end radio_left_side -->
+  <div id="emotions_content" class="radio_tabs_content">
+    <% tag_cloud @station_obj.playable.tag_cloud, %w(css1, css2, css3, css4) do |tag, css_class| %>
+      <%= link_to tag.name, main_search_path(:scope => 'playlists', :q => tag.name), :target => "_blank", :class => css_class %>
+    <% end%>
+  </div>
 
-  <div class="radio_right_side">
-    <div class="radio_tabs">
-      <% @tabs.each_with_index do |tab, index| %>
-        <a href="#" id="radio_<%= tab.to_s %>_tab" <%= index < 1 ? 'class="first active"': "" %>><span><span><%= t("modules.#{tab.to_s}.title") %></span></span></a>
-      <% end %>
-    </div><!--/end radio_tabs -->
+  <div id="more_playlists_content" class="radio_tabs_content hide">
+    <%= render :partial => "more_playlists", :locals => { :current_playlist => @station_obj } %>
+  </div>
 
-    <div id="emotions_content" class="radio_tabs_content">
-      <% tag_cloud @station_obj.playable.tag_cloud, %w(css1, css2, css3, css4) do |tag, css_class| %>
-        <%= link_to tag.name, main_search_path(:scope => 'playlists', :q => tag.name), :target => "_blank", :class => css_class %>
-      <% end%>
-    </div>
+  <div id="top_playlists_content" class="radio_tabs_content hide">
+    <%= render :partial => "more_playlists", :locals => { :current_playlist => current_site.top_playlists.all(:limit => 20) } %>
+  </div>
 
-    <div id="more_playlists_content" class="radio_tabs_content hide">
-      <%= render :partial => "more_playlists", :locals => { :current_playlist => @station_obj } %>
-    </div>
+</div><!--/end radio_right_side -->
 
-    <div id="top_playlists_content" class="radio_tabs_content hide">
-      <%= render :partial => "more_playlists", :locals => { :current_playlist => current_site.top_playlists.all(:limit => 20) } %>
-    </div>
-
-  </div><!--/end radio_right_side -->
-
-  <div class="clearer"></div>
-</div>
+<div class="clearer"></div>

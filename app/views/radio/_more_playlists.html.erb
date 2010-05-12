@@ -17,7 +17,9 @@
         <img src="images/rating_bottle_empty.png" class="png_fix" alt="" />
       </span> 
       <br />
-      <%= link_to_function image_tag('play_button.png'), "Base.radio.set_station_details(#{playlist.station.id}, '#{playlist.station_queue}')" %>
+      <span class="big_btn_box hoverable_item">
+        <%= link_to_function "Play", "Base.radio.set_station_details(#{playlist.station.id}, '#{playlist.station_queue}')", :class => "big_btn play_btn" %>
+      </span>
       <!--img src="images/play_button.png" /></a!--> 
      </div>
      <div class="clearer"></div>

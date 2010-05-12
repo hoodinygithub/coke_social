@@ -1,15 +1,136 @@
+/* @override http://localhost:3000/stylesheets/styles_radio.css */
+
 /*RADIO CSS SPECIFICS ARE BELOW THIS LINE */
 /*=======================================================================*/
-
-#radio_player {
-  border-bottom: 1px solid #CCC;
-}
 
 .css1 { font-size: 1.0em; }
 .css2 { font-size: 1.4em; }
 .css3 { font-size: 1.8em; }
 .css4 { font-size: 2.2em; }
 
+#radio_player {
+  border-bottom: 1px solid #CCC;
+}
+
+#header.radio
+{
+	height: 42px;
+}
+
+#main_content.radio
+{
+	background: url("/images/notes_background.jpg") no-repeat scroll center top transparent;
+	margin: 0;
+	padding: 110px 24px 14px 20px;
+}
+
+.reviews_box {
+	-moz-border-radius: 5px 5px 5px 5px;
+	background: url("/images/reviews_box_bg.gif") repeat-x scroll left top #F2F2F2;
+	border: 1px solid #CCC;
+	padding: 10px 10px;
+}
+
+.reviews_box .network_update textarea {
+	width: 470px;
+}
+
+.playlist_reviews {
+	list-style-type: none;
+	margin-bottom: 15px;
+}
+
+.playlist_reviews li {
+	border-bottom: 1px solid #EDEDED;
+	padding: 10px 0;
+	position: relative;
+}
+
+.playlist_reviews li .icon {
+	float: left;
+	margin-right: 10px;
+}
+
+.playlist_reviews li .info {
+	float: left;
+	width: 100px;
+}
+
+.playlist_reviews .text {
+	color: #333;
+	float: right;
+	width: 410px;
+}
+
+.large_btn3 {
+	text-align: right;
+	width: 85px;
+}
+
+.delete_btn {
+	background: url("/images/delete_button_small.png") no-repeat scroll left top transparent;
+}
+
+.delete_btn:hover {
+	background: url("/images/delete_button_small_grey.png") no-repeat scroll left top transparent;
+}
+
+.edit_btn {
+	background: url("/images/edit_button_small.png") no-repeat scroll left top transparent;
+}
+
+.edit_btn:hover {
+	background: url("/images/edit_button_small_grey.png") no-repeat scroll left top transparent;
+}
+
+.listen_btn {
+	background: url("/images/listen_icon_small.png") no-repeat scroll left top transparent;
+}
+
+.listen_btn:hover {
+	background: url("/images/listen_icon_small_grey.png") no-repeat scroll left top transparent;
+}
+
+.small_btn {
+	display: inline-block;
+	height: 20px;
+	overflow: hidden;
+	text-indent: 1000px;
+	width: 20px;
+}
+
+.small_btn_box {
+	display: inline-block;
+	line-height: 20px;
+	margin: 0 2px;
+	padding-top: 4px;
+	position: relative;
+	vertical-align: middle;
+}
+
+.big_btn_box {
+	display: inline-block;
+	margin: 0 2px;
+	padding-top: 4px;
+	position: relative;
+	vertical-align: middle;
+}
+
+.play_btn {
+	background: url("/images/play_button.png") no-repeat scroll left top transparent;
+}
+
+.play_btn:hover {
+	background: url("/images/play_button_grey.png") no-repeat scroll left top transparent;
+}
+
+.big_btn {
+	display:inline-block;
+	height:28px;
+	overflow:hidden;
+	text-indent:1000px;
+	width:28px;
+}
 
 .grey_button_big {
     display: inline-block;
@@ -358,6 +479,7 @@
 }
 .listen_icon_small {
     position: absolute;
+    margin: 0;
     left: -1px;
-    top: -1px;
+    top: -5px;
 }
