@@ -5,6 +5,7 @@ class PlaylistsController < ApplicationController
   before_filter :login_required, :except => [:widget]
 
   def index
+    @sort_type = params.fetch(:sort_by, nil).to_sym rescue :latest
     begin
       @collection = profile_user.playlists.paginate :page => params[:page], :per_page => 6
       respond_to do |format|
