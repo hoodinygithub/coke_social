@@ -9,25 +9,22 @@
 <% else %>
 
   <% profile_user.playlists.latest.each_with_index do |p, i| %>
-    <% if (i % 3) == 0 %>
-      <br class="clearer" />
-      <%= render :partial => 'playlists/box', :locals => { :p => p, :last=> true } %>
-    <% else %>
-      <%= render :partial => 'playlists/box', :locals => { :p => p } %>
-    <% end %>
+    <% last = (i % 3) == 0 %>    
+    <%= render :partial => 'playlists/box', :locals => { :p => p, :last => last } %>
 
-  <% end %>
+    <% latest_size = profile_user.playlists.latest.size %>
 
-  <% latest_size = profile_user.playlists.latest.size %>
-  <% if latest_size < 6 and latest_size > 0 %>
-    <% (6 - latest_size).times do |i| %>
-      <div class="artist_box pl <%= "last_box" if ((i + 1 + latest_size) % 3 == 0) %> png_fix">
-        <img alt="" src="images/empty_img.gif">
-      </div>
-      <% if ((i + 1 + latest_size) % 3 == 0) %>
-        <br class="clearer" />
+    <% if latest_size < 6 and latest_size > 0 %>
+      <% (6 - latest_size).times do |i| %>
+        <div class="artist_box pl <%= "last_box" if ((i + 1 + latest_size) % 3 == 0) %> png_fix">
+          <img alt="" src="images/empty_img.gif">
+        </div>
+        <% if ((i + 1 + latest_size) % 3 == 0) %>
+          <br class="clearer" />
+        <% end %>
       <% end %>
     <% end %>
+
   <% end %>
 
 <% end %>
