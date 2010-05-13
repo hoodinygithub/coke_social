@@ -1,7 +1,7 @@
 xml.player :autoStart => 'yes', :canRate => '' do
   songs = @playlist.items.sort_by { rand }
   songs.each do |item|
-    if item.song && item.song.album
+    if item.song && item.song.album && !item.artist.nil?
       xml.song do
         xml.idsong item.song_id
         xml.idpl item.playlist_id
