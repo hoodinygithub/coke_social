@@ -2,7 +2,7 @@
   <h1><%= possessive :top_playlists %></h1>
   <% if profile_account.playlists.size > 0 %>
     <ul class="top_mixes_list">
-      <% profile_account.playlists.top(4).each do |p| %>
+      <% profile_account.playlists.top(3).each do |p| %>
         <li>
           <%= link_to avatar_for(p, :small), radio_path(:station_id => p.station.id) %>
           <div class="top_mix_text">
@@ -23,7 +23,7 @@
   <% end %>
   <% if profile_account.total_playlists > 4 %>
     <div class="align_right">
-      <b class="right_side"><%= link_to t('actions.view_more'), playlists_path(profile_account) %></b>
+      <b class="right_side"><%= link_to t('actions.view_more'), playlists_path %></b>
     </div>
     <br />
   <% end %>
