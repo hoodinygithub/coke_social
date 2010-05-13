@@ -22,6 +22,8 @@ coke_ES:
       title: "Informaci\xC3\xB3n del Usuario"
     recently_created_stations: 
       title: "Radios Reci\xC3\xA9n Creadas"
+    top_artists: 
+      title: Artistas Top
     concerts: 
       title: Conciertos
     top_artists: 
@@ -29,10 +31,10 @@ coke_ES:
     delete_station: 
       title: Eliminar radio
       confirmation_text: "\xC2\xBFConfirmas que quieres eliminar la {{station_name}}?"
-    recent_listeners: 
-      title: "Oyentes M\xC3\xA1s Recientes"
     top_playlists: 
       title: Most Popular Playlists
+    recent_listeners: 
+      title: "Oyentes M\xC3\xA1s Recientes"
     recommended_stations: 
       title: Radios Recomendadas
     top_activity: 
@@ -64,10 +66,10 @@ coke_ES:
       station_name: Nombre de la radio
     recent_activity: 
       title: ACTIVIDAD RECIENTE
-    recommended_artists: 
-      title: Artistas Recomendados
     biography: 
       title: "Biograf\xC3\xADa"
+    recommended_artists: 
+      title: Artistas Recomendados
     search: 
       title: Buscar
   share: 
@@ -105,25 +107,26 @@ coke_ES:
     share: Compartir
     unfollow_account: Dejar de seguir a {{name}}
     disaprove: Rechazar
-    pending: Pendientes
-    add: agregar
     add_song_to_playlist: "Agregar Canci\xC3\xB3n al Playlist"
-    unfollow: Siguiendo
+    add: agregar
+    pending: Pendientes
     share_with_a_friend: "Compartir esta canci\xC3\xB3n con un amigo"
+    unfollow: Siguiendo
     select_playlist: Seleccionar playlist
     edit: Editar
-    previous: Anterior
     forgot_password: "\xC2\xBFHa olvidado la contrase\xC3\xB1a?"
+    previous: Anterior
     alphabetical: ALFABETICO
-    enter: Entrar
     cancel: Cancelar
     enter: Entrar
     close: Cerrar
+    delete: Borrar
+    stop: Parar
+    submit: Enviar
     go_with_exclamation: Ir!
     buy_album: Comprar Album
     results_for: Resultados para
     buy_song: "Comprar Canci\xC3\xB3n"
-    or: o
     show_more: VER MAS
     or: o
     show_more: VER MAS
@@ -134,22 +137,21 @@ coke_ES:
     search_again: Buscar nuevamente
     view_more_songs: "ver m\xC3\xA1s canciones"
     aprove: Aceptar
-    to: a
     relevance: RELEVANCIA
+    to: a
     launch_radio: Crear Radio
     add_to_playlist: Agregar a mis Playlists
-    block: Bloquear
     follow: Seguir
+    block: Bloquear
     newest: "M\xC3\x81S NUEVAS"
     save: Guardar
     view: Ver
     search_text: "Buscar m\xC3\xBAsica en Cyloop"
     go: Ir
     send: Enviar
-    next: "Pr\xC3\xB3ximo"
     create: Crear
+    next: "Pr\xC3\xB3ximo"
     approve: Aprobar
-    filter_by: Filtrar por
     reset: Restablecer
     filter_by: Filtrar por
     reset: Restablecer
@@ -158,10 +160,11 @@ coke_ES:
     add_into_a_new_playlist: Agregar a un nuevo playlist
     latest: MAS RECIENTES
     share_station: Compartir esta radio con un amigo.
-    add_song: "Agregar Canci\xC3\xB3n"
+    skip: ""
+    listen: escuchar
     submitting: Enviando
+    add_song: "Agregar Canci\xC3\xB3n"
     add_more: "Agregar M\xC3\xA1s"
-    create_station: Crear Radio
     select_store: Seleccionar Tienda
     create_a_playlist: Crear un playlist
     search: Buscar
@@ -343,11 +346,12 @@ coke_ES:
       has_not_subscribed: "{{subject}} no tiene suscripci\xC3\xB3n a ning\xC3\xBAn playlist."
       subscriptions: Suscsripciones de {{subject}}
       friends_that_have_this_badge: Amigos de {{subject}} que han ganado este premio
+      latest_playlists: "\xC3\x9Altimos Playlists de {{subject}}"
       network_activity: Actividad de {{subject}} en la red
       latest_playlists: "\xC3\x9Altimos Playlists de {{subject}}"
       stations: Radios de {{subject}}
-      has_not_badges: "{{subject}} no ha ganado ning\xC3\xBAn badge aun."
       followers: "Gente que est\xC3\xA1 siguiendo a {{subject}}"
+      has_not_badges: "{{subject}} no ha ganado ning\xC3\xBAn badge aun."
       has_not_reviews: "{{subject}} no ha escrito ningn\xC3\xBAn comentario aun."
       playlists: Playlists de {{subject}}
       albums: "Albumes de {{subject}} "
@@ -366,11 +370,11 @@ coke_ES:
       has_not_subscribed: "No tienes suscripciones a ning\xC3\xBAn playlist."
       subscriptions: Mis suscripciones
       friends_that_have_this_badge: "Amigos m\xC3\xADos que tienen este badge"
-      network_activity: Mi actividad de red
       latest_playlists: "Mis \xC3\x9Altimas Reviews"
+      network_activity: Mi actividad de red
       stations: Mis Radios
-      has_not_badges: "No has ganado ning\xC3\xBAn badge aun."
       followers: Gente que me esta siguiendo
+      has_not_badges: "No has ganado ning\xC3\xBAn badge aun."
       has_not_reviews: "No has dejado ning\xC3\xBAn comentario aun."
       playlists: Mis Playlists
       albums: Mis Albumes
@@ -448,7 +452,6 @@ coke_ES:
     select_your_songs: Selecciona tus canciones
   messenger_player: 
     we_hope_you_enjoyed: "Esperamos que te hayan gustado las canciones que se tocaron. Para escuchar m\xC3\xA1s, "
-    click_here: "clic aqu\xC3\xAD"
     buylink: 
       select_store: Selecciona tu tienda
       song: "Comprar esta canci\xC3\xB3n"
@@ -458,6 +461,7 @@ coke_ES:
       song: "Comprar esta canci\xC3\xB3n"
     edit_station: "Para editar esta radio, "
     sign_in: ingresa con tu Live ID de Windows
+    edit_station: "Para editar esta radio, "
     share: 
       title: Enviar a un amigo
       message: Mensaje
@@ -478,9 +482,9 @@ coke_ES:
       success: "Felicitaciones! Ya est\xC3\xA1s registrado."
       email: "Tu Direcci\xC3\xB3n de E-mail"
     activate_your_account: "Activa tu cuenta de MSN M\xC3\xBAsica"
+    buy: Comprar
     album: 
       released: Lanzado
-    buy: Comprar
     authentication_required: Necesitas ingresar para poder hacer eso
     internal_error: "No se pudo generar tu pedido debido a una falla interna. Ya estamos al tanto de esta situaci\xC3\xB3n y en breve la solucionaremos."
     now_playing: Tocando Ahora
@@ -494,11 +498,11 @@ coke_ES:
   albums: 
     label: Disquera
     song_count: Canciones
-    show: 
-      about_this_album: "Acerca de este \xC3\xA1lbum"
     year: !binary |
       QcOxbw==
 
+    show: 
+      about_this_album: "Acerca de este \xC3\xA1lbum"
     total_plays: Reproducciones totales
     release_date: Fecha de lanzamiento
   custom_profiles: 
@@ -512,8 +516,8 @@ coke_ES:
     pm: pm
   activity: 
     created_playlist: "Cre\xC3\xB3 el Playlist '{{playlist}}'"
-    just_following: Siguiendo solamente
     just_user: "S\xC3\xB3lo {{user}}"
+    just_following: Siguiendo solamente
     listened_to: "Escuch\xC3\xB3 '{{song}}' de '{{artist}}'"
     push_notification_refresh: Recargar
     push_notification: Tienes {{count}} actualizaciones nuevas. {{link}} la actividad en tu Dashboard para verlas.
@@ -525,8 +529,8 @@ coke_ES:
       playlists: PLAYLISTS
     no_more_activity: "No hay m\xC3\xA1s actividad"
     push_notification_more_than: "Tienes m\xC3\xA1s de {{count}} actualizaciones nuevas. {{link}} la actividad en tu Dashboard para verlas."
-    created_station: "{{creator}} cre\xC3\xB3 la radio: {{station}}"
     user_following: "{{user}} + Siguiendo"
+    created_station: "{{creator}} cre\xC3\xB3 la radio: {{station}}"
     twitter_following: "Tweets de los artistas que {{user}} est\xC3\xA1 siguiendo"
   account_settings: 
     password_change: "CAMBIO DE CONTRASE\xC3\x91A"
@@ -571,8 +575,8 @@ coke_ES:
     search_hint: Ingresa el nombre de un artista
     select_recommended_stations_below: "O si no se te ocurre ninguno, selecciona cualquiera de las radios recomendadas que aparecen aqu\xC3\xAD abajo."
     msn_stations: Radios de MSN
-    now_playing: Tocando Ahora
     create_new_station: Crear una radio
+    now_playing: Tocando Ahora
     getting_started: Ingresa el nombre de un artista para comenzar
   date: 
     month_names: 
@@ -630,13 +634,17 @@ coke_ES:
   registration: 
     sign_up: "Reg\xC3\xADstrate"
     sign_up_exclamation: "Reg\xC3\xADstrate!"
-    your_profile_name_tip: "(Tu direcci\xC3\xB3n para que puedas envi\xC3\xA1rsela a tus amigos)"
     sign_in: ""
+    your_profile_name_tip: "(Tu direcci\xC3\xB3n para que puedas envi\xC3\xA1rsela a tus amigos)"
     you_are: Eres...
     artist_login_denied: "Login para Artistas estar\xC3\xA1 disponible muy pronto!"
     msg: 
       privacy: Debe ser aceptado
       terms: Debe ser aceptado
+    messages: 
+      terms_of_use: Debe ser aceptado
+      pivacy_policy: tiene que ser aceptarse
+      privacy_policy: Debe ser aceptado
     confirmation: 
       click_here: "clic aqu\xC3\xAD"
       here_is_your_confirmation_link: "Este es tu enlace para confirmaci\xC3\xB3n"
@@ -664,10 +672,6 @@ coke_ES:
           {{confirm_url}}\r\n\
           \r\n\
           Utiliza la direcci\xC3\xB3n de correo electr\xC3\xB3nico {{email}} y la clave que proporcionaste durante la registraci\xC3\xB3n para acceder a {{host_url}}.\r\n"
-    messages: 
-      terms_of_use: Debe ser aceptado
-      pivacy_policy: tiene que ser aceptarse
-      privacy_policy: Debe ser aceptado
     terms_of_use: "T\xC3\xA9rminos de uso"
     remember_me: ""
     is_available_exclamation: "Email est\xC3\xA1 disponible!"
@@ -689,8 +693,8 @@ coke_ES:
       male: !binary |
         w6lsIGVzdMOh
 
-      index: "Si ya tienes tu cuenta de MSN M\xC3\xBAsica, {{link}} para hacer tu login."
       sign_in_with_your_windows_live_id: ingresa con tu Windows Live ID
+      index: "Si ya tienes tu cuenta de MSN M\xC3\xBAsica, {{link}} para hacer tu login."
       listen_text: "m\xC3\xA1s de {{count}} canciones, todas gratis"
       msn_music_is_free: "MSN M\xC3\xBAsica es gratis, {{link}}"
       max_song: "Esperamos que te hayan gustado las canciones que escuchaste. Para escuchar m\xC3\xA1s canciones, {{link}} para hacer tu login."
@@ -703,8 +707,8 @@ coke_ES:
     terms_and_conditions: "T\xC3\xA9rminos y condiciones"
     year_of_birth: "A\xC3\xB1o de nacimiento"
     birth_date: Fecha de nacimiento
-    opt_out: Optas por salirte?
     email_address_tip: (En la que prefieres recibir mensajes, etc.)
+    opt_out: Optas por salirte?
     terms_and_privacy_must_be_accepted: "Los T\xC3\xA9rminos de Uso y la Pol\xC3\xADtica de Privacidad deben ser aceptados"
     customize: "Configura tu perfil de MSN M\xC3\xBAsica"
     complete_all_fields_in_red: Completa todos los campos en rojo
@@ -735,8 +739,8 @@ coke_ES:
       button: Comienza!
       title: Bienvenido! Gracias por registarte en Cyloop!
       subtitle: "Como miembro de Cyloop, mira lo que puedes hacer:"
-      subject: Bienvenido! Gracias por registarte en Cyloop!
       closing_statement: "Cyloop | Qu\xC3\xA9 te gustar\xC3\xADa escuchar?"
+      subject: Bienvenido! Gracias por registarte en Cyloop!
       terms_and_legal_text: "Copyright \xC2\xA9 2008-2009 Cyloop LLC. Todos los derechos reservados. Cyloop, Cyloop.com, el logo de Cyloop y todas las otras marcas <br>\r\n\
         de Cyloop aqu\xC3\xAD inclu\xC3\xADdas son marcas registradas de Hoodiny Entertainment Group y/o de sus compa\xC3\xB1\xC3\xADas afiliadas. <br> \r\n\
         Todas las dem\xC3\xA1s marcas aqu\xC3\xAD inclu\xC3\xADdas son propiedad de sus respectivos due\xC3\xB1os. La reproducci\xC3\xB3n en forma total <br> \r\n\
@@ -784,7 +788,6 @@ coke_ES:
       prompt: Por favor selecciona
   widget: 
     we_hope_you_enjoyed: "Esperamos que te hayan gustado las canciones que escuchaste. Para escuchar m\xC3\xA1s canciones,"
-    click_here: "clic aqu\xC3\xAD"
     buylink: 
       select_store: Selecciona tu tienda
       song: "Comprar esta canci\xC3\xB3n"
@@ -794,6 +797,7 @@ coke_ES:
       song: "Comprar esta canci\xC3\xB3n"
     edit_station: Para modificar esta radio,
     sign_in: ingresa con tu Live ID de Windows
+    edit_station: Para modificar esta radio,
     share: 
       title: Compartir con un amigo
       message: Mensaje
@@ -801,9 +805,9 @@ coke_ES:
       friend: "La direcci\xC3\xB3n de correo electr\xC3\xB3nico de tu amigo"
     actions: 
       edit: Modificar
-      submit: Enviar
-      close: Cerrar
       delete: Eliminar
+      close: Cerrar
+      submit: Enviar
       save: Guardar
     station: 
       name: Nombre de la Radio
@@ -835,13 +839,13 @@ coke_ES:
       confirm_your_password: "Confirma tu contrase\xC3\xB1a"
       terms_and_privacy: "Al checar el casillero, est\xC3\xA1s confirmando que sabes que Cyloop.com es un sitio web operado por Hoodiny Entertainment Group en los Estados Unidos, y est\xC3\xA1s otorgando tu consentimiento de transferir todos tus datos personales a los Estados Unidos, donde tus datos personales estar\xC3\xA1n sujetos a las leyes de los Estados Unidos y donde el nivel de protecci\xC3\xB3n de datos es diferente en comparaci\xC3\xB3n con el de tu pa\xC3\xADs. Tambi\xC3\xA9n confirmas estar de acuerdo con los {{terms_link}} y la {{privacy_link}} de Cyloop, la cual describe c\xC3\xB3mo ser\xC3\xA1n usados tus datos personales."
     activate_your_account: "Activa tu cuenta en MSN M\xC3\xBAsica"
+    buy: Comprar
     album: 
       released: Lanzado
-    buy: Comprar
     authentication_required: Necesitas ingresar para hacer eso
     internal_error: "No se pudo generar tu pedido debido a una falla interna. Ya estamos al tanto de esta situaci\xC3\xB3n y en breve la solucionaremos."
-    now_playing: Tocando ahora
     create_new_station: Crear una radio
+    now_playing: Tocando ahora
     msn_music_is_free: "MSN M\xC3\xBAsica es gratis,"
     basics: 
       by: Por
@@ -864,7 +868,6 @@ coke_ES:
       recommended_playlists: PLAYLISTS RECOMENDADAS
       top_songs: Top Canciones
       recommended_artists: Artistas Recomendados
-    still_dont_have: "\xC2\xBFAun no tienes una cuenta de MSN M\xC3\xBAsica?"
     my_stations: Mis Radios
     still_dont_have: "\xC2\xBFAun no tienes una cuenta de MSN M\xC3\xBAsica?"
     my_stations: Mis Radios
@@ -872,10 +875,10 @@ coke_ES:
   block: 
     blockee_id: Usuario
   feedback: 
-    submit: "Env\xC3\xADa Tu Sugerencias"
     country: !binary |
       UGHDrXM=
 
+    submit: "Env\xC3\xADa Tu Sugerencias"
     title: Sugerencias
     os: Sistema Operativo
     feedback: Sugerencias
@@ -894,9 +897,9 @@ coke_ES:
       restore_defaults: Volver al original
       colors: Colores
       browse: Navegar...
-    cancel_my_account: Cancelar Mi Cuenta
     private_profile: 
       description: "Descripci\xC3\xB3n de qu\xC3\xA9 hace la funci\xC3\xB3n \"Mantener Perfil Privado?\""
+    cancel_my_account: Cancelar Mi Cuenta
     not_saved: "Tus par\xC3\xA1metros no fueron guardados correctamente."
     notifications: ""
     saved: "Tus par\xC3\xA1metros han sido guardados."
@@ -907,7 +910,6 @@ coke_ES:
   cancellation: 
     confirmation: 
       title: Lamentamos que te vayas de Cyloop.
-      are_you_sure: "\xC2\xBFConfirmas que quieres cancelar tu cuenta?"
       body: "La cancelaci\xC3\xB3n de tu cuenta de Cyloop eliminar\xC3\xA1 en forma permanente toda la informaci\xC3\xB3n de tu perfil, incluyendo tus fotos, canales de actividad y tu red personal de seguidores. Esta informaci\xC3\xB3n no podr\xC3\xA1 ser recuperada una vez removida."
       are_you_sure: "\xC2\xBFConfirmas que quieres cancelar tu cuenta?"
       body: "La cancelaci\xC3\xB3n de tu cuenta de Cyloop eliminar\xC3\xA1 en forma permanente toda la informaci\xC3\xB3n de tu perfil, incluyendo tus fotos, canales de actividad y tu red personal de seguidores. Esta informaci\xC3\xB3n no podr\xC3\xA1 ser recuperada una vez removida."
@@ -976,12 +978,12 @@ coke_ES:
         \r\n\
         Consejo: crea una contrase\xC3\xB1a que contenga una mezcla de caracteres tanto de letras como de n\xC3\xBAmeros, para que sea m\xC3\xA1s segura."
   basics: 
+    my: Mi
     stations_created_by: Radios creadas por
     album: Album
     radio: Radio
     albums: Albumes
     created_at: Creada hace {{when}}
-    my: Mi
     play: Escuchar
     people: Gente
     playlists: Playlists
@@ -1076,10 +1078,10 @@ coke_ES:
       category_security: Mi Seguridad
       category: Categoria
       welcome: "Bienvenido a la secci\xC3\xB3n de Soporte T\xC3\xA9cnico de Cyloop"
+      submit: Envia tu mensaje
       country: !binary |
         UGHDrXM=
 
-      submit: Envia tu mensaje
       support_form: "Formulario de Soporte T\xC3\xA9cnico"
       category_account: Mi Cuenta
       business_inquires: Informacion sobre Negocios Generales?
@@ -1095,11 +1097,11 @@ coke_ES:
       category_music: Sobre la Musica
       category_photos: Sobre las fotos
       feedback: Mensaje
-      privacy: Privacidad y Seguridad
       category_other: Otro
+      privacy: Privacidad y Seguridad
       new_cyloop_text: "Para encontrar las respuestas a las preguntas m\xC3\xA1s comunes sigue nuestro link. Si no encuentras la respuesta a tu pregunta, por favor utiliza el formulario en el siguiente link para comunicarte con nosotros"
-      category_feedback: Sugerencias, Ideas
       browser: Navegador
+      category_feedback: Sugerencias, Ideas
       category_profile: Mi Perfil
       email: "Direccion de correo electr\xC3\xB3nico"
   playlist: 
@@ -1112,8 +1114,8 @@ coke_ES:
     terms_and_conditions: "T\xC3\xA9rminos y Condiciones"
     support: Soporte
     feedback: Sugerencias
-    about_us: Sobre Nosotros
     safety_tips: Consejos de Seguridad
+    about_us: Sobre Nosotros
     about_cyloop: Sobre Cyloop
     about_hoodiny: Sobre Hoodiny
     privacy_policy: "Pol\xC3\xADtica de Privacidad"
@@ -1180,19 +1182,19 @@ coke_ES:
   user: 
     is_not_following_anybody: "{{user_name}} no est\xC3\xA1 siguiendo a nadie"
     marketing_opt_out: "Por favor no me env\xC3\xADen emails de parte de Cyloop o sus sitios relacionados."
-    name: Nombre
     receives_following_notifications: Alertarme cuando alguien comienza a seguirme
+    name: Nombre
     color_links: Color del Enlace
     background_fixed_false: "No"
     slug: Elige tu Nombre de Perfil
     forgot_message: Cyloop te enviara instrucciones al email asociado con tu cuenta. Por favor,  entre su email.
     city_name: Ciudad
+    background_align: Alineamiento del Fondo
     background_repeats: 
       horizontal_repeat: "Repetici\xC3\xB3n Horizontal"
       full_repeat: "Repetici\xC3\xB3n Completa"
       no_repeat: No Repetir
       vertical_repeat: "Repetici\xC3\xB3n Vertical"
-    background_align: Alineamiento del Fondo
     confirmation: 
       click_here: "clic aqu\xC3\xAD"
       email_resend_failed: "El e-mail de confirmaci\xC3\xB3n no pudo ser reenviado. Por favor reintentar m\xC3\xA1s tarde."
@@ -1203,37 +1205,36 @@ coke_ES:
     background_fixed_true: Si
     twitter_username: Nombre de Usuario en Twitter
     private_profile: Mantener tu perfil privado?
-    forgot_your_password: "Se te olvido tu contrase\xC3\xB1a?"
     cyloop_password: "Contrase\xC3\xB1a"
+    forgot_your_password: "Se te olvido tu contrase\xC3\xB1a?"
     terms_of_use_instructions: "Al registrarte, aceptas los {{link}} y confirmas que tienes por lo menos 13 a\xC3\xB1os."
     reset_password: "Cambio de Contrase\xC3\xB1a"
+    female: Mujer
     background_alignments: 
       left: Izquierda
       upper_right: Superior Derecha
-      lower_right: Inferior Derecha
       center: Centro
+      lower_right: Inferior Derecha
       upper_left: Superior Izquierda
       lower_left: Inferior Izquierda
       right: Derecha
       upper_center: Superior Centro
       lower_center: Inferior Centro
-    female: Mujer
-    background: Imagen de Fondo
     color_bg: Color del fondo
+    background: Imagen de Fondo
     current_password: "Contrase\xC3\xB1a Actual"
     password_confirmation: "Confirmar Contrase\xC3\xB1a"
     cyloop_email: Email de Cyloop
-    remove_avatar: Eliminar Imagen
     websites: Sitios
-    doesnt_have_any_followers: "{{user_name}} no tiene seguidores"
+    remove_avatar: Eliminar Imagen
     terms_and_conditions: "t\xC3\xA9rminos y condiciones"
     doesnt_have_any_followers: "{{user_name}} no tiene seguidores"
     terms_and_conditions: "t\xC3\xA9rminos y condiciones"
     background_fixed: Fondo Ajustado
     negative_captcha: No completar este campo
     background_repeat: "Repetici\xC3\xB3n del Fondo"
-    gender: Sexo
     privacy_policy_instructions: "Nuestra {{link}} existe para protegerte! Por favor l\xC3\xA9ela y confirma que est\xC3\xA1s de acuerdo con sus t\xC3\xA9rminos."
+    gender: Sexo
     avatar: Imagen
     color_main_font: "Color de la Tipograf\xC3\xADa Principal"
     short_bio: "Breve rese\xC3\xB1a"
