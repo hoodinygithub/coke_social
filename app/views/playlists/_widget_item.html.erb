@@ -15,7 +15,7 @@
         <div class="hidden">
             <%= link_to(avatar_for(p.owner, :tiny, :class => 'artist_icon'), user_path(p.owner)) %>
             <b>
-              <%= link_to(profile_account.name, user_path(p.owner)) %>
+              <%= link_to(p.owner.name, user_path(p.owner)) %>
             </b>
             <br />
             <span class="white"><%= l(p.updated_at.to_date) %></span>
