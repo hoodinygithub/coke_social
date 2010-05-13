@@ -114,9 +114,9 @@ module AdsHelper
     profile = ad_profile_type    
     zone = if action_name == "home"
       "home"
-    elsif controller_name == "search"
+    elsif controller_name == "searches"
       "search"
-    elsif controller_name == "playlists" || controller_name == "pages" && action_name == "playlists"
+    elsif controller_name == "radio"
       "playlist"
     elsif !profile.empty?
       "user_profile"
