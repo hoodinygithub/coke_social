@@ -100,7 +100,7 @@ class User < Account
 
   has_many :taggings, :through => :playlists
 
-  has_many :badge_awards, :foreign_key => :winner_id
+  has_many :badge_awards, :foreign_key => :winner_id, :include => :badge
   has_many :badges, :through => :badge_awards
 
   has_many :followings, :foreign_key => 'follower_id'

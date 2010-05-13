@@ -1,18 +1,7 @@
-<% @recommended_djs_queue = current_site.top_djs.all(:limit => 20) %>
-<% @recommended_djs       = current_site.top_djs.all(:limit => 5) %>
-<% @queued_djs            = @recommended_djs_queue - @recommended_djs %>
-
-<% content_for :head do %>
-  <script>
-    var recommended_djs_queue = [<%= @queued_djs.collect(&:id).join(", ") %>];
-  </script>
-<% end %>
-
 <div class="box_content">
-  <h1><%= t('modules.recommended_djs.title') %></h1>
-  <% @recommended_djs.each_with_index do |dj, index| %>
+  <h1><%= t('modules.top_djs.title') %></h1>
+  <% current_site.top_djs.all(:limit => 4).each_with_index do |dj, index| %>
     <div class="small_thumb<%= " last_thumb" if index == 4 %>">
-      <span class="close_btn close_dj" dj_id="<%=dj.id%>">Close</span>
       <%= link_to avatar_for(dj, :small), dj %>
       <%= link_to truncate(dj.name,:length => 18), dj %>
     </div>

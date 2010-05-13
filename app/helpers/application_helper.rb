@@ -66,6 +66,9 @@ module ApplicationHelper
     link_to t("sort.#{type}"), url, options
   end
 
+  def short_date(date)
+  end
+  
   def profile_owner?
     current_user == profile_account
   end

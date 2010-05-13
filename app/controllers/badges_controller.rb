@@ -3,7 +3,7 @@ class BadgesController < ApplicationController
     @sort_type = params.fetch(:sort_by, nil).to_sym rescue :latest
 
     begin
-        sort_types = { :latest => 'created_at DESC', :alphabetical => 'name'  }
+        sort_types = { :latest => 'created_at DESC', :alphabetical => 'badges.name'  }
         @badge_awards = profile_user.badge_awards.paginate :page => params[:page], :per_page => 10, :order => sort_types[@sort_type]
     rescue NoMethodError
       redirect_to new_session_path

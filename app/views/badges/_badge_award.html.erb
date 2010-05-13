@@ -1,0 +1,8 @@
+<li>
+  <%= link_to image_tag("#{badge_award.image(:small)}"), badge_path(badge_award) %>
+  <div class="text">
+    <big><b><%= t("badges.#{badge_award.badge_key}.name")%></b></big><br/>
+    <span class="grey_text"><%= t("badges.#{badge_award.badge_key}.qualification")%></span><br/>
+  </div>
+  <div class="clearer"></div>
+</li>
