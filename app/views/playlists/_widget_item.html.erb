@@ -18,7 +18,7 @@
               <%= link_to(profile_account.name, user_path(p.owner)) %>
             </b>
             <br />
-            <span class="white"><%= l(p.created_at, :format => :short) %></span>
+            <span class="white"><%= l(p.updated_at.to_date) %></span>
             <br/><br/>
             <%= tag_links(p) %>
             <br/><br/><br/>

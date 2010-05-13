@@ -7,7 +7,7 @@
   <% end %>
   <a href="#" onclick="Base.stations.share(<%= @station_obj.id %>); return false;"><img src="images/share_button_small.png" class="png_fix valign_middle" alt="<%= t('actions.share') %>" /></a>
   <br/>
-  <small class="grey"><%= t('basics.created_at', :when => distance_of_time_in_words_to_now(@station_obj.created_at)) %></small><br/>
+  <small class="grey"><%= t('basics.created_at', :when => l(@station_obj.created_at)) %></small><br/>
   <small><%= station_contains(@station_obj.playable, 3, true, :target => "_blank") %></small>
 </div><!--/end top_buttons -->
 

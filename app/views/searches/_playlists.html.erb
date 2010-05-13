@@ -15,7 +15,7 @@
             <% if false %><span class="susbcription_stars right_side"><img src="images/rating_bottle_full.png" alt="" class="png_fix" /><img src="images/rating_bottle_full.png" alt="" class="png_fix" /><img src="images/rating_bottle_full.png" alt="" class="png_fix" /><img src="images/rating_bottle_full.png" alt="" class="png_fix" /><img src="images/rating_bottle_empty.png" alt="" class="png_fix" /></span><% end %>
             <big><%= link_to playlist.name, radio_path(:station_id => playlist.station.id) %></big>
             <br/>
-            <span class="grey"><%= t('basics.created_at', :when => distance_of_time_in_words_to_now(playlist.created_at)) %></span>
+            <span class="grey"><%= l(playlist.updated_at.to_date) %></span>
             <div class="tags_contains">
               <% unless playlist.cached_tag_list.blank? %>
               <div><%= tag_links(playlist, @active_scope) %></div>
