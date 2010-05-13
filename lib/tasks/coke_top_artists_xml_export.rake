@@ -5,7 +5,7 @@ namespace :db do
       include Timebox
 
       feed = 'top_artists'
-      output_path = 'public'
+      output_path = ENV.has_key?('xml_output_path') ? ENV['xml_output_path'] : '/shared/common/system/db/xml'
 
       size = 100
 
@@ -32,7 +32,7 @@ namespace :db do
           title = "#{artist.name}"
           link =  CGI::escape("http://#{site.domain}/search/playlists/#{artist.name}")
           thumbnail = AvatarsHelper.avatar_path(artist, :small) #s.artist.avatar_file_name.nil? ? "http://assets.cyloop.com/storage?fileName=/.elhood.com-2/usr/#{s.artist_id}/image/thumbnail/x46b.jpg" : s.artist.avatar_file_name.sub(/hires/,'thumbnail')
-          large_image = AvatarsHelper.avatar_path(artist, :search)  #s.artist.avatar_file_name.nil? ? "http://assets.cyloop.com/storage?fileName=/.elhood.com-2/usr/#{s.artist_id}/image/hi-thumbnail/x46b.jpg" : s.artist.avatar_file_name.sub(/hires/,'hi-thumbnail')
+          large_image = AvatarsHelper.avatar_path(artist, :medium)  #s.artist.avatar_file_name.nil? ? "http://assets.cyloop.com/storage?fileName=/.elhood.com-2/usr/#{s.artist_id}/image/hi-thumbnail/x46b.jpg" : s.artist.avatar_file_name.sub(/hires/,'hi-thumbnail')
 
           xml.item do
             xml.thumb thumbnail
