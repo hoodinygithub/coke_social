@@ -18,7 +18,7 @@
     </ul>
   <% else %>
     <div class="medium_text">
-      <%= t("dashboards.user_has_no_playlists", :name => profile_account.name) %>
+      <%= possessive :has_not_playlists %>
     </div>
   <% end %>
   <% if profile_account.total_playlists > 4 %>

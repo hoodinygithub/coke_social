@@ -6,7 +6,7 @@
 
 <% if profile_account.total_playlists < 1 %>
   <div class="medium_text">
-    <%= t("dashboards.user_has_no_playlists", :name => profile_user.name) %>
+    <%= possessive :has_not_playlists %>
   </div>
 <% else %>
 

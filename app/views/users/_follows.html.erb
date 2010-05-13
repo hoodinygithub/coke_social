@@ -3,7 +3,7 @@
 
   <% if profile_user.followee_count < 1 %>
     <div class="medium_text">
-      <%= t("user.is_not_following_anybody", :user_name => profile_user.first_name) %>
+      <%= possessive :is_not_following %>
     </div>
   <% else %>
     <% followings = profile_user.followees.with_limit(5) %>

@@ -2,7 +2,7 @@
 
 <% if @reviews.blank? %>
   <div class="medium_text">
-    <%= t("dashboards.user_has_not_posted_any_reviews", :name => profile_account.name) %>
+    <%= possessive :has_not_reviews %>
   </div>
 <% else %>
   <%= render :partial => 'review_item', :collection => @reviews %>

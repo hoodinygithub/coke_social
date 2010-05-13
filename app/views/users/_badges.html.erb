@@ -7,7 +7,7 @@
       <% end %>
     <% else %>
     <div class="medium_text">
-      <%= t("badges.user_has_not_won_any_badges", :name => profile_account.name) %>
+      <%= possessive :has_not_badges %>
     </div>
     <% end %>
     <br class="clearer" />
