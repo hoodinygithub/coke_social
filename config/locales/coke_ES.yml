@@ -117,9 +117,7 @@ coke_ES:
     alphabetical: ALFABETICO
     enter: Entrar
     cancel: Cancelar
-    submit: Enviar
-    stop: Parar
-    delete: Borrar
+    enter: Entrar
     close: Cerrar
     go_with_exclamation: Ir!
     buy_album: Comprar Album
@@ -127,6 +125,7 @@ coke_ES:
     buy_song: "Comprar Canci\xC3\xB3n"
     or: o
     show_more: VER MAS
+    or: o
     deny: Denegar
     view_more: "Ver M\xC3\xA1s"
     block_this_person: Bloquear Esta Persona
@@ -151,12 +150,11 @@ coke_ES:
     approve: Aprobar
     filter_by: Filtrar por
     reset: Restablecer
+    filter_by: Filtrar por
     follow_account: Seguir a {{name}}
     login: Login
     add_into_a_new_playlist: Agregar a un nuevo playlist
     latest: MAS RECIENTES
-    listen: escuchar
-    skip: ""
     share_station: Compartir esta radio con un amigo.
     add_song: "Agregar Canci\xC3\xB3n"
     submitting: Enviando
@@ -448,6 +446,9 @@ coke_ES:
     select_your_songs: Selecciona tus canciones
   messenger_player: 
     we_hope_you_enjoyed: "Esperamos que te hayan gustado las canciones que se tocaron. Para escuchar m\xC3\xA1s, "
+    buylink: 
+      select_store: Selecciona tu tienda
+      song: "Comprar esta canci\xC3\xB3n"
     click_here: "clic aqu\xC3\xAD"
     buylink: 
       select_store: Selecciona tu tienda
@@ -474,9 +475,9 @@ coke_ES:
       success: "Felicitaciones! Ya est\xC3\xA1s registrado."
       email: "Tu Direcci\xC3\xB3n de E-mail"
     activate_your_account: "Activa tu cuenta de MSN M\xC3\xBAsica"
+    buy: Comprar
     album: 
       released: Lanzado
-    buy: Comprar
     authentication_required: Necesitas ingresar para poder hacer eso
     internal_error: "No se pudo generar tu pedido debido a una falla interna. Ya estamos al tanto de esta situaci\xC3\xB3n y en breve la solucionaremos."
     now_playing: Tocando Ahora
@@ -490,11 +491,11 @@ coke_ES:
   albums: 
     label: Disquera
     song_count: Canciones
-    show: 
-      about_this_album: "Acerca de este \xC3\xA1lbum"
     year: !binary |
       QcOxbw==
 
+    show: 
+      about_this_album: "Acerca de este \xC3\xA1lbum"
     total_plays: Reproducciones totales
     release_date: Fecha de lanzamiento
   custom_profiles: 
@@ -508,8 +509,8 @@ coke_ES:
     pm: pm
   activity: 
     created_playlist: "Cre\xC3\xB3 el Playlist '{{playlist}}'"
-    just_following: Siguiendo solamente
     just_user: "S\xC3\xB3lo {{user}}"
+    just_following: Siguiendo solamente
     listened_to: "Escuch\xC3\xB3 '{{song}}' de '{{artist}}'"
     push_notification_refresh: Recargar
     push_notification: Tienes {{count}} actualizaciones nuevas. {{link}} la actividad en tu Dashboard para verlas.
@@ -521,6 +522,7 @@ coke_ES:
       playlists: PLAYLISTS
     no_more_activity: "No hay m\xC3\xA1s actividad"
     push_notification_more_than: "Tienes m\xC3\xA1s de {{count}} actualizaciones nuevas. {{link}} la actividad en tu Dashboard para verlas."
+    user_following: "{{user}} + Siguiendo"
     created_station: "{{creator}} cre\xC3\xB3 la radio: {{station}}"
     user_following: "{{user}} + Siguiendo"
     twitter_following: "Tweets de los artistas que {{user}} est\xC3\xA1 siguiendo"
@@ -626,6 +628,7 @@ coke_ES:
   registration: 
     sign_up: "Reg\xC3\xADstrate"
     sign_up_exclamation: "Reg\xC3\xADstrate!"
+    sign_in: ""
     your_profile_name_tip: "(Tu direcci\xC3\xB3n para que puedas envi\xC3\xA1rsela a tus amigos)"
     sign_in: ""
     you_are: Eres...
@@ -633,6 +636,10 @@ coke_ES:
     msg: 
       privacy: Debe ser aceptado
       terms: Debe ser aceptado
+    messages: 
+      terms_of_use: Debe ser aceptado
+      pivacy_policy: tiene que ser aceptarse
+      privacy_policy: Debe ser aceptado
     confirmation: 
       click_here: "clic aqu\xC3\xAD"
       here_is_your_confirmation_link: "Este es tu enlace para confirmaci\xC3\xB3n"
@@ -685,6 +692,7 @@ coke_ES:
       male: !binary |
         w6lsIGVzdMOh
 
+      sign_in_with_your_windows_live_id: ingresa con tu Windows Live ID
       index: "Si ya tienes tu cuenta de MSN M\xC3\xBAsica, {{link}} para hacer tu login."
       sign_in_with_your_windows_live_id: ingresa con tu Windows Live ID
       listen_text: "m\xC3\xA1s de {{count}} canciones, todas gratis"
@@ -699,8 +707,8 @@ coke_ES:
     terms_and_conditions: "T\xC3\xA9rminos y condiciones"
     year_of_birth: "A\xC3\xB1o de nacimiento"
     birth_date: Fecha de nacimiento
-    opt_out: Optas por salirte?
     email_address_tip: (En la que prefieres recibir mensajes, etc.)
+    opt_out: Optas por salirte?
     terms_and_privacy_must_be_accepted: "Los T\xC3\xA9rminos de Uso y la Pol\xC3\xADtica de Privacidad deben ser aceptados"
     customize: "Configura tu perfil de MSN M\xC3\xBAsica"
     complete_all_fields_in_red: Completa todos los campos en rojo
@@ -780,6 +788,9 @@ coke_ES:
       prompt: Por favor selecciona
   widget: 
     we_hope_you_enjoyed: "Esperamos que te hayan gustado las canciones que escuchaste. Para escuchar m\xC3\xA1s canciones,"
+    buylink: 
+      select_store: Selecciona tu tienda
+      song: "Comprar esta canci\xC3\xB3n"
     click_here: "clic aqu\xC3\xAD"
     buylink: 
       select_store: Selecciona tu tienda
@@ -793,9 +804,9 @@ coke_ES:
       friend: "La direcci\xC3\xB3n de correo electr\xC3\xB3nico de tu amigo"
     actions: 
       edit: Modificar
-      submit: Enviar
-      close: Cerrar
       delete: Eliminar
+      close: Cerrar
+      submit: Enviar
       save: Guardar
     station: 
       name: Nombre de la Radio
@@ -827,9 +838,9 @@ coke_ES:
       confirm_your_password: "Confirma tu contrase\xC3\xB1a"
       terms_and_privacy: "Al checar el casillero, est\xC3\xA1s confirmando que sabes que Cyloop.com es un sitio web operado por Hoodiny Entertainment Group en los Estados Unidos, y est\xC3\xA1s otorgando tu consentimiento de transferir todos tus datos personales a los Estados Unidos, donde tus datos personales estar\xC3\xA1n sujetos a las leyes de los Estados Unidos y donde el nivel de protecci\xC3\xB3n de datos es diferente en comparaci\xC3\xB3n con el de tu pa\xC3\xADs. Tambi\xC3\xA9n confirmas estar de acuerdo con los {{terms_link}} y la {{privacy_link}} de Cyloop, la cual describe c\xC3\xB3mo ser\xC3\xA1n usados tus datos personales."
     activate_your_account: "Activa tu cuenta en MSN M\xC3\xBAsica"
+    buy: Comprar
     album: 
       released: Lanzado
-    buy: Comprar
     authentication_required: Necesitas ingresar para hacer eso
     internal_error: "No se pudo generar tu pedido debido a una falla interna. Ya estamos al tanto de esta situaci\xC3\xB3n y en breve la solucionaremos."
     now_playing: Tocando ahora
@@ -858,14 +869,15 @@ coke_ES:
       recommended_artists: Artistas Recomendados
     still_dont_have: "\xC2\xBFAun no tienes una cuenta de MSN M\xC3\xBAsica?"
     my_stations: Mis Radios
+    still_dont_have: "\xC2\xBFAun no tienes una cuenta de MSN M\xC3\xBAsica?"
     recengineerror_NO_RADIO: No se pudo encontrar una radio
   block: 
     blockee_id: Usuario
   feedback: 
-    submit: "Env\xC3\xADa Tu Sugerencias"
     country: !binary |
       UGHDrXM=
 
+    submit: "Env\xC3\xADa Tu Sugerencias"
     title: Sugerencias
     os: Sistema Operativo
     feedback: Sugerencias
@@ -884,9 +896,9 @@ coke_ES:
       restore_defaults: Volver al original
       colors: Colores
       browse: Navegar...
-    cancel_my_account: Cancelar Mi Cuenta
     private_profile: 
       description: "Descripci\xC3\xB3n de qu\xC3\xA9 hace la funci\xC3\xB3n \"Mantener Perfil Privado?\""
+    cancel_my_account: Cancelar Mi Cuenta
     not_saved: "Tus par\xC3\xA1metros no fueron guardados correctamente."
     notifications: ""
     saved: "Tus par\xC3\xA1metros han sido guardados."
@@ -899,6 +911,7 @@ coke_ES:
       title: Lamentamos que te vayas de Cyloop.
       are_you_sure: "\xC2\xBFConfirmas que quieres cancelar tu cuenta?"
       body: "La cancelaci\xC3\xB3n de tu cuenta de Cyloop eliminar\xC3\xA1 en forma permanente toda la informaci\xC3\xB3n de tu perfil, incluyendo tus fotos, canales de actividad y tu red personal de seguidores. Esta informaci\xC3\xB3n no podr\xC3\xA1 ser recuperada una vez removida."
+      are_you_sure: "\xC2\xBFConfirmas que quieres cancelar tu cuenta?"
       keep_account: No, conservar mi cuenta
       irreversible_note: "Esta acci\xC3\xB3n es irreversible"
       cancel_account: "S\xC3\xAD, cancelar mi cuenta"
@@ -1100,8 +1113,8 @@ coke_ES:
     terms_and_conditions: "T\xC3\xA9rminos y Condiciones"
     support: Soporte
     feedback: Sugerencias
-    about_us: Sobre Nosotros
     safety_tips: Consejos de Seguridad
+    about_us: Sobre Nosotros
     about_cyloop: Sobre Cyloop
     about_hoodiny: Sobre Hoodiny
     privacy_policy: "Pol\xC3\xADtica de Privacidad"
@@ -1180,7 +1193,6 @@ coke_ES:
       full_repeat: "Repetici\xC3\xB3n Completa"
       no_repeat: No Repetir
       vertical_repeat: "Repetici\xC3\xB3n Vertical"
-    background_align: Alineamiento del Fondo
     confirmation: 
       click_here: "clic aqu\xC3\xAD"
       email_resend_failed: "El e-mail de confirmaci\xC3\xB3n no pudo ser reenviado. Por favor reintentar m\xC3\xA1s tarde."
@@ -1191,6 +1203,7 @@ coke_ES:
     background_fixed_true: Si
     twitter_username: Nombre de Usuario en Twitter
     private_profile: Mantener tu perfil privado?
+    cyloop_password: "Contrase\xC3\xB1a"
     forgot_your_password: "Se te olvido tu contrase\xC3\xB1a?"
     cyloop_password: "Contrase\xC3\xB1a"
     terms_of_use_instructions: "Al registrarte, aceptas los {{link}} y confirmas que tienes por lo menos 13 a\xC3\xB1os."
@@ -1198,8 +1211,8 @@ coke_ES:
     background_alignments: 
       left: Izquierda
       upper_right: Superior Derecha
-      lower_right: Inferior Derecha
       center: Centro
+      lower_right: Inferior Derecha
       upper_left: Superior Izquierda
       lower_left: Inferior Izquierda
       right: Derecha
@@ -1215,11 +1228,12 @@ coke_ES:
     websites: Sitios
     doesnt_have_any_followers: "{{user_name}} no tiene seguidores"
     terms_and_conditions: "t\xC3\xA9rminos y condiciones"
+    doesnt_have_any_followers: "{{user_name}} no tiene seguidores"
     background_fixed: Fondo Ajustado
     negative_captcha: No completar este campo
     background_repeat: "Repetici\xC3\xB3n del Fondo"
-    gender: Sexo
     privacy_policy_instructions: "Nuestra {{link}} existe para protegerte! Por favor l\xC3\xA9ela y confirma que est\xC3\xA1s de acuerdo con sus t\xC3\xA9rminos."
+    gender: Sexo
     avatar: Imagen
     color_main_font: "Color de la Tipograf\xC3\xADa Principal"
     short_bio: "Breve rese\xC3\xB1a"
