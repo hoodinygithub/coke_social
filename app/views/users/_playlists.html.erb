@@ -21,7 +21,7 @@
       <%= possessive :has_not_playlists %>
     </div>
   <% end %>
-  <% if profile_account.total_playlists > 4 %>
+  <% if profile_account.total_playlists > 3 %>
     <div class="align_right">
       <b class="right_side"><%= link_to t('actions.view_more'), playlists_path %></b>
     </div>
