@@ -50,6 +50,9 @@ input:focus {
     outline: none;
 }
 
+.upper {text-transform: uppercase;}
+.lower {text-transform: lowercase;}
+
 #container {
     margin: 0px auto;
     min-height: 100%;
@@ -927,7 +930,7 @@ h2 {
 }
 
 .rule.info_text {
-    background: #CC0000 url("../images/info.gif") no-repeat scroll right center ;
+    background: #CC0000 url("/images/info.gif") no-repeat scroll right center ;
     cursor:pointer;
 }
 

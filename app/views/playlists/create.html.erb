@@ -2,8 +2,8 @@
   <div class="header_spacer"></div>
 <% end %>
 <div class="two_columns">
-    <h1>CREATE A NEW PLAYLIST</h1>
-    <h2>Search for music to add to your playlist</h2>
+    <h1><%= t('playlists.create_new') %></h1>
+    <h2><%= t('playlists.search_for_music') %></h2>
     <%= render :partial => 'playlists/create/search_box' %>
     <div id="search_results_container">
       <%= render :partial => 'playlists/create/search_results' %>
@@ -13,7 +13,7 @@
 
 
 <div id="right_column">
-    <h1>PLAYLIST RULES</h1>
+    <h1><%= t('playlists.rules') %></h1>
     <%= render :partial => 'playlists/create/track_list' %>
 </div><!--/end right_column -->
 
