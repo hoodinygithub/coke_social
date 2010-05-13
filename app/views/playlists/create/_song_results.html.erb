@@ -12,7 +12,7 @@
   <div class="songs_box medium_height">
     <ul class="hoverable_list">
       <% @results.each do |song| %>
-        <li>
+        <li id="search_result_<%= song.id %>">
             <div class="song_name">
                 <%= link_to_function image_tag("icon_play_button.png", :class => "png_fix icon_play_button"), "void(0)"%>
                 &nbsp; <%= truncate(song.title, :length => 20) %>
@@ -20,9 +20,12 @@
 
             <div class="artist_name"><b><%= truncate(song.artist.name, :length => 20) %></b></div>
             <div class="album_name"><%= truncate(song.album.name, :length => 16) %></div>
-            <div class="large_bnt"><b><a href="#" class="black">+</a></b></div>
+            <div class="large_bnt">
+              <b><a href="#" class="black" onclick="add_item(<%= song.id %>, '<%= song.title.gsub("'", "\\'") %>', <%= song.artist.id %>, '<%= song.artist.name.gsub("'", "\\'") %>', <%= song.album.id %>, '<%= song.album.name.gsub("'", "\\'") %>', '<%= AvatarsHelper.avatar_path( song, :small ) %>'); remove_search_result(<%= song.id %>); return false;">+</a></b></div>
+
             <br class="clearer" />
         </li>
+        
       <% end %>
     </ul>
   </div><!--/end songs_box -->

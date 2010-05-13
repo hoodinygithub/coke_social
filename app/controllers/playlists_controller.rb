@@ -24,11 +24,18 @@ class PlaylistsController < ApplicationController
 
   def create
     @results,@scope,@result_text = get_seeded_results
-    @top_artists = current_site.top_artists.all(:limit => 10)
     
-    # playlist.create_station after save
+    unless request.xhr?
+      @top_artists = current_site.top_artists.all(:limit => 10)
     
-    render :partial => "/playlists/create/search_results", :layout => false if request.xhr?
+      # playlist.create_station after save
+    
+      #@playlist_item_ids = Artist.find(9417).songs[0..4].map{|s| s.id}
+      @playlist_item_ids ||= session[:playlist_item_ids].nil? ? [] : session[:playlist_item_ids]
+      @playlist_items ||= @playlist_item_ids.empty? ? [] : Song.find(@playlist_item_ids)
+    else
+      render :partial => "/playlists/create/search_results", :layout => false
+    end
   end
   
   def edit
@@ -99,7 +106,7 @@ class PlaylistsController < ApplicationController
   
   private
     def get_seeded_results
-      results = []
+      results = nil
       result_text = ""
       
       scope = (params[:scope] =~ /(song|artist|album)/i) ? params[:scope].to_sym : nil

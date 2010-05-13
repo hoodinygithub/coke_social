@@ -8,9 +8,10 @@
 
 <br class="clearer" />
 
+
 <div class="dotted_box">
     <div class="layer2">
-        <div class="layer3">
+        <div id="empty_playlist" class="layer3">
             <div class="step_no">2</div>
             <h2><%= t('playlists.drag_songs_here') %></h2>
 
@@ -18,9 +19,24 @@
                 <%= t('playlists.drag_songs_here_text') %>
             </div>
         </div>
+        
+        <div id="populated_playlist" class="added_items_box hidden">
+            <ul id="playlist_item_list" class="added_items">
+              
+            </ul>
+        </div><!--/end added_items_box -->
     </div>
 </div><!--/end dotted_box -->
+
+
 
 <div class="align_right">
     <a href="#" class="cancel_button upper"><%= t('actions.cancel') %></a>
 </div>
+
+
+<script language="javascript">
+  <% @playlist_items.each do |item| %>
+    add_item(<%= item.id %>, '<%= item.title %>', <%= item.artist.id %>, '<%= item.artist.name %>', <%= item.album.id %>, '<%= item.album.name %>', '<%= AvatarsHelper.avatar_path(item, :small) %>');
+  <% end %>
+</script>
