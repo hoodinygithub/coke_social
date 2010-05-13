@@ -21,7 +21,7 @@ namespace :db do
       items = site.top_artists.all(:limit => limit)
       return if items.empty?
 
-      file = File.open("#{RAILS_ROOT}/#{path}/top_artists_#{site.code}.xml", 'w')
+      file = File.open("#{path}/#{site.code}/top_artists_#{site.code}.xml", 'w')
 
       xml = Builder::XmlMarkup.new(:target => file, :indent => 2)
 
