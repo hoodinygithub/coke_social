@@ -8,7 +8,8 @@
   <div class="includes"><%= station_contains(my_playlist_item, 3, false, {:target => '_blank', :limit => 30}) %></div>
 
   <div class="large_btn3">
-    <span class="small_btn_box hoverable_item"><%= link_to_function "Edit", "Base.stations.launch_edit_layer(#{my_playlist_item.station.id})", :class => "small_btn edit_btn" %></span>
+    <!--span class="small_btn_box hoverable_item"><%= link_to_function "Edit", "Base.stations.launch_edit_layer(#{my_playlist_item.station.id})", :class => "small_btn edit_btn" %></span-->
+    <span class="small_btn_box hoverable_item"><%= link_to_function "Edit", "return false", :class => "small_btn edit_btn" %></span>
     <span class="small_btn_box hoverable_item"><%= link_to_function "Delete", "Base.stations.remove_from_layer(#{my_playlist_item.station.id})", :class => "small_btn delete_btn" %></span>
   </div>
 
