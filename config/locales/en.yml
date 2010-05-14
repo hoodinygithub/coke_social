@@ -452,10 +452,10 @@ en:
     rules: Playlist Rules
     maximum_songs_from: maximum of {{num}} songs from the same {{type}}
     select_your_songs: Select Your Songs
-    select_your_songs_text: "Song search results will show up here<br/>drag the songs you like the container to<br/>the right to create your playlist"
+    select_your_songs_text: "Song search results will show up here{{break}}drag the songs you like the container to{{break}}the right to create your playlist"
     tracks_remaining: tracks remaining to publish
     drag_songs_here: Drag Songs Here
-    drag_songs_here_text: "include at least 10 songs,<br/>with no more than 2 songs<br/>from the same artist<br/>or the same album"
+    drag_songs_here_text: "include at least 10 songs,{{break}}with no more than 2 songs{{break}}from the same artist{{break}}or the same album"
     why_not_try: Why Not Try...
     no_results_found: "No results found, please search again"
   messenger_player: 
@@ -964,20 +964,86 @@ en:
   badges: 
     unlocked_by_user_on: Unlocked by {{user}} on {{date_won}}
     user_has_not_won_any_badges: "{{name}} has not won any badges" 
-    favorite_dj: 
-      name: Favorite Dj
-    my_first_playlist: 
-      name: My First Playlist
-    king_of_djs: 
-      name: King of Djs
     unlocked_on: Unlocked on
-    master_of_hip_hop: 
-      name: Master of Hip-Hop
-      qualification: For having collected 100 Hip-Hop songs across all my playlists
-    others_that_have_this_badge: Others users that have this badge
-    dj_on_fire: 
+    others_that_have_this_badge: Others users that have this badge    
+    beginner:
+      name: Beginner
+      qualification: For registering on the site.        
+    dj_bedroom:
+      name: Bedroom DJ
+      qualification: When 5 different users listen to my playlists
+    dj_club:
+      name: Club DJ
+      qualification: When 10 different users listen to my playlists
+    dj_private_party:
+      name: Private Party DJ
+      qualification: When 100 different users listen to my playlists      
+    dj_radio:
+      name: Radio DJ
+      qualification: When 1000 different users listen to my playlists            
+    dj_superstar:
+      name: Superstar DJ
+      qualification: When 5000 different users listen to my playlists                  
+    dj_unbeatable:
       name: Unbeatable DJ
       qualification: For having created 5 playists in a span of 24 hours
+    leader:
+      name: Leader
+      qualification: For being followed by 5 users
+    master:
+      name: Master
+      qualification: For being followed by 25 users
+    guru:
+      name: Guru
+      qualification: For being followed by 100 users      
+    idol:
+      name: Idol
+      qualification: For being followed by 500 users            
+    mixmaster_white:      
+      name: Mixmaster: White Belt
+      qualification: For having created my first playlist
+    mixmaster_yellow:
+      name: Mixmaster: Yellow Belt
+      qualification: For having created 5 playlists      
+    mixmaster_green:
+      name: Mixmaster: Green Belt
+      qualification: For having created 10 playlists      
+    mixmaster_red:
+      name: Mixmaster: Red Belt
+      qualification: For having created 25 playlists      
+    mixmaster_brown:
+      name: Mixmaster: Brown Belt
+      qualification: For having created 50 playlists      
+    mixmaster_black:
+      name: Mixmaster: Black Belt
+      qualification: For having created 50 playlists      
+    networker:
+      name: Networker
+      qualification: For following 5 users
+    networker_bronze:
+      name: Networker
+      qualification: For following 25 users
+    networker_silver:
+      name: Networker
+      qualification: For following 50 users
+    networker_gold:
+      name: Networker
+      qualification: For following 100 users      
+    networker_platinum:
+      name: Networker
+      qualification: For following 250 users      
+    networker_diamond:
+      name: Networker
+      qualification: For following 500 users            
+    record_gold:
+      name: Networker
+      qualification: When 20 different people listen to one of my playlists      
+    record_platinum:
+      name: Networker
+      qualification: When 100 different people listen to one of my playlists      
+    record_diamond:
+      name: Networker
+      qualification: When 500 different people listen to one of my playlists
   main: 
     navigation: 
       stations: Stations
@@ -1056,7 +1122,7 @@ en:
     followers: Followers
     my_plural: My
     click_to_unfollow: Click {{follow_link}} to stop following
-    playlists: Playlists
+    playlists: Playlists  
     badges: Badges
     albums: Albums
     last_modified_at: "Last modified: {{when}} ago"
