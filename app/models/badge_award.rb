@@ -7,7 +7,11 @@ class BadgeAward < ActiveRecord::Base
   named_scope :latest, lambda { |*num| { :limit => num.flatten.first || 6, :order => 'created_at DESC' } }
   
   def new?
-    true
+    is_new = false
+    if notified_at.nil? or (notified_at and (Time.now >= notified_at and Time.now <= notified_at + 24.hours))
+      is_new = true
+    end
+    is_new
   end
   
   def increment_badge_counts

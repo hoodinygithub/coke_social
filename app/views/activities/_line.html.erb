@@ -1,0 +1,16 @@
+<li>
+  <% if line['type'] == 'status' %>
+      <b><%= link_to(line['account'], line['account']) %></b>
+      <%= line['message'] %><br/>
+  <% elsif line['type'] == 'twitter' %>
+      <%= line['text'] %>
+      <%= link_to("Twitter / #{item['screen_name']}", "http://twitter.com/#{item['screen_name']}", :target => "_blank") %>
+  <% elsif item['type'] == 'station' %>
+    <% playable = line['station'] %>
+    <% if playable and playable.deleted_at.nil? %>
+        <%= t('activity.created_station', :creator => link_to("<b>#{item['account']}</b>", line['account']), :station => link_to(playable.name, radio_path(:station_id => playable.station.id))) %>
+    <% end %>
+  <% end %>
+
+  <span class="grey"><%=  t('basics.created_at', :when => nice_elapsed_time(line['timestamp'])) %></span>
+</li>

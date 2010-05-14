@@ -23,7 +23,7 @@
 module Activity
   class Feed
     MAX_ITEMS = 200
-    PER_PAGE = 15
+    PER_PAGE = 60
     attr_reader :user, :source
     def self.query(*args)
       options = args.extract_options!
