@@ -981,9 +981,9 @@ Base.network.count_chars = function() {
 };
 
 Base.network.__update_page_owner_page = function(response, options) {
-  $show_more_button = jQuery('#show_more_comments');
+  $show_more_button    = jQuery('#show_more_comments,#show_more_activities');
   $comment_list        = jQuery('#network_comment_list');
-  $share_button = jQuery('a.compartir_button');
+  $share_button        = jQuery('a.compartir_button');
 
   if (typeof(options) == 'object' && typeof(options.replace) != 'undefined' && options.replace) {
     $comment_list.hide().html(response).fadeIn();
@@ -991,23 +991,23 @@ Base.network.__update_page_owner_page = function(response, options) {
     $comment_list.hide().append(response).fadeIn();
   }
 
-  if ($comment_list.find('li').length >= 5) {
+  if ($comment_list.find('li').length >= 6) {
    $show_more_button.fadeIn();
   }
 };
 
 Base.network.__update_page_user_page = function(response) {
-  $user_big_text = jQuery("#user_activity_big_text");
+  $user_medium_text = jQuery("#user_activity_medium_text");
   $ul = jQuery('#user_recent_activities');
 
-  $user_big_text.find('img').remove();
+  $user_medium_text.find('img').remove();
 
-  if (response.length == 0) {
-    $user_big_text.find('span').fadeIn();
+  if (response.trim().length == 0) {
+    $user_medium_text.find('span').fadeIn();
     return;
   }
 
-  $user_big_text.remove();
+  $user_medium_text.remove();
   $ul.html(response);
 };
 

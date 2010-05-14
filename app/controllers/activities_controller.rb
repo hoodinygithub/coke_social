@@ -8,7 +8,7 @@ class ActivitiesController < ApplicationController
   before_filter :load_user_activities, :only => [:index, :latest]
 
   ACTIVITIES_MAX           = 15
-  ACTIVITIES_DASHBOARD_MAX = 5
+  ACTIVITIES_DASHBOARD_MAX = 6
   ACTIVITY_SHOW_MORE_SIZE  = 5
 
   def index

@@ -3,8 +3,7 @@
     <%= t('dashboards.recent_activity')%>
   </h1>
 
-  <div id="user_activity_big_text" class="big_text">
-    <br/>
+  <div id="user_activity_medium_text" class="medium_text">
     <img src="/images/loading.gif"></img>
     <span style="display:none;"><%= t("user.has_no_activity", :user_name => profile_account.first_name) %></span>
     <br/><br/>
@@ -12,4 +11,9 @@
 
   <ul id="user_recent_activities" class="recent_activity_list">
   </ul>
+
+  <div class="align_right">
+    <b class="right_side"><%= link_to t('actions.view_more'), activities_path, :id => 'show_more_activities' %></b>
+  </div>
+
 </div><!--/end box_content -->
