@@ -3,7 +3,7 @@
     <%= link_to avatar_for(item, :medium), radio_path(:station_id => item.station.id) %>
     <div class="overlay">
       <div class="hidden fh">
-        <b><%= link_to item.name, playlist_path(item) %></b><br/>
+        <b><%= link_to item.name, radio_path(:station_id => item.station.id) %></b><br/>
         <% if false %>
         <span class="rating">
           <a href="#"><img src="/images/rating_bottle_full.png" class="png_fix" alt="" /></a>
