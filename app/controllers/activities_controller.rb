@@ -75,7 +75,7 @@ class ActivitiesController < ApplicationController
     if params[:public]
       render :partial => 'shared/public_user_activity_content'
     else
-      render :partial => 'shared/collection_to_li'
+      render :partial => 'activities/item', :collection => @collection
     end
   end
 
