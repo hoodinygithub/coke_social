@@ -1431,6 +1431,10 @@ Base.playlists.close_button_handler = function(object) {
     });
 };
 
+Base.playlists.playStream = function(media, songId)
+{
+  swf('stream_connect').playSample(media, songId);
+}
 
 /*
  * main search

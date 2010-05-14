@@ -14,7 +14,7 @@
       <% @results.each do |song| %>
         <li id="search_result_<%= song.id %>">
             <div class="song_name">
-                <%= link_to_function image_tag("icon_play_button.png", :class => "png_fix icon_play_button"), "void(0)"%>
+              <%= link_to_function image_tag("icon_play_button.png", :class => "png_fix icon_play_button"), "Base.playlists.playStream('http://media.cyloop.com/storage/storage?fileName=#{song.path}', '#{song.id}')"%>
                 &nbsp; <%= truncate(song.title, :length => 20) %>
             </div>
 
