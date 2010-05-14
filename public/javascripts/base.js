@@ -981,7 +981,7 @@ Base.network.count_chars = function() {
 };
 
 Base.network.__update_page_owner_page = function(response, options) {
-  $show_more_button    = jQuery('#show_more_comments,#show_more_activities');
+  $show_more_button    = jQuery('#show_more_comments');
   $comment_list        = jQuery('#network_comment_list');
   $share_button        = jQuery('a.compartir_button');
 
@@ -1007,8 +1007,15 @@ Base.network.__update_page_user_page = function(response) {
     return;
   }
 
+  html_content = $(response).filter('li');
+
+  if (html_content.eq(6).length != []) {
+    html_content = html_content.filter(function(index) { if (index < 6) { return $(this) }; });
+    jQuery('#show_more_activities').fadeIn();
+  }
+
   $user_medium_text.remove();
-  $ul.html(response);
+  $ul.html(html_content);
 };
 
 
