@@ -4,5 +4,5 @@ class ReviewsController < ApplicationController
     @section = "reviews_page"
     @collection = []
   end
-
 end
+
