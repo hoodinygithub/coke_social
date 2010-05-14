@@ -32,8 +32,12 @@
       <% end%>  
       <div class="clearer"></div>
       </div>
+    <% else %>
+    <div class="medium_text">
+      <%= possessive :friends_dont_have_badge %>
+    </div>
     <% end %>
-    
+    <br />
     <h1><%= t('badges.others_that_have_this_badge') %></h1>    
     
     <% if @others_with_badge.size > 0 %>
@@ -45,6 +49,10 @@
         </div>        
       <% end %>  
       <div class="clearer"></div>
+      </div>
+    <% else %>
+      <div class="medium_text">
+        <%= possessive :others_dont_have_badge %>
       </div>
     <% end %>
 </div><!--/end two_columns -->
