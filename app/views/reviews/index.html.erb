@@ -1,24 +1,14 @@
-<% content_for :header_space_content do %>
-  <%= render 'users/stats' %>
+<% content_for :title do %>
+  <%= possessive :reviews %>
 <% end %>
 
-<%= render 'dashboards/left_column' %>
+<% content_for :sorting do %>
+  <%= sort_link_to :highest_rated %> /
+  <%= sort_link_to :latest %>
+<% end %>
 
-<div id="center_column">
-  <h1><%= possessive :reviews %></h1>
+<% content_for :list do %>
+  <%= render !@collection.empty? ? 'list' : 'blank_slate' %>
+<% end %>
 
-  <div class="sorting">
-    <%= sort_link_to(:highest_rated) %> /
-    <%= sort_link_to(:latest, :default => true) %> 
-  </div>
-
-  <% unless @reviews %>
-    <div class="medium_text">
-      <%= possessive :has_not_reviews %>
-    </div>
-  <% else %>
-    <%= render :partial => 'item', :collection => @reviews %>
-  <% end %>
-</div>
-<%= render 'accounts/right_column' %>
-<div class="clearer"></div>
+<%= render 'shared/list' %>

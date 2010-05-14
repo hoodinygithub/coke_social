@@ -1,0 +1,22 @@
+<% content_for :header_space_content do %>
+  <%= render 'users/stats' %>
+<% end %>
+<% if @filter_type %>
+  <% content_for :javascript do %>
+    Base.network.FILTER_BY = "<%= @filter_type.to_s %>";
+  <% end %>
+<% end %>
+
+<%= render 'shared/ajax_modules' %>
+
+<% content_for :title do %>
+  <%= possessive :network_activity %>
+<% end %>
+
+<% content_for :sorting do %>
+  <%= filter_link_by( t('activity.user_following', :user => profile_account.slug), :type => :all ) + "/" unless profile_account.is_a?(Artist) %>
+  <%= filter_link_by( profile_account.slug, :type => :me ) %>
+  <%= "/" + filter_link_by( t('activity.just_following', :user => profile_account.slug), :type => :following )  unless profile_account.is_a?(Artist) %>
+<% end %>
+
+<%= render 'shared/internal_content' %>
