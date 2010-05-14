@@ -105,24 +105,24 @@ coke_ES:
     unfollow_account: Dejar de seguir a {{name}}
     share: Compartir
     disaprove: Rechazar
-    add: agregar
     pending: Pendientes
+    add: agregar
     unfollow: Siguiendo
     add_song_to_playlist: "Agregar Canci\xC3\xB3n al Playlist"
     edit: Editar
-    share_with_a_friend: "Compartir esta canci\xC3\xB3n con un amigo"
     previous: Anterior
+    share_with_a_friend: "Compartir esta canci\xC3\xB3n con un amigo"
     select_playlist: Seleccionar playlist
     forgot_password: "\xC2\xBFHa olvidado la contrase\xC3\xB1a?"
     buy_album: Comprar Album
     alphabetical: ALFABETICO
-    cancel: Cancelar
-    enter: Entrar
     results_for: Resultados para
-    close: Cerrar
-    delete: Borrar
-    stop: Parar
+    enter: Entrar
+    cancel: Cancelar
     submit: Enviar
+    stop: Parar
+    delete: Borrar
+    close: Cerrar
     go_with_exclamation: Ir!
     or: o
     buy_song: "Comprar Canci\xC3\xB3n"
@@ -132,37 +132,37 @@ coke_ES:
     search_again: Buscar nuevamente
     view_more: "Ver M\xC3\xA1s"
     block_this_person: Bloquear Esta Persona
-    relevance: RELEVANCIA
     to: a
+    relevance: RELEVANCIA
     view_more_songs: "ver m\xC3\xA1s canciones"
     aprove: Aceptar
     add_to_playlist: Agregar a mis Playlists
     newest: "M\xC3\x81S NUEVAS"
-    follow: Seguir
     block: Bloquear
+    follow: Seguir
     launch_radio: Crear Radio
     save: Guardar
     view: Ver
     search_text: "Buscar m\xC3\xBAsica en Cyloop"
     send: Enviar
     go: Ir
-    create: Crear
-    next: "Pr\xC3\xB3ximo"
     filter_by: Filtrar por
+    next: "Pr\xC3\xB3ximo"
+    create: Crear
     approve: Aprobar
     reset: Restablecer
     share_station: Compartir esta radio con un amigo.
     login: Login
     latest: MAS RECIENTES
-    follow_account: Seguir a {{name}}
-    skip: ""
     listen: escuchar
+    skip: ""
+    follow_account: Seguir a {{name}}
     add_into_a_new_playlist: Agregar a un nuevo playlist
-    submitting: Enviando
     add_song: "Agregar Canci\xC3\xB3n"
+    submitting: Enviando
     add_more: "Agregar M\xC3\xA1s"
     select_store: Seleccionar Tienda
-    create_station: ""
+    create_station: Crear radio
     create_a_playlist: Crear un playlist
     search: Buscar
   number: 
@@ -225,8 +225,8 @@ coke_ES:
       has_not_subscribed: "{{subject}} no tiene suscripci\xC3\xB3n a ning\xC3\xBAn playlist."
       latest_playlists: "\xC3\x9Altimos Playlists de {{subject}}"
       subscriptions: Suscsripciones de {{subject}}
-      stations: Radios de {{subject}}
       network_activity: Actividad de {{subject}} en la red
+      stations: Radios de {{subject}}
       friends_that_have_this_badge: Amigos de {{subject}} que han ganado este premio
       followers: "Gente que est\xC3\xA1 siguiendo a {{subject}}"
       has_not_badges: "{{subject}} no ha ganado ning\xC3\xBAn badge aun."
@@ -236,13 +236,13 @@ coke_ES:
       top_playlists: Top Playlists de {{subject}}
       has_not_playlists: "{{subject}} no tiene playlists."
       has_not_followers: "{{subject}} no tiene seguidores."
-      others_dont_have_badge: ""
+      others_dont_have_badge: "Nadie tiene este badge. \xC2\xA1{{subject}} es la primera persona que se lo gana!"
       followees: "Gente que  {{subject}} est\xC3\xA1 siguiendo"
       reviews: Comentarios hechos por {{subject}}
       badges: Badges de {{subject}}
       is_not_following: "{{subject}} no est\xC3\xA1 siguiendo a nadie."
       latest_reviews: "\xC3\x9Altimas Reviews de {{subject}}"
-      friends_dont_have_badge: ""
+      friends_dont_have_badge: "Ning\xC3\xBAn amigo de {{subject}} tiene este badge."
       follow_requests: Pedidos de Gente a Seguir de {{subject}}
       has_not_activities: "{{subject}} no tiene actividad."
       charts: Listas de {{subject}}
@@ -250,8 +250,8 @@ coke_ES:
       has_not_subscribed: "No tienes suscripciones a ning\xC3\xBAn playlist."
       latest_playlists: "Mis \xC3\x9Altimas Reviews"
       subscriptions: Mis suscripciones
-      stations: Mis Radios
       network_activity: Mi actividad de red
+      stations: Mis Radios
       friends_that_have_this_badge: "Amigos m\xC3\xADos que tienen este badge"
       followers: Gente que me esta siguiendo
       has_not_badges: "No has ganado ning\xC3\xBAn badge aun."
@@ -261,12 +261,12 @@ coke_ES:
       top_playlists: Mis Playlists Top
       has_not_playlists: No tienes playlists.
       has_not_followers: No tienes seguidores.
-      others_dont_have_badge: ""
+      others_dont_have_badge: "Nadie tiene este badge. \xC2\xA1Eres la primera persona que se lo gana!"
       followees: "Gente que estoy siguiendo "
       reviews: Mis Comentarios
       badges: Mis Badges
       is_not_following: "No est\xC3\xA1s siguiendo a nadie."
-      friends_dont_have_badge: ""
+      friends_dont_have_badge: Ninguno de tus amigos tiene este badge aun.
       follow_requests: Mis Pedidos de Gente a Seguir
       has_not_activities: No tienes actividad.
       charts: Mis Listas
@@ -439,13 +439,13 @@ coke_ES:
     delete_text: Seguro que quieres borrar este playlist?
     search_for_music: "Busca m\xC3\xBAsica para agregar a tu playlist"
     playlist_name: Nombre del Playlist
-    maximum_songs_from: "m\xC3\xA1ximo de {{num}} canciones de un mismo {{type}}"
     last_playlist: Ultimo Playlist
+    maximum_songs_from: "m\xC3\xA1ximo de {{num}} canciones de un mismo {{type}}"
     select_your_songs_text: "Los resultados de canciones aparecer\xC3\xA1n aqu\xC3\xAD<br/>arrastra las canciones que te gustan y ponlas en la columna del costado<br/>para crear tu playlist"
     why_not_try: "\xC2\xBFY qu\xC3\xA9 te parecen \xC3\xA9stas...?"
     delete_title: Borrar Playlist
-    continue_btn: Continuar
     drag_songs_here: "Arrastra las canciones aqu\xC3\xAD"
+    continue_btn: Continuar
     drag_songs_here_text: "Incluye por lo menos 10 canciones,<br/>usando no m\xC3\xA1s de 2 canciones<br/>de un mismo artista<br/>o de un mismo \xC3\xA1lbum dentro del mismo playlist"
     no_results_found: "No se encontraron resultados. Por favor realiza otra b\xC3\xBAsqueda."
     create_new: Crear un playlist nuevo
@@ -506,7 +506,7 @@ coke_ES:
   time: 
     am: am
     formats: 
-      default: "%a, %d %b %Y %H:%M:%S %z"
+      default: "%A, %d %b %Y %H:%M:%S %z"
       short: "%d %b %H:%M"
       long: "%B %d, %Y %H:%M"
     pm: pm
@@ -921,29 +921,31 @@ coke_ES:
   badges: 
     unlocked_by_user_on: Unlocked by {{user}} on {{date_won}}
     beginner: 
-      name: Principante
+      name: Principiante
       qualification: ""
     dj_superstar: 
       name: DJ Superstar
       qualification: ""
     mixmaster_black: 
-      name: "Mixmaster: Cintur\xC3\xB3n Negro"
+      name: "Mixmaster Cintur\xC3\xB3n Negro"
       qualification: ""
     favorite_dj: 
       name: Dj Favorito
     leader: 
-      name: Lider
+      name: !binary |
+        TMOtZGVy
+
       qualification: ""
     my_first_playlist: 
       name: Mi Primera Playlist
     mixmaster_green: 
-      name: "Mixmaster: Cintur\xC3\xB3n Verde"
+      name: "Mixmaster Cintur\xC3\xB3n Verde"
       qualification: ""
     dj_unbeatable: 
-      name: DJ Imibatible
+      name: DJ Imbatible
       qualification: ""
     mixmaster_brown: 
-      name: "Mixmaster: Cintur\xC3\xB3n Marr\xC3\xB3n"
+      name: "Mixmaster Cintur\xC3\xB3n Marr\xC3\xB3n"
       qualification: ""
     record_gold: 
       name: Disco de Oro
@@ -957,39 +959,39 @@ coke_ES:
     networker_gold: 
       name: Networker de Oro
       qualification: ""
+    dj_radio: 
+      name: DJ de radio
+      qualification: ""
     king_of_djs: 
       name: El Rey de Djs
-    dj_radio: 
-      name: DJ de Radio
-      qualification: ""
     dj_bedroom: 
       name: Bedroom DJ
       qualification: ""
-    unlocked_on: Unlocked on
     networker_diamond: 
       name: Networker de Diamante
       qualification: ""
-    user_has_not_won_any_badges: "{{name}} no ganado ning\xC3\xBAn badge aun."
+    unlocked_on: Unlocked on
     networker_silver: 
       name: Networker de Plata
       qualification: ""
+    user_has_not_won_any_badges: "{{name}} no ganado ning\xC3\xBAn badge aun."
     record_platinum: 
       name: Disco de Platino
       qualification: ""
     dj_club: 
-      name: DJ de Club
+      name: Club DJ
       qualification: ""
     master_of_hip_hop: 
       name: Maestro de Hip-Hop
       qualification: Por haber incluido 100 canciones Hip hop, en total entre all plists creados.
     dj_private_party: 
-      name: DJ de Fiesta Privada
+      name: DJ de fiesta privada
       qualification: ""
     record_diamond: 
       name: Disco de Diamante
       qualification: ""
     mixmaster_red: 
-      name: "Mixmaster: Cintur\xC3\xB3n Rojo"
+      name: "Mixmaster Cintur\xC3\xB3n Rojo"
       qualification: ""
     dj_on_fire: 
       name: DJ Imbatible
@@ -1007,10 +1009,10 @@ coke_ES:
 
       qualification: ""
     mixmaster_white: 
-      name: "Mixmaster: Cintur\xC3\xB3n Blanco"
+      name: "Mixmaster Cintur\xC3\xB3n Blanco"
       qualification: ""
     mixmaster_yellow: 
-      name: "Mixmaster: Cintur\xC3\xB3n Amarillo"
+      name: "Mixmaster Cintur\xC3\xB3n Amarillo"
       qualification: ""
     networker_bronze: 
       name: Networker de Bronce
@@ -1048,8 +1050,8 @@ coke_ES:
         \r\n\
         Consejo: crea una contrase\xC3\xB1a que contenga una mezcla de caracteres tanto de letras como de n\xC3\xBAmeros, para que sea m\xC3\xA1s segura."
   basics: 
-    play: Escuchar
     my: Mi
+    play: Escuchar
     stations_created_by: Radios creadas por
     album: Album
     radio: Radio
@@ -1080,12 +1082,12 @@ coke_ES:
     chart: Ranking
     follow_requests: Pedidos de Seguidores
     comment: Comentario
+    city: Ciudad
     badges: Badges
     song_name: "Nombre de la canci\xC3\xB3n"
     station: Radio
     followees_of: Seguidor de
     you_are: Estas
-    city: Ciudad
     contains: Incluye
     here: !binary |
       YXF1w60=
@@ -1123,10 +1125,10 @@ coke_ES:
     me: mi
     person: Persona
     albums_by: Albumes por
-    songs: Canciones
     followees: Seguidores
     comments: Comentarios
     "no": "No"
+    songs: Canciones
   main: 
     navigation: 
       stations: Radios
@@ -1252,19 +1254,19 @@ coke_ES:
   user: 
     forgot_message: Cyloop te enviara instrucciones al email asociado con tu cuenta. Por favor,  entre su email.
     is_not_following_anybody: "{{user_name}} no est\xC3\xA1 siguiendo a nadie"
-    name: Nombre
     background_repeats: 
       horizontal_repeat: "Repetici\xC3\xB3n Horizontal"
       full_repeat: "Repetici\xC3\xB3n Completa"
       no_repeat: No Repetir
       vertical_repeat: "Repetici\xC3\xB3n Vertical"
+    name: Nombre
     marketing_opt_out: "Por favor no me env\xC3\xADen emails de parte de Cyloop o sus sitios relacionados."
     receives_following_notifications: Alertarme cuando alguien comienza a seguirme
     slug: Elige tu Nombre de Perfil
     color_links: Color del Enlace
     city_name: Ciudad
-    background_fixed_false: "No"
     background_align: Alineamiento del Fondo
+    background_fixed_false: "No"
     confirmation: 
       click_here: "clic aqu\xC3\xAD"
       email_resend_failed: "El e-mail de confirmaci\xC3\xB3n no pudo ser reenviado. Por favor reintentar m\xC3\xA1s tarde."
@@ -1290,20 +1292,20 @@ coke_ES:
       upper_center: Superior Centro
       lower_center: Inferior Centro
     cyloop_email: Email de Cyloop
-    color_bg: Color del fondo
     background: Imagen de Fondo
+    color_bg: Color del fondo
     current_password: "Contrase\xC3\xB1a Actual"
     password_confirmation: "Confirmar Contrase\xC3\xB1a"
     female: Mujer
-    websites: Sitios
     remove_avatar: Eliminar Imagen
-    terms_and_conditions: "t\xC3\xA9rminos y condiciones"
+    websites: Sitios
     doesnt_have_any_followers: "{{user_name}} no tiene seguidores"
+    terms_and_conditions: "t\xC3\xA9rminos y condiciones"
     background_fixed: Fondo Ajustado
     negative_captcha: No completar este campo
     background_repeat: "Repetici\xC3\xB3n del Fondo"
-    privacy_policy_instructions: "Nuestra {{link}} existe para protegerte! Por favor l\xC3\xA9ela y confirma que est\xC3\xA1s de acuerdo con sus t\xC3\xA9rminos."
     gender: Sexo
+    privacy_policy_instructions: "Nuestra {{link}} existe para protegerte! Por favor l\xC3\xA9ela y confirma que est\xC3\xA1s de acuerdo con sus t\xC3\xA9rminos."
     avatar: Imagen
     color_main_font: "Color de la Tipograf\xC3\xADa Principal"
     short_bio: "Breve rese\xC3\xB1a"
