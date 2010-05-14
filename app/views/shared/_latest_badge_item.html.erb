@@ -1,5 +1,5 @@
 <li>
-  <span class="badge_box"><%= link_to image_tag(latest_badge_item.badge.image), "#" %></span>
+  <span class="badge_box"><%= link_to image_tag(latest_badge_item.image), user_badge_path(latest_badge_item.winner, latest_badge_item) %></span>
   <span class="item_image">
     <%= link_to avatar_for(latest_badge_item.winner, :small), latest_badge_item.winner %>
   </span>
