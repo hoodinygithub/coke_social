@@ -3,7 +3,7 @@
   <div class="badges_list">
     <% if profile_user.total_badges > 0 %>
       <% profile_user.badge_awards.all(:limit => 15, :order => 'created_at DESC').each do |badge_award| %>
-      <%= link_to "#{image_tag(badge_award.image(:small))}#{badge_award.new? ? image_tag("new_#{current_site.default_locale.to_s.downcase}.png", :class => 'new') : ''}", badge_path(badge_award) %>
+      <%= link_to "#{image_tag(badge_award.image)}#{badge_award.new? ? image_tag("new_#{current_site.default_locale.to_s.downcase}.png", :class => 'new') : ''}", badge_path(badge_award) %>
       <% end %>
     <% else %>
     <div class="medium_text">
