@@ -1,4 +1,4 @@
-xml.player :autoStart => 'yes', :canRate => '' do
+xml.player :autoStart => 'yes', :canRate => '', :owner => @playlist.owner.id do
   songs = @playlist.items.sort_by { rand }
   songs.each do |item|
     if item.song && item.song.album && !item.artist.nil?
