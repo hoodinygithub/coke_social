@@ -1,5 +1,5 @@
 <li timestamp="<%= item['timestamp'] %>">
-  <%= link_to avatar_for(profile_account, :small, :class => "comment_icon"), profile_account %>
+  <%= link_to avatar_for(item['account'], :small, :class => "comment_icon"), item['account'] %>
   <div class="comment_text">
     <% if item['type'] == 'status' %>
         <b><%= link_to(item['account'], item['account']) %></b>
