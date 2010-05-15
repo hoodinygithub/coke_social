@@ -80,31 +80,33 @@
 
     
     <div class="popup_content">
-        <form action="" method="post" class="account_settings">
+        <%= form_tag playlist_create_path, :class => "account_settings", :id => "save_playlist_form", :method => :post %>
+            <input type="hidden" name="item_ids" value="">
             <div class="title"><%= t('playlists.save_your_playlist') %></div>
             
             <div class="form_row">
                 <label><b><%= t('playlists.name_your_playlist') %></b></label>
                 
                 <div class="grey_round_box">
-                    <input type="text" class="input full_width" />
+                    <input type="text" class="input full_width" name="name" value="<%= params[:name] %>" />
                 </div>
 
                 
                 <label><b><%= t('playlists.tag_your_playlist') %></b> <small class="grey"><%= t('playlists.seperated_commas') %></small></label>
                 
                 <div class="grey_round_box">
-                    <div class="tags">
+                    <input type="text" class="input full_width" name="tags" value="<%= params[:tags] %>" />
+                    <!--div class="tags">
                         <span class="tag">metal <a href="#"><img src="/images/close_grey.gif" alt="" /></a></span>
                         <span class="tag">reggae <a href="#"><img src="/images/close_grey.gif" alt="" /></a></span>
-                    </div>
+                    </div-->
 
                 </div>
             </div><!--/end form_row -->
             
             <br/>
             
-            <div class="form_row">
+            <!--div class="form_row">
                 <label><b><%= t('playlists.picture') %></b></label>
                 
                 <img alt="" class="valign_middle" src="/images/mix_picture.jpg" />
@@ -113,14 +115,14 @@
                 
                 <br class="clearer" />
 
-            </div><!--/end form_row -->
+            </div--><!--/end form_row -->
             
             <br/>
             
             <div class="align_right">
                 <big><a href="#" onclick="$('#save_mix_popup').fadeOut('fast'); return false;" class="not_underlined black valign_middle popup_close_action"><%= t('actions.cancel') %></a></big>
                 
-                <a href="#" class="red_button valign_middle" onclick="$(this).closest('form').submit();"><span><span><%= t('actions.save') %></span></span></a>
+                <a href="#" class="red_button valign_middle" onclick="submit_save_form(); return false;"><span><span><%= t('actions.save') %></span></span></a>
             </div>
         </form>
     </div>

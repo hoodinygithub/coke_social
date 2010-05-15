@@ -23,12 +23,27 @@ class PlaylistsController < ApplicationController
   end
 
   def create
-    @results,@scope,@result_text = get_seeded_results
-    @player_id = current_site.players.all(:conditions => "player_key = 'ondemand_#{current_site.code}'")[0].id
-    unless request.xhr?
-      @top_artists = current_site.top_artists.all(:limit => 10)
+    @player_id = current_site.players.all(:conditions => "player_key = 'ondemand_#{current_site.code}'")[0].id rescue nil
     
-      # playlist.create_station after save
+    @results,@scope,@result_text = get_seeded_results
+    unless request.xhr?
+      if request.post?
+        @playlist_item_ids = []
+        @playlist_item_ids = params[:item_ids].split(',').map { |i| Song.find(i) }.compact
+        unless @playlist_item_ids.empty?
+          playlist = current_user.playlists.create(:name => params[:name])
+          current_user.update_attribute(:total_playlists, current_user.playlists.count);
+          if playlist
+            @playlist_item_ids.each do |song|
+              playlist.items.create(:song => song)
+            end
+            playlist.create_station
+            redirect_to my_playlists_path
+          end
+        end
+      end
+      
+      @top_artists = current_site.top_artists.all(:limit => 10)
     
       #@playlist_item_ids = Artist.find(9417).songs[0..4].map{|s| s.id}
       @playlist_item_ids ||= session[:playlist_item_ids].nil? ? [] : session[:playlist_item_ids]

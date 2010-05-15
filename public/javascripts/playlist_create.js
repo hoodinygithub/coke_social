@@ -126,6 +126,34 @@ function open_save_popup()
     $('#unable_popup').fadeIn('fast');
 }
 
+function submit_save_form()
+{
+  form = $('#save_playlist_form');
+  
+  if(playlist_valid)
+  {
+    name = form.find("input[name='name']").val();
+    if(name != "")
+    {
+      console.log("before:" + playlist_ids);
+      form.find("input[name='item_ids']").attr("value", playlist_ids);
+      console.log("after:" + form.find("input[name='item_ids']").val());
+      form.submit();
+    }
+    else
+    {
+      $('#save_mix_popup').fadeOut('fast');
+      //$('#unable_popup').fadeIn('fast');
+    }
+  }
+  else
+  {
+    $('#save_mix_popup').fadeOut('fast');
+    $('#unable_popup').fadeIn('fast');
+    toggle_playlist_box();
+  }
+}
+
 function init_draggable()
 {
   // $(".draggable_item").draggable({revert: true, scroll: false, snap: true, helper: 'clone', appendTo: 'body', connectToSortable: true, cursorAt: {left: 100} });
