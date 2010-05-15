@@ -95,7 +95,9 @@ task :symlink_remaining, :roles => :app, :except => {:no_release => true, :no_sy
     rm #{latest_release}/config/memcached.yml &&
     ln -s #{shared_path}/config/memcached.yml #{latest_release}/config/memcached.yml &&
     ln -s #{shared_path}/config/passenger_cluster.yml #{latest_release}/config/passenger_cluster.yml &&
-    ln -s #{shared_path}/config/resque.yml #{latest_release}/config/resque.yml
+    ln -s #{shared_path}/config/resque.yml #{latest_release}/config/resque.yml &&
+    ln -s /shared/feeds/current/cokebr_top_artists.xml #{latest_release}/public/feeds/cokebr_top_artists.xml &&
+    ln -s /shared/feeds/current/cokelatam_top_artists.xml #{latest_release}/public/feeds/cokelatam_top_artists.xml    
   CMD
 
   if ['staging','production'].include?(rails_env)
