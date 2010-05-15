@@ -1,3 +1,4 @@
+var playlist_valid = false
 var playlist_ids = [];
 var playlist_count = 0;
 var playlist_items_req = 10;
@@ -41,6 +42,7 @@ function add_item(id, title, artist_id, artist_name, album_id, album_name, image
     playlist_count = playlist_ids.length;
     update_counts();
   }
+  validate_playlist();
   toggle_playlist_box();
 }
 
@@ -56,6 +58,14 @@ function remove_item(id)
   }
 }
 
+function validate_playlist()
+{
+  if(playlist_count < playlist_items_req)
+    playlist_valid = false;
+  else
+    playlist_valid = true;
+}
+
 function update_counts()
 {
   $('#track_count').html(playlist_count);
@@ -69,6 +79,7 @@ function toggle_playlist_box()
     $('#empty_playlist').hide();
     $('#populated_playlist').show();
     $('#autofill_button').show();
+    $('#autofill_button_ques').show();
     $('#save_button').show();
   }
   else
@@ -76,6 +87,7 @@ function toggle_playlist_box()
     $('#populated_playlist').hide();
     $('#empty_playlist').show();
     $('#autofill_button').hide();
+    $('#autofill_button_ques').hide();
     $('#save_button').hide();
   }    
 }
@@ -104,6 +116,14 @@ function get_search_results(term,scope)
   jQuery.get('/playlist/create?' + q, function(data) {
       jQuery('#search_results_container').html(data);
   });
+}
+
+function open_save_popup()
+{
+  if(playlist_valid)
+    $('#save_mix_popup').fadeIn('fast');
+  else
+    $('#unable_popup').fadeIn('fast');
 }
 
 function init_draggable()

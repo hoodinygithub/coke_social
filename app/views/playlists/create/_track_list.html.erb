@@ -32,12 +32,15 @@
 
 <div class="align_right">
     <div class="left_side">
-        <a href="#" id="autofill_button" class="green_button hidden" style="display:none" onclick="$('#auto_fill_popup').fadeIn('fast'); return false;"><span><span>AUTO-FILL</span></span></a>
+        <a href="#" id="autofill_button" onclick="void(0); return false;" class="green_button" style="display:none"><span><span><%= t('playlists.autofill') %></span></span></a>
+
+        <a href="#" id="autofill_button_ques" style="display:none" onclick="$('#auto_fill_popup').fadeIn('fast'); return false;"><img src="/images/unable_qmark.gif" class="unable_qmark" alt="" /></a>                        
     </div>
+    
     
     <div class="right_side">
         <a href="#" class="cancel_button" onclick="$('#cancel_popup').fadeIn('fast'); return false;"><%= t('actions.cancel') %></a>
-        <a href="#" id="save_button" class="red_button" style="display:none"><span><span><%= t('actions.save') %></span></span></a>
+        <a href="#" id="save_button" class="red_button" style="display:none" onclick="open_save_popup(); return false;"><span><span><%= t('actions.save') %></span></span></a>
     </div><!--/end right_side -->
     
     <div class="clearer"></div>
@@ -52,10 +55,10 @@
     </div>
     
     <div class="popup_content">
-        <div class="title">Auto-Fill Option</div>
+        <div class="title"><%= t('playlists.autofill_option') %></div>
 
         <div class="auto_fill_text">
-            The auto-fill option will allow you to fill your playlist with recommended songs based on what you have already populated.
+            <%= t('playlists.autofill_option_text') %>
         </div>
     </div>
     
@@ -67,20 +70,84 @@
 
 </div><!--/end popup -->
 
+<div class="popup" id="save_mix_popup">
+    <div class="top_shadow">
+        <div class="top_left corner"></div>
+        <div class="center_shadow"></div>
+        <div class="top_right corner"></div>
+        <a href="#" onclick="$('#save_mix_popup').fadeOut('fast'); return false;"><img src="/images/popup_close.png" class="popup_close png_fix" alt="X" title="Close" /></a>
+    </div>
+
+    
+    <div class="popup_content">
+        <form action="" method="post" class="account_settings">
+            <div class="title"><%= t('playlists.save_your_playlist') %></div>
+            
+            <div class="form_row">
+                <label><b><%= t('playlists.name_your_playlist') %></b></label>
+                
+                <div class="grey_round_box">
+                    <input type="text" class="input full_width" />
+                </div>
+
+                
+                <label><b><%= t('playlists.tag_your_playlist') %></b> <small class="grey"><%= t('playlists.seperated_commas') %></small></label>
+                
+                <div class="grey_round_box">
+                    <div class="tags">
+                        <span class="tag">metal <a href="#"><img src="/images/close_grey.gif" alt="" /></a></span>
+                        <span class="tag">reggae <a href="#"><img src="/images/close_grey.gif" alt="" /></a></span>
+                    </div>
+
+                </div>
+            </div><!--/end form_row -->
+            
+            <br/>
+            
+            <div class="form_row">
+                <label><b><%= t('playlists.picture') %></b></label>
+                
+                <img alt="" class="valign_middle" src="/images/mix_picture.jpg" />
+                
+                <a href="#" class="red_button valign_middle"><span><span><%= t('playlists.add_update') %></span></span></a>
+                
+                <br class="clearer" />
+
+            </div><!--/end form_row -->
+            
+            <br/>
+            
+            <div class="align_right">
+                <big><a href="#" onclick="$('#save_mix_popup').fadeOut('fast'); return false;" class="not_underlined black valign_middle popup_close_action"><%= t('actions.cancel') %></a></big>
+                
+                <a href="#" class="red_button valign_middle" onclick="$(this).closest('form').submit();"><span><span><%= t('actions.save') %></span></span></a>
+            </div>
+        </form>
+    </div>
+
+    
+    <div class="bottom_shadow">
+        <div class="bottom_left corner"></div>
+        <div class="center_shadow"></div>
+        <div class="bottom_right corner"></div>
+    </div>
+</div><!--/end popup -->
+
+
 <div class="popup" id="unable_popup">
     <div class="top_shadow">
         <div class="top_left corner"></div>
         <div class="center_shadow"></div>
 
         <div class="top_right corner"></div>
-        <a href="#" onclick="$('#unable_popup').fadeIn('fast'); return false;"><img src="images/popup_close.png" class="popup_close png_fix" alt="X" title="Close" /></a>
+        <a href="#" onclick="$('#unable_popup').fadeOut('fast'); return false;"><img src="/images/popup_close.png" class="popup_close png_fix" alt="X" title="Close" /></a>
     </div>
     
     <div class="popup_content">
-        <div class="title">Unable to save this playlist</div>
+        <div class="title"><%= t('playlist.unable_save') %></div>
         
         <div class="auto_fill_text">
-            You have errors with your playlist.  These  errors must be corrected before you can share it with the rest of the community.
+            <%= t('playlist.unable_save_text') %>
         </div>
     </div>
 
@@ -97,7 +164,7 @@
         <div class="top_left corner"></div>
         <div class="center_shadow"></div>
         <div class="top_right corner"></div>
-        <a href="#" onclick="$('#cancel_popup').fadeOut('fast'); return false;"><img src="images/popup_close.png" class="popup_close png_fix" alt="X" title="Close" /></a>
+        <a href="#" onclick="$('#cancel_popup').fadeOut('fast'); return false;"><img src="/images/popup_close.png" class="popup_close png_fix" alt="X" title="Close" /></a>
     </div>
     
     <div class="popup_content">
