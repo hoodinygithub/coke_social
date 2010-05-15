@@ -1115,6 +1115,7 @@ Base.account_settings.clear_info_and_errors_on = function(field) {
              .removeClass('green_info')
              .nextAll('div.clearer,span.red,span.green').remove();
   rounded_box.children('b').removeClass('white');
+  console.log(field);
 }
 
 Base.account_settings.add_message_on = function(field, message, type) {
@@ -1131,9 +1132,19 @@ Base.account_settings.add_message_on = function(field, message, type) {
     var message_content = $('<div class="clearer" /><span class="' + color + '">' + message + '</span>');
     rounded_box.after(message_content);
   } else {
-    var message_content = $('<big><b class="'+ color +'">' + message + '</b></big><br />');
-    field.parent().next().prepend(message_content);
+    var message_content = $('<big class="checkbox_error"><b class="'+ color +'">' + message + '</b></big><br />');
+    field.parents('.form_row').children('.checkbox').prepend(message_content);
   }
+}
+
+
+Base.account_settings.show_validations = function(errorMap, errorList) {
+  $.each (errorList, function() {
+    field = $(this.element);
+    error = this.message;
+    Base.account_settings.clear_info_and_errors_on(field);
+    Base.account_settings.add_message_on(field, error, 'error');
+  });
 }
 
 Base.account_settings.focus_first_section_with_error = function(field_error) {
@@ -1193,7 +1204,7 @@ Base.account_settings.delete_account_submit_as_msn = function() {
 
 Base.account_settings.delete_account_submit_as_cyloop = function() {
   var form = $(this).closest('form');
-  var validator = form.validate();
+  var validator = form.validate({ showErrors : Base.account_settings.show_validations});
   if (form.valid()) {
     password_value = $("#delete_password").val();
     $.ajax({
@@ -1204,12 +1215,10 @@ Base.account_settings.delete_account_submit_as_cyloop = function() {
         if (data.success) {
           window.location = data.redirect_to;
         } else {
-          validator.showErrors(data.errors);
+          Base.account_settings.highlight_field_with_errors(data.errors);
         }
       }
     });
-  } else {
-    validator.showErrors();
   }
   return false;
 }

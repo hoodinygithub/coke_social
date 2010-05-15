@@ -1,0 +1,24 @@
+<div class="accordion_title"><%= t('account_settings.email_notifications') %></div>
+<div class="accordion_box">
+  <% form_for @user, :html => { :method => :put, :class => "account_settings", :id => 'email_notifications_form' }, :url => my_settings_path do |f| %>
+    <div class="form_row">
+      <label><%= f.check_box :receives_coke_newsletter %><small><%= t('account_settings.email_me_coke_newsletter') %></small></label>
+      <label><%= f.check_box :receives_following_notifications %><small><%= t('account_settings.email_me_following_me') %></small></label>
+      <!--
+      <label><input type="checkbox" /><small><%= t('account_settings.email_me_communications') %></small></label>
+      <label><input type="checkbox" /> <small><%= t('account_settings.email_me_reviews_mixes') %></small></label>
+      <label><input type="checkbox" /> <small><%= t('account_settings.email_me_subscribes_mixes') %></small></label>
+      <label><input type="checkbox" /> <small><%= t('account_settings.email_me_subscribes_radios') %></small></label>
+      -->
+    </div><!--/end form_row -->
+
+    <div class="form_row last">
+      <div class="align_right right_side">
+        <a href="#" class="cancel_button"><%= t('account_settings.cancel') %></a>
+        <a href="#" class="red_button" onclick="$(this).closest('form').submit(); return false;"><span><span><%= t('account_settings.update') %></span></span></a>
+      </div>
+
+      <br class="clearer" />
+    </div><!--/end form_row -->
+  <% end %>
+</div><!--/end accordion_box -->

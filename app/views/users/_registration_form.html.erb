@@ -67,13 +67,15 @@
 
     <br/>
 
-    <%= f.check_box :terms_and_privacy, :class => "privacy_check" %>
+    <div class="form_row last">
+      <%= f.check_box :terms_and_privacy, :class => "privacy_check" %>
 
-    <div class="privacy_text">
-      <%= t("registration.terms_and_privacy",
-          :terms_link => link_to(t("registration.terms_of_use"),
-          terms_and_conditions_url),
-          :privacy_link => link_to(t("registration.privacy_policy"), privacy_policy_url)) %>
+      <div class="privacy_text checkbox">
+        <%= t("registration.terms_and_privacy",
+            :terms_link => link_to(t("registration.terms_of_use"),
+            terms_and_conditions_url),
+            :privacy_link => link_to(t("registration.privacy_policy"), privacy_policy_url)) %>
+      </div>
     </div>
 
     <div class="clearer"></div>
