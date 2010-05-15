@@ -31,8 +31,105 @@
 
 
 <div class="align_right">
-    <a href="#" class="cancel_button upper"><%= t('actions.cancel') %></a>
+    <div class="left_side">
+        <a href="#" id="autofill_button" class="green_button hidden" style="display:none" onclick="$('#auto_fill_popup').fadeIn('fast'); return false;"><span><span>AUTO-FILL</span></span></a>
+    </div>
+    
+    <div class="right_side">
+        <a href="#" class="cancel_button" onclick="$('#cancel_popup').fadeIn('fast'); return false;"><%= t('actions.cancel') %></a>
+        <a href="#" id="save_button" class="red_button" style="display:none"><span><span><%= t('actions.save') %></span></span></a>
+    </div><!--/end right_side -->
+    
+    <div class="clearer"></div>
 </div>
+
+<div class="popup" id="auto_fill_popup">
+    <div class="top_shadow">
+        <div class="top_left corner"></div>
+        <div class="center_shadow"></div>
+        <div class="top_right corner"></div>
+        <a href="#" onclick="$('#auto_fill_popup').fadeOut('fast'); return false;"><img src="/images/popup_close.png" class="popup_close png_fix" alt="X" title="Close" /></a>
+    </div>
+    
+    <div class="popup_content">
+        <div class="title">Auto-Fill Option</div>
+
+        <div class="auto_fill_text">
+            The auto-fill option will allow you to fill your playlist with recommended songs based on what you have already populated.
+        </div>
+    </div>
+    
+    <div class="bottom_shadow">
+        <div class="bottom_left corner"></div>
+        <div class="center_shadow"></div>
+        <div class="bottom_right corner"></div>
+    </div>
+
+</div><!--/end popup -->
+
+<div class="popup" id="unable_popup">
+    <div class="top_shadow">
+        <div class="top_left corner"></div>
+        <div class="center_shadow"></div>
+
+        <div class="top_right corner"></div>
+        <a href="#" onclick="$('#unable_popup').fadeIn('fast'); return false;"><img src="images/popup_close.png" class="popup_close png_fix" alt="X" title="Close" /></a>
+    </div>
+    
+    <div class="popup_content">
+        <div class="title">Unable to save this playlist</div>
+        
+        <div class="auto_fill_text">
+            You have errors with your playlist.  These  errors must be corrected before you can share it with the rest of the community.
+        </div>
+    </div>
+
+    <div class="bottom_shadow">
+        <div class="bottom_left corner"></div>
+        <div class="center_shadow"></div>
+        <div class="bottom_right corner"></div>
+    </div>
+</div><!--/end popup -->
+
+<div class="popup" id="cancel_popup">
+    <div class="top_shadow">
+
+        <div class="top_left corner"></div>
+        <div class="center_shadow"></div>
+        <div class="top_right corner"></div>
+        <a href="#" onclick="$('#cancel_popup').fadeOut('fast'); return false;"><img src="images/popup_close.png" class="popup_close png_fix" alt="X" title="Close" /></a>
+    </div>
+    
+    <div class="popup_content">
+        <form action="" method="post" class="account_settings">
+            <div class="title"><%= t('playlist.cancel_playlist') %></div>
+
+            
+            <div class="form_row">
+                <div class="auto_fill_text">
+                    <%= t('playlist.cancel_playlist_text') %> 
+                </div>
+                <br/>
+            </div>
+        
+            <br/>
+            
+            <div class="align_right">
+                <big><a href="#" onclick="$('#cancel_popup').fadeOut('fast'); return false;" class="not_underlined black valign_middle popup_close_action"><%= t('playlist.no_thanks') %></a></big>
+                
+                <a href="<%= my_dashboard_path %>" class="red_button valign_middle"><span><span><%= t('playlist.continue') %></span></span></a>
+            </div>
+        </form>
+    </div>
+    
+    <div class="bottom_shadow">
+        <div class="bottom_left corner"></div>
+        <div class="center_shadow"></div>
+
+        <div class="bottom_right corner"></div>
+    </div>
+</div><!--/end popup -->
+
 
 
 <script language="javascript">

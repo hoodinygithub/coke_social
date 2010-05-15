@@ -29,8 +29,8 @@ function add_item(id, title, artist_id, artist_name, album_id, album_name, image
           + '<img alt="'+id+'" class="icon avatar small" src="'+image_src+'" />'
           + '<div class="text">'
               + '<big><b>'+title+'</b></big><br/>'
-              + '<b>album:</b> '+artist_name+'<br/>'
-              + '<b>by:</b> '+album_name+''
+              + '<b>album:</b> '+album_name+'<br/>'
+              + '<b>by:</b> '+artist_name+''
           + '</div>'
           + '<br class="clearer" />'
           + '<a href="#" onclick="remove_item('+id+'); return false;"><img src="/images/close_grey.gif" class="close_x" alt="" /></a>'
@@ -68,11 +68,15 @@ function toggle_playlist_box()
   {
     $('#empty_playlist').hide();
     $('#populated_playlist').show();
+    $('#autofill_button').show();
+    $('#save_button').show();
   }
   else
   {
     $('#populated_playlist').hide();
     $('#empty_playlist').show();
+    $('#autofill_button').hide();
+    $('#save_button').hide();
   }    
 }
 
@@ -101,3 +105,20 @@ function get_search_results(term,scope)
       jQuery('#search_results_container').html(data);
   });
 }
+
+function init_draggable()
+{
+  // $(".draggable_item").draggable({revert: true, scroll: false, snap: true, helper: 'clone', appendTo: 'body', connectToSortable: true, cursorAt: {left: 100} });
+  // $(".dotted_box").droppable({
+  //       accept: ".draggable_item",
+  //       hoverClass: "dragging",
+  //       drop: function(event, ui) {
+  //         alert('dropped');
+  //         
+  //       }
+  // });
+}
+
+$(function() {
+  init_draggable()
+});

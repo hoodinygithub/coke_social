@@ -1007,7 +1007,7 @@ h2 {
     height: 154px;
     position: relative;
     overflow-y: scroll;
-    overflow-x: auto; 
+/*    overflow-x: auto; */
 }
 
 .songs_box ul {
@@ -3426,4 +3426,30 @@ followers_list .follower_actions.w_settings .orange_button.settings_button img, 
     vertical-align: middle;
 }
 
+body li.ui-draggable-dragging {
+  list-style-type:none;
+  font-size: 14px;
+  width: 603px;
+  border:3px solid #ccc;
+  text-align: left;
+}
+body li.ui-draggable-dragging .song_name, body li.ui-draggable-dragging .artist_name {
+  width:185px;
+  padding: 0 5px;
+}
+body li.ui-draggable-dragging .album_name {
+  width:120px;
+  padding: 0 10px;
+}
+body li.ui-draggable-dragging .large_bnt {
+  width:65px;
+  text-align: center;
+}
+body li.ui-draggable-dragging div {
+  border-left:1px solid #FFFFFF;
+  border-right:1px solid #CCCCCC;
+  float:left;
+  height:29px;
+  line-height:29px;
+}
 
