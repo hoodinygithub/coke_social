@@ -1098,7 +1098,6 @@ Base.network.push_update = function() {
  * Account settings page
  */
 Base.account_settings.highlight_field_with_errors = function() {
-  Base.account_settings.focus_first_section_with_error($('span.fieldWithErrors input').first());
   if (typeof(field_with_errors) != 'undefined') {
     for(i=0; i < field_with_errors.length; i++) {
       var field_name = field_with_errors[i][0];
@@ -1115,7 +1114,7 @@ Base.account_settings.clear_info_and_errors_on = function(field) {
              .removeClass('green_info')
              .nextAll('div.clearer,span.red,span.green').remove();
   rounded_box.children('b').removeClass('white');
-  console.log(field);
+  $('big[for="' + field.attr('name') + '"]').remove();
 }
 
 Base.account_settings.add_message_on = function(field, message, type) {
@@ -1132,7 +1131,7 @@ Base.account_settings.add_message_on = function(field, message, type) {
     var message_content = $('<div class="clearer" /><span class="' + color + '">' + message + '</span>');
     rounded_box.after(message_content);
   } else {
-    var message_content = $('<big class="checkbox_error"><b class="'+ color +'">' + message + '</b></big><br />');
+    var message_content = $('<big class="checkbox_error" for="'+ field.attr('name') + '"><b class="'+ color +'">' + message + '</b><br /></big>');
     field.parents('.form_row').children('.checkbox').prepend(message_content);
   }
 }
@@ -1215,7 +1214,7 @@ Base.account_settings.delete_account_submit_as_cyloop = function() {
         if (data.success) {
           window.location = data.redirect_to;
         } else {
-          Base.account_settings.highlight_field_with_errors(data.errors);
+          validator.showErrors(data.errors);
         }
       }
     });
