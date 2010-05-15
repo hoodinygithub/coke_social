@@ -1,7 +1,9 @@
 <% content_for :javascript do %>
   $(document).ready(function(){
-    field_with_errors = <%= @user.custom_errors.to_json %>;
-    Base.account_settings.highlight_field_with_errors();
+    <% if !@user.errors.empty? %>
+      field_with_errors     = <%= @user.errors.to_json %>;
+      Base.account_settings.highlight_field_with_errors();
+    <% end %>
     $('#user_avatar').focus(Base.account_settings.update_avatar_upload_info);
     $('#user_avatar').change(Base.account_settings.update_avatar_upload_info);
   });
