@@ -1098,6 +1098,7 @@ Base.network.push_update = function() {
  * Account settings page
  */
 Base.account_settings.highlight_field_with_errors = function() {
+  Base.account_settings.focus_first_section_with_error($('span.fieldWithErrors input').first());
   if (typeof(field_with_errors) != 'undefined') {
     for(i=0; i < field_with_errors.length; i++) {
       var field_name = field_with_errors[i][0];
