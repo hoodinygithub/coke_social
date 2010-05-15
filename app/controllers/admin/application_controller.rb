@@ -2,7 +2,7 @@ class Admin::ApplicationController < ApplicationController
   layout "admin"
   before_filter :do_basic_http_authentication
 
-private
+  private
   def do_basic_http_authentication
     authenticate_or_request_with_http_basic do |username, password|
       if Rails.env.staging?

@@ -213,3 +213,31 @@ div.empty_playlist {
 #login_box {
 	top: 360px;
 }
+
+#flash_messages {
+  left: 0px;
+  position: absolute;
+  width: 100%;
+  z-index: -100;
+}
+
+.message {
+    width: 100%;
+    text-align: center;
+    color: #fff;
+    font-size: 12px;
+    font-weight: bold;
+    line-height: 25px;
+}
+
+.confirmation_message {
+    background: #0a872b url("../images/confirmation_message_bg.gif") repeat-x left top;
+    border: solid 3px #086b22;
+    border-top: none;
+}
+
+.error_message {
+    background: #bf0b10 url("../images/error_message_bg.gif") repeat-x left top;
+    border: solid 3px #640604;
+    border-top: none;
+}
