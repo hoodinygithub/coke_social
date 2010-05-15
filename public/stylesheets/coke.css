@@ -241,3 +241,57 @@ div.empty_playlist {
     border: solid 3px #640604;
     border-top: none;
 }
+
+/* Account Settings */
+#avatar_upload_button {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+}
+
+label.label_holder input.file{
+  position: relative;
+  height: 100%;
+  width: auto;
+  opacity: 0;
+  -moz-opacity: 0;
+  left:-198px;top:0px;
+  position: relative;
+  z-index:2;
+  filter: alpha(opacity=0)!important; /* fix for ie */
+}
+
+label.label_holder{
+  width: 125px;
+  height: 40px;
+  display: block;
+  overflow: hidden;
+  cursor: pointer;
+  position: absolute;
+  z-index: 1;
+}
+
+#avatar_delete {
+  margin-left: 145px;
+  position:absolute;
+  padding-top: 55px;
+  padding-left: 160px;
+}
+
+#avatar_upload_info {
+  margin-top: 60px;
+  margin-left: 10px;
+  font-weight: bold;
+  color: red;
+}
+
+.account_settings .form_row .input_select {
+  border:1px solid #999999;
+  color:#CCCCCC;
+  font-family:Helvetica;
+  font-size:16px;
+  height:30px;
+  padding:4px 9px;
+  vertical-align:middle;
+  width: 370px;
+}

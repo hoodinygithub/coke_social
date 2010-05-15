@@ -63,7 +63,17 @@ module DashboardsHelper
 
 
   def user_navigation
-    return unless ['accounts', 'dashboards', 'activities', 'followers', 'followees', 'badges', 'subscriptions', 'playlists', 'reviews'].include? params[:controller]
+    return unless ['accounts',
+                   'dashboards',
+                   'activities',
+                   'followers',
+                   'followees',
+                   'badges',
+                   'subscriptions',
+                   'playlists',
+                   'reviews',
+                   'users'].include? params[:controller]
+
     # HACK for Playlist Create page
     return if params[:controller] == 'playlists' && params[:action] == 'create'
     

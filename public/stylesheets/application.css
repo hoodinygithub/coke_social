@@ -3453,3 +3453,136 @@ body li.ui-draggable-dragging div {
   line-height:29px;
 }
 
+
+/*  Settings page */
+
+.settings_column {
+    width: 780px;
+    float: right;
+}
+
+.settings_column h1 {
+    margin-bottom: 0px;
+}
+
+.accordion_title {
+	background-color: #b3b3b3;
+	background-image: url(../images/arrow_right_white.gif);
+	background-repeat: no-repeat;
+	background-position: 8px center;
+	color: #FFFFFF;
+	padding-left: 24px;
+	height: 24px;
+	line-height: 24px;
+	margin-top: 15px;
+	font-size: 14px;
+	font-weight: bold;
+	cursor: pointer;
+	zoom: 1;
+}
+
+.accordion_title.expanded {
+    background-image: url("../images/arrow_down_white.gif");
+}
+
+.accordion_box {
+    display: none;
+    padding: 15px 0px 5px;
+    background: none;
+    zoom: 1;
+}
+
+.accordion_box.expanded {
+    display: block;
+}
+
+.full_width2 {
+    width: 520px;
+}
+
+.half_width2 {
+    width: 300px;
+}
+
+.half_width3 {
+    width: 405px;
+}
+
+.half_width4 {
+    width: 350px;
+}
+
+.left_s {
+    float: left;
+}
+
+.right_s {
+    float: right;
+}
+
+.account_settings .form_row span.grey small {
+    font-size: 14px;
+}
+
+.black {
+    color: #333;
+}
+
+.upload_thumb {
+    float: left;
+}
+
+.add_update {
+    padding-top: 50px;
+    float: left;
+	margin-left:	20px;
+}
+
+.maintain_private {
+    padding-top: 50px;
+}
+
+.account_settings .form_row label small {
+    font-size: 12px;
+}
+
+.delete_info {
+    display: inline-block;
+    width: 355px;
+    line-height: 14px;
+    vertical-align: top;
+}
+
+.twitter_left {
+    width: 420px;
+    float: left;
+}
+
+.twitter_round_box {
+    width: 290px;
+    padding: 10px 15px;
+    float: right;
+    border: solid 1px #e1e1e1;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+}
+
+.red_list {
+    list-style-type: none;
+}
+
+.red_list li {
+    padding: 5px 0px;
+    line-height: 14px;
+    padding-left: 11px;
+    background: url("../images/red_spacer.gif") no-repeat left 12px;
+}
+
+.account_settings .form_row .input.half_width2a {
+    width:325px;
+}
+
+.account_settings .form_row .input.half_widtha {
+    width: 285px;
+    margin-left: 10px;
+}
