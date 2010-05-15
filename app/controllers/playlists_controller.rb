@@ -24,7 +24,7 @@ class PlaylistsController < ApplicationController
 
   def create
     @results,@scope,@result_text = get_seeded_results
-    
+    @player_id = current_site.players.all(:conditions => "player_key = 'ondemand_#{current_site.code}'")[0].id
     unless request.xhr?
       @top_artists = current_site.top_artists.all(:limit => 10)
     

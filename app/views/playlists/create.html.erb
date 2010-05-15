@@ -43,7 +43,7 @@
 
 <div id="stream_connector">
   <script type="text/javascript" charset="utf-8">
-    var flashvars = "playerId=ondemand_<%= current_site.code %>";
+    var flashvars = "playerId=<%= @player_id %>";
     AC_FL_RunContent(
       "src", "/flash/stream_connect",
       "wmode", "opaque",
