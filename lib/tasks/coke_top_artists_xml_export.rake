@@ -5,7 +5,7 @@ namespace :db do
       include Timebox
 
       feed = 'top_artists'
-      output_path = ENV.has_key?('xml_output_path') ? ENV['xml_output_path'] : "/shared/feeds/current"
+      output_path = ENV.has_key?('xml_output_path') ? ENV['xml_output_path'] : '/shared/common_coke/system/db/xml'
 
       size = 100
 
@@ -21,7 +21,7 @@ namespace :db do
       items = site.top_artists.all(:limit => limit)
       return if items.empty?
 
-      file = File.open("#{path}/#{site.code}_top_artists.xml", 'w')
+      file = File.open("#{path}/#{site.code}/top_artists_#{site.code}.xml", 'w')
 
       xml = Builder::XmlMarkup.new(:target => file, :indent => 2)
 
