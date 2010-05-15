@@ -36,7 +36,7 @@ namespace :db do
 
           xml.item do
             xml.thumb thumbnail
-            xml.detail large_image
+            xml.detail ""
             xml.link link
             xml.dynamicReflection false
             xml.description title
