@@ -135,7 +135,6 @@ function submit_save_form()
     name = form.find("input[name='name']").val();
     if(name != "")
     {
-      console.log("before:" + playlist_ids);
       form.find("input[name='item_ids']").attr("value", playlist_ids);
       console.log("after:" + form.find("input[name='item_ids']").val());
       form.submit();
