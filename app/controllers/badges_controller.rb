@@ -1,5 +1,6 @@
 class BadgesController < ApplicationController
   def index
+    @dashboard_menu = :badges
     @sort_type = params.fetch(:sort_by, nil).to_sym rescue :latest
 
     begin
@@ -11,8 +12,13 @@ class BadgesController < ApplicationController
   end
 
   def show
-    @badge_award = profile_user.badge_awards.find(params[:id])
-    @friends_with_badge = profile_user.followees.with_badge(@badge_award)
-    @others_with_badge = @badge_award.badge.winners.other_than_user_and_followees(profile_user)
+    @dashboard_menu = :badges
+    begin
+      @badge_award = profile_user.badge_awards.find(params[:id])
+      @friends_with_badge = profile_user.followees.with_badge(@badge_award)
+      @others_with_badge = @badge_award.badge.winners.other_than_user_and_followees(profile_user)
+    rescue
+      redirect_to new_session_path
+    end
   end
 end
