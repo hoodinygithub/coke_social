@@ -1106,10 +1106,12 @@ Base.account_settings.highlight_field_with_errors = function() {
     for(i=0; i < field_with_errors.length; i++) {
       var field_name = field_with_errors[i][0];
       var error = field_with_errors[i][1];
+      if (i == 0) {
+        Base.account_settings.focus_first_field_with_error_by_label();
+      }
       field = $(":visible:input[name*='" + field_name + "']").first();
       Base.account_settings.add_message_on(field, error, 'error');
     }
-    Base.account_settings.focus_first_field_with_error_by_label();
   }
 
 };
