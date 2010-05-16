@@ -77,6 +77,12 @@ module DashboardsHelper
 
     # HACK for Playlist Create page
     return if params[:controller] == 'playlists' && params[:action] == 'create'
+
+    # HACK for Registration page
+    return if params[:controller] == 'users' && params[:action] == 'new'
+    # HACK for User create
+    return if params[:controller] == 'users' && params[:action] == 'create'
+
     
     links = if profile_account and current_user and profile_account == current_user
       my_nav_links(:simple => true)
