@@ -3,15 +3,17 @@
 <% end %>
 
 <div class="sorting uppercase"> 
-  <%= filter_link_by( t('activity.user_following', :user => profile_account.slug), :type => :all ) + "/" unless profile_account.is_a?(Artist) %>
-  <%= filter_link_by( profile_account.slug, :type => :me ) %>
-  <%= "/" + filter_link_by( t('activity.just_following', :user => profile_account.slug), :type => :following )  unless profile_account.is_a?(Artist) %>
+  <%= filter_link_by(t('activity.user_following', :user => profile_account.slug), :type => :all, :onclick => "Base.network.reload_comments('all');return false;") + "/" unless profile_account.is_a?(Artist) %>
+  <%= filter_link_by( profile_account.slug, :type => :me, :onclick => "Base.network.reload_comments('me');return false;" ) %>
+  <%= "/" + filter_link_by( t('activity.just_following', :user => profile_account.slug), :type => :following, :onclick => "Base.network.reload_comments('following');return false;" )  unless profile_account.is_a?(Artist) %>
 </div><!--/end network_update -->
 <ul class="comments_list" id="network_comment_list">
 </ul>
 
 <div class="align_right" id="show_more_comments" style="display:none;">
-  <% if profile_owner? %>
+  <% if profile_owner? and controller_name == "dashboards" %>
+    <%= red_button(t('actions.show_more'), :href => my_activities_path, :width => "120px") %>
+  <% elsif profile_owner? %>
     <%= red_button(t('actions.show_more'), :onclick => "Base.network.show_more(this)", :width => "120px") %>
   <% end %>
 </div>

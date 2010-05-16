@@ -1068,6 +1068,7 @@ Base.network.push_update = function() {
   $comment_field       = jQuery("#network_comment");
   $chars_counter       = jQuery(".chars_counter");
   $comment_field.css({'border':'10px solid #EDEDED'});
+  $(".network_arrow").attr("src", "/images/network_arrow.gif");
 
   var comment = jQuery.trim($comment_field.val());
   var $old_network_update_text = $network_update_text.clone();
@@ -1085,9 +1086,12 @@ Base.network.push_update = function() {
       Base.network.__update_page_owner_page(response, {'replace':true});
       $chars_counter.css({'color':'#cccccc'});
       $share_button.removeClass('blue_button_wo_hover').addClass('blue_button').html(old_button_content);
+      $("div.sorting a").removeClass("active");
+      $("div.sorting a[href*=all]").addClass("active");
     });
   } else {
     $comment_field.css({'border':'10px solid red'});
+    $(".network_arrow").attr("src", "/images/network_arrow_red.gif");
     $share_button.removeClass('blue_button_wo_hover').addClass('blue_button').html(old_button_content);
   }
 
@@ -1666,5 +1670,31 @@ jQuery(document).ready(function() {
   Base.header_search.dropdown();
   Base.content_search.dropdown();
   Base.playlist_search.dropdown();
+
+  $("#network_comment").focus(function() {
+    $("#network_comment").addClass("network_update_red");
+    $(".network_arrow").attr("src", "/images/network_arrow_red.gif");
+  });  
+  
+  $("#network_comment").blur(function() {
+    $("#network_comment").removeClass("network_update_red");
+    $(".network_arrow").attr("src", "/images/network_arrow.gif");
+  });  
+  
 });
 
+Base.network.reload_comments = function(filter) {
+  $list = jQuery(".comments_list");
+
+  $last_li  = $list.find('li:last');
+  timestamp = $last_li.attr('timestamp');
+
+  var params = {'slug':Base.account.slug};
+  params.filter_by = filter;
+
+  jQuery.post("/activity/latest", params, function (response) {
+    $("div.sorting a").removeClass("active");
+    jQuery(".comments_list").html(response).fadeIn(500);
+    $("div.sorting a[href*="+filter+"]" ).addClass("active");
+  });
+};
