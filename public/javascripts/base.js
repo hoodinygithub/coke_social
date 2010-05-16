@@ -1219,13 +1219,13 @@ Base.account_settings.delete_account_submit_as_cyloop = function() {
     password_value = $("#delete_password").val();
     $.ajax({
       type : "DELETE",
-      url  : "/my/cancellation",
+      url  : "/my/cancellation/confirm",
       data : { delete_info_accepted: "true", delete_password: password_value },
       success: function(data){
-        if (data.success) {
-          window.location = data.redirect_to;
-        } else {
+        if (data.errors) {
           validator.showErrors(data.errors);
+        } else {
+          jQuery.popup(data);
         }
       }
     });
@@ -1235,10 +1235,11 @@ Base.account_settings.delete_account_submit_as_cyloop = function() {
 
 
 Base.account_settings.delete_account_confirmation = function() {
+  password_value = $("#delete_password").val();
   $.ajax({
     type : "DELETE",
     url  : "/my/cancellation",
-    data : { delete_info_accepted: "true"},
+    data : { delete_info_accepted: "true", delete_password: password_value },
     success: function(data){
       delete_account_data = data;
       $.popup(function() {
