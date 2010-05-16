@@ -54,8 +54,15 @@ class Song < ActiveRecord::Base
     indexes :title
     set_property :min_prefix_len => 1
     set_property :enable_star => 1
+    set_property :allow_star => 1
   end
   
+
+  def self.search(*args)
+    args[0] = "#{args[0]}*"
+    super(*args).compact        
+  end
+
   def total_listens
     song_listens.sum(:total_listens)
   end
