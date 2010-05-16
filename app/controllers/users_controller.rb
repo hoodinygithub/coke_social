@@ -21,12 +21,12 @@ class UsersController < ApplicationController
 
   # GET /users/id/edit
   def edit
-    @user = current_user
+    @user = User.find(current_user.id)
   end
 
   # POST /users/id
   def update
-    @user                    = current_user
+    @user                    = User.find(current_user.id)
     params[:user]            = trim_attributes_for_paperclip(params[:user], :avatar)
     @user.attributes         = params[:user]
     twitter_username_changed = @user.twitter_username_changed?
