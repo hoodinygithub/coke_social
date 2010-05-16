@@ -10,7 +10,7 @@
 <ul class="comments_list" id="network_comment_list">
 </ul>
 
-<div class="align_right" id="show_more_comments" style="display:none;">
+<div class="align_right" id="show_more_comments">
   <% if profile_owner? and controller_name == "dashboards" %>
     <%= red_button(t('actions.show_more'), :href => my_activities_path, :width => "120px") %>
   <% elsif profile_owner? %>

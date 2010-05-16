@@ -985,10 +985,13 @@ Base.network.__update_page_owner_page = function(response, options) {
   $comment_list        = jQuery('#network_comment_list');
   $share_button        = jQuery('a.compartir_button');
 
+  $comment_list.show();
   if (typeof(options) == 'object' && typeof(options.replace) != 'undefined' && options.replace) {
     $comment_list.hide().html(response).fadeIn();
+    $comment_list.show();
   } else {
     $comment_list.hide().append(response).fadeIn();
+    $comment_list.show();
   }
 
   if ($comment_list.find('li').length >= 6) {
@@ -1683,7 +1686,9 @@ jQuery(document).ready(function() {
   $("#network_comment").blur(function() {
     $("#network_comment").removeClass("network_update_red");
     $(".network_arrow").attr("src", "/images/network_arrow.gif");
-  });  
+  }); 
+
+  $("#network_comment_list").show();
   
 });
 
@@ -1697,8 +1702,9 @@ Base.network.reload_comments = function(filter) {
   params.filter_by = filter;
 
   jQuery.post("/activity/latest", params, function (response) {
+    $("ul#network_comment_list").show();
     $("div.sorting a").removeClass("active");
-    jQuery(".comments_list").html(response).fadeIn(500);
+    jQuery(".comments_list").html(response);
     $("div.sorting a[href*="+filter+"]" ).addClass("active");
   });
 };
