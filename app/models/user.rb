@@ -250,8 +250,8 @@ class User < Account
   end
 
   def win_badge(badge)
-    badge = badge.is_a?(Badge) ? badge.id : badge
-    BadgeAward.find_or_create_by_badge_id_and_winner_id(:badge_id => badge, :winner_id => self.id)
+    badge = badge.is_a?(Fixnum) ? Badge.find(badge) : badge
+    BadgeAward.find_or_create_by_badge_id_and_winner_id(:badge_id => badge.id, :winner_id => self.id, :name => badge.name,  :name_coke_es => badge.name_coke_es, :name_coke_br => badge.name_coke_br)
   end
 
   after_destroy :remove_customizations
