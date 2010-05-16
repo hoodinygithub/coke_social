@@ -2,6 +2,11 @@
   <h1><%= t('home.network_update', :user_name => artist_or_user_name(profile_account)) %></h1>
 <% end %>
 
+<div class="sorting uppercase"> 
+  <%= filter_link_by( t('activity.user_following', :user => profile_account.slug), :type => :all ) + "/" unless profile_account.is_a?(Artist) %>
+  <%= filter_link_by( profile_account.slug, :type => :me ) %>
+  <%= "/" + filter_link_by( t('activity.just_following', :user => profile_account.slug), :type => :following )  unless profile_account.is_a?(Artist) %>
+</div><!--/end network_update -->
 <ul class="comments_list" id="network_comment_list">
 </ul>
 

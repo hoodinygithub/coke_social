@@ -8,7 +8,7 @@ class ActivitiesController < ApplicationController
   before_filter :load_user_activities, :only => [:index, :latest]
 
   ACTIVITIES_MAX           = 15
-  ACTIVITIES_DASHBOARD_MAX = 5
+  ACTIVITIES_DASHBOARD_MAX = 7
   ACTIVITY_SHOW_MORE_SIZE  = 5
 
   def index
@@ -73,7 +73,7 @@ class ActivitiesController < ApplicationController
     end
 
     if params[:public]
-      render :partial => 'shared/public_user_activity_content'
+      render :partial => 'activities/line', :collection => @collection
     else
       render :partial => 'activities/item', :collection => @collection
     end

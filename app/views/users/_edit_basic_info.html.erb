@@ -1,0 +1,114 @@
+<div class="accordion_title expanded"><%= t('account_settings.basic_info') %></div>
+
+<div class="accordion_box expanded">
+  <% form_for @user, :html => { :method => :put, :multipart => true, :class => "account_settings", :id => 'basic_info_form' }, :url => my_settings_path do |f| %>
+    <div class="form_row">
+      <b><%= f.label :name %></b>
+      <div class="grey_round_box left_side">
+        <%= f.text_field :name, :class => 'input full_width2' %>
+      </div>
+      <br class="clearer" />
+    </div><!--/end form_row -->
+
+    <div class="form_row">
+      <div class="left_s">
+        <b><%= f.label :email %></b>
+        <div class="grey_round_box">
+          <%= f.text_field :email, :class => 'input half_width2a' %>
+        </div>
+      </div>
+
+      <div class="right_s">
+        <b><%= f.label :slug %></b>
+        <div class="grey_round_box align_right">
+          <span class="grey"><small>coke.fm/</small></span>
+          <%= f.text_field :slug, :class => 'input half_widtha', :disabled => true %>
+        </div>
+      </div>
+      <br class="clearer" />
+    </div><!--/end form_row -->
+
+    <div class="form_row">
+      <div class="left_side">
+        <b><%= f.label :gender %></b>
+        <div class="grey_round_box">
+          <%= f.select :gender, [[t('user.male'), 'Male'], [t('user.female'), 'Female']] %>
+        </div>
+      </div>
+
+      <div class="left_side">
+        <b><%= f.label :born_on %></b>
+        <div class="grey_round_box">
+          <%= f.date_select :born_on, :use_month_numbers => true, :from_year => 1900, :end_year => Time.now.year %>
+        </div>
+      </div>
+
+      <div class="right_s">
+        <b><%= f.label :country, nil, :for => :country_id %></b>
+        <div class="grey_round_box">
+          <%= f.collection_select(:country_id, Country.all, :id, :name, {:prompt => true}, :class => 'input_select') %>
+        </div>
+      </div>
+
+      <div class="clearer"></div>
+    </div><!--/end form_row -->
+
+    <div class="form_row">
+      <b><%= f.label :websites %></b>
+      <div class="grey_round_box left_side">
+        <input type="text" id="add_website" class="input full_width" name="user[websites][]" />
+      </div>
+      <script type="text/javascript">
+        $('#add_website').bind('keydown', 'return', Base.account_settings.add_website);
+        $('#add_website').bind('keydown', 'comma',  Base.account_settings.add_website);
+      </script>
+      <br class="clearer" />
+      <br/>
+      <div id="websites">
+      <% @user.websites.each_with_index do |site, index| %>
+        <div class="website_row">
+          <%= hidden_field_tag "user[websites][]", h(site) %>
+          <b>
+            <big><a href="http://<%= site %>"><%= site %></a></big> &nbsp;
+            <a href="#" class="black delete_site">[ <%= t('account_settings.delete') %> ]</a>
+          </b>
+        </div>
+      <% end %>
+      <br class="clearer" id="websites_clearer" />
+      </div>
+    </div><!--/end form_row -->
+
+    <div class="form_row">
+      <div id="avatar_image">
+        <%= avatar_for(profile_account, :medium, :class => 'upload_thumb') %>
+      </div>
+      <div class="add_update">
+        <label class='label_holder'>
+          <a href="#" id="avatar_upload_button" class="red_button"><span><span><%= t('account_settings.add_update') %></span></span></a>
+          <%= f.file_field :avatar, :class => 'file' %>
+        </label>
+        <div id="avatar_upload_info"></div>
+      </div>
+      <div id="avatar_delete">
+        <b><a href="/my/settings/remove_avatar" class="black">[ <%= t('account_settings.delete') %> ]</a></b>
+      </div>
+      <% if false %>
+      <div class="right_side maintain_private">
+        <div class="grey_round_box">
+          <%= f.check_box :private_profile %> <span><%= t('user.private_profile') %></span>
+        </div>
+      </div>
+      <% end %>
+      <div class="clearer"></div>
+    </div><!--/end form_row -->
+
+    <div class="form_row last">
+      <div class="align_right right_side">
+        <a href="#" class="cancel_button"><%= t('account_settings.cancel') %></a>
+        <a href="#" class="red_button" onclick="$(this).closest('form').submit(); return false;"><span><span><%= t('account_settings.save') %></span></span></a>
+      </div>
+
+      <br class="clearer" />
+    </div><!--/end form_row -->
+  <% end %><!--/end account_settings -->
+</div><!--/end accordion_box -->

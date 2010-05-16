@@ -57,15 +57,32 @@ module DashboardsHelper
     menu_items(links)
   end
   
+  #These nav methods need to be refactored! 
   def user_top_navegation
     ul_list_to('links', 'current', my_nav_links)
   end
 
-
+  #These nav methods need to be refactored!
   def user_navigation
-    return unless ['accounts', 'dashboards', 'activities', 'followers', 'followees', 'badges', 'subscriptions', 'playlists', 'reviews'].include? params[:controller]
+    return unless ['accounts',
+                   'dashboards',
+                   'activities',
+                   'followers',
+                   'followees',
+                   'badges',
+                   'subscriptions',
+                   'playlists',
+                   'reviews',
+                   'users'].include? params[:controller]
+
     # HACK for Playlist Create page
     return if params[:controller] == 'playlists' && params[:action] == 'create'
+
+    # HACK for Registration page
+    return if params[:controller] == 'users' && params[:action] == 'new'
+    # HACK for User create
+    return if params[:controller] == 'users' && params[:action] == 'create'
+
     
     links = if profile_account and current_user and profile_account == current_user
       my_nav_links(:simple => true)
@@ -76,7 +93,7 @@ module DashboardsHelper
     html_links = []
     links.each do |link|
       css_class = ""
-      css_class << " active" if request.request_uri == link[:url]
+      css_class << " active" if (request.request_uri == link[:url] or params[:controller] == link[:menu].to_s)
       css_class << " last"   if links.last == link
       html_links << link_to(link[:label], link[:url], :class => css_class)
     end
@@ -84,6 +101,7 @@ module DashboardsHelper
     content_tag(:div, html_links.join("\n"), :class => 'top_nav w_spacer upriv_page')
   end
   
+  #These nav methods need to be refactored!
   def ul_list_to(ul_class, active_class, nav_links)
     items = []
     nav_links.each do |item|

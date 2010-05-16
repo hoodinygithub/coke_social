@@ -981,9 +981,9 @@ Base.network.count_chars = function() {
 };
 
 Base.network.__update_page_owner_page = function(response, options) {
-  $show_more_button = jQuery('#show_more_comments');
+  $show_more_button    = jQuery('#show_more_comments');
   $comment_list        = jQuery('#network_comment_list');
-  $share_button = jQuery('a.compartir_button');
+  $share_button        = jQuery('a.compartir_button');
 
   if (typeof(options) == 'object' && typeof(options.replace) != 'undefined' && options.replace) {
     $comment_list.hide().html(response).fadeIn();
@@ -991,24 +991,31 @@ Base.network.__update_page_owner_page = function(response, options) {
     $comment_list.hide().append(response).fadeIn();
   }
 
-  if ($comment_list.find('li').length >= 5) {
+  if ($comment_list.find('li').length >= 6) {
    $show_more_button.fadeIn();
   }
 };
 
 Base.network.__update_page_user_page = function(response) {
-  $user_big_text = jQuery("#user_activity_big_text");
+  $user_medium_text = jQuery("#user_activity_medium_text");
   $ul = jQuery('#user_recent_activities');
 
-  $user_big_text.find('img').remove();
+  $user_medium_text.find('img').remove();
 
-  if (response.length == 0) {
-    $user_big_text.find('span').fadeIn();
+  if (response.trim().length == 0) {
+    $user_medium_text.find('span').fadeIn();
     return;
   }
 
-  $user_big_text.remove();
-  $ul.html(response);
+  html_content = $(response).filter('li');
+
+  if (html_content.eq(6).length != []) {
+    html_content = html_content.filter(function(index) { if (index < 6) { return $(this) }; });
+    jQuery('#show_more_activities').fadeIn();
+  }
+
+  $user_medium_text.remove();
+  $ul.html(html_content);
 };
 
 
@@ -1107,6 +1114,7 @@ Base.account_settings.clear_info_and_errors_on = function(field) {
              .removeClass('green_info')
              .nextAll('div.clearer,span.red,span.green').remove();
   rounded_box.children('b').removeClass('white');
+  $('big[for="' + field.attr('name') + '"]').remove();
 }
 
 Base.account_settings.add_message_on = function(field, message, type) {
@@ -1123,9 +1131,19 @@ Base.account_settings.add_message_on = function(field, message, type) {
     var message_content = $('<div class="clearer" /><span class="' + color + '">' + message + '</span>');
     rounded_box.after(message_content);
   } else {
-    var message_content = $('<big><b class="'+ color +'">' + message + '</b></big><br />');
-    field.parent().next().prepend(message_content);
+    var message_content = $('<big class="checkbox_error" for="'+ field.attr('name') + '"><b class="'+ color +'">' + message + '</b><br /></big>');
+    field.parents('.form_row').children('.checkbox').prepend(message_content);
   }
+}
+
+
+Base.account_settings.show_validations = function(errorMap, errorList) {
+  $.each (errorList, function() {
+    field = $(this.element);
+    error = this.message;
+    Base.account_settings.clear_info_and_errors_on(field);
+    Base.account_settings.add_message_on(field, error, 'error');
+  });
 }
 
 Base.account_settings.focus_first_section_with_error = function(field_error) {
@@ -1185,7 +1203,7 @@ Base.account_settings.delete_account_submit_as_msn = function() {
 
 Base.account_settings.delete_account_submit_as_cyloop = function() {
   var form = $(this).closest('form');
-  var validator = form.validate();
+  var validator = form.validate({ showErrors : Base.account_settings.show_validations});
   if (form.valid()) {
     password_value = $("#delete_password").val();
     $.ajax({
@@ -1200,8 +1218,6 @@ Base.account_settings.delete_account_submit_as_cyloop = function() {
         }
       }
     });
-  } else {
-    validator.showErrors();
   }
   return false;
 }
@@ -1424,6 +1440,45 @@ Base.playlists.close_button_handler = function(object) {
     });
 };
 
+var _activeStream;
+var _playing = false;
+var _songId;
+Base.playlists.playStream = function(obj, media, songId)
+{
+  var elem = $(obj);
+  if(!_playing)
+  {
+    _activeStream = elem.parent().parent().attr('class', 'selected_row');
+    elem.find('img').attr('src', '/images/icon_stop_button.png');
+    swf('stream_connect').playSample(media, songId);
+    _playing = true;
+  }
+  else if(songId != _songId)
+  {
+    _activeStream.attr('class', '');
+    _activeStream.find('img').attr('src', '/images/icon_play_button.png');
+    _activeStream = elem.parent().parent().attr('class', 'selected_row');
+    elem.find('img').attr('src', '/images/icon_stop_button.png');
+    swf('stream_connect').playSample(media, songId);
+  }
+  else if(_playing && songId == _songId)
+  {
+    _activeStream.attr('class', '');
+    _activeStream.find('img').attr('src', '/images/icon_play_button.png');
+    _activeStream = null;
+    _playing = false;
+    swf('stream_connect').killSample();
+  }
+  _songId = songId;
+}
+
+Base.playlists.streamComplete = function()
+{
+  _activeStream.attr('class', '');
+  _activeStream.find('img').attr('src', '/images/icon_play_button.png');
+  _activeStream = null;
+  _playing = false;
+}
 
 /*
  * main search

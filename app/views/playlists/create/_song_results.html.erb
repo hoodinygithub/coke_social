@@ -10,11 +10,11 @@
   </div><!--/end headers -->
 
   <div class="songs_box medium_height">
-    <ul class="hoverable_list">
+    <ul class="hoverable_list" id="result_container">
       <% @results.each do |song| %>
-        <li id="search_result_<%= song.id %>">
+        <li id="search_result_<%= song.id %>" class="draggable_item">
             <div class="song_name">
-                <%= link_to_function image_tag("icon_play_button.png", :class => "png_fix icon_play_button"), "void(0)"%>
+              <%= link_to_function image_tag("icon_play_button.png", :class => "png_fix icon_play_button"), "Base.playlists.playStream(this, 'http://media.cyloop.com/storage/storage?fileName=#{song.path}', '#{song.id}')"%>
                 &nbsp; <%= truncate(song.title, :length => 20) %>
             </div>
 
@@ -30,3 +30,6 @@
     </ul>
   </div><!--/end songs_box -->
 </div><!--/end songs_list -->
+<script language="javascript">
+  init_draggable();
+</script>

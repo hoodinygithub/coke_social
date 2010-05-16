@@ -1,0 +1,38 @@
+<% content_for :javascript do %>
+  $(document).ready(function(){
+    $("#delete_account_submit").unbind('click');
+    $("#delete_account_submit").click(Base.account_settings.delete_account_submit_as_cyloop);
+  });
+<% end %>
+
+<div class="accordion_title"><%= t('account_settings.delete_account') %></div>
+<div class="accordion_box">
+  <% form_for @user, :html => { :method => :delete, :class => "account_settings", :id => 'delete_account_form' }, :url => my_cancellation_path do |f| %>
+    <div class="form_row">
+      <div class="left_s">
+        <label><b><%= t('account_settings.password') %></b></label>
+        <div class="grey_round_box">
+          <input class="input half_width4 {required:true,messages:{required:'<%= t('account_settings.password_required') %>'}}"
+          id="delete_password" name="delete_password" size="30" type="password" />
+        </div>
+      </div>
+      <br class="clearer" />
+      <br/>
+      <input type="checkbox"
+             class="{required:true,messages:{required:'<%= t('account_settings.delete_info_required') %>'}}"
+             id="delete_info_accepted"
+             name="delete_info_accepted" />
+
+      <span class="delete_info checkbox"><label for="delete_info_accepted"><%= t('account_settings.delete_info') %></label></span>
+    </div><!--/end form_row -->
+    <div class="form_row last">
+      <div class="align_right right_side">
+        <a href="#" class="cancel_button"><%= t('account_settings.cancel') %></a>
+        <a href="#" class="red_button" id="delete_account_submit">
+          <span><span><%= t('account_settings.delete_my_account') %></span></span>
+        </a>
+      </div>
+      <br class="clearer" />
+    </div><!--/end form_row -->
+  <% end %>
+</div><!--/end accordion_box -->

@@ -1,0 +1,28 @@
+<% content_for :javascript do %>
+  $(document).ready(function(){
+    <% if !@user.errors.empty? %>
+      field_with_errors     = <%= @user.errors.to_json %>;
+      Base.account_settings.highlight_field_with_errors();
+    <% end %>
+    $('#user_avatar').focus(Base.account_settings.update_avatar_upload_info);
+    $('#user_avatar').change(Base.account_settings.update_avatar_upload_info);
+  });
+<% end %>
+
+<% content_for :header_space_content do %>
+  <%= render 'users/stats' %>
+<% end %>
+
+
+<div id="left_column">
+  <%= render 'dashboards/my_info' %>
+</div><!--/end left_column -->
+
+<div class="settings_column">
+  <h1><%= t('account_settings.title') %></h1>
+  <%= render 'edit_basic_info' %>
+  <%= render 'edit_password_change' %>
+  <%= render 'edit_email_notifications' %>
+  <%= render 'edit_delete_account' %>
+</div>
+<div class="clearer" />

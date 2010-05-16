@@ -13,6 +13,6 @@
     <br class="clearer" />
   </div>
   <% if profile_user.total_badges > 15 %>
-  <div class="align_right"><b class="right_side"><%= link_to t('actions.view_more') %></b></div><br />
+  <div class="align_right"><b class="right_side"><%= link_to t('actions.view_more'), user_badges_path(profile_user) %></b></div><br />
   <% end %>
 </div><!--/end box_content -->  

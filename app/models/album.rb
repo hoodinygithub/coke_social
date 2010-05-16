@@ -60,6 +60,11 @@ class Album < ActiveRecord::Base
   validates_attachment_content_type :avatar,
     :content_type => ["image/jpeg", "image/png", "image/gif", "image/pjpeg", "image/x-png"]
 
+  def self.search(*args)
+    args[0] = "#{args[0]}*"
+    super(*args).compact        
+  end
+
   def total_listens
     song_listens.sum(:total_listens)
   end

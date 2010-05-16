@@ -5,7 +5,7 @@ namespace :db do
       include Timebox
 
       feed = 'top_artists'
-      output_path = ENV.has_key?('xml_output_path') ? ENV['xml_output_path'] : '/shared/common/system/db/xml'
+      output_path = ENV.has_key?('xml_output_path') ? ENV['xml_output_path'] : '/shared/common_coke/system/db/xml'
 
       size = 100
 
@@ -36,7 +36,7 @@ namespace :db do
 
           xml.item do
             xml.thumb thumbnail
-            xml.detail large_image
+            xml.detail ""
             xml.link link
             xml.dynamicReflection false
             xml.description title

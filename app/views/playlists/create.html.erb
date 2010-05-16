@@ -1,7 +1,9 @@
 <% content_for :header_space_content do %>
   <div class="header_spacer"></div>
 <% end %>
+<%= javascript_include_tag 'jquery.ui' %>
 <%= javascript_include_tag 'playlist_create' %>
+<%= javascript_include_tag 'AC_OETags' %>
 
 <div class="two_columns">
     <h1><%= t('playlists.create_new') %></h1>
@@ -38,3 +40,24 @@
     });
   }
 </script>
+
+<div id="stream_connector">
+  <script type="text/javascript" charset="utf-8">
+    var flashvars = "playerId=<%= @player_id %>";
+    AC_FL_RunContent(
+      "src", "/flash/stream_connect",
+      "wmode", "opaque",
+      "width", "1",
+      "height", "1",
+      "align", "middle",
+      "id", "stream_connect",
+      "quality", "high",
+      "bgcolor", "#FFFFFF",
+      "name", "stream_connect",
+      "allowScriptAccess", "sameDomain",
+      "type", "application/x-shockwave-flash",
+      "pluginspage", "http://www.adobe.com/go/getflashplayer",
+      "flashVars", flashvars
+    );
+  </script>
+</div>
