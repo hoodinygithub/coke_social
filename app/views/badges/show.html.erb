@@ -59,6 +59,6 @@
     <% end %>
 </div><!--/end two_columns -->
 
-<%= render 'accounts/right_column' %>
+<%= render on_dashboard? ? 'dashboards/right_column' : 'accounts/right_column' %>
 
 <div class="clearer"></div>
