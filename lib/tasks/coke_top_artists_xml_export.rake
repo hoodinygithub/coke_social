@@ -17,6 +17,7 @@ namespace :db do
     end
 
     def write_rss_artist_feed(feed, site, path, limit)
+      duplicate = 1
       return if site.nil?
       items = site.top_artists.all(:limit => limit)
       return if items.empty?
@@ -27,7 +28,7 @@ namespace :db do
 
       xml.instruct! :xml, :version => "1.0"
       xml.items do
-        (0..1).each do |c|
+         (0..duplicate).each do |c|
           items.each do |artist|
             
             title = "#{artist.name}"
@@ -43,7 +44,7 @@ namespace :db do
               xml.description title
             end
           end
-        end
+         end
       end
     end
   end
