@@ -1109,7 +1109,9 @@ Base.account_settings.highlight_field_with_errors = function() {
       field = $(":visible:input[name*='" + field_name + "']").first();
       Base.account_settings.add_message_on(field, error, 'error');
     }
+    Base.account_settings.focus_first_field_with_error_by_label();
   }
+
 };
 
 Base.account_settings.clear_info_and_errors_on = function(field) {
