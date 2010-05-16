@@ -136,7 +136,6 @@ function submit_save_form()
     if(name != "")
     {
       form.find("input[name='item_ids']").attr("value", playlist_ids);
-      console.log("after:" + form.find("input[name='item_ids']").val());
       form.submit();
     }
     else
