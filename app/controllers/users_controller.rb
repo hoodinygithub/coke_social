@@ -33,11 +33,11 @@ class UsersController < ApplicationController
     if @user.save
       Resque.enqueue(TwitterJob, {:user_id => @user.id, :twitter_username => @user.twitter_username}) if twitter_username_changed
       flash[:success] = t('settings.saved')
-      redirect_to my_dashboard_path
     else
       flash[:error] = t('settings.not_saved')
-      render :action => :edit
     end
+    render :action => :edit
+
   end
 
   # GET /users/new
