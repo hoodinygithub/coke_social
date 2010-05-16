@@ -17,7 +17,6 @@ namespace :db do
     end
 
     def write_rss_artist_feed(feed, site, path, limit)
-      duplicate = 1
       return if site.nil?
       items = site.top_artists.all(:limit => limit)
       return if items.empty?
@@ -28,23 +27,20 @@ namespace :db do
 
       xml.instruct! :xml, :version => "1.0"
       xml.items do
-         (0..duplicate).each do |c|
-          items.each do |artist|
-            
-            title = "#{artist.name}"
-            link =  CGI::escape("http://#{site.domain}/search/playlists/#{artist.name}")
-            thumbnail = AvatarsHelper.avatar_path(artist, :small) #s.artist.avatar_file_name.nil? ? "http://assets.cyloop.com/storage?fileName=/.elhood.com-2/usr/#{s.artist_id}/image/thumbnail/x46b.jpg" : s.artist.avatar_file_name.sub(/hires/,'thumbnail')
-            large_image = AvatarsHelper.avatar_path(artist, :medium)  #s.artist.avatar_file_name.nil? ? "http://assets.cyloop.com/storage?fileName=/.elhood.com-2/usr/#{s.artist_id}/image/hi-thumbnail/x46b.jpg" : s.artist.avatar_file_name.sub(/hires/,'hi-thumbnail')
+        items.each do |artist|
+          title = "#{artist.name}"
+          link =  CGI::escape("http://#{site.domain}/search/playlists/#{artist.name}")
+          thumbnail = AvatarsHelper.avatar_path(artist, :small) #s.artist.avatar_file_name.nil? ? "http://assets.cyloop.com/storage?fileName=/.elhood.com-2/usr/#{s.artist_id}/image/thumbnail/x46b.jpg" : s.artist.avatar_file_name.sub(/hires/,'thumbnail')
+          large_image = AvatarsHelper.avatar_path(artist, :medium)  #s.artist.avatar_file_name.nil? ? "http://assets.cyloop.com/storage?fileName=/.elhood.com-2/usr/#{s.artist_id}/image/hi-thumbnail/x46b.jpg" : s.artist.avatar_file_name.sub(/hires/,'hi-thumbnail')
 
-            xml.item do
-              xml.thumb thumbnail
-              xml.detail ""
-              xml.link link
-              xml.dynamicReflection false
-              xml.description title
-            end
+          xml.item do
+            xml.thumb thumbnail
+            xml.detail ""
+            xml.link link
+            xml.dynamicReflection false
+            xml.description title
           end
-         end
+        end
       end
     end
   end
