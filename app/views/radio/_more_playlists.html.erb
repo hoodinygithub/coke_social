@@ -1,4 +1,4 @@
-<% playlists = current_playlist[0].kind_of? (Playlist) ? current_playlist : current_playlist.playable.owner.playlists.latest(20) %>
+<% playlists = current_playlist.kind_of? (Array) ? current_playlist : current_playlist.playable.owner.playlists.latest(20) %>
 <% playlists.each do |playlist| %>
   <div class="radio_station_row">
     <%= link_to_function avatar_for(playlist, :comment, :class => 'left_side station_icon', :width => '50', :disable_default_css => true), "Base.radio.set_station_details(#{playlist.station.id}, '#{playlist.station_queue}')" %>
