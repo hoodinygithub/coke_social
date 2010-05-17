@@ -1,38 +1,24 @@
 <div class="tags_column">
-    <h1>POPULAR TAGS</h1>
-    
-    <div class="side_tags">
-        <a href="#" class="space9">love</a><br/>
-        <a href="#" class="space18">fun</a><br/>
-        <a href="#" class="space12">cute</a><br/>
-        <a href="#" class="space8">sexy</a><br/>
-        <a href="#" class="space6">dance</a><br/>
-        <a href="#" class="space18">emo</a><br/>
-        <a href="#" class="space9">dance</a><br/>
-        <a href="#" class="space18">live</a><br/>
-        <a href="#" class="space5">beautiful</a><br/>
-        <a href="#" class="space4">bubblegum</a><br/>
-        <a href="#" class="space8">favorite</a><br/>
-        <a href="#" class="space8">awesome</a><br/>
-        <a href="#" class="space10">rockstar</a><br/>
-        <a href="#" class="space11">screamo</a><br/>
-        <a href="#" class="space12">amazing</a><br/>
-        <a href="#" class="space2">guilty-pleasures</a><br/>
-        <a href="#" class="space2">female-vocalist</a><br/>
-        <a href="#" class="space8">la-la-land</a><br/>
-        <a href="#" class="space8">this-is-me</a><br/>
-        <a href="#" class="space12">talented</a><br/>
-        <a href="#" class="space16">energy</a><br/>
-        <a href="#" class="space11">caliente</a><br/>
-        <a href="#" class="space2">most-favorite</a><br/>
-        <a href="#" class="space14">bounce</a><br/>
-        <a href="#" class="space27">cute</a><br/>
-        <a href="#" class="space3">yo-te-quiero</a><br/>
-        <a href="#" class="space19">happy</a><br/>
-        <a href="#" class="space18">catchy</a><br/>
-        <a href="#" class="space11">pam-pam</a><br/>
-        <a href="#" class="space2">beautiful-voice</a><br/>
-        <a href="#" class="space10">fabulous</a><br/>
-        <a href="#" class="space24">diva</a><br/>
+  <h1><%= t("modules.popular_tags").upcase %></h1>
+
+
+  <div class="side_tags">
+    <% if controller_name == "pages" or controller_name == "radio" %>
+      <object width="150" height="500" codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=3,0,0,0" classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" name="fl">
+        <param value="/flash/bottle_tags.swf" name="movie">
+        <param value="undefined" name="LOOP">
+        <param value="high" name="quality">
+        <param value="transparent" name="wmode">
+        <embed width="150" height="500" wmode="transparent" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer" quality="high" src="/flash/bottle_tags.swf" name="ebp">
+      <% else %>
+        <object width="150" height="500" codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=3,0,0,0" classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" name="fl">
+          <param value="/flash/bottle_tags_2.swf" name="movie">
+          <param value="undefined" name="LOOP">
+          <param value="high" name="quality">
+          <param value="transparent" name="wmode">
+          <embed width="150" height="500" wmode="transparent" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer" quality="high" src="/flash/bottle_tags_2.swf" name="ebp">
+        </object>
+      <% end %>
+
     </div>
-</div><!--/end tags_column -->
+  </div><!--/end tags_column -->
