@@ -114,8 +114,8 @@ coke_ES:
     go: Ir
     reset: Restablecer
     add_into_a_new_playlist: Agregar a un nuevo playlist
-    share_station: Compartir esta radio con un amigo.
     login: Login
+    share_station: Compartir esta radio con un amigo.
     latest: MAS RECIENTES
     skip: ""
     listen: escuchar
@@ -125,8 +125,8 @@ coke_ES:
     create_station: Crear radio
     add_more: "Agregar M\xC3\xA1s"
     select_store: Seleccionar Tienda
-    create_a_playlist: Crear un playlist
     search: Buscar
+    create_a_playlist: Crear un playlist
   number: 
     format: 
       separator: .
@@ -509,8 +509,8 @@ coke_ES:
     msn_music_is_free: "MSN M\xC3\xBAsica es gratis, "
     station_edit_success: El nombre de la radio ha sido actualizado
     view_your_stations: "Para ver tus radios, "
-    continue: Continuar
     still_dont_have: "\xC2\xBFNo tienes una cuenta de MSN M\xC3\xBAsica a\xC3\xBAn?"
+    continue: Continuar
     recengineerror_NO_RADIO: No se pudo encontrar una radio
   time: 
     am: am
@@ -591,6 +591,10 @@ coke_ES:
           {{confirm_url}}\r\n\
           \r\n\
           Utiliza la direcci\xC3\xB3n de correo electr\xC3\xB3nico {{email}} y la clave que proporcionaste durante la registraci\xC3\xB3n para acceder a {{host_url}}.\r\n"
+    messages: 
+      terms_of_use: Debe ser aceptado
+      pivacy_policy: tiene que ser aceptarse
+      privacy_policy: Debe ser aceptado
     remember_me: ""
     is_available_exclamation: "Email est\xC3\xA1 disponible!"
     sign_out: ""
@@ -657,8 +661,8 @@ coke_ES:
       button: Comienza!
       title: Bienvenido! Gracias por registarte en Cyloop!
       subtitle: "Como miembro de Cyloop, mira lo que puedes hacer:"
-      subject: Bienvenido! Gracias por registarte en Cyloop!
       closing_statement: "Cyloop | Qu\xC3\xA9 te gustar\xC3\xADa escuchar?"
+      subject: Bienvenido! Gracias por registarte en Cyloop!
       terms_and_legal_text: "Copyright \xC2\xA9 2008-2009 Cyloop LLC. Todos los derechos reservados. Cyloop, Cyloop.com, el logo de Cyloop y todas las otras marcas <br>\r\n\
         de Cyloop aqu\xC3\xAD inclu\xC3\xADdas son marcas registradas de Hoodiny Entertainment Group y/o de sus compa\xC3\xB1\xC3\xADas afiliadas. <br> \r\n\
         Todas las dem\xC3\xA1s marcas aqu\xC3\xAD inclu\xC3\xADdas son propiedad de sus respectivos due\xC3\xB1os. La reproducci\xC3\xB3n en forma total <br> \r\n\
@@ -708,10 +712,6 @@ coke_ES:
     - October
     - November
     - December
-    order: 
-    - :month
-    - :day
-    - :year
     abbr_day_names: 
     - Sun
     - Mon
@@ -720,6 +720,10 @@ coke_ES:
     - Thu
     - Fri
     - Sat
+    order: 
+    - :month
+    - :day
+    - :year
     formats: 
       default: "%d/%m/%y"
       short: "%b %d"
@@ -1318,6 +1322,7 @@ coke_ES:
     background_fixed: Fondo Ajustado
     background_repeat: "Repetici\xC3\xB3n del Fondo"
     color_main_font: "Color de la Tipograf\xC3\xADa Principal"
+    background_fixed: Fondo Ajustado
     negative_captcha: No completar este campo
     male: Hombre
     new_password: "Nueva Contrase\xC3\xB1a"
@@ -1391,14 +1396,14 @@ coke_ES:
     start_listening: COMENZAR A ESCUCHAR
     todays_top_djs: Top Djs
     todays_badge_awards: Top Badge Awards
-    text_about_radio: Acerca de la Radio
     create_your_own_personalized_radio_station: Crea Tu Propia Radio Personalizada
-    top_radios: TOP RADIOS
+    text_about_radio: Acerca de la Radio
     create_radio: Crear Radio
     latest_stations: RADIOS MAS RECIENTES
     explaing_what_is_and_why_create_a_new_radio: "Ingresa el nombre de tu artista favorito. Cyloop generar\xC3\xA1 una radio personalizada con m\xC3\xBAsica de tus artistas favoritos."
     recommended_stations: RADIOS RECOMENDADAS POR CYLOOP
     user_latest_stations: RADIO MAS RECIENTE DE {{name}}
+    latest_stations: RADIOS MAS RECIENTES
     network_update: ACTIVIDAD DE RED  {{user_name}}
     recommended_mixes: MIXES RECOMENDADOS POR CYLOOP
     type_artist_name: Escribe el nombre de un artista
