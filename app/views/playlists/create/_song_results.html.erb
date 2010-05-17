@@ -31,5 +31,14 @@
   </div><!--/end songs_box -->
 </div><!--/end songs_list -->
 <script language="javascript">
-  init_draggable();
+  //init_draggable();
+  
+  Base.playlists.onStreamStart = function(obj)
+  {
+    $(obj).find('.large_bnt a').hide();
+  }
+  Base.playlists.onStreamEnd = function(obj)
+  {
+    $(obj).find('.large_bnt a').show();
+  }
 </script>

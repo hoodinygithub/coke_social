@@ -1461,6 +1461,7 @@ Base.playlists.playStream = function(obj, media, songId)
   if(!_playing)
   {
     _activeStream = elem.parent().parent().attr('class', 'selected_row');
+    Base.playlists.onStreamStart(_activeStream);
     elem.find('img').attr('src', '/images/icon_stop_button.png');
     swf('stream_connect').playSample(media, songId);
     _playing = true;
@@ -1469,7 +1470,9 @@ Base.playlists.playStream = function(obj, media, songId)
   {
     _activeStream.attr('class', '');
     _activeStream.find('img').attr('src', '/images/icon_play_button.png');
+    Base.playlists.onStreamEnd(_activeStream);
     _activeStream = elem.parent().parent().attr('class', 'selected_row');
+    Base.playlists.onStreamStart(_activeStream);
     elem.find('img').attr('src', '/images/icon_stop_button.png');
     swf('stream_connect').playSample(media, songId);
   }
@@ -1477,6 +1480,7 @@ Base.playlists.playStream = function(obj, media, songId)
   {
     _activeStream.attr('class', '');
     _activeStream.find('img').attr('src', '/images/icon_play_button.png');
+    Base.playlists.onStreamEnd(_activeStream);
     _activeStream = null;
     _playing = false;
     swf('stream_connect').killSample();
@@ -1486,10 +1490,20 @@ Base.playlists.playStream = function(obj, media, songId)
 
 Base.playlists.streamComplete = function()
 {
+  Base.playlists.onStreamEnd(_activeStream);
   _activeStream.attr('class', '');
   _activeStream.find('img').attr('src', '/images/icon_play_button.png');
   _activeStream = null;
   _playing = false;
+}
+
+Base.playlists.onStreamStart = function(obj)
+{
+  // Override this as needed
+}
+Base.playlists.onStreamEnd = function(obj)
+{
+  // Override this as needed
 }
 
 /*
