@@ -107,8 +107,22 @@ class Playlist < ActiveRecord::Base
     @tags = self.tag_counts
   end
 
+  def update_tags(tags)
+    tags = tags.map { |m| m.gsub(/\"/,"") unless m.blank? }.compact
+    unless tags.empty?
+      transaction do
+        self.taggings.destroy_all
+        self.tag_list.clear
+        self.tag_list.add(tags) 
+        self.save
+        owner.update_cached_tag_list
+      end
+    end
+  end
+  
   def add_tags(tags)
     tags = tags.split(/('.*?'|".*?"|\s+)/).map { |m| m.gsub(/\"/,"") unless m.blank? }.compact
+    
     unless tags.empty?
       transaction do
         self.tag_list.add(tags) 

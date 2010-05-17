@@ -22,7 +22,7 @@
           <h2><%= t('playlists.tag_your_playlist') %> <small class="grey"><%= t('playlists.seperated_commas') %></small></h2>
 
           <div class="grey_round_box align_center">
-              <input type="text" class="input full_width3" value="fun, silly, retro" name="tags" />
+              <input type="text" class="input full_width3" value="<%= @playlist.tags.join(", ") %>" name="tags" />
           </div>
       </div><!--/end form_row -->
   

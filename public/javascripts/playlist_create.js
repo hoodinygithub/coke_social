@@ -107,6 +107,7 @@ function remove_search_result(id)
 function get_song_list(id,scope)
 {
   q = "item_id=" + id + "&scope=" + scope;
+  show_loading_image();
   jQuery.get('/playlist/create?' + q, function(data) {
       jQuery('#search_results_container').html(data);
   });
@@ -115,9 +116,16 @@ function get_song_list(id,scope)
 function get_search_results(term,scope)
 {
   q = "term=" + term + "&scope=" + scope;
+  show_loading_image();
   jQuery.get('/playlist/create?' + q, function(data) {
       jQuery('#search_results_container').html(data);
   });
+}
+
+function show_loading_image()
+{
+  img = '<div class="empty_results_box"><img src="/images/loading_large.gif"/></div>';
+  jQuery('#search_results_container').html(img);
 }
 
 function open_save_popup()
