@@ -18,6 +18,7 @@ class Playlist < ActiveRecord::Base
 
   acts_as_taggable
   before_save :update_cached_artist_list
+  before_create :increment_owner_total_playlists
   
   belongs_to :owner, :class_name => 'User', :conditions => { :network_id => 2 }
   delegate :network, :to => :owner
@@ -60,10 +61,12 @@ class Playlist < ActiveRecord::Base
   
   def deactivate!
     update_attribute(:deleted_at, Time.now)
+    self.owner.decrement!(:total_playlists)
   end
 
   def activate!
     update_attribute(:deleted_at, nil)
+    increment_owner_total_playlists
   end
 
   def owner_is?(user)
@@ -81,6 +84,10 @@ class Playlist < ActiveRecord::Base
     unless songs.empty?
       update_attribute(:cached_artist_list, includes.collect{ |s| s.artist.name rescue nil }.compact.join(', ') ) if cached_artist_list.blank?
     end
+  end
+
+  def increment_owner_total_playlists
+    self.owner.increment!(:total_playlists)
   end
 
   def artists_contained(options = {})
