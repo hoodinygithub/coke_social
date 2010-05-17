@@ -985,10 +985,13 @@ Base.network.__update_page_owner_page = function(response, options) {
   $comment_list        = jQuery('#network_comment_list');
   $share_button        = jQuery('a.compartir_button');
 
+  $comment_list.show();
   if (typeof(options) == 'object' && typeof(options.replace) != 'undefined' && options.replace) {
     $comment_list.hide().html(response).fadeIn();
+    $comment_list.show();
   } else {
     $comment_list.hide().append(response).fadeIn();
+    $comment_list.show();
   }
 
   if ($comment_list.find('li').length >= 6) {
@@ -1068,6 +1071,7 @@ Base.network.push_update = function() {
   $comment_field       = jQuery("#network_comment");
   $chars_counter       = jQuery(".chars_counter");
   $comment_field.css({'border':'10px solid #EDEDED'});
+  $(".network_arrow").attr("src", "/images/network_arrow.gif");
 
   var comment = jQuery.trim($comment_field.val());
   var $old_network_update_text = $network_update_text.clone();
@@ -1085,9 +1089,12 @@ Base.network.push_update = function() {
       Base.network.__update_page_owner_page(response, {'replace':true});
       $chars_counter.css({'color':'#cccccc'});
       $share_button.removeClass('blue_button_wo_hover').addClass('blue_button').html(old_button_content);
+      $("div.sorting a").removeClass("active");
+      $("div.sorting a[href*=all]").addClass("active");
     });
   } else {
     $comment_field.css({'border':'10px solid red'});
+    $(".network_arrow").attr("src", "/images/network_arrow_red.gif");
     $share_button.removeClass('blue_button_wo_hover').addClass('blue_button').html(old_button_content);
   }
 
@@ -1102,10 +1109,14 @@ Base.account_settings.highlight_field_with_errors = function() {
     for(i=0; i < field_with_errors.length; i++) {
       var field_name = field_with_errors[i][0];
       var error = field_with_errors[i][1];
+      if (i == 0) {
+        Base.account_settings.focus_first_field_with_error_by_label();
+      }
       field = $(":visible:input[name*='" + field_name + "']").first();
       Base.account_settings.add_message_on(field, error, 'error');
     }
   }
+
 };
 
 Base.account_settings.clear_info_and_errors_on = function(field) {
@@ -1208,13 +1219,13 @@ Base.account_settings.delete_account_submit_as_cyloop = function() {
     password_value = $("#delete_password").val();
     $.ajax({
       type : "DELETE",
-      url  : "/my/cancellation",
+      url  : "/my/cancellation/confirm",
       data : { delete_info_accepted: "true", delete_password: password_value },
       success: function(data){
-        if (data.success) {
-          window.location = data.redirect_to;
-        } else {
+        if (data.errors) {
           validator.showErrors(data.errors);
+        } else {
+          jQuery.popup(data);
         }
       }
     });
@@ -1224,10 +1235,11 @@ Base.account_settings.delete_account_submit_as_cyloop = function() {
 
 
 Base.account_settings.delete_account_confirmation = function() {
+  password_value = $("#delete_password").val();
   $.ajax({
     type : "DELETE",
     url  : "/my/cancellation",
-    data : { delete_info_accepted: "true"},
+    data : { delete_info_accepted: "true", delete_password: password_value },
     success: function(data){
       delete_account_data = data;
       $.popup(function() {
@@ -1449,6 +1461,7 @@ Base.playlists.playStream = function(obj, media, songId)
   if(!_playing)
   {
     _activeStream = elem.parent().parent().attr('class', 'selected_row');
+    Base.playlists.onStreamStart(_activeStream);
     elem.find('img').attr('src', '/images/icon_stop_button.png');
     swf('stream_connect').playSample(media, songId);
     _playing = true;
@@ -1457,7 +1470,9 @@ Base.playlists.playStream = function(obj, media, songId)
   {
     _activeStream.attr('class', '');
     _activeStream.find('img').attr('src', '/images/icon_play_button.png');
+    Base.playlists.onStreamEnd(_activeStream);
     _activeStream = elem.parent().parent().attr('class', 'selected_row');
+    Base.playlists.onStreamStart(_activeStream);
     elem.find('img').attr('src', '/images/icon_stop_button.png');
     swf('stream_connect').playSample(media, songId);
   }
@@ -1465,6 +1480,7 @@ Base.playlists.playStream = function(obj, media, songId)
   {
     _activeStream.attr('class', '');
     _activeStream.find('img').attr('src', '/images/icon_play_button.png');
+    Base.playlists.onStreamEnd(_activeStream);
     _activeStream = null;
     _playing = false;
     swf('stream_connect').killSample();
@@ -1474,10 +1490,20 @@ Base.playlists.playStream = function(obj, media, songId)
 
 Base.playlists.streamComplete = function()
 {
+  Base.playlists.onStreamEnd(_activeStream);
   _activeStream.attr('class', '');
   _activeStream.find('img').attr('src', '/images/icon_play_button.png');
   _activeStream = null;
   _playing = false;
+}
+
+Base.playlists.onStreamStart = function(obj)
+{
+  // Override this as needed
+}
+Base.playlists.onStreamEnd = function(obj)
+{
+  // Override this as needed
 }
 
 /*
@@ -1666,5 +1692,34 @@ jQuery(document).ready(function() {
   Base.header_search.dropdown();
   Base.content_search.dropdown();
   Base.playlist_search.dropdown();
+
+  $("#network_comment").focus(function() {
+    $("#network_comment").addClass("network_update_red");
+    $(".network_arrow").attr("src", "/images/network_arrow_red.gif");
+  });  
+  
+  $("#network_comment").blur(function() {
+    $("#network_comment").removeClass("network_update_red");
+    $(".network_arrow").attr("src", "/images/network_arrow.gif");
+  }); 
+
+  $("#network_comment_list").show();
+  
 });
 
+Base.network.reload_comments = function(filter) {
+  $list = jQuery(".comments_list");
+
+  $last_li  = $list.find('li:last');
+  timestamp = $last_li.attr('timestamp');
+
+  var params = {'slug':Base.account.slug};
+  params.filter_by = filter;
+
+  jQuery.post("/activity/latest", params, function (response) {
+    $("ul#network_comment_list").show();
+    $("div.sorting a").removeClass("active");
+    jQuery(".comments_list").html(response);
+    $("div.sorting a[href*="+filter+"]" ).addClass("active");
+  });
+};

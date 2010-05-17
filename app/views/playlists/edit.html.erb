@@ -6,7 +6,28 @@
 <%= javascript_include_tag 'AC_OETags' %>
 
 <div class="two_columns">
-    <h1><%= t('playlists.create_new') %></h1>
+    <h1><%= t('playlists.edit') %></h1>
+    
+    <form class="account_settings search_music" method="post" action="">
+        <div class="form_row last">
+            <h2><%= t('playlists.name_your_playlist') %></h2>
+
+            <div class="grey_round_box align_center">
+                <input type="text" class="input full_width3" value="<%= @playlist.name %>"/>
+            </div>
+        </div><!--/end form_row -->
+
+        <div class="form_row last">
+            <h2><%= t('playlists.tag_your_playlist') %> <small class="grey"><%= t('playlists.seperated_commas') %></small></h2>
+
+            <div class="grey_round_box align_center">
+                <input type="text" class="input full_width3" value="fun, silly, retro" />
+            </div>
+        </div><!--/end form_row -->
+    </form>
+    
+    
+    
     <h2><%= t('playlists.search_for_music') %></h2>
     <%= render :partial => 'playlists/create/search_box' %>
     <div id="search_results_container">

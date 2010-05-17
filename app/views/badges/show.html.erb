@@ -2,6 +2,8 @@
   <%= render 'users/stats' %>
 <% end %>
 
+<%= render 'shared/ajax_modules' %>
+
 <div class="two_columns">
     <div class="badge_detail">
         <%= image_tag @badge_award.image(:mega), :class => "detail_img" %>
@@ -57,6 +59,6 @@
     <% end %>
 </div><!--/end two_columns -->
 
-<%= render 'accounts/right_column' %>
+<%= render on_dashboard? ? 'dashboards/right_column' : 'accounts/right_column' %>
 
 <div class="clearer"></div>

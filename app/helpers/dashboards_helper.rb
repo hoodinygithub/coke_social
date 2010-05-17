@@ -76,7 +76,7 @@ module DashboardsHelper
                    'users'].include? params[:controller]
 
     # HACK for Playlist Create page
-    return if params[:controller] == 'playlists' && params[:action] == 'create'
+    return if params[:controller] == 'playlists' && (params[:action] == 'create' || params[:action] == 'edit')
 
     # HACK for Registration page
     return if params[:controller] == 'users' && params[:action] == 'new'

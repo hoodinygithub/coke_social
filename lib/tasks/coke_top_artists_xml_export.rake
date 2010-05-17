@@ -7,7 +7,7 @@ namespace :db do
       feed = 'top_artists'
       output_path = ENV.has_key?('xml_output_path') ? ENV['xml_output_path'] : '/shared/common_coke/system/db/xml'
 
-      size = 100
+      size = 35
 
       Site.all(:conditions => "code like 'coke%'").each do |site|
         timebox "XML File Created to #{site.name}..." do
@@ -28,7 +28,6 @@ namespace :db do
       xml.instruct! :xml, :version => "1.0"
       xml.items do
         items.each do |artist|
-          
           title = "#{artist.name}"
           link =  CGI::escape("http://#{site.domain}/search/playlists/#{artist.name}")
           thumbnail = AvatarsHelper.avatar_path(artist, :small) #s.artist.avatar_file_name.nil? ? "http://assets.cyloop.com/storage?fileName=/.elhood.com-2/usr/#{s.artist_id}/image/thumbnail/x46b.jpg" : s.artist.avatar_file_name.sub(/hires/,'thumbnail')

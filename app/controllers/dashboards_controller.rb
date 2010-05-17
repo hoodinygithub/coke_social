@@ -3,7 +3,7 @@ class DashboardsController < ApplicationController
   before_filter :auto_follow_profile
   before_filter :load_user_activities, :only => [:show]
   ACTIVITIES_MAX           = 15
-  ACTIVITIES_DASHBOARD_MAX = 7
+  ACTIVITIES_DASHBOARD_MAX = 8
   ACTIVITY_SHOW_MORE_SIZE  = 5
 
   layout_except_xhr 'application'

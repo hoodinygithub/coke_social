@@ -123,6 +123,7 @@ ActionController::Routing::Routes.draw do |map|
     url.get_activity 'activity/activity/:type', :action => 'get_activity'
     url.push_activity 'activity/update/:type', :action => 'update'
     url.get_latest    'activity/latest', :action => 'latest'
+    url.get_load_activities    'activity/load_activities', :action => 'load_activities'
     url.get_latest_tweet 'activity/latest_tweet', :action => 'latest_tweet'
   end
 
@@ -140,7 +141,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :campaigns, :member => {:activate => :post, :deactivate => :post}
   
   map.playlist_create '/playlist/create', :controller => 'playlists', :action => 'create'
-  map.playlist_edit '/playlist/create/:id', :controller => 'playlists', :action => 'edit'
+  map.playlist_edit '/playlist/edit/:id', :controller => 'playlists', :action => 'edit'
 
   profile_routes = lambda do |profile|
     profile.resources :comments

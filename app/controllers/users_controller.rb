@@ -21,23 +21,23 @@ class UsersController < ApplicationController
 
   # GET /users/id/edit
   def edit
-    @user = current_user
+    @user = User.find(current_user.id)
   end
 
   # POST /users/id
   def update
-    @user                    = current_user
+    @user                    = User.find(current_user.id)
     params[:user]            = trim_attributes_for_paperclip(params[:user], :avatar)
     @user.attributes         = params[:user]
     twitter_username_changed = @user.twitter_username_changed?
     if @user.save
       Resque.enqueue(TwitterJob, {:user_id => @user.id, :twitter_username => @user.twitter_username}) if twitter_username_changed
       flash[:success] = t('settings.saved')
-      redirect_to my_dashboard_path
     else
       flash[:error] = t('settings.not_saved')
-      render :action => :edit
     end
+    render :action => :edit
+
   end
 
   # GET /users/new
@@ -124,6 +124,13 @@ class UsersController < ApplicationController
   end
 
   def confirm_cancellation
+    user = current_user
+    result = { :user_id => user.id }
+    password_valid = cyloop_login? ? user.authenticated?(params[:delete_password]) : true
+    unless params[:delete_info_accepted] and password_valid
+      result[:errors] = { :delete_password => I18n.t('account_settings.password_required') }
+      render :json => result.to_json
+    end
   end
 
   def feedback
@@ -139,7 +146,6 @@ class UsersController < ApplicationController
         :feedback     => params[:feedback],
         :cancellation => true
       }
-      puts options
       UserNotification.send_feedback_message( options )
     end
     redirect_to params[:redirect_to] if params[:redirect_to]
