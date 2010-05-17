@@ -1327,7 +1327,7 @@ Base.header_search.autocomplete = function(last_value) {
 Base.content_search.buildSearchUrl = function () {
   var form_values = jQuery("#content_search_form").serializeArray();
   var q     = Base.header_search.getFieldValue(form_values,'q');
-  var url   = "/playlists/create/?term=" + ( q == msg ? "" : q) ;
+  var url   = "/playlist/create/?term=" + ( q == content_msg ? "" : q) ;
   location.href = url;
   return false;
 };
