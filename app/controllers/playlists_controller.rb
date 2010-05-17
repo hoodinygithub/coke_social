@@ -23,8 +23,6 @@ class PlaylistsController < ApplicationController
   end
 
   def create
-    @player_id = current_site.players.all(:conditions => "player_key = 'ondemand_#{current_site.code}'")[0].id rescue nil
-    
     @results,@scope,@result_text = get_seeded_results
     unless request.xhr?
       if request.post?
@@ -43,19 +41,20 @@ class PlaylistsController < ApplicationController
         end
       end
       
-      @top_artists = current_site.top_artists.all(:limit => 10)
-    
-      #@playlist_item_ids = Artist.find(9417).songs[0..4].map{|s| s.id}
-      @playlist_item_ids ||= session[:playlist_item_ids].nil? ? [] : session[:playlist_item_ids]
-      @playlist_items ||= @playlist_item_ids.empty? ? [] : Song.find(@playlist_item_ids)
+      create_page_vars
     else
       render :partial => "/playlists/create/search_results", :layout => false
     end
   end
   
   def edit
-    @playlist = profile_user.playlists.find(params[:id])
-    render :layout => false
+    @playlist = profile_user.playlists.find(params[:id]) rescue nil
+    if request.xhr?
+      render :layout => false
+    else
+      @playlist_item_ids = @playlist.items.map{|i| i.song_id} if @playlist
+      create_page_vars
+    end
   end
 
   def update
@@ -139,5 +138,11 @@ class PlaylistsController < ApplicationController
       [results, scope, result_text]
     end
     
+    def create_page_vars
+      @player_id = current_site.players.all(:conditions => "player_key = 'ondemand_#{current_site.code}'")[0].id rescue nil
+      @top_artists = current_site.top_artists.all(:limit => 10)
+      @playlist_item_ids ||= session[:playlist_item_ids].nil? ? [] : session[:playlist_item_ids]
+      @playlist_items ||= @playlist_item_ids.empty? ? [] : Song.find(@playlist_item_ids)
+    end
 end
 
