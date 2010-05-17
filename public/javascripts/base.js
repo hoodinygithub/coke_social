@@ -1109,14 +1109,13 @@ Base.account_settings.highlight_field_with_errors = function() {
     for(i=0; i < field_with_errors.length; i++) {
       var field_name = field_with_errors[i][0];
       var error = field_with_errors[i][1];
-      if (i == 0) {
-        Base.account_settings.focus_first_field_with_error_by_label();
-      }
-      field = $(":visible:input[name*='" + field_name + "']").first();
+      var field = $(":input[name*='" + field_name + "']:not(input[type='hidden'])").first();
       Base.account_settings.add_message_on(field, error, 'error');
+      if(i==0) {
+        Base.account_settings.focus_first_section_with_error(field);
+      }
     }
   }
-
 };
 
 Base.account_settings.clear_info_and_errors_on = function(field) {
@@ -1158,11 +1157,13 @@ Base.account_settings.show_validations = function(errorMap, errorList) {
 }
 
 Base.account_settings.focus_first_section_with_error = function(field_error) {
-  $('div.accordion_box').hide().prev().removeClass('expanded');
-  field_error.closest('div.accordion_box')
-             .slideToggle(200)
-             .prev()
-             .toggleClass('expanded');
+  if (!field_error.closest('div.accordion_box').prev().hasClass('expanded')) {
+    $('div.accordion_box').hide().prev().removeClass('expanded');
+    field_error.closest('div.accordion_box')
+               .slideToggle(200)
+               .prev()
+               .toggleClass('expanded');
+  }
 };
 
 Base.account_settings.focus_first_field_with_error_by_label = function() {
@@ -1173,7 +1174,7 @@ Base.account_settings.focus_first_field_with_error_by_label = function() {
                field_error.focus();
              })
              .prev()
-             .toggleClass('expanded');
+             .addClass('expanded');
 };
 
 

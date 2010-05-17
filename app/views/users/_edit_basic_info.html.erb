@@ -39,7 +39,7 @@
       <div class="left_side">
         <b><%= f.label :born_on %></b>
         <div class="grey_round_box">
-          <%= f.date_select :born_on, :use_month_numbers => true, :from_year => 1900, :end_year => Time.now.year %>
+          <%= f.date_select :born_on, :use_month_numbers => true, :start_year => 1900, :end_year => Time.now.year %>
         </div>
       </div>
 
