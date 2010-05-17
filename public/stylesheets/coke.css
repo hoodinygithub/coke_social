@@ -74,6 +74,10 @@ img.avatar.medium {
 	width: 150px;
 	height: 150px;
 }
+img.avatar.playlist {
+	width: 100px;
+	height: 100px;
+}
 
 li.scope_toggle .mini_loader{
 	width: 18px; 
@@ -269,6 +273,14 @@ label.label_holder{
   cursor: pointer;
   position: absolute;
   z-index: 1;
+}
+#save_mix_popup label.label_holder {
+  top: 300px;
+  left: 110px;
+} 
+#update_playlist_form label.label_holder {
+  top: 55px;
+  left:760px;
 }
 
 #avatar_delete {

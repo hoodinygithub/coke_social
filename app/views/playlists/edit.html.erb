@@ -5,42 +5,54 @@
 <%= javascript_include_tag 'playlist_create' %>
 <%= javascript_include_tag 'AC_OETags' %>
 
-<div class="two_columns">
-    <h1><%= t('playlists.edit') %></h1>
+<%= form_tag playlist_edit_path(@playlist), :class => "account_settings search_music", :id => "update_playlist_form", :method => :post, :multipart => true %>
+  <input type="hidden" name="item_ids" value="">
+
+  <div class="two_columns">
+      <h1><%= t('playlists.edit') %></h1>
+      <div class="form_row last">
+          <h2><%= t('playlists.name_your_playlist') %></h2>
+
+          <div class="grey_round_box align_center">
+              <input type="text" class="input full_width3" name="name" value="<%= @playlist.name %>"/>
+          </div>
+      </div><!--/end form_row -->
+
+      <div class="form_row last">
+          <h2><%= t('playlists.tag_your_playlist') %> <small class="grey"><%= t('playlists.seperated_commas') %></small></h2>
+
+          <div class="grey_round_box align_center">
+              <input type="text" class="input full_width3" value="fun, silly, retro" name="tags" />
+          </div>
+      </div><!--/end form_row -->
+  
+      <h2><%= t('playlists.search_for_music') %></h2>
+      <%= render :partial => 'playlists/create/search_box' %>
+      <div id="search_results_container">
+        <%= render :partial => 'playlists/create/search_results' %>
+      </div>
+      <%= render :partial => 'playlists/create/reccomendations' %>
+  </div><!--/end two_columns -->
+
+
+  <div id="right_column">
+      <h2><%= t('playlists.picture') %></h2>
+
+      <%= avatar_for @playlist, :playlist, :class => "valign_middle", :id => "update_layer_avatar" %>
+      &nbsp;
+      <label class='label_holder'>
+        <a href="#" id="avatar_upload_button" class="red_button valign_middle"><span><span><%= t('actions.update') %></span></span></a>
+        <input id="playlist_avatar" type="file" class="file" name="avatar" size="30"/>
+      </label>
+      <br class="clearer" />
+      <br/><br/>
     
-    <form class="account_settings search_music" method="post" action="">
-        <div class="form_row last">
-            <h2><%= t('playlists.name_your_playlist') %></h2>
-
-            <div class="grey_round_box align_center">
-                <input type="text" class="input full_width3" value="<%= @playlist.name %>"/>
-            </div>
-        </div><!--/end form_row -->
-
-        <div class="form_row last">
-            <h2><%= t('playlists.tag_your_playlist') %> <small class="grey"><%= t('playlists.seperated_commas') %></small></h2>
-
-            <div class="grey_round_box align_center">
-                <input type="text" class="input full_width3" value="fun, silly, retro" />
-            </div>
-        </div><!--/end form_row -->
-    </form>
     
-    
-    
-    <h2><%= t('playlists.search_for_music') %></h2>
-    <%= render :partial => 'playlists/create/search_box' %>
-    <div id="search_results_container">
-      <%= render :partial => 'playlists/create/search_results' %>
-    </div>
-    <%= render :partial => 'playlists/create/reccomendations' %>
-</div><!--/end two_columns -->
-
-
-<div id="right_column">
-    <h1><%= t('playlists.rules') %></h1>
-    <%= render :partial => 'playlists/create/track_list' %>
-</div><!--/end right_column -->
+      <h1><%= t('playlists.rules') %></h1>
+      <%= render :partial => 'playlists/create/track_list' %>
+  </div><!--/end right_column -->
+  
+</form>
 
 <div class="clearer"></div>
 

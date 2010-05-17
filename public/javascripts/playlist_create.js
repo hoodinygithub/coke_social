@@ -2,6 +2,7 @@ var playlist_valid = false
 var playlist_ids = [];
 var playlist_count = 0;
 var playlist_items_req = 10;
+var edit_playlist = false;
 
 Array.prototype.contains = function (element) {
   for (var i = 0; i < this.length; i++) {
@@ -54,6 +55,7 @@ function remove_item(id)
     playlist_ids.remove(id);
     playlist_count = playlist_ids.length;
     update_counts();
+    validate_playlist();
     toggle_playlist_box();
   }
 }
@@ -121,10 +123,24 @@ function get_search_results(term,scope)
 function open_save_popup()
 {
   if(playlist_valid)
-    $('#save_mix_popup').fadeIn('fast');
+  {
+    if(edit_playlist)
+    {
+      form = $('#update_playlist_form');
+      form.find("input[name='item_ids']").attr("value", playlist_ids);
+      form.submit();
+    }
+    else
+    {
+      img_src = $('#' + playlist_ids[0]).find('img').attr('src');
+      $('#save_layer_avatar').attr('src', img_src.replace(/image\/thumbnail/i, "image/comments"));
+      $('#save_mix_popup').fadeIn('fast');
+    }
+  }
   else
     $('#unable_popup').fadeIn('fast');
 }
+
 
 function submit_save_form()
 {

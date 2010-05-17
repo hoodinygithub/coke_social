@@ -29,7 +29,7 @@ class PlaylistsController < ApplicationController
         @playlist_item_ids = []
         @playlist_item_ids = params[:item_ids].split(',').map { |i| Song.find(i) }.compact
         unless @playlist_item_ids.empty?
-          playlist = current_user.playlists.create(:name => params[:name])
+          playlist = current_user.playlists.create(:name => params[:name], :avatar => params[:avatar])
           current_user.update_attribute(:total_playlists, current_user.playlists.count);
           if playlist
             @playlist_item_ids.each do |song|
@@ -49,6 +49,27 @@ class PlaylistsController < ApplicationController
   
   def edit
     @playlist = profile_user.playlists.find(params[:id]) rescue nil
+    unless request.xhr?
+      @playlist_item_ids = @playlist.items.map{|i| i.song_id} if @playlist
+      if request.post?
+        @playlist_item_ids = params[:item_ids].split(',').map { |i| Song.find(i) }.compact
+        #raise @playlist_item_ids.inspect
+        unless @playlist_item_ids.empty?
+          if @playlist
+            @playlist.update_attributes(:name => params[:name], :avatar => params[:avatar])
+            @playlist.items.destroy_all
+            @playlist_item_ids.each do |song|
+              @playlist.items.create(:song => song)
+            end
+            redirect_to my_playlists_path
+          end
+        end
+      end
+      create_page_vars
+    else
+      render :layout => false
+    end
+    
     if request.xhr?
       render :layout => false
     else
@@ -135,6 +156,7 @@ class PlaylistsController < ApplicationController
           result_text = obj_item.to_s
         end
       end
+      results.compact! unless results.nil?
       [results, scope, result_text]
     end
     
