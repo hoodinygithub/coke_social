@@ -67,6 +67,7 @@ module AvatarsHelper
           path = path.sub(%r{/hires/}, '/comments/') if type == :album
         else
           type = :album if type == :medium # ghetto fix
+          type = :small if type == :comment
           path = avatar.url(type)
         end
       else
