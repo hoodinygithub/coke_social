@@ -340,7 +340,7 @@ function submit_save_form()
     if(name != "")
     {
       //form.find("input[name='item_ids']").attr("value", playlist_ids);
-      form.find("input[name='item_ids']").attr("value", item_ids);
+      form.find("input[name='item_ids']").attr("value", _pv.item_ids);
       form.submit();
     }
     else
