@@ -30,9 +30,9 @@ function add_item(id, title, artist_id, artist_name, album_id, album_name, image
           //+ image_tag
           + '<img alt="'+id+'" class="icon avatar small" src="'+image_src+'" />'
           + '<div class="text">'
-              + '<big><b>'+title+'</b></big><br/>'
-              + '<b>album:</b> '+album_name+'<br/>'
-              + '<b>by:</b> '+artist_name+''
+              + '<big><b>'+unescape(title)+'</b></big><br/>'
+              + '<b>album:</b> '+unescape(album_name)+'<br/>'
+              + '<b>by:</b> '+unescape(artist_name)+''
           + '</div>'
           + '<br class="clearer" />'
           + '<a href="#" onclick="remove_item('+id+'); return false;"><img src="/images/close_grey.gif" class="close_x" alt="" /></a>'

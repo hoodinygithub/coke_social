@@ -870,5 +870,12 @@ module ApplicationHelper
   def action_for(item)
     current_user.blocks?(item) ? 'unblock' : 'block'
   end
+  
+  #'Movin Out Anthony's Song Out Anthonys Songs Song'
+  def escape_for_js(str)
+    #str.gsub!(/'/, "&#39;")
+    str.gsub!(/'/, CGI::escape("'"))
+    str
+  end
 
 end
