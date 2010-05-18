@@ -1,9 +1,9 @@
 <div class="rules_list">
-    <div class="rule lower"><%= t('playlists.maximum_songs_from',:num => 3, :type => "#{t('basics.artist')}") %></div>
-    <div class="rule lower"><%= t('playlists.maximum_songs_from',:num => 3, :type => "#{t('basics.album')}") %></div>
+    <div id="artist_error_tag" class="rule lower"><%= t('playlists.maximum_songs_from',:num => 3, :type => "#{t('basics.artist')}") %></div>
+    <div id="album_error_tag" class="rule lower"><%= t('playlists.maximum_songs_from',:num => 3, :type => "#{t('basics.album')}") %></div>
 </div><!--/end rules_list -->
 
-<h2 class="left_side"><span id="remaining_track_count">10</span> <%= t('playlists.tracks_remaining') %></h2>
+<h2 class="left_side" id="playlist_error_tag"><span id="remaining_track_count">10</span> <%= t('playlists.tracks_remaining') %></h2>
 <div class="black_count" id="track_count">0</div>
 
 <br class="clearer" />
@@ -49,11 +49,14 @@
 
 
 <script language="javascript">
-  <% if @playlist %>
-    edit_playlist = true;
-  <% end %>
   
   <% @playlist_items.each do |item| %>
-    add_item(<%= item.id %>, '<%= item.title.gsub("'", "\\'") %>', <%= item.artist.id %>, '<%= item.artist.name.gsub("'", "\\'") %>', <%= item.album.id %>, '<%= item.album.name.gsub("'", "\\'") %>', '<%= AvatarsHelper.avatar_path(item, :small) %>');
+    add_item(<%= item.id %>, '<%= item.title.gsub("'", "\\'") %>', <%= item.artist.id %>, '<%= item.artist.name.gsub("'", "\\'") %>', <%= item.album.id %>, '<%= item.album.name.gsub("'", "\\'") %>', '<%= AvatarsHelper.avatar_path(item, :small) %>', true);
   <% end %>
+  
+  <% if @playlist %>
+    edit_playlist = true;
+    validate_items();
+  <% end %>
+  
 </script>

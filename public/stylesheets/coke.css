@@ -276,12 +276,19 @@ label.label_holder{
   z-index: 1;
 }
 #save_mix_popup label.label_holder {
-  top: 300px;
+  top: 280px;
   left: 110px;
 } 
 #update_playlist_form label.label_holder {
   top: 55px;
   left:760px;
+}
+
+#playlist_error_tag.info_text {
+  color: #f00;
+}
+#track_count.info_text {
+  background-color: #f00;
 }
 
 #avatar_delete {
