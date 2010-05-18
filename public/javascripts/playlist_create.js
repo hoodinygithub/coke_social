@@ -339,7 +339,8 @@ function submit_save_form()
     name = form.find("input[name='name']").val();
     if(name != "")
     {
-      form.find("input[name='item_ids']").attr("value", playlist_ids);
+      //form.find("input[name='item_ids']").attr("value", playlist_ids);
+      form.find("input[name='item_ids']").attr("value", item_ids);
       form.submit();
     }
     else
