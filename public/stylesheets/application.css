@@ -964,8 +964,12 @@ h2 {
     border: solid 1px #cccccc;
     margin-bottom: 20px;
     position: absolute;
-    /*z-index: 99;*/
+    z-index: 99;
     zoom: 1;
+}
+
+.remove_index {
+  z-index: 0 !important
 }
 
 .songs_list .headers {
