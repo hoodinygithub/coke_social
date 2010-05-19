@@ -1005,7 +1005,7 @@ Base.network.__update_page_user_page = function(response) {
 
   $user_medium_text.find('img').remove();
 
-  if (response.trim().length == 0) {
+  if (jQuery.trim(response).length == 0) {
     $user_medium_text.find('span').fadeIn();
     return;
   }
@@ -1029,7 +1029,7 @@ Base.network.load_latest = function(params, profile_owner) {
     if (typeof(params) != 'object') params = {};
 
     if (user_page) {
-      params.public = true;
+      params["public"] = true;
     }
 
     params.profile_owner = profile_owner;
