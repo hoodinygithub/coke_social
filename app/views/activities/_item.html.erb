@@ -3,7 +3,7 @@
   <div class="comment_text">
     <% if item['type'] == 'status' %>
         <b><%= link_to(item['account'], item['account']) %></b>
-        <%= item['message'] %><br/>
+        <%= item['message'].gsub(/\n/, '<br />') %><br/>
     <% elsif item['type'] == 'twitter' %>
         <%= item['text'] %>
         <%= link_to("Twitter / #{item['screen_name']}", "http://twitter.com/#{item['screen_name']}", :target => "_blank") %>
