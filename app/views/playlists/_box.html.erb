@@ -20,7 +20,7 @@
       <%= tag_links(p) %>
       </div>
 
-      <div class="align_right">
+      <div class="align_right box_buttons">
         <% if false %>
         <a href="#" title = "Subscribe"><img src="images/listen_button.png" class="png_fix" alt="" /></a>
         <a href="#" title="Copy"><img src="images/duplicate_button.png" class="png_fix" alt="" /></a>
@@ -30,7 +30,7 @@
     </div>
 
     <div class="visible fh">
-      <%= link_to(image_tag('play_button.png', :class => 'pngfix play_button'), radio_path(:station_id => p.station.id))%>
+      <%= link_to(image_tag('play_button.png', :class => 'png_fix play_button'), radio_path(:station_id => p.station.id))%>
       <%= link_to p.name, radio_path(:station_id => p.station.id) %><br/>
         <span class="rating">
         <% if false %>
