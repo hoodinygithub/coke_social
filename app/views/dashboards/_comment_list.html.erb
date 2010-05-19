@@ -11,9 +11,5 @@
 </ul>
 
 <div class="align_right" id="show_more_comments">
-  <% if profile_owner? and controller_name == "dashboards" %>
-    <%= red_button(t('actions.show_more'), :href => my_activities_path, :width => "120px") %>
-  <% elsif profile_owner? %>
-    <%= red_button(t('actions.show_more'), :onclick => "Base.network.show_more(this)", :width => "120px") %>
-  <% end %>
+<%= render :partial => 'show_more_buttom' %>
 </div>

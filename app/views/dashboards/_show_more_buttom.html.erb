@@ -1,0 +1,7 @@
+<% if profile_user.activity_feed(:group => :all).size > 8 %>
+  <% if profile_owner? and controller_name == "dashboards" %>
+    <%= red_button(t('actions.show_more'), :href => my_activities_path, :width => "120px") %>
+  <% elsif profile_owner? %>
+    <%= red_button(t('actions.show_more'), :onclick => "Base.network.show_more(this)", :width => "120px") %>
+  <% end %>
+<% end %>
