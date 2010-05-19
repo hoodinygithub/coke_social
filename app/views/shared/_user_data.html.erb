@@ -23,7 +23,7 @@
     <% else %>
       <%= link_to t("sessions.new.sign_in"), site_login_url(:return_to => nav_aux_login_url) %>
       |
-      <%= registered_link_to t("registration.register"),  :return_to => my_dashboard_path %>
+      <%= registered_link_to t("registration.sign_up"),  :return_to => my_dashboard_path %>
     <% end %>
 </div>
 <% end %>
