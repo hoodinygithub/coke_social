@@ -1,7 +1,7 @@
-<li>
+<li style="word-wrap: break-word;">
   <% if line['type'] == 'status' %>
       <b><%= link_to(line['account'], line['account']) %></b>
-      <%= line['message'] %><br/>
+      <%= line['message'].gsub(/\n/, '<br />') %><br/>
   <% elsif line['type'] == 'twitter' %>
       <%= line['text'] %>
       <%= link_to("Twitter / #{line['screen_name']}", "http://twitter.com/#{line['screen_name']}", :target => "_blank") %>
