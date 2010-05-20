@@ -1,6 +1,7 @@
 require 'cgi'
 class SessionsController < ApplicationController
   before_filter :set_return_to, :only => :new
+  skip_before_filter :login_required  
 
   # GET /session/new
   def new

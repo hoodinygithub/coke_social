@@ -10,6 +10,7 @@ class ApplicationController < ActionController::Base
 
   before_filter :do_basic_http_authentication
   before_filter :confirm_registration_code
+  before_filter :login_required  
 
   filter_parameter_logging :password, :password_confirmation
 
