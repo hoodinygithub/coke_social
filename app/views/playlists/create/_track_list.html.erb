@@ -51,7 +51,7 @@
 <script language="javascript">
   
   <% @playlist_items.each do |item| %>
-    add_item(<%= item.id %>, '<%= item.title.gsub("'", "\\'") %>', <%= item.artist.id %>, '<%= item.artist.name.gsub("'", "\\'") %>', <%= item.album.id %>, '<%= item.album.name.gsub("'", "\\'") %>', '<%= AvatarsHelper.avatar_path(item, :small) %>', true);
+    add_item(<%= item.id %>, '<%= escape_for_js(item.title) %>', <%= item.artist.id %>, '<%= escape_for_js(item.artist.name) %>', <%= item.album.id %>, '<%= escape_for_js(item.album.name) %>', '<%= AvatarsHelper.avatar_path(item, :small) %>', true);
   <% end %>
   
   <% if @playlist %>
