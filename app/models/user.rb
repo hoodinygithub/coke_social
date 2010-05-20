@@ -68,11 +68,13 @@
 
 class User < Account
 
+  include Account::Encryption
   include Account::ProfileColors
   include Account::FolloweeCache
   include Account::SingleShortBio
   include Account::RegistrationStates
   include Searchable::ByNameAndSlug
+
 
   index [:type]
 
@@ -132,7 +134,7 @@ class User < Account
   belongs_to :network
   
   validates_presence_of :entry_point_id
-  validates_presence_of :born_on
+  validates_presence_of :born_on_string
 
   validates_inclusion_of :gender, :in => ['Male', 'Female'], :message => :gender
 
@@ -272,6 +274,14 @@ class User < Account
                      I18n.t("activerecord.errors.messages.confirmation")]
     errors_hash = self.errors.inject({}) { |h,(k,v)| h[k] ||= on_convention.include?(v) ? "#{self.class.human_attribute_name(k)} #{v}" : v; h }
     errors_hash.to_a
+  end
+
+  def born_on=(date)
+    born_on_string = date.to_s if date and date.is_a?(Date)
+  end
+
+  def born_on    
+    Date.parse(born_on_string) unless born_on_string.nil?
   end
 
   protected

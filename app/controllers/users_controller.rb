@@ -54,10 +54,15 @@ class UsersController < ApplicationController
   # POST /users
   def create
     params[:user] = trim_attributes_for_paperclip(params[:user], :avatar)
+    born_on_year = params[:user].delete("born_on(1i)")
+    born_on_month = params[:user].delete("born_on(2i)")
+    born_on_day = params[:user].delete("born_on(3i)")
+
     @user = User.new(params[:user])
     @user.entry_point = current_site
     @user.ip_address  = remote_ip
     @user.msn_live_id = session[:msn_live_id] if wlid_web_login?
+    @user.born_on_string = "#{born_on_year}-#{born_on_month}-#{born_on_day}"
 
     if @user.save
       cookies.delete(:auth_token) if cookies.include?(:auth_token)
