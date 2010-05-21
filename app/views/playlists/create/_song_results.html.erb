@@ -24,6 +24,7 @@
       <% @results.each do |song| %>
         <% unless song.artist.nil? || song.album.nil? %>
           <li id="search_result_<%= song.id %>" class="draggable_item">
+              <div class="song_image"><%= avatar_for song, :small%></div>
               <div class="song_name">
                 <%= link_to_function image_tag("icon_play_button.png", :class => "png_fix icon_play_button"), "Base.playlists.playStream(this, 'http://media.cyloop.com/storage/storage?fileName=#{song.path}', '#{song.id}')"%>
                   &nbsp; <%= truncate(song.title, :length => 20) %>
@@ -43,7 +44,6 @@
   </div><!--/end songs_box -->
 </div><!--/end songs_list -->
 <script language="javascript">
-  //init_draggable();
   
   Base.playlists.onStreamStart = function(obj)
   {

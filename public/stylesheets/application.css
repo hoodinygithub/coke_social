@@ -897,6 +897,10 @@ h2 {
     margin-bottom: 15px;
 }
 
+.dotted_box.dragging {
+    border: 1px solid #ccc;
+}
+
 .dotted_box .layer2 {
     background: url("../images/v_dots.gif") repeat left top;
     padding: 0px 1px;
@@ -1035,6 +1039,10 @@ h2 {
     line-height: 29px;
     float: left;
     overflow:hidden;
+}
+
+.songs_box ul li div.song_image {
+    display:none;
 }
 
 .songs_box ul li div.song_name {
@@ -3446,32 +3454,63 @@ followers_list .follower_actions.w_settings .orange_button.settings_button img, 
     vertical-align: middle;
 }
 
+
+/* Dragging Playlist Item */
 body li.ui-draggable-dragging {
   list-style-type:none;
   font-size: 14px;
-  width: 603px;
-  border:3px solid #ccc;
+  width: 300px;
+  background-color: #ccc;
   text-align: left;
+  padding:5px;
+  color: #FFF;
+  height:50px;
+  overflow:hidden;
 }
-body li.ui-draggable-dragging .song_name, body li.ui-draggable-dragging .artist_name {
-  width:185px;
-  padding: 0 5px;
-}
-body li.ui-draggable-dragging .album_name {
-  width:120px;
-  padding: 0 10px;
-}
-body li.ui-draggable-dragging .large_bnt {
-  width:65px;
-  text-align: center;
-}
+
 body li.ui-draggable-dragging div {
-  border-left:1px solid #FFFFFF;
-  border-right:1px solid #CCCCCC;
   float:left;
-  height:29px;
-  line-height:29px;
+  font-size:11px;
 }
+
+body li.ui-draggable-dragging .song_image .icon {
+  float:left;
+}
+body li.ui-draggable-dragging .song_image {
+  height:200px;
+}
+
+body li.ui-draggable-dragging .song_name {
+  width:200px;
+  font-family:Arial,Helvetica,sans-serif;
+  font-size:14px;
+  font-weight: bold;
+  margin-bottom:8px;
+}
+
+body li.ui-draggable-dragging .artist_name {
+  width:200px;
+  padding-left:8px;
+  top: 13px;
+  position:relative;
+}
+
+body li.ui-draggable-dragging .album_name {
+  width:200px;
+  padding-left: 8px;
+  top: -13px;
+  position:relative;
+  font-weight:bold;
+}
+
+body li.ui-draggable-dragging .large_bnt {
+  display:none;
+}
+body li.ui-draggable-dragging .song_name a {
+  display:none;
+}
+
+/* Dragging Playlist Item */
 
 
 /*  Settings page */

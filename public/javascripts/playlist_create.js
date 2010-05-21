@@ -6,13 +6,14 @@
 // var playlist_max_album = 3;
 var edit_mode = false;
 
-var _pv = new PlaylistValidations(10,3,3);
+var _pv = new PlaylistValidations(10,3,3,100);
 
-function PlaylistValidations(items_req, max_artist, max_album)
+function PlaylistValidations(items_req, max_artist, max_album, max_items)
 {
     // rules
     this.max_artist = max_artist;
     this.max_album  = max_album;
+    this.max_items  = max_items;
     this.items_req  = items_req;
     
     // atributes
@@ -286,7 +287,7 @@ function ValidationList()
 
 function add_item(id, title, artist_id, artist_name, album_id, album_name, image_src, suppress_validation)
 {
-  if(!_pv.contains(id))
+  if(!_pv.contains(id) && (_pv.item_count < _pv.max_items))
   {
     li = '<li id="'+id+'" artist_id="'+artist_id+'" album_id="'+album_id+'">'
           + '<img alt="'+id+'" class="icon avatar small" src="'+image_src+'" />'
@@ -304,7 +305,10 @@ function add_item(id, title, artist_id, artist_name, album_id, album_name, image
     update_ui();
     
     if(!suppress_validation)
+    {
       save_playlist_state();
+      setTimeout(function(){$('#search_result_' + id).remove();}, 500);
+    }
   }
 }
 
@@ -484,7 +488,8 @@ function image_path(id, artist_id)
 
 function remove_search_result(id)
 {
-  $('#search_result_' + id).remove();
+  //thisObj = $('#search_result_' + id);
+  //setTimeout(function(thisObj){ thisObj.remove(); }, 500);
 }
 
 function get_song_list(id,scope)
@@ -571,19 +576,30 @@ function show_loading_image()
 
 function init_draggable()
 {
-  // $(".draggable_item").draggable({revert: true, scroll: false, snap: true, helper: 'clone', appendTo: 'body', connectToSortable: true, cursorAt: {left: 100} });
-  // $(".dotted_box").droppable({
-  //       accept: ".draggable_item",
-  //       hoverClass: "dragging",
-  //       drop: function(event, ui) {
-  //         alert('dropped');
-  //         
-  //       }
-  // });
+  $(".draggable_item").draggable(
+      { 
+        //revert: true, 
+        scroll: false, 
+        snap: true, 
+        helper: 'clone', 
+        appendTo: 'body', 
+        connectToSortable: true, 
+        cursorAt: {left: 100} 
+      });
+      
+  $(".dotted_box").droppable({
+        accept: ".draggable_item",
+        hoverClass: "dragging",
+        drop: function(event, ui) {
+          item = $(ui.draggable[0]);
+          action = item.find("div.large_bnt a").click();
+          //console.log("added");
+        }
+  });
 }
 
 $(function() {
-  //init_draggable()
+  init_draggable();
 });
 
 
