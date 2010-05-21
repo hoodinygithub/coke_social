@@ -62,7 +62,8 @@ class PlaylistsController < ApplicationController
               @playlist.items.create(:song => song)
             end
             @playlist.update_tags(params[:tags].split(','))
-            redirect_to my_playlists_path
+            @edited = true
+            #redirect_to my_playlists_path
           end
         end
         create_page_vars
