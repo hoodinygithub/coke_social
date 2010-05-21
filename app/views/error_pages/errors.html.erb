@@ -1,7 +1,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-    <title>{{ TITLE }}</title>
+    <title><%= params[:title] %></title>
     <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
     <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE8" />
     <meta name="KEYWORDS" content="" />
@@ -24,13 +24,9 @@
     <div id="container">
         <div id="header">
             <a href="#"><img src="images/logo.png" id="logo" class="png_fix" alt="Coca-Cola" title="Coca-Cola" /></a>
-            
-            <ul id="header_nav">
-                <li><a href="/">Home</a></li>
-                <li><a href="/playlists">Playlists</a></li>
-                <li><a href="/search">Search</a></li>
-            </ul>
-            
+
+            <%= render 'shared/header_nav' %>
+                        
             <!-->
             <div id="search_form">
                 <form action="" method="post">
@@ -72,17 +68,17 @@
         
         <div id="main_content">
           <div id="error_pages">
-            {{ CONTENT }}
+            <%= render :partial => "/error_pages/blocks/#{params[:partial]}" %>
           </div>
         </div><!--/end main_content -->
         
         <div id="footer">
             <div class="left_side">
-                <a href="#">About Coca-Cola</a>
-                <a href="#">Terms &amp; Conditions</a>
-                <a href="#">Privacy Policy</a>
-                <a href="#">F.A.Q</a>
-                <a href="#">Contact Us</a>
+              <%= link_to t('footer.about_coke'), about_coke_url, :target => "_blank"  %>
+              <%= link_to t('footer.terms_and_conditions'), terms_and_conditions_url, :target => "_blank" %>
+              <%= link_to t('footer.privacy_policy'), privacy_policy_url, :target => "_blank" %>
+              <%= link_to t('footer.faq'), faq_url, :target => "_blank" %>
+              <%= link_to t('footer.feedback'), contact_us_url, :target => "_blank" %>
             </div>
             
             <a href="#"><img src="images/cyloop.gif" class="cyloop_logo" alt="" /></a>

@@ -237,6 +237,6 @@ ActionController::Routing::Routes.draw do |map|
       artist.resources :songs, :member => {:queue => :post}, :has_many => :playlist_items
     end
   end
-  
+
   map.connect ':controller/:action.:format'
 end

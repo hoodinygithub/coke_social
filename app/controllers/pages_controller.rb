@@ -101,6 +101,11 @@ class PagesController < ApplicationController
     @geo = { :remote_ip => remote_ip, :current_country => current_country }
     render "pages/x46b"
   end
+  
+  def error_pages
+    render '/error_pages/errors'
+  end
+  
 
   private
     def authenticate
@@ -136,6 +141,5 @@ class PagesController < ApplicationController
     def blog_feed( url, size, full = true )
       FeedManager.new(site_code, url, full).get_blog_feed(size)
     end
-
 end
 
