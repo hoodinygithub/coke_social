@@ -400,15 +400,18 @@ Base.layout.bind_events = function() {
   });
 
   //observe .rule_tooltip mouse over
-  $('.rule').hover(function() {
-    $t = $('.rule_tooltip', this);
-    $t.css('top', -($t.height()/2));
-    $t.stop();
-    $t.fadeTo(400, 1);
-  }, function() {
-    $t.fadeOut(2000);
+  $('.rule.info_text').live('mouseenter mouseout', function(event) {
+      $t= $('.rule_tooltip', this);
+      if (event.type == 'mouseenter') {
+        $t.css('top', -($t.height()/2));
+        $t.stop();
+        $t.fadeTo(400, 1);
+      } else {
+        $t.fadeOut(400);
+      }
   });
-  $('.rule_tooltip').hover(function() {
+
+  $('.rule_tooltip').live('hover', function() {
     $(this).stop();
     $(this).fadeTo(100,1);
   });

@@ -1,6 +1,34 @@
 <div class="rules_list">
-    <div id="artist_error_tag" class="rule lower"><%= t('playlists.maximum_songs_from',:num => 3, :type => "#{t('basics.artist')}") %></div>
-    <div id="album_error_tag" class="rule lower"><%= t('playlists.maximum_songs_from',:num => 3, :type => "#{t('basics.album')}") %></div>
+    <div id="artist_error_tag" class="rule lower"><%= t('playlists.maximum_songs_from',:num => 3, :type => "#{t('basics.artist')}") %>
+        
+        <div class="rule_tooltip">
+          <div class="top_round">&nbsp;</div>
+
+          <div class="tooltip_content">
+              <ul class="tooltip_list">
+                  <!-- <li><span class="number red">1</span> You have <b class="red">3</b> songs from <b class="red">metallica</b>, please remove 1 from mix.</li> -->
+              </ul>
+          </div>
+          <div class="bottom_round">&nbsp;</div>
+          <img src="/images/tooltip_arrow.gif" class="tooltip_arrow" alt="" />
+      </div>
+      
+    </div>
+    <div id="album_error_tag" class="rule lower"><%= t('playlists.maximum_songs_from',:num => 3, :type => "#{t('basics.album')}") %>
+    
+        <div class="rule_tooltip">
+          <div class="top_round">&nbsp;</div>
+
+          <div class="tooltip_content">
+              <ul class="tooltip_list">
+                  <!-- <li><span class="number red">1</span> You have <b class="red">3</b> songs from the <b class="red">Greatest Hits</b> album, please remove 1 from mix.</li> -->
+              </ul>
+          </div>
+          <div class="bottom_round">&nbsp;</div>
+          <img src="/images/tooltip_arrow.gif" class="tooltip_arrow" alt="" />
+      </div>
+      
+    </div>
 </div><!--/end rules_list -->
 
 <h2 class="left_side" id="playlist_error_tag"><span id="remaining_track_count">10</span> <%= t('playlists.tracks_remaining') %></h2>
@@ -49,6 +77,38 @@
 
 
 <script language="javascript">
+  
+  function artist_text_wrapper(num, name, item_count, max_artist)
+  {
+    // This is overriding the function in playlist_create.js to include translations
+    text = '<li>'
+          + '<span class="number red">' + num + '</span> '
+          + '<%= t('playlists.you_have') %>'
+          + ' <b class="red">' + item_count + '</b> '
+          + '<%= t('playlists.songs_from') %>'
+          + ' <b class="red">' + name + '</b>, '
+          + 'please remove'
+          + ' ' + (item_count - max_artist) + ' '
+          + '<%= t('playlists.from_mix') %>.'
+          + '</li>';
+    return text;
+  }
+
+  function album_text_wrapper(num, name, item_count, max_album)
+  {
+    // This is overriding the function in playlist_create.js to include translations
+    text = '<li>'
+          + '<span class="number red">' + num + '</span> '
+          + '<%= t('playlists.you_have') %>'
+          + ' <b class="red">' + item_count + '</b> '
+          + '<%= t('playlists.songs_from_album') %>'
+          + ' <b class="red">' + name + '</b>, '
+          + 'please remove'
+          + ' ' + (item_count - max_album) + ' '
+          + '<%= t('playlists.from_mix') %>.'
+          + '</li>';
+    return text;
+  }
   
   <% @playlist_items.each do |item| %>
     add_item(<%= item.id %>, '<%= escape_for_js(item.title) %>', <%= item.artist.id %>, '<%= escape_for_js(item.artist.name) %>', <%= item.album.id %>, '<%= escape_for_js(item.album.name) %>', '<%= AvatarsHelper.avatar_path(item, :small) %>', true);
