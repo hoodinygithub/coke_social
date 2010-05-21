@@ -19,7 +19,7 @@ class ApplicationController < ActionController::Base
 
   helper :all
 
-  #protect_from_forgery # :secret => '2b6c80782aadce40577fa1e003ece9a9'
+  protect_from_forgery # :secret => '2b6c80782aadce40577fa1e003ece9a9'
   
   def self.layout_except_xhr(name)
     layout lambda {|c| c.request.xhr? ? false : name}
