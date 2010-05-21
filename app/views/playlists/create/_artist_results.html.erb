@@ -1,6 +1,10 @@
+<%
+  artist_sort_class = ""
+  artist_sort_class = (params[:order_dir]=="DESC" ? "sort_desc" : "sort_asc") if params[:order_by] == "artist"
+%>
 <div class="songs_list remove_index">
     <div class="headers">
-        <div class="a_name upper"><%= t('basics.artist_name') %></div>
+        <div class="a_name upper sortable <%= artist_sort_class %>" onclick="do_search_list_sort(this, '<%=escape_for_js(@result_text) %>', '<%=@scope %>', 'artist');"><%= t('basics.artist_name') %></div>
         <div class="last">&nbsp;</div>
         <br class="clearer" />
     </div><!--/end headers -->

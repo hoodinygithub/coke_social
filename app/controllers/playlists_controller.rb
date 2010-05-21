@@ -157,19 +157,87 @@ class PlaylistsController < ApplicationController
       results = nil
       result_text = ""
       
+      order_by = (params[:order_by] =~ /(song|artist|album)/i) ? params[:order_by].to_sym : nil
+      order_dir = params[:order_dir] || 'ASC'
+      
       scope = (params[:scope] =~ /(song|artist|album)/i) ? params[:scope].to_sym : nil
       if(scope)
         obj = scope.to_s.classify.constantize
         if params[:term]
-          results = obj.search(params[:term]) rescue nil
+          if(order_by)
+            if order_by == :artist
+              results = case scope
+                when :song
+                  obj.search(params[:term], :order => "artist_name #{order_dir}") rescue nil
+                when :artist
+                  obj.search(params[:term], :order => "name #{order_dir}") rescue nil
+                when :album
+                  obj.search(params[:term]) rescue nil
+              end
+            elsif order_by == :album
+              results = case scope
+                when :song
+                  obj.search(params[:term], :order => "album_name #{order_dir}") rescue nil
+                when :artist
+                  obj.search(params[:term]) rescue nil
+                when :album
+                  obj.search(params[:term], :order => "name #{order_dir}") rescue nil
+              end
+            else# :song
+              results = case scope
+                when :song
+                  obj.search(params[:term], :order => "title #{order_dir}") rescue nil
+                when :artist
+                  obj.search(params[:term]) rescue nil
+                when :album
+                  obj.search(params[:term]) rescue nil
+              end
+            end
+          else
+            results = obj.search(params[:term]) rescue nil
+          end
           result_text = params[:term]
         elsif params[:item_id]
           obj_item = obj.find(params[:item_id]) rescue nil
-          results = obj_item.songs if obj_item
-          result_text = obj_item.to_s
+          if obj_item
+            @item_id = obj_item.id
+            if(order_by)
+              if order_by == :artist
+                results = case scope
+                  when :song
+                    obj_item.songs
+                  when :artist
+                    obj_item.songs.find(:all, :order => "title ASC")
+                  when :album
+                    obj_item.songs.find(:all, :joins => :artist, :order => "accounts.name #{order_dir}, title ASC")
+                end
+              elsif order_by == :album
+                results = case scope
+                  when :song
+                    obj_item.songs
+                  when :artist
+                    obj_item.songs.find(:all, :joins => :album, :order => "albums.name #{order_dir}, title ASC")
+                  when :album
+                    obj_item.songs.find(:all, :order => "title ASC")
+                end
+              else# :song
+                results = case scope
+                  when :song
+                    obj_item.songs
+                  when :artist
+                    obj_item.songs.find(:all, :order => "title #{order_dir}")
+                  when :album
+                    obj_item.songs.find(:all, :order => "title #{order_dir}")
+                end
+              end
+            else
+              results = obj_item.songs
+            end
+            result_text = obj_item.to_s
+          end
         end
+        results.compact! unless results.nil?
       end
-      results.compact! unless results.nil?
       [results, scope, result_text]
     end
     

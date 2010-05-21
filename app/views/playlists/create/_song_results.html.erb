@@ -1,8 +1,18 @@
+<%
+  song_sort_class = ""
+  artist_sort_class = ""
+  album_sort_class = ""
+  
+  song_sort_class = (params[:order_dir]=="DESC" ? "sort_desc" : "sort_asc") if params[:order_by] == "song"
+  artist_sort_class = (params[:order_dir]=="DESC" ? "sort_desc" : "sort_asc") if params[:order_by] == "artist"
+  album_sort_class = (params[:order_dir]=="DESC" ? "sort_desc" : "sort_asc") if params[:order_by] == "album"
+%>
+
 <div class="songs_list my_mix remove_index">
   <div class="headers">
-    <div class="song_name upper"><%= t('basics.song_name') %></div>
-    <div class="artist_name upper"><%= t('basics.artist') %></div>
-    <div class="album_name upper"><%= t('basics.album') %></div>
+    <div class="song_name upper sortable <%= song_sort_class %>" onclick="do_song_list_sort(this, <%=@item_id %>, '<%=@scope %>', 'song');"><%= t('basics.song_name') %></div>
+    <div class="artist_name upper sortable <%= artist_sort_class %>" onclick="do_song_list_sort(this, <%=@item_id %>, '<%=@scope %>', 'artist');"><%= t('basics.artist') %></div>
+    <div class="album_name upper sortable <%= album_sort_class %>" onclick="do_song_list_sort(this, <%=@item_id %>, '<%=@scope %>', 'album');"><%= t('basics.album') %></div>
     <div class="large_bnt">&nbsp;</div>
     <div class="last">&nbsp;</div>
 

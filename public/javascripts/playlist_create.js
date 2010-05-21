@@ -490,8 +490,64 @@ function remove_search_result(id)
 function get_song_list(id,scope)
 {
   q = "item_id=" + id + "&scope=" + scope;
+  
   show_loading_image();
+  
   jQuery.get('/playlist/create?' + q, function(data) {
+      jQuery('#search_results_container').html(data);
+  });
+}
+
+function do_song_list_sort(t, id, scope, order_by)
+{
+  q = "item_id=" + id + "&scope=" + scope;
+  if(order_by) 
+  {
+    has_asc = $(t).hasClass('sort_asc');
+    $(t).parent().children().removeClass('sort_asc');
+    $(t).parent().children().removeClass('sort_desc');
+    
+    if( has_asc )
+      $(t).addClass('sort_desc');
+    else
+      $(t).addClass('sort_asc');
+      
+    order_dir = has_asc ? "DESC" : "ASC";
+    q += "&order_by=" + order_by + "&order_dir=" + order_dir;
+  }
+    
+  //show_loading_image();
+  jQuery('#search_results_container').fadeTo('fast',0.5);
+  
+  jQuery.get('/playlist/create?' + q, function(data) {
+      jQuery('#search_results_container').fadeTo('fast', 1.0);
+      jQuery('#search_results_container').html(data);
+  });
+}
+
+function do_search_list_sort(t, term, scope, order_by)
+{
+  q = "term=" + term + "&scope=" + scope;
+  if(order_by) 
+  {
+    has_asc = $(t).hasClass('sort_asc');
+    $(t).parent().children().removeClass('sort_asc');
+    $(t).parent().children().removeClass('sort_desc');
+    
+    if( has_asc )
+      $(t).addClass('sort_desc');
+    else
+      $(t).addClass('sort_asc');
+      
+    order_dir = has_asc ? "DESC" : "ASC";
+    q += "&order_by=" + order_by + "&order_dir=" + order_dir;
+  }
+    
+  //show_loading_image();
+  jQuery('#search_results_container').fadeTo('fast',0.5);
+  
+  jQuery.get('/playlist/create?' + q, function(data) {
+      jQuery('#search_results_container').fadeTo('fast', 1.0);
       jQuery('#search_results_container').html(data);
   });
 }
