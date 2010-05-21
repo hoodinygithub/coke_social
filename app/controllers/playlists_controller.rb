@@ -26,6 +26,7 @@ class PlaylistsController < ApplicationController
     @results,@scope,@result_text = get_seeded_results
     unless request.xhr?
       if request.post?
+        session[:playlist_ids] = nil
         @playlist_item_ids = []
         @playlist_item_ids = params[:item_ids].split(',').map { |i| Song.find(i) }.compact
         unless @playlist_item_ids.empty?
@@ -40,6 +41,10 @@ class PlaylistsController < ApplicationController
             redirect_to my_playlists_path
           end
         end
+      else
+        if session[:playlist_ids]
+          @playlist_items = session[:playlist_ids].split(',').map { |i| Song.find(i) rescue nil }.compact
+        end
       end
       
       create_page_vars
@@ -49,6 +54,7 @@ class PlaylistsController < ApplicationController
   end
   
   def edit
+    session[:playlist_ids] = nil
     @playlist = profile_user.playlists.find(params[:id]) rescue nil
     if @playlist
       unless request.xhr?
@@ -73,6 +79,16 @@ class PlaylistsController < ApplicationController
     else
       redirect_to :action => :create
     end
+  end
+  
+  def save_state
+    session[:playlist_ids] = params[:playlist_ids]
+    render :text => "saved", :layout => false
+  end
+  
+  def clear_state
+    session[:playlist_ids] = nil
+    render :text => "cleared", :layout => false
   end
 
   def update

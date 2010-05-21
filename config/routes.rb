@@ -142,6 +142,8 @@ ActionController::Routing::Routes.draw do |map|
   
   map.playlist_create '/playlist/create', :controller => 'playlists', :action => 'create'
   map.playlist_edit '/playlist/edit/:id', :controller => 'playlists', :action => 'edit'
+  map.playlist_save_state '/playlist/save_state', :controller => 'playlists', :action => 'save_state'
+  map.playlist_clear_state '/playlist/clear_state', :controller => 'playlists', :action => 'clear_state'
 
   profile_routes = lambda do |profile|
     profile.resources :comments

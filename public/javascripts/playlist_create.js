@@ -284,7 +284,7 @@ function ValidationList()
 }
 
 
-function add_item(id, title, artist_id, artist_name, album_id, album_name, image_src, suppress_validation)
+function add_item(id, title, artist_id, artist_name, album_id, album_name, image_src, edit_mode, suppress_validation)
 {
   if(!_pv.contains(id))
   {
@@ -302,6 +302,13 @@ function add_item(id, title, artist_id, artist_name, album_id, album_name, image
     $('#playlist_item_list').append(li);
     _pv.add_item(id, title, artist_id, artist_name, album_id, album_name, image_src, suppress_validation);
     update_ui();
+    
+    if(!edit_mode)
+    {
+      jQuery.get('/playlist/save_state?playlist_ids=' + _pv.item_ids, function(data) {
+          
+      });
+    }
   }
 }
 function validate_items()

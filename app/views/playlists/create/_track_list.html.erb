@@ -78,6 +78,19 @@
 
 <script language="javascript">
   
+  function close_cancel_popup()
+  {
+    redirect_url = '<%= my_dashboard_path %>';
+    jQuery.get('/playlist/clear_state', function(data) {
+        document.location.href = redirect_url;
+    });
+  }
+  
+  function add_item_wrapper(id, title, artist_id, artist_name, album_id, album_name, image_src, suppress_validation)
+  {
+    add_item(id, title, artist_id, artist_name, album_id, album_name, image_src, <%= @playlist ? true : false %>, suppress_validation);
+  }
+  
   function artist_text_wrapper(num, name, item_count, max_artist)
   {
     // This is overriding the function in playlist_create.js to include translations
@@ -110,13 +123,16 @@
     return text;
   }
   
-  <% @playlist_items.each do |item| %>
-    add_item(<%= item.id %>, '<%= escape_for_js(item.title) %>', <%= item.artist.id %>, '<%= escape_for_js(item.artist.name) %>', <%= item.album.id %>, '<%= escape_for_js(item.album.name) %>', '<%= AvatarsHelper.avatar_path(item, :small) %>', true);
+  <% if @playlist_items %>
+    <% @playlist_items.each do |item| %>
+      add_item_wrapper(<%= item.id %>, '<%= escape_for_js(item.title) %>', <%= item.artist.id %>, '<%= escape_for_js(item.artist.name) %>', <%= item.album.id %>, '<%= escape_for_js(item.album.name) %>', '<%= AvatarsHelper.avatar_path(item, :small) %>', true);
+    <% end %>
+    
+    validate_items();
   <% end %>
   
   <% if @playlist %>
     edit_playlist = true;
-    validate_items();
   <% end %>
   
 </script>
