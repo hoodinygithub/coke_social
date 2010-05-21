@@ -4,7 +4,7 @@
 // var playlist_items_req = 10;
 // var playlist_max_artist = 3;
 // var playlist_max_album = 3;
-var edit_playlist = false;
+var edit_mode = false;
 
 var _pv = new PlaylistValidations(10,3,3);
 
@@ -284,7 +284,7 @@ function ValidationList()
 }
 
 
-function add_item(id, title, artist_id, artist_name, album_id, album_name, image_src, edit_mode, suppress_validation)
+function add_item(id, title, artist_id, artist_name, album_id, album_name, image_src, suppress_validation)
 {
   if(!_pv.contains(id))
   {
@@ -303,14 +303,19 @@ function add_item(id, title, artist_id, artist_name, album_id, album_name, image
     _pv.add_item(id, title, artist_id, artist_name, album_id, album_name, image_src, suppress_validation);
     update_ui();
     
-    if(!edit_mode)
-    {
-      jQuery.get('/playlist/save_state?playlist_ids=' + _pv.item_ids, function(data) {
-          
-      });
-    }
+    if(!suppress_validation)
+      save_playlist_state();
   }
 }
+
+function save_playlist_state()
+{
+  if(!edit_mode)
+  {
+    jQuery.get('/playlist/save_state?playlist_ids=' + _pv.item_ids, function(data) {});
+  }  
+}
+
 function validate_items()
 {
   _pv.validate();
@@ -323,6 +328,8 @@ function remove_item(id)
     $('#' + id).remove();
     _pv.remove_item(id);
     update_ui();
+    
+    save_playlist_state();
   }
 }
 
@@ -424,7 +431,7 @@ function open_save_popup()
 {
   if(_pv.valid)
   {
-    if(edit_playlist)
+    if(edit_mode)
     {
       form = $('#update_playlist_form');
       form.find("input[name='item_ids']").attr("value", _pv.item_ids);
