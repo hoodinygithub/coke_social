@@ -572,35 +572,47 @@ function show_loading_image()
   jQuery('#search_results_container').html(img);
 }
 
-
-
 function init_draggable()
 {
-  $(".draggable_item").draggable(
-      { 
-        //revert: true, 
-        scroll: false, 
-        snap: true, 
-        helper: 'clone', 
-        appendTo: 'body', 
-        connectToSortable: true, 
-        cursorAt: {left: 100} 
-      });
-      
+  liveDraggable(".draggable_item", { 
+      scroll: false, snap: true, helper: 'clone', 
+      appendTo: 'body', connectToSortable: true, 
+      cursorAt: {left: 100} });
+  
   $(".dotted_box").droppable({
         accept: ".draggable_item",
         hoverClass: "dragging",
         drop: function(event, ui) {
           item = $(ui.draggable[0]);
           action = item.find("div.large_bnt a").click();
-          //console.log("added");
         }
   });
 }
 
+function liveDraggable(selector, options){
+  jQuery(selector).live("mouseover",function(){
+    if (!jQuery(this).data("init")) {
+      jQuery(this).data("init", true);
+      jQuery(this).draggable(options);
+    }
+  });
+}
+
 $(function() {
-  init_draggable();
+  //init_draggable();
 });
+
+
+function playlist_image_preview() {
+  field = $('#playlist_avatar').val();
+  image = $('#update_layer_avatar');
+  path = 'file://'+ field;
+  path = path.replace(/\\/, '/'); // Fix Windows paths
+  image.attr('src', path);
+  //image.style.display = 'block';
+  //image.style.width = "200px";
+  //image.style.height = "150px";
+}
 
 
 
