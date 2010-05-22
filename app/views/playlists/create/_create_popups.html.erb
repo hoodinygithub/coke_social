@@ -61,14 +61,16 @@
             <div class="form_row">
                 <label><b><%= t('playlists.picture') %></b></label>
                 
-                <img id="save_layer_avatar" alt="" class="valign_middle avatar playlist" src="/album/missing/artist.gif" />
+                <div class="playlist_image_container">
+                  <img id="save_layer_avatar" alt="" class="valign_middle avatar playlist float_left" src="/images/upload_image_placeholder.gif" />
                 
-                <label class='label_holder'>
-                  <a href="#" id="avatar_upload_button" class="red_button valign_middle"><span><span><%= t('playlists.add_update') %></span></span></a>
-                  <input id="playlist_avatar" type="file" class="file" name="avatar" size="30"/>
-                </label>
-                
-                <br class="clearer" />
+                  <label class='label_holder'>
+                    <a href="#" id="avatar_upload_button" class="red_button valign_middle"><span><span><%= t('playlists.add_update') %></span></span></a>
+                    <input id="playlist_avatar" type="file" class="file" name="avatar" size="30" onchange="playlist_image_preview();"/>
+                  </label>
+                  <div id="uploaded_image_name">filename</div>
+                  <br class="clearer" />
+                </div>
 
             </div><!--/end form_row -->
             

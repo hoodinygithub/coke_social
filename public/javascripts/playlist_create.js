@@ -604,14 +604,17 @@ $(function() {
 
 
 function playlist_image_preview() {
-  field = $('#playlist_avatar').val();
+  field = $('#playlist_avatar');
   image = $('#update_layer_avatar');
-  path = 'file://'+ field;
-  path = path.replace(/\\/, '/'); // Fix Windows paths
-  image.attr('src', path);
-  //image.style.display = 'block';
-  //image.style.width = "200px";
-  //image.style.height = "150px";
+  image_name = $('#uploaded_image_name');
+  // path = 'file://'+ field;
+  // path = path.replace(/\\/, '/'); // Fix Windows paths
+  // image.attr('src', path);
+  file_path = field.val();
+  shortName = file_path.match(/[^\/\\]+$/);
+  image.attr('src', '/images/upload_image_placeholder.gif');
+  image_name.show();
+  image_name.html(shortName[shortName.length-1]);
 }
 
 

@@ -30,7 +30,9 @@ class PlaylistsController < ApplicationController
         @playlist_item_ids = []
         @playlist_item_ids = params[:item_ids].split(',').map { |i| Song.find(i) }.compact
         unless @playlist_item_ids.empty?
-          playlist = current_user.playlists.create(:name => params[:name], :avatar => params[:avatar])
+          attributes = {:name => params[:name]}
+          attributes[:avatar] = params[:avatar] if params[:avatar]
+          playlist = current_user.playlists.create(attributes)
           current_user.update_attribute(:total_playlists, current_user.playlists.count);
           if playlist
             @playlist_item_ids.each do |song|
@@ -62,7 +64,9 @@ class PlaylistsController < ApplicationController
         if request.post?
           @playlist_item_ids = params[:item_ids].split(',').map { |i| Song.find(i) }.compact
           unless @playlist_item_ids.empty?
-            @playlist.update_attributes(:name => params[:name], :avatar => params[:avatar])
+            attributes = {:name => params[:name]}
+            attributes[:avatar] = params[:avatar] if params[:avatar]
+            @playlist.update_attributes(attributes)
             @playlist.items.destroy_all
             @playlist_item_ids.each do |song|
               @playlist.items.create(:song => song)
@@ -209,7 +213,7 @@ class PlaylistsController < ApplicationController
               if order_by == :artist
                 results = case scope
                   when :song
-                    obj_item.songs.find(:all, :include => [:artist, :album])
+                    obj_item.songs
                   when :artist
                     obj_item.songs.find(:all, :order => "title ASC", :include => [:artist, :album])
                   when :album
@@ -218,7 +222,7 @@ class PlaylistsController < ApplicationController
               elsif order_by == :album
                 results = case scope
                   when :song
-                    obj_item.songs.find(:all, :include => [:artist, :album])
+                    obj_item.songs
                   when :artist
                     obj_item.songs.find(:all, :joins => :album, :order => "albums.name #{order_dir}, title ASC", :include => [:artist, :album])
                   when :album
@@ -227,7 +231,7 @@ class PlaylistsController < ApplicationController
               else# :song
                 results = case scope
                   when :song
-                    obj_item.songs.find(:all, :include => [:artist, :album])
+                    obj_item.songs
                   when :artist
                     obj_item.songs.find(:all, :order => "title #{order_dir}", :include => [:artist, :album])
                   when :album
@@ -235,7 +239,11 @@ class PlaylistsController < ApplicationController
                 end
               end
             else
-              results = obj_item.songs.find(:all, :include => [:artist, :album])
+              if scope == :song
+                results = obj_item.songs
+              else
+                results = obj_item.songs.find(:all, :include => [:artist, :album])
+              end
             end
             result_text = obj_item.to_s
           end

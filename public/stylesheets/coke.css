@@ -79,6 +79,20 @@ img.avatar.playlist {
 	height: 100px;
 }
 
+#uploaded_image_name {
+  display:none;
+  position:relative;
+  top: -20px;
+  left: 120px;
+  text-transform : capitalize;
+  color: #f00;
+}
+.playlist_image_container {
+  height: 120px;
+  overflow:hidden;
+  margin-bottom: 10px;
+}
+
 li.scope_toggle .mini_loader{
 	width: 18px; 
 	height: 18px; 
