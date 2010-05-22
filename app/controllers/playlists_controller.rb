@@ -170,31 +170,35 @@ class PlaylistsController < ApplicationController
                 when :song
                   obj.search(params[:term], :order => "artist_name #{order_dir}", :include => [:artist, :album]) rescue nil
                 when :artist
-                  obj.search(params[:term], :order => "name #{order_dir}", :include => [:artist, :album]) rescue nil
+                  obj.search(params[:term], :order => "name #{order_dir}") rescue nil
                 when :album
-                  obj.search(params[:term], :include => [:artist, :album]) rescue nil
+                  obj.search(params[:term]) rescue nil
               end
             elsif order_by == :album
               results = case scope
                 when :song
                   obj.search(params[:term], :order => "album_name #{order_dir}", :include => [:artist, :album]) rescue nil
                 when :artist
-                  obj.search(params[:term], :include => [:artist, :album]) rescue nil
+                  obj.search(params[:term]) rescue nil
                 when :album
-                  obj.search(params[:term], :order => "name #{order_dir}", :include => [:artist, :album]) rescue nil
+                  obj.search(params[:term], :order => "name #{order_dir}") rescue nil
               end
             else# :song
               results = case scope
                 when :song
                   obj.search(params[:term], :order => "title #{order_dir}", :include => [:artist, :album]) rescue nil
                 when :artist
-                  obj.search(params[:term], :include => [:artist, :album]) rescue nil
+                  obj.search(params[:term]) rescue nil
                 when :album
-                  obj.search(params[:term], :include => [:artist, :album]) rescue nil
+                  obj.search(params[:term]) rescue nil
               end
             end
           else
-            results = obj.search(params[:term], :include => [:artist, :album]) rescue nil
+            if scope == :song
+              results = obj.search(params[:term], :include => [:artist, :album]) rescue nil
+            else
+              results = obj.search(params[:term]) rescue nil
+            end
           end
           result_text = params[:term]
         elsif params[:item_id]
