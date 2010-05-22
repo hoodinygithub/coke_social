@@ -1,10 +1,12 @@
 <div class="box_content">
   <h1><%= t('modules.top_djs.title') %></h1>
-  <% current_site.top_djs.all(:limit => 5).each_with_index do |dj, index| %>
-    <div class="small_thumb<%= " last_thumb" if index == 4 %>">
-      <%= link_to avatar_for(dj, :small), dj %>
-      <%= link_to truncate(dj.name,:length => 18), dj %>
-    </div>
+  <% cache("#{site_cache_key}/modules/profiles/top_djs", :expires_in => EXPIRATION_TIMES["top_modules_djs"]) do %>
+    <% current_site.top_djs.all(:limit => 5).each_with_index do |dj, index| %>
+      <div class="small_thumb<%= " last_thumb" if index == 4 %>">
+        <%= link_to avatar_for(dj, :small), dj %>
+        <%= link_to truncate(dj.name,:length => 18), dj %>
+      </div>
+    <% end %>
   <% end %>
   <br class="clearer" />
 </div><!--/end box_content --> 

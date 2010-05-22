@@ -1,23 +1,25 @@
 <div class="box_content">
   <h1><%= possessive :badges %></h1>
-  <div class="badges_list">
-    <% if profile_user.total_badges > 0 %>
-      <% profile_user.badge_awards.all(:limit => 15, :order => 'created_at DESC').each do |badge_award| %>
-      <%= link_to "#{image_tag(badge_award.image, :title => t("badges.#{badge_award.badge_key}.name"))}#{badge_award.new? ? image_tag("new_#{current_site.default_locale.to_s.downcase}.png", :class => 'new') : ''}", badge_path(badge_award) %>
+  <% cache("#{profile_user.slug}/modules/profile/badge_awards", :expires_in => EXPIRATION_TIMES['profile_modules_badge_awards']) do %>
+    <div class="badges_list">
+      <% if profile_user.total_badges > 0 %>
+        <% profile_user.badge_awards.all(:limit => 15, :order => 'created_at DESC').each do |badge_award| %>
+        <%= link_to "#{image_tag(badge_award.image, :title => t("badges.#{badge_award.badge_key}.name"))}#{badge_award.new? ? image_tag("new_#{current_site.default_locale.to_s.downcase}.png", :class => 'new') : ''}", badge_path(badge_award) %>
+        <% end %>
+      <% else %>
+      <div class="medium_text">
+        <%= possessive :has_not_badges %>
+      </div>
       <% end %>
-    <% else %>
-    <div class="medium_text">
-      <%= possessive :has_not_badges %>
+      <br class="clearer" />
     </div>
+    <% if profile_user.total_badges > 15 %>
+      <div class="align_right">
+        <b class="right_side">
+          <%= link_to t('actions.view_more'), (profile_user == current_user ? my_badges_path : user_badges_path(profile_user)) %>
+        </b>
+      </div>
+      <br />
     <% end %>
-    <br class="clearer" />
-  </div>
-  <% if profile_user.total_badges > 15 %>
-    <div class="align_right">
-      <b class="right_side">
-        <%= link_to t('actions.view_more'), (profile_user == current_user ? my_badges_path : user_badges_path(profile_user)) %>
-      </b>
-    </div>
-    <br />
   <% end %>
 </div><!--/end box_content -->  

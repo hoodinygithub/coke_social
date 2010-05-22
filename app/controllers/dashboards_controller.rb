@@ -10,8 +10,8 @@ class DashboardsController < ApplicationController
 
   def show
     @dashboard_menu = :home
-    
-    @top_playlists = current_site.top_playlists.all(:limit => 6)
+    @top_playlists_limit = 6
+    @top_playlists = current_site.top_playlists.all(:limit => @top_playlists_limit)
     
     respond_to do |format|
       format.html

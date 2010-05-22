@@ -1,13 +1,15 @@
 <h1><%= t('modules.top_playlists.title') %></h1>
+<% top_playlists_size = @top_playlists.size%>
+<% cache("#{site_cache_key}/modules/profiles/top_playlists/#{top_playlists_size}", :expires_in => EXPIRATION_TIMES["top_modules_playlists"])%>
+  <% @top_playlists.each_with_index do |p, i| %>
+    <%= render :partial => 'playlists/widget_item', :locals => {:p => p, :last_box => ((i+1) % 3) == 0} %>
+  <% end %>
 
-<% @top_playlists.each_with_index do |p, i| %>
-  <%= render :partial => 'playlists/widget_item', :locals => {:p => p, :last_box => ((i+1) % 3) == 0} %>
-<% end %>
-
-<% if @top_playlists.size < 6 %>
-  <% (6 - @top_playlists.size).times do |i| %>
-    <div class="artist_box pl <%= "last_box" if ((i + 1 + @top_playlists.size) % 3 == 0) %> png_fix">
-      <%= image_tag "empty_img.gif" %>
-    </div>
+  <% if top_playlists_size < 6 %>
+    <% (6 - top_playlists_size).times do |i| %>
+      <div class="artist_box pl <%= "last_box" if ((i + 1 + @top_playlists_size) % 3 == 0) %> png_fix">
+        <%= image_tag "empty_img.gif" %>
+      </div>
+    <% end %>
   <% end %>
 <% end %>

@@ -1,5 +1,5 @@
 class PagesController < ApplicationController
-  caches_page :home, :if => Proc.new { |c| !c.request.format.js? }
+  #caches_page :home, :if => Proc.new { |c| !c.request.format.js? }
   before_filter :authenticate, :only => [:x46b]
   before_filter :login_required, :only => [:home]
 
@@ -7,8 +7,10 @@ class PagesController < ApplicationController
   
   def home
     @latest_badges = BadgeAward.latest
-    @top_djs = current_site.top_djs.all(:limit => 6)
-    @top_playlists = current_site.top_playlists.all(:limit => 6)
+    @top_djs_limit = 6
+    @top_djs = current_site.top_djs.all(:limit => @top_djs_limit)
+    @top_playlists_limit = 6
+    @top_playlists = current_site.top_playlists.all(:limit => @top_playlists_limit)
   end
 
   def flash_callback

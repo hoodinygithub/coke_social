@@ -8,17 +8,21 @@
   <h1><%= t("modules.top_playlists.title").upcase %></h1>
 
   <div class="playlist_items">
-    <% columns = 3 %>
-    <%= render :partial => 'shared/big_playlist_item', :collection => @top_playlists, :locals => { :columns => columns } %>
 
-    <% index = (6 - 1) - @top_playlists.size %>
-    <% index.downto(0) do |i| %>
-    <% last_item = i % columns == 0 %>
-      <div class="playlist_item<%= " last_item" if last_item  %>">
-        <div class="artist_box empty_item"></div>
-      </div>
-      <% if last_item %>
-        <br class="clearer" />
+    <% top_playlists_size = @top_playlists.size %>
+    <% columns = 3 %>
+    <% cache("#{site_cache_key}/modules/playlists/top_playlists/#{top_playlists_size}", :expires_in => EXPIRATION_TIMES['top_modules_playlists']) do %>
+      <%= render :partial => 'shared/big_playlist_item', :collection => @top_playlists, :locals => { :columns => columns } %>
+
+      <% index = (@top_playlists_limit - 1) - top_playlists_size %>
+      <% index.downto(0) do |i| %>
+      <% last_item = i % columns == 0 %>
+        <div class="playlist_item<%= " last_item" if last_item  %>">
+          <div class="artist_box empty_item"></div>
+        </div>
+        <% if last_item %>
+          <br class="clearer" />
+        <% end %>
       <% end %>
     <% end %>
   </div><!--/end playlist_items -->
@@ -29,9 +33,11 @@
   <div class="top_playlists_column">
     <h1><%= t("modules.top_artists.title").upcase %></h1>
 
-    <ul class="list_items">
-      <%= render :partial => 'shared/top_artists_item', :collection => @top_artists %>
-    </ul>
+    <% cache("#{site_cache_key}/modules/playlists/top_artists", :expires_in => EXPIRATION_TIMES['top_modules_artists']) do %>
+      <ul class="list_items">
+        <%= render :partial => 'shared/top_artists_item', :collection => @top_artists %>
+      </ul>
+    <% end %>
   </div><!--/end top_playlists_column -->
 
   <%= render :partial => 'shared/today_top_djs' %>
@@ -47,8 +53,10 @@
 
   <h1><%= t("modules.latest_badge_awards.title").upcase%></h1>
 
-  <ul class="list_items">
-    <%= render :partial => 'shared/latest_badge_item', :collection => @latest_badges %>  
-  </ul>
+  <% cache("#{site_cache_key}/modules/playlists/badge_awards", :expires_in => EXPIRATION_TIMES['top_modules_badge_awards']) do %>
+    <ul class="list_items">
+      <%= render :partial => 'shared/latest_badge_item', :collection => @latest_badges %>  
+    </ul>
+  <% end %>
 </div><!--/end latest_badges_column -->
 <div class="clearer"></div>

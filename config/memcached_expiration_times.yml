@@ -2,6 +2,13 @@
 # it will be picked up by the views after a server restart.
 
 defaults: &defaults
+  top_modules_playlists: <%= 12.hours %> # app/views/shared/_today_top_playlists.html.erb:4
+  top_modules_djs: <%= 12.hours %> # 
+  top_modules_artists: <%= 12.hours %> # 
+  top_modules_badge_awards: <%= 3.hours %> # 
+
+  profile_modules_badge_awards: <%= 3.hours %> # 
+  
   artist_recent_listeners: <%= 10.minutes %> # app/views/artists/_sidebar.html.haml:16
   artist_similar_artists:  <%= 10.minutes %> # app/views/artists/_sidebar.html.haml:22
   artist_show_most_listened_songs: <%= 10.minutes %>  # app/views/artists/show.html.haml:34
