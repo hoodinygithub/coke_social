@@ -168,33 +168,33 @@ class PlaylistsController < ApplicationController
             if order_by == :artist
               results = case scope
                 when :song
-                  obj.search(params[:term], :order => "artist_name #{order_dir}") rescue nil
+                  obj.search(params[:term], :order => "artist_name #{order_dir}", :include => [:artist, :album]) rescue nil
                 when :artist
-                  obj.search(params[:term], :order => "name #{order_dir}") rescue nil
+                  obj.search(params[:term], :order => "name #{order_dir}", :include => [:artist, :album]) rescue nil
                 when :album
-                  obj.search(params[:term]) rescue nil
+                  obj.search(params[:term], :include => [:artist, :album]) rescue nil
               end
             elsif order_by == :album
               results = case scope
                 when :song
-                  obj.search(params[:term], :order => "album_name #{order_dir}") rescue nil
+                  obj.search(params[:term], :order => "album_name #{order_dir}", :include => [:artist, :album]) rescue nil
                 when :artist
-                  obj.search(params[:term]) rescue nil
+                  obj.search(params[:term], :include => [:artist, :album]) rescue nil
                 when :album
-                  obj.search(params[:term], :order => "name #{order_dir}") rescue nil
+                  obj.search(params[:term], :order => "name #{order_dir}", :include => [:artist, :album]) rescue nil
               end
             else# :song
               results = case scope
                 when :song
-                  obj.search(params[:term], :order => "title #{order_dir}") rescue nil
+                  obj.search(params[:term], :order => "title #{order_dir}", :include => [:artist, :album]) rescue nil
                 when :artist
-                  obj.search(params[:term]) rescue nil
+                  obj.search(params[:term], :include => [:artist, :album]) rescue nil
                 when :album
-                  obj.search(params[:term]) rescue nil
+                  obj.search(params[:term], :include => [:artist, :album]) rescue nil
               end
             end
           else
-            results = obj.search(params[:term]) rescue nil
+            results = obj.search(params[:term], :include => [:artist, :album]) rescue nil
           end
           result_text = params[:term]
         elsif params[:item_id]
@@ -205,33 +205,33 @@ class PlaylistsController < ApplicationController
               if order_by == :artist
                 results = case scope
                   when :song
-                    obj_item.songs
+                    obj_item.songs.find(:all, :include => [:artist, :album])
                   when :artist
-                    obj_item.songs.find(:all, :order => "title ASC")
+                    obj_item.songs.find(:all, :order => "title ASC", :include => [:artist, :album])
                   when :album
-                    obj_item.songs.find(:all, :joins => :artist, :order => "accounts.name #{order_dir}, title ASC")
+                    obj_item.songs.find(:all, :joins => :artist, :order => "accounts.name #{order_dir}, title ASC", :include => [:artist, :album])
                 end
               elsif order_by == :album
                 results = case scope
                   when :song
-                    obj_item.songs
+                    obj_item.songs.find(:all, :include => [:artist, :album])
                   when :artist
-                    obj_item.songs.find(:all, :joins => :album, :order => "albums.name #{order_dir}, title ASC")
+                    obj_item.songs.find(:all, :joins => :album, :order => "albums.name #{order_dir}, title ASC", :include => [:artist, :album])
                   when :album
-                    obj_item.songs.find(:all, :order => "title ASC")
+                    obj_item.songs.find(:all, :order => "title ASC", :include => [:artist, :album])
                 end
               else# :song
                 results = case scope
                   when :song
-                    obj_item.songs
+                    obj_item.songs.find(:all, :include => [:artist, :album])
                   when :artist
-                    obj_item.songs.find(:all, :order => "title #{order_dir}")
+                    obj_item.songs.find(:all, :order => "title #{order_dir}", :include => [:artist, :album])
                   when :album
-                    obj_item.songs.find(:all, :order => "title #{order_dir}")
+                    obj_item.songs.find(:all, :order => "title #{order_dir}", :include => [:artist, :album])
                 end
               end
             else
-              results = obj_item.songs
+              results = obj_item.songs.find(:all, :include => [:artist, :album])
             end
             result_text = obj_item.to_s
           end
