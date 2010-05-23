@@ -11,8 +11,8 @@ class UsersController < ApplicationController
   before_filter :set_return_to, :only => [:msn_login_redirect, :msn_registration_redirect]
   before_filter :set_dashboard_menu, :only => [:edit, :update]
 
-  # TODO: Pending installation of Certificate on Server
-  #ssl_required :create, :new if RAILS_ENV == "production"
+  ssl_required :edit, :update, :create, :new unless RAILS_ENV == "development"
+  
   current_tab :settings
   disable_sanitize_params
   strip_tags_from_params
