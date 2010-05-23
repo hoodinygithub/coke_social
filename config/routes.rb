@@ -26,7 +26,6 @@ ActionController::Routing::Routes.draw do |map|
                 :block => :post, :unblock => :post }
 
   map.resources :registration_layers, :collection => {
-     :test            => :any,
      :follow_artist   => :any,
      :follow_user     => :any,
      :add_song        => :any,

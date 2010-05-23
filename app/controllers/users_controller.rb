@@ -6,7 +6,7 @@ class UsersController < ApplicationController
   before_filter :xhr_login_required, :only => [:follow]
   
   # before_filter :login_required, :only => [:edit, :update, :destroy, :confirm_cancellation, :remove_avatar]
-  skip_before_filter :login_required, :only => [:new, :create]
+  skip_before_filter :login_required, :only => [:new, :create, :errors_on]
   
   before_filter :set_return_to, :only => [:msn_login_redirect, :msn_registration_redirect]
   before_filter :set_dashboard_menu, :only => [:edit, :update]
