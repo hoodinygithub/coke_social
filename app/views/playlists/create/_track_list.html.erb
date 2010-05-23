@@ -128,8 +128,11 @@
   }
   
   <% if @playlist_items %>
+    
     <% @playlist_items.each do |item| %>
-      add_item_wrapper(<%= item.id %>, '<%= escape_for_js(item.title) %>', <%= item.artist.id %>, '<%= escape_for_js(item.artist.name) %>', <%= item.album.id %>, '<%= escape_for_js(item.album.name) %>', '<%= AvatarsHelper.avatar_path(item, :small) %>', true);
+      <% unless item.artist.nil? || item.album.nil? %>
+        add_item_wrapper(<%= item.id %>, '<%= escape_for_js(item.title) %>', <%= item.artist.id %>, '<%= escape_for_js(item.artist.name) %>', <%= item.album.id %>, '<%= escape_for_js(item.album.name) %>', '', true);
+      <% end %>
     <% end %>
     
     validate_items();

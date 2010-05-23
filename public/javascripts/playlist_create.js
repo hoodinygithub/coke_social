@@ -583,8 +583,7 @@ function init_draggable()
         accept: ".draggable_item",
         hoverClass: "dragging",
         drop: function(event, ui) {
-          item = $(ui.draggable[0]);
-          action = item.find("div.large_bnt a").click();
+          $(ui.draggable).find("div.large_bnt a").click();
         }
   });
 }
