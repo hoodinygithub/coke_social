@@ -131,7 +131,7 @@
     
     <% @playlist_items.each do |item| %>
       <% unless item.artist.nil? || item.album.nil? %>
-        add_item_wrapper(<%= item.id %>, '<%= escape_for_js(item.title) %>', <%= item.artist.id %>, '<%= escape_for_js(item.artist.name) %>', <%= item.album.id %>, '<%= escape_for_js(item.album.name) %>', '', true);
+        add_item_wrapper(<%= item.id %>, '<%= escape_for_js(item.title) %>', <%= item.artist.id %>, '<%= escape_for_js(item.artist.name) %>', <%= item.album.id %>, '<%= escape_for_js(item.album.name) %>', '<%= AvatarsHelper.avatar_path(item, :small) %>', true);
       <% end %>
     <% end %>
     
