@@ -1,6 +1,6 @@
 <%= render 'form' unless @playlist.owner == current_user %>
 <h1>
-  <%= "#{t('modules.reviews.title').upcase} (<span id=\"reviews_count\">#{@collection.size}</span>)" %>
+  <%= "#{t('modules.reviews.title').upcase} (<span id=\"reviews_count\">#{@records.size}</span>)" %>
 </h1>
 
 <div class="sorting">

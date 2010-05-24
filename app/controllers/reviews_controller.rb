@@ -78,7 +78,7 @@ class ReviewsController < ApplicationController
   end
 
   def records_count
-    10
+    @review.commentable.comments.size
   end
 
 protected
