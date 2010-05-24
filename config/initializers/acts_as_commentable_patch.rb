@@ -11,6 +11,6 @@ Comment.class_eval do
 protected
 
   def sanitize_comment
-    errors.add(:comment, I18n.t('share.errors.message.invalid_chars')) unless sanitize(comment) == comment
+    errors.add(:comment, I18n.t('share.errors.message.invalid_chars')) unless strip_tags(sanitize(comment)) == comment
   end
 end
