@@ -17,6 +17,10 @@ class Playlist < ActiveRecord::Base
   include Station::Playable
 
   acts_as_taggable
+
+  acts_as_commentable
+  acts_as_rateable(:class => 'Comment', :as => 'commentable')
+
   before_save :update_cached_artist_list
   before_create :increment_owner_total_playlists
   

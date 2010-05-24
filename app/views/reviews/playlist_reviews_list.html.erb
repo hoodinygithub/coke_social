@@ -1,0 +1,19 @@
+<%= render 'form' unless @playlist.owner == current_user %>
+<h1>
+  <%= "#{t('modules.reviews.title').upcase} (<span id=\"reviews_count\">#{@collection.size}</span>)" %>
+</h1>
+
+<div class="sorting">
+  <a class="ajax_sorting active { url:'/playlist/<%= @playlist.id %>/reviews/items', sort_by: 'latest' }" href="#">
+    <%= t('sort.latest') %>
+  </a> |
+  <a class="ajax_sorting { url:'/playlist/<%= @playlist.id %>/reviews/items', sort_by: 'highest_rated' }" href="#">
+    <%= t('sort.highest_rated') %>
+  </a>
+</div>
+
+<ul class="playlist_reviews ajax_list">
+  <%= render :partial => 'playlist_review_item', :collection => @collection %>
+</ul><!--/end playlist_reviews -->
+
+<%= ajax_pagination_for(playlist_reviews_items_path(@playlist), @records, 5) %>

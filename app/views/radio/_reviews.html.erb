@@ -1,0 +1,8 @@
+<% content_for :javascript do %>
+  $(document).ready(function(){
+    Base.reviews.load_playlist_reviews_list($("#playlist_reviews"), '<%= @station_obj.playable.id %>');
+  });
+<% end %>
+
+<div class="reviews_box" id="playlist_reviews">
+</div>

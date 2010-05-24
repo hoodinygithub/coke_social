@@ -71,7 +71,6 @@ class Account < ActiveRecord::Base
   include Sluggable
   include AvatarImporter
   include BackgroundImporter
-  include Commentable
   include Account::Website
   include Account::AccountActivity
   include SongListen::Most

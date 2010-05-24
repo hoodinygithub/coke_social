@@ -72,6 +72,10 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :song_buylinks, :only => :show
   map.resources :sites_stations, :only => [:index, :show]
 
+  map.resources :reviews, :member => { :confirm_remove => :get,
+                                       :duplicate_warning => :get,
+                                     }
+
   map.login  'login',  :controller => 'sessions', :action => 'new'
   map.logout 'logout', :controller => 'sessions', :action => 'destroy'
 
@@ -143,6 +147,12 @@ ActionController::Routing::Routes.draw do |map|
   map.playlist_edit '/playlist/edit/:id', :controller => 'playlists', :action => 'edit'
   map.playlist_save_state '/playlist/save_state', :controller => 'playlists', :action => 'save_state'
   map.playlist_clear_state '/playlist/clear_state', :controller => 'playlists', :action => 'clear_state'
+  map.playlist_comment '/playlist/comment/:id', :controller => 'playlists', :action => 'comment'
+
+  map.playlist_reviews         '/playlist/:playlist_id/reviews/list', :controller => 'reviews', :action => 'list'
+  map.playlist_reviews_items   '/playlist/:playlist_id/reviews/items', :controller => 'reviews', :action => 'items'
+
+  map.resources :playlists, :has_many => [:reviews]
 
   profile_routes = lambda do |profile|
     profile.resources :comments

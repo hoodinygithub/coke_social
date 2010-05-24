@@ -95,6 +95,16 @@ class PlaylistsController < ApplicationController
     render :text => "cleared", :layout => false
   end
 
+  def save_state
+    session[:playlist_ids] = params[:playlist_ids]
+    render :text => "saved", :layout => false
+  end
+
+  def clear_state
+    session[:playlist_ids] = nil
+    render :text => "cleared", :layout => false
+  end
+
   def update
     @playlist = profile_user.playlists.find(params[:id])
     @playlist.update_attribute(:name, params[:playlist][:name])
@@ -155,7 +165,35 @@ class PlaylistsController < ApplicationController
       format.html { redirect_to :back }
     end
   end
-  
+
+  def comment
+    @playlist = Playlist.find(params[:id])
+    has_commented = @playlist.comments.find_by_user_id(current_user.id)
+    if !has_commented
+      @comment_params = params
+      render :json => { :error => true, :redirect_to => "reviews/#{has_commented.id}/duplicate_warning" }
+    else
+      comment = Comment.new(:comment => params[:comment],
+                            :rating  => params[:rating],
+                            :user_id => current_user.id )
+      if comment.valid?
+        @playlist.comments << comment
+        @playlist.save!
+        render :partial => 'radio/review_item', :collection => [comment]
+      else
+        render :json => { :error => true, :messages => comment.errors.full_messages }
+      end
+    end
+  end
+
+  def comments
+    sort_types = { :latest => 'comments.created_at DESC', :highest_rated => 'comments.rating'  }
+    sort_type  = params.fetch(:sort_by, nil).to_sym rescue :latest
+    playlist   = Playlist.find(params[:id])
+    collection = playlist.comments.paginate :page => params[:page], :per_page => 15, :order => sort_types[sort_type]
+    render :partial => 'radio/review_item', :layout => false, :collection => collection
+  end
+
   private
     def get_seeded_results
       results = nil

@@ -880,4 +880,33 @@ module ApplicationHelper
     str
   end
 
+  def rating(rateable, enabled = false)
+    ratings = ""
+    disabled = true unless enabled
+    rating = false
+    (1..5).each do |rate|
+      checked = rate == rateable.rating ? true : false
+      ratings << radio_button_tag("rating_#{rateable.id}", rate, checked, :class => 'star', :disabled => disabled)
+    end
+
+    "<span class=\"rating\">
+       #{ratings}
+     </span>"
+  end
+
+  def ajax_pagination_for(url, collection, per_page)
+    total_pages = collection.paginate(:per_page => 5, :page => 1).total_pages
+    if total_pages > 1
+      content = ""
+      (2..total_pages).each do |x|
+        content << "<a href=\"#\" class=\"page\">#{x}</a>"
+      end
+
+    "<div class=\"pagination ajax_pagination { url: '#{url}'}\" >
+      <span class=\"page current\">1</span>
+      #{content}
+    </div>"
+    end
+  end
+
 end

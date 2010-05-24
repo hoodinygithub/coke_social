@@ -99,6 +99,7 @@ en:
     add_more: Add More
     select_store: Select Store
     search: Search
+    rate_it: RATE IT
   modules:
     popular_tags: Popular Tags
     edit_station: 
@@ -267,7 +268,8 @@ en:
       has_not_followers: "{{subject}} has no followers."
       has_not_reviews: "{{subject}} has not posted any reviews."
       has_not_subscribed: "{{subject}} has not subscribed to any playlists."
-    first_person: 
+      latest_reviews: "{{subject}}'s Latest Reviews"
+    first_person:
       friends_that_have_this_badge: My friends that have this badge
       subscriptions: My Subscriptions
       stations: My Stations
@@ -290,6 +292,7 @@ en:
       has_not_followers: You have no followers.
       has_not_reviews: You have not posted any reviews.
       has_not_subscribed: You have not subscribed to any playlists
+      latest_reviews: My Latest Reviews
   activerecord: 
     attributes: 
       station: 
@@ -333,6 +336,10 @@ en:
         status: Status
     errors: 
       models: 
+        comment:
+          attributes:
+            comment:
+              blank: "Review text can't be blank"
         account: 
           attributes: 
             background: 
@@ -1101,8 +1108,17 @@ en:
   playlist: 
     edit_your_playlist: Edit your playlist
     doesnt_have_any_reviews: This playlist does not<br/> have any reviews
-  contact_us: 
-    confirmation: 
+    review: REVIEW THIS PLAYLIST
+  reviews:
+    post_your_review: POST YOUR REVIEW
+    edit_your_review: Edit your review
+    delete_review_title: Delete this review
+    delete_review_text: Deleting a review is a permenant action.  Are you sure you still want to delete this review?
+    duplicate_warning_title: Oops...
+    duplicate_warning_text: You have already posted a review for this playlist. If you post a new review it will overwrite your previous review.
+
+  contact_us:
+    confirmation:
       thanks: Thank you for your message. We will reply to you as soon as possible
       title: Confirmation
       body: Your Form has been submitted
@@ -1139,6 +1155,7 @@ en:
       category_profile: My Profile
       email: Email Address
   basics: 
+    ago: 'ago'
     plays: Plays
     albums_by: Albums by
     sorry: Sorry!

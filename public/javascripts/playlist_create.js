@@ -285,7 +285,7 @@ function ValidationList()
 }
 
 
-function add_item(id, title, artist_id, artist_name, album_id, album_name, image_src, suppress_validation)
+function add_item(id, title, artist_id, artist_name, album_id, album_name, image_src, edit_mode, suppress_validation)
 {
   if(!_pv.contains(id) && (_pv.item_count < _pv.max_items))
   {

@@ -344,10 +344,6 @@ text-transform: uppercase;
   font-size: 11px !important;
 }
 
-span.red {
-  display: block;
-  width : 250px;
-}
 textarea.network_update_red {
   border:10px solid red !important;
 }
@@ -358,3 +354,51 @@ textarea.network_update_red {
   width: 160px;
 }
 
+.rating_inputs {
+  float:right;
+}
+
+.popup_mix_text {
+  margin-left: 10px;
+  width: 250px;
+}
+
+textarea.network_red_msg {
+  border:10px solid red !important;
+}
+
+.network_red_msg {
+  width: 495px;
+  background: red;
+  color: #ffffff;
+  font-weight: bold;
+  padding: 0 0 5px 5px;
+  float: right;
+}
+
+.edit_review_red_msg {
+  width: 345px;
+  background: red;
+  color: #ffffff;
+  font-weight: bold;
+  padding: 0 0 5px 5px;
+  float: right;
+}
+
+.rating_input {
+  margin-top: 10px;
+}
+
+textarea.review_red_msg {
+  border:10px solid red !important;
+}
+
+
+div.loading_list {
+  height: 155px;
+  background: url("../images/loading_large.gif") no-repeat center;
+}
+
+.post_button {
+  margin-top: 10px;
+}
