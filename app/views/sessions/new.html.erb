@@ -5,12 +5,9 @@
     <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
     <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE8" />
     <meta name="KEYWORDS" content="" />
-    
-    <%= stylesheet_link_tag 'application', 'application_ext', 'coke' %>
-    
-    <% ['jquery-1.4.1.min', 'jquery.cycle.all.min', 'supersleight.plugin', 'functions', 'base'].each do |javascript| %>
-      <%= javascript_include_tag javascript -%>
-    <% end %>
+
+    <%= render 'shared/javascripts' %>
+    <%= render 'shared/stylesheets' %>
 </head>
 <body>
     <div id="container">
