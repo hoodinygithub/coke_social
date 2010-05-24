@@ -7,7 +7,7 @@
 
   <% if top_playlists_size < 6 %>
     <% (6 - top_playlists_size).times do |i| %>
-      <div class="artist_box pl <%= "last_box" if ((i + 1 + @top_playlists_size) % 3 == 0) %> png_fix">
+      <div class="artist_box pl <%= "last_box" if ((i + 1 + top_playlists_size) % 3 == 0) %> png_fix">
         <%= image_tag "empty_img.gif" %>
       </div>
     <% end %>
