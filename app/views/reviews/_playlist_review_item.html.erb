@@ -3,7 +3,7 @@
     <div class="info">
       <b><%= link_to(playlist_review_item.user, playlist_review_item.user, :target => "_blank") %></b>
       <br />
-      <%= nice_elapsed_time(playlist_review_item.created_at) %> <%= t('basic.ago') %>
+      <%= nice_elapsed_time(playlist_review_item.created_at) %> <%= t('basics.ago') %>
       <br />
       <%= rating(playlist_review_item) %>
     </div>
