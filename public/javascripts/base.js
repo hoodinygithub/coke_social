@@ -1841,7 +1841,7 @@ Base.reviews.bind_textarea = function() {
     $(this).blur(function() {
       $("div.rating_input").removeClass("red_round_box2");
       $(this).removeClass("network_update_red");
-      if (!$(this).hasClass('network_red_msg','edit_review_red_msg')) {
+      if (!($(this).hasClass('network_red_msg') || $(this).hasClass('edit_review_red_msg'))) {
         $(this).next('img').attr("src", "/images/network_arrow.gif");
       }
     });
