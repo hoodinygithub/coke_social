@@ -23,14 +23,14 @@ module DashboardsHelper
   
   def user_nav_links
     links = {
-      :home     => user_path,
-      :playlists     => playlists_path,
+      :home          => user_path,
+      :playlists     => user_playlists_path,
       :badges        => badges_path,
-      :reviews       => reviews_path,
+      :reviews       => user_reviews_path,
       :subscriptions => subscriptions_path,
-      :activities => activities_path,
-      :followers  => followers_path,
-      :following  => following_index_path
+      :activities    => activities_path,
+      :followers     => followers_path,
+      :following     => following_index_path
     }    
     menu_items(links)
   end
