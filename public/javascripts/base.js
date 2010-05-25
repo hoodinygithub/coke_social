@@ -1790,6 +1790,7 @@ Base.reviews.showPopup = function(url) {
 Base.reviews.resetForm = function() {
   $("#network_comment").val('');
   $('input[name=rating]:checked').rating('select', '');
+  $('input[type=radio].star').rating();
   $('#' + $("#network_comment").attr('chars_counter')).html(140);
   $('div.network_red_msg').remove();
   $('#network_comment').removeClass('network_red_msg');
