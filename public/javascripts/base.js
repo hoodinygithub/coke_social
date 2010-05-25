@@ -1788,9 +1788,12 @@ Base.reviews.showPopup = function(url) {
 };
 
 Base.reviews.resetForm = function() {
-  $('input[type=radio].star').rating();
   $("#network_comment").val('');
+  $('input[name=rating]:checked').rating('select', '');
   $('#' + $("#network_comment").attr('chars_counter')).html(140);
+  $('div.network_red_msg').remove();
+  $('#network_comment').removeClass('network_red_msg');
+  $('#network_comment').next('img').attr("src", "/images/network_arrow.gif");
 }
 ;
 Base.reviews.showErrors = function(errors, form) {
