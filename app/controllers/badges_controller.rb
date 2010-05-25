@@ -3,9 +3,11 @@ class BadgesController < ApplicationController
     @dashboard_menu = :badges
     @sort_type = params.fetch(:sort_by, nil).to_sym rescue :latest
 
-    begin
-        sort_types = { :latest => 'badge_awards.created_at DESC', :alphabetical => "badge_awards.name_#{current_site.default_locale.to_s.downcase}"  }
-        @collection = profile_user.badge_awards.paginate :page => params[:page], :per_page => 10, :order => sort_types[@sort_type]
+    sort_types = { :latest => 'badge_awards.created_at DESC', 
+                   :alphabetical => "badge_awards.name_#{current_site.default_locale.to_s.downcase}"  }
+
+    @collection = profile_user.badge_awards.paginate :page => params[:page], :per_page => 10, 
+                                                    :order => sort_type[@sort_type]
   end
 
   def show
