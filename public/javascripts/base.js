@@ -1795,6 +1795,7 @@ Base.reviews.resetForm = function() {
   $('div.network_red_msg').remove();
   $('#network_comment').removeClass('network_red_msg');
   $('#network_comment').next('img').attr("src", "/images/network_arrow.gif");
+  $('.rating_bottles').removeClass('red_round_box2');
 }
 ;
 Base.reviews.showErrors = function(errors, form) {
