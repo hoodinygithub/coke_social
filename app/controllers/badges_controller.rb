@@ -12,12 +12,8 @@ class BadgesController < ApplicationController
 
   def show
     @dashboard_menu = :badges
-    begin
-      @badge_award = profile_user.badge_awards.find(params[:id])
-      @friends_with_badge = profile_user.followees.with_badge(@badge_award)
-      @others_with_badge = @badge_award.badge.winners.other_than_user_and_followees(profile_user)
-    rescue
-      redirect_to new_session_path
-    end
+    @badge_award = profile_user.badge_awards.find(params[:id])
+    @friends_with_badge = profile_user.followees.with_badge(@badge_award)
+    @others_with_badge = @badge_award.badge.winners.other_than_user_and_followees(profile_user)
   end
 end
