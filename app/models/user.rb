@@ -67,8 +67,8 @@
 #
 
 class User < Account
-
   include Account::Encryption
+  include Account::Authentication  
   include Account::ProfileColors
   include Account::FolloweeCache
   include Account::SingleShortBio
