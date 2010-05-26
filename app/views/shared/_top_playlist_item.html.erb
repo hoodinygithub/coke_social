@@ -8,15 +8,7 @@
     <big><b><%= link_to top_playlist_item.name, radio_path(:station_id => top_playlist_item.station.id) ,:class => "red" %></b></big><br/>
     <small><%= t("basics.by")%>: <%= link_to top_playlist_item.owner.name, user_path(top_playlist_item.owner) ,:class => "red" %></small><br/>
 
-    <% if false #ratings are coming soon %>
-    <span class="rating">
-      <img src="images/rating_bottle_full.png" class="png_fix" alt="" />
-      <img src="images/rating_bottle_full.png" class="png_fix" alt="" />
-      <img src="images/rating_bottle_full.png" class="png_fix" alt="" />
-      <img src="images/rating_bottle_full.png" class="png_fix" alt="" />
-      <a href="#"><img src="images/rating_bottle_empty.png" class="png_fix" alt="" /></a>
-    </span>
-    <% end %>
+    <%= rating(top_playlist_item) %>
   </div>
   <br class="clearer" />
 </li>
