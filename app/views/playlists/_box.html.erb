@@ -5,15 +5,7 @@
 
     <div class="hidden fh">
       <b><%= link_to p.name, radio_path(:station_id => p.station.id) %></b><br/>
-      <% if false %>
-        <span class="rating">
-          <img src="images/rating_bottle_full.png" class="png_fix" alt="" />
-          <img src="images/rating_bottle_full.png" class="png_fix" alt="" />
-          <img src="images/rating_bottle_full.png" class="png_fix" alt="" />
-          <img src="images/rating_bottle_full.png" class="png_fix" alt="" />
-          <img src="images/rating_bottle_white_full.png" class="png_fix" alt="" />
-        </span>
-      <% end %>
+      <%= rating(p, false, "rating_#{p.id}_top") %>
       <br/><br/>
 
       <div class="tag_links">
@@ -32,16 +24,7 @@
     <div class="visible fh">
       <%= link_to(image_tag('play_button.png', :class => 'png_fix play_button'), radio_path(:station_id => p.station.id))%>
       <%= link_to p.name, radio_path(:station_id => p.station.id) %><br/>
-        <span class="rating">
-        <% if false %>
-          <img src="images/rating_bottle_full.png" class="png_fix" alt="" />
-          <img src="images/rating_bottle_full.png" class="png_fix" alt="" />
-          <img src="images/rating_bottle_full.png" class="png_fix" alt="" />
-          <img src="images/rating_bottle_full.png" class="png_fix" alt="" />
-          <img src="images/rating_bottle_white_full.png" class="png_fix" alt="" />
-       <% end %>
-       </span>
-
+      <%= rating(p) %>
     </div>
     </div><!--/end overlay -->
 </div><!--/end artist_box -->
