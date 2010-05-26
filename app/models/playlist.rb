@@ -163,10 +163,4 @@ class Playlist < ActiveRecord::Base
     update_attribute('rating_cache', self.rating)
   end
 
-  def self.update_rating_cache
-    self.find(:all).each do |playlist|
-      playlist.update_attribute :rating_cache, playlist.rating
-    end
-  end
-
 end
