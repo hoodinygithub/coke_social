@@ -15,15 +15,7 @@
       <div class="visible">
         <%= link_to image_tag("play_button.png", :class=> "play_button png_fix", :title => t('basics.play')), radio_path(:station_id => big_playlist_item.station.id) %>
         <%= link_to big_playlist_item.name, radio_path(:station_id => big_playlist_item.station.id)%><br/>
-        <% if false #ratings are coming soon %>
-        <span class="rating">
-          <a href="#"><img src="images/rating_bottle_full.png" class="png_fix" alt="" /></a>
-          <a href="#"><img src="images/rating_bottle_full.png" class="png_fix" alt="" /></a>
-          <a href="#"><img src="images/rating_bottle_full.png" class="png_fix" alt="" /></a>
-          <a href="#"><img src="images/rating_bottle_full.png" class="png_fix" alt="" /></a>
-          <a href="#"><img src="images/rating_bottle_white_full.png" class="png_fix" alt="" /></a>
-        </span>
-        <% end %>
+        <%= rating(big_playlist_item) %>
       </div>
     </div><!--/end overlay -->
   </div><!--/end artist_box -->
