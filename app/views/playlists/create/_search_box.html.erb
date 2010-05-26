@@ -9,5 +9,10 @@
 <script language="javascript">
   var content_msg = "<%= t('search.content_search_hint') %>";
   
-  return Base.playlist_search.buildSearchUrl();
+  $("#playlist_search_query").keypress(function(e){
+    if(e.which==13) {
+      Base.playlist_search.buildSearchUrl();
+      return false;
+    }
+  });
 </script>
