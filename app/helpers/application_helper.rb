@@ -880,13 +880,14 @@ module ApplicationHelper
     str
   end
 
-  def rating(rateable, enabled = false)
+  def rating(rateable, enabled = false, id=nil)
     ratings = ""
     disabled = true unless enabled
     rating = false
+    rating_id = id ? id : "rating_#{rateable.id}"
     (1..5).each do |rate|
       checked = rate == rateable.rating.round ? true : false
-      ratings << radio_button_tag("rating_#{rateable.id}", rate, checked, :class => 'star', :disabled => disabled)
+      ratings << radio_button_tag(rating_id, rate, checked, :class => 'star', :disabled => disabled)
     end
 
     "<span class=\"rating\">
