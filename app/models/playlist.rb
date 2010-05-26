@@ -47,7 +47,7 @@ class Playlist < ActiveRecord::Base
     set_property :allow_star => 1
     has created_at, updated_at, owner(:network_id)
     has total_plays, :as => 'playlist_total_plays'
-    has rating_cache
+    has rating_cache, :sortable => true
   end
   
   # def self.search(*args)
