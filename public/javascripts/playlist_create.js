@@ -492,10 +492,15 @@ function remove_search_result(id)
   //setTimeout(function(thisObj){ thisObj.remove(); }, 500);
 }
 
-function get_song_list(id,scope)
+function get_song_list(id,scope,page)
 {
-  q = "item_id=" + id + "&scope=" + scope;
-  
+	if (typeof(page)=="undefined"){ page = 1 }
+	if (isNaN(parseInt(id, 10)) && typeof(id)=="string"){ 
+	  q = "term=" + id + "&scope=" + scope + "&page=" + page;		
+	} else {		
+	  q = "item_id=" + id + "&scope=" + scope + "&page=" + page;		
+	}
+	
   show_loading_image();
   
   jQuery.get('/playlist/create?' + q, function(data) {
@@ -503,9 +508,10 @@ function get_song_list(id,scope)
   });
 }
 
-function do_song_list_sort(t, id, scope, order_by)
+function do_song_list_sort(t, id, scope, order_by, page)
 {
-  q = "item_id=" + id + "&scope=" + scope;
+	if (typeof(page)=="undefined"){ page = 1 }
+  q = "item_id=" + id + "&scope=" + scope + "&page=" + page;
   if(order_by) 
   {
     has_asc = $(t).hasClass('sort_asc');
@@ -530,9 +536,10 @@ function do_song_list_sort(t, id, scope, order_by)
   });
 }
 
-function do_search_list_sort(t, term, scope, order_by)
+function do_search_list_sort(t, term, scope, order_by, page)
 {
-  q = "term=" + term + "&scope=" + scope;
+	if (typeof(page)=="undefined"){ page = 1 }
+  q = "term=" + term + "&scope=" + scope + "&page=" + page;
   if(order_by) 
   {
     has_asc = $(t).hasClass('sort_asc');
@@ -568,7 +575,7 @@ function get_search_results(term,scope)
 
 function show_loading_image()
 {
-  img = '<div class="empty_results_box"><img src="/images/loading_large.gif"/></div>';
+  img = '<div style="height: 22px">&nbsp;</div><div class="empty_results_box"><img src="/images/loading_large.gif"/></div>';
   jQuery('#search_results_container').html(img);
 }
 

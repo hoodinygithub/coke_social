@@ -50,15 +50,15 @@ class Playlist < ActiveRecord::Base
     has rating_cache
   end
   
-  def self.search(*args)
-    if RAILS_ENV =~ /test/ # bad bad bad
-      options = args.extract_options!
-      starts_with(args[0]).paginate :page => (options[:page] || 1)
-    else
-      args[0] = "#{args[0]}*"
-      super(*args).compact        
-    end
-  end
+  # def self.search(*args)
+  #   if RAILS_ENV =~ /test/ # bad bad bad
+  #     options = args.extract_options!
+  #     starts_with(args[0]).paginate :page => (options[:page] || 1)
+  #   else
+  #     args[0] = "#{args[0]}*"
+  #     super(*args).compact        
+  #   end
+  # end
 
   def includes(limit=3)
     songs.all(:limit => limit).uniq_by { |s| s.artist_id }

@@ -406,3 +406,120 @@ div.loading_list {
 .post_button {
   margin-top: 10px;
 }
+
+.songs_box .pagination {
+	padding-top: 15px;
+}
+.songs_box.medium_height {
+	height: 418px;
+}
+
+.empty_results_box {
+	height: 143px;
+}
+
+#search_results_container {
+	height: 480px
+}
+
+.my_mix .songs_box ul, .songs_box ul.results_by_artist {
+	border-right: none;
+	width: 628px;
+	height: 373px;
+}
+
+#pagination_container {
+	background-color: #F1F1F1;
+	height: 44px;
+}
+
+.songs_list.my_mix .headers div.album_name, .my_mix .songs_box .album_name {
+	width: 145px;
+}
+
+.songs_list .headers div.large_bnt {
+	width: 65px; 
+	border-right: none;
+}
+
+.songs_box ul li div.large_bnt {
+	width: 65px;
+	border-right: 1px solid #FFFFFF;
+}
+
+.songs_list .headers {
+	background: none repeat scroll 0 0 #F1F1F1;
+}
+
+.songs_list .headers div.solo {
+	border-right: 1px solid #FFFFFF;
+	padding-left: 10px;
+	width: 616px;
+}
+
+
+.songs_list .pagination .disabled {
+	background: none;
+	border :medium none;	
+	color: #CCCCCC;
+}
+.songs_list .pagination a {
+	background-color: #FFFFFF;
+	color: #666666;
+}
+
+.songs_list .pagination .current {
+	color: #FF0014;
+	margin: 0 3px;
+}
+
+.pagination a.prev_page, .pagination a.next_page {
+	border :medium none;
+	background: none !important;
+}
+
+.playlist_creation_buttons {
+	background-color: #F1F1F1;
+	border-bottom: 1px solid #CCCCCC;
+	border-left: 1px solid #CCCCCC;
+	border-right: 1px solid #CCCCCC;
+	height:44px;
+}
+
+.playlist_creation_buttons .right_side {
+	margin-top: 10px; 
+	margin-right: 10px;
+}
+
+.dotted_box  {
+	height:395px;
+	margin-bottom: 0px;
+}
+
+.added_items  {
+	height: 395px;
+	overflow-y: auto;
+}
+
+.playlist_creation_buttons .cancel_button  {
+	display: block;
+	float: left;
+	font-weight: normal;
+	font-size: 13px;
+	margin: 6px 6px 0 0;
+	text-transform: uppercase;
+}
+
+#playlist_error_tag {
+	font-size: 13px;	
+}
+
+.songs_box {
+	overflow-y: hidden;
+}
+
+.dotted_box.dragging {
+  border: none;
+	margin-top: 15px;
+	margin-bottom: 15px;
+}

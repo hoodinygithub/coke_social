@@ -23,6 +23,8 @@ class PlaylistsController < ApplicationController
   end
 
   def create
+    @page = params[:page] || 1
+    @per_page = (params[:term] and (params[:scope]=='artist' or params[:scope]=='album')) ? 7 : 12
     @results,@scope,@result_text = get_seeded_results
     unless request.xhr?
       if request.post?
@@ -202,87 +204,145 @@ class PlaylistsController < ApplicationController
       order_by = (params[:order_by] =~ /(song|artist|album)/i) ? params[:order_by].to_sym : nil
       order_dir = params[:order_dir] || 'ASC'
       
+      album_sort = Proc.new do |a, b| 
+        if a and b
+          order_dir=='DESC' ? b.album.name <=> a.album.name : a.album.name <=> b.album.name
+        end
+      end
+
+      artist_sort = Proc.new do |a, b| 
+        if a and b
+          order_dir=='DESC' ? b.artist.name <=> a.artist.name : a.artist.name <=> b.artist.name
+        end
+      end
+
+      title_sort = Proc.new do |a, b| 
+        if a and b
+          order_dir=='DESC' ? b.title <=> a.title : a.title <=> b.title
+        end
+      end
+
+      name_sort = Proc.new do |a, b| 
+        if a and b
+          order_dir=='DESC' ? b.name <=> a.name : a.name <=> b.name
+        end
+      end
+      
+      search_opts = {}
       scope = (params[:scope] =~ /(song|artist|album)/i) ? params[:scope].to_sym : nil
       if(scope)
         obj = scope.to_s.classify.constantize
+        search_opts.merge!(:page => @page) if @page
+        search_opts.merge!(:per_page => @per_page) if @per_page
         if params[:term]
           if(order_by)
             if order_by == :artist
-              results = case scope
-                when :song
-                  obj.search(params[:term], :order => "artist_name #{order_dir}", :include => [:artist, :album]) rescue nil
-                when :artist
-                  obj.search(params[:term], :order => "name #{order_dir}") rescue nil
-                when :album
-                  obj.search(params[:term]) rescue nil
+              results = if scope == :artist
+                obj.search(params[:term], search_opts).sort!(&name_sort) rescue nil
+              else
+                obj.search(params[:term], search_opts).sort!(&artist_sort) rescue nil
               end
             elsif order_by == :album
-              results = case scope
-                when :song
-                  obj.search(params[:term], :order => "album_name #{order_dir}", :include => [:artist, :album]) rescue nil
-                when :artist
-                  obj.search(params[:term]) rescue nil
-                when :album
-                  obj.search(params[:term], :order => "name #{order_dir}") rescue nil
+              results = if scope == :album
+                obj.search(params[:term], search_opts).sort!(&name_sort) rescue nil
+              else
+                obj.search(params[:term], search_opts).sort!(&album_sort) rescue nil
               end
             else# :song
               results = case scope
                 when :song
-                  obj.search(params[:term], :order => "title #{order_dir}", :include => [:artist, :album]) rescue nil
+                  obj.search(params[:term], search_opts).sort!(&title_sort) rescue nil
                 when :artist
-                  obj.search(params[:term]) rescue nil
+                  obj.search(params[:term], search_opts).sort!(&aritst_sort) rescue nil
                 when :album
-                  obj.search(params[:term]) rescue nil
+                  obj.search(params[:term], search_opts).sort!(&album_sort) rescue nil
               end
             end
           else
-            if scope == :song
-              results = obj.search(params[:term], :include => [:artist, :album]) rescue nil
-            else
-              results = obj.search(params[:term]) rescue nil
-            end
+            results = obj.search(params[:term], search_opts) rescue nil
+            # if scope == :song
+            #   #results = obj.search(params[:term], :include => [:artist, :album]) rescue nil
+            # else
+            #   results = obj.search(params[:term], search_opts) rescue nil
+            #   #results = obj.search(params[:term]) rescue nil
+            # end
           end
           result_text = params[:term]
         elsif params[:item_id]
           obj_item = obj.find(params[:item_id]) rescue nil
+          search_opts.merge!( :with => { :artist_id => obj_item.id } ) if obj_item.is_a?(Artist)
+          search_opts.merge!( :with => { :album_id => obj_item.id } ) if obj_item.is_a?(Album)
+          search_opts.merge!(:page => @page) if @page
+          search_opts.merge!(:per_page => @per_page) if @per_page
+          
           if obj_item
             @item_id = obj_item.id
             if(order_by)
               if order_by == :artist
-                results = case scope
-                  when :song
-                    obj_item.songs
-                  when :artist
-                    obj_item.songs.find(:all, :order => "title ASC", :include => [:artist, :album])
-                  when :album
-                    obj_item.songs.find(:all, :joins => :artist, :order => "accounts.name #{order_dir}, title ASC", :include => [:artist, :album])
+                results = if scope == :song
+                  obj_item.songs.paginate(search_opts).sort!(&artist_sort)
+                  #Song.search search_opts
+                  #obj_item.songs
+                else
+                  Song.search(search_opts).sort!(&artist_sort)
                 end
               elsif order_by == :album
-                results = case scope
-                  when :song
-                    obj_item.songs
-                  when :artist
-                    obj_item.songs.find(:all, :joins => :album, :order => "albums.name #{order_dir}, title ASC", :include => [:artist, :album])
-                  when :album
-                    obj_item.songs.find(:all, :order => "title ASC", :include => [:artist, :album])
+                results = if scope == :song
+                  obj_item.songs.paginate(search_opts).sort!(&album_sort)
+                else
+                  Song.search(search_opts).sort!(&album_sort)
                 end
               else# :song
-                results = case scope
-                  when :song
-                    obj_item.songs
-                  when :artist
-                    obj_item.songs.find(:all, :order => "title #{order_dir}", :include => [:artist, :album])
-                  when :album
-                    obj_item.songs.find(:all, :order => "title #{order_dir}", :include => [:artist, :album])
+                results = if scope == :song
+                  obj_item.songs.paginate(search_opts).sort!(&title_sort)
+                else
+                  Song.search(search_opts).sort!(&title_sort)
                 end
               end
             else
               if scope == :song
-                results = obj_item.songs
+                results = obj_item.songs.paginate(search_opts)
               else
-                results = obj_item.songs.find(:all, :include => [:artist, :album])
+                puts search_opts.inspect
+                results = Song.search(search_opts)
               end
             end
+            # if(order_by)
+            #   if order_by == :artist
+            #     results = case scope
+            #       when :song
+            #         obj_item.songs
+            #       when :artist
+            #         obj_item.songs.find(:all, :order => "title ASC", :include => [:artist, :album])
+            #       when :album
+            #         obj_item.songs.find(:all, :joins => :artist, :order => "accounts.name #{order_dir}, title ASC", :include => [:artist, :album])
+            #     end
+            #   elsif order_by == :album
+            #     results = case scope
+            #       when :song
+            #         obj_item.songs
+            #       when :artist
+            #         obj_item.songs.find(:all, :joins => :album, :order => "albums.name #{order_dir}, title ASC", :include => [:artist, :album])
+            #       when :album
+            #         obj_item.songs.find(:all, :order => "title ASC", :include => [:artist, :album])
+            #     end
+            #   else# :song
+            #     results = case scope
+            #       when :song
+            #         obj_item.songs
+            #       when :artist
+            #         obj_item.songs.find(:all, :order => "title #{order_dir}", :include => [:artist, :album])
+            #       when :album
+            #         obj_item.songs.find(:all, :order => "title #{order_dir}", :include => [:artist, :album])
+            #     end
+            #   end
+            # else
+            #   if scope == :song
+            #     results = obj_item.songs
+            #   else
+            #     results = obj_item.songs.find(:all, :include => [:artist, :album])
+            #   end
+            # end
             result_text = obj_item.to_s
           end
         end

@@ -60,7 +60,7 @@ class SearchesController < ApplicationController
     end
     
     def search_only_active_type (per_page = 12)
-      opts = { :page => params[:page], :per_page => per_page }
+      opts = { :page => params[:page], :per_page => per_page, :star => true }
 
       @search_types.each do |scope|
         obj_scope = scope == :stations ? :abstract_stations : scope
@@ -88,7 +88,8 @@ class SearchesController < ApplicationController
     end
   
     def search_all_types (per_page = 12)
-      opts = { :page => params[:page], :per_page => per_page }
+      opts = { :page => params[:page], :per_page => per_page, :star => true }
+
       opts.merge!(:order => @sort_types[@sort_type]) unless @sort_types[@sort_type].nil?
 
       @search_types.each do |scope|

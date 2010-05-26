@@ -28,7 +28,7 @@ class Song < ActiveRecord::Base
 
   index :id
 
-  default_scope :conditions => { :deleted_at => nil }
+  default_scope :conditions => { :deleted_at => nil }, :include => [:artist, :album]
 
   after_save :increment_album_total_time, :if => :album_id?
   before_destroy :decrement_album_total_time, :if => :album_id?
@@ -57,6 +57,8 @@ class Song < ActiveRecord::Base
     has artist.name, :as => :artist_name, :sortable => true
     has album.name, :as => :album_name, :sortable => true
     #
+    has artist(:id), :as => :artist_id
+    has album(:id), :as => :album_id
     
     set_property :min_prefix_len => 1
     set_property :enable_star => 1
@@ -64,10 +66,10 @@ class Song < ActiveRecord::Base
   end
   
 
-  def self.search(*args)
-    args[0] = "#{args[0]}*"
-    super(*args).compact        
-  end
+  # def self.search(*args)
+  #   args[0] = "#{args[0]}*"
+  #   super(*args).compact        
+  # end
 
   def total_listens
     song_listens.sum(:total_listens)
