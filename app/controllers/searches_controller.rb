@@ -8,7 +8,8 @@ class SearchesController < ApplicationController
                     :alphabetical => 'name ASC', \
                     :relevance => nil, \
                     :highest_rated => { :playlists => 'rating_cache DESC', :users => nil }, \
-                    :top => { :playlists => 'playlist_total_plays DESC', :users => nil } }
+                    :top => { :playlists => 'playlist_total_plays DESC', :users => nil }  
+                  }
 
     @active_scope = params[:scope].nil? ? @search_types[0] : params[:scope].to_sym
 
