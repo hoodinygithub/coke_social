@@ -365,16 +365,23 @@ textarea.network_update_red {
 
 textarea.network_red_msg {
   border:10px solid red !important;
+  margin-left: 0px;
 }
 
 .network_red_msg {
-  width: 495px;
+  width: 490px;
   background: red;
   color: #ffffff;
   font-weight: bold;
-  padding: 0 0 5px 5px;
-  float: right;
+  padding: 5px;
+  margin-left: 15px;
 }
+
+textarea.edit_review_red_msg {
+  border:10px solid red !important;
+  margin-left: 0px;
+}
+
 
 .edit_review_red_msg {
   width: 345px;
@@ -382,18 +389,14 @@ textarea.network_red_msg {
   color: #ffffff;
   font-weight: bold;
   padding: 0 0 5px 5px;
-  float: right;
   background: red;
+  margin-left: 15px;
+
 }
 
 .rating_input {
   margin-top: 10px;
 }
-
-textarea.edit_review_red_msg {
-  border:10px solid red !important;
-}
-
 
 div.loading_list {
   height: 155px;
