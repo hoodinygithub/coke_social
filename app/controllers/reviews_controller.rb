@@ -49,7 +49,7 @@ class ReviewsController < ApplicationController
   end
 
   def create
-    @playlist     = Playlist.find(params[:playlist_id])
+    @playlist = Playlist.find(params[:playlist_id])
     review  = Comment.new(:comment => params[:comment],
                           :rating  => params[:rating],
                           :user_id => current_user.id )
@@ -59,8 +59,7 @@ class ReviewsController < ApplicationController
         @review_params = params
         render :json => { :success => false, :redirect_to => "reviews/#{has_commented.id}/duplicate_warning" }
       else
-        @playlist.comments << review
-        @playlist.save!
+        @playlist.rate_with(review)
         render :json => { :success => true,
                           :html => render_to_string( :partial => 'playlist_review_item', :collection => [review] )
                         }

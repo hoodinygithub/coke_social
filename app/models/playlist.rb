@@ -158,4 +158,15 @@ class Playlist < ActiveRecord::Base
     WHERE p.playlist_id = ?
   !
 
+  def rate_with(rating)
+    add_rating(rating)
+    update_attribute('rating_cache', self.rating)
+  end
+
+  def self.update_rating_cache
+    self.find(:all).each do |playlist|
+      playlist.update_attribute :rating_cache, playlist.rating
+    end
+  end
+
 end
