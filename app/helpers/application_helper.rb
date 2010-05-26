@@ -885,7 +885,7 @@ module ApplicationHelper
     disabled = true unless enabled
     rating = false
     (1..5).each do |rate|
-      checked = rate == rateable.rating ? true : false
+      checked = rate == rateable.rating.round ? true : false
       ratings << radio_button_tag("rating_#{rateable.id}", rate, checked, :class => 'star', :disabled => disabled)
     end
 
