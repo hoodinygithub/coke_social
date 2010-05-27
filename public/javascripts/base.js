@@ -1993,3 +1993,14 @@ Base.reviews.paginate = function() {
   });
   return false;
 }
+
+Base.reviews.show = function(review) {
+  var url = "/reviews/" + review + "/show";
+  $.popup(function() {
+    $.get(url, function(response) {
+      $.popup(response);
+      $('input[type=radio].star').rating();
+    });
+  });
+};
+
