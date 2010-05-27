@@ -22,8 +22,8 @@
 
     <div class="songs_box medium_height">
         <ul class="results_by_artist">
-          <% @results.each do |artist| %>
-            <li onclick='get_song_list("<%=artist.id %>","artist"); return false;'>
+          <% @results.each_with_index do |artist, index| %>
+            <li onclick='get_song_list("<%=artist.id %>","artist"); return false;'<%= ' class="last"' if index == @results.size - 1 %>>
               <%= avatar_for(artist, :search_results, {:class => "icon"}) %>
               <div class="links">
                   <b><a href="#" onclick='get_song_list("<%=artist.id %>","artist"); return false;' class="black"><%= truncate(artist.name, :length => 60) %></a></b><br/>

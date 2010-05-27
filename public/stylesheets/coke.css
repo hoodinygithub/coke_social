@@ -470,24 +470,32 @@ div.loading_list {
 }
 
 
-.songs_list .pagination .disabled {
+.pagination .disabled {
 	background: none;
 	border :medium none;	
 	color: #CCCCCC;
+	font-size: 20px;
+	font-weight: normal;
 }
+
 .songs_list .pagination a {
 	background-color: #FFFFFF;
 	color: #666666;
 }
 
+.pagination .current {	
+	margin: 0 3px;
+}
+
 .songs_list .pagination .current {
 	color: #FF0014;
-	margin: 0 3px;
 }
 
 .pagination a.prev_page, .pagination a.next_page {
 	border :medium none;
 	background: none !important;
+	font-size: 20px;
+	font-weight: normal;
 }
 
 .playlist_creation_buttons {
@@ -565,6 +573,9 @@ div.loading_list {
 	height: 42px;
 }
 
+.songs_box li.last {
+  border-bottom: none !important;
+}
 .review_item .review_text {
   word-wrap: break-word;
 }
@@ -572,3 +583,4 @@ div.loading_list {
 .rev_text {
   word-wrap: break-word;
 }
+
