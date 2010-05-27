@@ -5,7 +5,7 @@ class ReviewsController < ApplicationController
   before_filter :load_sort_data, :load_records, :only => [:list, :index, :items]
 
   def index
-    @collection = @records.paginate :page => @page, :per_page => 10
+    @collection = @records.paginate :page => @page, :per_page => 6
   end
 
   def list
@@ -91,6 +91,7 @@ protected
     sort_by    = params.fetch(:sort_by, nil).to_sym rescue :latest
     @sort_data = sort_types[sort_by]
     @page      = params[:page].blank? ? 1 : params[:page]
+    @sort_type = params.fetch(:sort_by, nil).to_sym rescue :latest
   end
 
   def load_records
