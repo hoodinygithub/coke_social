@@ -56,7 +56,7 @@
                               :follow_profile => user.id) %>
 
         <div class="review_item">
-            <a href="#"><img src="/images/comment_icon.gif" class="review_icon" alt="" /></a>
+            <%= link_to avatar_for(user, :small, :class => "review_icon"), user, :target => "_blank" %>
             <div class="review_creator_large">
                 <b><%= t('basics.created_by') %>: <%= link_to item.commentable.owner, user_path(item.commentable.owner), :target => "_blank" %></b><br/>
                 <% if current_user %>
