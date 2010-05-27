@@ -47,17 +47,18 @@ class Playlist < ActiveRecord::Base
     set_property :allow_star => 1
     has created_at, updated_at, owner(:network_id)
     has total_plays, :as => 'playlist_total_plays'
+    has rating_cache, :sortable => true
   end
   
-  def self.search(*args)
-    if RAILS_ENV =~ /test/ # bad bad bad
-      options = args.extract_options!
-      starts_with(args[0]).paginate :page => (options[:page] || 1)
-    else
-      args[0] = "#{args[0]}*"
-      super(*args).compact        
-    end
-  end
+  # def self.search(*args)
+  #   if RAILS_ENV =~ /test/ # bad bad bad
+  #     options = args.extract_options!
+  #     starts_with(args[0]).paginate :page => (options[:page] || 1)
+  #   else
+  #     args[0] = "#{args[0]}*"
+  #     super(*args).compact        
+  #   end
+  # end
 
   def includes(limit=3)
     songs.all(:limit => limit).uniq_by { |s| s.artist_id }
@@ -157,5 +158,10 @@ class Playlist < ActiveRecord::Base
     INNER JOIN playlist_items p ON p.song_id = s.id
     WHERE p.playlist_id = ?
   !
+
+  def rate_with(rating)
+    add_rating(rating)
+    update_attribute('rating_cache', self.rating)
+  end
 
 end

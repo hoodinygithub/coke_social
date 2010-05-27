@@ -33,12 +33,14 @@ class Album < ActiveRecord::Base
   index [:deleted_at, :songs_count]
 
   define_index do
-    where "deleted_at IS NULL"
+    where "albums.deleted_at IS NULL AND accounts.deleted_at IS NULL"
     indexes :name, :sortable => true
     set_property :min_prefix_len => 1
     set_property :enable_star => 1
     set_property :allow_star => 1
     has year, created_at
+    has owner(:id), :as => 'owner_id'
+    has album_artists(:artist_id), :as => 'artist_ids'
   end
 
   default_scope :conditions => 'deleted_at IS NULL', :order => 'year DESC'
@@ -60,10 +62,10 @@ class Album < ActiveRecord::Base
   validates_attachment_content_type :avatar,
     :content_type => ["image/jpeg", "image/png", "image/gif", "image/pjpeg", "image/x-png"]
 
-  def self.search(*args)
-    args[0] = "#{args[0]}*"
-    super(*args).compact        
-  end
+  # def self.search(*args)
+  #   args[0] = "#{args[0]}*"
+  #   super(*args).compact        
+  # end
 
   def total_listens
     song_listens.sum(:total_listens)

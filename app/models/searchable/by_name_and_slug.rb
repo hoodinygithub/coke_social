@@ -1,16 +1,16 @@
 module Searchable::ByNameAndSlug
   module ClassMethods    
-    if RAILS_ENV =~ /test/ # bad bad bad
-      def search(*args)
-        options = args.extract_options!
-        starts_with(args[0]).paginate :page => (options[:page] || 1)
-      end
-    else
-      def search(*args)
-        args[0] = "#{args[0]}*"
-        super(*args).compact
-      end
-    end
+    # if RAILS_ENV =~ /test/ # bad bad bad
+    #   def search(*args)
+    #     options = args.extract_options!
+    #     starts_with(args[0]).paginate :page => (options[:page] || 1)
+    #   end
+    # else
+    #   def search(*args)
+    #     args[0] = "#{args[0]}*"
+    #     super(*args).compact
+    #   end
+    # end
   end
   
   def self.included(base)

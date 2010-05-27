@@ -15,7 +15,7 @@ class SessionsController < ApplicationController
 
         if msn_live_id
           session[:msn_live_id] = msn_live_id
-          account = Account.find_by_msn_live_id_and_deleted_at(msn_live_id, nil)
+          account = User.find_by_msn_live_id_and_deleted_at(msn_live_id, nil)
           if account
             do_login(account, 1, false)
           elsif session[:return_to] == '/messenger_player'
@@ -41,7 +41,7 @@ class SessionsController < ApplicationController
   def create
     # Cyloop Login
     unless wlid_web_login?
-      account = Account.authenticate(params[:email], params[:password])
+      account = User.authenticate(params[:email], params[:password])
       do_login(account, params[:remember_me])
     end
   end

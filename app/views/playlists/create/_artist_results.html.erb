@@ -2,10 +2,21 @@
   artist_sort_class = ""
   artist_sort_class = (params[:order_dir]=="DESC" ? "sort_desc" : "sort_asc") if params[:order_by] == "artist"
 %>
+<script language="javascript">
+  $(document).ready(function() {
+    $(".pagination a").click(function(e){
+      if($(this).attr('disabled') != 'disabled') {
+        e.preventDefault();
+        page = this.href.match(/page=(\d+)/)[1]
+        get_song_list(<%= @item_id ? @item_id : "'#{params[:term]}'" %>, '<%= @scope %>', page)
+      }
+    });
+  });
+</script>
 <div class="songs_list remove_index">
     <div class="headers">
-        <div class="a_name upper sortable <%= artist_sort_class %>" onclick="do_search_list_sort(this, '<%=escape_for_js(@result_text) %>', '<%=@scope %>', 'artist');"><%= t('basics.artist_name') %></div>
-        <div class="last">&nbsp;</div>
+        <div class="a_name solo upper sortable <%= artist_sort_class %>" onclick="do_search_list_sort(this, '<%=escape_for_js(@result_text) %>', '<%=@scope %>', 'artist', <%= @page %>);"><%= t('basics.artist_name') %></div>
+        <!-- <div class="last">&nbsp;</div> -->
         <br class="clearer" />
     </div><!--/end headers -->
 
@@ -22,5 +33,8 @@
             </li>
           <% end %>
         </ul>
+        <div id="pagination_container">
+          <%= will_paginate @results, pagination_args %>
+        </div>        
     </div><!--/end songs_box -->
 </div><!--/end songs_list -->

@@ -4,6 +4,7 @@
     <div class="overlay">
       <div class="hidden fh">
         <b><%= link_to item.name, radio_path(:station_id => item.station.id) %></b><br/>
+        <%= rating(item, false, "rating_#{item.id}_top") %>
         <% if false %>
         <span class="rating">
           <a href="#"><img src="/images/rating_bottle_full.png" class="png_fix" alt="" /></a>
@@ -22,6 +23,7 @@
 
         <div class="align_right box_buttons">
           <% if false %><a href="#"><img src="/images/duplicate_button.png" class="png_fix" alt="" /></a><% end %>
+          <%= link_to image_tag('edit_button.png', :class=> "png_fix"), edit_playlist_path(item) if item.owner == current_user %>
           <%= link_to image_tag('close_button.png', :class=> "png_fix"), '#', :onclick => "Base.stations.remove_from_layer(#{item.station.id});" if on_dashboard? %>
           <%= link_to image_tag('play_button.png', :class=> "png_fix"), radio_path(:station_id => item.station.id) %>
         </div>
@@ -31,16 +33,8 @@
         <%= link_to image_tag('play_button.png', :class=> "play_button png_fix"), radio_path(:station_id => item.station.id) %>
 
         <%= link_to item.name, playlist_path(item) %><br/>
-
-        <% if false %>
-        <span class="rating">
-          <img src="/images/rating_bottle_full.png" class="png_fix" alt="" />
-          <img src="/images/rating_bottle_full.png" class="png_fix" alt="" />
-          <img src="/images/rating_bottle_full.png" class="png_fix" alt="" />
-          <img src="/images/rating_bottle_full.png" class="png_fix" alt="" />
-          <img src="/images/rating_bottle_white_full.png" class="png_fix" alt="" />
-        </span>
-        <% end %>
+  
+        <%= rating(item) %>
       </div>
     </div><!--/end overlay -->
 

@@ -7,7 +7,9 @@ class SearchesController < ApplicationController
     @sort_types = { :latest => { :playlists => 'updated_at DESC', :users => 'created_at DESC' }, \
                     :alphabetical => 'name ASC', \
                     :relevance => nil, \
-                    :top => { :playlists => 'playlist_total_plays DESC', :users => nil } }
+                    :highest_rated => { :playlists => 'rating_cache DESC', :users => nil }, \
+                    :top => { :playlists => 'playlist_total_plays DESC', :users => nil }  
+                  }
 
     @active_scope = params[:scope].nil? ? @search_types[0] : params[:scope].to_sym
 
@@ -59,7 +61,7 @@ class SearchesController < ApplicationController
     end
     
     def search_only_active_type (per_page = 12)
-      opts = { :page => params[:page], :per_page => per_page }
+      opts = { :page => params[:page], :per_page => per_page, :star => true }
 
       @search_types.each do |scope|
         obj_scope = scope == :stations ? :abstract_stations : scope
@@ -87,7 +89,8 @@ class SearchesController < ApplicationController
     end
   
     def search_all_types (per_page = 12)
-      opts = { :page => params[:page], :per_page => per_page }
+      opts = { :page => params[:page], :per_page => per_page, :star => true }
+
       opts.merge!(:order => @sort_types[@sort_type]) unless @sort_types[@sort_type].nil?
 
       @search_types.each do |scope|

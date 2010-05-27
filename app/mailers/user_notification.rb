@@ -5,7 +5,7 @@ class UserNotification < BaseMailer
     recipients user.email
     from ActionMailer::Base.smtp_settings[:default_from]
     body  options.merge({:user => user})
-    content_type  "text/html"    
+    content_type  "text/html"
   end
 
   def cancellation(user)

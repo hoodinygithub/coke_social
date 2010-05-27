@@ -4,16 +4,17 @@ module Account::Authentication
   def self.included(base)
     base.class_eval do
       extend ClassMethods
-
+      
       validates_presence_of     :email
       validates_format_of       :email, :with => /^\S+@\S+\.\w{2,}$/, :allow_blank => true
-      validates_uniqueness_of   :email, :scope => :deleted_at, :case_sensitive => false
+      # validates_uniqueness_of   :email, :scope => :deleted_at, :case_sensitive => false
       validates_length_of       :email, :maximum => 100, :allow_blank => true
 
       validates_presence_of     :password,                   :if => :password_required?
       validates_length_of       :password, :within => 4..40, :if => :password_required?, :allow_blank => true
       validates_confirmation_of :password,                   :if => :password_required?      
       
+      validate :uniqueness_of_email      
       validate :validate_terms_and_privacy
       validate :check_negative_captcha
       validate :verify_current_password, :if => :current_password_required?
@@ -153,6 +154,13 @@ module Account::Authentication
       end
     end
   end
+
+  def uniqueness_of_email
+    user_with_email = User.find_by_email_and_deleted_at(email, nil)
+    if !user_with_email.nil? && user_with_email.id != id
+      self.errors.add(:email, I18n.t("activerecord.errors.messages.taken"))
+    end
+  end
   
   def validate_terms_and_privacy
     if self.is_a?(User) && just_created?
@@ -179,7 +187,7 @@ module Account::Authentication
     end
 
     def confirm(code)
-      if user = User.find_by_confirmation_code(code)
+      if user = find_by_confirmation_code(code)
         user.update_attribute(:confirmation_code, nil)
         user
       end

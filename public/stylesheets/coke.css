@@ -131,7 +131,7 @@ li.scope_toggle .mini_loader{
 
 .box_buttons {
   position: absolute;
-  bottom: 9px;
+  bottom: 5px;
   right: 8px;
 }
 
@@ -170,14 +170,14 @@ li.scope_toggle .mini_loader{
 
 .content_search_results_ajax {
 	float: right;
-	left: 555px;
-	position: relative;
-	top: 22px;
+	left: 590px;
+	position: absolute;
+	top: 10px;
 	display: none;
 }
-.content_search_results_ajax.playlist_create { left: -15px !important; top: -60px !important; }
+/*.content_search_results_ajax.playlist_create { left: -15px !important; top: -60px !important; }
 .content_search_results_ajax.playlist_update { left: -15px !important; top: -40px !important; }
-
+*/
 .content_search_results_ajax img {
 	height: 22px;
 	width: 22px;
@@ -302,9 +302,18 @@ label.label_holder{
   left:760px;
 }
 
+#playlist_error_tag {
+	margin-top: 17px;
+}
+
 #playlist_error_tag.info_text {
   color: #f00;
 }
+
+#track_count {
+	margin-top: 17px;	
+}
+
 #track_count.info_text {
   background-color: #f00;
 }
@@ -365,16 +374,23 @@ textarea.network_update_red {
 
 textarea.network_red_msg {
   border:10px solid red !important;
+  margin-left: 0px;
 }
 
 .network_red_msg {
-  width: 495px;
+  width: 490px;
   background: red;
   color: #ffffff;
   font-weight: bold;
-  padding: 0 0 5px 5px;
-  float: right;
+  padding: 5px;
+  margin-left: 15px;
 }
+
+textarea.edit_review_red_msg {
+  border:10px solid red !important;
+  margin-left: 0px;
+}
+
 
 .edit_review_red_msg {
   width: 345px;
@@ -382,18 +398,14 @@ textarea.network_red_msg {
   color: #ffffff;
   font-weight: bold;
   padding: 0 0 5px 5px;
-  float: right;
   background: red;
+  margin-left: 15px;
+
 }
 
 .rating_input {
   margin-top: 10px;
 }
-
-textarea.edit_review_red_msg {
-  border:10px solid red !important;
-}
-
 
 div.loading_list {
   height: 155px;
@@ -402,4 +414,153 @@ div.loading_list {
 
 .post_button {
   margin-top: 10px;
+}
+
+.songs_box .pagination {
+	padding-top: 15px;
+}
+.songs_box.medium_height {
+	height: 417px;
+}
+
+.empty_results_box {
+	height: 234px;
+	padding: 104px 10px;
+}
+
+#search_results_container {
+	height: 480px
+}
+
+.my_mix .songs_box ul, .songs_box ul.results_by_artist {
+	border-bottom: 1px solid #CCCCCC;
+	border-right: none;
+	width: 628px;
+	height: 371px;
+}
+
+#pagination_container {
+	background-color: #F1F1F1;
+	height: 43px;
+	border: 1px solid #FFFFFF;
+}
+
+.songs_list.my_mix .headers div.album_name, .my_mix .songs_box .album_name {
+	width: 145px;
+}
+
+.songs_list .headers div.large_bnt {
+	width: 65px; 
+	border-right: none;
+}
+
+.songs_box ul li div.large_bnt {
+	width: 65px;
+	border-right: 1px solid #FFFFFF;
+}
+
+.songs_list .headers {
+	background: none repeat scroll 0 0 #F1F1F1;
+}
+
+.songs_list .headers div.solo {
+	border-right: 1px solid #FFFFFF;
+	padding-left: 10px;
+	width: 616px;
+}
+
+
+.songs_list .pagination .disabled {
+	background: none;
+	border :medium none;	
+	color: #CCCCCC;
+}
+.songs_list .pagination a {
+	background-color: #FFFFFF;
+	color: #666666;
+}
+
+.songs_list .pagination .current {
+	color: #FF0014;
+	margin: 0 3px;
+}
+
+.pagination a.prev_page, .pagination a.next_page {
+	border :medium none;
+	background: none !important;
+}
+
+.playlist_creation_buttons {
+	background-color: #F1F1F1;
+	border: 1px solid #CCCCCC;
+	height: 44px;
+}
+
+.playlist_creation_buttons .right_side {
+	margin-top: 7px; 
+	margin-right: 10px;
+}
+
+.dotted_box  {
+	height: 396px;
+	margin-bottom: 0px;
+}
+
+.added_items  {
+	height: 397px;
+	overflow-y: auto;
+}
+
+.playlist_creation_buttons .cancel_button  {
+	display: block;
+	float: left;
+	font-weight: normal;
+	font-size: 13px;
+	margin: 6px 6px 0 0;
+	text-transform: uppercase;
+}
+
+#playlist_error_tag {
+	font-size: 13px;	
+}
+
+.songs_box {
+	overflow-y: hidden;
+}
+
+.dotted_box.dragging {
+  border: none;
+}
+
+.dotted_box .layer3 {
+	height: 195px;
+	padding: 102px 10px;
+}
+
+#update_playlist_form .rules_list  {
+	margin-bottom: 30px;
+	margin-top: 15px;
+	padding: 0;
+}
+
+#update_playlist_form #search_results_container {
+	margin-top:20px;
+}
+
+/*#update_playlist_form .added_items, #update_playlist_form .dotted_box {
+	height: 398px;
+	border-bottom: 1px solid #CCCCCC;
+}*/
+
+#update_playlist_form .content_search_results_ajax {
+	top:213px;
+}
+
+.rules_list {
+	padding: 23px 0 0
+}
+
+.playlist_creation_buttons .inner_box {
+	border: 1px solid #FFFFFF;
+	height: 42px;
 }
