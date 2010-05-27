@@ -170,14 +170,14 @@ li.scope_toggle .mini_loader{
 
 .content_search_results_ajax {
 	float: right;
-	left: 555px;
-	position: relative;
-	top: 22px;
+	left: 590px;
+	position: absolute;
+	top: 10px;
 	display: none;
 }
-.content_search_results_ajax.playlist_create { left: -15px !important; top: -60px !important; }
+/*.content_search_results_ajax.playlist_create { left: -15px !important; top: -60px !important; }
 .content_search_results_ajax.playlist_update { left: -15px !important; top: -40px !important; }
-
+*/
 .content_search_results_ajax img {
 	height: 22px;
 	width: 22px;
@@ -304,9 +304,12 @@ label.label_holder{
 
 #playlist_error_tag.info_text {
   color: #f00;
+	margin-top: 17px;
 }
+
 #track_count.info_text {
   background-color: #f00;
+	margin-top: 17px;
 }
 
 #avatar_delete {
@@ -411,11 +414,12 @@ div.loading_list {
 	padding-top: 15px;
 }
 .songs_box.medium_height {
-	height: 418px;
+	height: 417px;
 }
 
 .empty_results_box {
-	height: 143px;
+	height: 234px;
+	padding: 104px 10px;
 }
 
 #search_results_container {
@@ -423,14 +427,16 @@ div.loading_list {
 }
 
 .my_mix .songs_box ul, .songs_box ul.results_by_artist {
+	border-bottom: 1px solid #CCCCCC;
 	border-right: none;
 	width: 628px;
-	height: 373px;
+	height: 371px;
 }
 
 #pagination_container {
 	background-color: #F1F1F1;
-	height: 44px;
+	height: 43px;
+	border: 1px solid #FFFFFF;
 }
 
 .songs_list.my_mix .headers div.album_name, .my_mix .songs_box .album_name {
@@ -480,24 +486,22 @@ div.loading_list {
 
 .playlist_creation_buttons {
 	background-color: #F1F1F1;
-	border-bottom: 1px solid #CCCCCC;
-	border-left: 1px solid #CCCCCC;
-	border-right: 1px solid #CCCCCC;
-	height:44px;
+	border: 1px solid #CCCCCC;
+	height: 44px;
 }
 
 .playlist_creation_buttons .right_side {
-	margin-top: 10px; 
+	margin-top: 7px; 
 	margin-right: 10px;
 }
 
 .dotted_box  {
-	height:395px;
+	height: 396px;
 	margin-bottom: 0px;
 }
 
 .added_items  {
-	height: 395px;
+	height: 397px;
 	overflow-y: auto;
 }
 
@@ -520,6 +524,37 @@ div.loading_list {
 
 .dotted_box.dragging {
   border: none;
+}
+
+.dotted_box .layer3 {
+	height: 195px;
+	padding: 102px 10px;
+}
+
+#update_playlist_form .rules_list  {
+	margin-bottom: 30px;
 	margin-top: 15px;
-	margin-bottom: 15px;
+	padding: 0;
+}
+
+#update_playlist_form #search_results_container {
+	margin-top:20px;
+}
+
+/*#update_playlist_form .added_items, #update_playlist_form .dotted_box {
+	height: 398px;
+	border-bottom: 1px solid #CCCCCC;
+}*/
+
+#update_playlist_form .content_search_results_ajax {
+	top:213px;
+}
+
+.rules_list {
+	padding: 23px 0 0
+}
+
+.playlist_creation_buttons .inner_box {
+	border: 1px solid #FFFFFF;
+	height: 42px;
 }

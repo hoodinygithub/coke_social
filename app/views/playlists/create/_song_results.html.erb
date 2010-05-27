@@ -25,9 +25,9 @@
       <div class="artist_name upper sortable <%= artist_sort_class %>" onclick="do_song_list_sort(this, <%=@item_id %>, '<%=@scope %>', 'artist', <%= @page %> );"><%= t('basics.artist') %></div>
       <div class="album_name upper sortable <%= album_sort_class %>" onclick="do_song_list_sort(this, <%=@item_id %>, '<%=@scope %>', 'album', <%= @page %>);"><%= t('basics.album') %></div>
     <% else %>
-      <div class="song_name upper sortable <%= song_sort_class %>" onclick="do_search_list_sort(this, '<%=escape_for_js(@result_text) %>', '<%=@scope %>', 'song');"><%= t('basics.song_name') %></div>
-      <div class="artist_name upper sortable <%= artist_sort_class %>" onclick="do_search_list_sort(this, '<%=escape_for_js(@result_text) %>', '<%=@scope %>', 'artist');"><%= t('basics.artist') %></div>
-      <div class="album_name upper sortable <%= album_sort_class %>" onclick="do_search_list_sort(this, '<%=escape_for_js(@result_text) %>', '<%=@scope %>', 'album');"><%= t('basics.album') %></div>
+      <div class="song_name upper sortable <%= song_sort_class %>" onclick="do_search_list_sort(this, '<%=escape_for_js(@result_text) %>', '<%=@scope %>', 'song', <%= @page %>);"><%= t('basics.song_name') %></div>
+      <div class="artist_name upper sortable <%= artist_sort_class %>" onclick="do_search_list_sort(this, '<%=escape_for_js(@result_text) %>', '<%=@scope %>', 'artist', <%= @page %>);"><%= t('basics.artist') %></div>
+      <div class="album_name upper sortable <%= album_sort_class %>" onclick="do_search_list_sort(this, '<%=escape_for_js(@result_text) %>', '<%=@scope %>', 'album', <%= @page %>);"><%= t('basics.album') %></div>
     <% end %>
     <div class="large_bnt">&nbsp;</div>
     <div class="last">&nbsp;</div>
