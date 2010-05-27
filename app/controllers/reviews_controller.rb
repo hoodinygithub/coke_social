@@ -5,8 +5,7 @@ class ReviewsController < ApplicationController
   before_filter :load_sort_data, :load_records, :only => [:list, :index, :items]
 
   def index
-#    @collection = @records.paginate :page => @page, :per_page => 10
-     @collection = []
+    @collection = @records.paginate :page => @page, :per_page => 10
   end
 
   def list

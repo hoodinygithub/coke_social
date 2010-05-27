@@ -1,43 +1,34 @@
 <div class="albums_item reviews_list">
     <div class="artist_box png_fix">
-        <img src="/images/artist_image.jpg" alt="" />
+        <%= link_to avatar_for(item.commentable, :medium), radio_path(:station_id => item.commentable.station.id) %>
 
         <div class="overlay">
             <div class="hidden fh">
-                <b><a href="#">Playlist Name</a></b><br/>
-                <span class="rating">
-	<img src="/images/rating_bottle_full.png" class="png_fix" alt="" />
 
-                    <img src="/images/rating_bottle_full.png" class="png_fix" alt="" />
-                    <img src="/images/rating_bottle_full.png" class="png_fix" alt="" />
-                    <img src="/images/rating_bottle_full.png" class="png_fix" alt="" />
-                    <img src="/images/rating_bottle_white_full.png" class="png_fix" alt="" />
-                </span>
+                <b><%= link_to item.commentable.name, radio_path(:station_id => item.commentable.station.id) %></b><br/>
+                <%= rating(item.commentable, false, "rating_#{item.commentable.id}_#{item.id}_top") %>
+
                 <br/><br/>
 
-                Tags: <a href="#">Dance</a>, <a href="#">Happy</a>, <a href="#">Love</a>, <a href="#">Guilty pleasure</a>...
-                <br/><br/><br/>
-
-
-                <div class="align_right">
-                    <a href="#"><img src="/images/listen_button.png" class="png_fix" alt="" /></a>
-                    <a href="#"><img src="/images/duplicate_button.png" class="png_fix" alt="" /></a>
-                    <a href="#"><img src="/images/play_button.png" class="png_fix" alt="" /></a>
+                <div class="tag_links">
+                <%= tag_links(item.commentable) %>
                 </div>
+
+
+              <div class="align_right box_buttons">
+                <% if false %><a href="#"><img src="/images/duplicate_button.png" class="png_fix" alt="" /></a><% end %>
+                <%= link_to image_tag('edit_button.png', :class=> "png_fix"), edit_playlist_path(item.commentable) if item.commentable.owner == current_user %>
+                <%= link_to image_tag('close_button.png', :class=> "png_fix"), '#', :onclick => "Base.stations.remove_from_layer(#{item.commentable.station.id});" if on_dashboard? %>
+                <%= link_to image_tag('play_button.png', :class=> "png_fix"), radio_path(:station_id => item.commentable.station.id) %>
+              </div>
             </div>
 
             <div class="visible fh">
                 <a href="#"><img src="/images/play_button.png" class="play_button png_fix" alt="" /></a>
 
-                <a href="#">Playlist Name</a><br/>
+                <%= link_to item.commentable.name, radio_path(:station_id => item.commentable.station.id) %><br/>
+                <%= rating(item.commentable, false, "rating_#{item.commentable.id}_#{item.id}_bottom") %>
 
-                <span class="rating">
-                    <img src="/images/rating_bottle_full.png" class="png_fix" alt="" />
-                    <img src="/images/rating_bottle_full.png" class="png_fix" alt="" />
-                    <img src="/images/rating_bottle_full.png" class="png_fix" alt="" />
-                    <img src="/images/rating_bottle_full.png" class="png_fix" alt="" />
-                    <img src="/images/rating_bottle_white_full.png" class="png_fix" alt="" />
-                </span>
             </div>
         </div><!--/end overlay -->
 
