@@ -672,8 +672,8 @@ module ApplicationHelper
 
   def pagination_args
     {
-      :previous_label => "« #{t('actions.previous')}",
-      :next_label => "#{t('actions.next')} »",
+      :previous_label => "«",
+      :next_label => "»",
       :renderer => PaginationRenderer
     }
   end

@@ -5,8 +5,7 @@ class ReviewsController < ApplicationController
   before_filter :load_sort_data, :load_records, :only => [:list, :index, :items]
 
   def index
-#    @collection = @records.paginate :page => @page, :per_page => 10
-     @collection = []
+    @collection = @records.paginate :page => @page, :per_page => 6
   end
 
   def list
@@ -81,6 +80,10 @@ class ReviewsController < ApplicationController
     @review.commentable.comments.size
   end
 
+  def show
+    @review = Comment.find(params[:id])
+  end
+
 protected
 
   def load_sort_data
@@ -88,10 +91,13 @@ protected
     sort_by    = params.fetch(:sort_by, nil).to_sym rescue :latest
     @sort_data = sort_types[sort_by]
     @page      = params[:page].blank? ? 1 : params[:page]
+    @sort_type = params.fetch(:sort_by, nil).to_sym rescue :latest
   end
 
   def load_records
-    conditions = { :commentable_type => 'Playlist', :commentable_id => params[:playlist_id] } if params[:playlist_id]
+    conditions = {}
+    conditions.merge!({ :commentable_type => 'Playlist', :commentable_id => params[:playlist_id] }) if params[:playlist_id]
+    conditions.merge!({ :user_id => profile_account.id }) if profile_account
     @playlist  = Playlist.find(params[:playlist_id]) if params[:playlist_id]
     @records   = Comment.all(:conditions => conditions, :order => @sort_data )
   end

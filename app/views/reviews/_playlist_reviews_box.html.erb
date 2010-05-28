@@ -1,0 +1,18 @@
+<div class="reviews">
+  <div class="title">
+    <div class="align_right"><%= t('modules.reviews.title').upcase %> (<%= playlist.comments.size %>)</div>
+  </div>
+  <% if playlist.comments.empty? %>
+    <br/><br/>
+    <div class="medium_text">
+      <%= t('playlist.doesnt_have_any_reviews') %>
+    </div>
+  <% else %>
+    <%= render :partial => 'reviews/playlist_review_line', :collection => playlist.comments[0..1] %>
+  <% end %>
+  <% if playlist.comments.size > 2 %>
+  <div class="view_all">
+    <b><%= link_to t('actions.view_all'), radio_path(:station_id => playlist.station.id) %></b>
+  </div>
+  <% end %>
+</div>

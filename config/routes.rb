@@ -74,6 +74,7 @@ ActionController::Routing::Routes.draw do |map|
 
   map.resources :reviews, :member => { :confirm_remove => :get,
                                        :duplicate_warning => :get,
+                                       :show => :get
                                      }
 
   map.login  'login',  :controller => 'sessions', :action => 'new'
