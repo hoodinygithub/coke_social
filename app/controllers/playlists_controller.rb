@@ -97,14 +97,14 @@ class PlaylistsController < ApplicationController
     render :text => "cleared", :layout => false
   end
 
-  def save_state
-    session[:playlist_ids] = params[:playlist_ids]
-    render :text => "saved", :layout => false
-  end
-
-  def clear_state
-    session[:playlist_ids] = nil
-    render :text => "cleared", :layout => false
+  def recommended_artists
+    artist = Artist.find(params[:artist_id]) rescue nil
+    @recommended_artists = []
+    @recommended_artists = artist.similar(9) if artist
+    if @recommended_artists.empty?
+      @recommended_artists = current_site.top_artists.all(:limit => 10)
+    end
+    render :partial => 'playlists/create/recommendations'
   end
 
   def update
@@ -353,7 +353,7 @@ class PlaylistsController < ApplicationController
     
     def create_page_vars
       @player_id = current_site.players.all(:conditions => "player_key = 'ondemand_#{current_site.code}'")[0].id rescue nil
-      @top_artists = current_site.top_artists.all(:limit => 10)
+      @recommended_artists = current_site.top_artists.all(:limit => 10)
       @playlist_item_ids ||= session[:playlist_item_ids].nil? ? [] : session[:playlist_item_ids]
       @playlist_items ||= @playlist_item_ids.empty? ? [] : Song.find(@playlist_item_ids)
     end

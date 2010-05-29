@@ -411,6 +411,23 @@ function update_ui()
   toggle_playlist_box();
 }
 
+function refresh_similar_artists(id)
+{
+	if(!isNaN(parseInt(id, 10))){
+	  $.ajax({
+	    url: '/playlist/recommended_artists/' + id,
+	    type: "GET",
+	    data: null,
+	    success: function(r){ 
+				$("#playlist_recommended_artists_container").fadeOut(function(){
+					$(this).html(r).fadeIn();
+				});
+			},
+	    error: function(r){alert('Error!')}
+	  });
+	}
+}
+
 function toggle_playlist_box()
 {
   if(_pv.item_count > 0)
@@ -591,6 +608,8 @@ function init_draggable()
         hoverClass: "dragging",
         drop: function(event, ui) {
           $(ui.draggable).find("div.large_bnt a").click();
+
+					refresh_similar_artists($(ui.draggable).attr('artist_id'));
         }
   });
 }

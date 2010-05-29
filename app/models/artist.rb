@@ -173,15 +173,16 @@ class Artist < Account
     Rails.cache.fetch("#{self.cache_key}/similar/#{limit}", :expires_delta => EXPIRATION_TIMES['artist_similar']) do
       return [] if self.amg_id.blank?
 
-      slugs = RecEngine.new.get_similar_artists(:artistID => self.amg_id, :number_of_records => limit).map do |i|
+      ids = RecEngine.new.get_similar_artists(:artistID => self.amg_id, :number_of_records => limit).map do |i|
         if Rails.env.test? && Artist.find_by_slug(i.slug).nil?
           slug = i.slug.gsub(/[^A-Za-z0-9\-]/, '')
           Factory.create(:artist, :slug => slug)
         end
-        i.slug
+        i.artist_id
       end
-      slugs.compact!
-      Artist.find_all_by_slug(slugs)
+      ids.compact!
+
+      Artist.find(ids)
     end
   rescue SocketError
     logger.error "RecEngine timed out getting Similar Artists for " + self.name.to_s

@@ -7,6 +7,11 @@ class RecEngine::SimilarArtist < RecEngine::Abstract
   def slug
     profile_url.sub(/^\//, '')
   end
+  
+  def artist_id
+    image.match(/usr\/(\d+)\/image/)[1] rescue nil
+  end
+
   alias to_param slug
 
   def avatar

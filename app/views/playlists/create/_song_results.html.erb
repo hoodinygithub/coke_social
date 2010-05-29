@@ -40,7 +40,7 @@
       <ul class="hoverable_list" id="result_container">
         <% @results.each do |song| %>
           <% if song.artist and song.album %>
-            <li id="search_result_<%= song.id %>" class="draggable_item">
+            <li id="search_result_<%= song.id %>" artist_id="<%= song.artist_id %>" class="draggable_item">
                 <div class="song_image"><%= avatar_for song, :small%></div>
                 <div class="song_name" title="<%= song.title %>">
                   <%= link_to_function image_tag("icon_play_button.png", :class => "png_fix icon_play_button"), "Base.playlists.playStream(this, 'http://media.cyloop.com/storage/storage?fileName=#{song.path}', '#{song.id}')"%>
