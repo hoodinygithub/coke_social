@@ -1,102 +1,99 @@
 <div class="albums_item reviews_list" id="review_<%= item.id %>">
-    <div class="artist_box png_fix">
-        <%= link_to avatar_for(item.commentable, :medium), radio_path(:station_id => item.commentable.station.id) %>
+  <div class="artist_box png_fix">
+    <%= link_to avatar_for(item.commentable, :medium), radio_path(:station_id => item.commentable.station.id) %>
 
-        <div class="overlay">
-            <div class="hidden fh">
+    <div class="overlay">
 
-                <b><%= link_to item.commentable.name, radio_path(:station_id => item.commentable.station.id) %></b><br/>
-                <%= rating(item.commentable, false, "rating_#{item.commentable.id}_#{item.id}_top") %>
+      <div class="hidden fh">
+        <b><%= link_to item.commentable.name, radio_path(:station_id => item.commentable.station.id) %></b><br/>
+        <%= rating(item.commentable, false, "rating_#{item.commentable.id}_#{item.id}_top") %>
+        <br/><br/>
+        <div class="tag_links">
+          <%= tag_links(item.commentable) %>
+        </div>
+        <div class="align_right box_buttons">
+          <% if false %>
+            <a href="#"><img src="/images/duplicate_button.png" class="png_fix" alt="" /></a>
+          <% end %>
+          <% if item.commentable.owner == current_user %>
+            <%= link_to image_tag('edit_button.png', :class=> "png_fix"), edit_playlist_path(item.commentable) %>
+            <%= link_to image_tag('close_button.png', :class=> "png_fix"), '#', 
+              :onclick => "Base.stations.remove_from_layer(#{item.commentable.station.id});" %>
+          <% end %> 
+          <%= link_to image_tag('play_button.png', :class=> "png_fix"), radio_path(:station_id => item.commentable.station.id) %>
+        </div>
+      </div>
 
-                <br/><br/>
+      <div class="visible fh">
+        <a href="#"><img src="/images/play_button.png" class="play_button png_fix" alt="" /></a>
 
-                <div class="tag_links">
-                <%= tag_links(item.commentable) %>
-                </div>
+        <%= link_to truncate(item.commentable.name, 17, '...'), 
+                    radio_path(:station_id => item.commentable.station.id),
+                    :alt => item.commentable.name %><br/>
+        <%= rating(item.commentable, false, "rating_#{item.commentable.id}_#{item.id}_bottom") %>
+      </div>
 
-
-              <div class="align_right box_buttons">
-                <% if false %>
-                  <a href="#"><img src="/images/duplicate_button.png" class="png_fix" alt="" /></a>
-                <% end %>
-                <% if item.commentable.owner == current_user %>
-                  <%= link_to image_tag('edit_button.png', :class=> "png_fix"), edit_playlist_path(item.commentable) %>
-                  <%= link_to image_tag('close_button.png', :class=> "png_fix"), '#', 
-                    :onclick => "Base.stations.remove_from_layer(#{item.commentable.station.id});" %>
-                <% end %> 
-                <%= link_to image_tag('play_button.png', :class=> "png_fix"), radio_path(:station_id => item.commentable.station.id) %>
-              </div>
-            </div>
-
-            <div class="visible fh">
-                <a href="#"><img src="/images/play_button.png" class="play_button png_fix" alt="" /></a>
-
-                <%= link_to truncate(item.commentable.name, 17, '...'), 
-                            radio_path(:station_id => item.commentable.station.id),
-                            :alt => item.commentable.name %><br/>
-                <%= rating(item.commentable, false, "rating_#{item.commentable.id}_#{item.id}_bottom") %>
-
-            </div>
-        </div><!--/end overlay -->
-
-    </div><!--/end artist_box -->
+    </div><!--/end overlay -->
+  </div><!--/end artist_box -->
 
     <div class="reviews">
-        <% if (item.user == current_user) or item.commentable.owner == current_user %>
-          <a href="#" 
-            onclick="Base.reviews.confirm_remove(<%= item.id %>);return false;" class="close_btn">
-            <%= t('action.close') %>
-          </a>
-        <% end %>
+      <% if (item.user == current_user) or item.commentable.owner == current_user %>
+      <a href="#" 
+        onclick="Base.reviews.confirm_remove(<%= item.id %>);return false;" class="close_btn">
+        <%= t('action.close') %>
+      </a>
+      <% end %>
 
-        <b><%= t('reviews.reviewed_by')%>: <%= link_to item.user, user_path(item.user), :target => "_blank" %></b><br/>
+      <b><%= t('reviews.reviewed_by')%>: <%= link_to item.user, user_path(item.user), :target => "_blank" %></b><br/>
 
-        <span class="grey"><%= nice_elapsed_time(item.created_at) %> <%= t('basics.ago') %></span><br/>
+      <span class="grey"><%= nice_elapsed_time(item.created_at) %> <%= t('basics.ago') %></span><br/>
 
-        <%= rating(item) %>
+      <%= rating(item) %>
 
-        <br/>
+      <br/>
 
-        <div class="rev_text">
-            <p><small><%= item.comment %></small></p>
-        </div>
+      <div class="rev_text">
+        <p><small>          
+          <%= truncate(item.comment, 90, "...") %>
+          <%= reviews_actions_for(item) %>
+        </small></p>
+      </div>
 
+      <% user = item.commentable.owner %>
 
-        <% user = item.commentable.owner %>
+      <% layer_path = send("follow_user_registration_layers_path",
+                            :return_to => request.request_uri,
+                            :account_id => user.id,
+                            :follow_profile => user.id) %>
 
-        <% layer_path = send("follow_user_registration_layers_path",
-                              :return_to => request.request_uri,
-                              :account_id => user.id,
-                              :follow_profile => user.id) %>
-
-        <div class="review_item">
-            <%= link_to avatar_for(user, :small, :class => "review_icon"), user, :target => "_blank" %>
-            <div class="review_creator_large">
-                <b><%= t('basics.created_by') %>: <%= link_to item.commentable.owner, user_path(item.commentable.owner), :target => "_blank" %></b><br/>
-                <% if current_user %>
-                  <div id="following" style="display:<%= current_user.follows?(user) ? 'block' : 'none' %>" >
-                    <%= t("basics.you_are", :default => "You are") %> <span class="green_highlight"><%= t('basics.following', :default => "following").downcase %></span> <%= user.first_name rescue "" %>
-                    <%= t("basics.click_to_unfollow",
-                          :follow_link => link_to(t("basics.here", :default => "here"), "javascript:",
-                          :onclick => "Base.community.text_unfollow('#{user.slug}', this)"), :default =>  "Click {{follow_link}} to stop following") rescue "" %>.
-                  </div>
-                  <div id="not_following" style="display:<%= current_user.follows?(user) ? 'none' : 'block' %>" >
-                      <%= t("basics.click_to_follow",
-                          :follow_link => link_to(t("basics.here", :default => "here"), "javascript: ",
-                          :onclick => "Base.community.text_follow('#{user.slug}', this, '#{layer_path}')"), :default => "Click {{follow_link}} to follow") rescue "" %>
-                      <%= user.name rescue "" %>.
-                  </div>
-                <% else %>
-                  <div id="not_following" style="display: block" >
-                      <%= t("basics.click_to_follow",
-                          :follow_link => link_to(t("basics.here", :default => "here"), "javascript: ",
-                          :onclick => "Base.community.text_follow('#{user.slug}', this, '#{layer_path}')"), :default => "Click {{follow_link}} to follow") rescue "" %>
-                      <%= user.name rescue "" %>.
-                  </div>
-                <% end %>
+      <div class="review_item">
+        <%= link_to avatar_for(user, :small, :class => "review_icon"), user, :target => "_blank" %>
+        <div class="review_creator_large">
+          <b><%= t('basics.created_by') %>: <%= link_to item.commentable.owner, user_path(item.commentable.owner), :target => "_blank" %></b><br/>
+          <% if current_user %>
+            <div id="following" style="display:<%= current_user.follows?(user) ? 'block' : 'none' %>" >
+              <%= t("basics.you_are", :default => "You are") %> <span class="green_highlight"><%= t('basics.following', :default => "following").downcase %></span> <%= user.first_name rescue "" %>
+              <%= t("basics.click_to_unfollow",
+                    :follow_link => link_to(t("basics.here", :default => "here"), "javascript:",
+                    :onclick => "Base.community.text_unfollow('#{user.slug}', this)"), :default =>  "Click {{follow_link}} to stop following") rescue "" %>.
             </div>
-            <br class="clearer" />
-        </div><!--/end review_item -->
+            <div id="not_following" style="display:<%= current_user.follows?(user) ? 'none' : 'block' %>" >
+                <%= t("basics.click_to_follow",
+                    :follow_link => link_to(t("basics.here", :default => "here"), "javascript: ",
+                    :onclick => "Base.community.text_follow('#{user.slug}', this, '#{layer_path}')"), :default => "Click {{follow_link}} to follow") rescue "" %>
+                <%= user.name rescue "" %>.
+            </div>
+          <% else %>
+            <div id="not_following" style="display: block" >
+                <%= t("basics.click_to_follow",
+                    :follow_link => link_to(t("basics.here", :default => "here"), "javascript: ",
+                    :onclick => "Base.community.text_follow('#{user.slug}', this, '#{layer_path}')"), :default => "Click {{follow_link}} to follow") rescue "" %>
+                <%= user.name rescue "" %>.
+            </div>
+          <% end %>
+        </div>
+        <br class="clearer" />
+      </div><!--/end review_item -->
     </div><!--/end reviews -->
 
     <div class="clearer"></div>
