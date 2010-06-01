@@ -54,7 +54,7 @@ class ReviewsController < ApplicationController
                           :user_id => current_user.id )
     if review.valid?
       has_commented = @playlist.comments.find_by_user_id(current_user.id) if @playlist
-      if has_commented
+      if !has_commented
         @review_params = params
         render :json => { :success => false, :redirect_to => "reviews/#{has_commented.id}/duplicate_warning" }
       else

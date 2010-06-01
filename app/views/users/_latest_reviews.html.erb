@@ -1,3 +1,6 @@
+<% if @reviews.size > 4 %>
+  <b class="right_side"><%= link_to t('actions.view_all'), user_reviews_path(profile_account) %></b>
+<% end %>
 <h1><%= possessive :latest_reviews %></h1>
 
 <% if @reviews.blank? %>
@@ -5,5 +8,5 @@
     <%= possessive :has_not_reviews %>
   </div>
 <% else %>
-  <%= render :partial => 'reviews/item', :collection => @reviews %>
+  <%= render :partial => 'reviews/item', :collection => @reviews[0..3] %>
 <% end %>
