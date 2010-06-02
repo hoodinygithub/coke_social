@@ -1890,8 +1890,11 @@ Base.reviews.removeCallback = function(response) {
   $('#reviews_count').html(response.count);
 };
 
-Base.reviews.edit = function(review) {
+Base.reviews.edit = function(review, full) {
   var url = "/reviews/" + review + "/edit";
+  if (full) {
+    url = url + "?full=true";
+  }
   $.popup(function() {
     $.get(url, function(response) {
       $.popup(response);
@@ -1901,9 +1904,12 @@ Base.reviews.edit = function(review) {
   });
 };
 
-Base.reviews.update = function(review) {
+Base.reviews.update = function(review, full) {
   var params = Base.reviews.getParams(review);
   params['id'] = review;
+  if (full) {
+    params['full'] = "true";
+  };
   $.ajax({
     type : "PUT",
     url  : "/reviews/" + review,

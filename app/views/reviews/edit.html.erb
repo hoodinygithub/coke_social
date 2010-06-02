@@ -62,7 +62,7 @@
 
   <div class="align_right">
     <big><a href="#" onclick="$(document).trigger('close.facebox');return false;" class="black valign_middle popup_close_action"><%= t('actions.cancel') %></a></big>
-    <a href="#" class="red_button valign_middle" onclick="Base.reviews.update('<%= @review.id %>');return false;">
+    <a href="#" class="red_button valign_middle" onclick="Base.reviews.update('<%= @review.id %>', <%= @full_partial.to_s %>);return false;">
       <span><span><%= t('actions.save') %></span></span>
     </a>
   </div>

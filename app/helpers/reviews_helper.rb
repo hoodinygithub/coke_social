@@ -5,7 +5,7 @@ module ReviewsHelper
                    #{t('actions.read_more')}
                  </a>" if review.comment.size > 90
 
-    edit = "<a href=\"#\" onclick=\"Base.reviews.edit(#{review.id}); return false;\">
+    edit = "<a href=\"#\" onclick=\"Base.reviews.edit(#{review.id}, true); return false;\">
               #{t('actions.edit')}
             </a>" if review.user == current_user
 

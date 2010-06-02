@@ -30,18 +30,19 @@ class ReviewsController < ApplicationController
 
   def edit
     @review = Comment.find(params[:id])
-    render :edit, :layout => false
+    @full_partial = params[:full] ? true : false
   end
 
   def update
     review = Comment.find(params[:id])
     review.comment = params[:comment]
     review.rating  = params[:rating]
+    partial = params[:full] ? 'item' : 'playlist_review_item'
     if review.save
       review.commentable.update_attribute('rating_cache', review.commentable.rating)
       render :json => { :success => true,
                         :id      => review.id,
-                        :html    => render_to_string( :partial => 'playlist_review_item', :collection => [review] )
+                        :html    => render_to_string( :partial => partial, :collection => [review] )
                       }
     else
       render :json => { :success => false, :errors => review.errors.to_json }
