@@ -71,9 +71,7 @@ class PlaylistsController < ApplicationController
           #@playlist_item_ids = params[:item_ids].split(',').map { |i| Song.find(i) }.compact
           @playlist_item_ids = Song.find(params[:item_ids].split(',')).to_a rescue []
           unless @playlist_item_ids.empty?
-            attributes = {:name => params[:name]}
-            attributes[:avatar] = params[:avatar] if params[:avatar]
-            @playlist.update_attributes(attributes)
+            @playlist.update_attributes(params[:playlist])
             @playlist.items.destroy_all
             @playlist_item_ids.each do |song|
               @playlist.items.create(:song => song)

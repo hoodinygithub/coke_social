@@ -1923,7 +1923,12 @@ Base.reviews.updateCallback = function(response) {
     $(document).trigger("close.facebox");
     $('#review_'+ response.id).replaceWith(response.html);
     $('input[type=radio].star').rating();
-    Base.layout.bind_events();
+    //observe .artist_box mouse over
+    $('.artist_box').hover(function() {
+      $(this).addClass('hover');
+    }, function() {
+      $(this).removeClass('hover');
+    });
   } else {
     Base.reviews.showErrors($.parseJSON(response.errors), $("#update_review"));
   }

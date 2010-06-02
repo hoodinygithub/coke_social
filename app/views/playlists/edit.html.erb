@@ -14,7 +14,7 @@
     <h2><%= t('playlists.name_your_playlist') %></h2>
 
     <div class="grey_round_box align_center">
-      <input type="text" class="input full_width3" name="name" value="<%= @playlist.name %>"/>
+      <input type="text" class="input full_width3" name="playlist[name]" value="<%= @playlist.name %>"/>
     </div>
   </div><!--/end form_row -->
 
@@ -43,7 +43,7 @@
     &nbsp;
     <label class='label_holder'>
       <a href="#" id="avatar_upload_button" class="red_button valign_middle"><span><span><%= t('account_settings.update') %></span></span></a>
-      <input id="playlist_avatar" type="file" class="file" name="avatar" size="30" onchange="playlist_image_preview();"/>
+      <input id="playlist_avatar" type="file" class="file" name="playlist[avatar]" size="30" onchange="playlist_image_preview();"/>
     </label>
     <div id="uploaded_image_name">filename</div>
   </div>
