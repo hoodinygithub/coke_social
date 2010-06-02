@@ -146,6 +146,10 @@ class Playlist < ActiveRecord::Base
     end
   end
 
+  def tags=(string)
+    string.split(',').each{ |tag| update_tags(tag) }
+  end
+
   def gender
     owner.gender
   end
