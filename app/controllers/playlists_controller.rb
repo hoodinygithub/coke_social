@@ -47,7 +47,9 @@ class PlaylistsController < ApplicationController
         end
       else
         if session[:playlist_ids]
-          @playlist_items = session[:playlist_ids].split(',').map { |i| Song.find(i) rescue nil }.compact
+          #logger.info session[:playlist_ids].inspect
+          @playlist_items = Song.find(session[:playlist_ids].split(',')).to_a rescue []
+          #@playlist_items = session[:playlist_ids].split(',').map { |i| Song.find(i) rescue nil }.compact
         end
       end
       
@@ -64,7 +66,8 @@ class PlaylistsController < ApplicationController
       unless request.xhr?
         @playlist_item_ids = @playlist.items.map{|i| i.song_id} if @playlist
         if request.post?
-          @playlist_item_ids = params[:item_ids].split(',').map { |i| Song.find(i) }.compact
+          #@playlist_item_ids = params[:item_ids].split(',').map { |i| Song.find(i) }.compact
+          @playlist_item_ids = Song.find(params[:item_ids].split(',')).to_a rescue []
           unless @playlist_item_ids.empty?
             attributes = {:name => params[:name]}
             attributes[:avatar] = params[:avatar] if params[:avatar]
@@ -88,7 +91,9 @@ class PlaylistsController < ApplicationController
   end
   
   def save_state
+    #logger.info session[:playlist_ids]
     session[:playlist_ids] = params[:playlist_ids]
+    #logger.info session[:playlist_ids]
     render :text => "saved", :layout => false
   end
   
