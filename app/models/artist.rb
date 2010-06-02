@@ -187,6 +187,9 @@ class Artist < Account
   rescue SocketError
     logger.error "RecEngine timed out getting Similar Artists for " + self.name.to_s
     []
+  rescue RecordNotFound
+    logger.error "Not all similar artists for " + self.name.to_s + " could be found."
+    []
   end
 
   class << self
