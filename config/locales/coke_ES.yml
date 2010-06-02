@@ -71,14 +71,14 @@ coke_ES:
     pending: Pendientes
     disaprove: Rechazar
     create: Crear
-    edit: Editar
+    edit: editar
     add_song: "Agregar Canci\xC3\xB3n"
     submitting: Enviando
     view_more_songs: "ver m\xC3\xA1s canciones"
-    view_more: "Ver M\xC3\xA1s"
     view: Ver
     launch_radio: Crear Radio
     add_this_song_into_the_following_playlists: "Agregar esta canci\xC3\xB3n a los siguientes playlists"
+    view_more: "Ver M\xC3\xA1s"
     buy_song: "Comprar Canci\xC3\xB3n"
     cancel: Cancelar
     alphabetical: ALFABETICO
@@ -108,10 +108,10 @@ coke_ES:
     close: Cerrar
     submit: Enviar
     share: Compartir
+    relevance: RELEVANCIA
     latest: MAS RECIENTES
     go: Ir
     newest: "M\xC3\x81S NUEVAS"
-    relevance: RELEVANCIA
     add_song_to_playlist: "Agregar Canci\xC3\xB3n al Playlist"
     next: "Pr\xC3\xB3ximo"
     buy_album: Comprar Album
@@ -147,10 +147,10 @@ coke_ES:
       title: Fotos
     more_playlists: 
       title: "M\xC3\xA1s de este usuario"
-    top_artists: 
-      title: Artistas Top
     concerts: 
       title: Conciertos
+    top_artists: 
+      title: Artistas Top
     user_info: 
       title: "Informaci\xC3\xB3n del Usuario"
     delete_station: 
@@ -160,10 +160,10 @@ coke_ES:
       title: "Radios Reci\xC3\xA9n Creadas"
     information: 
       title: "Informaci\xC3\xB3n"
-    recent_listeners: 
-      title: "Oyentes M\xC3\xA1s Recientes"
     recommended_stations: 
       title: Radios Recomendadas
+    recent_listeners: 
+      title: "Oyentes M\xC3\xA1s Recientes"
     top_playlists: 
       title: Top Playlists
     top_activity: 
@@ -200,10 +200,10 @@ coke_ES:
       title: Artistas Recomendados
     biography: 
       title: "Biograf\xC3\xADa"
-    todays_top_artists: 
-      title: Artistas Top de hoy
     search: 
       title: Buscar
+    todays_top_artists: 
+      title: Artistas Top de hoy
   number: 
     format: 
       separator: .
@@ -434,8 +434,8 @@ coke_ES:
   stations: 
     edit: 
       edit_your_station: Edita tu Radio
-    could_not_find_artist: "No se pudo encontrar el artista: {{artist}}"
     deleted: Tu radio fue eliminada.
+    could_not_find_artist: "No se pudo encontrar el artista: {{artist}}"
     no_stations_created: No hay radios creadas aun.
     last_station_created_at: Radio creada desde hace {{when}}
   comments: 
@@ -449,20 +449,20 @@ coke_ES:
     duration: "Duraci\xC3\xB3n"
     cancel_playlist: Cancelar el playlist?
     total_time: Tiempo Total
-    edit: Modifica tu playlst
     save_confirmation: "Confirmaci\xC3\xB3n de Almacenamiento"
+    edit: Modifica tu playlst
     cancel_playlist_text: "La cancelaci\xC3\xB3n de tu playlist va a revertir todas tus modificaciones y lo que hayas agregado.<br/>\xC2\xBFEst\xC3\xA1s seguro de que quieres cancelar?"
     autofill_option_text: "La opci\xC3\xB3n de auto-completar te permitir\xC3\xA1 completar tu playlist con canciones recomendadas seg\xC3\xBAn el estilo de las que ya hayas puesto."
-    songs_from: canciones de
     unable_save: No se puede guardar este playlist
-    saving_order: Orden para Guardar
+    songs_from: canciones de
     tracks_remaining: "m\xC3\xA1s para poder guardar playlist"
+    saving_order: Orden para Guardar
     rules: Reglas del playlist
     delete_text: Seguro que quieres borrar este playlist?
     edit_confirm_text: "Las modificaciones a tu playlist ya est\xC3\xA1n guardadas. \xC2\xBFQuieres hacer m\xC3\xA1s modificaciones?"
     name_your_playlist: Nombre de tu playlist
-    tag_your_playlist: "As\xC3\xADgnale emociones a tu playlist"
     please_remove: por favor remover
+    tag_your_playlist: "As\xC3\xADgnale emociones a tu playlist"
     seperated_commas: "(sep\xC3\xA1ralas entre comas)"
     playlist_name: Nombre del Playlist
     search_for_music: "Busca m\xC3\xBAsica para agregar a tu playlist"
@@ -470,17 +470,17 @@ coke_ES:
     select_your_songs_text: "Los resultados de canciones aparecer\xC3\xA1n aqu\xC3\xAD.<br/>Arrastra las canciones que te gustan<br/>y ponlas en la columna del costado<br/>para crear tu playlist"
     last_playlist: Ultimo Playlist
     continue_btn: Continuar
-    autofill_option: "Opci\xC3\xB3n de Auto-Completar"
     delete_title: Borrar Playlist
+    autofill_option: "Opci\xC3\xB3n de Auto-Completar"
     why_not_try: "\xC2\xBFY qu\xC3\xA9 te parecen \xC3\xA9stas...?"
     drag_songs_here: "Arrastra las canciones aqu\xC3\xAD."
     drag_songs_here_text: "Incluye por lo menos 10 canciones,<br/>usando no m\xC3\xA1s de 3 canciones<br/>de un mismo artista<br/>o de un mismo \xC3\xA1lbum<br/>dentro del mismo playlist"
-    songs_from_album: canciones del album
     add_update: ACTUALIZAR
+    songs_from_album: canciones del album
     no_results_found: "No se encontraron resultados. Por favor realiza otra b\xC3\xBAsqueda."
     no_thanks: No. Gracias.
-    from_mix: playlists de un mix
     continue: Continuar
+    from_mix: playlists de un mix
     unable_save_text: Tu playlist tiene errores. Estos errores deben ser corregidos para que puedas compartir tu lista con el resto de la comunidad.
     create_new: Crear un playlist nuevo
     you_have: Tienes
@@ -490,24 +490,24 @@ coke_ES:
   forgot: 
     reset_message_sent: "Gracias. Las instrucciones para reconfigurar tu contrase\xC3\xB1a te han sido enviadas al email que nos has indicado."
   messenger_player: 
+    edit_station: "Para editar esta radio, "
     sidebox: 
       work_title: Usa tus conocimientos
       create_title: Crea tus playlists de canciones
       badges_title: "G\xC3\xA1nate \"badges\""
       friends_title: Sigue a tus amigos
       loop_title: "Descubre m\xC3\xBAsica con tus amigos"
-    edit_station: "Para editar esta radio, "
     station: 
       name: Nombre de la Radio
       edit: Editar Nombre de la Radio
       delete: "Eliminar Estaci\xC3\xB3n"
       would_delete: "\xC2\xBFQuieres eliminar esta radio?"
-    we_hope_you_enjoyed: "Esperamos que te hayan gustado las canciones que se tocaron. Para escuchar m\xC3\xA1s, "
     share: 
       title: Enviar a un amigo
       message: Mensaje
       friend: El email de tu amigo
       email: Tu Email
+    we_hope_you_enjoyed: "Esperamos que te hayan gustado las canciones que se tocaron. Para escuchar m\xC3\xA1s, "
     buylink: 
       song: "Comprar esta canci\xC3\xB3n"
       select_store: Selecciona tu tienda
@@ -814,25 +814,25 @@ coke_ES:
       edit: Modificar el nombre de esta radio
       delete: Eliminar esta radio
       would_delete: "\xC2\xBFQuieres eliminar esta radio?"
-    we_hope_you_enjoyed: "Esperamos que te hayan gustado las canciones que escuchaste. Para escuchar m\xC3\xA1s canciones,"
     share: 
       title: Compartir con un amigo
       message: Mensaje
       friend: "La direcci\xC3\xB3n de correo electr\xC3\xB3nico de tu amigo"
       email: "Tu correo electr\xC3\xB3nico"
+    we_hope_you_enjoyed: "Esperamos que te hayan gustado las canciones que escuchaste. Para escuchar m\xC3\xA1s canciones,"
     buylink: 
       song: "Comprar esta canci\xC3\xB3n"
       select_store: Selecciona tu tienda
+    click_here: "clic aqu\xC3\xAD"
     actions: 
       edit: Modificar
-      delete: Eliminar
-      close: Cerrar
       submit: Enviar
+      close: Cerrar
+      delete: Eliminar
       save: Guardar
-    click_here: "clic aqu\xC3\xAD"
     sign_in: ingresa con tu Live ID de Windows
-    record_not_found: "No se pudo encontrar ning\xC3\xBAn resultado"
     missing_api_key: "No has ingresado una clave APU, o tu la clave API ingresada es inv\xC3\xA1lida o est\xC3\xA1 desactivada"
+    record_not_found: "No se pudo encontrar ning\xC3\xBAn resultado"
     checkout_today_polular_stations: "Estas son las radios m\xC3\xA1s populares del d\xC3\xADa"
     recengineerror_UNKNOWN: Error desconocido
     msn_stations: Radios Cocacola.fm
@@ -864,13 +864,13 @@ coke_ES:
     create_new_station: Crear una radio
     station_edit_success: "La radio qued\xC3\xB3 actualizada efectivamente"
     recengineerror_NO_PLAYLIST: No se pudo encontrar un playlist
+    now_playing: Tocando ahora
     basics: 
       by: Por
       includes: Incluye
       album: Album
       message_sent: Tu mensaje ha sido enviado
       contains: Contiene
-    now_playing: Tocando ahora
     msn_music_is_free: Cocacola.fm es gratis,
     view_your_stations: Para ver tus radios,
     still_dont_have: "\xC2\xBFAun no tienes una cuenta de Cocacola.fm?"
@@ -1246,7 +1246,7 @@ coke_ES:
     duplicate_warning_title: !binary |
       wqFBdGVuY2nDs24h
 
-    reviewed_by: ""
+    reviewed_by: Reviewed by
     delete_review_text: "La eliminaci\xC3\xB3n de un review es permanente. \xC2\xBFConfirmas que quieres eliminar este review?"
     edit_your_review: Modifica tu review
     duplicate_warning_text: "Ya has dejado un review para este playlist. Si publicas un review nuevo, \xC3\xA9ste reemplazar\xC3\xA1 al anterior."
