@@ -87,7 +87,7 @@ class ReviewsController < ApplicationController
 protected
 
   def load_sort_data
-    sort_types = { :latest => 'comments.created_at DESC', :highest_rated => 'comments.rating DESC' }
+    sort_types = { :latest => 'comments.updated_at DESC', :highest_rated => 'comments.rating DESC' }
     sort_by    = params.fetch(:sort_by, nil).to_sym rescue :latest
     @sort_data = sort_types[sort_by]
     @page      = params[:page].blank? ? 1 : params[:page]

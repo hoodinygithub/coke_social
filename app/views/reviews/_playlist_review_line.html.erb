@@ -10,7 +10,7 @@
 
   <div class="review_creator">
       <b><%= link_to playlist_review_line.user, user_path(playlist_review_line.user), :target => '_blank' %></b><br/>
-      <%= nice_elapsed_time(playlist_review_line.created_at) %> <%= t('basics.ago') %><br/>
+      <%= nice_elapsed_time(playlist_review_line.updated_at) %> <%= t('basics.ago') %><br/>
       <%= rating(playlist_review_line) %>
   </div>
   <div class="review_text">

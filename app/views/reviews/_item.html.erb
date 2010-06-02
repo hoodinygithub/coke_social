@@ -46,7 +46,7 @@
 
       <b><%= t('reviews.reviewed_by')%>: <%= link_to item.user, user_path(item.user), :target => "_blank" %></b><br/>
 
-      <span class="grey"><%= nice_elapsed_time(item.created_at) %> <%= t('basics.ago') %></span><br/>
+      <span class="grey"><%= nice_elapsed_time(item.updated_at) %> <%= t('basics.ago') %></span><br/>
 
       <%= rating(item) %>
 
