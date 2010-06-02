@@ -9,6 +9,7 @@ class PlaylistsController < ApplicationController
     begin
       sort_types  = { :latest => 'playlists.updated_at DESC', 
                       :alphabetical => 'playlists.name',
+                      :highest_rated => 'playlists.rating_cache DESC',
                       :top => 'playlists.total_plays DESC'  }
 
       @collection = profile_user.playlists.paginate :page => params[:page], :per_page => 6, :order => sort_types[@sort_type]
