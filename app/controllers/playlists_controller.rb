@@ -238,6 +238,7 @@ class PlaylistsController < ApplicationController
           if(order_by)
             if order_by == :artist
               results = if scope == :artist
+                #obj.search(params[:term], search_opts.merge(:order => "name #{order_dir}")) rescue nil 
                 obj.search(params[:term], search_opts).sort!(&name_sort) rescue nil
               else
                 obj.search(params[:term], search_opts).sort!(&artist_sort) rescue nil
