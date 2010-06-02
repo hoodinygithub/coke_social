@@ -50,31 +50,31 @@ ssh_options[:paranoid] = false
 # can also specify options that can be used to single out a specific subset of boxes in a
 # particular role, like :primary => true.
 
-set :branch, "master"
+set :branch, "release-20100602"
 
-# #EY06 Brazil
-# task :coke_brazil do
-#   role :web, "70.42.33.4:8129"
-#   role :app, "70.42.33.4:8129", :memcached => true, :sphinx => true
-#   role :db , "70.42.33.4:8129", :primary => true
-#   role :app, "70.42.33.4:8130", :memcached => true, :sphinx => true
-# 
-#   set :rails_env, "production"
-#   set :environment_database, defer { production_database }
-#   set :environment_dbhost, defer { production_dbhost }
-# end
-# 
-# #EY06 Latam
-# task :coke_latam do
-#   role :web, "70.42.33.4:8133"
-#   role :app, "70.42.33.4:8133", :memcached => true, :sphinx => true
-#   role :db , "70.42.33.4:8133", :primary => true
-#   role :app, "70.42.33.4:8134", :memcached => true, :sphinx => true
-# 
-#   set :rails_env, "production"
-#   set :environment_database, defer { production_database }
-#   set :environment_dbhost, defer { production_dbhost }
-# end
+#EY06 Brazil
+task :coke_brazil do
+  role :web, "70.42.33.4:8129"
+  role :app, "70.42.33.4:8129", :memcached => true, :sphinx => true
+  role :db , "70.42.33.4:8129", :primary => true
+  role :app, "70.42.33.4:8130", :memcached => true, :sphinx => true
+
+  set :rails_env, "production"
+  set :environment_database, defer { production_database }
+  set :environment_dbhost, defer { production_dbhost }
+end
+
+#EY06 Latam
+task :coke_latam do
+  role :web, "70.42.33.4:8133"
+  role :app, "70.42.33.4:8133", :memcached => true, :sphinx => true
+  role :db , "70.42.33.4:8133", :primary => true
+  role :app, "70.42.33.4:8134", :memcached => true, :sphinx => true
+
+  set :rails_env, "production"
+  set :environment_database, defer { production_database }
+  set :environment_dbhost, defer { production_dbhost }
+end
 
 task :staging do
   role :web, "70.42.33.4:8139"
