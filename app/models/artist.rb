@@ -182,7 +182,7 @@ class Artist < Account
       end
       ids.compact!
 
-      Artist.find(ids)
+      Artist.find_all_by_id(ids)
     end
   rescue SocketError
     logger.error "RecEngine timed out getting Similar Artists for " + self.name.to_s
