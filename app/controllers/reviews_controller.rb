@@ -38,6 +38,7 @@ class ReviewsController < ApplicationController
     review.comment = params[:comment]
     review.rating  = params[:rating]
     if review.save
+      review.commentable.update_attribute('rating_cache', review.commentable.rating)
       render :json => { :success => true,
                         :id      => review.id,
                         :html    => render_to_string( :partial => 'playlist_review_item', :collection => [review] )
