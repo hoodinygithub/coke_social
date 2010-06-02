@@ -1,0 +1,10 @@
+<% content_for :head do %>
+  <%= stylesheet_link_tag "errors" %>
+<% end %>
+<div id="error_pages" class="dyn">
+  <h2><%= t('site.playlist_not_found') %></h2>
+  <p>
+    <%= t('site.playlist_not_found_sorry', :profile => params[:profile]) %>
+  </p>  
+</div>
+
