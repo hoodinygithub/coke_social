@@ -31,7 +31,8 @@ class PlaylistsController < ApplicationController
       if request.post?
         session[:playlist_ids] = nil
         @playlist_item_ids = []
-        @playlist_item_ids = params[:item_ids].split(',').map { |i| Song.find(i) }.compact
+        #@playlist_item_ids = params[:item_ids].split(',').map { |i| Song.find(i) }.compact
+        @playlist_item_ids = Song.find(params[:item_ids].split(',')).to_a rescue []
         unless @playlist_item_ids.empty?
           attributes = {:name => params[:name]}
           attributes[:avatar] = params[:avatar] if params[:avatar]
@@ -241,6 +242,7 @@ class PlaylistsController < ApplicationController
         search_opts.merge!(:page => @page) if @page
         search_opts.merge!(:per_page => @per_page) if @per_page
         if params[:term]
+          search_opts.merge!(:star => true)
           if(order_by)
             if order_by == :artist
               results = if scope == :artist
