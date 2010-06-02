@@ -36,6 +36,8 @@ class Playlist < ActiveRecord::Base
     :content_type => ["image/jpeg", "image/png", "image/gif", "image/pjpeg", "image/x-png"]
       
   validates_presence_of :name
+  
+  default_scope :conditions => { :deleted_at => nil }  
 
   define_index do
     where "playlists.deleted_at IS NULL AND accounts.deleted_at IS NULL AND accounts.network_id = 2"
