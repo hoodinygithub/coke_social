@@ -9,7 +9,7 @@ module Juixe
 
       module ClassMethods
         def acts_as_commentable
-          has_many :comments, :as => :commentable, :dependent => :destroy, :order => 'created_at ASC'
+          has_many :comments, :as => :commentable, :dependent => :destroy, :order => 'updated_at DESC'
           include Juixe::Acts::Commentable::InstanceMethods
           extend Juixe::Acts::Commentable::SingletonMethods
         end
@@ -22,7 +22,7 @@ module Juixe
           commentable = ActiveRecord::Base.send(:class_name_of_active_record_descendant, self).to_s
           Comment.find(:all,
             :conditions => ["commentable_id = ? and commentable_type = ?", obj.id, commentable],
-            :order => "created_at DESC"
+            :order => "updated_at DESC"
           )
         end
 
@@ -34,7 +34,7 @@ module Juixe
 
           Comment.find(:all,
             :conditions => ["user_id = ? and commentable_type = ?", user.id, commentable],
-            :order => "created_at DESC"
+            :order => "updated_at DESC"
           )
         end
       end
@@ -45,7 +45,7 @@ module Juixe
         def comments_ordered_by_submitted
           Comment.find(:all,
             :conditions => ["commentable_id = ? and commentable_type = ?", id, self.type.name],
-            :order => "created_at DESC"
+            :order => "updated_at DESC"
           )
         end
 
