@@ -1923,6 +1923,7 @@ Base.reviews.updateCallback = function(response) {
     $(document).trigger("close.facebox");
     $('#review_'+ response.id).replaceWith(response.html);
     $('input[type=radio].star').rating();
+    Base.layout.bind_events();
   } else {
     Base.reviews.showErrors($.parseJSON(response.errors), $("#update_review"));
   }
