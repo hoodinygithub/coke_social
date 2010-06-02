@@ -93,7 +93,10 @@ class User < Account
   has_many :reviews,  
            :foreign_key => :user_id,
            :class_name => "Comment",
-           :conditions => 'commentable_type = "Playlist"'
+           :conditions => 'commentable_type = "Playlist"',
+           :order => "comments.updated_at DESC"
+
+
 
   has_many :playlists, :foreign_key => :owner_id, :order => 'updated_at DESC', :conditions => 'playlists.deleted_at IS NULL' do
     def top(limit = 4)
