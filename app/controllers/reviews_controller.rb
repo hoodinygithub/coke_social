@@ -5,6 +5,10 @@ class ReviewsController < ApplicationController
   before_filter :load_sort_data, :load_records, :only => [:list, :index, :items]
 
   def index
+    if on_dashboard?
+      params[:controller] = 'my'
+      params[:action]     = 'reviews'
+    end
     @collection = @records.paginate :page => @page, :per_page => 6
   end
 
