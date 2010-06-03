@@ -19,7 +19,7 @@
   </span>
   <br />
   <br />
-  <span><span class="reviews_count"><%= @station_obj.playable.comments.size %></span> Reviews</span>
+  <span><span class="reviews_count"><%= @station_obj.playable.comments.size %></span><%= t('modules.reviews.title') %></span>
   <br />
 
   <% if logged_in? && current_user.id != @station_obj.playable.owner.id %>

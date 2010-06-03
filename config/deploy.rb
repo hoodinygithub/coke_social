@@ -50,7 +50,7 @@ ssh_options[:paranoid] = false
 # can also specify options that can be used to single out a specific subset of boxes in a
 # particular role, like :primary => true.
 
-set :branch, "release-20100602"
+set :branch, "master"
 
 #EY06 Brazil
 task :coke_brazil do
