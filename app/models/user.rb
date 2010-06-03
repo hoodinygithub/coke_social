@@ -149,6 +149,8 @@ class User < Account
   validate :check_born_on_in_future, :unless => Proc.new { |user| user.born_on.blank? }
   validate :check_age_is_at_least_13, :unless => Proc.new { |user| user.born_on.blank? }
 
+  validate :email_domain_valid_for_beta, :unless => Proc.new { |user| user.email.blank? }
+
   def <=>(b)
     id <=> b.id
   end
@@ -299,6 +301,11 @@ class User < Account
 
   def check_age_is_at_least_13
     errors.add(:born_on, I18n.t("registration.must_be_13_years_older")) if underage?
+  end
+
+  def email_domain_valid_for_beta
+    valid_domains =['ko.com', 'hoodiny.com', 'cyloop.com']
+    errors.add(:email, I18n.t('activerecord.errors.messages.taken') ) unless valid_domains.include?(self.email.split("@")[1])
   end
 
 end
