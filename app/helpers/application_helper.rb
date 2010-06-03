@@ -63,7 +63,7 @@ module ApplicationHelper
       options[:class] = 'active'
     end
 
-    link_to t("sort.#{type}"), url, options
+    link_to t("sort.#{type}").upcase, url, options
   end
 
   def short_date(date)
