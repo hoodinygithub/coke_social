@@ -54,10 +54,10 @@ set :branch, "release-20100602"
 
 #EY06 Brazil
 task :coke_brazil do
-  role :web, "70.42.33.4:8129"
-  role :app, "70.42.33.4:8129", :memcached => true, :sphinx => true
-  role :db , "70.42.33.4:8129", :primary => true
-  role :app, "70.42.33.4:8130", :memcached => true, :sphinx => true
+  role :web, "70.42.33.4:8137"
+  role :app, "70.42.33.4:8137", :memcached => true, :sphinx => true
+  role :db , "70.42.33.4:8137", :primary => true
+  role :app, "70.42.33.4:8138", :memcached => true, :sphinx => true
 
   set :rails_env, "production"
   set :environment_database, defer { production_database }
@@ -66,10 +66,10 @@ end
 
 #EY06 Latam
 task :coke_latam do
-  role :web, "70.42.33.4:8133"
-  role :app, "70.42.33.4:8133", :memcached => true, :sphinx => true
-  role :db , "70.42.33.4:8133", :primary => true
-  role :app, "70.42.33.4:8134", :memcached => true, :sphinx => true
+  role :web, "70.42.33.4:8137"
+  role :app, "70.42.33.4:8137", :memcached => true, :sphinx => true
+  role :db , "70.42.33.4:8137", :primary => true
+  role :app, "70.42.33.4:8138", :memcached => true, :sphinx => true
 
   set :rails_env, "production"
   set :environment_database, defer { production_database }

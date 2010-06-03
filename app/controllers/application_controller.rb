@@ -78,9 +78,13 @@ class ApplicationController < ActionController::Base
   end
   
   def do_basic_http_authentication
-    if Rails.env.staging? || argentina_auth
+    if Rails.env.staging?
       authenticate_or_request_with_http_basic do |username, password|
         username == "happiness" && password == "d0ral8725"
+      end
+    else
+      authenticate_or_request_with_http_basic do |username, password|
+        username == "cocacola" && password == "happiness"
       end
     end
   end
