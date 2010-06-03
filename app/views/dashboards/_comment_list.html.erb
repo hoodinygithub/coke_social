@@ -3,9 +3,9 @@
 <% end %>
 
 <div class="sorting uppercase"> 
-  <%= filter_link_by(t('activity.user_following', :user => profile_account.slug).upcase, :type => :all, :onclick => "Base.network.reload_comments('all');return false;") + "/" unless profile_account.is_a?(Artist) %>
-  <%= filter_link_by( profile_account.slug, :type => :me, :onclick => "Base.network.reload_comments('me');return false;" ).upcase %>
-  <%= "/" + filter_link_by( t('activity.just_following', :user => profile_account.slug).upcase, :type => :following, :onclick => "Base.network.reload_comments('following');return false;" )  unless profile_account.is_a?(Artist) %>
+  <%= filter_link_by(t('activity.user_following', :user => profile_account.first_name).upcase, :type => :all, :onclick => "Base.network.reload_comments('all');return false;") + "/" unless profile_account.is_a?(Artist) %>
+  <%= filter_link_by( profile_account.first_name.upcase, :type => :me, :onclick => "Base.network.reload_comments('me');return false;" ) %>
+  <%= "/" + filter_link_by( t('activity.just_following', :user => profile_account.first_name).upcase, :type => :following, :onclick => "Base.network.reload_comments('following');return false;" )  unless profile_account.is_a?(Artist) %>
 </div><!--/end network_update -->
 <ul class="comments_list" id="network_comment_list">
 </ul>
