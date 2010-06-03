@@ -149,7 +149,7 @@ class User < Account
   validate :check_born_on_in_future, :unless => Proc.new { |user| user.born_on.blank? }
   validate :check_age_is_at_least_13, :unless => Proc.new { |user| user.born_on.blank? }
 
-  validate :email_domain_valid_for_beta, :unless => Proc.new { |user| user.email.blank? }
+  validate :email_domain_valid_for_beta, :unless => Proc.new { |user| user.email.blank? }, :on => [ :create ]
 
   def <=>(b)
     id <=> b.id
