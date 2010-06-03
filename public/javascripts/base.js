@@ -180,7 +180,6 @@ Base.radio.set_station_details = function(id, queue, play) {
   regex = /\d+/;
   playlist_id = regex.exec(queue)[0];
   Base.reviews.load_playlist_reviews_list($("#playlist_reviews"), playlist_id);
-
   $("#station_id").val(id);
   $("#station_queue").val(queue);
 	if(play || typeof(play)=='undefined') { Base.radio.play_station(false, false, null, null); }
@@ -236,6 +235,8 @@ Base.radio.play_station = function(from_list, from_create_station, list, list_pl
       $("div#current_station_info").append(result);
       $("div#current_station_info").append("<br class='clearer' />");
 			initCreateStationButton();
+
+      $('input[type=radio].star').rating();
 
 			if(is_owner){
 			  Base.radio.refresh_my_stations();
@@ -1887,7 +1888,7 @@ Base.reviews.remove = function(review) {
 Base.reviews.removeCallback = function(response) {
   $(document).trigger("close.facebox");
   $('#review_'+ response.id).fadeOut();
-  $('#reviews_count').html(response.count);
+  $('.reviews_count').html(response.count);
 };
 
 Base.reviews.edit = function(review, full) {
