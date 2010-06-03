@@ -73,6 +73,7 @@ module DashboardsHelper
                    'subscriptions',
                    'playlists',
                    'reviews',
+                   'my',
                    'users'].include? params[:controller]
 
     # HACK for Playlist Create page
