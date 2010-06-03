@@ -82,7 +82,7 @@ class ApplicationController < ActionController::Base
       authenticate_or_request_with_http_basic do |username, password|
         username == "happiness" && password == "d0ral8725"
       end
-    else
+    elsif Rails.env.production?
       authenticate_or_request_with_http_basic do |username, password|
         username == "cocacola" && password == "happiness"
       end
