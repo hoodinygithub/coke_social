@@ -27,7 +27,7 @@
       <div class="visible fh">
         <a href="#"><img src="/images/play_button.png" class="play_button png_fix" alt="" /></a>
 
-        <%= link_to truncate(item.commentable.name, 17, '...'), 
+        <%= link_to truncate(item.commentable.name, 15, '...'), 
                     radio_path(:station_id => item.commentable.station.id),
                     :alt => item.commentable.name %><br/>
         <%= rating(item.commentable, false, "rating_#{item.commentable.id}_#{item.id}_bottom") %>
