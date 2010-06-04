@@ -15,7 +15,7 @@
     <script type="text/javascript">
     $(document).ready(function() {
       //png_fix for png images and png backgrounds
-      $('.png_fix').supersleight({shim: 'images/blank.gif'});
+      $('.png_fix').supersleight({shim: '/images/blank.gif'});
     });
     </script>
 </head>
@@ -23,7 +23,7 @@
 
     <div id="container">
         <div id="header">
-            <a href="#"><img src="images/logo.png" id="logo" class="png_fix" alt="Coca-Cola" title="Coca-Cola" /></a>
+            <a href="#"><img src="/images/logo.png" id="logo" class="png_fix" alt="Coca-Cola" title="Coca-Cola" /></a>
 
             <ul id="header_nav">
     <li><a href="/home" class="">Inicio</a></li>
@@ -37,7 +37,7 @@
                 <form action="" method="post">
                     <div>
                         <input type="text" class="search_input" value="Search for your favorite artist &amp; music" onfocus="clearInput('Search for your favorite artist &amp; music', this); $('.search_results_box').show();" onblur="restoreInput('Search for your favorite artist &amp; music', this); setTimeout(function() {$('.search_results_box').hide();}, 300);" />
-                        <input type="image" src="images/search_icon.gif" class="search_button" />
+                        <input type="image" src="/images/search_icon.gif" class="search_button" />
                         <div class="clearer"></div>
                     </div>
                 </form>
@@ -47,7 +47,7 @@
             <!-->
             <div id="userdata_box">
                 <div class="user">
-                    <img src="images/userdata_icon.gif" alt="" /> <a href="#">Javier Pons</a>
+                    <img src="/images/userdata_icon.gif" alt="" /> <a href="#">Javier Pons</a>
                 </div>
                 
                 <ul class="links">
@@ -62,7 +62,7 @@
                     <li class="last"><a href="#">Account Settings</a></li>
                 </ul>
                 
-                <a href="#" id="userdata_arrow"><img src="images/userdata_arrow.png" class="png_fix" alt="" /><img class="arrow_up" src="images/arrow_up.gif" /></a>
+                <a href="#" id="userdata_arrow"><img src="/images/userdata_arrow.png" class="png_fix" alt="" /><img class="arrow_up" src="/images/arrow_up.gif" /></a>
             </div>
             <!-->
             
@@ -85,14 +85,14 @@
         
         <div id="footer">
             <div class="left_side">
-              <a href="http://localhost:3000/support/about_coca-cola" target="_blank">Sobre Coca-Cola</a>
-              <a href="http://localhost:3000/support/terms_and_conditions" target="_blank">Términos y Condiciones</a>
-              <a href="http://localhost:3000/support/privacy_policy" target="_blank">Política de Privacidad</a>
-              <a href="http://localhost:3000/support/faq" target="_blank">FAQ</a>
-              <a href="http://localhost:3000/support/contact_us" target="_blank">Sugerencias</a>
+              <a href="/support/about_coca-cola" target="_blank">Sobre Coca-Cola</a>
+              <a href="/support/terms_and_conditions" target="_blank">Términos y Condiciones</a>
+              <a href="/support/privacy_policy" target="_blank">Política de Privacidad</a>
+              <a href="/support/faq" target="_blank">FAQ</a>
+              <a href="/support/contact_us" target="_blank">Sugerencias</a>
             </div>
             
-            <a href="#"><img src="images/cyloop.gif" class="cyloop_logo" alt="" /></a>
+            <a href="#"><img src="/images/cyloop.gif" class="cyloop_logo" alt="" /></a>
             
             <div class="clearer"></div>
         </div><!--/end footer -->
