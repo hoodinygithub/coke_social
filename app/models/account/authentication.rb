@@ -15,6 +15,8 @@ module Account::Authentication
       validates_confirmation_of :password,                   :if => :password_required?      
       
       validate :uniqueness_of_email      
+      validate_on_create :email_domain_valid_for_beta, :unless => Proc.new { |user| user.email.blank? }
+
       validate :validate_terms_and_privacy
       validate :check_negative_captcha
       validate :verify_current_password, :if => :current_password_required?
@@ -161,6 +163,12 @@ module Account::Authentication
       self.errors.add(:email, I18n.t("activerecord.errors.messages.taken"))
     end
   end
+
+  def email_domain_valid_for_beta
+    valid_domains =['ko.com', 'hoodiny.com', 'cyloop.com']
+    errors.add(:email, I18n.t('share.errors.message.email_is_not_authorized') ) unless valid_domains.include?(self.email.split("@")[1])
+  end
+
   
   def validate_terms_and_privacy
     if self.is_a?(User) && just_created?
