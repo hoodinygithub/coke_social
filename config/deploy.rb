@@ -50,7 +50,7 @@ ssh_options[:paranoid] = false
 # can also specify options that can be used to single out a specific subset of boxes in a
 # particular role, like :primary => true.
 
-set :branch, "hotfix-20100603-3"
+set :branch, "master"
 
 #EY06 Brazil
 task :coke_brazil do
@@ -108,6 +108,8 @@ task :symlink_remaining, :roles => :app, :except => {:no_release => true, :no_sy
       rm -rf #{latest_release}/db/geoip &&
       ln -s #{shared_path}/system/db/geoip #{latest_release}/db/geoip
     CMD
+    
+    site_code = application == 'coke_latam' && 'cokelatam' || 'cokebr'
 
     run <<-CMD
       rm -rf #{latest_release}/public/404.html && rm -rf #{latest_release}/public/422.html && rm -rf #{latest_release}/public/500.html &&
