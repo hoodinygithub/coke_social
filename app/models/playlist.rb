@@ -41,15 +41,16 @@ class Playlist < ActiveRecord::Base
 
   define_index do
     where "playlists.deleted_at IS NULL AND accounts.deleted_at IS NULL AND accounts.network_id = 2"
-    indexes :name, :sortable => true
+    #indexes :name, :sortable => true
     indexes :cached_tag_list
+    indexes "LOWER(playlists.name)", :as => 'name', :sortable => true
     indexes :cached_artist_list
     set_property :min_prefix_len => 1
     set_property :enable_star => 1
     set_property :allow_star => 1
     has created_at, updated_at, owner(:network_id)
     has total_plays, :as => 'playlist_total_plays'
-    has rating_cache, :sortable => true
+    has rating_cache
   end
   
   # def self.search(*args)
@@ -89,12 +90,17 @@ class Playlist < ActiveRecord::Base
 
   def update_cached_artist_list
     unless songs.empty?
-      update_attribute(:cached_artist_list, includes.collect{ |s| s.artist.name rescue nil }.compact.join(', ') ) if cached_artist_list.blank?
+      self.cached_artist_list = all_artists.collect(&:name).join(', ')
+      #self.save
     end
   end
 
   def increment_owner_total_playlists
     self.owner.increment!(:total_playlists)
+  end
+
+  def all_artists
+    songs.find(:all, :group => :artist_id).collect(&:artist).compact
   end
 
   def artists_contained(options = {})

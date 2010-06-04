@@ -84,7 +84,7 @@ class SearchesController < ApplicationController
         end
 
         @results.store(scope, (active) ? obj.search(@query, opts) : [])
-        @counts.store(scope, obj.search_count("#{@query}*"))
+        @counts.store(scope, obj.search_count(@query, opts))
       end
     end
   
@@ -98,7 +98,7 @@ class SearchesController < ApplicationController
         obj = obj_scope.to_s.classify.constantize
 
         @results.store(scope, obj.search(@query, opts))
-        @counts.store(scope, obj.search_count("#{@query}*"))
+        @counts.store(scope, obj.search_count(@query, opts))
       end
       default_active_scope
     end
