@@ -5,6 +5,7 @@ class PlaylistsController < ApplicationController
   before_filter :login_required, :except => [:widget]
 
   def index
+    @dashboard_menu = :playlists
     @sort_type = params.fetch(:sort_by, nil).to_sym rescue :latest
     begin
       sort_types  = { :latest => 'playlists.updated_at DESC', 

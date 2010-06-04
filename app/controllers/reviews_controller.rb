@@ -5,6 +5,7 @@ class ReviewsController < ApplicationController
   before_filter :load_sort_data, :load_records, :only => [:list, :index, :items]
 
   def index
+    @dashboard_menu = :reviews
     if on_dashboard?
       params[:controller] = 'my'
       params[:action]     = 'reviews'
