@@ -2,6 +2,7 @@
   <%= render 'users/stats' %>
 <% end %>
 
+<%= render :partial => 'badges/notifications' if profile_owner? and !@notifications.empty? %>
 <%= render 'shared/ajax_modules' %>
 
 <%= render 'left_column'   %>

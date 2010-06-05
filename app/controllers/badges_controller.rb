@@ -21,4 +21,17 @@ class BadgesController < ApplicationController
       redirect_to new_session_path
     end
   end
+  
+  def set_notified
+    if request.xhr?
+      if profile_owner?
+        profile_user.badge_awards.set_notified!
+        render :text => "notifications set", :layout => false
+      else
+        render :text => "notifications not set", :layout => false
+      end
+    else
+      redirect_to profile_owner? ? my_dashboard_path : user_path(profile_user)
+    end
+  end
 end

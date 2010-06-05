@@ -17,7 +17,8 @@ var Base = {
   account: {},
   playlists: {},
   djs: {},
-  reviews: {}
+  reviews: {},
+  badges: {}
 };
 
 /*
@@ -2014,6 +2015,25 @@ Base.reviews.show = function(review) {
       $.popup(response);
       $('input[type=radio].star').rating();
     });
+  });
+};
+
+Base.badges.init_notifications = function() {
+	$("#congrats_ok_button").click(function(e){
+		e.preventDefault();
+		Base.badges.set_notified();
+	});
+
+	setTimeout(function(){
+    $('#congrats_slides').cycle({fx: 'fade', timeout: 5000});
+    $("#congrats_popup").fadeIn('slow');
+  }, 3000);
+};
+
+Base.badges.set_notified = function() {
+  var url = "/my/badges/set_notified";
+   $.get(url, function(response) {
+		$("#congrats_popup").fadeOut('slow');
   });
 };
 

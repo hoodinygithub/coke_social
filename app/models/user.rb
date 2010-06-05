@@ -110,7 +110,14 @@ class User < Account
 
   has_many :taggings, :through => :playlists
 
-  has_many :badge_awards, :foreign_key => :winner_id, :include => :badge
+  has_many :badge_awards, :foreign_key => :winner_id, :include => :badge do
+    def notifications
+      all(:conditions => 'notified_at IS NULL')
+    end
+    def set_notified!
+      update_all('notified_at = now()', 'notified_at IS NULL')
+    end
+  end
   has_many :badges, :through => :badge_awards
 
   has_many :followings, :foreign_key => 'follower_id'

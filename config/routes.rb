@@ -161,6 +161,9 @@ ActionController::Routing::Routes.draw do |map|
     profile.resources :comments
     profile.resources :follow_requests
     profile.resources :badges
+    map.with_options(:controller => 'badges') do |url|
+      url.badges_set_notified '/:slug/badges/set_notified', :action => 'set_notified'
+    end
     profile.resources :playlists, :member => {:delete_confirmation => :get}
     profile.resources :playlist_items,:member => {:delete_confirmation => :get}, :only => [:new, :create]
     profile.resources :playlists do |playlist|
@@ -195,11 +198,13 @@ ActionController::Routing::Routes.draw do |map|
   map.namespace :my do |me|
     me.with_options :namespace => '' do |my|
       my.root :controller => 'pages', :action => 'redirect_home'
+      map.with_options(:controller => 'badges') do |url|
+        url.my_badges_set_notified '/my/badges/set_notified', :action => 'set_notified'
+      end
       profile_routes.call(my)
       my.resource :dashboard, :only => :show
 
       my.resources :blocks, :only => [:create]
-
       my.resource :cancellation, :controller => :users, :only => [:destroy, :feedback] do |cancellation|
         cancellation.confirm 'confirm', :controller => 'users', :action => 'confirm_cancellation'
         cancellation.feedback 'feedback', :controller => 'users', :action => 'feedback'
