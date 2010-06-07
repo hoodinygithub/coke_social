@@ -21,7 +21,7 @@ class Playlist < ActiveRecord::Base
   acts_as_commentable
   acts_as_rateable(:class => 'Comment', :as => 'commentable')
 
-  before_save :update_cached_artist_list
+#  before_save :update_cached_artist_list
   before_create :increment_owner_total_playlists
   
   belongs_to :owner, :class_name => 'User', :conditions => { :network_id => 2 }
