@@ -27,7 +27,7 @@ config.action_mailer.smtp_settings = {
   :port => 587,
   :authentication => :login,
   :perform_deliveries => true,
-  :default_from => 'Cyloop <hoodiny.development@yahoo.com>',
+  :default_from => 'Cocacola.fm <hoodiny.development@yahoo.com>',
   :enable_starttls_auto => true,
 }
 
