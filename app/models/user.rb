@@ -156,6 +156,18 @@ class User < Account
   validate :check_born_on_in_future, :unless => Proc.new { |user| user.born_on.blank? }
   validate :check_age_is_at_least_13, :unless => Proc.new { |user| user.born_on.blank? }
 
+  def self.forgot?(email)
+    user = User.new(:email => email)
+    if user.email.to_s.blank?
+      user.errors.add(:email, I18n.t("activerecord.errors.messages.blank"))
+    elsif !(user.email =~ EMAIL_REGEXP)
+      user.errors.add(:email, I18n.t("activerecord.errors.messages.invalid"))
+    else
+      user = User.find_by_email( params[:user][:email] )
+    end
+    user
+  end
+
   def <=>(b)
     id <=> b.id
   end

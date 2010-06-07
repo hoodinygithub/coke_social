@@ -6,12 +6,12 @@ class UsersController < ApplicationController
   before_filter :xhr_login_required, :only => [:follow]
   
   # before_filter :login_required, :only => [:edit, :update, :destroy, :confirm_cancellation, :remove_avatar]
-  skip_before_filter :login_required, :only => [:new, :create, :errors_on, :feedback, :confirm_cancellation]
+  skip_before_filter :login_required, :only => [:new, :create, :errors_on, :feedback, :confirm_cancellation, :forgot]
   
   before_filter :set_return_to, :only => [:msn_login_redirect, :msn_registration_redirect]
   before_filter :set_dashboard_menu, :only => [:edit, :update]
 
-  ssl_required :edit, :update, :create, :new, :errors_on, :confirm_cancellation unless RAILS_ENV == "development"
+  ssl_required :edit, :update, :create, :new, :errors_on, :confirm_cancellation, :forgot unless RAILS_ENV == "development"
   
   current_tab :settings
   disable_sanitize_params
@@ -95,17 +95,15 @@ class UsersController < ApplicationController
 
   def forgot
     if request.post?
-      user = User.find_by_email( params[:user][:email] )
-      if user && user.msn_live_id && wlid_web_login?
+      @user = User.forgot?( params[:user][:email] )
+      if @user && @user.msn_live_id && wlid_web_login?
         flash.now[:error] = t('reset.msn_account')
-      elsif user
+      elsif @user && @user.errors.empty?
         UserNotification.send_reset_notification(
-          :user_id => user.id,
-          :password => user.reset_password,
+          :user_id => @user.id,
+          :password => @user.reset_password,
           :site_id => request.host)
         flash[:success] = t('forgot.reset_message_sent')
-
-        redirect_back_or_default("/")
       else
         flash.now[:error] = t("reset.insert_valid_email")
       end

@@ -9,7 +9,7 @@
       
       <%= submit_tag t('actions.enter'), :class => 'submit_button' %>
       <br/>
-      <a href="#" class="left_side"><small><b><%= t("actions.forgot_password")%></b></small></a>
+      <a href="#" class="left_side"><small><b><%= link_to t("actions.forgot_password"), forgot_path, :class => "forgot_link" %></b></small></a>
       
       <div class="clearer"></div>
   </div>

@@ -1,0 +1,45 @@
+<% content_for :javascript do %>
+  <% if @user && @user.errors.size > 0 %>
+  $(document).ready(function(){
+    field_with_errors = <%= @user.custom_errors.to_json %>;
+    Base.account_settings.highlight_field_with_errors();
+  });
+  <% end %>
+<% end %>
+
+<div class="auth_area">
+
+  <div class="auth_title">
+    <%= t("user.forgot_your_password")%>
+  </div>
+
+  <div class="auth_left">
+    <% form_for :user, :html => { :class => "account_settings" } do |f| %>
+      <div class="form_row last">
+        <%= f.label :email, "<b>#{t("user.email")}</b>" %>
+        <div class="grey_round_box">
+          <%= f.text_field :email, :class => 'input full_width' %>
+        </div>
+      </div><!--/end form_row -->  
+      
+      <div class="form_row last">
+        <div class="right_side">
+          <a href="#" class="red_button submit_button" onclick="$(this).closest('form').submit();return false;"><span><span><%= t("actions.submit") %></span></span></a>
+        </div>
+        <br class="clearer" />
+      </div><!--/end form_row -->
+    <% end %>
+  </div>
+
+  <div class="auth_right">
+    <ul class="icons_list">
+      <li class="forgot">
+        <big><b><%= t("user.dont_stay_locked_out") %></b></big><br />
+        <%= t("user.forgot_message") %>
+      </li>
+    </ul>
+  </div><!--/end auth_right -->
+
+  <div class="clearer"></div>
+
+</div><!--/end  auth_area -->

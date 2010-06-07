@@ -1,12 +1,14 @@
 require 'digest/sha1'
 
 module Account::Authentication
+  EMAIL_REGEXP = /^\S+@\S+\.\w{2,}$/  
+  
   def self.included(base)
     base.class_eval do
       extend ClassMethods
       
       validates_presence_of     :email
-      validates_format_of       :email, :with => /^\S+@\S+\.\w{2,}$/, :allow_blank => true
+      validates_format_of       :email, :with => EMAIL_REGEXP, :allow_blank => true
       # validates_uniqueness_of   :email, :scope => :deleted_at, :case_sensitive => false
       validates_length_of       :email, :maximum => 100, :allow_blank => true
 
