@@ -17,8 +17,9 @@ module Account::Authentication
       validates_confirmation_of :password,                   :if => :password_required?      
       
       validate :uniqueness_of_email      
-      validate_on_create :email_domain_valid_for_beta, :unless => Proc.new { |user| user.email.blank? }
-
+      validate_on_create :email_domain_valid_for_beta, :unless => Proc.new { |user|
+        user.email.blank? or !user.email.match(EMAIL_REGEXP)           
+      }
       validate :validate_terms_and_privacy
       validate :check_negative_captcha
       validate :verify_current_password, :if => :current_password_required?
