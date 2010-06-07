@@ -13,8 +13,6 @@ class BadgesController < ApplicationController
 
   def show
     @dashboard_menu = :badges
-    @per_page = 
-    @page = page
     begin
       @badge_award = profile_user.badge_awards.find(params[:id])
       @friends_with_badge = profile_user.followees.with_badge(@badge_award)
