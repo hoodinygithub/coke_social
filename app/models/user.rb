@@ -121,7 +121,7 @@ class User < Account
   has_many :badges, :through => :badge_awards
 
   has_many :followings, :foreign_key => 'follower_id'
-  has_many :followees, :through => :followings, :order => 'followings.approved_at desc', :conditions => "accounts.type = 'User' AND accounts.network_id = 2 AND followings.approved_at IS NOT NULL", :source => :followee do
+  has_many :followees, :through => :followings, :conditions => "accounts.type = 'User' AND accounts.network_id = 2 AND followings.approved_at IS NOT NULL", :source => :followee do
     def with_badge(badge, limit=10)
       badge = if badge.is_a?(BadgeAward)
         badge.badge_id
@@ -131,7 +131,7 @@ class User < Account
         badge
       end
       
-      find(:all, :joins => "INNER JOIN `badge_awards` ON `followings`.`followee_id` = `badge_awards`.`winner_id` AND `badge_awards`.`badge_id` = #{badge}", :limit => limit)
+      find(:all, :joins => "INNER JOIN `badge_awards` ON `followings`.`followee_id` = `badge_awards`.`winner_id` AND `badge_awards`.`badge_id` = #{badge}", :limit => limit, :order => 'badge_awards.created_at DESC')
     end
 
     def with_limit(limit=10)

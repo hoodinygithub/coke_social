@@ -91,7 +91,7 @@ class Playlist < ActiveRecord::Base
   def update_cached_artist_list
     unless songs.empty?
       self.cached_artist_list = all_artists.collect(&:name).join(', ')
-      #self.save
+      self.save
     end
   end
 

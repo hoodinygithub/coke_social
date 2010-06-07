@@ -116,13 +116,13 @@ class Account < ActiveRecord::Base
   end
 
   has_many :followings_as_followee, :class_name => 'Following', :foreign_key => 'followee_id'
-  has_many :followers, :through => :followings_as_followee, :conditions => "accounts.type = 'User' AND accounts.network_id = 2 AND followings.approved_at IS NOT NULL", :source => :follower, :order => "followings.updated_at DESC" do
+  has_many :followers, :through => :followings_as_followee, :conditions => "accounts.type = 'User' AND accounts.network_id = 2 AND followings.approved_at IS NOT NULL", :source => :follower do
     def with_limit(limit=10)
       find(:all, :limit => limit)
     end
 
     def alphabetical
-      find(:all, :order => 'accounts.name ASC')
+      find(:all, :order => 'followings.follower_name ASC')
     end
   end
 
