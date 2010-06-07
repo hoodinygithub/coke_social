@@ -182,14 +182,14 @@ class RadioController < ApplicationController
     if(artist.nil?)
       render :nothing => true
     else
-      @tabs = [:emotions, :more_playlists, :recommended_playlists] #others are coming.
+      @tabs = [:more_playlists, :recommended_playlists, :emotions] #others are coming.
       @station_obj = Station.find(params[:station_id]) rescue nil
       render :partial => "radio/artist_info"
     end
   end
   
   def station_info
-      @tabs = [:emotions, :more_playlists, :top_playlists] #others are coming.
+      @tabs = [:more_playlists, :top_playlists, :emotions] #others are coming.
       @station_obj = Station.find(params[:station_id]) rescue nil
       render :partial => "radio/station_info"
   end
