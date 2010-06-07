@@ -90,7 +90,8 @@ module DashboardsHelper
     html_links = []
     links.each do |link|
       css_class = ""
-      css_class << " active" if (request.request_uri.match(Regexp.new(link[:url] + "$")) or params[:controller] == link[:menu].to_s)
+      actual_url = request.request_uri.split("?")[0]
+      css_class << " active" if (link[:url].match(Regexp.new(actual_url + "$")) or params[:controller] == link[:menu].to_s)
       css_class << " last"   if links.last == link
       html_links << link_to(link[:label], link[:url], :class => css_class)
     end
