@@ -163,7 +163,7 @@ class User < Account
     elsif !(user.email =~ EMAIL_REGEXP)
       user.errors.add(:email, I18n.t("activerecord.errors.messages.invalid"))
     else
-      user = User.find_by_email( email )
+      user = User.find_by_email_and_deleted_at( email, nil )
     end
     user
   end
