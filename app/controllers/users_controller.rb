@@ -95,7 +95,7 @@ class UsersController < ApplicationController
 
   def forgot
     if request.post?
-      @user = User.forgot?( params[:user][:email] )
+      @user = User.forgot?( params[:user] )
       if @user && @user.msn_live_id && wlid_web_login?
         flash.now[:error] = t('reset.msn_account')
       elsif @user && @user.errors.empty?
@@ -105,7 +105,7 @@ class UsersController < ApplicationController
           :site_id => request.host)
         flash[:success] = t('forgot.reset_message_sent')
       else
-        flash.now[:error] = t("reset.insert_valid_email")
+        flash.now[:error] = t("reset.insert_valid_info")
       end
     elsif !request.referer.blank? && request.referer !=~ /forgot|session/
       session[:return_to] = request.referer
