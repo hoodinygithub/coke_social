@@ -11,6 +11,10 @@ class ReviewsController < ApplicationController
       params[:action]     = 'reviews'
     end
     @collection = @records.paginate :page => @page, :per_page => 6
+
+    if request.xhr?
+      render :partial => 'list'
+    end
   end
 
   def list

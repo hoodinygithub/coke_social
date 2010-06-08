@@ -1,9 +1,14 @@
-<ul class="comments_list">
-  <%= render :partial => 'item', :collection => @collection %>
-</ul>
-
-<div class="align_right" id="show_more_comments">
-  <% if @has_more %>
-    <%= red_button(t('actions.show_more'), :onclick => "Base.network.show_more(this)", :width => "120px") %>
+<div id="content_list">
+  <% if !@collection.empty? %>
+    <ul class="comments_list">
+      <%= render :partial => 'item', :collection => @collection %>
+    </ul>
+    <div class="align_right" id="show_more_comments">
+      <% if @has_more %>
+        <%= red_button(t('actions.show_more'), :onclick => "Base.network.show_more(this)", :width => "120px") %>
+      <% end %>
+    </div>  
+  <% else %>
+    <%= render 'blank_slate' %>
   <% end %>
 </div>

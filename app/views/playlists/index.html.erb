@@ -14,7 +14,7 @@
 <% end %>
 
 <% content_for :list do %>
-  <%= render !@collection.empty? ? 'list' : 'blank_slate' %>
+  <%= render 'list' %>
 <% end %>
 
 <%= render 'shared/list' %>

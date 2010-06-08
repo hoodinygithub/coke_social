@@ -2037,3 +2037,38 @@ Base.badges.set_notified = function() {
   });
 };
 
+
+Base.utils.rebind_list = function() {
+  $('.artist_box').hover(function() {
+    $(this).addClass('hover');
+  }, function() {
+    $(this).removeClass('hover');
+  });
+  $('input[type=radio].star').rating();
+};
+
+Base.utils.load_content = function(response) {
+  $('#content_list').html(response).hide().fadeIn('slow');
+  $('div.small_loading').remove();
+  Base.utils.rebind_list();
+};
+
+Base.utils.ajax_sorting = function() {
+  var sort_link = $(this);
+  var title = sort_link.parent().prev();
+
+  
+  title.append('<div class="small_loading">');
+
+  $(".sorting a").removeClass("active");
+  sort_link.addClass("active");
+
+  $.get(sort_link.attr('href'), Base.utils.load_content);
+  return false;  
+};
+
+jQuery(document).ready(function() {
+  $(".sorting a").each(function() {
+    $(this).click(Base.utils.ajax_sorting);
+  });
+});

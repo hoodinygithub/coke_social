@@ -1,3 +1,9 @@
-<ul class="big_badges_list">
-  <%= render :partial => 'badge_award', :collection => @collection %>
-</ul>
+<div id="content_list">
+  <% if !@collection.empty? %>
+    <ul class="big_badges_list">
+      <%= render :partial => 'badge_award', :collection => @collection %>
+    </ul>  
+  <% else %>
+    <%= render 'blank_slate' %>
+  <% end %>
+</div>
