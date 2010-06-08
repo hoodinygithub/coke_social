@@ -38,13 +38,13 @@
     <% end %>
   </div><!--/end radio_tabs -->
 
-  <div id="emotions_content" class="radio_tabs_content">
+  <div id="emotions_content" class="radio_tabs_content hide">
     <% tag_cloud @station_obj.playable.tag_cloud, %w(css1, css2, css3, css4) do |tag, css_class| %>
       <%= link_to tag.name, main_search_path(:scope => 'playlists', :q => tag.name), :target => "_blank", :class => css_class %>
     <% end%>
   </div>
 
-  <div id="more_playlists_content" class="radio_tabs_content hide">
+  <div id="more_playlists_content" class="radio_tabs_content">
     <%= render :partial => "more_playlists", :locals => { :current_playlist => @station_obj } %>
   </div>
 
