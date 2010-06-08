@@ -64,7 +64,7 @@ class Playlist < ActiveRecord::Base
   # end
 
   def includes(limit=3)
-    songs.all(:limit => limit).uniq_by { |s| s.artist_id }
+    songs.all(:limit => limit, :group => :artist_id)
   end
   
   def deactivate!
@@ -91,7 +91,6 @@ class Playlist < ActiveRecord::Base
   def update_cached_artist_list
     unless songs.empty?
       self.cached_artist_list = all_artists.collect(&:name).join(', ')
-      #self.save
     end
   end
 
