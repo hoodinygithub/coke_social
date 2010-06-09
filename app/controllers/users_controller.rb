@@ -269,7 +269,7 @@ class UsersController < ApplicationController
   
   protected
   def compute_layout
-    [:new, :create, :forgot].include?(action_name) ? "no_search_form" : "application" 
+    [:new, :create, :forgot].include?(action_name.to_sym) ? "no_search_form" : "application" 
   end
   
 end
