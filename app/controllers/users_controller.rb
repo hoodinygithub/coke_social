@@ -139,6 +139,7 @@ class UsersController < ApplicationController
       result[:errors] = { :delete_password => I18n.t('account_settings.password_required') }
       render :json => result.to_json
     end
+    render :layout => false
   end
 
   def feedback
@@ -157,6 +158,7 @@ class UsersController < ApplicationController
       UserNotification.send_feedback_message( options )
     end
     redirect_to params[:redirect_to] if params[:redirect_to]
+    render :layout => false
   end
 
   def destroy
