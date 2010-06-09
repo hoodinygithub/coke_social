@@ -2053,7 +2053,7 @@ Base.utils.rebind_list = function() {
 };
 
 Base.utils.load_content = function(response) {
-  $('#content_list').html(response).hide().fadeIn('slow');
+  $('#content_list').html(response);
   $('div.small_loading').remove();
   Base.utils.rebind_list();
 };
