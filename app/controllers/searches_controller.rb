@@ -16,7 +16,12 @@ class SearchesController < ApplicationController
     @counts = {}
     @results = {}
     if request.xhr?
-      @active_scope == :all ? search_results(@search_types, 4) : search_results(@active_scope.to_a)
+      if @active_scope == :all
+        search_results(@search_types, 4)
+        default_active_scope 
+      else 
+        search_results(@active_scope.to_a)
+      end
       
       if params.has_key? :result_only
         render :partial => "searches/#{@active_scope.to_s}"
@@ -25,7 +30,12 @@ class SearchesController < ApplicationController
       end      
     else
       unless @query.nil?
-        @active_scope == :all ? search_results(@search_types) : search_results(@active_scope.to_a)
+        if @active_scope == :all
+          search_results(@search_types) 
+          default_active_scope
+        else
+          search_results(@active_scope.to_a)
+        end
       else
         @search_types.each do |t| 
           @results.store(t, [])
