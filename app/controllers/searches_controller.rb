@@ -5,7 +5,7 @@ class SearchesController < ApplicationController
     @search_types ||= [:playlists, :users]    
     @sort_type = params.fetch(:sort_by, nil).to_sym rescue :relevance
     @sort_types = { :latest => { :playlists => 'updated_at DESC', :users => 'created_at DESC' }, \
-                    :alphabetical => 'name ASC', \
+                    :alphabetical => { :playlists => 'normalized_name_sort ASC', :users => :sort_users_by_alpha }, \
                     :relevance => nil, \
                     :highest_rated => { :playlists => 'rating_cache DESC', :users => nil }, \
                     :top => { :playlists => 'playlist_total_plays DESC', :users => nil }  
@@ -16,7 +16,7 @@ class SearchesController < ApplicationController
     @counts = {}
     @results = {}
     if request.xhr?
-      @active_scope == :all ? search_all_types(4) : search_only_active_type(12)
+      @active_scope == :all ? search_results(@search_types, 4) : search_results(@active_scope.to_a)
       
       if params.has_key? :result_only
         render :partial => "searches/#{@active_scope.to_s}"
@@ -25,7 +25,7 @@ class SearchesController < ApplicationController
       end      
     else
       unless @query.nil?
-        @active_scope == :all ? search_all_types : search_only_active_type
+        @active_scope == :all ? search_results(@search_types) : search_results(@active_scope.to_a)
       else
         @search_types.each do |t| 
           @results.store(t, [])
@@ -46,7 +46,7 @@ class SearchesController < ApplicationController
     @counts = {}
     @results = {}
 
-    @active_scope == :all ? search_all_types(4) : search_only_active_type(12)
+    @active_scope == :all ? search_results(@search_types, 4) : search_results(@active_scope.to_a)
     
     @local = true if params[:local]
     render :partial => 'searches/content_list'#, :layout => false
@@ -56,51 +56,49 @@ class SearchesController < ApplicationController
     def default_active_scope
       @active_scope = @counts.sort{ |a, b| b[1] <=> a[1] }.first[0] unless @search_types.include? @active_scope
     end
-    def default_sort_type
-      @sort_type = :relevance
+
+    # def default_sort_type
+    #   @sort_type = :relevance
+    # end
+
+    def sort_users_by_alpha(*args)
+      args.first.sort!{ |a, b| a[1].name <=> b[1].name rescue 0 }
     end
     
-    def search_only_active_type (per_page = 12)
-      opts = { :page => params[:page], :per_page => per_page, :star => true }
+    def search_results (types=[], per_page = 12)
+      opts = { :page => params[:page], :per_page => per_page, :star => true, :retry_stale => true }
 
       @search_types.each do |scope|
+        dataset = []
         obj_scope = scope == :stations ? :abstract_stations : scope
         obj = obj_scope.to_s.classify.constantize
-        active = scope == @active_scope
-
         opts.delete(:order)
-        if(@sort_types[@sort_type].is_a? Hash)
-          unless @sort_types[@sort_type][scope].nil?
-            opts.merge!(:order => @sort_types[@sort_type][scope])
-          else
-            default_sort_type if active
-          end
-        else
-          unless @sort_types[@sort_type].nil?
-            opts.merge!(:order => @sort_types[@sort_type]) 
-          else
-            default_sort_type if active
-          end
-        end
+        
+        if types.include? scope
+          #default_sort_type scope == @active_scope
+          sort_instruction = nil
+          custom_sort = false
 
-        @results.store(scope, (active) ? obj.search(@query, opts) : [])
+          if(@sort_types[@sort_type].is_a? Hash)
+            sort_instruction = @sort_types[@sort_type][scope]
+            unless sort_instruction.nil?
+              custom_sort = true if sort_instruction.is_a?(Symbol)
+              opts.merge!(:order => @sort_types[@sort_type][scope]) unless custom_sort
+            end
+          else
+            sort_instruction = @sort_types[@sort_type]
+            unless sort_instruction.nil?
+              custom_sort = true if sort_instruction.is_a?(Symbol)
+              opts.merge!(:order => @sort_types[@sort_type]) unless custom_sort
+            end
+          end
+          dataset = obj.search(@query, opts) if types.include? scope          
+          send(sort_instruction, dataset) if custom_sort
+        end
+        @results.store(scope, dataset)
         @counts.store(scope, obj.search_count(@query, opts))
       end
     end
   
-    def search_all_types (per_page = 12)
-      opts = { :page => params[:page], :per_page => per_page, :star => true }
-
-      opts.merge!(:order => @sort_types[@sort_type]) unless @sort_types[@sort_type].nil?
-
-      @search_types.each do |scope|
-        obj_scope = scope == :stations ? :abstract_stations : scope
-        obj = obj_scope.to_s.classify.constantize
-
-        @results.store(scope, obj.search(@query, opts))
-        @counts.store(scope, obj.search_count(@query, opts))
-      end
-      default_active_scope
-    end
 end
 

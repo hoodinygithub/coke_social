@@ -8,7 +8,7 @@
     <div class="top_left corner"></div>
     <div class="center_shadow"></div>
     <div class="top_right corner"></div>
-    <a href="#" onclick="$('#congrats_popup').fadeOut('slow'); return false;"><img src="/images/popup_close.png" class="popup_close png_fix" alt="X" title="Close" /></a>
+    <a href="#" class="congrats_update"><img src="/images/popup_close.png" class="popup_close png_fix" alt="X" title="Close" /></a>
   </div>
   <div class="popup_content">
     <div class="title"><%= @notifications.size > 1 ? t("modules.badge_notification.title_plural", :badge_count => @notifications.size) : t("modules.badge_notification.title_singular") %></div>
@@ -29,7 +29,7 @@
       </ul>
     </div><!--/end congrats_box -->
     <div class="align_right">
-      <%= red_button('OK', :class => 'valign_middle', :id => "congrats_ok_button") %>
+      <%= red_button('OK', :class => 'valign_middle congrats_update') %>
     </div>
   </div>
   <div class="bottom_shadow">

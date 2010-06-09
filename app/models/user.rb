@@ -93,7 +93,7 @@ class User < Account
   has_many :reviews,  
            :foreign_key => :user_id,
            :class_name => "Comment",
-           :conditions => 'commentable_type = "Playlist"',
+           :conditions => "commentable_type = 'Playlist'",
            :order => "comments.updated_at DESC"
 
 
@@ -122,7 +122,7 @@ class User < Account
 
   has_many :followings, :foreign_key => 'follower_id'
   has_many :followees, :through => :followings, :conditions => "accounts.type = 'User' AND accounts.network_id = 2 AND followings.approved_at IS NOT NULL", :source => :followee do
-    def with_badge(badge, limit=10)
+    def with_badge(badge, limit=9)
       badge = if badge.is_a?(BadgeAward)
         badge.badge_id
       elsif badge.is_a?(Badge)
