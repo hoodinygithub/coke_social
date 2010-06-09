@@ -108,7 +108,7 @@ protected
   def load_records
     conditions = {}
     conditions.merge!({ :commentable_type => 'Playlist', :commentable_id => params[:playlist_id] }) if params[:playlist_id]
-    conditions.merge!({ :user_id => profile_account.id }) unless request.request_uri.match(/playlists/)
+    conditions.merge!({ :user_id => profile_account.id }) unless request.request_uri.match(/\/\w+\/reviews/)
     @playlist  = Playlist.find(params[:playlist_id]) if params[:playlist_id]
     @records   = Comment.all(:conditions => conditions, :order => @sort_data )
   end
