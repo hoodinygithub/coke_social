@@ -16,7 +16,9 @@ class UsersController < ApplicationController
   current_tab :settings
   disable_sanitize_params
   strip_tags_from_params
-
+  
+  layout :compute_layout
+  
   # GET /users/id
   def show
     redirect_to :action => :edit
@@ -262,4 +264,10 @@ class UsersController < ApplicationController
   def set_dashboard_menu
     @dashboard_menu = :settings
   end
+  
+  protected
+  def compute_layout
+    [:new, :create, :forgot].include?(action_name) ? "no_search_form" : "application" 
+  end
+  
 end
