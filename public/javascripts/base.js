@@ -2019,7 +2019,7 @@ Base.reviews.show = function(review) {
 };
 
 Base.badges.init_notifications = function() {
-	$("#congrats_ok_button").click(function(e){
+	$("a.congrats_update").click(function(e){
 		e.preventDefault();
 		Base.badges.set_notified();
 	});
