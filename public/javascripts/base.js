@@ -1722,6 +1722,11 @@ jQuery(document).ready(function() {
   }); 
 
   $("#network_comment_list").show();
+
+  $(".ajax_sorting a").each(function() {
+    $(this).click(Base.utils.ajax_sorting);
+  });
+
   
 });
 
@@ -2060,15 +2065,9 @@ Base.utils.ajax_sorting = function() {
   
   title.append('<div class="small_loading">');
 
-  $(".sorting a").removeClass("active");
+  $(".ajax_sorting a").removeClass("active");
   sort_link.addClass("active");
 
   $.get(sort_link.attr('href'), Base.utils.load_content);
   return false;  
 };
-
-jQuery(document).ready(function() {
-  $(".sorting a").each(function() {
-    $(this).click(Base.utils.ajax_sorting);
-  });
-});
