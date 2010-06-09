@@ -16,6 +16,8 @@ class UsersController < ApplicationController
   current_tab :settings
   disable_sanitize_params
   strip_tags_from_params
+  
+  layout "no_search_form", :only => [:new, :create, :forgot]
 
   # GET /users/id
   def show
