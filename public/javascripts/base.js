@@ -1723,10 +1723,7 @@ jQuery(document).ready(function() {
 
   $("#network_comment_list").show();
 
-  $(".ajax_sorting a").each(function() {
-    $(this).click(Base.utils.ajax_sorting);
-  });
-
+  $(".ajax_sorting a").click(Base.utils.ajax_sorting);
   
 });
 
@@ -2050,6 +2047,8 @@ Base.utils.rebind_list = function() {
     $(this).removeClass('hover');
   });
   $('input[type=radio].star').rating();
+  $(".pagination a:not(.disabled)").click(Base.utils.ajax_pagination);
+  $(".ajax_sorting a").click(Base.utils.ajax_sorting);
 };
 
 Base.utils.load_content = function(response) {
@@ -2060,8 +2059,7 @@ Base.utils.load_content = function(response) {
 
 Base.utils.ajax_sorting = function() {
   var sort_link = $(this);
-  var title = sort_link.parent().prev();
-
+  var title = sort_link.parents('#content_list').prev();
   
   title.append('<div class="small_loading">');
 
@@ -2071,3 +2069,15 @@ Base.utils.ajax_sorting = function() {
   $.get(sort_link.attr('href'), Base.utils.load_content);
   return false;  
 };
+
+Base.utils.ajax_pagination = function() {
+  var paginate_link = $(this);  
+  $('div.pagination').after('<div class="small_loading">');
+  $.get(paginate_link.attr('href'), Base.utils.load_content);
+  return false;
+};
+
+jQuery(document).ready(function() {
+  $(".pagination a:not(.disabled)").click(Base.utils.ajax_pagination);  
+});
+

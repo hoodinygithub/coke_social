@@ -18,7 +18,7 @@ class FollowersController < ApplicationController
           @collection = profile_user.followers.paginate :page => params[:page], :per_page => 15, :order => sort_types[@sort_type]
         end
         if request.xhr?
-          render :partial => 'followings/list'
+          render :partial => 'followings/ajax_list'
         end
     rescue NoMethodError
       redirect_to new_session_path

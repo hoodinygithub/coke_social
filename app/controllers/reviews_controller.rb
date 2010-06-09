@@ -13,7 +13,7 @@ class ReviewsController < ApplicationController
     @collection = @records.paginate :page => @page, :per_page => 6
 
     if request.xhr?
-      render :partial => 'list'
+      render :partial => 'ajax_list'
     end
   end
 

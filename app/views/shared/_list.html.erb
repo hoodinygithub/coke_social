@@ -10,15 +10,17 @@
   <h1>
     <%= yield :title %>
   </h1>
-  <div class="sorting ajax_sorting">
-    <%= yield :sorting %>
+  <div id="content_list">
+
+    <div class="sorting ajax_sorting">
+      <%= yield :sorting %>
+    </div>
+    <%= yield :list %>
+
+    <% if @collection.respond_to? :total_pages %>
+      <%= will_paginate @collection, pagination_args %>
+    <% end %>
   </div>
-  <%= yield :list %>
-
-  <% if @collection.respond_to? :total_pages %>
-    <%= will_paginate @collection, pagination_args %>
-  <% end %>
-
 </div><!--/end center_column -->
 
 <%= render on_dashboard? ? 'dashboards/right_column' : 'accounts/right_column' %>
