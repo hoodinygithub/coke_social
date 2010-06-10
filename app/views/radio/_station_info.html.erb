@@ -45,11 +45,11 @@
   </div>
 
   <div id="more_playlists_content" class="radio_tabs_content">
-    <%= render :partial => "more_playlists", :locals => { :current_playlist => @station_obj } %>
+    <%= render :partial => "more_playlists", :locals => { :current_playlist => @station_obj, :top => false }  %>
   </div>
 
   <div id="top_playlists_content" class="radio_tabs_content hide">
-    <%= render :partial => "more_playlists", :locals => { :current_playlist => current_site.top_playlists.all(:limit => 20) } %>
+    <%= render :partial => "more_playlists", :locals => { :current_playlist => current_site.top_playlists.all(:limit => 20), :top => true } %>
   </div>
 
 </div><!--/end radio_right_side -->

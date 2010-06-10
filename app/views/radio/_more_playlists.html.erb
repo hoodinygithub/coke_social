@@ -9,7 +9,11 @@
     </div>
 
     <div class="station_buttons">
-      <%= rating(playlist) %>
+      <% if top %>
+        <%= rating(playlist, false, "#{playlist.id}_top") %>
+      <% else %>
+        <%= rating(playlist) %>
+      <% end %>
       <br />
       <span class="big_btn_box hoverable_item">
         <%= link_to_function "Play", "Base.radio.set_station_details(#{playlist.station.id}, '#{playlist.station_queue}')", :class => "big_btn play_btn" %>
