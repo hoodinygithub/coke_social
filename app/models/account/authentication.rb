@@ -161,9 +161,11 @@ module Account::Authentication
   end
 
   def uniqueness_of_email
-    user_with_email = User.find_by_email_and_deleted_at(email, nil)
-    if !user_with_email.nil? && user_with_email.id != id
-      self.errors.add(:email, I18n.t("activerecord.errors.messages.taken"))
+    self.class.send(:with_exclusive_scope) do
+      user_with_email = User.find_by_email_and_deleted_at(email, nil)
+      if !user_with_email.nil? && user_with_email.id != id
+        self.errors.add(:email, I18n.t("activerecord.errors.messages.taken"))
+      end
     end
   end
 
