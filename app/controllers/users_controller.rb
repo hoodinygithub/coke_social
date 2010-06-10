@@ -124,7 +124,7 @@ class UsersController < ApplicationController
 
     user.valid?
     if user.errors.on(field)
-      render :json => ["#{User.human_attribute_name(field)} #{user.errors.on(field).first}", 'error'].to_json
+      render :json => ["#{User.human_attribute_name(field)} #{user.errors.on(field).to_a.first}", 'error'].to_json
     else
       message = "#{exclamation}"
       render :json => [message, 'info'].to_json
