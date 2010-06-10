@@ -1736,11 +1736,16 @@ Base.network.reload_comments = function(filter) {
   var params = {'slug':Base.account.slug};
   params.filter_by = filter;
 
+  var sort_link = $("div.sorting a[href*="+filter+"]" );
+
+  sort_link.parents('.sorting').after('<div class="small_loading at_sorting">');
+
   jQuery.post("/activity/latest", params, function (response) {
     $("ul#network_comment_list").show();
     $("div.sorting a").removeClass("active");
     jQuery(".comments_list").html(response);
-    $("div.sorting a[href*="+filter+"]" ).addClass("active");
+    sort_link.addClass("active");
+    $('div.small_loading').remove();
   });
 
 };
@@ -1966,12 +1971,13 @@ Base.reviews.remote_sort = function() {
   var sort_link = $(this);
   sort_link.siblings('.active').removeClass('active');
   sort_link.addClass('active');
+  sort_link.parents('.sorting').after('<div class="small_loading at_sorting">');
 
-  sort_data    = sort_link.metadata();
-  ajax_list    = sort_link.parent().next();
-  current_page = ajax_list.next('.ajax_pagination').children('span.current');
+  var sort_data    = sort_link.metadata();
+  var ajax_list    = sort_link.parent().siblings('.ajax_list');;
+  var current_page = ajax_list.next('.ajax_pagination').children('span.current');
 
-  params = {}
+  var params = {}
   params['page']    = current_page.text();
   params['sort_by'] = sort_data.sort_by;
 
@@ -1989,13 +1995,15 @@ Base.reviews.paginateCallback = function(response, ajax_list, page_link) {
     page_link.replaceWith('<span class="page current">' + page_link.text() + '</span>');
   }
   ajax_list.html(response);
+  $("div.small_loading").remove();
   $('.ajax_pagination a.page').click(Base.reviews.paginate);
   $('input[type=radio].star').rating();
 }
 
 Base.reviews.paginate = function() {
   var page_link = $(this);
-  var ajax_list = page_link.parent().prev('.ajax_list').html('<div class="loading_list" />');
+  page_link.parents('.ajax_pagination').after('<div class="small_loading">');
+  var ajax_list = page_link.parent().prev('.ajax_list');
 
   var list_data = $(this).parent().metadata();
   var sort_data = ajax_list.siblings('.sorting').children('.active').metadata();
