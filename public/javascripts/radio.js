@@ -173,7 +173,7 @@ function toggleRadioTabs() {
 		}
   });
 	$("#" + value + "_content").removeClass('hide');
-	
+  $('input[type=radio].star').rating();
 }
 
 function toggleCreateStation(show) {
@@ -321,6 +321,7 @@ function load_station_info(station_id)
         {
           $('.artist_radio_info').html(response);
           initRadioTabs();
+          $('input[type=radio].star').rating();
           if(response.indexOf("<") > -1) $('.artist_radio_info').slideDown();
         }
       });
