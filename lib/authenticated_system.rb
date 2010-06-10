@@ -60,7 +60,7 @@ module AuthenticatedSystem
   # Store the given user id in the session.
   def current_user=(new_user)
     if new_user
-      session[:user_id] = new_user.id
+      session[:coke_user_id] = new_user.id
       @current_user = new_user
     end
   end
@@ -145,7 +145,7 @@ module AuthenticatedSystem
 
   # Called from #current_user.  First attempt to login by the user id stored in the session.
   def login_from_session
-    self.current_user = Account.find_by_id(session[:user_id]) if session[:user_id]
+    self.current_user = Account.find_by_id(session[:coke_user_id]) if session[:coke_user_id]
   end
 
   # Called from #current_user.  Now, attempt to login by basic authentication information.

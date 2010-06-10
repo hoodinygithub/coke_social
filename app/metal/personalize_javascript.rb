@@ -7,12 +7,12 @@ class PersonalizeJavascript
       request   = Rack::Request.new(env)
       session   = env['rack.session']
       host_port = (request.port.to_s == "80") ? "#{request.host}" : "#{request.host}:#{request.port}"
-      if session && session[:user_id]
+      if session && session[:coke_user_id]
         params    = request.params
         logout_url = params['logout_url'] ? "<a href='#{params['logout_url']}'>#{I18n.t("sessions.destroy.sign_out").strip}<\/a>" : ""
         I18n.default_locale = params['lang'].to_sym rescue :en
         begin
-          current_user = User.find(session[:user_id])
+          current_user = User.find(session[:coke_user_id])
           js = <<-END
           jQuery(document).ready(function($){
           	$('#login_links').html("#{logout_url}");
