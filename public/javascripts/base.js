@@ -1790,11 +1790,9 @@ Base.reviews.count_chars = function(textarea) {
 };
 
 Base.reviews.showPopup = function(url) {
-  $.popup(function() {
     $.get(url, function(response) {
       $.popup(response);
     });
-  });
 };
 
 Base.reviews.resetForm = function() {
