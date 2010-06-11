@@ -5,7 +5,7 @@ class SearchesController < ApplicationController
     @search_types ||= [:playlists, :users]    
     @sort_type = params.fetch(:sort_by, nil).to_sym rescue :relevance
     @sort_types = { :latest => { :playlists => 'updated_at DESC', :users => 'created_at DESC' }, \
-                    :alphabetical => { :playlists => 'normalized_name_sort ASC', :users => :sort_users_by_alpha }, \
+                    :alphabetical => 'normalized_name ASC', \
                     :relevance => nil, \
                     :highest_rated => { :playlists => 'rating_cache DESC', :users => nil }, \
                     :top => { :playlists => 'playlist_total_plays DESC', :users => nil }  
@@ -72,7 +72,7 @@ class SearchesController < ApplicationController
     # end
 
     def sort_users_by_alpha(*args)
-      args.first.sort!{ |a, b| a[1].name <=> b[1].name rescue 0 }
+      args.first.sort!{ |a, b| a.name.upcase <=> b.name.upcase }
     end
     
     def search_results (types=[], per_page = 12)

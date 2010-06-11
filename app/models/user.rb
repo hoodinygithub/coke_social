@@ -75,8 +75,9 @@ class User < Account
   include Account::RegistrationStates
   include Searchable::ByNameAndSlug
 
-
   index [:type]
+
+  after_update :update_followings_with_partial_name
 
   default_scope :conditions => { :network_id => 2 }  
   has_one :bio, :autosave => true, :foreign_key => :account_id
@@ -326,5 +327,9 @@ class User < Account
     errors.add(:born_on, I18n.t("registration.must_be_13_years_older")) if underage?
   end
 
+  def update_followings_with_partial_name
+    followings.update_all(:follower_name => self.name[0..2])
+    followings_as_followee.update_all(:followee_name => self.name[0..2])
+  end
 end
 

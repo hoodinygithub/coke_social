@@ -42,15 +42,14 @@ class Playlist < ActiveRecord::Base
   define_index do
     where "playlists.deleted_at IS NULL AND accounts.deleted_at IS NULL AND accounts.network_id = 2"
     indexes :cached_tag_list
-    indexes :name
-    indexes "LOWER(playlists.name)", :as => 'normalized_name', :sortable => true
+    indexes "LOWER(playlists.name)", :as => :normalized_name, :sortable => true
     indexes :cached_artist_list
     set_property :min_prefix_len => 1
     set_property :enable_star => 1
     set_property :allow_star => 1
     has created_at, updated_at, owner(:network_id)
-    has total_plays, :as => 'playlist_total_plays'
-    has rating_cache
+    has total_plays, :as => :playlist_total_plays
+    has rating_cache, :as => :rating_cache
   end
   
   # def self.search(*args)
