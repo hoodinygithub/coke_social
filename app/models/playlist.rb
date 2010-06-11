@@ -28,7 +28,7 @@ class Playlist < ActiveRecord::Base
   delegate :network, :to => :owner
     
   has_many :items, :class_name => 'PlaylistItem', :order => "playlist_items.position ASC", :include => :song
-  has_many :songs, :through => :items, :order => "playlist_items.position ASC"
+  has_many :songs, :through => :items, :order => "playlist_items.position ASC", :conditions => { :deleted_at => nil }
   has_one :editorial_station, :foreign_key => 'mix_id'
   
   has_attached_file :avatar, :styles => { :album => "300x300#", :medium => "86x86#", :small => "60x60#" }
