@@ -7,13 +7,15 @@ module Application::Rescues
       render :template => 'messenger_player/errors/index', :locals => { :errors => errors }
     end
 
-    def _record_not_found
+    def _record_not_found(exception)
       respond_to do |format|
         format.html do
           unless params[:slug].blank?
             redirect_to profile_not_found_path(params[:slug])
           else
-            render :file => File.join( RAILS_ROOT, 'public', "404.html" ), :status => 404
+            logger.error exception.message
+            logger.error exception.backtrace
+            render(:file => File.join( RAILS_ROOT, 'public', "404.html" ), :status => 404) && return false
           end
         end
         format.xml  { render :xml => Player::Error.new( :code => 404, :error => t('messenger_player.record_not_found') ) }
