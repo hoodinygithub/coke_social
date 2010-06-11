@@ -112,7 +112,8 @@ task :symlink_remaining, :roles => :app, :except => {:no_release => true, :no_sy
     site_code = application == 'coke_latam' && 'cokelatam' || 'cokebr'
 
     run <<-CMD
-      rm -rf #{latest_release}/public/404.html && rm -rf #{latest_release}/public/422.html && rm -rf #{latest_release}/public/500.html &&
+      rm -rf #{latest_release}/public/404.html && rm -rf #{latest_release}/public/422.html && rm -rf #{latest_release}/public/500.html && rm -rf #{latest_release}/public/400.html &&
+      ln -s #{latest_release}/public/400_#{site_code}.html #{latest_release}/public/400.html &&            
       ln -s #{latest_release}/public/404_#{site_code}.html #{latest_release}/public/404.html &&
       ln -s #{latest_release}/public/422_#{site_code}.html #{latest_release}/public/422.html &&
       ln -s #{latest_release}/public/500_#{site_code}.html #{latest_release}/public/500.html &&

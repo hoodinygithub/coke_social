@@ -7,7 +7,7 @@ class BadgesController < ApplicationController
     @collection = profile_user.badge_awards.paginate :page => params[:page], :per_page => 10, :order => sort_types[@sort_type]
 
     if request.xhr?
-      render :partial => 'ajax_list'
+      render :partial => 'list'
     end
   end
 
