@@ -33,8 +33,14 @@ class UsersController < ApplicationController
   def update
     @user                    = User.find(current_user.id)
     params[:user]            = trim_attributes_for_paperclip(params[:user], :avatar)
-    @user.attributes         = params[:user]
+    born_on_year             = params[:user].delete("born_on(1i)")
+    born_on_month            = params[:user].delete("born_on(2i)")
+    born_on_day              = params[:user].delete("born_on(3i)")
+
+    @user.attributes         = params[:user]    
+    @user.born_on_string     = "#{born_on_year}-#{born_on_month}-#{born_on_day}"
     twitter_username_changed = @user.twitter_username_changed?
+    
     if @user.save
       Resque.enqueue(TwitterJob, {:user_id => @user.id, :twitter_username => @user.twitter_username}) if twitter_username_changed
       flash[:success] = t('settings.saved')
