@@ -12,7 +12,7 @@ namespace :db do
           end
           u.write_attribute(:born_on, Date.parse(u.born_on_string))
           u.write_attribute("encrypted_born_on_string".to_sym, nil) unless ENV.has_key?('keep_original')
-          u.save!
+          u.save(false)
         end
       end
     end
@@ -29,7 +29,7 @@ namespace :db do
           end
           u.born_on_string = u.read_attribute(:born_on).to_s
           u.write_attribute(:born_on, nil) unless ENV.has_key?('keep_original') 
-          u.save!
+          u.save(false)
         end
       end
     end
