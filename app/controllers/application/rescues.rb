@@ -15,7 +15,7 @@ module Application::Rescues
           else
             logger.error exception.message
             logger.error exception.backtrace
-            render(:file => File.join( RAILS_ROOT, 'public', "404.html" ), :status => 404) && return false
+            return render(:file => File.join( RAILS_ROOT, 'public', "404.html" ), :status => 404)
           end
         end
         format.xml  { render :xml => Player::Error.new( :code => 404, :error => t('messenger_player.record_not_found') ) }
