@@ -42,8 +42,7 @@ class Playlist < ActiveRecord::Base
   define_index do
     where "playlists.deleted_at IS NULL AND accounts.deleted_at IS NULL AND accounts.network_id = 2"
     indexes :cached_tag_list
-    indexes :name
-    indexes "LOWER(playlists.name)", :as => 'normalized_name', :sortable => true
+    indexes "UPPER(playlists.name)", :as => :normalized_name, :sortable => true
     indexes :cached_artist_list
     set_property :min_prefix_len => 1
     set_property :enable_star => 1
