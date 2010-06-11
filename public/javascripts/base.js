@@ -1476,7 +1476,7 @@ Base.playlists.playStream = function(obj, media, songId)
   var elem = $(obj);
   if(!_playing)
   {
-    _activeStream = elem.parent().parent().attr('class', 'selected_row');
+    _activeStream = elem.parent().parent().addClass('selected_row');
     Base.playlists.onStreamStart(_activeStream);
     elem.find('img').attr('src', '/images/icon_stop_button.png');
     swf('stream_connect').playSample(media, songId);
@@ -1484,18 +1484,20 @@ Base.playlists.playStream = function(obj, media, songId)
   }
   else if(songId != _songId)
   {
-    _activeStream.attr('class', '');
-    _activeStream.find('img').attr('src', '/images/icon_play_button.png');
+    //_activeStream.attr('class', 'draggable_item ui-draggable');
+    _activeStream.removeClass('selected_row');
+    _activeStream.find('div.song_name img').attr('src', '/images/icon_play_button.png');
     Base.playlists.onStreamEnd(_activeStream);
-    _activeStream = elem.parent().parent().attr('class', 'selected_row');
+    _activeStream = elem.parent().parent().addClass('selected_row');
     Base.playlists.onStreamStart(_activeStream);
     elem.find('img').attr('src', '/images/icon_stop_button.png');
     swf('stream_connect').playSample(media, songId);
   }
   else if(_playing && songId == _songId)
   {
-    _activeStream.attr('class', '');
-    _activeStream.find('img').attr('src', '/images/icon_play_button.png');
+    //_activeStream.attr('class', 'draggable_item ui-draggable');
+    _activeStream.removeClass('selected_row');
+    _activeStream.find('div.song_name img').attr('src', '/images/icon_play_button.png');
     Base.playlists.onStreamEnd(_activeStream);
     _activeStream = null;
     _playing = false;
@@ -1507,8 +1509,9 @@ Base.playlists.playStream = function(obj, media, songId)
 Base.playlists.streamComplete = function()
 {
   Base.playlists.onStreamEnd(_activeStream);
-  _activeStream.attr('class', '');
-  _activeStream.find('img').attr('src', '/images/icon_play_button.png');
+  //_activeStream.attr('class', 'draggable_item ui-draggable');
+  _activeStream.removeClass('selected_row');
+  _activeStream.find('div.song_name img').attr('src', '/images/icon_play_button.png');
   _activeStream = null;
   _playing = false;
 }
