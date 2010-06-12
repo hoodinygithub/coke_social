@@ -13,11 +13,6 @@
 class PlaylistItem < ActiveRecord::Base
   acts_as_list :scope => :playlist
 
-  default_scope :conditions => "playlist_items.id IN (
-    SELECT playlist_items.id FROM playlist_items, songs WHERE 
-      playlist_items.song_id = songs.id and songs.deleted_at IS NULL
-  )"
-
   after_save :increment_playlist_total_time
   before_destroy :decrement_playlist_total_time
 
