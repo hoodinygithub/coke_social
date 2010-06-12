@@ -37,7 +37,7 @@ class PlaylistsController < ApplicationController
         session[:playlist_ids] = nil
         @playlist_item_ids = []
         #@playlist_item_ids = params[:item_ids].split(',').map { |i| Song.find(i) }.compact
-        @playlist_item_ids = Song.find(params[:item_ids].split(',')).to_a rescue []
+        @playlist_item_ids = Song.find_all_by_id(params[:item_ids].split(',')).to_a rescue []
         unless @playlist_item_ids.empty?
           attributes = {:name => params[:name]}
           attributes[:avatar] = params[:avatar] if params[:avatar]
@@ -55,7 +55,7 @@ class PlaylistsController < ApplicationController
       else
         if session[:playlist_ids]
           #logger.info session[:playlist_ids].inspect
-          @playlist_items = Song.find(session[:playlist_ids].split(',')).to_a rescue []
+          @playlist_items = Song.find_all_by_id(session[:playlist_ids].split(',')).to_a rescue []
           #@playlist_items = session[:playlist_ids].split(',').map { |i| Song.find(i) rescue nil }.compact
         end
       end
@@ -71,10 +71,9 @@ class PlaylistsController < ApplicationController
     @playlist = profile_user.playlists.find(params[:id]) rescue nil
     if @playlist
       unless request.xhr?
-        @playlist_item_ids = @playlist.items.map{|i| i.song_id} if @playlist
+        @playlist_item_ids = @playlist.songs.map(&:id) if @playlist
         if request.post?
-          #@playlist_item_ids = params[:item_ids].split(',').map { |i| Song.find(i) }.compact
-          @playlist_item_ids = Song.find(params[:item_ids].split(',')).to_a rescue []
+          @playlist_item_ids = Song.find_all_by_id(params[:item_ids].split(',')).to_a rescue []
           unless @playlist_item_ids.empty?
             @playlist.update_attributes(params[:playlist])
             @playlist.items.destroy_all
@@ -367,7 +366,7 @@ class PlaylistsController < ApplicationController
       @player_id = current_site.players.all(:conditions => "player_key = 'ondemand_#{current_site.code}'")[0].id rescue nil
       @recommended_artists = current_site.top_artists.all(:limit => 10)
       @playlist_item_ids ||= session[:playlist_item_ids].nil? ? [] : session[:playlist_item_ids]
-      @playlist_items ||= @playlist_item_ids.empty? ? [] : Song.find(@playlist_item_ids)
+      @playlist_items ||= @playlist_item_ids.empty? ? [] : Song.find_all_by_id(@playlist_item_ids)
     end
 end
 

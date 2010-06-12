@@ -28,7 +28,7 @@ class Song < ActiveRecord::Base
 
   index :id
 
-  default_scope :conditions => { :deleted_at => nil }, :include => [:artist, :album]
+  default_scope :conditions => 'songs.deleted_at IS NULL AND albums.deleted_at IS NULL AND accounts.deleted_at IS NULL', :include => [:artist, :album]
 
   after_save :increment_album_total_time, :if => :album_id?
   before_destroy :decrement_album_total_time, :if => :album_id?

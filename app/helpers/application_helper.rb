@@ -873,10 +873,12 @@ module ApplicationHelper
   
   #'Movin Out Anthony's Song Out Anthonys Songs Song'
   def escape_for_js(str)
-    #str.gsub!(/'/, "&#39;")
-    temp = "before: #{str}"
-    str.gsub!(/'/, CGI::escape("'"))
-    str.gsub!(/"/, CGI::escape('"'))
+    if str
+      #str.gsub!(/'/, "&#39;")
+      temp = "before: #{str}"
+      str.gsub!(/'/, CGI::escape("'"))
+      str.gsub!(/"/, CGI::escape('"'))
+    end
     str
   end
 

@@ -27,12 +27,7 @@ class Playlist < ActiveRecord::Base
   belongs_to :owner, :class_name => 'User', :conditions => { :network_id => 2 }
   delegate :network, :to => :owner
     
-  has_many :items, :class_name => 'PlaylistItem', :order => "playlist_items.position ASC", :include => :song, 
-                   :conditions => "playlist_items.id IN (
-                     SELECT playlist_items.id FROM playlist_items, songs WHERE 
-                       playlist_items.song_id = songs.id and songs.deleted_at IS NULL
-                   )"
-
+  has_many :items, :class_name => 'PlaylistItem', :order => "playlist_items.position ASC", :include => :song
   has_many :songs, :through => :items, :order => "playlist_items.position ASC", :conditions => { :deleted_at => nil }
   has_one :editorial_station, :foreign_key => 'mix_id'
   
