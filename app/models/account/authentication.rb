@@ -161,18 +161,16 @@ module Account::Authentication
   end
 
   def uniqueness_of_email
-    self.class.send(:with_exclusive_scope) do
-      user_with_email = User.find_by_email_and_deleted_at(email, nil)
-      if !user_with_email.nil? && user_with_email.id != id
-        self.errors.add(:email, I18n.t("activerecord.errors.messages.taken"))
-      end
+    user_with_email = User.find_by_email_and_deleted_at(email, nil)
+    if !user_with_email.nil? && user_with_email.id != id
+      self.errors.add(:email, I18n.t("activerecord.errors.messages.taken"))
     end
   end
 
   def email_domain_valid_for_beta
     valid_scan_emails = %(wasaone@gmail.com wasatwo@gmail.com wasathree@gmail.com wasafour@gmail.com wasafive@gmail.com wasasix@gmail.com wasaseven@gmail.com wasaeight@gmail.com wasanine@gmail.com)
     if !valid_scan_emails.include?(email)
-      valid_domains = ['ko.com', 'hoodiny.com', 'cyloop.com']
+      valid_domains = ['ko.com', 'hoodiny.com', 'cyloop.com', 'clarusdigital.com']
       errors.add(:email, I18n.t('share.errors.message.email_is_not_authorized') ) unless valid_domains.include?(email.split("@")[1])
     end
   end
