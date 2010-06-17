@@ -17,9 +17,9 @@ module Account::Authentication
       validates_confirmation_of :password,                   :if => :password_required?      
       
       validate :uniqueness_of_email      
-      validate_on_create :email_domain_valid_for_beta, :unless => Proc.new { |user|
-        user.email.blank? or !user.email.match(EMAIL_REGEXP)           
-      }
+      #validate_on_create :email_domain_valid_for_beta, :unless => Proc.new { |user|
+      #  user.email.blank? or !user.email.match(EMAIL_REGEXP)           
+      #}
       validate :validate_terms_and_privacy
       validate :check_negative_captcha
       validate :verify_current_password, :if => :current_password_required?
@@ -161,7 +161,7 @@ module Account::Authentication
   end
 
   def uniqueness_of_email
-    user_with_email = User.find_by_email_and_deleted_at(email, nil)
+    user_with_email = User.find_by_email_on_all_networks(email)
     if !user_with_email.nil? && user_with_email.id != id
       self.errors.add(:email, I18n.t("activerecord.errors.messages.taken"))
     end

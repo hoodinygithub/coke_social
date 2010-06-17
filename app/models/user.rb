@@ -331,5 +331,17 @@ class User < Account
     followings.update_all(:follower_name => self.name[0..2])
     followings_as_followee.update_all(:followee_name => self.name[0..2])
   end
+
+
+  def self.find_by_email_on_all_networks(email)
+    with_exclusive_scope do
+      encrypted_email = User.encrypt_email(email)
+      users = User.find_by_sql ["select * from accounts where (email = ? or encrypted_email = ?) and deleted_at is null", 
+        email, 
+        encrypted_email]
+      users.first
+    end
+  end
+
 end
 
