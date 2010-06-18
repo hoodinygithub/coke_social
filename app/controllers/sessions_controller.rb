@@ -41,7 +41,7 @@ class SessionsController < ApplicationController
   def create
     # Cyloop Login
     unless wlid_web_login?
-      account = User.authenticate(params[:email], params[:password])
+      account = User.authenticate(params[:email], params[:password], current_site)
       do_login(account, params[:remember_me])
     end
   end
