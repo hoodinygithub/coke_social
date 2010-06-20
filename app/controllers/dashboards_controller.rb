@@ -11,8 +11,7 @@ class DashboardsController < ApplicationController
   def show
     @dashboard_menu = :home
     @top_playlists_limit = 6
-#    @top_playlists = current_site.top_playlists.all(:limit => @top_playlists_limit)
-    @top_playlists = [Playlist.last]
+    @top_playlists = current_site.top_playlists.all(:limit => @top_playlists_limit)
     @notifications = profile_owner? ? profile_user.badge_awards.notifications : []
     
     respond_to do |format|
