@@ -217,6 +217,7 @@ class PlaylistsController < ApplicationController
       :total_time => orig_playlist.total_time,
       :cached_tag_list => orig_playlist.cached_tag_list,
       :cached_artist_list => orig_playlist.cached_artist_list,
+      :avatar => orig_playlist.avatar
     }
     
     new_playlist = Playlist.new(attributes)
