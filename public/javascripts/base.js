@@ -1792,7 +1792,7 @@ Base.reviews.count_chars = function(textarea) {
   }
 };
 
-Base.reviews.showPopup = function(url) {
+Base.utils.showPopup = function(url) {
     $.get(url, function(response) {
       $.popup(response);
     });
@@ -1873,14 +1873,14 @@ Base.reviews.postCallback = function(response) {
     if (response.errors) {
       Base.reviews.showErrors($.parseJSON(response.errors), $('#post_review'));
     } else {
-      Base.reviews.showPopup(response.redirect_to);
+      Base.utils.showPopup(response.redirect_to);
     }
   }
 };
 
 Base.reviews.confirm_remove = function(review) {
   var url = "/reviews/" + review + "/confirm_remove";
-  Base.reviews.showPopup(url);
+  Base.utils.showPopup(url);
 };
 
 Base.reviews.remove = function(review) {
@@ -2084,6 +2084,28 @@ Base.utils.ajax_pagination = function() {
   $('div.pagination').after('<div class="small_loading">');
   $.get(paginate_link.attr('href'), Base.utils.load_content);
   return false;
+};
+
+Base.playlists.copy = function(slug, playlist_id) {
+  var url = '/' + slug + '/playlists/' + playlist_id + '/copy';
+  Base.utils.showPopup(url);
+};
+
+Base.playlists.duplicate = function(slug, playlist_id) {
+  var url = '/' + slug + '/playlists/' + playlist_id + '/duplicate';
+  var params = {};
+  params['playlist[name]'] = $("#playlist_name").val();
+  $.post(url, params, Base.playlists.duplicateCallback);
+};
+
+Base.playlists.duplicateCallback = function(response) {
+  if (!response.success) {
+    field_with_errors = $.parseJSON(response.errors);
+    Base.account_settings.highlight_field_with_errors();
+  } else {
+    $(document).trigger('close.facebox');
+    return false;
+  }
 };
 
 jQuery(document).ready(function() {

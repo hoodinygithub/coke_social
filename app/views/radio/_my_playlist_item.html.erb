@@ -9,6 +9,11 @@
 
   <div class="large_btn3">
     <!--span class="small_btn_box hoverable_item"><%= link_to_function "Edit", "Base.stations.launch_edit_layer(#{my_playlist_item.station.id})", :class => "small_btn edit_btn" %></span-->
+
+    <span class="small_btn_box hoverable_item">
+      <%= link_to "Copy", "#", :class => "small_btn copy_btn", :onclick => "Base.playlists.copy('#{my_playlist_item.owner.slug}', #{my_playlist_item.id}); return false;" %>
+    </span>
+
     <span class="small_btn_box hoverable_item"><%= link_to "Edit", playlist_edit_path(my_playlist_item), :class => "small_btn edit_btn" %></span>
     <span class="small_btn_box hoverable_item"><%= link_to_function "Delete", "Base.stations.remove_from_layer(#{my_playlist_item.station.id})", :class => "small_btn delete_btn" %></span>
   </div>

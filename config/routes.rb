@@ -164,7 +164,7 @@ ActionController::Routing::Routes.draw do |map|
     map.with_options(:controller => 'badges') do |url|
       url.badges_set_notified '/:slug/badges/set_notified', :action => 'set_notified'
     end
-    profile.resources :playlists, :member => {:delete_confirmation => :get}
+    profile.resources :playlists, :member => {:delete_confirmation => :get, :copy => :get, :duplicate => :post }
     profile.resources :playlist_items,:member => {:delete_confirmation => :get}, :only => [:new, :create]
     profile.resources :playlists do |playlist|
       playlist.resources :items, :controller => 'playlist_items', :only => [:show, :update, :destroy]

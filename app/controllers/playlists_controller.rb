@@ -205,6 +205,36 @@ class PlaylistsController < ApplicationController
     render :partial => 'radio/review_item', :layout => false, :collection => collection
   end
 
+  def copy
+    @playlist = Playlist.find(params[:id])
+  end
+
+  def duplicate
+    orig_playlist = Playlist.find(params[:id])
+
+    attributes = { 
+      :songs_count => orig_playlist.songs_count,
+      :total_time => orig_playlist.total_time,
+      :cached_tag_list => orig_playlist.cached_tag_list,
+      :cached_artist_list => orig_playlist.cached_artist_list,
+    }
+    
+    new_playlist = Playlist.new(attributes)
+ 
+    new_playlist.name  = params[:playlist][:name].blank? ? nil : params[:playlist][:name]
+    new_playlist.owner = current_user
+    
+    if new_playlist.save
+      orig_playlist.items.each do |item| 
+        new_playlist.items.create(:song => item.song)
+      end
+      new_playlist.create_station
+      render :json => { :success => true }
+    else
+      render :json => { :success => false, :errors => new_playlist.errors.to_json }
+    end
+  end
+
   private
     def get_seeded_results
       results = nil

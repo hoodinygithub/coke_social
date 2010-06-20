@@ -7,7 +7,8 @@
 
         <div class="transparency_thumbanils png_fix">
             <% if false %><a href="#"><img src="images/listen_button.png" alt="" /></a><% end %>
-            <% if false %><a href="#"><img src="images/duplicate_button.png" alt="" /></a><% end %>
+            <%= link_to image_tag('duplicate_button.png', :class=> "png_fix"), '#', 
+              :onclick => "Base.playlists.copy('#{playlist.owner.slug}', #{playlist.id});" %>
             <%= link_to image_tag('play_button.png'), radio_path(:station_id => playlist.station.id) %>
         </div>
 

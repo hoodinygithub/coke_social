@@ -12,9 +12,8 @@
           <%= tag_links(item.commentable) %>
         </div>
         <div class="align_right box_buttons">
-          <% if false %>
-            <a href="#"><img src="/images/duplicate_button.png" class="png_fix" alt="" /></a>
-          <% end %>
+          <%= link_to image_tag('duplicate_button.png', :class=> "png_fix"), '#', 
+            :onclick => "Base.playlists.copy('#{item.commentable.owner.slug}', #{item.commentable.id});" %>
           <% if item.commentable.owner == current_user %>
             <%= link_to image_tag('edit_button.png', :class=> "png_fix"), edit_playlist_path(item.commentable) %>
             <%= link_to image_tag('close_button.png', :class=> "png_fix"), '#', 
