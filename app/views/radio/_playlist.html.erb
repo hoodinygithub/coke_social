@@ -6,9 +6,9 @@
     <!--span class="small_btn_box hoverable_item"><%= link_to_function "Edit","Base.stations.launch_edit_layer(#{@station_obj.id})", :class => "small_btn edit_btn" %></span-->
     <span class="small_btn_box hoverable_item"><%= link_to "Edit", playlist_edit_path(@station_obj.playable), :class => "small_btn edit_btn" %></span>
 
+  <% end %>
     <span class="small_btn_box hoverable_item"><%= link_to "Copy", "#", :class => "small_btn copy_btn", 
       :alt => "copy playlist", :onclick => "Base.playlists.copy('#{@station_obj.playable.owner.slug}', #{@station_obj.playable.id});return false;" %></span>
-  <% end %>
   <br/>
   <small class="grey"><%= l(@station_obj.playable.updated_at.to_date) %></small>
   <br/>
