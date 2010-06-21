@@ -36,6 +36,14 @@ var restoreInput = function(value, input) {
  }
 }
 
+Base.utils.resetIndexes = function() {
+  if($.browser.msie){
+    $('div').each(function(i) {
+      if($(this).css('position')!='absolute') $(this).css('zIndex', 1000 - (i * 10));
+    });
+  }
+}
+
 /*
  * Simple validation utility.  I want to refactor this
  */
@@ -1376,7 +1384,9 @@ Base.content_search.autocomplete = function(last_value) {
   }
   jQuery.get('/search/content/all/' + q, function(data) {
       jQuery('.create_box').html(data);
+      Base.utils.resetIndexes();
       jQuery('.create_box').show();
+      
       jQuery('.content_search_results_ajax').hide();
   });
 };
