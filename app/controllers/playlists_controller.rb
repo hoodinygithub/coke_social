@@ -400,4 +400,3 @@ class PlaylistsController < ApplicationController
       @playlist_items ||= @playlist_item_ids.empty? ? [] : Song.find_all_by_id(@playlist_item_ids)
     end
 end
-

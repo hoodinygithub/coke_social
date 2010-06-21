@@ -29,7 +29,7 @@
   <br/>
   
   <div class="align_right">
-    <big><a href="#" class="black valign_middle popup_close_action"><%= t('actions.cancel') %></a></big>
+    <big><a href="#" class="black valign_middle popup_close_action" onclick="$(document).trigger('close.facebox'); return false;"><%= t('actions.cancel') %></a></big>
     
     <a href="#" class="red_button valign_middle" 
       onclick="Base.playlists.duplicate('<%= @playlist.owner.slug%>',<%= @playlist.id %>);">
