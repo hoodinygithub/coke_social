@@ -511,6 +511,7 @@ function remove_search_result(id)
 
 function get_song_list(id,scope,page)
 {
+    hideCreateBox();
 	if (typeof(page)=="undefined"){ page = 1 }
 	if (isNaN(parseInt(id, 10)) && typeof(id)=="string"){ 
 	  q = "term=" + id + "&scope=" + scope + "&page=" + page;		
@@ -664,3 +665,9 @@ Array.prototype.remove = function (element) {
   //return this;
 }
 
+
+var hideCreateBox = function(){
+/*  restoreInput(content_msg, this); setTimeout(function() {$('.create_box').hide();}, 300); */
+  $('.create_box').hide();
+  restoreInput(content_msg, this);
+}

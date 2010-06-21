@@ -1429,7 +1429,7 @@ Base.playlist_search.autocomplete = function(last_value) {
   }
   jQuery.get('/search/content_local/all/' + q, function(data) {
       jQuery('.create_box').html(data);
-      jQuery('.create_box').show();
+      jQuery('.create_box').css('z-index', 10000).css('position', 'relative').css('top', -10).show();
       jQuery('.content_search_results_ajax').hide();
   });
 };
