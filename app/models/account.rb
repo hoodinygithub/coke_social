@@ -184,7 +184,7 @@ class Account < ActiveRecord::Base
 
   before_validation :find_country_by_ip_address
   def find_country_by_ip_address
-    self.country = Country.find_by_addr(ip_address) unless ip_address.nil? && !country.nil?
+    self.country = Country.find_by_addr(ip_address) if !ip_address.nil? && country.nil?
   end
   
   attr_accessor :country_name
