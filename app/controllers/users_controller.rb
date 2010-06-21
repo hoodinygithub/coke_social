@@ -27,6 +27,7 @@ class UsersController < ApplicationController
   # GET /users/id/edit
   def edit
     @user = User.find(current_user.id)
+    puts request.host
   end
 
   # POST /users/id
