@@ -1,5 +1,5 @@
 <%= render :partial => 'station_details_form' %>
-<%= avatar_for(@station_obj.playable, :comment, :class => 'left_side', :width => '50', :disable_default_css => true) %>
+<%= avatar_for(@station_obj.playable, :small, :class => 'left_side', :width => '50', :disable_default_css => true) %>
 <div class="album_text2">
   <b><%= @station_obj.playable.name %></b>
   <% if logged_in? && current_user.id == @station_obj.playable.owner.id %>
