@@ -241,11 +241,7 @@ class ApplicationController < ActionController::Base
   end
 
   def global_url
-    if ['staging', 'production'].include?(RAILS_ENV)
-      current_site.domain
-    else
-      host_port
-    end
+    current_site.domain
   end
 
   def current_country
