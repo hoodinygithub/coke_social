@@ -99,10 +99,10 @@ protected
 
   def load_sort_data
     sort_types = { :latest => 'comments.updated_at DESC', :highest_rated => 'comments.rating DESC' }
-    sort_by    = params.fetch(:sort_by, nil).to_sym rescue :latest
+    sort_by    = get_sort_by_param(sort_types.keys, :latest) #params.fetch(:sort_by, nil).to_sym rescue :latest
     @sort_data = sort_types[sort_by]
     @page      = params[:page].blank? ? 1 : params[:page]
-    @sort_type = params.fetch(:sort_by, nil).to_sym rescue :latest
+    @sort_type = sort_by 
   end
 
   def load_records

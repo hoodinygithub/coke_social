@@ -461,4 +461,12 @@ class ApplicationController < ActionController::Base
     ENV["#{current_site.code.upcase}_FEEDBACK_EMAIL"]
   end
 
+  def get_sort_by_param(valid_params=[], default = :latest)
+    sort_by = params.fetch(:sort_by, default).to_sym
+    unless valid_params.include?(sort_by)
+      sort_by = default.to_sym
+    end
+    params[:sort_by] = sort_by
+  end
+
 end

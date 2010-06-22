@@ -10,12 +10,12 @@ class PlaylistsController < ApplicationController
       params[:controller] = 'my'
       params[:action]     = 'playlists'
     end
-    @sort_type = params.fetch(:sort_by, nil).to_sym rescue :latest
+    sort_types  = { :latest => 'playlists.updated_at DESC', 
+                    :alphabetical => 'playlists.name',
+                    :highest_rated => 'playlists.rating_cache DESC',
+                    :top => 'playlists.total_plays DESC'  }
+    @sort_type = get_sort_by_param(sort_types.keys, :latest) #params.fetch(:sort_by, nil).to_sym rescue :latest
     begin
-      sort_types  = { :latest => 'playlists.updated_at DESC', 
-                      :alphabetical => 'playlists.name',
-                      :highest_rated => 'playlists.rating_cache DESC',
-                      :top => 'playlists.total_plays DESC'  }
 
       @collection = profile_user.playlists.paginate :page => params[:page], :per_page => 6, :order => sort_types[@sort_type]
 

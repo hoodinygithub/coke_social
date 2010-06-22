@@ -3,7 +3,6 @@ class SearchesController < ApplicationController
   def show
     @query = CGI::unescape(params[:q]) rescue nil
     @search_types ||= [:playlists, :users]    
-    @sort_type = params.fetch(:sort_by, nil).to_sym rescue :relevance
     @sort_types = { :latest => { :playlists => 'updated_at DESC', :users => 'created_at DESC' }, \
                     :alphabetical => 'normalized_name ASC', \
                     :relevance => nil, \
@@ -11,6 +10,7 @@ class SearchesController < ApplicationController
                     :top => { :playlists => 'playlist_total_plays DESC', :users => nil }  
                   }
 
+    @sort_type = get_sort_by_param(@sort_types.keys, :relevance) #params.fetch(:sort_by, nil).to_sym rescue :relevance
     @active_scope = params[:scope].nil? ? @search_types[0] : params[:scope].to_sym
 
     @counts = {}

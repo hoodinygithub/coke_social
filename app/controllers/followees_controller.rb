@@ -6,10 +6,10 @@ class FolloweesController < ApplicationController
   
   def index
     @dashboard_menu = :following
-    @sort_type = params.fetch(:sort_by, nil).to_sym rescue :latest
+    sort_types = { :latest => 'followings.approved_at DESC', :alphabetical => 'followings.followee_name'  }
+    @sort_type = get_sort_by_param(sort_types.keys, :latest) #params.fetch(:sort_by, nil).to_sym rescue :latest
 
     begin
-        sort_types = { :latest => 'followings.approved_at DESC', :alphabetical => 'followings.followee_name'  }
         @collection = profile_user.followees.paginate :page => params[:page], :per_page => 15, :order => sort_types[@sort_type]
         if request.xhr?
           render :partial => 'followings/ajax_list'

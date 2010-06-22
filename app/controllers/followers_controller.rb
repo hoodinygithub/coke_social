@@ -6,10 +6,10 @@ class FollowersController < ApplicationController
 
   def index
     @dashboard_menu = :followers
-    @sort_type = params.fetch(:sort_by, nil).to_sym rescue :latest
+    sort_types  = { :latest => 'followings.approved_at DESC', :alphabetical => 'followings.follower_name'  }
+    @sort_type = get_sort_by_param(sort_types.keys, :latest) #params.fetch(:sort_by, nil).to_sym rescue :latest
 
     begin
-        sort_types  = { :latest => 'followings.approved_at DESC', :alphabetical => 'followings.follower_name'  }
         if profile_artist?
           @pending    = profile_artist.follow_requests
           @collection = profile_artist.followers.paginate :page => params[:page], :per_page => 15, :order => sort_types[@sort_type]
