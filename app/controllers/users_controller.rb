@@ -107,14 +107,14 @@ class UsersController < ApplicationController
       @user = User.forgot?( params[:user] )
       if @user && @user.msn_live_id && wlid_web_login?
         flash.now[:error] = t('reset.msn_account')
-      elsif @user && @user.errors.empty?
+      elsif @user && @user.errors.empty? && params[:safe_question].empty? # && verify_recaptcha(:model => @user, :message => I18n.t("forgot.captcha_invalid"))
         UserNotification.send_reset_notification(
           :user_id => @user.id,
           :password => @user.reset_password,
           :site_id => request.host)
         flash[:success] = t('forgot.reset_message_sent')
-      else
-        flash.now[:error] = t("reset.insert_valid_info")
+      elsif @user.nil?
+        flash[:success] = t('forgot.reset_message_sent')        
       end
     elsif !request.referer.blank? && request.referer !=~ /forgot|session/
       session[:return_to] = request.referer
