@@ -6,6 +6,10 @@ class PlaylistsController < ApplicationController
 
   def index
     @dashboard_menu = :playlists
+    if on_dashboard?
+      params[:controller] = 'my'
+      params[:action]     = 'playlists'
+    end
     @sort_type = params.fetch(:sort_by, nil).to_sym rescue :latest
     begin
       sort_types  = { :latest => 'playlists.updated_at DESC', 
