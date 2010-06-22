@@ -157,7 +157,7 @@ class User < Account
   validate :check_born_on_in_future, :unless => Proc.new { |user| user.born_on.blank? }
   validate :check_age_is_at_least_13, :unless => Proc.new { |user| user.born_on.blank? }
 
-  def self.forgot?(attributes)
+  def self.forgot?(attributes, current_site=nil)
     user = User.new(attributes)
     if user.email.to_s.blank?
       user.errors.add(:email, I18n.t("activerecord.errors.messages.blank"))
@@ -170,7 +170,8 @@ class User < Account
     end    
     
     if user.errors.empty?
-      user = User.find_by_email_and_slug_and_deleted_at( attributes[:email], attributes[:slug], nil )
+      network_ids = current_site.networks.collect(&:id)
+      user = User.find_by_email_and_slug_and_deleted_at_and_network_id( attributes[:email], attributes[:slug], nil, network_ids )
     end
     user
   end

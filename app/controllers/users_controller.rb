@@ -104,7 +104,7 @@ class UsersController < ApplicationController
 
   def forgot
     if request.post?
-      @user = User.forgot?( params[:user] )
+      @user = User.forgot?( params[:user], current_site )
       if @user && @user.msn_live_id && wlid_web_login?
         flash.now[:error] = t('reset.msn_account')
       elsif @user && @user.errors.empty? && params[:safe_question].empty? # && verify_recaptcha(:model => @user, :message => I18n.t("forgot.captcha_invalid"))
