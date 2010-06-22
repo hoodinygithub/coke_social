@@ -83,7 +83,7 @@ class UsersController < ApplicationController
       self.current_user = @user
 
       subject = t("registration.email.subject")
-      # UserNotification.send_registration( :user_id => @user.id, :subject => subject, :host_url => request.host, :site_id => current_site.code, :global_url => global_url, :locale => current_site.default_locale)
+      UserNotification.send_registration( :user_id => @user.id, :subject => subject, :host_url => request.host, :site_id => current_site.code, :global_url => global_url, :locale => current_site.default_locale)
 
       # Background validation to twitter username
       Resque.enqueue(TwitterJob, {
