@@ -18,41 +18,28 @@
         
         <tr>
           <td><table width="490" border="0" cellspacing="15" cellpadding="0">
+          <% ['loop', 'badges', 'friends', 'create', 'work'].each_with_index do |item, i| %>
             <tr>
-              <td width="72" align="center"><a href="http://<%= @global_url %>" target="_blank"><img src="http://<%=@global_url%>/images/registration/discover.png" alt="Discover" border="0"></a></td>
-              <td><strong><font face="Arial, Helvetica, sans-serif" color="#000000" size="+1"><%= t("registration.sidebar.discover_title") %></font></strong><br>
-                  <font face="Arial, Helvetica, sans-serif" color="#666666" size="2"><%= t("registration.sidebar.discover_text") %></font></td>
-              </tr>
-            <tr>
-              <td width="72" align="center"><a href="http://<%= @global_url %>" target="_blank"><img src="http://<%=@global_url%>/images/registration/radio.png" alt="Radios" border="0"></a></td>
-              <td><strong><font face="Arial, Helvetica, sans-serif" color="#000000" size="+1"><%= t("registration.sidebar.radio_title") %></font></strong><br>
-                  <font face="Arial, Helvetica, sans-serif" color="#666666" size="2"><%= t("registration.sidebar.radio_text") %></font></td>            </tr>
-            <tr>
-              <td width="72" align="center"><a href="http://<%= @global_url %>" target="_blank"><img src="http://<%=@global_url%>/images/registration/follow.png" alt="Follow Artists" border="0"></a></td>
-              <td><strong><font face="Arial, Helvetica, sans-serif" color="#000000" size="+1"><%= t("registration.sidebar.follow_title") %></font></strong><br>
-                  <font face="Arial, Helvetica, sans-serif" color="#666666" size="2"><%= t("registration.sidebar.follow_text") %></font></td>
-            </tr>
-            <tr>
-              <td width="72" align="center"><a href="http://<%= @global_url %>" target="_blank"><img src="http://<%=@global_url%>/images/registration/playlist.png" alt="Playlists" border="0"></a></td>
-              <td><strong><font face="Arial, Helvetica, sans-serif" color="#000000" size="+1"><%= t("registration.sidebar.playlist_title") %></font></strong><br>
-                  <font face="Arial, Helvetica, sans-serif" color="#666666" size="2"><%= t("registration.sidebar.playlist_text") %></font></td>
-            </tr>
-            <tr>
-              <td width="72" align="center"><a href="http://<%= @global_url %>" target="_blank"><img src="http://<%=@global_url%>/images/registration/chat.png" alt="Chat" border="0"></a></td>
-              <td><strong><font face="Arial, Helvetica, sans-serif" color="#000000" size="+1"><%= t("registration.sidebar.chat_title") %></font></strong><br>
-                  <font face="Arial, Helvetica, sans-serif" color="#666666" size="2"><%= t("registration.sidebar.chat_text") %></font></td>
-            </tr>
-            
+              <td width="72" align="center">
+                <a href="http://<%= @global_url %>" target="_blank">
+                  <img src="http://<%=@global_url%>/images/email/icon_<%= (i+1) %>.gif" alt="<%= t("registration.sidebox.#{item}_title") %>" border="0">
+                </a>
+              </td>
+              <td>
+                  <strong><font face="Arial, Helvetica, sans-serif" color="#000000" size="+1"><%= t("registration.sidebox.#{item}_title") %></font></strong><br />
+                <font face="Arial, Helvetica, sans-serif" color="#666666" size="2"><%= t("registration.sidebox.#{item}_text") %></font></td>
+              </tr>            
+          <% end %>            
           </table></td>
         </tr>
         <tr>
-          <td align="right"><a href="http://<%= @global_url %>" style="text-decoration: none; font-family: 'Helvetica', sans-serif; text-align: center; font-size: 17px; color: #3F9BE8; border: 0; line-height: 38px; padding: 5px 10px; cursor: pointer;" target="_blank"><%= t("registration.email.button") %></a></td>
+          <td align="right"><a href="http://<%= @global_url %>" style="text-decoration: none; font-family: 'Helvetica', sans-serif; text-align: center; font-size: 17px; color: red; border: 0; line-height: 38px; padding: 5px 10px; cursor: pointer;" target="_blank"><%= t("registration.email.button") %></a></td>
         </tr>
         <tr>
           <td><img src="http://<%=@global_url%>/images/email/line.gif" width="520" height="1"></td>
         </tr>
         <tr>
-          <td align="center"><font face="Arial, Helvetica, sans-serif" color="#025D8C" size="3"><%= t("registration.email.closing_statement") %></font></td>
+          <td align="right"><img src="http://<%=@global_url%>/images/email/cyloop_logo.gif"></td>
         </tr>
       </table>
       <table width="560" border="0" align="center" cellpadding="0" cellspacing="0" bgcolor="#CCCCCC">

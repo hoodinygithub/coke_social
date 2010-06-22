@@ -242,17 +242,6 @@ class Account < ActiveRecord::Base
     available_at_current_site?
   end
 
-  after_save :delete_customization_key
-  def delete_customization_key
-    Rails.cache.delete("profiles/#{slug_cache_key}/customizations")
-  end
-
-  def current_customizations
-    Rails.cache.fetch("profiles/#{slug_cache_key}/customizations") do
-      CustomizationWriter.new(self).prepare_template
-    end
-  end
-
   def delete_follower_cache
     Rails.cache.delete("#{cache_key}/followee_ids")
     Rails.cache.delete("#{cache_key}/pending_followee_ids")
