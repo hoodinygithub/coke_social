@@ -155,7 +155,7 @@ class UsersController < ApplicationController
     if feedback && !feedback.empty?
       options = {
         :site_id      => current_site.code,
-        :mailto       => "#{request.host}@hoodiny.com",
+        :mailto       => feedback_recipient,
         :address      => params[:address],
         :country      => params[:country],
         :os           => params[:os],
