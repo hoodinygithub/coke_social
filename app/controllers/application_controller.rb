@@ -458,11 +458,7 @@ class ApplicationController < ActionController::Base
   end
 
   def feedback_recipient
-    if site_includes(:msnbr)
-      ENV['BR_FEEDBACK_EMAIL']
-    elsif site_includes(:msnmx)
-      ENV['MX_FEEDBACK_EMAIL']
-    elsif site_includes(:cokebr)
+    if site_includes(:cokebr)
       ENV['COKE_BR_FEEDBACK_EMAIL']
     elsif site_includes(:cokelatam)
       ENV['COKE_LATAM_FEEDBACK_EMAIL']
