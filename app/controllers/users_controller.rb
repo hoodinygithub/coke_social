@@ -37,9 +37,11 @@ class UsersController < ApplicationController
     born_on_year             = params[:user].delete("born_on(1i)")
     born_on_month            = params[:user].delete("born_on(2i)")
     born_on_day              = params[:user].delete("born_on(3i)")
-
     @user.attributes         = params[:user]    
-    @user.born_on_string     = "#{born_on_year}-#{born_on_month}-#{born_on_day}"
+    
+    if born_on_day && born_on_month && born_on_year
+      @user.born_on_string = "#{born_on_year}-#{born_on_month}-#{born_on_day}"
+    end
     twitter_username_changed = @user.twitter_username_changed?
     
     if @user.save
