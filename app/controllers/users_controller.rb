@@ -79,7 +79,7 @@ class UsersController < ApplicationController
     if @user.save
       cookies.delete(:auth_token) if cookies.include?(:auth_token)
       session[:msn_live_id] = nil if wlid_web_login?
-      session[:registration_layer] = true     
+      session[:registration_layer] = true
       self.current_user = @user
 
       subject = t("registration.email.subject")
