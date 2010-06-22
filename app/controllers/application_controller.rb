@@ -241,14 +241,8 @@ class ApplicationController < ActionController::Base
   end
 
   def global_url
-    if RAILS_ENV == 'production'
-      if site_code == "cokebr"
-        "br-ko.cyloop.com"
-      else
-        "latam-ko.cyloop.com"
-      end
-    elsif RAILS_ENV == 'staging'
-      request.host
+    if ['staging', 'production'].include?(RAILS_ENV)
+      current_site.domain
     else
       host_port
     end
