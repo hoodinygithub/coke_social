@@ -475,12 +475,16 @@ function submit_save_form()
   
   if(_pv.valid)
   {
+    var button = $('.red_loading');
+    button.empty().prepend('<img class="btn_red_loading" src="/images/red_loading.gif"/>' + 
+      button.attr('loading_message'));
+
     name = form.find("input[name='name']").val();
     if(name != "")
     {
       //form.find("input[name='item_ids']").attr("value", playlist_ids);
       form.find("input[name='item_ids']").attr("value", _pv.item_ids);
-      form.submit();
+      setTimeout(function(){ $('#save_playlist_form').submit(); }, 500);
     }
     else
     {
