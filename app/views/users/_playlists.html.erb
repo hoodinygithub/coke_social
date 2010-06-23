@@ -23,7 +23,11 @@
   <% end %>
   <% if profile_account.total_playlists > 3 %>
     <div class="align_right">
-      <b class="right_side"><%= link_to t('actions.view_more'), user_playlists_path(profile_account) %></b>
+      <% if on_dashboard? %>
+      <b class="right_side"><%= link_to t('actions.view_more'), my_playlists_path %></b>
+      <% else %>
+      <b class="right_side"><%= link_to t('actions.view_more'), user_playlists_path %></b>
+      <% end %>
     </div>
     <br />
   <% end %>
