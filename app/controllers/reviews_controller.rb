@@ -106,11 +106,10 @@ protected
   end
 
   def load_records
-    conditions = {}
-    conditions.merge!({ :commentable_type => 'Playlist', :commentable_id => params[:playlist_id] }) if params[:playlist_id]
-    conditions.merge!({ :user_id => profile_account.id }) unless request.request_uri.match(/playlist/)
-    @playlist  = Playlist.find(params[:playlist_id]) if params[:playlist_id]
-    @records   = Comment.all(:conditions => conditions, :order => @sort_data )
+    @playlist = Playlist.find(params[:playlist_id]) if params[:playlist_id]    
+    scope = request.request_uri.match(/playlist/) ? @playlist : profile_account
+    @records = scope.comments.find(:all, :order => @sort_data, :from => 'playlists, comments', 
+      :conditions => 'commentable_id = playlists.id and playlists.deleted_at IS NULL')
   end
 
 end
