@@ -8,7 +8,7 @@
     <%= link_to item.followers.size, user_followers_path(item) %> <%= t('profile.navigation.followers') %>
   </div>
   <div class="follower_actions w_settings">
-    <%= follow_button(:account => item) %>
+    <%= follow_button(:account => item, :remove_div => (params[:controller] != 'followers' && page_owner?) ) %>
     <a href="#" class="black_button settings_button">
       <span><span>
         <img src="/images/settings_button.png" class="png_fix" alt="" />
