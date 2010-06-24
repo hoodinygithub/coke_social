@@ -1742,6 +1742,8 @@ jQuery(document).ready(function() {
   $("#network_comment_list").show();
 
   $(".ajax_sorting a").click(Base.utils.ajax_sorting);
+
+  $('.delete_site').click(Base.account_settings.delete_website);
   
 });
 
