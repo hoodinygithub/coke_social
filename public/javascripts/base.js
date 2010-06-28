@@ -1199,13 +1199,27 @@ Base.account_settings.focus_first_field_with_error_by_label = function() {
 
 
 Base.account_settings.add_website = function() {
-  var value = $(this).val().replace('http://', '');
-  $('#websites_clearer').before('<div class="website_row">' +
-   '<input id="user_websites_" name="user[websites][]" type="hidden" value="' + value + '" />' +
+  var protocol_regex  = new RegExp("(ftp|http|https):\/\/");
+  var site_regex = new RegExp("^[A-Za-z]+://[A-Za-z0-9-_]+\\.[A-Za-z0-9-_%&\?\/.=]+$");
+  var value = $(this).val();
+
+  Base.account_settings.clear_info_and_errors_on($(this));
+
+  if (!protocol_regex.test(value)) {
+    value = "http://" + value;
+  }
+
+  if (site_regex.test(value)) {
+    value = value.replace(/(ftp|http|https):\/\//, "");
+    $('#websites_clearer').before('<div class="website_row">' +
+   '<input class="user_website" id="user_websites_" name="user[websites][]" type="hidden" value="' + value + '" />' +
    '<b><big><a href="http://' + value + '">' + value + '</a></big> &nbsp; ' +
    '<a href="#" class="black delete_site">[' + Base.locale.t('account_settings.delete') + ']</a></b><br/></div>');
-  $('.delete_site').click(Base.account_settings.delete_website);
-  $(this).val('');
+    $('.delete_site').click(Base.account_settings.delete_website);
+    $(this).val('');
+  } else {
+    Base.account_settings.add_message_on($(this), Base.locale.translate('shared.errors.invalid_url'), 'error');
+  } 
   return false;
 };
 
