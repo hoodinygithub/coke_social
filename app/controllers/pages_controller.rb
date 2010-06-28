@@ -16,7 +16,7 @@ class PagesController < ApplicationController
 
   def bottle_test
     respond_to do |format|
-      format.html { render :template => 'pages/bottle_test.html.erb', :layout => false }
+      format.html { render :file => 'pages/bottle.html.erb' }
     end
   end
 

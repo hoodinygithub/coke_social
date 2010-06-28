@@ -1,6 +1,4 @@
-<html>
-<head>
-  <script type="text/javascript" src="/javascripts/jquery-1.4.1.min.js"></script>
+<% content_for :head do %>
   <style type="text/css">
     .links {
       width: 207px;
@@ -43,8 +41,9 @@
     }
 
   </style>
-</head>
-<body>
+<% end %>
+<% content_for :header_space_content do %>
+  <div style="height: 100px"></div>
   <script type="text/javascript">
     jQuery(document).ready(function(){
       jQuery("a.tag_outer").mouseover(function(e){
@@ -68,99 +67,100 @@
       // 
     });
   </script>
-  <div class="links">
-    <table height="100%">
-      <tr>
-        <td valign="bottom" align="center">
-          <a href="#" id="tag_inner_1" class="tag_inner red">Hello</a>&nbsp;
-          <a href="#" id="tag_inner_2" class="tag_inner red" style="font-size:24px">Goodbye</a>&nbsp;
-          <a href="#" id="tag_inner_3" class="tag_inner red" style="font-size:16px">Pop</a>&nbsp;
-          <a href="#" id="tag_inner_4" class="tag_inner red">Active</a>&nbsp;
-          <a href="#" id="tag_inner_5" class="tag_inner red">Music</a>&nbsp;
-          <a href="#" id="tag_inner_6" class="tag_inner red" style="font-size:28px" >Live</a>&nbsp;
-          <a href="#" id="tag_inner_7" class="tag_inner red">Hello</a>&nbsp;
-          <a href="#" id="tag_inner_8" class="tag_inner red">Dance</a>&nbsp;
-          <a href="#" id="tag_inner_9" class="tag_inner red" style="font-size:20px" >Rock-out</a>&nbsp;
-          <a href="#" id="tag_inner_10" class="tag_inner red">Love</a>&nbsp;
-          <a href="#" id="tag_inner_11" class="tag_inner red">Party</a>&nbsp;
-          <a href="#" id="tag_inner_12" class="tag_inner red" style="font-size:24px">Electronic</a>&nbsp;
-          <a href="#" id="tag_inner_13" class="tag_inner red">So-great</a>&nbsp;
-          <a href="#" id="tag_inner_14" class="tag_inner red" style="font-size:10px">Hello</a>&nbsp;
-          <a href="#" id="tag_inner_15" class="tag_inner red" style="font-size:24px">Goodbye</a>&nbsp;
-          <a href="#" id="tag_inner_16" class="tag_inner red">Pop</a>&nbsp;
-          <a href="#" id="tag_inner_17" class="tag_inner red" style="font-size:20px">Active</a>&nbsp;
-          <a href="#" id="tag_inner_18" class="tag_inner red">Music</a>&nbsp;
-          <a href="#" id="tag_inner_19" class="tag_inner red">Live</a>&nbsp;
-          <a href="#" id="tag_inner_20" class="tag_inner red">Hello</a>&nbsp;
-          <a href="#" id="tag_inner_21" class="tag_inner red" style="font-size:22px">Dance</a>&nbsp;
-          <a href="#" id="tag_inner_22" class="tag_inner red" style="font-size:26px">Rock-out</a>&nbsp;
-          <a href="#" id="tag_inner_23" class="tag_inner red">Love</a>&nbsp;
-          <a href="#" id="tag_inner_24" class="tag_inner red" style="font-size:24px" >Party</a>&nbsp;
-          <a href="#" id="tag_inner_25" class="tag_inner red">Electronic</a>&nbsp;
-          <a href="#" id="tag_inner_26" class="tag_inner red" style="font-size:16px" >So-great</a>&nbsp;
-          <a href="#" id="tag_inner_27" class="tag_inner red">Hello</a>&nbsp;
-          <a href="#" id="tag_inner_28" class="tag_inner red" style="font-size:24px">Goodbye</a>&nbsp;
-          <a href="#" id="tag_inner_29" class="tag_inner red" style="font-size:22px" >Pop</a>&nbsp;
-          <a href="#" id="tag_inner_30" class="tag_inner red" style="font-size:20px">Active</a>&nbsp;
-          <a href="#" id="tag_inner_31" class="tag_inner red">Music</a>&nbsp;
-          <a href="#" id="tag_inner_32" class="tag_inner red">Live</a>&nbsp;
-          <a href="#" id="tag_inner_33" class="tag_inner red">Hello</a>&nbsp;
-          <a href="#" id="tag_inner_34" class="tag_inner red" style="font-size:22px">Dance</a>&nbsp;
-          <a href="#" id="tag_inner_35" class="tag_inner red" style="font-size:26px">Rock-out</a>&nbsp;
-          <a href="#" id="tag_inner_36" class="tag_inner red">Love</a>&nbsp;
-          <a href="#" id="tag_inner_37" class="tag_inner red">Party</a>&nbsp;
-          <a href="#" id="tag_inner_38" class="tag_inner red">Electronic</a>&nbsp;
-          <a href="#" id="tag_inner_39" class="tag_inner red">So-great</a>&nbsp;
-        </td>
-      </tr>
-    </table>
-  </div>
-  <div id="bottle"></div>
-  <div class="links top">
-    <table height="100%">
-      <tr>
-        <td valign="bottom" align="center">
-          <a href="#" id="tag_outer_1" class="tag_outer red">Hello</a>&nbsp;
-          <a href="#" id="tag_outer_2" class="tag_outer red" style="font-size:24px">Goodbye</a>&nbsp;
-          <a href="#" id="tag_outer_3" class="tag_outer red" style="font-size:16px">Pop</a>&nbsp;
-          <a href="#" id="tag_outer_4" class="tag_outer red">Active</a>&nbsp;
-          <a href="#" id="tag_outer_5" class="tag_outer red">Music</a>&nbsp;
-          <a href="#" id="tag_outer_6" class="tag_outer red" style="font-size:28px" >Live</a>&nbsp;
-          <a href="#" id="tag_outer_7" class="tag_outer red">Hello</a>&nbsp;
-          <a href="#" id="tag_outer_8" class="tag_outer red">Dance</a>&nbsp;
-          <a href="#" id="tag_outer_9" class="tag_outer red" style="font-size:20px" >Rock-out</a>&nbsp;
-          <a href="#" id="tag_outer_10" class="tag_outer red">Love</a>&nbsp;
-          <a href="#" id="tag_outer_11" class="tag_outer red">Party</a>&nbsp;
-          <a href="#" id="tag_outer_12" class="tag_outer red" style="font-size:24px">Electronic</a>&nbsp;
-          <a href="#" id="tag_outer_13" class="tag_outer red">So-great</a>&nbsp;
-          <a href="#" id="tag_outer_14" class="tag_outer red" style="font-size:10px">Hello</a>&nbsp;
-          <a href="#" id="tag_outer_15" class="tag_outer red" style="font-size:24px">Goodbye</a>&nbsp;
-          <a href="#" id="tag_outer_16" class="tag_outer red">Pop</a>&nbsp;
-          <a href="#" id="tag_outer_17" class="tag_outer red" style="font-size:20px">Active</a>&nbsp;
-          <a href="#" id="tag_outer_18" class="tag_outer red">Music</a>&nbsp;
-          <a href="#" id="tag_outer_19" class="tag_outer red">Live</a>&nbsp;
-          <a href="#" id="tag_outer_20" class="tag_outer red">Hello</a>&nbsp;
-          <a href="#" id="tag_outer_21" class="tag_outer red" style="font-size:22px">Dance</a>&nbsp;
-          <a href="#" id="tag_outer_22" class="tag_outer red" style="font-size:26px">Rock-out</a>&nbsp;
-          <a href="#" id="tag_outer_23" class="tag_outer red">Love</a>&nbsp;
-          <a href="#" id="tag_outer_24" class="tag_outer red"style="font-size:24px" >Party</a>&nbsp;
-          <a href="#" id="tag_outer_25" class="tag_outer red">Electronic</a>&nbsp;
-          <a href="#" id="tag_outer_26" class="tag_outer red" style="font-size:16px" >So-great</a>&nbsp;
-          <a href="#" id="tag_outer_27" class="tag_outer red">Hello</a>&nbsp;
-          <a href="#" id="tag_outer_28" class="tag_outer red" style="font-size:24px">Goodbye</a>&nbsp;
-          <a href="#" id="tag_outer_29" class="tag_outer red" style="font-size:22px" >Pop</a>&nbsp;
-          <a href="#" id="tag_outer_30" class="tag_outer red" style="font-size:20px">Active</a>&nbsp;
-          <a href="#" id="tag_outer_31" class="tag_outer red">Music</a>&nbsp;
-          <a href="#" id="tag_outer_32" class="tag_outer red">Live</a>&nbsp;
-          <a href="#" id="tag_outer_33" class="tag_outer red">Hello</a>&nbsp;
-          <a href="#" id="tag_outer_34" class="tag_outer red" style="font-size:22px">Dance</a>&nbsp;
-          <a href="#" id="tag_outer_35" class="tag_outer red" style="font-size:26px">Rock-out</a>&nbsp;
-          <a href="#" id="tag_outer_36" class="tag_outer red">Love</a>&nbsp;
-          <a href="#" id="tag_outer_37" class="tag_outer red">Party</a>&nbsp;
-          <a href="#" id="tag_outer_38" class="tag_outer red">Electronic</a>&nbsp;
-          <a href="#" id="tag_outer_39" class="tag_outer red">So-great</a>&nbsp;
-        </td>
-      </tr>
-    </table>
-  </div>
-</body>
+<div class="links">
+  <table height="100%">
+    <tr>
+      <td valign="bottom" align="center">
+        <a href="#" id="tag_inner_1" class="tag_inner red">Hello</a>&nbsp;
+        <a href="#" id="tag_inner_2" class="tag_inner red" style="font-size:24px">Goodbye</a>&nbsp;
+        <a href="#" id="tag_inner_3" class="tag_inner red" style="font-size:16px">Pop</a>&nbsp;
+        <a href="#" id="tag_inner_4" class="tag_inner red">Active</a>&nbsp;
+        <a href="#" id="tag_inner_5" class="tag_inner red">Music</a>&nbsp;
+        <a href="#" id="tag_inner_6" class="tag_inner red" style="font-size:28px" >Live</a>&nbsp;
+        <a href="#" id="tag_inner_7" class="tag_inner red">Hello</a>&nbsp;
+        <a href="#" id="tag_inner_8" class="tag_inner red">Dance</a>&nbsp;
+        <a href="#" id="tag_inner_9" class="tag_inner red" style="font-size:20px" >Rock-out</a>&nbsp;
+        <a href="#" id="tag_inner_10" class="tag_inner red">Love</a>&nbsp;
+        <a href="#" id="tag_inner_11" class="tag_inner red">Party</a>&nbsp;
+        <a href="#" id="tag_inner_12" class="tag_inner red" style="font-size:24px">Electronic</a>&nbsp;
+        <a href="#" id="tag_inner_13" class="tag_inner red">So-great</a>&nbsp;
+        <a href="#" id="tag_inner_14" class="tag_inner red" style="font-size:10px">Hello</a>&nbsp;
+        <a href="#" id="tag_inner_15" class="tag_inner red" style="font-size:24px">Goodbye</a>&nbsp;
+        <a href="#" id="tag_inner_16" class="tag_inner red">Pop</a>&nbsp;
+        <a href="#" id="tag_inner_17" class="tag_inner red" style="font-size:20px">Active</a>&nbsp;
+        <a href="#" id="tag_inner_18" class="tag_inner red">Music</a>&nbsp;
+        <a href="#" id="tag_inner_19" class="tag_inner red">Live</a>&nbsp;
+        <a href="#" id="tag_inner_20" class="tag_inner red">Hello</a>&nbsp;
+        <a href="#" id="tag_inner_21" class="tag_inner red" style="font-size:22px">Dance</a>&nbsp;
+        <a href="#" id="tag_inner_22" class="tag_inner red" style="font-size:26px">Rock-out</a>&nbsp;
+        <a href="#" id="tag_inner_23" class="tag_inner red">Love</a>&nbsp;
+        <a href="#" id="tag_inner_24" class="tag_inner red" style="font-size:24px" >Party</a>&nbsp;
+        <a href="#" id="tag_inner_25" class="tag_inner red">Electronic</a>&nbsp;
+        <a href="#" id="tag_inner_26" class="tag_inner red" style="font-size:16px" >So-great</a>&nbsp;
+        <a href="#" id="tag_inner_27" class="tag_inner red">Hello</a>&nbsp;
+        <a href="#" id="tag_inner_28" class="tag_inner red" style="font-size:24px">Goodbye</a>&nbsp;
+        <a href="#" id="tag_inner_29" class="tag_inner red" style="font-size:22px" >Pop</a>&nbsp;
+        <a href="#" id="tag_inner_30" class="tag_inner red" style="font-size:20px">Active</a>&nbsp;
+        <a href="#" id="tag_inner_31" class="tag_inner red">Music</a>&nbsp;
+        <a href="#" id="tag_inner_32" class="tag_inner red">Live</a>&nbsp;
+        <a href="#" id="tag_inner_33" class="tag_inner red">Hello</a>&nbsp;
+        <a href="#" id="tag_inner_34" class="tag_inner red" style="font-size:22px">Dance</a>&nbsp;
+        <a href="#" id="tag_inner_35" class="tag_inner red" style="font-size:26px">Rock-out</a>&nbsp;
+        <a href="#" id="tag_inner_36" class="tag_inner red">Love</a>&nbsp;
+        <a href="#" id="tag_inner_37" class="tag_inner red">Party</a>&nbsp;
+        <a href="#" id="tag_inner_38" class="tag_inner red">Electronic</a>&nbsp;
+        <a href="#" id="tag_inner_39" class="tag_inner red">So-great</a>&nbsp;
+      </td>
+    </tr>
+  </table>
+</div>
+<div id="bottle"></div>
+<div class="links top">
+  <table height="100%">
+    <tr>
+      <td valign="bottom" align="center">
+        <a href="#" id="tag_outer_1" class="tag_outer red">Hello</a>&nbsp;
+        <a href="#" id="tag_outer_2" class="tag_outer red" style="font-size:24px">Goodbye</a>&nbsp;
+        <a href="#" id="tag_outer_3" class="tag_outer red" style="font-size:16px">Pop</a>&nbsp;
+        <a href="#" id="tag_outer_4" class="tag_outer red">Active</a>&nbsp;
+        <a href="#" id="tag_outer_5" class="tag_outer red">Music</a>&nbsp;
+        <a href="#" id="tag_outer_6" class="tag_outer red" style="font-size:28px" >Live</a>&nbsp;
+        <a href="#" id="tag_outer_7" class="tag_outer red">Hello</a>&nbsp;
+        <a href="#" id="tag_outer_8" class="tag_outer red">Dance</a>&nbsp;
+        <a href="#" id="tag_outer_9" class="tag_outer red" style="font-size:20px" >Rock-out</a>&nbsp;
+        <a href="#" id="tag_outer_10" class="tag_outer red">Love</a>&nbsp;
+        <a href="#" id="tag_outer_11" class="tag_outer red">Party</a>&nbsp;
+        <a href="#" id="tag_outer_12" class="tag_outer red" style="font-size:24px">Electronic</a>&nbsp;
+        <a href="#" id="tag_outer_13" class="tag_outer red">So-great</a>&nbsp;
+        <a href="#" id="tag_outer_14" class="tag_outer red" style="font-size:10px">Hello</a>&nbsp;
+        <a href="#" id="tag_outer_15" class="tag_outer red" style="font-size:24px">Goodbye</a>&nbsp;
+        <a href="#" id="tag_outer_16" class="tag_outer red">Pop</a>&nbsp;
+        <a href="#" id="tag_outer_17" class="tag_outer red" style="font-size:20px">Active</a>&nbsp;
+        <a href="#" id="tag_outer_18" class="tag_outer red">Music</a>&nbsp;
+        <a href="#" id="tag_outer_19" class="tag_outer red">Live</a>&nbsp;
+        <a href="#" id="tag_outer_20" class="tag_outer red">Hello</a>&nbsp;
+        <a href="#" id="tag_outer_21" class="tag_outer red" style="font-size:22px">Dance</a>&nbsp;
+        <a href="#" id="tag_outer_22" class="tag_outer red" style="font-size:26px">Rock-out</a>&nbsp;
+        <a href="#" id="tag_outer_23" class="tag_outer red">Love</a>&nbsp;
+        <a href="#" id="tag_outer_24" class="tag_outer red"style="font-size:24px" >Party</a>&nbsp;
+        <a href="#" id="tag_outer_25" class="tag_outer red">Electronic</a>&nbsp;
+        <a href="#" id="tag_outer_26" class="tag_outer red" style="font-size:16px" >So-great</a>&nbsp;
+        <a href="#" id="tag_outer_27" class="tag_outer red">Hello</a>&nbsp;
+        <a href="#" id="tag_outer_28" class="tag_outer red" style="font-size:24px">Goodbye</a>&nbsp;
+        <a href="#" id="tag_outer_29" class="tag_outer red" style="font-size:22px" >Pop</a>&nbsp;
+        <a href="#" id="tag_outer_30" class="tag_outer red" style="font-size:20px">Active</a>&nbsp;
+        <a href="#" id="tag_outer_31" class="tag_outer red">Music</a>&nbsp;
+        <a href="#" id="tag_outer_32" class="tag_outer red">Live</a>&nbsp;
+        <a href="#" id="tag_outer_33" class="tag_outer red">Hello</a>&nbsp;
+        <a href="#" id="tag_outer_34" class="tag_outer red" style="font-size:22px">Dance</a>&nbsp;
+        <a href="#" id="tag_outer_35" class="tag_outer red" style="font-size:26px">Rock-out</a>&nbsp;
+        <a href="#" id="tag_outer_36" class="tag_outer red">Love</a>&nbsp;
+        <a href="#" id="tag_outer_37" class="tag_outer red">Party</a>&nbsp;
+        <a href="#" id="tag_outer_38" class="tag_outer red">Electronic</a>&nbsp;
+        <a href="#" id="tag_outer_39" class="tag_outer red">So-great</a>&nbsp;
+      </td>
+    </tr>
+  </table>
+</div>  
+<div class="clearer" style="height: 800px"></div>
+<% end %>
