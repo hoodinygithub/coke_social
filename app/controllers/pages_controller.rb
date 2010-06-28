@@ -14,6 +14,12 @@ class PagesController < ApplicationController
     @top_playlists = current_site.top_playlists.all(:limit => @top_playlists_limit)
   end
 
+  def bottle_test
+    respond_to do |format|
+      format.html { render :template => 'pages/bottle_test.html.erb', :layout => false }
+    end
+  end
+
   def flash_callback
     respond_to do |format|
       format.js { render :template => 'pages/flash.js.erb', :layout => false }
