@@ -34,6 +34,7 @@ class Site < ActiveRecord::Base
   has_many :buylink_providers_sites, :class_name => "BuylinkProvidersSite"
 
   has_many :players, :class_name => "Player"
+  has_many :playlists
 
   has_many :summary_top_artists, :order => 'total_listens DESC', :class_name => 'TopArtist', :include => :artist
   has_many :top_artists, :through => :summary_top_artists, :class_name => 'Artist', :foreign_key => 'artist_id', :source => :artist, :order => 'top_artists.total_listens DESC'
@@ -80,6 +81,14 @@ class Site < ActiveRecord::Base
 
   def is_msn?
     (code =~ /msn(.*)/).nil? ? false : true
+  end
+
+  def tag_counts_from_playlists(limit=60)
+    options = { :limit => limit, 
+                :joins => "INNER JOIN #{Playlist.table_name} ON #{Tagging.table_name}.taggable_id = #{Playlist.table_name}.id AND #{Tagging.table_name}.taggable_type = 'Playlist'",
+                :order => "taggings.created_at DESC",
+                :conditions => "playlists.site_id = #{self.id}" }
+    Tag.counts(options)    
   end
   
   def calendar_locale

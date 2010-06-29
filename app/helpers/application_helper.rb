@@ -942,7 +942,7 @@ module ApplicationHelper
       <table height="100%">
         <tr>
           <td valign="bottom" align="center">
-            #{inner_tag_links.compact.join('&nbsp;')}
+            #{inner_tag_links.compact.join('&nbsp;&nbsp;')}
           </td>
         </tr>
       </table>
@@ -952,7 +952,7 @@ module ApplicationHelper
       <table height="100%">
         <tr>
           <td valign="bottom" align="center">    
-            #{outer_tag_links.compact.join('&nbsp;')}
+            #{outer_tag_links.compact.join('&nbsp;&nbsp;')}
           </td>
         </tr>
       </table>

@@ -17,16 +17,16 @@ class RadioController < ApplicationController
         @station_queue = @station_obj.playable.station_queue(:ip_address => remote_ip)
         @station_obj.playable.track_a_play_for(current_user) if @station_obj.playable
     else
-      @top_djs_limit = 6
+      @top_djs_limit = 5
       @top_djs = current_site.top_djs.all(:limit => @top_djs_limit)
       @top_playlists_limit = 6
       @top_playlists = current_site.top_playlists.all(:limit => @top_playlists_limit)
 
-      @latest_badges = BadgeAward.latest(7)
+      @latest_badges = BadgeAward.latest(6)
       
       #Is this being used? TODO: Delete - use @top_playlists instead
       #@playlists = current_site.top_playlists.all(:limit => 6)
-      @top_artists_limit = 6      
+      @top_artists_limit = 5    
       @top_artists = current_site.top_artists.all(:limit => @top_artists_limit)
     end
   end

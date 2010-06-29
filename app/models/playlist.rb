@@ -24,6 +24,7 @@ class Playlist < ActiveRecord::Base
   before_save :update_cached_artist_list
   before_create :increment_owner_total_playlists
   
+  belongs_to :site
   belongs_to :owner, :class_name => 'User', :conditions => { :network_id => 2 }
   delegate :network, :to => :owner
     
