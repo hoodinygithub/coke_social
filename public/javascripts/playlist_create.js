@@ -411,14 +411,17 @@ function update_ui()
   toggle_playlist_box();
 }
 
+var previous_artist = 0;
 function refresh_similar_artists(id)
 {
-	if(!isNaN(parseInt(id, 10))){
+	current_artist = parseInt(id, 10);
+	if(!isNaN(current_artist) && current_artist != previous_artist){
 	  $.ajax({
 	    url: '/playlist/recommended_artists/' + id,
 	    type: "GET",
 	    data: null,
 	    success: function(r){ 
+				previous_artist = id;
 				$("#playlist_recommended_artists_container").fadeOut(function(){
 					$(this).html(r).fadeIn();
 				});
@@ -614,8 +617,7 @@ function init_draggable()
         hoverClass: "dragging",
         drop: function(event, ui) {
           $(ui.draggable).find("div.large_bnt a").click();
-
-					refresh_similar_artists($(ui.draggable).attr('artist_id'));
+					//refresh_similar_artists($(ui.draggable).attr('artist_id'));
         }
   });
 }
