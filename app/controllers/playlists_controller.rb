@@ -53,9 +53,8 @@ class PlaylistsController < ApplicationController
             end
             @playlist.update_tags(params[:tags].split(','))
             @playlist.create_station
-            @edited = true
             create_page_vars
-            render :action => 'edit'
+            redirect_to :action => 'edit', :id => @playlist.id, :edited => true
           end
         end
       else
@@ -76,6 +75,7 @@ class PlaylistsController < ApplicationController
     @playlist = profile_user.playlists.find(params[:id]) rescue nil
     if @playlist
       unless request.xhr?
+        @edited = params[:edited]
         @playlist_item_ids = @playlist.songs.map(&:id) if @playlist
         if request.post?
           @playlist_item_ids = Song.find_all_by_id(params[:item_ids].split(',')).to_a rescue []
