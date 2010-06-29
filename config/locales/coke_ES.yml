@@ -35,21 +35,21 @@ coke_ES:
       title: Artistas Top
     recently_created_stations: 
       title: "Radios Reci\xC3\xA9n Creadas"
-    recommended_stations: 
-      title: Radios Recomendadas
     top_playlists: 
       title: Top Playlists
+    recommended_stations: 
+      title: Radios Recomendadas
     recent_listeners: 
       title: "Oyentes M\xC3\xA1s Recientes"
     top_activity: 
       title: Top Actividad
     information: 
       title: "Informaci\xC3\xB3n"
-    similar_artists: 
-      title: Artistas Similares
     delete_playlist: 
       title: Borrar esta playlist
       confirmation_text: "El borrado de esta playlist es una acci\xC3\xB3n permanente. \xC2\xBFEst\xC3\xA1s seguro de que todav\xC3\xADa desea eliminar esta playlist?"
+    similar_artists: 
+      title: Artistas Similares
     recommendations: 
       title: Recomendaciones
     reviews: 
@@ -71,10 +71,10 @@ coke_ES:
       title: Top Radios
     interviews: 
       title: Entrevistas
-    recent_activity: 
-      title: ACTIVIDAD RECIENTE
     recommended_artists: 
       title: Artistas Recomendados
+    recent_activity: 
+      title: ACTIVIDAD RECIENTE
     todays_top_artists: 
       title: Artistas Top de hoy
     biography: 
@@ -112,9 +112,9 @@ coke_ES:
     awaiting_approval: "Aprobaci\xC3\xB3n Pendiente"
     delete: Borrar
     select_store: Seleccionar Tienda
+    listen: escuchar
     add_more: "Agregar M\xC3\xA1s"
     add_into_a_new_playlist: Agregar a un nuevo playlist
-    listen: escuchar
     follow: Seguir
     stop: Parar
     go_with_exclamation: Ir!
@@ -128,13 +128,13 @@ coke_ES:
     reset: Restablecer
     block_this_person: Bloquear Esta Persona
     select_playlist: Seleccionar playlist
-    share: Compartir
     read_more: "leer m\xC3\xA1s"
     follow_account: Seguir a {{name}}
     show_more: VER MAS
     or: o
     close: Cerrar
     submit: Enviar
+    share: Compartir
     latest: MAS RECIENTES
     go: Ir
     newest: "M\xC3\x81S NUEVAS"
@@ -179,9 +179,9 @@ coke_ES:
     user_has_no_playlists: "{{name}} no playlists"
     top_stations: TOP RADIOS
     artist_latest_stations: RADIOS QUE INCLUYEN A {{name}}
-    recent_activity: ACTIVIDAD RECIENTE
     recommended_artists: 
       title: Artistas Recomendados
+    recent_activity: ACTIVIDAD RECIENTE
     following: 
       title: Siguiendo
   share: 
@@ -471,7 +471,7 @@ coke_ES:
     rules: Reglas del playlist
     delete_text: Seguro que quieres borrar este playlist?
     name_your_playlist: Nombre de tu playlist
-    please_remove: por favor remover
+    please_remove: Por favor, remover
     seperated_commas: "(sep\xC3\xA1ralas entre comas)"
     playlist_name: Nombre del Playlist
     search_for_music: "Busca m\xC3\xBAsica para agregar a tu playlist"
@@ -490,7 +490,7 @@ coke_ES:
     name_dialog: "\xC2\xBFQu\xC3\xA9 nombre quieres ponerle a este playlist?"
     continue: Continuar
     no_thanks: No. Gracias.
-    from_mix: playlists de un mix
+    from_mix: "canci\xC3\xB3n/es de este playlist."
     unable_save_text: Tu playlist tiene errores. Estos errores deben ser corregidos para que puedas compartir tu lista con el resto de la comunidad.
     create_new: Crear un playlist nuevo
     you_have: Tienes
@@ -566,15 +566,15 @@ coke_ES:
     push_notification_refresh: Recargar
     no_more_activity: "No hay m\xC3\xA1s actividad"
     push_notification: Tienes {{count}} actualizaciones nuevas. {{link}} la actividad en tu Dashboard para verlas.
-    twitter_you_following: "Tweets de artistas que t\xC3\xBA est\xC3\xA1s siguiendo"
     filters: 
       all: TODOS
       songs: CANCIONES
       stations: RADIOS
       playlists: PLAYLISTS
+    twitter_you_following: "Tweets de artistas que t\xC3\xBA est\xC3\xA1s siguiendo"
     push_notification_more_than: "Tienes m\xC3\xA1s de {{count}} actualizaciones nuevas. {{link}} la actividad en tu Dashboard para verlas."
-    user_following: "{{user}} + Siguiendo"
     twitter_following: "Tweets de los artistas que {{user}} est\xC3\xA1 siguiendo"
+    user_following: "{{user}} + Siguiendo"
     created_station: "{{creator}} cre\xC3\xB3 la radio: {{station}}"
   radio: 
     search_hint: Ingresa el nombre de un artista
@@ -1072,7 +1072,6 @@ coke_ES:
     message_sent: Tu mensaje se ha enviado.
     artist_name: Nombre del artista
     artist: Artista
-    done: Listo
     and_more: "y m\xC3\xA1s..."
     more: !binary |
       TcOhcw==
@@ -1080,6 +1079,7 @@ coke_ES:
     click_to_follow: Clic {{follow_link}} para seguir a
     followers_of: Seguidores de
     last_modified_at: "Ultima modificaci\xC3\xB3n hace {{when}}"
+    done: Listo
     created_on: Creada el
     plays: Reproducciones
     chart: Ranking
@@ -1124,11 +1124,11 @@ coke_ES:
     previous: Anterior
     charts_for: Rankings de
     me: mi
+    followwes: ""
     mixes: Mixes
     ago: !binary |
       YXRyw6Fz
 
-    followwes: ""
     person: Persona
     albums_by: Albumes por
     followees: Seguidores
