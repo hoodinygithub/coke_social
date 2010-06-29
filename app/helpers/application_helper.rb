@@ -947,7 +947,7 @@ module ApplicationHelper
         </tr>
       </table>
     </div>
-    <div id="tag_bottle"></div>
+    <div id="tag_bottle" class="png_fix"></div>
     <div class="bottle_tags outer">
       <table height="100%">
         <tr>

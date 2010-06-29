@@ -179,11 +179,18 @@ class User < Account
   end
 
   def tag_counts_from_playlists(limit=60)
-    options = { :limit => limit, 
-                :joins => "INNER JOIN #{Playlist.table_name} ON #{Tagging.table_name}.taggable_id = #{Playlist.table_name}.id AND #{Tagging.table_name}.taggable_type = 'Playlist'",
+    options = { :select => "DISTINCT tags.*",
+                :joins => "INNER JOIN #{Tagging.table_name} ON #{Tag.table_name}.id = #{Tagging.table_name}.tag_id INNER JOIN #{Playlist.table_name} ON #{Tagging.table_name}.taggable_id = #{Playlist.table_name}.id AND #{Tagging.table_name}.taggable_type = 'Playlist'",
                 :order => "taggings.created_at DESC",
-                :conditions => "playlists.owner_id = #{self.id}" }
-    Tag.counts(options)
+                :conditions => "playlists.owner_id = #{self.id}",
+                :limit => limit }
+
+    Tag.all(options)
+    # options = { :limit => limit, 
+    #             :joins => "INNER JOIN #{Playlist.table_name} ON #{Tagging.table_name}.taggable_id = #{Playlist.table_name}.id AND #{Tagging.table_name}.taggable_type = 'Playlist'",
+    #             :order => "taggings.created_at DESC",
+    #             :conditions => "playlists.owner_id = #{self.id}" }
+    # Tag.counts(options)
   end
 
   def tags_from_playlists

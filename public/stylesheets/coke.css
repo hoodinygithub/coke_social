@@ -677,7 +677,7 @@ h1 div.small_loading {
   z-index: 4;
   opacity: 0.2;
   -moz-opacity:0.2;
-  filter:alpha(opacity=0.2);
+  filter:alpha(opacity=20);
 }
 
 .bottle_tags a{
@@ -714,4 +714,8 @@ a.black {
 
 .side_tags {
 	margin-top: 23px;
+}
+
+.tooltip_list li {
+	text-transform: none;
 }
