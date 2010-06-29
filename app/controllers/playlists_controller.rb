@@ -43,7 +43,7 @@ class PlaylistsController < ApplicationController
         #@playlist_item_ids = params[:item_ids].split(',').map { |i| Song.find(i) }.compact
         @playlist_item_ids = Song.find_all_by_id(params[:item_ids].split(',')).to_a rescue []
         unless @playlist_item_ids.empty?
-          attributes = {:name => params[:name]}
+          attributes = { :name => params[:name], :site_id => current_site.id }
           attributes[:avatar] = params[:avatar] if params[:avatar]
           playlist = current_user.playlists.create(attributes)
           current_user.update_attribute(:total_playlists, current_user.playlists.count);
