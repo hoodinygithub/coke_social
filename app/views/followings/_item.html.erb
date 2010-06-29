@@ -9,18 +9,20 @@
   </div>
   <div class="follower_actions w_settings">
     <%= follow_button(:account => item, :remove_div => (params[:controller] != 'followers' && page_owner?) ) %>
-    <a href="#" class="black_button settings_button">
-      <span><span>
-        <img src="/images/settings_button.png" class="png_fix" alt="" />
-      </span></span>
-    </a>
-    <br/>
-    <%= render :partial => 'followings/action', :locals => { :item => item } %>
-    <div class="blocked">
-      <% if current_user.blocks?(item) %>
-      <%= image_tag('blocked.gif') %> <%= t('blocks.blocked') %>
-      <% end %>
-    </div>
+    <% if item != current_user %>
+      <a href="#" class="black_button settings_button">
+        <span><span>
+          <img src="/images/settings_button.png" class="png_fix" alt="" />
+        </span></span>
+      </a>
+      <br/>
+      <%= render :partial => 'followings/action', :locals => { :item => item } %>
+      <div class="blocked">
+        <% if current_user.blocks?(item) %>
+        <%= image_tag('blocked.gif') %> <%= t('blocks.blocked') %>
+        <% end %>
+      </div>
+    <% end %>
   </div>
   <br class="clearer" />
 </li>

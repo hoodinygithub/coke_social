@@ -19,7 +19,7 @@ module ApplicationHelper
           user_path(owner)
         when "followers"
           user_followers_path(owner)
-        when "playlists"
+      when "playlists"
           user_playlists_path(owner)
       end
     end
@@ -182,7 +182,7 @@ module ApplicationHelper
 
     onclick_cb = "Base.community.#{action}('#{account.slug}', this, #{remove_div}, '#{layer_path}')" if action
     attrs.merge!({:onclick => onclick_cb, :class => 'follower_btn'})
-    if account.is_a?(User) and (account.respond_to?(:blocks?) and !account.blocks?(current_user)) or account.is_a?(Artist)
+    if account.is_a?(User) and (account.respond_to?(:blocks?) and !account.blocks?(current_user)) and account != current_user or account.is_a?(Artist)
       send("#{button_color}_button", t(locale_key), attrs)
     end
   end

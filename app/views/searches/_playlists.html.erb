@@ -29,7 +29,7 @@
                 <%= link_to(avatar_for(playlist.owner, :small, {:alt => "", :class =>"follower_image"}), playlist.owner) %>
                 <div class="creator_text">
                   <b><%= "#{t('basics.created_by')}: #{link_to(playlist.owner.name, user_path(playlist.owner))}" %></b><br/>
-                  <%= render :partial =>'shared/user_following', :locals => {:current_user => current_user, :user => playlist.owner} %>
+                  <%= render :partial =>'shared/user_following', :locals => {:current_user => current_user, :user => playlist.owner} if current_user != playlist.owner %>
                 </div>
             </div>
         </div>
