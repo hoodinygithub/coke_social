@@ -1,4 +1,6 @@
 <div id="left_column">
   <%= render 'users/info' %>
-  <%#= render 'shared/tag_cloud' %>
+  <% cache("#{profile_user.slug_cache_key}/profiles/tag_cloud", :expires_in => EXPIRATION_TIMES['profile_tag_cloud']) do %>
+    <%= render :partial => 'shared/tag_cloud', :locals => { :tags => profile_user.tag_counts_from_playlists } %>
+  <% end %>
 </div><!--/end left_column -->

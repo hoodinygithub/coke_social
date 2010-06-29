@@ -7,6 +7,9 @@ defaults: &defaults
   top_modules_artists: <%= 12.hours %> # 
   top_modules_badge_awards: <%= 3.hours %> # 
 
+  site_tag_cloud: <%= 3.hours %>
+  profile_tag_cloud: <%= 30.minutes %>
+  
   profile_modules_badge_awards: <%= 3.hours %> # 
   playlist_creation_select_song_views: <%= 12.hours %> # 
   

@@ -912,4 +912,51 @@ module ApplicationHelper
     end
   end
 
+
+  def tag_bottle(tags)
+    outer_tag_links = []
+    inner_tag_links = []
+    tag_cloud tags, %w(tag_css1 tag_css2 tag_css3 tag_css4, tag_css5) do |tag, css_class, index| 
+      outer_tag_links << link_to(tag.name, search_path(:q => tag.name, :scope => :playlists), :class => "tag_outer red #{css_class}", :id => "tag_outer_#{index}") rescue nil
+      inner_tag_links << link_to(tag.name, search_path(:q => tag.name, :scope => :playlists), :class => "tag_inner red #{css_class}", :id => "tag_inner_#{index}") rescue nil
+    end
+    <<-EOF
+    <script type="text/javascript">
+      jQuery(document).ready(function(){
+        jQuery("a.tag_outer").mouseover(function(e){
+          e.preventDefault();
+          ord = this.id.match(/tag_outer_(\\d+)/)[1];
+          jQuery("#tag_inner_" + ord).removeClass('red').addClass("black");
+          jQuery("#tag_outer_" + ord).removeClass('red').addClass("black");
+        });
+
+        jQuery("a.tag_outer").mouseout(function(e){
+          e.preventDefault();
+          ord = this.id.match(/tag_outer_(\\d+)/)[1];
+          jQuery("#tag_inner_" + ord).removeClass('black').addClass("red");
+          jQuery("#tag_outer_" + ord).removeClass('black').addClass("red");
+        })
+      });
+    </script>
+    <div class="bottle_tags">
+      <table height="100%">
+        <tr>
+          <td valign="bottom" align="center">
+            #{inner_tag_links.compact.join('&nbsp;')}
+          </td>
+        </tr>
+      </table>
+    </div>
+    <div id="tag_bottle"></div>
+    <div class="bottle_tags outer">
+      <table height="100%">
+        <tr>
+          <td valign="bottom" align="center">    
+            #{outer_tag_links.compact.join('&nbsp;')}
+          </td>
+        </tr>
+      </table>
+    </div>
+    EOF
+  end
 end

@@ -90,7 +90,6 @@ ActionController::Routing::Routes.draw do |map|
   map.contact 'support/contact', :controller => 'pages', :action => 'contact'
   map.contact_us 'support/contact_us', :controller => 'pages', :action => 'contact_us', :collection => [:only_form]
   #map.send_mail 'support/contact/send_mail', :controller => 'pages', :action => 'send_mail'
-  map.bottle_test 'pages/bottle_test', :controller => 'pages', :action => 'bottle_test'
   map.banner_ads 'pages/banner_ads', :controller => 'pages', :action => 'banner'
   map.block_alert 'support/block_alert', :controller => 'pages', :action => 'block_alert'
   map.profile_not_found ':profile/profile_not_found', :controller => 'pages', :action => 'profile_not_found'

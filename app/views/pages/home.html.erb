@@ -9,7 +9,9 @@
   <%= render :partial => 'black_banner' if is_index? %>
 <% end %>
 
-<%#= render :partial => 'shared/tag_cloud' %>
+<% cache("#{site_cache_key}/modules/tag_cloud", :expires_in => EXPIRATION_TIMES["home_tag_cloud"]) do %>
+  <%= render :partial => "shared/tag_cloud", :locals => { :tags => Tag.counts(:limit => 40, :order => "taggings.created_at DESC") } %>
+<% end %>
 <%= render :partial => 'shared/today_top_playlists' %>
 <%= render :partial => 'shared/today_top_djs' %>
 <%= render :partial => 'shared/latest_badges' %>

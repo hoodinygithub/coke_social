@@ -28,7 +28,9 @@
   </div><!--/end playlist_items -->
 
 
-  <%#= render "shared/tag_cloud" %>
+  <% cache("#{site_cache_key}/modules/tag_cloud", :expires_in => EXPIRATION_TIMES['site_tag_cloud']) do %>
+    <%= render :partial => "shared/tag_cloud", :locals => { :tags => Tag.counts(:limit => 40, :order => "taggings.created_at DESC") } %>
+  <% end %>
 
   <div class="top_playlists_column">
     <h1><%= t("modules.top_artists.title").upcase %></h1>

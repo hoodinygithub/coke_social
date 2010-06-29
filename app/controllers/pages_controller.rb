@@ -7,17 +7,11 @@ class PagesController < ApplicationController
   layout "logged_out"
   
   def home
-    @latest_badges = BadgeAward.latest
-    @top_djs_limit = 6
+    @latest_badges = BadgeAward.latest(5)
+    @top_djs_limit = 5
     @top_djs = current_site.top_djs.all(:limit => @top_djs_limit)
-    @top_playlists_limit = 6
+    @top_playlists_limit = 5
     @top_playlists = current_site.top_playlists.all(:limit => @top_playlists_limit)
-  end
-
-  def bottle_test
-    respond_to do |format|
-      format.html { render :file => 'pages/bottle.html.erb' }
-    end
   end
 
   def flash_callback
