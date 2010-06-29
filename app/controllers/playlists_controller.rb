@@ -45,15 +45,17 @@ class PlaylistsController < ApplicationController
         unless @playlist_item_ids.empty?
           attributes = { :name => params[:name], :site_id => current_site.id }
           attributes[:avatar] = params[:avatar] if params[:avatar]
-          playlist = current_user.playlists.create(attributes)
+          @playlist = current_user.playlists.create(attributes)
           current_user.update_attribute(:total_playlists, current_user.playlists.count);
-          if playlist
+          if @playlist
             @playlist_item_ids.each do |song|
-              playlist.items.create(:song => song)
+              @playlist.items.create(:song => song)
             end
-            playlist.update_tags(params[:tags].split(','))
-            playlist.create_station
-            redirect_to my_playlists_path
+            @playlist.update_tags(params[:tags].split(','))
+            @playlist.create_station
+            @edited = true
+            create_page_vars
+            render :action => 'edit'
           end
         end
       else
@@ -63,7 +65,6 @@ class PlaylistsController < ApplicationController
           #@playlist_items = session[:playlist_ids].split(',').map { |i| Song.find(i) rescue nil }.compact
         end
       end
-      
       create_page_vars
     else
       render :partial => "/playlists/create/search_results", :layout => false
