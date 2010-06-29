@@ -184,7 +184,7 @@ class UsersController < ApplicationController
         :site_id => request.host
       }
       if current_user.cancel_account!
-        #UserNotification.send_cancellation(options)
+        UserNotification.send_cancellation(options)
         cookies.delete(:auth_token) if cookies.include?(:auth_token)
         result[:success] = true
         if wlid_web_login?
