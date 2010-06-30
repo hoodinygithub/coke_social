@@ -13,7 +13,7 @@
       if($(this).attr('disabled') != 'disabled') {
         e.preventDefault();
         page = this.href.match(/page=(\d+)/)[1]
-        get_song_list(<%= @item_id ? @item_id : "'#{params[:term]}'" %>, '<%= @scope %>', page)
+        get_song_list(<%= @item_id ? @item_id : "'#{params[:term]}'" %>, '<%= @scope %>', page, '<%= params.fetch(:order_by, "") %>', '<%= params.fetch(:order_dir, "") %>')
       }
     });
   });

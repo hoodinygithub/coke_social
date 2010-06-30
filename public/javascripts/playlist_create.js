@@ -516,14 +516,21 @@ function remove_search_result(id)
   //setTimeout(function(thisObj){ thisObj.remove(); }, 500);
 }
 
-function get_song_list(id,scope,page)
+function get_song_list(id, scope, page, order_by, order_dir)
 {
     hideCreateBox();
 	if (typeof(page)=="undefined"){ page = 1 }
+	if (typeof(order_by)=="undefined"){ page = 1 }
 	if (isNaN(parseInt(id, 10)) && typeof(id)=="string"){ 
-	  q = "term=" + id + "&scope=" + scope + "&page=" + page;		
+	  q = "term=" + id 
+			+ "&scope=" + scope 
+			+ "&page=" + page 
+			+ ( (order_by == '')? "" : "&order_by=" + order_by + "&order_dir=" + ( typeof(order_dir)=='' ? "" : order_dir ) );
 	} else {		
-	  q = "item_id=" + id + "&scope=" + scope + "&page=" + page;		
+	  q = "item_id=" + id 
+	 	  + "&scope=" + scope 
+	 		+ "&page=" + page
+			+ ( (order_by == '')? "" : "&order_by=" + order_by + "&order_dir=" + ( typeof(order_dir)=='' ? "" : order_dir ) );
 	}
 	
   show_loading_image();
