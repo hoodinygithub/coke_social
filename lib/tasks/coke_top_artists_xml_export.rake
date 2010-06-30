@@ -52,7 +52,8 @@ namespace :db do
           large_image = AvatarsHelper.avatar_path(artist, :medium)  #s.artist.avatar_file_name.nil? ? "http://assets.cyloop.com/storage?fileName=/.elhood.com-2/usr/#{s.artist_id}/image/hi-thumbnail/x46b.jpg" : s.artist.avatar_file_name.sub(/hires/,'hi-thumbnail')
 
           unless image_exists?(thumbnail)
-            thumbnail = "http://assets.cyloop.com/storage?fileName=/.elhood.com-2/usr/404/image/thumbnail/default_image.jpg"
+            #thumbnail = "http://assets.cyloop.com/storage?fileName=/.elhood.com-2/usr/404/image/thumbnail/default_image.jpg"
+            thumbnail = "http://#{site.domain}/avatars/missing/artist.gif"
           end
           
           unless image_exists?(large_image)
