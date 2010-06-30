@@ -113,12 +113,14 @@ class PlaylistsController < ApplicationController
 
   def recommended_artists
     artist = Artist.find(params[:artist_id]) rescue nil
-    recommended_artists = []
-    recommended_artists = artist.similar(20) if artist
-    @recommended_artists = recommended_artists.sort_by {rand}[0..9] if !recommended_artists.empty? and recommended_artists.size > 9
+    
+    @recommended_artists = []
+    @recommended_artists = artist.similar(20) if artist
 
-    if @recommended_artists.empty?
+    if @recommended_artists and @recommended_artists.empty?
       @recommended_artists = current_site.top_artists.all(:limit => 10)
+    else
+      @recommended_artists = @recommended_artists.sort_by {rand}[0..9] if @recommended_artists.size > 9
     end
 
     render :partial => 'playlists/create/recommendations'
