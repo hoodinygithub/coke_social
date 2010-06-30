@@ -4,9 +4,12 @@ class RadioController < ApplicationController
   #caches_action :show, :expires_in => EXPIRATION_TIMES['radio_show'], :cache_path => :radio_show_cache_key
 
   def index
-    @station_obj = Station.find_by_id_and_playable_type(params[:station_id], 'Playlist') rescue nil
+    @station_obj = nil
+
+    station = Station.find_by_id_and_playable_type(params[:station_id], 'Playlist') rescue nil
+    @station_obj = station if station and station.playable and station.playable.owner and station.playable.owner.active?
     
-    if @station_obj      
+    if @station_obj
       @section = "player_page" #used for css styling
       @station_queue = @station_obj.playable.station_queue(:ip_address => remote_ip)
       @station_obj.playable.track_a_play_for(current_user) if @station_obj.playable

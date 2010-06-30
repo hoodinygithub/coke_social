@@ -214,6 +214,10 @@ class Account < ActiveRecord::Base
     false
   end
 
+  def active?
+    self.deleted_at.nil?
+  end
+
   def registered?
     status.to_s == "registered"
   end
