@@ -9,7 +9,7 @@ module Juixe
 
       module ClassMethods
         def acts_as_commentable
-          has_many :comments, :as => :commentable, :dependent => :destroy
+          has_many :comments, :as => :commentable, :dependent => :destroy, :include => :user, :conditions => 'accounts.deleted_at IS NULL'
           include Juixe::Acts::Commentable::InstanceMethods
           extend Juixe::Acts::Commentable::SingletonMethods
         end
