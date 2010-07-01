@@ -1218,7 +1218,7 @@ Base.account_settings.add_website = function() {
     $('.delete_site').click(Base.account_settings.delete_website);
     $(this).val('');
   } else {
-    Base.account_settings.add_message_on($(this), Base.locale.translate('shared.errors.message.invalid_url'), 'error');
+    Base.account_settings.add_message_on($(this), Base.locale.translate('share.errors.message.invalid_url'), 'error');
   } 
   return false;
 };
