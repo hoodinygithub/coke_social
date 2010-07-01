@@ -37,6 +37,11 @@ class Playlist < ActiveRecord::Base
     :content_type => ["image/jpeg", "image/png", "image/gif", "image/pjpeg", "image/x-png"]
       
   validates_presence_of :name
+
+  has_many :playlist_copyings, :foreign_key => 'original_playlist_id'
+  has_many :copies, :through => :playlist_copyings, :source => :new_playlist
+  has_one :playlist_copying, :foreign_key => 'new_playlist_id'
+  has_one :copied_from, :through => :playlist_copying, :source => :original_playlist
   
   # default_scope :conditions => { :deleted_at => nil }  
 

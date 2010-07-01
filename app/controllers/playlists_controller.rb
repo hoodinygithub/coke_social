@@ -238,6 +238,7 @@ class PlaylistsController < ApplicationController
         new_playlist.items.create(:song_id => item.song_id, :position => item.position)
       end
       new_playlist.create_station
+      PlaylistCopying.create(:original_playlist_id => orig_playlist.id, :new_playlist_id => new_playlist.id )
       render :json => { :success => true }
     else
       render :json => { :success => false, :errors => new_playlist.errors.to_json }
