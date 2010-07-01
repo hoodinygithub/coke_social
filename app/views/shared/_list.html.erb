@@ -17,9 +17,11 @@
     </div>
     <%= yield :list %>
 
+    <div class = "ajax_pagination">
     <% if @collection.respond_to? :total_pages %>
       <%= will_paginate @collection, pagination_args %>
     <% end %>
+    </div>
   </div>
 </div><!--/end center_column -->
 

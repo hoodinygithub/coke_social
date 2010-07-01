@@ -2087,7 +2087,7 @@ Base.utils.rebind_list = function() {
     $(this).removeClass('hover');
   });
   $('input[type=radio].star').rating();
-  $(".pagination a:not(.disabled)").click(Base.utils.ajax_pagination);
+  $(".ajax_pagination .pagination a:not(.disabled)").click(Base.utils.ajax_pagination);
   $(".ajax_sorting a").click(Base.utils.ajax_sorting);
 };
 
@@ -2140,6 +2140,6 @@ Base.playlists.duplicateCallback = function(response) {
 };
 
 jQuery(document).ready(function() {
-  $(".pagination a:not(.disabled)").click(Base.utils.ajax_pagination);  
+  $(".ajax_pagination .pagination a:not(.disabled)").click(Base.utils.ajax_pagination);  
 });
 
