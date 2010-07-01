@@ -1590,8 +1590,13 @@ Base.main_search.highlight_sort = function(scope) {
   };
 
 Base.main_search.refresh_result = function() {
+  var page = $('div.sorting a.active').last().attr('href').match(/page\=(\d)/);
+  var url = Base.main_search.getSearchUrl();
+  if (page) {
+    url = url + "&page=" + page[1];     	 
+  }
   $.ajax({
-    url: Base.main_search.getSearchUrl(),
+    url: url,
     type: 'GET',
     data: { result_only: true },
     success: function(result) {
