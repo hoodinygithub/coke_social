@@ -208,7 +208,7 @@ class PlaylistsController < ApplicationController
   end
 
   def comments
-    sort_types = { :latest => 'comments.created_at DESC', :highest_rated => 'comments.rating'  }
+    sort_types = { :latest => 'comments.updated_at DESC', :highest_rated => 'comments.rating DESC'  }
     sort_type  = params.fetch(:sort_by, nil).to_sym rescue :latest
     playlist   = Playlist.find(params[:id])
     collection = playlist.comments.paginate :page => params[:page], :per_page => 15, :order => sort_types[sort_type]
@@ -237,7 +237,7 @@ class PlaylistsController < ApplicationController
     
     if new_playlist.save
       orig_playlist.items.each do |item| 
-        new_playlist.items.create(:song => item.song)
+        new_playlist.items.create(:song_id => item.id, :position => item.position)
       end
       new_playlist.create_station
       render :json => { :success => true }

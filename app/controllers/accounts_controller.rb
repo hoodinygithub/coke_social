@@ -12,8 +12,7 @@ class AccountsController < ApplicationController
     @dashboard_menu = :home
     @mixes_recommended = (1..6).to_a
     @comments = (1..3).to_a
-    @reviews = profile_account.comments.all(:limit => 5, :from => 'playlists, comments', 
-      :conditions => 'commentable_id = playlists.id and playlists.deleted_at IS NULL')
+    @reviews = profile_account.comments.all(:limit => 5, :from => 'playlists, comments', :conditions => 'commentable_id = playlists.id and playlists.deleted_at IS NULL', :order => 'comments.updated_at DESC')
     @followers = profile_account.followers.all(:limit => 4)
 
     respond_to do |format|
