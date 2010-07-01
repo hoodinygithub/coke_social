@@ -43,7 +43,7 @@ class Playlist < ActiveRecord::Base
   has_one :playlist_copying, :foreign_key => 'new_playlist_id'
   has_one :copied_from, :through => :playlist_copying, :source => :original_playlist
   
-  # default_scope :conditions => { :deleted_at => nil }  
+  default_scope :conditions => { :deleted_at => nil }  
 
   define_index do
     where "playlists.deleted_at IS NULL AND accounts.deleted_at IS NULL AND accounts.network_id = 2"
