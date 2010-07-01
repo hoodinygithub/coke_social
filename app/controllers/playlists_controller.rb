@@ -225,9 +225,7 @@ class PlaylistsController < ApplicationController
     attributes = { 
       :songs_count => orig_playlist.songs_count,
       :total_time => orig_playlist.total_time,
-      :cached_tag_list => orig_playlist.cached_tag_list,
       :cached_artist_list => orig_playlist.cached_artist_list,
-      :avatar => orig_playlist.avatar
     }
     
     new_playlist = Playlist.new(attributes)
@@ -237,7 +235,7 @@ class PlaylistsController < ApplicationController
     
     if new_playlist.save
       orig_playlist.items.each do |item| 
-        new_playlist.items.create(:song_id => item.id, :position => item.position)
+        new_playlist.items.create(:song_id => item.song_id, :position => item.position)
       end
       new_playlist.create_station
       render :json => { :success => true }
