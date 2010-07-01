@@ -888,7 +888,7 @@ module ApplicationHelper
     rating = false
     rating_id = id ? id : "rating_#{rateable.id}"
     (1..5).each do |rate|
-      checked = rate == rateable.rating.round ? true : false
+      checked = rate == rateable.rating.floor ? true : false
       ratings << radio_button_tag(rating_id, rate, checked, :class => 'star', :disabled => disabled)
     end
 

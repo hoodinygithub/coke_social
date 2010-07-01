@@ -30,7 +30,13 @@ class ReviewsController < ApplicationController
   def destroy
     @review = Comment.find(params[:id])
     if @review.user == current_user or @review.commentable.owner == current_user
-      @review.destroy
+          
+      ActiveRecord::Base.transaction do  
+        commentable = @review.commentable
+        @review.destroy
+        commentable.update_attribute('rating_cache', commentable.rating)
+      end
+      
       render :json => { :success => true, :id => params[:id], :count => records_count }
     else
       render :json => { :success => false }
