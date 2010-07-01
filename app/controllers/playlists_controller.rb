@@ -15,20 +15,16 @@ class PlaylistsController < ApplicationController
                     :highest_rated => 'playlists.rating_cache DESC',
                     :top => 'playlists.total_plays DESC'  }
     @sort_type = get_sort_by_param(sort_types.keys, :latest) #params.fetch(:sort_by, nil).to_sym rescue :latest
-    begin
 
-      @collection = profile_user.playlists.paginate :page => params[:page], :per_page => 6, :order => sort_types[@sort_type]
+    @collection = profile_user.playlists.paginate :page => params[:page], :per_page => 6, :order => sort_types[@sort_type]
 
-      if request.xhr?
-        render :partial => 'ajax_list'
-      else
-        respond_to do |format|
-          format.html
-          format.xml { render :layout => false }
-        end
+    if request.xhr?
+      render :partial => 'ajax_list'
+    else
+      respond_to do |format|
+        format.html
+        format.xml { render :layout => false }
       end
-    rescue ActiveRecord::RecordNotFound
-      redirect_to new_session_path
     end
   end
 
