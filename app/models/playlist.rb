@@ -185,4 +185,8 @@ class Playlist < ActiveRecord::Base
     update_attribute('rating_cache', self.rating)
   end
 
+  def rating
+    self.rating_cache
+  end  
+
 end
