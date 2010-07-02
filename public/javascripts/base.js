@@ -1559,6 +1559,7 @@ Base.playlists.onStreamEnd = function(obj)
  */
 
 Base.main_search.buildSearchUrl = function () {
+  jQuery('#search_page').attr('value', '');		
   location.href = Base.main_search.getSearchUrl();
   return false;
 };
@@ -1569,7 +1570,7 @@ Base.main_search.getSearchUrl = function () {
   var scope = Base.header_search.getFieldValue(form_values,'scope');
   var sort = Base.header_search.getFieldValue(form_values,'sort');
   var page = Base.header_search.getFieldValue(form_values,'page');
-  var url   = "/search" + (scope == "" ? "/all" : "/" + scope) + "/" + q + "?sort_by=" + sort + "&page=" + page;
+  var url   = "/search" + (scope == "" ? "/all" : "/" + scope) + "/" + q + "?sort_by=" + sort + ((!isNaN(parseInt(page,10)))? "&page=" + page : "");
   return url;
 };
 
