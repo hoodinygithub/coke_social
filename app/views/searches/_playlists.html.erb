@@ -1,3 +1,8 @@
+<script type="text/javascript">
+  $(document).ready(function(){
+    Base.main_search.init_pagination();
+  });
+</script>
 <ul class="susbcriptions_list">
   <% @results[:playlists].each do |playlist| %>
     <% if playlist.station %>

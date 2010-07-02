@@ -1568,7 +1568,8 @@ Base.main_search.getSearchUrl = function () {
   var q     = Base.header_search.getFieldValue(form_values,'q');
   var scope = Base.header_search.getFieldValue(form_values,'scope');
   var sort = Base.header_search.getFieldValue(form_values,'sort');
-  var url   = "/search" + (scope == "" ? "/all" : "/" + scope) + "/" + q + "?sort_by=" + sort;
+  var page = Base.header_search.getFieldValue(form_values,'page');
+  var url   = "/search" + (scope == "" ? "/all" : "/" + scope) + "/" + q + "?sort_by=" + sort + "&page=" + page;
   return url;
 };
 
@@ -1590,11 +1591,7 @@ Base.main_search.highlight_sort = function(scope) {
   };
 
 Base.main_search.refresh_result = function() {
-  var page = $('div.sorting a.active').last().attr('href').match(/page\=(\d)/);
-  var url = Base.main_search.getSearchUrl();
-  if (page) {
-    url = url + "&page=" + page[1];     	 
-  }
+	var url = Base.main_search.getSearchUrl();
   $.ajax({
     url: url,
     type: 'GET',
@@ -1604,13 +1601,13 @@ Base.main_search.refresh_result = function() {
 			var ul = $("#" + value + '_result_details');
 			ul.empty();
 			ul.append(result);
-/*			ul.find('div.sorting a').click(function(e) {
+			ul.find('div.sorting a').click(function(e) {
 				e.preventDefault();
 	      $('#search_sort').attr('value', jQuery(this).attr('href').match(/sort_by\=(.*)/)[1]);
 				jQuery("#scope_" + value + "_toggle").parentsUntil('ul').find('img.mini_loader').removeClass('hide');
 				Base.main_search.refresh_result();				
 			})
-*/			jQuery("#scope_" + value + "_toggle").parentsUntil('ul').find('img.mini_loader').addClass('hide');
+			jQuery("#scope_" + value + "_toggle").parentsUntil('ul').find('img.mini_loader').addClass('hide');
 			Base.main_search.toggle_scope(false);
       $('input[type=radio].star').rating();
 		},
@@ -1618,7 +1615,7 @@ Base.main_search.refresh_result = function() {
   });
 };
 
-/*Base.main_search.init_toggles = function() {
+Base.main_search.init_toggles = function() {
     jQuery(".scope_toggle a").click(function(e) {
 			e.preventDefault();
 			Base.main_search.refresh_result()
@@ -1626,7 +1623,7 @@ Base.main_search.refresh_result = function() {
     value = jQuery("#search_scope").get(0).value;
     jQuery("#search_" + value).addClass('active')
   };
-*/	
+	
 
 Base.main_search.activate_scope_toggle = function() {
 		Base.main_search.highlight_scope();
@@ -1689,6 +1686,14 @@ Base.main_search.initialize_scope_toggle = function() {
       return false;
     });
 
+};
+
+Base.main_search.init_pagination = function() {
+	jQuery("div.pagination a").click(function(e){
+		e.preventDefault();
+    jQuery('#search_page').attr('value', this.href.match(/page\=(\d+)/)[1]);		
+		Base.main_search.refresh_result();
+	});
 };
 
 

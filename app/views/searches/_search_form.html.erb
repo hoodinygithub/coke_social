@@ -5,6 +5,7 @@
       <%= text_field_tag :q, @query.nil? ? t('search.search_hint') : @query ,  {:id => :search_query, :class => "search_input", :onfocus => "clearInput('#{t('search.search_hint')}', this);", :onblur => "restoreInput('#{t('search.search_hint')}', this);"} %>
       <%= f.hidden_field :scope, :name => :scope, :value => @active_scope.to_s %>
       <%= f.hidden_field :sort, :name => :sort, :value => @sort_type.to_s %>
+      <%= f.hidden_field :page, :name => :page, :value => @page.to_s %>
   </span>
 
   <span class="btn_placeholder">

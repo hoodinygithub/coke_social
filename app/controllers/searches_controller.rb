@@ -12,7 +12,7 @@ class SearchesController < ApplicationController
 
     @sort_type = get_sort_by_param(@sort_types.keys, :relevance) #params.fetch(:sort_by, nil).to_sym rescue :relevance
     @active_scope = params[:scope].nil? ? @search_types[0] : params[:scope].to_sym
-
+    @page = params[:page] || 1
     @counts = {}
     @results = {}
     if request.xhr?
@@ -76,7 +76,7 @@ class SearchesController < ApplicationController
     end
     
     def search_results (types=[], per_page = 12)
-      opts = { :page => params[:page], :per_page => per_page, :star => true, :retry_stale => true }
+      opts = { :page => @page, :per_page => per_page, :star => true, :retry_stale => true }
 
       @search_types.each do |scope|
         dataset = []
