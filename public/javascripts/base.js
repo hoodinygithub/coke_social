@@ -1277,11 +1277,11 @@ Base.account_settings.delete_account_confirmation = function() {
     data : { delete_info_accepted: "true", delete_password: password_value },
     success: function(data){
       delete_account_data = data;
+      cancelled_account_email = data.email;
       $.popup(function() {
-        jQuery.get('/my/cancellation/feedback', function(data) {
+        jQuery.get('/my/cancellation/feedback?address='+ cancelled_account_email, function(data) {
           jQuery.popup(data);
         });
-        cancelled_account_email = data.email;
       });
       $(document).bind('close.facebox', function() {
         window.location = data.redirect_to;

@@ -153,6 +153,7 @@ class UsersController < ApplicationController
   end
 
   def feedback
+    @address = params[:address]
     feedback = params[:feedback]
     if feedback && !feedback.empty?
       options = {
@@ -189,10 +190,10 @@ class UsersController < ApplicationController
         result[:success] = true
         if wlid_web_login?
           result[:redirect_to] = msn_logout_url
-          result[:email] = user.email
         else
           result[:redirect_to] = root_url
         end
+        result[:email] = user.email
       end
     else
       result[:errors] = { :delete_password => I18n.t('account_settings.password_required') }
