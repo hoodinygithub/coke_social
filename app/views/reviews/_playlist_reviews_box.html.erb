@@ -1,4 +1,5 @@
-<% comments = playlist.comments.all(:order => 'comments.updated_at DESC')%>
+<% comments = playlist.comments.valid(:order => 'comments.updated_at DESC')%>
+
 <div class="reviews">
   <div class="title">
     <div class="align_right"><%= t('modules.reviews.title').upcase %> (<%= comments.size %>)</div>

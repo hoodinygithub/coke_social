@@ -115,9 +115,7 @@ protected
     @playlist = Playlist.find(params[:playlist_id]) if params[:playlist_id]    
     scope = request.request_uri.match(/playlist/) ? @playlist : profile_account
     # @records = scope.comments.find(:all, :order => @sort_data, :from => 'playlists, comments', :conditions => 'commentable_id = playlists.id and playlists.deleted_at IS NULL')
-    @records = scope.comments.find(:all, :joins => 'INNER JOIN playlists ON comments.commentable_id = playlists.id INNER JOIN accounts a1 ON playlists.owner_id = a1.id', 
-                                         :conditions => 'playlists.deleted_at IS NULL AND a1.deleted_at IS NULL', 
-                                         :order => @sort_data)
+    @records = scope.comments.valid(:order => @sort_data)
   end
 
 end

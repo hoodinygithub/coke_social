@@ -240,18 +240,14 @@ class User < Account
   def block(blockee_id)
     blockee_id = blockee_id.id if blockee_id.kind_of? User
     Block.create! :blocker_id => id, :blockee_id => blockee_id
+    playlists.each { |p| p.update_attribute('rating_cache', p.rating); p.save! }
   end
   
   def unblock(blockee_id)
     blockee_id = blockee_id.id if blockee_id.kind_of? User
     blocked = Block.first(:conditions => {:blocker_id => id, :blockee_id => blockee_id})
     blocked.destroy if blocked
-  end
-
-  def unblock(blockee_id)
-    blockee_id = blockee_id.id if blockee_id.kind_of? User
-    blocked = Block.first(:conditions => {:blocker_id => id, :blockee_id => blockee_id})
-    blocked.destroy if blocked
+    playlists.each { |p| p.update_attribute('rating_cache', p.rating); p.save! }
   end
 
   def blocks?(blockee_id)
