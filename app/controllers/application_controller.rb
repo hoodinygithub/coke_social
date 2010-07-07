@@ -452,7 +452,7 @@ class ApplicationController < ActionController::Base
       end
     end
   end
-
+    
   def on_dashboard?
     request.request_uri.match(/\/my\//)
   end

@@ -28,6 +28,13 @@ class UserNotification < BaseMailer
     from ActionMailer::Base.smtp_settings[:default_from]
     body :followee => followee, :follower => follower, :user_link => user_link, :my_community => community_link
   end
+  
+  def review_notification(subject_line, reviewer, playlist)
+    subject subject_line
+    recipients playlist.owner.email
+    from ActionMailer::Base.smtp_settings[:default_from]
+    body :reviewer => reviewer, :playlist => playlist
+  end
 
   def share_song(options)
     subject options[:subject_line]
@@ -98,7 +105,16 @@ class UserNotification < BaseMailer
         UserNotification.deliver_following_request(subject_line, followee, follower, options[:user_link], options[:my_community])
       end
     end
-
+    
+    def send_review_notification(options)
+      reviewer = Account.find(options[:reviewer_id])
+      playlist = Playlist.find(options[:playlist_id])
+      I18n.with_locale( playlist.owner.default_locale ) do
+        subject_line = I18n.t('reviews.email.subject', :reviewer => reviewer.name)
+        UserNotification.deliver_review_notification(subject_line, reviewer, playlist)
+      end
+    end
+    
     def send_feedback_message( options )
       UserNotification.deliver_feedback_message(options)
     end

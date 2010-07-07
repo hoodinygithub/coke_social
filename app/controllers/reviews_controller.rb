@@ -76,6 +76,7 @@ class ReviewsController < ApplicationController
         render :json => { :success => false, :redirect_to => "reviews/#{has_commented.id}/duplicate_warning" }
       else
         @playlist.rate_with(review)
+        UserNotification.send_review_notification({:playlist_id => params[:playlist_id], :reviewer_id => current_user.id })
         render :json => { :success => true,
                           :html => render_to_string( :partial => 'playlist_review_item', :collection => [review] )
                         }

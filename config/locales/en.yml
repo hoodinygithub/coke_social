@@ -1165,7 +1165,12 @@ en:
     duplicate_warning_title: Oops...
     duplicate_warning_text: You have already posted a review for this playlist. If you post a new review it will overwrite your previous review.
     reviewed_by: Reviewed by
-
+    email:
+      subject: "{{reviewer}} has posted a review on one of your playlists on Cocacola.fm"
+      message: |-
+          {{reviewer}} has posted a review on playlist: {{playlist}}.
+          
+          Log in to see what they posted.
   contact_us:
     confirmation:
       thanks: Thank you for your message. We will reply to you as soon as possible

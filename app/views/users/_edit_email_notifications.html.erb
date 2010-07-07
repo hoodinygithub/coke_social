@@ -2,8 +2,15 @@
 <div class="accordion_box">
   <% form_for @user, :html => { :method => :put, :class => "account_settings", :id => 'email_notifications_form' }, :url => my_settings_path do |f| %>
     <div class="form_row">
-      <label><%= f.check_box :receives_coke_newsletter %><small><%= t('account_settings.email_me_coke_newsletter') %></small></label>
-      <label><%= f.check_box :receives_following_notifications %><small><%= t('account_settings.email_me_following_me') %></small></label>
+      <label>
+        <%= f.check_box :receives_coke_newsletter %><small><%= t('account_settings.email_me_coke_newsletter') %></small>
+      </label>
+      <label>
+        <%= f.check_box :receives_following_notifications %><small><%= t('account_settings.email_me_following_me') %></small>
+      </label>
+      <label>
+        <%= f.check_box :receives_reviews_notifications %><small><%= t('account_settings.email_me_reviews_mixes') %></small>
+      </label>
       <!--
       <label><input type="checkbox" /><small><%= t('account_settings.email_me_communications') %></small></label>
       <label><input type="checkbox" /> <small><%= t('account_settings.email_me_reviews_mixes') %></small></label>
