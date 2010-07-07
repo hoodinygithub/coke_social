@@ -1,4 +1,4 @@
-<%= render 'form' unless @playlist.owner == current_user and !@playlist.owner.blocks?(current_user) %>
+<%= render 'form' unless @playlist.owner == current_user or @playlist.owner.blocks?(current_user) %>
 <h1>
   <%= "#{t('modules.reviews.title').upcase} (<span class=\"reviews_count\">#{@records.size}</span>)" %>
 </h1>
