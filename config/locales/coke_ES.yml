@@ -73,7 +73,7 @@ coke_ES:
     recommended_stations: 
       title: Radios Recomendadas
     top_playlists: 
-      title: Top Playlists
+      title: Top Playlists en CocaCola.fm
     recommendations: 
       title: Recomendaciones
     similar_artists: 
@@ -244,8 +244,8 @@ coke_ES:
     third_person: 
       has_not_subscribed: "{{subject}} no tiene suscripci\xC3\xB3n a ning\xC3\xBAn playlist."
       network_activity: Actividad de {{subject}} en la red
-      stations: Radios de {{subject}}
       subscriptions: Suscsripciones de {{subject}}
+      stations: Radios de {{subject}}
       latest_playlists: "\xC3\x9Altimos Playlists de {{subject}}"
       friends_that_have_this_badge: Amigos de {{subject}} que se han ganado este badge
       has_not_badges: "{{subject}} no ha ganado ning\xC3\xBAn badge aun."
@@ -257,7 +257,7 @@ coke_ES:
       top_playlists: Top Playlists de {{subject}}
       followees: "Gente que  {{subject}} est\xC3\xA1 siguiendo"
       has_not_followers: "{{subject}} no tiene seguidores."
-      others_dont_have_badge: "Nadie tiene este badge. \xC2\xA1{{subject}} es la primera persona que se lo gana!"
+      others_dont_have_badge: "Nadie tiene este badge. "
       latest_reviews: "\xC3\x9Altimos Reviews de {{subject}}"
       is_not_following: "{{subject}} no est\xC3\xA1 siguiendo a nadie."
       badges: Badges de {{subject}}
@@ -269,8 +269,8 @@ coke_ES:
     first_person: 
       has_not_subscribed: "No tienes suscripciones a ning\xC3\xBAn playlist."
       network_activity: Mi actividad de red
-      stations: Mis Radios
       subscriptions: Mis suscripciones
+      stations: Mis Radios
       latest_playlists: "Mis \xC3\x9Altimas Reviews"
       friends_that_have_this_badge: "Amigos m\xC3\xADos que tienen este badge"
       has_not_badges: "No has ganado ning\xC3\xBAn badge aun."
@@ -282,7 +282,7 @@ coke_ES:
       top_playlists: Mis Playlists Top
       followees: "Gente que estoy siguiendo "
       has_not_followers: No tienes seguidores.
-      others_dont_have_badge: "Nadie tiene este badge. \xC2\xA1Eres la primera persona que se lo gana!"
+      others_dont_have_badge: Nadie tiene este badge.
       latest_reviews: "Mis Reviews M\xC3\xA1s Recientes"
       is_not_following: "No est\xC3\xA1s siguiendo a nadie."
       badges: Mis Badges
@@ -793,20 +793,20 @@ coke_ES:
     change_password: "CAMBIAR CONTRASE\xC3\x91A"
     email_me_following_me: Enviarme un email cuando alguien comienza a seguirme
     email_me_subscribes_radios: Enviarme un email cuando alguien se suscribe a una de mis radios
-    email_me_reviews_mixes: Enviarme un email cuando alguien califica o deja un comentario en alguno de mis mixes
-    delete: ELIMINAR
+    email_me_reviews_mixes: Enviarme un email cuando alguien califica o deja un comentario en alguno de mis playlists
     email_me_subscribes_mixes: Enviarme un email cuando alguien se suscribe a uno de mis mixes
-    title: CONFIGURACION DE CUENTA
+    delete: ELIMINAR
     cancel: Cancelar
+    title: CONFIGURACION DE CUENTA
     email_me_coke_newsletter: Quiero recibir novedades  y comunicados de Coca-Cola
     email_me_communications: Quiero recibir comunicaciones y Newsletters de Cocacola.fm
     delete_my_account: ELIMINAR MI CUENTA
     delete_info: "Al marcar este casillero, entiendo que eliminar mi cuenta significa que mi p\xC3\xA1gina en Cocacola.fm, mi colecci\xC3\xB3n de m\xC3\xBAsica y fotos ser\xC3\xA1n elminadas tambi\xC3\xA9n. Entiendo que para regresar a Cocacola.fm, tendr\xC3\xA9 que crear una nueva cuenta con un nuevo nombre de usuario."
     password_required: "Debes ingresar una contrase\xC3\xB1a v\xC3\xA1lida"
-    delete_info_required: Debes marcar el casillero para continuar
     new_password: "Nueva Contrase\xC3\xB1a"
-    add_update: ACTUALIZAR
+    delete_info_required: Debes marcar el casillero para continuar
     save: GUARDAR
+    add_update: ACTUALIZAR
     delete_account: ELIMINAR CUENTA
     update: ACTUALIZAR
     password: "Contrase\xC3\xB1a"
@@ -1364,17 +1364,17 @@ coke_ES:
     background_align: Alineamiento del Fondo
     city_name: Ciudad
     name: Nombre
-    receives_following_notifications: Alertarme cuando alguien comienza a seguirme
     forgot_message: Cocacola.fm te enviara instrucciones al email asociado con tu cuenta. Por favor, ingresa tu email.
+    receives_following_notifications: Alertarme cuando alguien comienza a seguirme
     is_not_following_anybody: "{{user_name}} no est\xC3\xA1 siguiendo a nadie"
-    marketing_opt_out: "Por favor no me env\xC3\xADen emails de parte de Cocacola.fm o sus sitios relacionados."
     slug: Nombre de Perfil
-    color_links: Color del Enlace
+    marketing_opt_out: "Por favor no me env\xC3\xADen emails de parte de Cocacola.fm o sus sitios relacionados."
     background_repeats: 
       horizontal_repeat: "Repetici\xC3\xB3n Horizontal"
       full_repeat: "Repetici\xC3\xB3n Completa"
       no_repeat: No Repetir
       vertical_repeat: "Repetici\xC3\xB3n Vertical"
+    color_links: Color del Enlace
     background_fixed_false: "No"
     background_fixed_true: Si
     confirmation: 
@@ -1382,18 +1382,17 @@ coke_ES:
       email_resend_failed: "El e-mail de confirmaci\xC3\xB3n no pudo ser reenviado. Por favor reintentar m\xC3\xA1s tarde."
       still_pending: "Tu cuenta no ha sido confirmada aun. Por favor busca en tus emails, y sigue las instrucciones para confirmaci\xC3\xB3n, o {{click_here}} para reenviar tu enlace de confirmaci\xC3\xB3n."
       email_resent: "Tu e-mail de confirmaci\xC3\xB3n ha sido enviado."
-    doesnt_have_any_subscriptions: "{{user_name}} no est\xC3\xA1 suscripto a nada aun"
     terms_of_use: "T\xC3\xA9rminos de uso"
+    doesnt_have_any_subscriptions: "{{user_name}} no est\xC3\xA1 suscripto a nada aun"
     reset_password: "Cambio de Contrase\xC3\xB1a"
     twitter_username: Nombre de Usuario en Twitter
     private_profile: Mantener tu perfil privado?
     terms_of_use_instructions: "Al registrarte, aceptas los {{link}} y confirmas que tienes por lo menos 13 a\xC3\xB1os."
-    forgot_your_password: "Se te olvido tu contrase\xC3\xB1a?"
     cyloop_password: "Contrase\xC3\xB1a"
-    female: Mujer
+    forgot_your_password: "Se te olvido tu contrase\xC3\xB1a?"
     current_password: "Contrase\xC3\xB1a Actual"
+    female: Mujer
     color_bg: Color del fondo
-    cyloop_email: Email de Cocacola.fm
     background_alignments: 
       upper_right: Superior Derecha
       left: Izquierda
@@ -1404,29 +1403,30 @@ coke_ES:
       right: Derecha
       upper_center: Superior Centro
       lower_center: Inferior Centro
+    cyloop_email: Email de Cocacola.fm
     background: Imagen de Fondo
     password_confirmation: "Confirmar Contrase\xC3\xB1a"
     doesnt_have_any_followers: "{{user_name}} no tiene seguidores"
     remove_avatar: Eliminar Imagen
     websites: Sitios
     terms_and_conditions: "t\xC3\xA9rminos y condiciones"
-    privacy_policy_instructions: "Nuestra {{link}} existe para protegerte! Por favor l\xC3\xA9ela y confirma que est\xC3\xA1s de acuerdo con sus t\xC3\xA9rminos."
-    background_fixed: Fondo Ajustado
-    negative_captcha: No completar este campo
     short_bio: "Breve rese\xC3\xB1a"
+    negative_captcha: No completar este campo
+    background_fixed: Fondo Ajustado
+    privacy_policy_instructions: "Nuestra {{link}} existe para protegerte! Por favor l\xC3\xA9ela y confirma que est\xC3\xA1s de acuerdo con sus t\xC3\xA9rminos."
     color_main_font: "Color de la Tipograf\xC3\xADa Principal"
     background_repeat: "Repetici\xC3\xB3n del Fondo"
-    avatar: Imagen
     gender: Sexo
+    avatar: Imagen
     new_password: "Nueva Contrase\xC3\xB1a"
     has_no_tweet: "{{user_name}} no tiene tweets"
-    has_no_followers: "{{user_name}} no tiene seguidores"
     male: Hombre
+    has_no_followers: "{{user_name}} no tiene seguidores"
     safety_tips: Consejos de Seguridad
     dont_stay_locked_out: "\xC2\xA1No te quedes afuera!"
     time_zone: Franja  Horaria
-    saved: "Tus par\xC3\xA1metos han sido guardados."
     password: "Contrase\xC3\xB1a"
+    saved: "Tus par\xC3\xA1metos han sido guardados."
     hasnt_create_any_station: "{{user_name}} no ha creado radios"
     privacy_policy: "Pol\xC3\xADtica de  Privacidad"
     color_header_bg: Color del Encabezado
