@@ -12,10 +12,7 @@ class AccountsController < ApplicationController
     @dashboard_menu = :home
     @mixes_recommended = (1..6).to_a
     @comments = (1..3).to_a
-    @reviews = profile_account.comments.all(:joins => 'INNER JOIN playlists ON comments.commentable_id = playlists.id INNER JOIN accounts a1 ON playlists.owner_id = a1.id', 
-                                            :conditions => 'playlists.deleted_at IS NULL AND a1.deleted_at IS NULL', 
-                                            :order => 'comments.updated_at DESC',
-                                            :limit => 5)
+    @reviews = profile_account.comments.valid({:limit => 5})
     
     @followers = profile_account.followers.all(:limit => 4)
 
