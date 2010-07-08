@@ -1,4 +1,4 @@
-<h1><%= t('modules.top_playlists.title') %></h1>
+<h1><%= t('modules.profile.top_playlists.title') %></h1>
 <% top_playlists_size = @top_playlists.size%>
 <% cache("#{site_cache_key}/modules/profiles/top_playlists/#{top_playlists_size}", :expires_in => EXPIRATION_TIMES["top_modules_playlists"]) do %>
   <% @top_playlists.each_with_index do |p, i| %>
