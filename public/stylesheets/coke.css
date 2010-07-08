@@ -622,7 +622,7 @@ input.star {
   background: transparent url(../images/red_lock.gif) no-repeat 0 0;
 }
 
-.radio .top_playlists_column {
+/*.radio .top_playlists_column {
   margin-right:25px;
   width:300px;
 }
@@ -637,6 +637,7 @@ input.star {
   float:left;
   width:300px;
 }
+*/
 
 div.small_loading {
   height: 25px;
@@ -657,4 +658,64 @@ h1 div.small_loading {
 
 .albums_item.reviews_list  {
   height: 150px;
+}
+
+.btn_red_loading {
+  margin-top: 5px;
+  margin-right: 5px;   
+}
+
+.bottle_tags {
+  width: 150px;
+  height: 358px;
+  position: absolute;
+  z-index: 1;
+  overflow: hidden;
+}
+
+.bottle_tags.outer {
+  z-index: 4;
+  opacity: 0.2;
+  -moz-opacity:0.2;
+  filter:alpha(opacity=20);
+}
+
+.bottle_tags a{
+  display: inline-block;
+  text-decoration: none;
+  font-family: Arial;
+}
+
+a.red {
+  color: #FF0014;
+}
+
+a.black {
+  color: #000000;
+}
+
+#tag_bottle {
+  width: 150px;
+  height: 358px;
+  background: url(/images/bottle_mask_small.png);
+  position: absolute;
+  z-index: 2;
+}
+
+.tag_css1 { font-size: 12px !important; }
+.tag_css2 { font-size: 14px !important; }
+.tag_css3 { font-size: 18px !important; }
+.tag_css4 { font-size: 22px !important; }
+.tag_css5 { font-size: 26px !important; }
+
+.playlist_items {
+	margin-bottom: 15px;
+}
+
+.side_tags {
+	margin-top: 23px;
+}
+
+.tooltip_list li {
+	text-transform: none;
 }

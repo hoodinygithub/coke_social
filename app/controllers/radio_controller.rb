@@ -4,29 +4,24 @@ class RadioController < ApplicationController
   #caches_action :show, :expires_in => EXPIRATION_TIMES['radio_show'], :cache_path => :radio_show_cache_key
 
   def index
-    @station_obj = if params[:station_id]
-      Station.find(params[:station_id]) rescue nil
-    elsif params[:artist_name]
-      AbstractStation.find_by_name(params[:artist_name]) rescue nil
-    end
+    @station_obj = nil
 
-    @section = "player_page" if params[:station_id]
-
+    station = Station.find_by_id_and_playable_type(params[:station_id], 'Playlist') rescue nil
+    @station_obj = station if station and station.playable and station.playable.owner and station.playable.owner.active?
+    
     if @station_obj
-        @station_obj = create_user_station(@station_obj)
-        @station_queue = @station_obj.playable.station_queue(:ip_address => remote_ip)
-        @station_obj.playable.track_a_play_for(current_user) if @station_obj.playable
+      @section = "player_page" #used for css styling
+      @station_queue = @station_obj.playable.station_queue(:ip_address => remote_ip)
+      @station_obj.playable.track_a_play_for(current_user) if @station_obj.playable
     else
-      @top_djs_limit = 6
+      @top_djs_limit = 5
       @top_djs = current_site.top_djs.all(:limit => @top_djs_limit)
       @top_playlists_limit = 6
       @top_playlists = current_site.top_playlists.all(:limit => @top_playlists_limit)
 
-      @latest_badges = BadgeAward.latest(7)
+      @latest_badges = BadgeAward.latest(6)
       
-      #Is this being used? TODO: Delete - use @top_playlists instead
-      #@playlists = current_site.top_playlists.all(:limit => 6)
-      @top_artists_limit = 6      
+      @top_artists_limit = 5    
       @top_artists = current_site.top_artists.all(:limit => @top_artists_limit)
     end
   end

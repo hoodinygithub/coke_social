@@ -57,6 +57,18 @@ module Juixe
         end
       end
 
+      module InstanceMethods
+        def rating
+          average = 0.0
+          ratings.valid.each { |r|
+            average = average + r.rating
+          }
+          if ratings.valid.size != 0
+            average = average / ratings.valid.size
+          end
+          average
+        end
+      end
     end
   end
 end

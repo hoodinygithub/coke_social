@@ -241,11 +241,7 @@ class ApplicationController < ActionController::Base
   end
 
   def global_url
-    if RAILS_ENV == 'production'
-      "cyloop.com"
-    else
-      host_port
-    end
+    current_site.domain
   end
 
   def current_country
@@ -456,9 +452,21 @@ class ApplicationController < ActionController::Base
       end
     end
   end
-
+    
   def on_dashboard?
     request.request_uri.match(/\/my\//)
+  end
+
+  def feedback_recipient
+    ENV["#{current_site.code.upcase}_FEEDBACK_EMAIL"]
+  end
+
+  def get_sort_by_param(valid_params=[], default = :latest)
+    sort_by = params.fetch(:sort_by, default).to_sym
+    unless valid_params.include?(sort_by)
+      sort_by = default.to_sym
+    end
+    params[:sort_by] = sort_by
   end
 
 end

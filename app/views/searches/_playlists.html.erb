@@ -1,3 +1,8 @@
+<script type="text/javascript">
+  $(document).ready(function(){
+    Base.main_search.init_pagination();
+  });
+</script>
 <ul class="susbcriptions_list">
   <% @results[:playlists].each do |playlist| %>
     <% if playlist.station %>
@@ -7,7 +12,8 @@
 
         <div class="transparency_thumbanils png_fix">
             <% if false %><a href="#"><img src="images/listen_button.png" alt="" /></a><% end %>
-            <% if false %><a href="#"><img src="images/duplicate_button.png" alt="" /></a><% end %>
+            <%= link_to image_tag('duplicate_button.png', :class=> "png_fix"), '#', 
+              :onclick => "Base.playlists.copy('#{playlist.owner.slug}', #{playlist.id}); return false;" %>
             <%= link_to image_tag('play_button.png'), radio_path(:station_id => playlist.station.id) %>
         </div>
 
@@ -28,7 +34,7 @@
                 <%= link_to(avatar_for(playlist.owner, :small, {:alt => "", :class =>"follower_image"}), playlist.owner) %>
                 <div class="creator_text">
                   <b><%= "#{t('basics.created_by')}: #{link_to(playlist.owner.name, user_path(playlist.owner))}" %></b><br/>
-                  <%= render :partial =>'shared/user_following', :locals => {:current_user => current_user, :user => playlist.owner} %>
+                  <%= render :partial =>'shared/user_following', :locals => {:current_user => current_user, :user => playlist.owner} if current_user != playlist.owner %>
                 </div>
             </div>
         </div>

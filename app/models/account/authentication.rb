@@ -161,16 +161,18 @@ module Account::Authentication
   end
 
   def uniqueness_of_email
-    user_with_email = User.find_by_email_and_deleted_at(email, nil)
+    user_with_email = User.find_by_email_on_all_networks(email)
     if !user_with_email.nil? && user_with_email.id != id
       self.errors.add(:email, I18n.t("activerecord.errors.messages.taken"))
     end
   end
 
   def email_domain_valid_for_beta
-    valid_scan_emails = %(wasaone@gmail.com wasatwo@gmail.com wasathree@gmail.com wasafour@gmail.com wasafive@gmail.com wasasix@gmail.com wasaseven@gmail.com wasaeight@gmail.com wasanine@gmail.com)
+    valid_scan_emails = %(wasaone@gmail.com wasatwo@gmail.com wasathree@gmail.com wasafour@gmail.com wasafive@gmail.com wasasix@gmail.com 
+    wasaseven@gmail.com wasaeight@gmail.com wasanine@gmail.com mhuser@sapient.com oyunger@sapient.com mhuser@sapient.com skobrynich@sapient.com 
+    fferrazza@sapient.com mconigliaro@sapient.com sbamber@sapient.com ahollander@sapient.com jschneider@sapient.com)
     if !valid_scan_emails.include?(email)
-      valid_domains = ['ko.com', 'hoodiny.com', 'cyloop.com', 'clarusdigital.com']
+      valid_domains = ['ko.com', 'hoodiny.com', 'cyloop.com', 'clarusdigital.com', 'la.ko.com', 'mena.ko.com', 'na.ko.com', 'eur.ko.com']
       errors.add(:email, I18n.t('share.errors.message.email_is_not_authorized') ) unless valid_domains.include?(email.split("@")[1])
     end
   end
@@ -190,8 +192,9 @@ module Account::Authentication
 
   module ClassMethods
 
-    def authenticate(email, password)
-      u = find_by_email_and_deleted_at(email, nil) # need to get the salt and make sure the account isn't deleted
+    def authenticate(email, password, site)
+      network_ids = site.networks.collect(&:id)
+      u = find_by_email_and_deleted_at_and_network_id(email, nil, network_ids) # need to get the salt and make sure the account isn't deleted
       u && u.authenticated?(password) ? u : nil
     end
 

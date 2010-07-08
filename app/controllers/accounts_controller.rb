@@ -12,7 +12,8 @@ class AccountsController < ApplicationController
     @dashboard_menu = :home
     @mixes_recommended = (1..6).to_a
     @comments = (1..3).to_a
-    @reviews = profile_account.reviews.all(:limit => 5)
+    @reviews = profile_account.comments.valid({:limit => 5, :order => "comments.updated_at DESC"})
+    
     @followers = profile_account.followers.all(:limit => 4)
 
     respond_to do |format|

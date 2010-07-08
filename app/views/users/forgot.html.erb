@@ -27,7 +27,14 @@
         <div class="grey_round_box">
           <b>cocacola.fm/</b><%= f.text_field :slug, :class => 'input half_width2' %>
         </div>
-      </div><!--/end form_row -->      
+      </div><!--/end form_row -->  
+      
+      <div class="form_row last hidden">    
+        <label><strong>Safe question:</strong></label>
+        <div class="grey_round_box">
+          <%= text_field_tag "safe_question", nil, :class => 'input full_width' %>
+        </div>
+      </div>
       
       <div class="form_row last">
         <div class="right_side">

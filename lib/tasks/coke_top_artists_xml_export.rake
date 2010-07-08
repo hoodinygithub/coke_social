@@ -13,6 +13,22 @@ namespace :db do
         end
       end
     end
+    
+    def image_exists?(url)
+      require 'net/http'
+      require 'uri'
+
+      begin
+        response = Net::HTTP.get_response URI.parse(url)
+        if response.kind_of?(Net::HTTPSuccess)
+          true
+        elsif response.kind_of?(Net::HTTPNotFound)
+          false
+        end
+      rescue 
+        false
+      end
+    end    
 
     def write_rss_artist_feed(feed, site, path)
       limit = 70
@@ -32,8 +48,17 @@ namespace :db do
         items.each do |artist|
           title = "#{artist.name}"
           link =  CGI::escape("http://#{site.domain}/search/playlists/#{artist.name}")
-          thumbnail = AvatarsHelper.avatar_path(artist, :small) #s.artist.avatar_file_name.nil? ? "http://assets.cyloop.com/storage?fileName=/.elhood.com-2/usr/#{s.artist_id}/image/thumbnail/x46b.jpg" : s.artist.avatar_file_name.sub(/hires/,'thumbnail')
+          thumbnail   = AvatarsHelper.avatar_path(artist, :small) #s.artist.avatar_file_name.nil? ? "http://assets.cyloop.com/storage?fileName=/.elhood.com-2/usr/#{s.artist_id}/image/thumbnail/x46b.jpg" : s.artist.avatar_file_name.sub(/hires/,'thumbnail')
           large_image = AvatarsHelper.avatar_path(artist, :medium)  #s.artist.avatar_file_name.nil? ? "http://assets.cyloop.com/storage?fileName=/.elhood.com-2/usr/#{s.artist_id}/image/hi-thumbnail/x46b.jpg" : s.artist.avatar_file_name.sub(/hires/,'hi-thumbnail')
+
+          unless image_exists?(thumbnail)
+            #thumbnail = "http://assets.cyloop.com/storage?fileName=/.elhood.com-2/usr/404/image/thumbnail/default_image.jpg"
+            thumbnail = "http://#{site.domain}/avatars/missing/artist.gif"
+          end
+          
+          unless image_exists?(large_image)
+            large_image = "http://assets.cyloop.com/storage?fileName=/.elhood.com-2/usr/404/image/hi-thumbnail/default_image.jpg"
+          end          
 
           xml.item do
             xml.thumb thumbnail

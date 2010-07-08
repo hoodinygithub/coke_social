@@ -12,9 +12,8 @@
           <%= tag_links(item.commentable) %>
         </div>
         <div class="align_right box_buttons">
-          <% if false %>
-            <a href="#"><img src="/images/duplicate_button.png" class="png_fix" alt="" /></a>
-          <% end %>
+          <%= link_to image_tag('duplicate_button.png', :class=> "png_fix"), '#', 
+            :onclick => "Base.playlists.copy('#{item.commentable.owner.slug}', #{item.commentable.id}); return false;" %>
           <% if item.commentable.owner == current_user %>
             <%= link_to image_tag('edit_button.png', :class=> "png_fix"), edit_playlist_path(item.commentable) %>
             <%= link_to image_tag('close_button.png', :class=> "png_fix"), '#', 
@@ -70,26 +69,28 @@
         <%= link_to avatar_for(user, :small, :class => "review_icon"), user %>
         <div class="review_creator_large">
           <b><%= t('basics.created_by') %>: <%= link_to item.commentable.owner, user_path(item.commentable.owner) %></b><br/>
-          <% if current_user %>
-            <div id="following" style="display:<%= current_user.follows?(user) ? 'block' : 'none' %>" >
-              <%= t("basics.you_are", :default => "You are") %> <span class="green_highlight"><%= t('basics.following', :default => "following").downcase %></span> <%= user.first_name rescue "" %>
-              <%= t("basics.click_to_unfollow",
-                    :follow_link => link_to(t("basics.here", :default => "here"), "javascript:",
-                    :onclick => "Base.community.text_unfollow('#{user.slug}', this)"), :default =>  "Click {{follow_link}} to stop following") rescue "" %>.
-            </div>
-            <div id="not_following" style="display:<%= current_user.follows?(user) ? 'none' : 'block' %>" >
-                <%= t("basics.click_to_follow",
-                    :follow_link => link_to(t("basics.here", :default => "here"), "javascript: ",
-                    :onclick => "Base.community.text_follow('#{user.slug}', this, '#{layer_path}')"), :default => "Click {{follow_link}} to follow") rescue "" %>
-                <%= user.name rescue "" %>.
-            </div>
-          <% else %>
-            <div id="not_following" style="display: block" >
-                <%= t("basics.click_to_follow",
-                    :follow_link => link_to(t("basics.here", :default => "here"), "javascript: ",
-                    :onclick => "Base.community.text_follow('#{user.slug}', this, '#{layer_path}')"), :default => "Click {{follow_link}} to follow") rescue "" %>
-                <%= user.name rescue "" %>.
-            </div>
+          <% if current_user != user %>
+            <% if current_user %>
+              <div id="following" style="display:<%= current_user.follows?(user) ? 'block' : 'none' %>" >
+                <%= t("basics.you_are", :default => "You are") %> <span class="green_highlight"><%= t('basics.following', :default => "following").downcase %></span> <%= user.first_name rescue "" %>
+                <%= t("basics.click_to_unfollow",
+                      :follow_link => link_to(t("basics.here", :default => "here"), "javascript:",
+                      :onclick => "Base.community.text_unfollow('#{user.slug}', this)"), :default =>  "Click {{follow_link}} to stop following") rescue "" %>.
+              </div>
+              <div id="not_following" style="display:<%= current_user.follows?(user) ? 'none' : 'block' %>" >
+                  <%= t("basics.click_to_follow",
+                      :follow_link => link_to(t("basics.here", :default => "here"), "javascript: ",
+                      :onclick => "Base.community.text_follow('#{user.slug}', this, '#{layer_path}')"), :default => "Click {{follow_link}} to follow") rescue "" %>
+                  <%= user.name rescue "" %>.
+              </div>
+            <% else %>
+              <div id="not_following" style="display: block" >
+                  <%= t("basics.click_to_follow",
+                      :follow_link => link_to(t("basics.here", :default => "here"), "javascript: ",
+                      :onclick => "Base.community.text_follow('#{user.slug}', this, '#{layer_path}')"), :default => "Click {{follow_link}} to follow") rescue "" %>
+                  <%= user.name rescue "" %>.
+              </div>
+            <% end %>
           <% end %>
         </div>
         <br class="clearer" />

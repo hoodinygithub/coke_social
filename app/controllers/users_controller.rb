@@ -27,6 +27,7 @@ class UsersController < ApplicationController
   # GET /users/id/edit
   def edit
     @user = User.find(current_user.id)
+    puts request.host
   end
 
   # POST /users/id
@@ -36,9 +37,11 @@ class UsersController < ApplicationController
     born_on_year             = params[:user].delete("born_on(1i)")
     born_on_month            = params[:user].delete("born_on(2i)")
     born_on_day              = params[:user].delete("born_on(3i)")
-
     @user.attributes         = params[:user]    
-    @user.born_on_string     = "#{born_on_year}-#{born_on_month}-#{born_on_day}"
+    
+    if born_on_day && born_on_month && born_on_year
+      @user.born_on_string = "#{born_on_year}-#{born_on_month}-#{born_on_day}"
+    end
     twitter_username_changed = @user.twitter_username_changed?
     
     if @user.save
@@ -78,11 +81,11 @@ class UsersController < ApplicationController
     if @user.save
       cookies.delete(:auth_token) if cookies.include?(:auth_token)
       session[:msn_live_id] = nil if wlid_web_login?
-      session[:registration_layer] = true     
+      session[:registration_layer] = true
       self.current_user = @user
 
       subject = t("registration.email.subject")
-      # UserNotification.send_registration( :user_id => @user.id, :subject => subject, :host_url => request.host, :site_id => current_site.code, :global_url => global_url, :locale => current_site.default_locale)
+      UserNotification.send_registration( :user_id => @user.id, :subject => subject, :host_url => request.host, :site_id => current_site.code, :global_url => global_url, :locale => current_site.default_locale)
 
       # Background validation to twitter username
       Resque.enqueue(TwitterJob, {
@@ -103,17 +106,17 @@ class UsersController < ApplicationController
 
   def forgot
     if request.post?
-      @user = User.forgot?( params[:user] )
+      @user = User.forgot?( params[:user], current_site )
       if @user && @user.msn_live_id && wlid_web_login?
         flash.now[:error] = t('reset.msn_account')
-      elsif @user && @user.errors.empty?
+      elsif @user && @user.errors.empty? && params[:safe_question].empty? # && verify_recaptcha(:model => @user, :message => I18n.t("forgot.captcha_invalid"))
         UserNotification.send_reset_notification(
           :user_id => @user.id,
           :password => @user.reset_password,
           :site_id => request.host)
         flash[:success] = t('forgot.reset_message_sent')
-      else
-        flash.now[:error] = t("reset.insert_valid_info")
+      elsif @user.nil?
+        flash[:success] = t('forgot.reset_message_sent')        
       end
     elsif !request.referer.blank? && request.referer !=~ /forgot|session/
       session[:return_to] = request.referer
@@ -150,11 +153,12 @@ class UsersController < ApplicationController
   end
 
   def feedback
+    @address = params[:address]
     feedback = params[:feedback]
     if feedback && !feedback.empty?
       options = {
         :site_id      => current_site.code,
-        :mailto       => "#{request.host}@hoodiny.com",
+        :mailto       => feedback_recipient,
         :address      => params[:address],
         :country      => params[:country],
         :os           => params[:os],
@@ -181,15 +185,15 @@ class UsersController < ApplicationController
         :site_id => request.host
       }
       if current_user.cancel_account!
-        #UserNotification.send_cancellation(options)
+        UserNotification.send_cancellation(options)
         cookies.delete(:auth_token) if cookies.include?(:auth_token)
         result[:success] = true
         if wlid_web_login?
           result[:redirect_to] = msn_logout_url
-          result[:email] = user.email
         else
           result[:redirect_to] = root_url
         end
+        result[:email] = user.email
       end
     else
       result[:errors] = { :delete_password => I18n.t('account_settings.password_required') }

@@ -17,6 +17,8 @@
         <a href="#" title = "Subscribe"><img src="images/listen_button.png" class="png_fix" alt="" /></a>
         <a href="#" title="Copy"><img src="images/duplicate_button.png" class="png_fix" alt="" /></a>
         <% end %>
+          <%= link_to image_tag('duplicate_button.png', :class=> "png_fix"), '#', 
+            :onclick => "Base.playlists.copy('#{p.owner.slug}', #{p.id}); return false;" %>
         <%= link_to(image_tag('play_button.png', :class => 'png_fix'), radio_path(:station_id => p.station.id))%>
       </div>
     </div>

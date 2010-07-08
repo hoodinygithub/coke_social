@@ -91,15 +91,11 @@ class User < Account
            :source => :abstract_station,
            :conditions => 'abstract_stations.deleted_at IS NULL AND user_stations.deleted_at IS NULL'
 
-  has_many :reviews,  
+  has_many :comments,  
            :foreign_key => :user_id,
-           :class_name => "Comment",
-           :conditions => "commentable_type = 'Playlist'",
-           :order => "comments.updated_at DESC"
+           :conditions => "commentable_type = 'Playlist'"
 
-
-
-  has_many :playlists, :foreign_key => :owner_id, :order => 'updated_at DESC', :conditions => 'playlists.deleted_at IS NULL' do
+  has_many :playlists, :foreign_key => :owner_id, :conditions => 'playlists.deleted_at IS NULL' do
     def top(limit = 4)
       all(:order => 'total_plays DESC', :limit => limit)
     end
@@ -157,7 +153,7 @@ class User < Account
   validate :check_born_on_in_future, :unless => Proc.new { |user| user.born_on.blank? }
   validate :check_age_is_at_least_13, :unless => Proc.new { |user| user.born_on.blank? }
 
-  def self.forgot?(attributes)
+  def self.forgot?(attributes, current_site=nil)
     user = User.new(attributes)
     if user.email.to_s.blank?
       user.errors.add(:email, I18n.t("activerecord.errors.messages.blank"))
@@ -170,13 +166,29 @@ class User < Account
     end    
     
     if user.errors.empty?
-      user = User.find_by_email_and_slug_and_deleted_at( attributes[:email], attributes[:slug], nil )
+      network_ids = current_site.networks.collect(&:id)
+      user = User.find_by_email_and_slug_and_deleted_at_and_network_id( attributes[:email], attributes[:slug], nil, network_ids )
     end
     user
   end
 
   def <=>(b)
     id <=> b.id
+  end
+
+  def tag_counts_from_playlists(limit=60)
+    options = { :select => "DISTINCT tags.*",
+                :joins => "INNER JOIN #{Tagging.table_name} ON #{Tag.table_name}.id = #{Tagging.table_name}.tag_id INNER JOIN #{Playlist.table_name} ON #{Tagging.table_name}.taggable_id = #{Playlist.table_name}.id AND #{Tagging.table_name}.taggable_type = 'Playlist'",
+                :order => "taggings.created_at DESC",
+                :conditions => "playlists.owner_id = #{self.id} AND playlists.deleted_at IS NULL",
+                :limit => limit }
+
+    Tag.all(options)
+    # options = { :limit => limit, 
+    #             :joins => "INNER JOIN #{Playlist.table_name} ON #{Tagging.table_name}.taggable_id = #{Playlist.table_name}.id AND #{Tagging.table_name}.taggable_type = 'Playlist'",
+    #             :order => "taggings.created_at DESC",
+    #             :conditions => "playlists.owner_id = #{self.id}" }
+    # Tag.counts(options)
   end
 
   def tags_from_playlists
@@ -228,18 +240,14 @@ class User < Account
   def block(blockee_id)
     blockee_id = blockee_id.id if blockee_id.kind_of? User
     Block.create! :blocker_id => id, :blockee_id => blockee_id
+    playlists.each { |p| p.update_attribute('rating_cache', p.rating); p.save! }
   end
   
   def unblock(blockee_id)
     blockee_id = blockee_id.id if blockee_id.kind_of? User
     blocked = Block.first(:conditions => {:blocker_id => id, :blockee_id => blockee_id})
     blocked.destroy if blocked
-  end
-
-  def unblock(blockee_id)
-    blockee_id = blockee_id.id if blockee_id.kind_of? User
-    blocked = Block.first(:conditions => {:blocker_id => id, :blockee_id => blockee_id})
-    blocked.destroy if blocked
+    playlists.each { |p| p.update_attribute('rating_cache', p.rating); p.save! }
   end
 
   def blocks?(blockee_id)
@@ -331,5 +339,17 @@ class User < Account
     followings.update_all(:follower_name => self.name[0..2])
     followings_as_followee.update_all(:followee_name => self.name[0..2])
   end
+
+
+  def self.find_by_email_on_all_networks(email)
+    with_exclusive_scope do
+      encrypted_email = User.encrypt_email(email)
+      users = User.find_by_sql ["SELECT * FROM accounts WHERE type = 'User' AND (email = ? or encrypted_email = ?) AND deleted_at IS NULL", 
+        email, 
+        encrypted_email]
+      users.first
+    end
+  end
+
 end
 

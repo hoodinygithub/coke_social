@@ -19,7 +19,7 @@ module ApplicationHelper
           user_path(owner)
         when "followers"
           user_followers_path(owner)
-        when "playlists"
+      when "playlists"
           user_playlists_path(owner)
       end
     end
@@ -182,7 +182,7 @@ module ApplicationHelper
 
     onclick_cb = "Base.community.#{action}('#{account.slug}', this, #{remove_div}, '#{layer_path}')" if action
     attrs.merge!({:onclick => onclick_cb, :class => 'follower_btn'})
-    if account.is_a?(User) and (account.respond_to?(:blocks?) and !account.blocks?(current_user)) or account.is_a?(Artist)
+    if account.is_a?(User) and (account.respond_to?(:blocks?) and !account.blocks?(current_user)) and account != current_user or account.is_a?(Artist)
       send("#{button_color}_button", t(locale_key), attrs)
     end
   end
@@ -888,7 +888,7 @@ module ApplicationHelper
     rating = false
     rating_id = id ? id : "rating_#{rateable.id}"
     (1..5).each do |rate|
-      checked = rate == rateable.rating.round ? true : false
+      checked = rate == rateable.rating_cache.floor ? true : false
       ratings << radio_button_tag(rating_id, rate, checked, :class => 'star', :disabled => disabled)
     end
 
@@ -912,4 +912,51 @@ module ApplicationHelper
     end
   end
 
+
+  def tag_bottle(tags)
+    outer_tag_links = []
+    inner_tag_links = []
+    tag_cloud tags, %w(tag_css1 tag_css2 tag_css3 tag_css4, tag_css5) do |tag, css_class, index| 
+      outer_tag_links << link_to(tag.name, search_path(:q => tag.name, :scope => :playlists), :class => "tag_outer red #{css_class}", :id => "tag_outer_#{index}") rescue nil
+      inner_tag_links << link_to(tag.name, search_path(:q => tag.name, :scope => :playlists), :class => "tag_inner red #{css_class}", :id => "tag_inner_#{index}") rescue nil
+    end
+    <<-EOF
+    <script type="text/javascript">
+      jQuery(document).ready(function(){
+        jQuery("a.tag_outer").mouseover(function(e){
+          e.preventDefault();
+          ord = this.id.match(/tag_outer_(\\d+)/)[1];
+          jQuery("#tag_inner_" + ord).removeClass('red').addClass("black");
+          jQuery("#tag_outer_" + ord).removeClass('red').addClass("black");
+        });
+
+        jQuery("a.tag_outer").mouseout(function(e){
+          e.preventDefault();
+          ord = this.id.match(/tag_outer_(\\d+)/)[1];
+          jQuery("#tag_inner_" + ord).removeClass('black').addClass("red");
+          jQuery("#tag_outer_" + ord).removeClass('black').addClass("red");
+        })
+      });
+    </script>
+    <div class="bottle_tags">
+      <table width="100%" height="100%">
+        <tr>
+          <td valign="bottom" align="center">
+            #{inner_tag_links.compact.join('&nbsp;&nbsp;')}
+          </td>
+        </tr>
+      </table>
+    </div>
+    <div id="tag_bottle" class="png_fix"></div>
+    <div class="bottle_tags outer">
+      <table width="100%" height="100%">
+        <tr>
+          <td valign="bottom" align="center">    
+            #{outer_tag_links.compact.join('&nbsp;&nbsp;')}
+          </td>
+        </tr>
+      </table>
+    </div>
+    EOF
+  end
 end

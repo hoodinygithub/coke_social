@@ -3,9 +3,9 @@ class AlbumsController < ApplicationController
   before_filter :load_page, :only => :show
   current_tab :music
 
-  def index
-    @sort_type = params.fetch(:sort_by, nil).to_sym rescue :latest
+  def index    
     sort_types = { :latest => 'year DESC', :alphabetical => 'albums.name'  }
+    @sort_type = get_sort_by_param(sort_types.keys, :latest) #params.fetch(:sort_by, nil).to_sym rescue :latest
     @collection = profile_artist.artist_albums.paginate :page => params[:page], :per_page => 5, :order => sort_types[@sort_type]
   end
 

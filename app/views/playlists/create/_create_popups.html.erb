@@ -78,8 +78,11 @@
             
             <div class="align_right">
                 <big><a href="#" onclick="$('#save_mix_popup').fadeOut('fast'); return false;" class="not_underlined black valign_middle popup_close_action"><%= t('actions.cancel') %></a></big>
-                
-                <a href="#" class="red_button valign_middle" onclick="submit_save_form(); return false;"><span><span><%= t('actions.save') %></span></span></a>
+                <a href="#" class="red_button valign_middle btn_red_loading" 
+                  onclick="submit_save_form(); return false;">
+                <span><span class="red_loading" loading_message="<%= t('actions.saving') %>">
+                  <%= t('actions.save') %>
+                </span></span></a>
             </div>
         </form>
     </div>

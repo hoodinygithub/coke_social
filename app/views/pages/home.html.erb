@@ -9,8 +9,10 @@
   <%= render :partial => 'black_banner' if is_index? %>
 <% end %>
 
-<%#= render :partial => 'shared/tag_cloud' %>
-<%= render :partial => 'shared/today_top_playlists' %>
+<% cache("#{site_cache_key}/modules/tag_cloud", :expires_in => EXPIRATION_TIMES["home_tag_cloud"]) do %>
+  <%= render :partial => "shared/tag_cloud", :locals => { :tags => current_site.tag_counts_from_playlists } %>
+<% end %>
 <%= render :partial => 'shared/today_top_djs' %>
+<%= render :partial => 'shared/today_top_playlists' %>
 <%= render :partial => 'shared/latest_badges' %>
 <div class="clearer"></div>

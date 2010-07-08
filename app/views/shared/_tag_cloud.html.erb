@@ -1,24 +1,7 @@
 <div class="tags_column">
   <h1><%= t("modules.popular_tags").upcase %></h1>
 
-
   <div class="side_tags">
-    <% if controller_name == "pages" or controller_name == "radio" %>
-      <object width="150" height="500" codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=3,0,0,0" classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" name="fl">
-        <param value="/flash/bottle_tags.swf" name="movie">
-        <param value="undefined" name="LOOP">
-        <param value="high" name="quality">
-        <param value="transparent" name="wmode">
-        <embed width="150" height="500" wmode="transparent" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer" quality="high" src="/flash/bottle_tags.swf" name="ebp">
-        </object>
-      <% else %>
-        <object width="150" height="500" codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=3,0,0,0" classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" name="fl">
-          <param value="/flash/bottle_tags_2.swf" name="movie">
-          <param value="undefined" name="LOOP">
-          <param value="high" name="quality">
-          <param value="transparent" name="wmode">
-          <embed width="150" height="500" wmode="transparent" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer" quality="high" src="/flash/bottle_tags_2.swf" name="ebp">
-        </object>
-      <% end %>
-    </div>
+    <%= tag_bottle(tags) %>
+  </div>
 </div><!--/end tags_column -->

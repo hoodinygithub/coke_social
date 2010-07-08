@@ -184,7 +184,7 @@ class Account < ActiveRecord::Base
 
   before_validation :find_country_by_ip_address
   def find_country_by_ip_address
-    self.country = Country.find_by_addr(ip_address) unless ip_address.nil? && !country.nil?
+    self.country = Country.find_by_addr(ip_address) if !ip_address.nil? && country.nil?
   end
   
   attr_accessor :country_name
@@ -214,6 +214,10 @@ class Account < ActiveRecord::Base
     false
   end
 
+  def active?
+    self.deleted_at.nil?
+  end
+
   def registered?
     status.to_s == "registered"
   end
@@ -240,17 +244,6 @@ class Account < ActiveRecord::Base
 
   def visible?
     available_at_current_site?
-  end
-
-  after_save :delete_customization_key
-  def delete_customization_key
-    Rails.cache.delete("profiles/#{slug_cache_key}/customizations")
-  end
-
-  def current_customizations
-    Rails.cache.fetch("profiles/#{slug_cache_key}/customizations") do
-      CustomizationWriter.new(self).prepare_template
-    end
   end
 
   def delete_follower_cache

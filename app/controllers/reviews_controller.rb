@@ -30,7 +30,13 @@ class ReviewsController < ApplicationController
   def destroy
     @review = Comment.find(params[:id])
     if @review.user == current_user or @review.commentable.owner == current_user
-      @review.destroy
+          
+      ActiveRecord::Base.transaction do  
+        commentable = @review.commentable
+        @review.destroy
+        commentable.update_attribute('rating_cache', commentable.rating)
+      end
+      
       render :json => { :success => true, :id => params[:id], :count => records_count }
     else
       render :json => { :success => false }
@@ -70,6 +76,7 @@ class ReviewsController < ApplicationController
         render :json => { :success => false, :redirect_to => "reviews/#{has_commented.id}/duplicate_warning" }
       else
         @playlist.rate_with(review)
+        UserNotification.send_review_notification({:playlist_id => params[:playlist_id], :reviewer_id => current_user.id }) unless !@playlist.owner.receives_reviews_notifications?
         render :json => { :success => true,
                           :html => render_to_string( :partial => 'playlist_review_item', :collection => [review] )
                         }
@@ -99,18 +106,17 @@ protected
 
   def load_sort_data
     sort_types = { :latest => 'comments.updated_at DESC', :highest_rated => 'comments.rating DESC' }
-    sort_by    = params.fetch(:sort_by, nil).to_sym rescue :latest
+    sort_by    = get_sort_by_param(sort_types.keys, :latest) #params.fetch(:sort_by, nil).to_sym rescue :latest
     @sort_data = sort_types[sort_by]
     @page      = params[:page].blank? ? 1 : params[:page]
-    @sort_type = params.fetch(:sort_by, nil).to_sym rescue :latest
+    @sort_type = sort_by 
   end
 
   def load_records
-    conditions = {}
-    conditions.merge!({ :commentable_type => 'Playlist', :commentable_id => params[:playlist_id] }) if params[:playlist_id]
-    conditions.merge!({ :user_id => profile_account.id }) unless request.request_uri.match(/playlist/)
-    @playlist  = Playlist.find(params[:playlist_id]) if params[:playlist_id]
-    @records   = Comment.all(:conditions => conditions, :order => @sort_data )
+    @playlist = Playlist.find(params[:playlist_id]) if params[:playlist_id]    
+    scope = request.request_uri.match(/playlist/) ? @playlist : profile_account
+    # @records = scope.comments.find(:all, :order => @sort_data, :from => 'playlists, comments', :conditions => 'commentable_id = playlists.id and playlists.deleted_at IS NULL')
+    @records = scope.comments.valid(:order => @sort_data)
   end
 
 end

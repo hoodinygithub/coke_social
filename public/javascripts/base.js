@@ -36,6 +36,14 @@ var restoreInput = function(value, input) {
  }
 }
 
+Base.utils.resetIndexes = function() {
+  if($.browser.msie){
+    $('div').each(function(i) {
+      if($(this).css('position')!='absolute') $(this).css('zIndex', 1000 - (i * 10));
+    });
+  }
+}
+
 /*
  * Simple validation utility.  I want to refactor this
  */
@@ -1191,13 +1199,27 @@ Base.account_settings.focus_first_field_with_error_by_label = function() {
 
 
 Base.account_settings.add_website = function() {
-  var value = $(this).val().replace('http://', '');
-  $('#websites_clearer').before('<div class="website_row">' +
-   '<input id="user_websites_" name="user[websites][]" type="hidden" value="' + value + '" />' +
+  var protocol_regex  = new RegExp("(ftp|http|https):\/\/");
+  var site_regex = new RegExp("^[A-Za-z]+://[A-Za-z0-9-_]+\\.[A-Za-z0-9-_%&\?\/.=]+$");
+  var value = $(this).val();
+
+  Base.account_settings.clear_info_and_errors_on($(this));
+
+  if (!protocol_regex.test(value)) {
+    value = "http://" + value;
+  }
+
+  if (site_regex.test(value)) {
+    value = value.replace(/(ftp|http|https):\/\//, "");
+    $('#websites_clearer').before('<div class="website_row">' +
+   '<input class="user_website" id="user_websites_" name="user[websites][]" type="hidden" value="' + value + '" />' +
    '<b><big><a href="http://' + value + '">' + value + '</a></big> &nbsp; ' +
    '<a href="#" class="black delete_site">[' + Base.locale.t('account_settings.delete') + ']</a></b><br/></div>');
-  $('.delete_site').click(Base.account_settings.delete_website);
-  $(this).val('');
+    $('.delete_site').click(Base.account_settings.delete_website);
+    $(this).val('');
+  } else {
+    Base.account_settings.add_message_on($(this), Base.locale.translate('share.errors.message.invalid_url'), 'error');
+  } 
   return false;
 };
 
@@ -1255,11 +1277,11 @@ Base.account_settings.delete_account_confirmation = function() {
     data : { delete_info_accepted: "true", delete_password: password_value },
     success: function(data){
       delete_account_data = data;
+      cancelled_account_email = data.email;
       $.popup(function() {
-        jQuery.get('/my/cancellation/feedback', function(data) {
+        jQuery.get('/my/cancellation/feedback?address='+ cancelled_account_email, function(data) {
           jQuery.popup(data);
         });
-        cancelled_account_email = data.email;
       });
       $(document).bind('close.facebox', function() {
         window.location = data.redirect_to;
@@ -1376,7 +1398,9 @@ Base.content_search.autocomplete = function(last_value) {
   }
   jQuery.get('/search/content/all/' + q, function(data) {
       jQuery('.create_box').html(data);
+      Base.utils.resetIndexes();
       jQuery('.create_box').show();
+      
       jQuery('.content_search_results_ajax').hide();
   });
 };
@@ -1429,6 +1453,11 @@ Base.playlist_search.autocomplete = function(last_value) {
   }
   jQuery.get('/search/content_local/all/' + q, function(data) {
       jQuery('.create_box').html(data);
+
+      if($.browser.version == '7.0'){
+        jQuery('.create_box').css('z-index', 10000).css('position', 'relative').css('top', -10);
+      }
+
       jQuery('.create_box').show();
       jQuery('.content_search_results_ajax').hide();
   });
@@ -1530,6 +1559,7 @@ Base.playlists.onStreamEnd = function(obj)
  */
 
 Base.main_search.buildSearchUrl = function () {
+  jQuery('#search_page').attr('value', '');		
   location.href = Base.main_search.getSearchUrl();
   return false;
 };
@@ -1539,7 +1569,8 @@ Base.main_search.getSearchUrl = function () {
   var q     = Base.header_search.getFieldValue(form_values,'q');
   var scope = Base.header_search.getFieldValue(form_values,'scope');
   var sort = Base.header_search.getFieldValue(form_values,'sort');
-  var url   = "/search" + (scope == "" ? "/all" : "/" + scope) + "/" + q + "?sort_by=" + sort;
+  var page = Base.header_search.getFieldValue(form_values,'page');
+  var url   = "/search" + (scope == "" ? "/all" : "/" + scope) + "/" + q + "?sort_by=" + sort + ((!isNaN(parseInt(page,10)))? "&page=" + page : "");
   return url;
 };
 
@@ -1561,8 +1592,9 @@ Base.main_search.highlight_sort = function(scope) {
   };
 
 Base.main_search.refresh_result = function() {
+	var url = Base.main_search.getSearchUrl();
   $.ajax({
-    url: Base.main_search.getSearchUrl(),
+    url: url,
     type: 'GET',
     data: { result_only: true },
     success: function(result) {
@@ -1570,13 +1602,13 @@ Base.main_search.refresh_result = function() {
 			var ul = $("#" + value + '_result_details');
 			ul.empty();
 			ul.append(result);
-/*			ul.find('div.sorting a').click(function(e) {
+			ul.find('div.sorting a').click(function(e) {
 				e.preventDefault();
 	      $('#search_sort').attr('value', jQuery(this).attr('href').match(/sort_by\=(.*)/)[1]);
 				jQuery("#scope_" + value + "_toggle").parentsUntil('ul').find('img.mini_loader').removeClass('hide');
 				Base.main_search.refresh_result();				
 			})
-*/			jQuery("#scope_" + value + "_toggle").parentsUntil('ul').find('img.mini_loader').addClass('hide');
+			jQuery("#scope_" + value + "_toggle").parentsUntil('ul').find('img.mini_loader').addClass('hide');
 			Base.main_search.toggle_scope(false);
       $('input[type=radio].star').rating();
 		},
@@ -1584,7 +1616,7 @@ Base.main_search.refresh_result = function() {
   });
 };
 
-/*Base.main_search.init_toggles = function() {
+Base.main_search.init_toggles = function() {
     jQuery(".scope_toggle a").click(function(e) {
 			e.preventDefault();
 			Base.main_search.refresh_result()
@@ -1592,7 +1624,7 @@ Base.main_search.refresh_result = function() {
     value = jQuery("#search_scope").get(0).value;
     jQuery("#search_" + value).addClass('active')
   };
-*/	
+	
 
 Base.main_search.activate_scope_toggle = function() {
 		Base.main_search.highlight_scope();
@@ -1655,6 +1687,14 @@ Base.main_search.initialize_scope_toggle = function() {
       return false;
     });
 
+};
+
+Base.main_search.init_pagination = function() {
+	jQuery("div.pagination a").click(function(e){
+		e.preventDefault();
+    jQuery('#search_page').attr('value', this.href.match(/page\=(\d+)/)[1]);		
+		Base.main_search.refresh_result();
+	});
 };
 
 
@@ -1727,6 +1767,8 @@ jQuery(document).ready(function() {
   $("#network_comment_list").show();
 
   $(".ajax_sorting a").click(Base.utils.ajax_sorting);
+
+  $('.delete_site').click(Base.account_settings.delete_website);
   
 });
 
@@ -1792,7 +1834,7 @@ Base.reviews.count_chars = function(textarea) {
   }
 };
 
-Base.reviews.showPopup = function(url) {
+Base.utils.showPopup = function(url) {
     $.get(url, function(response) {
       $.popup(response);
     });
@@ -1873,14 +1915,14 @@ Base.reviews.postCallback = function(response) {
     if (response.errors) {
       Base.reviews.showErrors($.parseJSON(response.errors), $('#post_review'));
     } else {
-      Base.reviews.showPopup(response.redirect_to);
+      Base.utils.showPopup(response.redirect_to);
     }
   }
 };
 
 Base.reviews.confirm_remove = function(review) {
   var url = "/reviews/" + review + "/confirm_remove";
-  Base.reviews.showPopup(url);
+  Base.utils.showPopup(url);
 };
 
 Base.reviews.remove = function(review) {
@@ -2056,7 +2098,7 @@ Base.utils.rebind_list = function() {
     $(this).removeClass('hover');
   });
   $('input[type=radio].star').rating();
-  $(".pagination a:not(.disabled)").click(Base.utils.ajax_pagination);
+  $(".ajax_pagination .pagination a:not(.disabled)").click(Base.utils.ajax_pagination);
   $(".ajax_sorting a").click(Base.utils.ajax_sorting);
 };
 
@@ -2086,7 +2128,29 @@ Base.utils.ajax_pagination = function() {
   return false;
 };
 
+Base.playlists.copy = function(slug, playlist_id) {
+  var url = '/' + slug + '/playlists/' + playlist_id + '/copy';
+  Base.utils.showPopup(url);
+};
+
+Base.playlists.duplicate = function(slug, playlist_id) {
+  var url = '/' + slug + '/playlists/' + playlist_id + '/duplicate';
+  var params = {};
+  params['playlist[name]'] = $("#playlist_name").val();
+  $.post(url, params, Base.playlists.duplicateCallback);
+};
+
+Base.playlists.duplicateCallback = function(response) {
+  if (!response.success) {
+    field_with_errors = $.parseJSON(response.errors);
+    Base.account_settings.highlight_field_with_errors();
+  } else {
+    $(document).trigger('close.facebox');
+    return false;
+  }
+};
+
 jQuery(document).ready(function() {
-  $(".pagination a:not(.disabled)").click(Base.utils.ajax_pagination);  
+  $(".ajax_pagination .pagination a:not(.disabled)").click(Base.utils.ajax_pagination);  
 });
 

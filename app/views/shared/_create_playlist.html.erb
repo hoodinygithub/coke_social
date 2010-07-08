@@ -1,15 +1,20 @@
 <script language="javascript">
   var content_msg = "<%= t('search.content_search_hint') %>";
 </script>
-<div class="create_playlist_form right_side">
-  <% form_for :search, :url => search_path, :html => { :onsubmit => 'return Base.content_search.buildSearchUrl();', :method => :get, :id => :content_search_form, :class =>:line } do |f| %>
-    <div>
-      <span class="input_border"><%= text_field_tag :q, t('search.content_search_hint', :default => ''),  {:id => :content_search_query, :class => "create_playlist_input", :onfocus => " clearInput(content_msg, this);", :onblur => "restoreInput(content_msg, this); setTimeout(function() {$('.create_box').hide();}, 300);", :autocomplete => :off } %></span>
-
-      <input type="submit" class="create_playlist_btn" value="<%= t('actions.create_a_playlist') %>" />
-    </div>
-  
-    <div id="content_search_results" class="create_box"></div><!--/end create_box -->
-  <% end %>
-</div><!--/end create_playlist_form -->
-<div class="content_search_results_ajax" style="display:none"><%= image_tag "/images/loading.gif" %></div>
+<div class="search_list" onmouseleave="restoreInput(content_msg, this); setTimeout(function() {$('.create_box').hide();}, 300);">
+  <div class="create_playlist_form right_side">
+    <% form_for :search, :url => search_path, :html => { :onsubmit => 'return Base.content_search.buildSearchUrl();', :method => :get, :id => :content_search_form, :class =>:line } do |f| %>
+      <div>
+        <span class="input_border"><%= text_field_tag :q, t('search.content_search_hint', :default => ''),  {
+          :id => :content_search_query, :class => "create_playlist_input", 
+          :onfocus => " clearInput(content_msg, this);", 
+          :onblur => "if (!$.browser.msie) { restoreInput(content_msg, this); setTimeout(function() {$('.create_box').hide();}, 300); }", 
+          :autocomplete => :off } %></span>
+        <input type="submit" class="create_playlist_btn" value="<%= t('actions.create_a_playlist') %>" />
+      </div>
+    
+      <div id="content_search_results" class="create_box"></div><!--/end create_box -->
+    <% end %>
+  </div><!--/end create_playlist_form -->
+  <div class="content_search_results_ajax" style="display:none"><%= image_tag "/images/loading.gif" %></div>
+</div>

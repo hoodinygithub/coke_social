@@ -37,8 +37,11 @@ namespace :db do
         query = <<-EOF
         UPDATE accounts a 
         INNER JOIN (
-          SELECT winner_id, count(*) AS total_badge_awards 
-          FROM badge_awards
+          SELECT b.winner_id, count(*) AS total_badge_awards 
+          FROM badge_awards b
+          INNER JOIN accounts a ON b.winner_id = a.id 
+          WHERE a.deleted_at IS NULL
+          AND a.network_id = 2
           GROUP BY 1
         ) AS q ON a.id = q.winner_id 
         SET a.total_badges= q.total_badge_awards
@@ -50,9 +53,12 @@ namespace :db do
         query = <<-EOF
         UPDATE accounts a 
         INNER JOIN (
-          SELECT owner_id, count(*) AS total_playlists
-          FROM playlists 
-          WHERE deleted_at IS NULL 
+          SELECT p.owner_id, count(*) AS total_playlists
+          FROM playlists p 
+          INNER JOIN accounts a ON p.owner_id = a.id 
+          WHERE a.deleted_at IS NULL 
+          AND p.deleted_at IS NULL 
+          AND a.network_id = 2
           GROUP BY 1
         ) AS q ON a.id = q.owner_id 
         SET a.total_playlists = q.total_playlists
@@ -73,7 +79,10 @@ namespace :db do
       timebox "Calculate and insert visit counts into temp table..." do
         query = <<-EOF
         INSERT INTO `_cached_visit_count_updates`(`id`, `visit_count`)
-        SELECT owner_id, sum(total_visits) AS visit_count FROM `profile_visits` 
+        SELECT p.owner_id, sum(total_visits) AS visit_count 
+        FROM `profile_visits` p
+        INNER JOIN accounts a ON p.owner_id = a.id 
+        WHERE a.network_id = 2
         GROUP BY 1
         EOF
         connection.execute query

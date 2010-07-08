@@ -411,14 +411,17 @@ function update_ui()
   toggle_playlist_box();
 }
 
+var previous_artist = 0;
 function refresh_similar_artists(id)
 {
-	if(!isNaN(parseInt(id, 10))){
+	current_artist = parseInt(id, 10);
+	if(!isNaN(current_artist) && current_artist != previous_artist){
 	  $.ajax({
 	    url: '/playlist/recommended_artists/' + id,
 	    type: "GET",
 	    data: null,
 	    success: function(r){ 
+				previous_artist = id;
 				$("#playlist_recommended_artists_container").fadeOut(function(){
 					$(this).html(r).fadeIn();
 				});
@@ -475,12 +478,16 @@ function submit_save_form()
   
   if(_pv.valid)
   {
+    var button = $('.red_loading');
+    button.empty().prepend('<img class="btn_red_loading" src="/images/red_loading.gif"/>' + 
+      button.attr('loading_message'));
+
     name = form.find("input[name='name']").val();
     if(name != "")
     {
       //form.find("input[name='item_ids']").attr("value", playlist_ids);
       form.find("input[name='item_ids']").attr("value", _pv.item_ids);
-      form.submit();
+      setTimeout(function(){ $('#save_playlist_form').submit(); }, 500);
     }
     else
     {
@@ -509,13 +516,21 @@ function remove_search_result(id)
   //setTimeout(function(thisObj){ thisObj.remove(); }, 500);
 }
 
-function get_song_list(id,scope,page)
+function get_song_list(id, scope, page, order_by, order_dir)
 {
+    hideCreateBox();
 	if (typeof(page)=="undefined"){ page = 1 }
+	if (typeof(order_by)=="undefined"){ page = 1 }
 	if (isNaN(parseInt(id, 10)) && typeof(id)=="string"){ 
-	  q = "term=" + id + "&scope=" + scope + "&page=" + page;		
+	  q = "term=" + id 
+			+ "&scope=" + scope 
+			+ "&page=" + page 
+			+ ( (order_by == '')? "" : "&order_by=" + order_by + "&order_dir=" + ( typeof(order_dir)=='' ? "" : order_dir ) );
 	} else {		
-	  q = "item_id=" + id + "&scope=" + scope + "&page=" + page;		
+	  q = "item_id=" + id 
+	 	  + "&scope=" + scope 
+	 		+ "&page=" + page
+			+ ( (order_by == '')? "" : "&order_by=" + order_by + "&order_dir=" + ( typeof(order_dir)=='' ? "" : order_dir ) );
 	}
 	
   show_loading_image();
@@ -583,6 +598,7 @@ function do_search_list_sort(t, term, scope, order_by, page)
 
 function get_search_results(term,scope)
 {
+  hideCreateBox();
   q = "term=" + term + "&scope=" + scope;
   show_loading_image();
   jQuery.get('/playlist/create?' + q, function(data) {
@@ -608,8 +624,7 @@ function init_draggable()
         hoverClass: "dragging",
         drop: function(event, ui) {
           $(ui.draggable).find("div.large_bnt a").click();
-
-					refresh_similar_artists($(ui.draggable).attr('artist_id'));
+					//refresh_similar_artists($(ui.draggable).attr('artist_id'));
         }
   });
 }
@@ -664,3 +679,9 @@ Array.prototype.remove = function (element) {
   //return this;
 }
 
+
+var hideCreateBox = function(){
+/*  restoreInput(content_msg, this); setTimeout(function() {$('.create_box').hide();}, 300); */
+  $('.create_box').hide();
+  restoreInput(content_msg, this);
+}

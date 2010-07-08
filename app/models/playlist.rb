@@ -24,6 +24,7 @@ class Playlist < ActiveRecord::Base
   before_save :update_cached_artist_list
   before_create :increment_owner_total_playlists
   
+  belongs_to :site
   belongs_to :owner, :class_name => 'User', :conditions => { :network_id => 2 }
   delegate :network, :to => :owner
     
@@ -36,8 +37,13 @@ class Playlist < ActiveRecord::Base
     :content_type => ["image/jpeg", "image/png", "image/gif", "image/pjpeg", "image/x-png"]
       
   validates_presence_of :name
+
+  has_many :playlist_copyings, :foreign_key => 'original_playlist_id'
+  has_many :copies, :through => :playlist_copyings, :source => :new_playlist
+  has_one :playlist_copying, :foreign_key => 'new_playlist_id'
+  has_one :copied_from, :through => :playlist_copying, :source => :original_playlist
   
-  # default_scope :conditions => { :deleted_at => nil }  
+  default_scope :conditions => { :deleted_at => nil }  
 
   define_index do
     where "playlists.deleted_at IS NULL AND accounts.deleted_at IS NULL AND accounts.network_id = 2"
@@ -47,9 +53,9 @@ class Playlist < ActiveRecord::Base
     set_property :min_prefix_len => 1
     set_property :enable_star => 1
     set_property :allow_star => 1
-    has created_at, updated_at, owner(:network_id)
-    has total_plays, :as => :playlist_total_plays
-    has rating_cache, :as => :rating_cache
+    has :created_at, :updated_at, owner(:network_id)
+    has :total_plays, :as => :playlist_total_plays
+    has :rating_cache, :as => :rating_cache
   end
   
   # def self.search(*args)
@@ -122,7 +128,12 @@ class Playlist < ActiveRecord::Base
   end
 
   def tag_cloud
-    @tags = self.tag_counts
+    options = { :select => "DISTINCT tags.*",
+                :joins => "INNER JOIN #{Tagging.table_name} ON #{Tag.table_name}.id = #{Tagging.table_name}.tag_id AND #{Tagging.table_name}.taggable_type = 'Playlist'",
+                :order => "taggings.created_at DESC",
+                :conditions => "taggings.taggable_id = #{self.id}" }
+                
+    @tags = Tag.all(options)
   end
 
   def update_tags(tags)

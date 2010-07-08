@@ -12,6 +12,8 @@ en:
         user_name_blank: Name can't be blank
         friend_email_invalid: Friend email is invalid
         email_is_not_authorized: Email address is not authorized.
+        invalid_chars: Invalid characters
+        invalid_url: Invalid URL
     friend_email: Friend(s) Email
     message: Message
     multiple_emails: (seperate multiple emails with commas)
@@ -103,6 +105,7 @@ en:
     select_store: Select Store
     search: Search
     rate_it: RATE IT
+    saving: Saving
   modules:
     badge_notifications: 
       title_singular: "Congratulations, you've unlocked a new badge!"
@@ -468,6 +471,7 @@ en:
     last_station_created_at: Last station created {{when}} ago
   forgot: 
     reset_message_sent: Thank you. Instructions to reset your password have been sent to the email you just provided.
+    captcha_invalid: You have entered the reCAPTCHA code incorrectly.  Do try again!
   playlists: 
     duration: Length
     total_time: Total Time
@@ -506,11 +510,17 @@ en:
     unable_save_text: You have errors with your playlist.  These  errors must be corrected before you can share it with the rest of the community.
     you_have: You have
     songs_from: songs from
+    song_from: song from
     songs_from_album: songs from the album
+    song_from_album: song from the album
     please_remove: please remove
     from_mix: from mix
+    songs_from_mix: songs from mix
+    song_from_mix: song from mix
     save_confirmation: Save Confirmation
     edit_confirm_text: Your playlist edits have been saved. Would you like to continue editing?
+    copy: Copy Playlist
+    name_dialog: What would you like to name this playlist? 
   messenger_player: 
     we_hope_you_enjoyed: We hope you enjoyed the songs that you've heard. To hear more songs,
     click_here: click here
@@ -1109,6 +1119,33 @@ en:
     record_diamond:
       name: Diamond Record
       qualification: When 500 different people listen to one of my playlists
+    critic_harsh:
+      name: "Trend Doctor: Harsh Critic"
+      qualification: For having rated most of the 25 playlists with 1 or 2 stars
+    critic_objective:
+      name: "Trend Doctor: Objective Critic"
+      qualification: For having rated most of the 25 playlists with 3 stars
+    critic_best_friend:
+      name: "Trend Doctor: Best Friend"
+      qualification: For having rated most of the 25 playlists with 4 or 5 stars
+    ratings_flying_tomatoes:
+      name: Flying Tomatoes
+      qualification: For having received mostly 1 or 2 stars for my first 25 playlist ratings
+    ratings_ok:
+      name: O.K.
+      qualification: For having received mostly 3 stars for my first 25 playlist ratings
+    ratings_stading_ovation:
+      name: Standing Ovation
+      qualification: For having received mostly 4 or 5 stars for my first 25 playlist ratings
+    superuser:
+      name: Superuser
+      qualification: "For having created at least one of each of the following consecutively for seven days: 1 playlist, 1 new follow, 1 rating of a playlist"      
+    trifecta:
+      name: Trifecta
+      qualification: "For having created 3 playlists, followed 3 new users and rated 3 new playlists in a span of 24 hours"      
+    opinion_leader:
+      name: Opinion Leader
+      qualification: "For having rated 15 different playlists"
   main: 
     navigation: 
       stations: Stations
@@ -1128,7 +1165,12 @@ en:
     duplicate_warning_title: Oops...
     duplicate_warning_text: You have already posted a review for this playlist. If you post a new review it will overwrite your previous review.
     reviewed_by: Reviewed by
-
+    email:
+      subject: "{{reviewer}} has posted a review on one of your playlists on Cocacola.fm"
+      message: |-
+          {{reviewer}} has posted a review on playlist: {{playlist}}.
+          
+          Log in to see what they posted.
   contact_us:
     confirmation:
       thanks: Thank you for your message. We will reply to you as soon as possible
