@@ -69,7 +69,7 @@ class Playlist < ActiveRecord::Base
   # end
 
   def includes(limit=3)
-    songs.all(:limit => limit, :group => :artist_id)
+    songs.all(:limit => limit, :group => 'songs.artist_id')
   end
   
   def deactivate!
@@ -104,7 +104,7 @@ class Playlist < ActiveRecord::Base
   end
 
   def all_artists
-    songs.find(:all, :group => :artist_id).collect(&:artist).compact
+    songs.find(:all, :group => 'songs.artist_id').collect(&:artist).compact
   end
 
   def artists_contained(options = {})
