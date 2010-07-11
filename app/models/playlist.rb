@@ -110,7 +110,7 @@ class Playlist < ActiveRecord::Base
   def artists_contained(options = {})
     options[:limit] ||= 4
     options[:random] = true unless options.has_key?(:random)
-    artists = songs.find(:all, :group => :artist_id, :limit => options[:limit]).collect { |s| s.artist }
+    artists = songs.find(:all, :group => 'songs.artist_id', :limit => options[:limit]).collect { |s| s.artist }
     artists = artists.sort_by {rand} if options[:random]
     artists
   end
