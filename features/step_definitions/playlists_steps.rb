@@ -48,7 +48,7 @@ Given /^user (.+) has the following songs on playlist "(.*)"$/ do |user_slug, pl
     album = Factory(:album, :owner => artist)
     song = artist.songs.find_or_create_by_title_and_duration_and_album_id(hash["song"], hash["length in seconds"] || 0, album.id)
     SongGenre.create!(:song_id => song.id, :genre_id => genre.id)
-    @playlist.items.create!(:song => song)
+    @playlist.items.create!(:song => song, :artist_id => song.artist_id)
   end
 end
 
@@ -65,7 +65,7 @@ Given /^I have the following songs on playlist "(.*)"$/ do |playlist_name, table
 
     song = artist.songs.find_or_create_by_title_and_duration_and_album_id(hash["song"], hash["length in seconds"] || nil, album.id)
     SongGenre.create!(:song_id => song.id, :genre_id => genre.id)
-    @playlist.items.create!(:song => song)
+    @playlist.items.create!(:song => song, :artist_id => song.artist_id)
   end
 end
 

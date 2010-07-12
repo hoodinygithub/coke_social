@@ -28,8 +28,8 @@ class Playlist < ActiveRecord::Base
   belongs_to :owner, :class_name => 'User', :conditions => { :network_id => 2 }
   delegate :network, :to => :owner
     
-  has_many :items, :class_name => 'PlaylistItem', :order => "playlist_items.position ASC", :include => :song
-  has_many :songs, :through => :items, :order => "playlist_items.position ASC", :conditions => { :deleted_at => nil }
+  has_many :items, :class_name => 'PlaylistItem', :conditions => "songs.deleted_at IS NULL AND accounts.deleted_at IS NULL", :order => "playlist_items.position ASC", :include => { :song => :artist }
+  has_many :songs, :through => :items, :order => "playlist_items.position ASC", :include => :artist, :conditions => { :deleted_at => nil }
   has_one :editorial_station, :foreign_key => 'mix_id'
   
   has_attached_file :avatar, :styles => { :album => "300x300#", :medium => "86x86#", :small => "60x60#" }
@@ -182,7 +182,7 @@ class Playlist < ActiveRecord::Base
 
   def rate_with(rating)
     add_rating(rating)
-    update_attribute('rating_cache', self.rating)
+    update_attribute(:rating_cache, self.rating)
   end
 
 end

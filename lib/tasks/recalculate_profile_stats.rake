@@ -56,6 +56,7 @@ namespace :db do
           SELECT p.owner_id, count(*) AS total_playlists
           FROM playlists p 
           INNER JOIN accounts a ON p.owner_id = a.id 
+          INNER JOIN stations s ON p.id = s.playable_id AND s.playable_type = 'Playlist' 
           WHERE a.deleted_at IS NULL 
           AND p.deleted_at IS NULL 
           AND a.network_id = 2

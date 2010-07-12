@@ -1,6 +1,7 @@
 <% content_for :header_space_content do %>
 <div class="header_spacer"></div>
 <% end %>
+<%= javascript_include_tag 'playlist' %>
 <%= javascript_include_tag 'jquery.ui' %>
 <%= javascript_include_tag 'playlist_create' %>
 <%= javascript_include_tag 'AC_OETags' %>
@@ -59,7 +60,7 @@
 <div id="stream_connector">
   <script type="text/javascript" charset="utf-8">
   <% if @edited %>
-  $('#edit_conf_popup').fadeIn('fast');
+    $('#edit_conf_popup').fadeIn('fast');
   <% end %>
 
   var flashvars = "playerId=<%= @player_id %>";

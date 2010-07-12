@@ -113,9 +113,9 @@ function PlaylistValidations(items_req, max_artist, max_album, max_items)
     }
   
     
-    this.add_item = function(song_id, title, artist_id, artist_name, album_id, album_name, image_src, suppress_validation) {
+    this.add_item = function(song_id, title, artist_id, artist_name, album_id, album_name, image_src, suppress_validation, item_id) {
       // Add Song ID to playlist
-      this.items.setItem(song_id, new PlaylistItem(song_id, title, artist_id, artist_name, album_id, album_name, image_src));
+      this.items.setItem(song_id, new PlaylistItem(song_id, title, artist_id, artist_name, album_id, album_name, image_src, item_id));
       this.item_ids.push(song_id);
       this.item_count = this.item_ids.length;
       
@@ -171,6 +171,15 @@ function PlaylistValidations(items_req, max_artist, max_album, max_items)
     this.get_remaining = function() {
       return (this.item_count > this.items_req) ? 0 : (this.items_req - this.item_count)
     }
+
+		this.reorder_items = function() {
+			_item_ids = [];
+			$('#playlist_item_list li').each(function(){
+				_item_ids.push($(this).attr('id'));
+			});
+		this.item_ids = _item_ids;
+		}
+
 }
 
 function PlaylistItem(song_id, song, artist_id, artist_name, album_id, album_name, image_src)
@@ -285,11 +294,11 @@ function ValidationList()
 }
 
 
-function add_item(id, title, artist_id, artist_name, album_id, album_name, image_src, suppress_validation)
+function add_item(id, title, artist_id, artist_name, album_id, album_name, image_src, suppress_validation, item_id)
 {
   if(!_pv.contains(id) && (_pv.item_count < _pv.max_items))
   {
-    li = '<li id="'+id+'" artist_id="'+artist_id+'" album_id="'+album_id+'">'
+    li = '<li id="'+id+'" artist_id="'+artist_id+'" album_id="'+album_id+'" item_id="'+ item_id+'">'
           + '<img alt="'+id+'" class="icon avatar small" src="'+image_src+'" />'
           + '<div class="text">'
               + '<big><b>'+unescape(title)+'</b></big><br/>'
@@ -412,21 +421,27 @@ function update_ui()
 }
 
 var previous_artist = 0;
+var refreshing = false;
 function refresh_similar_artists(id)
 {
 	current_artist = parseInt(id, 10);
-	if(!isNaN(current_artist) && current_artist != previous_artist){
+	if(!isNaN(current_artist) && current_artist != previous_artist && !refreshing){
+		refreshing = true;
 	  $.ajax({
 	    url: '/playlist/recommended_artists/' + id,
 	    type: "GET",
 	    data: null,
 	    success: function(r){ 
+				refreshing = false;
 				previous_artist = id;
 				$("#playlist_recommended_artists_container").fadeOut(function(){
 					$(this).html(r).fadeIn();
 				});
 			},
-	    error: function(r){alert('Error!')}
+	    error: function(r){
+				refreshing = false; 
+				alert('Error!')
+			}
 	  });
 	}
 }
@@ -459,12 +474,22 @@ function open_save_popup()
     {
       form = $('#update_playlist_form');
       form.find("input[name='item_ids']").attr("value", _pv.item_ids);
-      form.submit();
+		  $.ajax({
+		    url: '/playlist/edit/' + $('#playlist_item_list').attr('playlist_id'),
+		    type: "POST",
+		    data: form.serialize(),
+		    success: function(r){ 
+		      img_src = $('#' + _pv.item_ids[0]).find('img').attr('src');
+		      $('#update_layer_avatar').attr('src', img_src.replace(/image\/thumbnail/i, "image/hi-thumbnail"));
+					$('#edit_conf_popup').fadeIn('fast');
+				},
+		    error: function(r){alert('Error!')}
+		  });
     }
     else
     {
       img_src = $('#' + _pv.item_ids[0]).find('img').attr('src');
-      $('#save_layer_avatar').attr('src', img_src.replace(/image\/thumbnail/i, "image/comments"));
+      $('#save_layer_avatar').attr('src', img_src.replace(/image\/thumbnail/i, "image/hi-thumbnail"));
       $('#save_mix_popup').fadeIn('fast');
     }
   }
@@ -478,20 +503,35 @@ function submit_save_form()
   
   if(_pv.valid)
   {
-    var button = $('.red_loading');
-    button.empty().prepend('<img class="btn_red_loading" src="/images/red_loading.gif"/>' + 
-      button.attr('loading_message'));
-
-    name = form.find("input[name='name']").val();
-    if(name != "")
+    name = form.find("input[name='name']");
+    if(name.val() != "")
     {
-      //form.find("input[name='item_ids']").attr("value", playlist_ids);
+	    var button = $('.red_loading');
+	    button.empty().prepend('<img class="btn_red_loading" src="/images/red_loading.gif"/>' + 
+	      button.attr('loading_message'));
+
       form.find("input[name='item_ids']").attr("value", _pv.item_ids);
+			/*		  $.ajax({
+					    url: '/mixes/create',
+					    type: "POST",
+					    data: form.serialize(),
+					    success: function(r){ 
+								$('#edit_conf_popup').fadeIn('fast');
+							},
+					    error: function(r){alert('Error!')}
+					  });
+			*/      
+			//form.find("input[name='item_ids']").attr("value", playlist_ids);
       setTimeout(function(){ $('#save_playlist_form').submit(); }, 500);
     }
     else
     {
-      $('#save_mix_popup').fadeOut('fast');
+      name.parent().addClass('error_field');
+			name.keyup(function(e){
+				e.preventDefault();
+				$(this).parent().removeClass('error_field');
+			});
+      //$('#save_mix_popup').fadeOut('fast');
       //$('#unable_popup').fadeIn('fast');
     }
   }

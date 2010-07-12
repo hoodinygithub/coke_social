@@ -34,7 +34,7 @@ class ReviewsController < ApplicationController
       ActiveRecord::Base.transaction do  
         commentable = @review.commentable
         @review.destroy
-        commentable.update_attribute('rating_cache', commentable.rating)
+        commentable.update_attribute(:rating_cache, commentable.rating)
       end
       
       render :json => { :success => true, :id => params[:id], :count => records_count }
@@ -54,7 +54,7 @@ class ReviewsController < ApplicationController
     review.rating  = params[:rating]
     partial = params[:full] ? 'item' : 'playlist_review_item'
     if review.save
-      review.commentable.update_attribute('rating_cache', review.commentable.rating)
+      review.commentable.update_attribute(:rating_cache, review.commentable.rating)
       render :json => { :success => true,
                         :id      => review.id,
                         :html    => render_to_string( :partial => partial, :collection => [review] )
