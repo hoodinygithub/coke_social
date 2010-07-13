@@ -510,11 +510,11 @@ function open_save_popup()
 
 function submit_save_form()
 {
-  form = $('#save_playlist_form');
+  var form = $('#save_playlist_form');
   
   if(_pv.valid)
   {
-    name = form.find("input[name='name']");
+    var name = form.find("input[name='name']");
     if(name.val() != "")
     {
 	    var button = $('.red_loading');
