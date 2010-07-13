@@ -2,7 +2,7 @@
   <div class="title"><%= t('playlists.copy') %></div>
   
   <div class="form_row">
-    <%= link_to avatar_for(@playlist, :medium, :class => 'popup_mix_image'),
+    <%= link_to avatar_for(@playlist, :large, :class => 'popup_mix_image'),
       radio_path(:station_id => @playlist.station.id) %>
     
     <div class="popup_mix_text">

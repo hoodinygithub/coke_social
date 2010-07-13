@@ -2,8 +2,7 @@
   <div class="title"><%= t('reviews.edit_your_review') %></div>
 
   <div class="form_row">
-    <%= link_to avatar_for(@review.commentable, :medium, :class => 'popup_mix_image'),
-      radio_path(:station_id => @review.commentable.id) %>
+    <%= link_to avatar_for(@review.commentable, :large, :class => 'popup_mix_image'), radio_path(:station_id => @review.commentable.id) %>
     <div class="popup_mix_text">
       <big><a href="#" class="black"><%= @review.commentable.name %></a></big><br/>
       <%= t('basics.by') %>: <a href="#" class="black"><%= @review.commentable.owner %></a>

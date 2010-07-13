@@ -2,7 +2,7 @@ class PlaylistsController < ApplicationController
   current_tab :playlists
   current_filter :all
   
-  before_filter :login_required, :except => [:widget]
+  before_filter :login_required, :except => [:index, :widget, :avatar_update, :show]
 
   def index
     @dashboard_menu = :playlists
@@ -16,7 +16,12 @@ class PlaylistsController < ApplicationController
                     :top => 'playlists.total_plays DESC'  }
     @sort_type = get_sort_by_param(sort_types.keys, :latest) #params.fetch(:sort_by, nil).to_sym rescue :latest
 
-    @collection = profile_user.playlists.paginate :page => params[:page], :per_page => 6, :order => sort_types[@sort_type]
+    conditions = "stations.id IS NOT NULL"
+    conditions << " AND locked_at IS NULL" unless on_dashboard?
+    opts = { :conditions => conditions, :include => :station, :order => sort_types[@sort_type] }
+    opts.merge!(:group => 'playlist_items.playlist_id') if profile_account.is_a? Artist
+
+    @collection = profile_account.playlists.all(opts).paginate :page => params[:page], :per_page => 6
 
     if request.xhr?
       render :partial => 'ajax_list'
@@ -28,7 +33,24 @@ class PlaylistsController < ApplicationController
     end
   end
 
+  def avatar_update
+    @playlist = Playlist.find(params[:id])
+    if @playlist
+      @playlist.update_attributes(params[:playlist])
+      respond_to do |format|
+        format.js do
+          responds_to_parent do
+            render :update do |page|
+              page << "update_playlist_avatar('#update_layer_avatar', '#{@playlist.avatar.url.sub(/\/original\//,'/large/')}');"
+            end
+          end
+        end
+      end
+    end
+  end
+
   def create
+
     @page = params[:page] || 1
     @per_page = (params[:term] and (params[:scope]=='artist' or params[:scope]=='album')) ? 7 : 12
     @results,@scope,@result_text = get_seeded_results
@@ -38,12 +60,12 @@ class PlaylistsController < ApplicationController
         @playlist_item_ids = []
         @songs_in_order = params[:item_ids].split(',')
         @playlist_item_ids = Song.find_all_by_id(@songs_in_order).to_a rescue []
-        #@playlist_item_ids = params[:item_ids].split(',').map { |i| Song.find(i) }.compact
+        #@playlist_item_ids = Song.find_all_by_id(params[:item_ids].split(',')).to_a rescue []
         unless @playlist_item_ids.empty?
           attributes = { :name => params[:name], :site_id => current_site.id }
           attributes[:avatar] = params[:avatar] if params[:avatar]
 
-          ActiveRecord::Base.transaction do 
+          ActiveRecord::Base.transaction do
             if @playlist = current_user.playlists.create(attributes)
               song = nil
               @songs_in_order.each_with_index do |item, index|
@@ -70,7 +92,7 @@ class PlaylistsController < ApplicationController
       render :partial => "/playlists/create/search_results", :layout => false
     end
   end
-  
+
   def edit
     session[:playlist_ids] = nil
     @playlist = profile_user.playlists.find(params[:id]) rescue nil
@@ -82,15 +104,16 @@ class PlaylistsController < ApplicationController
         @songs_in_order = params[:item_ids].split(',')
         @playlist_item_ids = Song.find_all_by_id(@songs_in_order).to_a rescue []
         unless @playlist_item_ids.empty?
-          ActiveRecord::Base.transaction do 
+          ActiveRecord::Base.transaction do
             PlaylistItem.delete_all("playlist_id = #{@playlist.id}")
             song = nil
             @songs_in_order.each_with_index do |item, index|
               song = @playlist_item_ids.select{ |s| s && s.id.equal?(item.to_i) }.first rescue nil
               @playlist.items.create(:song => song, :artist_id => song.artist_id, :position => index + 1) if song
             end
-            @playlist.update_tags(params[:tags].split(','))
-            @playlist.update_attributes(params[:playlist])
+            @playlist.update_tags(params[:playlist][:tags].split(',')) if params[:playlist][:tags]
+            attributes = { :name => params[:playlist][:name], :site_id => current_site.id, :locked_at => nil }
+            @playlist.update_attributes!(attributes)
           end
           render :text => 'updated'
           #redirect_to my_playlists_path
@@ -104,6 +127,83 @@ class PlaylistsController < ApplicationController
       redirect_to :action => :create
     end
   end
+
+  # def create
+  #   @page = params[:page] || 1
+  #   @per_page = (params[:term] and (params[:scope]=='artist' or params[:scope]=='album')) ? 7 : 12
+  #   @results,@scope,@result_text = get_seeded_results
+  #   unless request.xhr?
+  #     if request.post?
+  #       session[:playlist_ids] = nil
+  #       @playlist_item_ids = []
+  #       @songs_in_order = params[:item_ids].split(',')
+  #       @playlist_item_ids = Song.find_all_by_id(@songs_in_order).to_a rescue []
+  #       #@playlist_item_ids = params[:item_ids].split(',').map { |i| Song.find(i) }.compact
+  #       unless @playlist_item_ids.empty?
+  #         attributes = { :name => params[:name], :site_id => current_site.id }
+  #         attributes[:avatar] = params[:avatar] if params[:avatar]
+  # 
+  #         ActiveRecord::Base.transaction do 
+  #           if @playlist = current_user.playlists.create(attributes)
+  #             song = nil
+  #             @songs_in_order.each_with_index do |item, index|
+  #               song = @playlist_item_ids.select{ |s| s && s.id.equal?(item.to_i) }.first rescue nil
+  #               @playlist.items.create(:song => song, :artist_id => song.artist_id, :position => index + 1) if song
+  #             end
+  #             @playlist.update_tags(params[:tags].split(','))
+  #             @playlist.create_station
+  #             current_user.increment!(:total_playlists);
+  #           end
+  #         end
+  #         create_page_vars
+  #         redirect_to :action => 'edit', :id => @playlist.id, :edited => true
+  #       end
+  #     else
+  #       if session[:playlist_ids]
+  #         #logger.info session[:playlist_ids].inspect
+  #         @playlist_items = Song.find_all_by_id(session[:playlist_ids].split(',')).to_a rescue []
+  #         #@playlist_items = session[:playlist_ids].split(',').map { |i| Song.find(i) rescue nil }.compact
+  #       end
+  #       create_page_vars
+  #     end
+  #   else
+  #     render :partial => "/playlists/create/search_results", :layout => false
+  #   end
+  # end
+  # 
+  # def edit
+  #   session[:playlist_ids] = nil
+  #   @playlist = profile_user.playlists.find(params[:id]) rescue nil
+  #   if @playlist
+  #     #if request.xhr?
+  #     @edited = params[:edited]
+  #     @playlist_item_ids = @playlist.items.map(&:id) if @playlist
+  #     if request.xhr? and request.post?
+  #       @songs_in_order = params[:item_ids].split(',')
+  #       @playlist_item_ids = Song.find_all_by_id(@songs_in_order).to_a rescue []
+  #       unless @playlist_item_ids.empty?
+  #         ActiveRecord::Base.transaction do 
+  #           PlaylistItem.delete_all("playlist_id = #{@playlist.id}")
+  #           song = nil
+  #           @songs_in_order.each_with_index do |item, index|
+  #             song = @playlist_item_ids.select{ |s| s && s.id.equal?(item.to_i) }.first rescue nil
+  #             @playlist.items.create(:song => song, :artist_id => song.artist_id, :position => index + 1) if song
+  #           end
+  #           @playlist.update_tags(params[:tags].split(','))
+  #           @playlist.update_attributes(params[:playlist])
+  #         end
+  #         render :text => 'updated'
+  #         #redirect_to my_playlists_path
+  #       end
+  #     end
+  #     create_page_vars
+  #     #else
+  #     #  render :layout => false
+  #     #end
+  #   else
+  #     redirect_to :action => :create
+  #   end
+  # end
   
   def save_state
     #logger.info session[:playlist_ids]
