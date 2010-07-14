@@ -8,23 +8,20 @@
     <%= link_to item.follower_count, user_followers_path(item) %> <%= t('profile.navigation.followers') %>
   </div>
   <div class="follower_actions w_settings">
+    <%= follow_button(:account => item, :remove_div => (params[:controller] != 'followers' && page_owner?) ) %>
     <% if item != current_user %>
-      <% if current_user %>
-        <a href="#" class="blue_button settings_button" style="float:left;">
-          <span><span>
-            <img src="/images/settings_button.png" class="png_fix" alt="" />
-          </span></span>
-        </a>
-      <% end %>
-      <%= render :partial => 'followings/action', :locals => { :item => item } if current_user  %>
-      <%= follow_button(:account => item, :remove_div => (params[:controller] != 'followers' && page_owner?) ) %>
-      <% if current_user %>
-        <div class="blocked">
-          <% if current_user.blocks?(item) %>
-          <%= image_tag('blocked.gif') %> <%= t('blocks.blocked') %>
-          <% end %>
-        </div>
-      <% end %>
+      <a href="#" class="black_button settings_button">
+        <span><span>
+          <img src="/images/settings_button.png" class="png_fix" alt="" />
+        </span></span>
+      </a>
+      <br/>
+      <%= render :partial => 'followings/action', :locals => { :item => item } %>
+      <div class="blocked">
+        <% if current_user.blocks?(item) %>
+        <%= image_tag('blocked.gif') %> <%= t('blocks.blocked') %>
+        <% end %>
+      </div>
     <% end %>
   </div>
   <br class="clearer" />
