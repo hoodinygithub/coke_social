@@ -2112,8 +2112,6 @@ Base.utils.ajax_sorting = function() {
   var sort_link = $(this);
   var title = sort_link.parents('.ajax_pagination').prev();
 
-  console.log(title);  
-
   title.append('<div class="small_loading">');
 
   $(".ajax_sorting a").removeClass("active");
