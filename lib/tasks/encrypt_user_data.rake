@@ -7,7 +7,9 @@ namespace :db do
       users.each do |u|
         timebox "Updated #{u.slug}" do
           attrs.each do |a| 
-            u.write_attribute(a, u.send(a))
+            value = u.send(a)
+            value = value.downcase if a == :email
+            u.write_attribute(a, value)
             u.write_attribute("encrypted_#{a.to_s}".to_sym, nil) unless ENV.has_key?('keep_original')
           end
           u.write_attribute(:born_on, Date.parse(u.born_on_string))
@@ -24,7 +26,9 @@ namespace :db do
       users.each do |u|
         timebox "Updated #{u.slug}" do
           attrs.each do |a|
-            u.send("#{a.to_s}=".to_sym, u.read_attribute(a))
+            value = u.read_attribute(a)
+            value = value.downcase if a == :email
+            u.send("#{a.to_s}=".to_sym, value)
             u.write_attribute(a, nil) unless ENV.has_key?('keep_original')
           end
           u.born_on_string = u.read_attribute(:born_on).to_s

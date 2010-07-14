@@ -342,12 +342,14 @@ class User < Account
 
 
   def self.find_by_email_on_all_networks(email)
-    with_exclusive_scope do
-      encrypted_email = User.encrypt_email(email)
-      users = User.find_by_sql ["SELECT * FROM accounts WHERE type = 'User' AND (email = ? or encrypted_email = ?) AND deleted_at IS NULL", 
-        email, 
-        encrypted_email]
-      users.first
+    unless email.nil?
+      with_exclusive_scope do
+        encrypted_email = User.encrypt_email(email)
+        users = User.find_by_sql ["SELECT * FROM accounts WHERE type = 'User' AND (email = ? or encrypted_email = ?) AND deleted_at IS NULL", 
+          email, 
+          encrypted_email]
+        users.first
+      end
     end
   end
 

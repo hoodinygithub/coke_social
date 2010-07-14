@@ -37,11 +37,15 @@ class UsersController < ApplicationController
     born_on_year             = params[:user].delete("born_on(1i)")
     born_on_month            = params[:user].delete("born_on(2i)")
     born_on_day              = params[:user].delete("born_on(3i)")
+    email                    = params[:user].delete("email")
     @user.attributes         = params[:user]    
     
     if born_on_day && born_on_month && born_on_year
       @user.born_on_string = "#{born_on_year}-#{born_on_month}-#{born_on_day}"
     end
+    
+    @user.email = email.downcase if email
+
     twitter_username_changed = @user.twitter_username_changed?
     
     if @user.save
@@ -71,12 +75,15 @@ class UsersController < ApplicationController
     born_on_year = params[:user].delete("born_on(1i)")
     born_on_month = params[:user].delete("born_on(2i)")
     born_on_day = params[:user].delete("born_on(3i)")
+    email = params[:user].delete("email")
 
     @user = User.new(params[:user])
     @user.entry_point = current_site
     @user.ip_address  = remote_ip
     @user.msn_live_id = session[:msn_live_id] if wlid_web_login?
     @user.born_on_string = "#{born_on_year}-#{born_on_month}-#{born_on_day}"
+
+    @user.email = email.downcase if email
 
     if @user.save
       cookies.delete(:auth_token) if cookies.include?(:auth_token)
@@ -126,6 +133,7 @@ class UsersController < ApplicationController
   # GET /users/errors_on?field=slug&value=foo
   def errors_on
     field = params[:field].to_sym
+    params[:value] = params[:value].downcase if field.equal? :email
     user  = User.new(field => params[:value])
 
     field_name  = params[:field] == 'slug' ? t("registration.your_profile_name") : t("registration.email_address")
