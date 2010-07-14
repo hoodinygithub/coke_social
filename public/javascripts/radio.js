@@ -315,10 +315,12 @@ function load_station_info(station_id)
         url: "/playlists/info/" + station_id,
         error: function() 
         {
+					load_licensing_message();
           alert("error!");
         },
         success: function(response, status) 
         {
+					load_licensing_message();
           $('.artist_radio_info').html(response);
           initRadioTabs();
           $('input[type=radio].star').rating();
