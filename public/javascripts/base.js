@@ -2110,8 +2110,10 @@ Base.utils.load_content = function(response) {
 
 Base.utils.ajax_sorting = function() {
   var sort_link = $(this);
-  var title = sort_link.parents('#content_list').prev();
-  
+  var title = sort_link.parents('.ajax_pagination').prev();
+
+  console.log(title);  
+
   title.append('<div class="small_loading">');
 
   $(".ajax_sorting a").removeClass("active");
@@ -2153,4 +2155,3 @@ Base.playlists.duplicateCallback = function(response) {
 jQuery(document).ready(function() {
   $(".ajax_pagination .pagination a:not(.disabled)").click(Base.utils.ajax_pagination);  
 });
-
