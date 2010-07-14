@@ -316,7 +316,6 @@ function load_station_info(station_id)
         error: function() 
         {
 					load_licensing_message();
-          alert("error!");
         },
         success: function(response, status) 
         {

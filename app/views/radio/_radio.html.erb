@@ -6,7 +6,7 @@
     initTopButtons();
   });
   function load_licensing_message(){
-    <% if @station_obj.playable.owner_is? current_user %>
+    <% if @station_obj.playable.is_a?(Playlist) && @station_obj.playable.owner_is?(current_user) %>
       $('#licensing_popup').fadeIn('slow');
     <% end %>    
   }
