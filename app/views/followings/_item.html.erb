@@ -3,7 +3,7 @@
   <div class="follower_text">
     <b><%= link_to item.name, item %></b><br/>
     <span><%= item.country %></span><br/>
-    <%= link_to item.total_playlists., user_playlists_path(item) %> <%= t('profile.navigation.playlists') %> /
+    <%= link_to item.total_playlists, user_playlists_path(item) %> <%= t('profile.navigation.playlists') %> /
     <%= link_to item.total_badges, user_badges_path(item) %> <%= t('profile.navigation.badges') %> /
     <%= link_to item.follower_count, user_followers_path(item) %> <%= t('profile.navigation.followers') %>
   </div>
