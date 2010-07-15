@@ -10,7 +10,7 @@ class AddOptimizationsToPlaylistItems < ActiveRecord::Migration
   def self.down
     ActiveRecord::Base.connection.execute <<-EOF
     ALTER TABLE playlist_items
-    DROP COLUMN artist_id
+    DROP COLUMN artist_id,
     DROP KEY `index_playlists_items_on_updated_at_for_latest_sort_for_artists`
     EOF
   end
