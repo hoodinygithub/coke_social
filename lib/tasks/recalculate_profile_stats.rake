@@ -35,7 +35,7 @@ namespace :db do
 
       timebox "Update badge counts for users..." do
         ActiveRecord::Base.transaction do
-          connection.execute "UPDATE accounts a SET a.total_badge_awards = 0 WHERE a.type = 'User' AND a.network_id = 2"
+          connection.execute "UPDATE accounts a SET a.total_badges = 0 WHERE a.type = 'User' AND a.network_id = 2"
           connection.execute <<-EOF
           UPDATE accounts a 
           INNER JOIN (
