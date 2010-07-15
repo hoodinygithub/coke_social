@@ -34,37 +34,41 @@ namespace :db do
       end
 
       timebox "Update badge counts for users..." do
-        query = <<-EOF
-        UPDATE accounts a 
-        INNER JOIN (
-          SELECT b.winner_id, count(*) AS total_badge_awards 
-          FROM badge_awards b
-          INNER JOIN accounts a ON b.winner_id = a.id 
-          WHERE a.deleted_at IS NULL
-          AND a.network_id = 2
-          GROUP BY 1
-        ) AS q ON a.id = q.winner_id 
-        SET a.total_badges= q.total_badge_awards
-        EOF
-        connection.execute query
+        ActiveRecord::Base.transaction do
+          connection.execute "UPDATE accounts a SET a.total_badge_awards = 0 WHERE a.type = 'User' AND a.network_id = 2"
+          connection.execute <<-EOF
+          UPDATE accounts a 
+          INNER JOIN (
+            SELECT b.winner_id, count(*) AS total_badge_awards 
+            FROM badge_awards b
+            INNER JOIN accounts a ON b.winner_id = a.id 
+            WHERE a.deleted_at IS NULL
+            AND a.network_id = 2
+            GROUP BY 1
+          ) AS q ON a.id = q.winner_id 
+          SET a.total_badges= q.total_badge_awards
+          EOF
+        end
       end
 
       timebox "Update playlist counts for users..." do
-        query = <<-EOF
-        UPDATE accounts a 
-        INNER JOIN (
-          SELECT p.owner_id, count(*) AS total_playlists
-          FROM playlists p 
-          INNER JOIN accounts a ON p.owner_id = a.id 
-          INNER JOIN stations s ON p.id = s.playable_id AND s.playable_type = 'Playlist' 
-          WHERE a.deleted_at IS NULL 
-          AND p.deleted_at IS NULL 
-          AND a.network_id = 2
-          GROUP BY 1
-        ) AS q ON a.id = q.owner_id 
-        SET a.total_playlists = q.total_playlists
-        EOF
-        connection.execute query
+        ActiveRecord::Base.transaction do
+          connection.execute "UPDATE accounts a SET a.total_playlists = 0 WHERE a.type = 'User' AND a.network_id = 2"
+          connection.execute <<-EOF
+          UPDATE accounts a 
+          INNER JOIN (
+            SELECT p.owner_id, count(*) AS total_playlists
+            FROM playlists p 
+            INNER JOIN accounts a ON p.owner_id = a.id 
+            INNER JOIN stations s ON p.id = s.playable_id AND s.playable_type = 'Playlist' 
+            WHERE a.deleted_at IS NULL 
+            AND p.deleted_at IS NULL 
+            AND a.network_id = 2
+            GROUP BY 1
+          ) AS q ON a.id = q.owner_id 
+          SET a.total_playlists = q.total_playlists
+          EOF
+        end
       end
 
 
