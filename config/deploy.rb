@@ -98,8 +98,8 @@ task :symlink_remaining, :roles => :app, :except => {:no_release => true, :no_sy
     ln -s #{shared_path}/config/resque.yml #{latest_release}/config/resque.yml &&
     ln -s #{shared_path}/system/db/xml/cokebr/top_artists_cokebr.xml #{latest_release}/public/feeds/top_artists_cokebr.xml &&
     ln -s #{shared_path}/system/db/xml/cokelatam/top_artists_cokelatam.xml #{latest_release}/public/feeds/top_artists_cokelatam.xml &&    
-    ln -s #{shared_path}/system/db/xml/cokebr/top_artists_cokemx.xml #{latest_release}/public/feeds/top_artists_cokemx.xml &&
-    ln -s #{shared_path}/system/db/xml/cokelatam/top_artists_cokear.xml #{latest_release}/public/feeds/top_artists_cokear.xml    
+    ln -s #{shared_path}/system/db/xml/cokemx/top_artists_cokemx.xml #{latest_release}/public/feeds/top_artists_cokemx.xml &&
+    ln -s #{shared_path}/system/db/xml/cokear/top_artists_cokear.xml #{latest_release}/public/feeds/top_artists_cokear.xml    
   CMD
 
   if ['staging','production'].include?(rails_env)
