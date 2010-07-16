@@ -416,12 +416,17 @@ module ApplicationHelper
   end
 
   def gatracker_id
-    case current_site.name
-    when "Coke Latam"
+    case current_site.code
+    when "cokelatam"
       "UA-410780-61"
-    when "Coke Brazil"
+    when "cokebr"
       "UA-410780-62"
+    when "cokemx"
+      "UA-410780-64"
+    when "cokear"
+      "UA-410780-65"
     end
+
   end
   
   def messenger_player_gatracker_id
