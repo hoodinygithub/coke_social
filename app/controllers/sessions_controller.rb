@@ -2,8 +2,7 @@ require 'cgi'
 class SessionsController < ApplicationController
   before_filter :set_return_to, :only => :new
   skip_before_filter :login_required  
-  skip_before_filter :go_home_if_logged_in, :only => :destroy
-  ssl_required_with_diff_domain :edit, :update, :create, :new unless RAILS_ENV == "development"  
+  ssl_required :edit, :update, :create, :new unless RAILS_ENV == "development"  
 
   # GET /session/new
   def new

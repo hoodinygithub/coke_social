@@ -18,16 +18,16 @@ end
 
 require 'action_controller/test_process'
 require 'test/unit'
-require "#{File.dirname(__FILE__)}/../lib/ssl_requirement_with_diff_domain"
+require "#{File.dirname(__FILE__)}/../lib/ssl_requirement"
 
 ActionController::Base.logger = nil
 ActionController::Routing::Routes.reload rescue nil
 
-class SslRequirementWithDiffDomainController < ActionController::Base
-  include SslRequirementWithDiffDomain
+class SslRequirementController < ActionController::Base
+  include SslRequirement
   
-  ssl_required_with_diff_domain :site, :a, :b
-  ssl_allowed_with_diff_domain :c
+  ssl_required :a, :b
+  ssl_allowed :c
   
   def a
     render :nothing => true
@@ -50,9 +50,9 @@ class SslRequirementWithDiffDomainController < ActionController::Base
   end
 end
 
-class SslRequirementWithDiffDomainTest < Test::Unit::TestCase
+class SslRequirementTest < Test::Unit::TestCase
   def setup
-    @controller = SslRequirementWithDiffDomainController.new
+    @controller = SslRequirementController.new
     @request    = ActionController::TestRequest.new
     @response   = ActionController::TestResponse.new
   end

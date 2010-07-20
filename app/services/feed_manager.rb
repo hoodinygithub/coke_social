@@ -24,7 +24,7 @@ class FeedManager
         Nokogiri::XML.parse(body)
       end
     rescue Timeout::Error => e
-      if Rails.env.production?
+      if Rails.env.staging? || Rails.env.production?
         HoptoadNotifier.notify(
           :error_class => e.class.name,
           :error_message => "Feed Loading error - #{e.message}",
@@ -45,7 +45,7 @@ class FeedManager
       items = limit.nil? ? items.to_a : items.to_a[0,limit]
       items.map { |x| kind.new(x) }
     rescue => e
-      if Rails.env.production?
+      if Rails.env.staging? || Rails.env.production?
         HoptoadNotifier.notify(
           :error_class => e.class.name,
           :error_message => "Feed Loading error - #{e.message}",

@@ -3,23 +3,7 @@ class ApplicationController < ActionController::Base
   include Application::Sites, Application::Rescues, Application::Paginator, 
           Application::Activities, Application::MsnMessenger, Application::Stations
   include AuthenticatedSystem
-
-  # Avoid loop on root_path (can be removed when the site opens to the public)
-  before_filter :go_home_if_logged_in
-  def go_home_if_logged_in
-    if controller_name == "sessions"
-      if logged_in? 
-        redirect_to(home_path)
-        false
-      end
-    end
-  end
-  
-  # SSL
-  include SslRequirementWithDiffDomain
-  ssl_required_object :current_site
-  
-  
+  include SslRequirement
   extend ActiveSupport::Memoizable
 
   sanitize_params
@@ -55,15 +39,6 @@ class ApplicationController < ActionController::Base
   end
 
   protected
-  
-  def current_site_url
-    if request.ssl?
-      "https://#{current_site.ssl_domain}"
-    else
-      "http://#{current_site.domain}"
-    end
-  end
-  helper_method :current_site_url
 
   def rescue_action_in_public(exception)
     if params[:format] == 'xml' || request.path.ends_with?( '.xml' )
