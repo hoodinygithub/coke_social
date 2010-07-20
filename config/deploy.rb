@@ -52,20 +52,8 @@ ssh_options[:paranoid] = false
 
 set :branch, "master"
 
-#EY06 Brazil
-task :coke_brazil do
-  role :web, "70.42.33.4:8137"
-  role :app, "70.42.33.4:8137", :memcached => true, :sphinx => true
-  role :db , "70.42.33.4:8137", :primary => true
-  role :app, "70.42.33.4:8138", :memcached => true, :sphinx => true
-
-  set :rails_env, "production"
-  set :environment_database, defer { production_database }
-  set :environment_dbhost, defer { production_dbhost }
-end
-
-#EY06 Latam
-task :coke_latam do
+#EY06 Coke Production
+task :production do
   role :web, "70.42.33.4:8137"
   role :app, "70.42.33.4:8137", :memcached => true, :sphinx => true
   role :db , "70.42.33.4:8137", :primary => true

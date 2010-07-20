@@ -3,14 +3,14 @@
 	width: 258px;
 }
 #login_error div.left {	
- 	background: url("/images/login_error_left.png") no-repeat scroll left top transparent;
+ 	background: url("../images/login_error_left.png") no-repeat scroll left top transparent;
 	float: left;
 	height: 47px;
 	width: 26px;
 }
 
 #login_error div.right {	
- 	background: url("/images/login_error_right.png") no-repeat scroll right top transparent;
+ 	background: url("../images/login_error_right.png") no-repeat scroll right top transparent;
 	float: right;
 	width: 26px;
 	height: 47px;
@@ -260,7 +260,7 @@ div.empty_playlist {
 }
 
 .error_message {
-    background: #bf0b10 url("../images/error_message_bg.gif") repeat-x left top;
+    background-color: #bf0b10;
     border: solid 3px #640604;
     border-top: none;
 }

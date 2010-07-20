@@ -1,6 +1,9 @@
 ActionController::Routing::Routes.draw do |map|
   map.root :controller => 'sessions', :action => 'new'
   map.home "/home", :controller => "pages", :action => 'home'
+  map.login  'login',  :controller => 'sessions', :action => 'new'
+  map.logout 'logout', :controller => 'sessions', :action => 'destroy'  
+  map.resource :session    
 
   # Ads - OpenX
   map.messenger_ads '/messenger_ads', :controller => 'ads', :action => 'show', :position => 'messenger', :iframe => 1, :no_padding_and_margin => 1
@@ -66,7 +69,6 @@ ActionController::Routing::Routes.draw do |map|
   map.resource :activity
   map.resource :artist_recommendations
   map.resource :demographics, :member => {:cities => :get}
-  map.resource :session
 
   map.resources :album_buylinks, :only => :show
   map.resources :song_buylinks, :only => :show
@@ -76,9 +78,6 @@ ActionController::Routing::Routes.draw do |map|
                                        :duplicate_warning => :get,
                                        :show => :get
                                      }
-
-  map.login  'login',  :controller => 'sessions', :action => 'new'
-  map.logout 'logout', :controller => 'sessions', :action => 'destroy'
 
   map.about 'support/about_cyloop', :controller => 'pages', :action => 'about'
   map.about_coke 'support/about_coca-cola', :controller => 'pages', :action => 'about_coke'
