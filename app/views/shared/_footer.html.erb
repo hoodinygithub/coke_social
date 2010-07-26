@@ -9,7 +9,11 @@
     <% end %>
 
     <% unless site_code == 'cokebr' %>
-      <%= link_to t('footer.feedback'),"http://polldaddy.com/s/158304F6B410FA6A", :target => "_blank" %>
+    <span class="feedback_button">
+      <a target="_blank" href="http://polldaddy.com/s/158304F6B410FA6A" class="red_button">
+        <span><span><%= t('footer.feedback') %></span></span>
+      </a>
+    </span>
     <% end %>
 
     <%#= link_to t('footer.about_coke'), "#" %>
