@@ -170,7 +170,9 @@ module Account::Authentication
   def email_domain_valid_for_beta
     valid_scan_emails = %(wasaone@gmail.com wasatwo@gmail.com wasathree@gmail.com wasafour@gmail.com wasafive@gmail.com wasasix@gmail.com 
     wasaseven@gmail.com wasaeight@gmail.com wasanine@gmail.com mhuser@sapient.com oyunger@sapient.com mhuser@sapient.com skobrynich@sapient.com 
-    fferrazza@sapient.com mconigliaro@sapient.com sbamber@sapient.com ahollander@sapient.com jschneider@sapient.com)
+    fferrazza@sapient.com mconigliaro@sapient.com sbamber@sapient.com ahollander@sapient.com jschneider@sapient.com mylena@gringo.nu 
+    andre@gringo.nu ana.hernandes@jwt.com tullio.nicastro@jwt.com lucianam@ciandt.com claudia.caballero@starcom.com.mx gustavo.ortega@starcom.com.mx 
+    hsartorelli@cubika.com iandino@proguidemc.com)
     if !valid_scan_emails.include?(email)
       valid_domains = ['ko.com', 'hoodiny.com', 'cyloop.com', 'clarusdigital.com', 'la.ko.com', 'mena.ko.com', 'na.ko.com', 'eur.ko.com']
       errors.add(:email, I18n.t('share.errors.message.email_is_not_authorized') ) unless valid_domains.include?(email.split("@")[1])
