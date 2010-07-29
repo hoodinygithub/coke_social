@@ -964,4 +964,9 @@ module ApplicationHelper
     </div>
     EOF
   end
+  
+  def poll_link
+    site_code == 'cokebr' ? 'http://polldaddy.com/s/4E940675C45189A2' : 'http://polldaddy.com/s/158304F6B410FA6A'
+  end
+  
 end
