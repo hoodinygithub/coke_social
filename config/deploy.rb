@@ -52,24 +52,37 @@ ssh_options[:paranoid] = false
 
 set :branch, "master"
 
-#EY06 Brazil
-task :coke_brazil do
-  role :web, "70.42.33.4:8137"
-  role :app, "70.42.33.4:8137", :memcached => true, :sphinx => true
-  role :db , "70.42.33.4:8137", :primary => true
-  role :app, "70.42.33.4:8138", :memcached => true, :sphinx => true
+# Production
+task :production do
+  role :web, "72.46.233.77:7001"
+  role :app, "72.46.233.77:7001", :memcached => true, :sphinx => true
+  role :db , "72.46.233.77:7001", :primary => true
+  role :app, "72.46.233.77:7003", :memcached => true, :sphinx => true
 
   set :rails_env, "production"
   set :environment_database, defer { production_database }
   set :environment_dbhost, defer { production_dbhost }
 end
 
-#EY06 Latam
+
+# Brazil
+task :coke_brazil do
+  role :web, "72.46.233.77:7001"
+  role :app, "72.46.233.77:7001", :memcached => true, :sphinx => true
+  role :db , "72.46.233.77:7001", :primary => true
+  role :app, "72.46.233.77:7003", :memcached => true, :sphinx => true
+
+  set :rails_env, "production"
+  set :environment_database, defer { production_database }
+  set :environment_dbhost, defer { production_dbhost }
+end
+
+# Latam
 task :coke_latam do
-  role :web, "70.42.33.4:8137"
-  role :app, "70.42.33.4:8137", :memcached => true, :sphinx => true
-  role :db , "70.42.33.4:8137", :primary => true
-  role :app, "70.42.33.4:8138", :memcached => true, :sphinx => true
+  role :web, "72.46.233.77:7001"
+  role :app, "72.46.233.77:7001", :memcached => true, :sphinx => true
+  role :db , "72.46.233.77:7001", :primary => true
+  role :app, "72.46.233.77:7003", :memcached => true, :sphinx => true
 
   set :rails_env, "production"
   set :environment_database, defer { production_database }
@@ -77,9 +90,9 @@ task :coke_latam do
 end
 
 task :staging do
-  role :web, "70.42.33.4:8139"
-  role :app, "70.42.33.4:8139", :memcached => true, :sphinx => true
-  role :db , "70.42.33.4:8139", :primary => true
+  role :web, "72.46.233.74:7000"
+  role :app, "72.46.233.74:7000", :memcached => true, :sphinx => true
+  role :db , "72.46.233.74:7000", :primary => true
 
   set :rails_env, "staging"
   set :environment_database, defer { staging_database }
