@@ -56,7 +56,7 @@ class PagesController < ApplicationController
 
   def terms_and_conditions
     @title = t 'site.terms_and_conditions'
-    render "pages/#{site_code}/terms_and_conditions"
+    render "pages/#{site_code}/terms_and_conditions",  :layout => "support_page"
   end
 
   def block_alert

@@ -12,6 +12,10 @@
       <a target="_blank" href="<%= poll_link %>" class="red_button">
         <span><span><%= t('footer.feedback') %></span></span>
       </a>
+      <% unless site_code == "cokebr" %>
+        <%= link_to t('footer.terms_and_conditions'), terms_and_conditions_url, :target => "_blank" %>
+      <% end %>
+      <%#= link_to t('footer.privacy_policy'), privacy_policy_url, :target => "_blank" %>
     </span>
 
     <%#= link_to t('footer.about_coke'), "#" %>
