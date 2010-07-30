@@ -36,7 +36,7 @@ class PlaylistsController < ApplicationController
   def avatar_update
     @playlist = Playlist.find(params[:id])
     if @playlist
-      @playlist.update_attributes(params[:playlist])
+      @playlist.update_attribute(params[:playlist])
       respond_to do |format|
         format.js do
           responds_to_parent do
@@ -48,6 +48,17 @@ class PlaylistsController < ApplicationController
       end
     end
   end
+
+  def avatar_delete
+    @playlist = Playlist.find(params[:id])
+    if @playlist
+      @playlist.avatar = nil 
+      @playlist.save!      
+      render :text => 'updated'
+    end
+    render :text => 'avatar not found'
+  end
+
 
   def create
 
