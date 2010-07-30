@@ -826,6 +826,7 @@ en:
     email_me_reviews_mixes: Send me an email when someone reviews/rates one of my mixes
     email_me_subscribes_mixes: Send me an email when someone subscribes to one of my mixes
     email_me_communications: Send me periodical Cyloop Newsletters and communications
+    email_me_win_badges: Send me an email when i win a new badge
     delete_my_account: DELETE MY ACCOUNT
     delete_info: By checking this box, I understand that deleting my account means that my Cyloop page, music library and picture will be deleted. I understand that in order to return to Cyloop, I will have to create a new account with a new username.
     password_required: You must enter a valid password
@@ -1149,6 +1150,10 @@ en:
     opinion_leader:
       name: Opinion Leader
       qualification: "For having rated 15 different playlists"
+    email:
+      subject: Congratulations! You have won a new badge on Cocacola.fm
+      message: |-
+         Congratulations! You have been awarded {{badge_name}}: {{badge_message}}. Log in to view your new badge and see who else has one too.        
   main: 
     navigation: 
       stations: Stations
