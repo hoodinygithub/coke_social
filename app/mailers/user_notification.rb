@@ -36,11 +36,11 @@ class UserNotification < BaseMailer
     body :reviewer => reviewer, :playlist => playlist
   end
 
-  def review_notification(subject_line, badge_award)
+  def badge_notification(subject_line, winner, badge_name, badge_qualification)
     subject subject_line
-    recipients badge_award.winner.email
+    recipients winner.email
     from ActionMailer::Base.smtp_settings[:default_from]
-    body :badge_award => badge_award
+    body :winner => winner, :badge_name => badge_name, :badge_qualification => badge_qualification
   end
 
   def share_song(options)
@@ -126,7 +126,9 @@ class UserNotification < BaseMailer
       badge_award = BadgeAward.find(options[:badge_award_id])
       I18n.with_locale( badge_award.winner.default_locale ) do
         subject_line = I18n.t('badges.email.subject')
-        UserNotification.deliver_badge_notification(subject_line, badge_award)
+        badge_name = I18n.t("badges.#{badge_award.badge_key}.name")
+        badge_qualification = I18n.t("badges.#{badge_award.badge_key}.qualification")
+        UserNotification.deliver_badge_notification(subject_line, badge_award.winner, badge_name, badge_qualification)
       end
     end
 
