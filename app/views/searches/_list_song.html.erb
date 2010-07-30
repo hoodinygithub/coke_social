@@ -1,5 +1,5 @@
 <% if @local %>
-  <a href="#" onclick='get_song_list(<%=list_song.id %>,"<%=list_song.class.to_s.downcase %>"); return false;'>
+  <a href="#" onclick='get_song_list(<%=list_song.id %>,"<%=list_song.class.to_s.downcase %>", null, null, null, <%=list_song.artist.id %>); return false;'>
 <% else %>
   <a href="<%= playlist_create_path(:item_id => list_song.id, :scope => list_song.class.to_s.downcase) %>">
 <% end %>

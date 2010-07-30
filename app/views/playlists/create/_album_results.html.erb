@@ -23,11 +23,11 @@
         <ul class="results_by_artist">
           <% @results.each_with_index do |album, index| %>
             <% unless album.owner.nil? %>
-              <li onclick='get_song_list("<%=album.id %>","album"); return false;'<%= ' class="last"' if index == @results.size - 1 %>>
+              <li onclick='get_song_list("<%=album.id %>","album", null, null, null, <%=album.owner.id %>); return false;'<%= ' class="last"' if index == @results.size - 1 %>>
                   <%= avatar_for(album, :search_results, {:class => "icon"}) %>
                   <div class="links">
-                      <b><a href="#" onclick='get_song_list("<%=album.id %>","album"); return false;' class="black"><%= truncate(album.name, :length => 60) %></a></b><br/>
-                      <small><a href="#" onclick='get_song_list("<%=album.id %>","album"); return false;' class="grey"><%= truncate(album.owner.name, :length => 60) %></a></small>
+                      <b><a href="#" onclick='get_song_list("<%=album.id %>","album", null, null, null, <%=album.owner.id %>); return false;' class="black"><%= truncate(album.name, :length => 60) %></a></b><br/>
+                      <small><a href="#" onclick='get_song_list("<%=album.id %>","album", null, null, null, <%=album.owner.id %>); return false;' class="grey"><%= truncate(album.owner.name, :length => 60) %></a></small>
                   </div>
                   <br class="clearer" />
               </li>

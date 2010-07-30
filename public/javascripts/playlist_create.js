@@ -567,7 +567,7 @@ function remove_search_result(id)
   //setTimeout(function(thisObj){ thisObj.remove(); }, 500);
 }
 
-function get_song_list(id, scope, page, order_by, order_dir)
+function get_song_list(id, scope, page, order_by, order_dir, artist_id)
 {
     hideCreateBox();
 	if (typeof(page)=="undefined"){ page = 1 }
@@ -589,6 +589,10 @@ function get_song_list(id, scope, page, order_by, order_dir)
   jQuery.get('/playlist/create?' + q, function(data) {
       jQuery('#search_results_container').html(data);
   });
+
+	if(typeof(artist_id) == 'number'){
+		refresh_similar_artists(artist_id);
+	}
 }
 
 function do_song_list_sort(t, id, scope, order_by, page)
