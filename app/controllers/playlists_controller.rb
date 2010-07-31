@@ -63,7 +63,8 @@ class PlaylistsController < ApplicationController
   def create
 
     @page = params[:page] || 1
-    @per_page = (params[:term] and (params[:scope]=='artist' or params[:scope]=='album')) ? 7 : 12
+    #@per_page = (params[:term] and (params[:scope]=='artist' or params[:scope]=='album')) ? 7 : 12
+    @per_page = 30
     @results,@scope,@result_text = get_seeded_results
     unless request.xhr?
       if request.post?

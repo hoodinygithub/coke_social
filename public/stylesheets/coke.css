@@ -437,6 +437,7 @@ div.loading_list {
 	border-right: none;
 	width: 628px;
 	height: 371px;
+	overflow-y: scroll;
 }
 
 #pagination_container {
@@ -455,7 +456,7 @@ div.loading_list {
 }
 
 .songs_box ul li div.large_bnt {
-	width: 65px;
+	width: 50px;
 	border-right: 1px solid #FFFFFF;
 }
 
@@ -831,3 +832,20 @@ label.label_holder {
   text-align: center;  
 }
 
+.create_box {
+	height: auto;
+}
+
+.search_list a.see_link {
+    background: #ff0014;
+    color: #fff;
+    text-decoration: none;
+}
+
+.search_list a.see_link b {
+    color: #fff;
+}
+
+.search_list a.see_link:hover {
+    text-decoration: underline;
+}
