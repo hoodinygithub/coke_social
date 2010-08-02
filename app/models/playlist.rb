@@ -42,6 +42,8 @@ class Playlist < ActiveRecord::Base
   has_many :copies, :through => :playlist_copyings, :source => :new_playlist
   has_one :playlist_copying, :foreign_key => 'new_playlist_id'
   has_one :copied_from, :through => :playlist_copying, :source => :original_playlist
+
+  has_many :badge_awards
   
   default_scope :conditions => { :deleted_at => nil }  
 

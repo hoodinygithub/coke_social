@@ -1,5 +1,6 @@
 class BadgeAward < ActiveRecord::Base
   belongs_to :badge
+  belongs_to :playlist
   belongs_to :winner, :foreign_key => 'winner_id', :class_name => 'User'
   delegate :badge_key, :name, :image, :to => :badge
 
