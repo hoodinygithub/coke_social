@@ -13,7 +13,7 @@ module PopupHelper
               <div class="top_left corner"></div>
               <div class="center_shadow"></div>
               <div class="top_right corner"></div>
-              <a href="#"><img src="/images/popup_close.png" class="popup_close png_fix" alt="X" title="Close" /></a>
+              <a href="#"><img src="#{current_site_url}/images/popup_close.png" class="popup_close png_fix" alt="X" title="Close" /></a>
           </div>
           <div class="popup_content">
             #{body}

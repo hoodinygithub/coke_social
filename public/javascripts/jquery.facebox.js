@@ -133,7 +133,7 @@
     settings: {
       opacity      : 0.5,
       overlay      : true,
-      loadingImage : '/images/loading.gif',
+      loadingImage : $("body").attr("current_site_url")+'/images/loading.gif',
       closeImage   : $("body").attr("current_site_url")+'/images/popup_close.png',
       imageTypes   : [ 'png', 'jpg', 'jpeg', 'gif' ],
       faceboxHtml  : '\
