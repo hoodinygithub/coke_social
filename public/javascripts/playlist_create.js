@@ -575,12 +575,12 @@ function get_song_list(id, scope, page, order_by, order_dir, artist_id)
 	if (isNaN(parseInt(id, 10)) && typeof(id)=="string"){ 
 	  q = "term=" + id 
 			+ "&scope=" + scope 
-			+ "&page=" + page 
+	 		+ "&page=" + ( (page > 0)? page : 1)
 			+ ( (order_by == '')? "" : "&order_by=" + order_by + "&order_dir=" + ( typeof(order_dir)=='' ? "" : order_dir ) );
 	} else {		
 	  q = "item_id=" + id 
 	 	  + "&scope=" + scope 
-	 		+ "&page=" + page
+	 		+ "&page=" + ( (page > 0)? page : 1)
 			+ ( (order_by == '')? "" : "&order_by=" + order_by + "&order_dir=" + ( typeof(order_dir)=='' ? "" : order_dir ) );
 	}
 	
