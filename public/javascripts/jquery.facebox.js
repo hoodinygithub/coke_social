@@ -72,7 +72,7 @@
           <div class="top_left corner png_fix"></div> \
           <div class="center_shadow png_fix"></div> \
           <div class="top_right corner png_fix"></div> \
-          <a href="#" class="close"><img src="'+$("body").attr("current_site_url")+'/images/popup_close.png" class="close_image png_fix" alt="X" title="Close" /></a> \
+          <a href="#" class="close"><img src="'+(current_url_site || "")+'/images/popup_close.png" class="close_image png_fix" alt="X" title="Close" /></a> \
         </div> \
         <div class="content"> \
         </div> \
@@ -133,8 +133,8 @@
     settings: {
       opacity      : 0.5,
       overlay      : true,
-      loadingImage : $("body").attr("current_site_url")+'/images/loading.gif',
-      closeImage   : $("body").attr("current_site_url")+'/images/popup_close.png',
+      loadingImage : (current_url_site || "")+'/images/loading.gif',
+      closeImage   : (current_url_site || "")+'/images/popup_close.png',
       imageTypes   : [ 'png', 'jpg', 'jpeg', 'gif' ],
       faceboxHtml  : '\
         <div class="popup" id="facebox"> \
