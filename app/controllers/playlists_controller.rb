@@ -36,7 +36,7 @@ class PlaylistsController < ApplicationController
   def avatar_update
     @playlist = Playlist.find(params[:id])
     if @playlist
-      @playlist.update_attribute(params[:playlist])
+      @playlist.update_attributes(params[:playlist])
       respond_to do |format|
         format.js do
           responds_to_parent do
