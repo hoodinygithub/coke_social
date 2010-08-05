@@ -72,7 +72,7 @@
           <div class="top_left corner png_fix"></div> \
           <div class="center_shadow png_fix"></div> \
           <div class="top_right corner png_fix"></div> \
-          <a href="#" class="close"><img src="/images/popup_close.png" class="close_image png_fix" alt="X" title="Close" /></a> \
+          <a href="#" class="close"><img src="'+$("body").attr("current_site_url")+'/images/popup_close.png" class="close_image png_fix" alt="X" title="Close" /></a> \
         </div> \
         <div class="content"> \
         </div> \
@@ -134,7 +134,7 @@
       opacity      : 0.5,
       overlay      : true,
       loadingImage : '/images/loading.gif',
-      closeImage   : '/images/popup_close.png',
+      closeImage   : $("body").attr("current_site_url")+'/images/popup_close.png',
       imageTypes   : [ 'png', 'jpg', 'jpeg', 'gif' ],
       faceboxHtml  : '\
         <div class="popup" id="facebox"> \
@@ -142,7 +142,7 @@
             <div class="top_left corner"></div> \
             <div class="center_shadow"></div> \
             <div class="top_right corner"></div> \
-            <a href="#" class="close"><img src="/images/popup_close.png" class="close_image png_fix" alt="X" title="Close" /></a> \
+            <a href="#" class="close"><img src="'+$("body").attr("current_site_url")+'/images/popup_close.png" class="close_image png_fix" alt="X" title="Close" /></a> \
           </div> \
           <div class="content"> \
           </div> \

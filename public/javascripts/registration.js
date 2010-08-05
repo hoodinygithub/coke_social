@@ -4,7 +4,7 @@ jQuery(document).ready(function($){
     var input = $(input);
     var value = input.val();
     if(value)
-      $.get(Base.current_site_url+"/users/errors_on",{field: type, value: value},function(data, status) {
+      $.get(Base.currentSiteUrl()+"/users/errors_on",{field: type, value: value},function(data, status) {
         Base.account_settings.clear_info_and_errors_on(input);
         if (data.length) {
           Base.account_settings.add_message_on(input, data[0], data[1]);

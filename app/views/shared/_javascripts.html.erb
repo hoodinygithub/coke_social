@@ -18,7 +18,6 @@
     Base.account.slug = "<%= profile_account.slug %>";
     Base.account.type = "<%= profile_account.artist? ? "artist" : "user" %>";
   <% end %>
-  Base.current_site_url = "<%= current_site_url %>";
 
   <%= yield(:javascript) %>
 </script>

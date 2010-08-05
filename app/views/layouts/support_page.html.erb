@@ -6,7 +6,7 @@
     <%= render 'shared/stylesheets' %>
     <%= yield :head %>
   </head>
-  <body locale="<%= current_site.default_locale %>" market="<%= current_site.code %>">
+  <body locale="<%= current_site.default_locale %>" market="<%= current_site.code %>" current_site_url="<%= current_site_url %>">
     <div id="container">
       <div id="header" class="<%= @section.nil? ? controller_name : @section %>">
           <%= link_to(image_tag('logo.png', :id => 'logo', :class => 'png_fix', :alt => 'Coca-Cola', :title => 'Coca-Cola'), home_path) %>
