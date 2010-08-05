@@ -1,4 +1,5 @@
 var Base = {
+  current_site_url: null,
   message_fadeout_timeout: 15000,
   listen_icon_timer: null,
   layout: {},
@@ -176,7 +177,7 @@ var swf = function(objname)
 
 Base.radio.launchRadio = function(station_id) {
 	if(parseInt(station_id, 10) > 0) {
-		location.href = '/radio?station_id=' + station_id;
+		location.href = Base.current_site_url + '/radio?station_id=' + station_id;
 	}
 }
 Base.radio.set_station_search_details = function(id, queue, play) {
@@ -197,7 +198,7 @@ Base.radio.set_station_details = function(id, queue, play) {
 Base.radio.refresh_my_stations = function() {
   $.ajax({
     type: "GET",
-    url:  "/radio/my_stations_list",
+    url:  Base.current_site_url+"/radio/my_stations_list",
     data: {station_id: $("#station_id").val()},
     success: function(result) {
       $("div#my_stations_container").empty();
@@ -212,7 +213,7 @@ Base.radio.refresh_my_stations = function() {
 					var li = $(this).parentsUntil('li');
 					list = this.id.match(/(.*)_list(.*)/)[1];
 					list_play_button = li.find('img.list_play_button');
-					if(list_play_button) { list_play_button.attr('src', "/images/grey_loading.gif"); }
+					if(list_play_button) { list_play_button.attr('src', Base.current_site_url+"/images/grey_loading.gif"); }
 				}
 				Base.radio.set_station_details($(this).attr('station_id'), $(this).attr('station_queue'), false);
 				Base.radio.play_station(is_station_list_item, is_create_station_submit, list, list_play_button)
@@ -228,11 +229,11 @@ Base.radio.play_station = function(from_list, from_create_station, list, list_pl
 
   $.ajax({
     type: "GET",
-    url:  "/radio/album_detail",
+    url:  Base.current_site_url+"/radio/album_detail",
     data: {station_id: id},
     success: function(result) {
 			if(from_list) {
-				if(list_play_button) { list_play_button.attr('src', "/images/icon_play_small.gif"); }
+				if(list_play_button) { list_play_button.attr('src', Base.current_site_url+"/images/icon_play_small.gif"); }
 				toggleButton(list, 0);
 			}
 			if(from_create_station) {
@@ -267,7 +268,7 @@ Base.radio.launch_station_handler = function(obj, e) {
 		var li = $(obj).parentsUntil('li');
 		list = obj.id.match(/(.*)_list(.*)/)[1];
 		list_play_button = li.find('img.list_play_button');
-		if(list_play_button) { list_play_button.attr('src', "/images/grey_loading.gif"); }
+		if(list_play_button) { list_play_button.attr('src', Base.current_site_url+"/images/grey_loading.gif"); }
 	}
 
 /*	if(is_create_station_submit){
@@ -441,7 +442,7 @@ Base.layout.spin_image = function(type, no_margin) {
     image_name = type + "_loading.gif";
   }
   $img = jQuery("<img></img>");
-  $img.attr('src', '/images/' + image_name);
+  $img.attr('src', Base.current_site_url + '/images/' + image_name);
 
 
   if (typeof(no_margin) == 'undefined' || no_margin) {
@@ -570,7 +571,7 @@ Base.community.approve = function(user_slug, button) {
   $approve_button_label.html(Base.layout.spanned_spin_image('yellow'));
   
   
-  jQuery.post("/users/approve", params, function(response) {
+  jQuery.post(Base.current_site_url+"/users/approve", params, function(response) {
     $li   = $approve_button.parent().parent();
     $li.slideUp();
     $list.prepend(jQuery("<li></li>").append(response));
@@ -590,7 +591,7 @@ Base.community.deny = function(user_slug, button) {
   $black_ul.fadeOut();
   $settings_button.html(Base.layout.spin_image(false, false));
 
-  jQuery.post('/users/deny', params, function(response, status) {
+  jQuery.post(Base.current_site_url + '/users/deny', params, function(response, status) {
     $main_div.slideUp();
   });
 };
@@ -607,7 +608,7 @@ Base.community.__follow_request_handler = function(type, user_slug, link, callba
   // $black_ul.fadeOut();
   // $settings_button.html(Base.layout.spin_image(false, false));
   // 
-  // jQuery.post('/users/' + type, params, function(response, status) {
+  // jQuery.post(Base.current_site_url + '/users/' + type, params, function(response, status) {
   //   $main_element.slideUp();
   //   if (typeof(callback) == 'function') callback(response);
   // });
@@ -624,7 +625,7 @@ Base.community.follow = function(user_slug, button, remove_div, layer_path) {
   $button.attr('onclick', "");
   $button.bind('click', function() { return false; });
 
-  jQuery.post('/users/follow', params, function(response, status) {
+  jQuery.post(Base.current_site_url + '/users/follow', params, function(response, status) {
     if (Base.utils.handle_login_required(response, layer_path, $button_label)) {
       $button.unbind('click');
       $button.bind('click', function() {
@@ -662,7 +663,7 @@ Base.community.unfollow = function(user_slug, button, remove_div) {
   $button.attr('onclick', "");
   $button.bind('click', function() { return false; });
 
-  jQuery.post('/users/unfollow', params, function(response, status) {
+  jQuery.post(Base.current_site_url + '/users/unfollow', params, function(response, status) {
     if (status == 'success') {
       if (remove_div) {
         $button.parent().parent().slideUp();
@@ -680,7 +681,7 @@ Base.community.unfollow = function(user_slug, button, remove_div) {
 Base.community.text_follow = function(user_slug, element, layer_path) {
   var $element = jQuery(element);
   var params = {'user_slug':user_slug}
-  jQuery.post('/users/follow', params, function(response, status) {
+  jQuery.post(Base.current_site_url + '/users/follow', params, function(response, status) {
     if (Base.utils.handle_login_required(response, layer_path, null)) {
       //JQuery($element).parent().parent().find('#not_following').hide();
       //jQuery($element).parent().parent().find('#following').show();
@@ -696,7 +697,7 @@ Base.community.text_follow = function(user_slug, element, layer_path) {
 Base.community.text_unfollow = function(user_slug, element) {
   var $element = jQuery(element);
   var params = {'user_slug':user_slug}
-  jQuery.post('/users/unfollow', params, function(response, status) {
+  jQuery.post(Base.current_site_url + '/users/unfollow', params, function(response, status) {
     if (status == 'success') {
       jQuery($element).parent().parent().find('#not_following').show();
       jQuery($element).parent().parent().find('#following').hide();
@@ -717,10 +718,10 @@ Base.community.block = function(user_slug, button) {
   //$settings_button.html("<img src='/images/red_loading.gif'></img>");
   $settings_button.html(Base.layout.spin_image(false, false));
 
-  jQuery.post('/users/block', params, function(response, status) {
+  jQuery.post(Base.current_site_url + '/users/block', params, function(response, status) {
     if (status == 'success') {
-      $main_div.find('.blocked').html("<img src='/images/blocked.gif'></img> " + Base.locale.t('blocks.blocked'));
-      $settings_button.html("<img src='/images/settings_button.png'></img>");      
+      $main_div.find('.blocked').html("<img src='"+Base.current_site_url+"/images/blocked.gif'></img> " + Base.locale.t('blocks.blocked'));
+      $settings_button.html("<img src='"+Base.current_site_url+"/images/settings_button.png'></img>");      
       $button.attr('onclick', "");
       $button.unbind('click');
       $button.bind('click', function() { Base.community.unblock(user_slug, this); return false; });
@@ -741,10 +742,10 @@ Base.community.unblock = function(user_slug, button) {
   // $settings_button.html("<img src='/images/red_loading.gif'></img>");
   $settings_button.html(Base.layout.spin_image(false, false));
 
-  jQuery.post('/users/unblock', params, function(response, status) {
+  jQuery.post(Base.current_site_url+'/users/unblock', params, function(response, status) {
     if (status == 'success') {
       $main_div.find('.blocked').html("");
-      $settings_button.html("<img src='/images/settings_button.png'></img>");      
+      $settings_button.html("<img src='"+Base.current_site_url+"/images/settings_button.png'></img>");      
       $button.attr('onclick', "");
       $button.unbind('click');
       $button.bind('click', function() { Base.community.block(user_slug, this); return false; });
@@ -781,7 +782,7 @@ Base.stations.edit = function(user_station_id, button) {
 
     $buttons.hide();
     params = {'_method' : 'put', 'user_station' : {'name':new_station_name} };
-    jQuery.post('/my/stations/' + user_station_id, params, function(response) {
+    jQuery.post(Base.current_site_url + '/my/stations/' + user_station_id, params, function(response) {
       new_station_name_content = old_station_name_content;
       new_station_name_content = new_station_name_content.split(old_station_name).join(new_station_name);
       $buttons.html(old_buttons_content).show();
@@ -808,7 +809,7 @@ Base.stations.edit = function(user_station_id, button) {
 };
 
 Base.stations.share = function(station_id) {
-  var url = "/share/station/" + station_id;
+  var url = Base.current_site_url+"/share/station/" + station_id;
   $.popup(function()
   {
     $.get(url, function(response)
@@ -827,7 +828,7 @@ Base.stations.edit_from_layer = function() {
 	jQuery('#edit_loading').removeClass('hide');
 
   params = {'_method' : 'put', 'user_station' : {'name': new_station_name} };
-  jQuery.post('/my/stations/' + playable_id, params, function(response) {
+  jQuery.post(Base.current_site_url + '/my/stations/' + playable_id, params, function(response) {
 		if(parseInt(station_id, 10) == parseInt($('#station_id').val(), 10)) {
 			jQuery('#station_name').html(new_station_name);
 		}
@@ -841,7 +842,7 @@ Base.stations.init_delete_layer = function() {
 		var station_id = parseInt(jQuery("#station_to_delete").val(), 10);
 		if(station_id > 0) {
 			jQuery('#delete_loading').removeClass('hide');
-		  jQuery.post('/stations/' + station_id + "/delete", {'_method':'delete'}, function(response) {
+		  jQuery.post(Base.current_site_url + '/stations/' + station_id + "/delete", {'_method':'delete'}, function(response) {
 				jQuery(document).trigger('close.facebox');
 		    if (response == 'destroyed') {
 					jQuery('#station_to_delete').attr('value', 0);
@@ -855,7 +856,7 @@ Base.stations.init_delete_layer = function() {
 
 Base.stations.launch_edit_layer = function(station_id) {
   $.popup(function() {
-		url = '/stations/' + station_id + '/edit';
+		url = Base.current_site_url + '/stations/' + station_id + '/edit';
   		jQuery.get(url, function(data) {
       jQuery.popup(data);
     });
@@ -867,7 +868,7 @@ Base.stations.launch_edit_layer = function(station_id) {
 Base.stations.remove_from_layer = function(station_id) {
 	jQuery("#station_to_delete").attr('value', station_id);
   $.popup(function() {
-		url = '/stations/' + station_id + '/delete_confirmation';
+		url = Base.current_site_url + '/stations/' + station_id + '/delete_confirmation';
   		jQuery.get(url, function(data) {
       jQuery.popup(data);
     });
@@ -883,7 +884,7 @@ Base.stations.remove = function(user_station_id, button) {
 
   $buttons.hide();
 
-  jQuery.post('/my/stations/' + user_station_id, {'_method':'delete'}, function(response) {
+  jQuery.post(Base.current_site_url + '/my/stations/' + user_station_id, {'_method':'delete'}, function(response) {
     if (response == 'destroyed') {
       $li.slideUp();
     } else {
@@ -905,7 +906,7 @@ Base.stations.close_button_handler = function(object) {
     var artist_id = $button.attr('artist_id');
 
     $parent_div = $button.parent();
-    $parent_div.html("<img style='margin-top:50px' src='/images/loading.gif'></img>");
+    $parent_div.html("<img style='margin-top:50px' src='"+Base.current_site_url+"/images/loading.gif'></img>");
     $parent_div.css({'background':'#cccccc', 'text-align':'center'});
 
     var new_artist_id = recommended_stations_queue.shift();
@@ -917,7 +918,7 @@ Base.stations.close_button_handler = function(object) {
     }
 
     var params = {'artist_id':new_artist_id, 'last_box':$parent_div.hasClass('last_box')};
-    jQuery.get('/stations/top_station_html', params, function(data) {
+    jQuery.get(Base.current_site_url + '/stations/top_station_html', params, function(data) {
       $new_div = jQuery(data);
       $parent_div.html($new_div.html());
       $parent_div.css({'background':'white', 'text-align':'left'});
@@ -930,7 +931,7 @@ Base.djs.close_button_handler = function(object) {
     var dj_id = $button.attr('dj_id');
 
     $parent_div = $button.parent();
-    $parent_div.html("<img style='margin-top:3px' src='/images/loading.gif'></img>");
+    $parent_div.html("<img style='margin-top:3px' src='"+Base.current_site_url+"/images/loading.gif'></img>");
     $parent_div.css({'background':'#cccccc', 'text-align':'center'});
 
     var new_dj_id = recommended_djs_queue.shift();
@@ -942,7 +943,7 @@ Base.djs.close_button_handler = function(object) {
     }
 
     var params = {'user_id':new_dj_id, 'last_box':$parent_div.hasClass('last_box')};
-    jQuery.get('/users/tiny_box_html', params, function(data) {
+    jQuery.get(Base.current_site_url + '/users/tiny_box_html', params, function(data) {
       $new_div = jQuery(data);
       $parent_div.html($new_div.html());
       $parent_div.css({'background':'white', 'text-align':'left'});
@@ -980,7 +981,7 @@ Base.network.show_more = function(button) {
     params.filter_by = Base.network.FILTER_BY;
   }
 
-  jQuery.post("/activity/latest", params, function (response) {
+  jQuery.post(Base.current_site_url + "/activity/latest", params, function (response) {
     $list.html(response).fadeIn();
     $span_label.html(old_button_label);
   });
@@ -1054,7 +1055,7 @@ Base.network.load_latest = function(params, profile_owner) {
 
     params.profile_owner = profile_owner;
 
-    jQuery.post('/activity/latest', params, function (response) {
+    jQuery.post(Base.current_site_url + '/activity/latest', params, function (response) {
       if (user_page) {
         Base.network.__update_page_user_page(response);
       } else {
@@ -1078,7 +1079,7 @@ Base.network.__artist_latest_tweet = function(response) {
 Base.network.load_latest_tweet = function(params) {
   jQuery(document).ready(function() {
     if (typeof(params) != 'object') params = {};
-    jQuery.post('/activity/latest_tweet', params, function (response) {
+    jQuery.post(Base.current_site_url + '/activity/latest_tweet', params, function (response) {
       Base.network.__artist_latest_tweet(response);
     });
   });
@@ -1091,7 +1092,7 @@ Base.network.push_update = function() {
   $comment_field       = jQuery("#network_comment");
   $chars_counter       = jQuery(".chars_counter");
   $comment_field.css({'border':'10px solid #EDEDED'});
-  $(".network_arrow").attr("src", "/images/network_arrow.gif");
+  $(".network_arrow").attr("src", Base.current_site_url + "/images/network_arrow.gif");
 
   var comment = jQuery.trim($comment_field.val());
   var $old_network_update_text = $network_update_text.clone();
@@ -1103,7 +1104,7 @@ Base.network.push_update = function() {
   $share_button_label.html(Base.layout.spanned_spin_image());
 
   if (comment && comment.length > 0) {
-    jQuery.post('/activity/update/status', {'message':comment}, function (response) {
+    jQuery.post(Base.current_site_url + '/activity/update/status', {'message':comment}, function (response) {
       $comment_field.val("");
       jQuery(".chars_counter").html(140);
       Base.network.__update_page_owner_page(response, {'replace':true});
@@ -1114,7 +1115,7 @@ Base.network.push_update = function() {
     });
   } else {
     $comment_field.css({'border':'10px solid red'});
-    $(".network_arrow").attr("src", "/images/network_arrow_red.gif");
+    $(".network_arrow").attr("src", Base.current_site_url + "/images/network_arrow_red.gif");
     $share_button.removeClass('blue_button_wo_hover').addClass('blue_button').html(old_button_content);
   }
 
@@ -1237,7 +1238,7 @@ Base.account_settings.delete_account_submit_as_msn = function() {
   var validator = form.validate();
   if (form.valid()) {
     $.popup(function() {
-      jQuery.get('/my/cancellation/confirm', function(data) {
+      jQuery.get(Base.current_site_url + '/my/cancellation/confirm', function(data) {
         jQuery.popup(data);
       });
     });
@@ -1254,7 +1255,7 @@ Base.account_settings.delete_account_submit_as_cyloop = function() {
     password_value = $("#delete_password").val();
     $.ajax({
       type : "DELETE",
-      url  : "/my/cancellation/confirm",
+      url  : Base.current_site_url + "/my/cancellation/confirm",
       data : { delete_info_accepted: "true", delete_password: password_value },
       success: function(data){
         if (data.errors) {
@@ -1273,13 +1274,13 @@ Base.account_settings.delete_account_confirmation = function() {
   password_value = $("#delete_password").val();
   $.ajax({
     type : "DELETE",
-    url  : "/my/cancellation",
+    url  : Base.current_site_url + "/my/cancellation",
     data : { delete_info_accepted: "true", delete_password: password_value },
     success: function(data){
       delete_account_data = data;
       cancelled_account_email = data.email;
       $.popup(function() {
-        jQuery.get('/my/cancellation/feedback?address='+ cancelled_account_email, function(data) {
+        jQuery.get(Base.current_site_url + '/my/cancellation/feedback?address='+ cancelled_account_email, function(data) {
           jQuery.popup(data);
         });
       });
@@ -1311,7 +1312,7 @@ Base.header_search.getFieldValue =  function(arr, fieldName) {
 Base.header_search.buildSearchUrl = function () {
   var form_values = jQuery("#header_search_form").serializeArray();
   var q     = Base.header_search.getFieldValue(form_values,'q');
-  var url   = "/search/all/" + ( q == msg ? "" : q) ;
+  var url   = Base.current_site_url + "/search/all/" + ( q == msg ? "" : q) ;
   location.href = url;
   return false;
 };
@@ -1346,7 +1347,7 @@ Base.header_search.autocomplete = function(last_value) {
     jQuery('.search_results_ajax').hide();
     return;
   }
-  jQuery.get('/search/all/' + q, function(data) {
+  jQuery.get(Base.current_site_url + '/search/all/' + q, function(data) {
       jQuery('.search_results_box').html(data);
       jQuery('.search_results_box').show();
       jQuery('.search_results_ajax').hide();
@@ -1361,7 +1362,7 @@ Base.header_search.autocomplete = function(last_value) {
 Base.content_search.buildSearchUrl = function () {
   var form_values = jQuery("#content_search_form").serializeArray();
   var q     = Base.header_search.getFieldValue(form_values,'q');
-  var url   = "/playlist/create/?term=" + ( q == content_msg ? "" : q) ;
+  var url   = Base.current_site_url + "/playlist/create/?term=" + ( q == content_msg ? "" : q) ;
   location.href = url;
   return false;
 };
@@ -1396,7 +1397,7 @@ Base.content_search.autocomplete = function(last_value) {
     jQuery('.content_search_results_ajax').hide();
     return;
   }
-  jQuery.get('/search/content/all/' + q, function(data) {
+  jQuery.get(Base.current_site_url + '/search/content/all/' + q, function(data) {
       jQuery('.create_box').html(data);
       Base.utils.resetIndexes();
       jQuery('.create_box').show();
@@ -1451,7 +1452,7 @@ Base.playlist_search.autocomplete = function(last_value) {
     jQuery('.content_search_results_ajax').hide();
     return;
   }
-  jQuery.get('/search/content_local/all/' + q, function(data) {
+  jQuery.get(Base.current_site_url + '/search/content_local/all/' + q, function(data) {
       jQuery('.create_box').html(data);
 
       if($.browser.version == '7.0'){
@@ -1478,7 +1479,7 @@ Base.playlists.close_button_handler = function(object) {
     $button = jQuery(object);
     
     $parent_div = $button.parent();
-    $parent_div.html("<img style='margin-top:50px' src='/images/loading.gif'></img>");
+    $parent_div.html("<img style='margin-top:50px' src='"+Base.current_site_url+"/images/loading.gif'></img>");
     $parent_div.css({'background':'#cccccc', 'text-align':'center'});
 
     var new_playlist_id = recommended_playlists_queue.shift();
@@ -1490,7 +1491,7 @@ Base.playlists.close_button_handler = function(object) {
     }
 
     var params = {'last_box':$parent_div.hasClass('last_box'), 'id':new_playlist_id};
-    jQuery.get('/playlists/widget', params, function(data) {
+    jQuery.get(Base.current_site_url + '/playlists/widget', params, function(data) {
       $parent_div.html(data);
       $parent_div.css({'background':'white', 'text-align':'left'});
       Base.playlists.close_button_event_binder();
@@ -1507,7 +1508,7 @@ Base.playlists.playStream = function(obj, media, songId)
   {
     _activeStream = elem.parent().parent().addClass('selected_row');
     Base.playlists.onStreamStart(_activeStream);
-    elem.find('img').attr('src', '/images/icon_stop_button.png');
+    elem.find('img').attr('src', Base.current_site_url + '/images/icon_stop_button.png');
     swf('stream_connect').playSample(media, songId);
     _playing = true;
   }
@@ -1515,18 +1516,18 @@ Base.playlists.playStream = function(obj, media, songId)
   {
     //_activeStream.attr('class', 'draggable_item ui-draggable');
     _activeStream.removeClass('selected_row');
-    _activeStream.find('div.song_name img').attr('src', '/images/icon_play_button.png');
+    _activeStream.find('div.song_name img').attr('src', Base.current_site_url + '/images/icon_play_button.png');
     Base.playlists.onStreamEnd(_activeStream);
     _activeStream = elem.parent().parent().addClass('selected_row');
     Base.playlists.onStreamStart(_activeStream);
-    elem.find('img').attr('src', '/images/icon_stop_button.png');
+    elem.find('img').attr('src', Base.current_site_url + '/images/icon_stop_button.png');
     swf('stream_connect').playSample(media, songId);
   }
   else if(_playing && songId == _songId)
   {
     //_activeStream.attr('class', 'draggable_item ui-draggable');
     _activeStream.removeClass('selected_row');
-    _activeStream.find('div.song_name img').attr('src', '/images/icon_play_button.png');
+    _activeStream.find('div.song_name img').attr('src', Base.current_site_url + '/images/icon_play_button.png');
     Base.playlists.onStreamEnd(_activeStream);
     _activeStream = null;
     _playing = false;
@@ -1540,7 +1541,7 @@ Base.playlists.streamComplete = function()
   Base.playlists.onStreamEnd(_activeStream);
   //_activeStream.attr('class', 'draggable_item ui-draggable');
   _activeStream.removeClass('selected_row');
-  _activeStream.find('div.song_name img').attr('src', '/images/icon_play_button.png');
+  _activeStream.find('div.song_name img').attr('src', Base.current_site_url + '/images/icon_play_button.png');
   _activeStream = null;
   _playing = false;
 }
@@ -1570,7 +1571,7 @@ Base.main_search.getSearchUrl = function () {
   var scope = Base.header_search.getFieldValue(form_values,'scope');
   var sort = Base.header_search.getFieldValue(form_values,'sort');
   var page = Base.header_search.getFieldValue(form_values,'page');
-  var url   = "/search" + (scope == "" ? "/all" : "/" + scope) + "/" + q + "?sort_by=" + sort + ((!isNaN(parseInt(page,10)))? "&page=" + page : "");
+  var url   = Base.current_site_url + "/search" + (scope == "" ? "/all" : "/" + scope) + "/" + q + "?sort_by=" + sort + ((!isNaN(parseInt(page,10)))? "&page=" + page : "");
   return url;
 };
 
@@ -1716,7 +1717,7 @@ Base.radio.init_edit_station_layer = function() {
 
 	jQuery("#edit_station_name").click(function() {
 	  $.popup(function() {
-			url = '/stations/' + jQuery('#station_id').val() + '/edit';
+			url = Base.current_site_url + '/stations/' + jQuery('#station_id').val() + '/edit';
    		jQuery.get(url, function(data) {
 	      jQuery.popup(data);
 	    });
@@ -1729,7 +1730,7 @@ Base.radio.init_edit_station_layer = function() {
 */
   save_button.bind('click', function() {
     params = {'_method' : 'put', 'user_station' : {'name': new_station_name } };
-    jQuery.post('/my/stations/' + user_station_id, params, function(response) {
+    jQuery.post(Base.current_site_url + '/my/stations/' + user_station_id, params, function(response) {
       jQuery("#station_name").html(new_station_name);
 			jQuery(document).trigger('close.facebox');
     });
@@ -1743,7 +1744,7 @@ Base.radio.init_edit_station_layer = function() {
  */
 jQuery(document).ready(function() {
   // Effects and Layout fixes
-  $('.png_fix').supersleight({shim: '/images/blank.gif'});
+  $('.png_fix').supersleight({shim: Base.current_site_url + '/images/blank.gif'});
 
   Base.playlists.close_button_event_binder();
   Base.djs.close_button_event_binder();
@@ -1755,12 +1756,12 @@ jQuery(document).ready(function() {
 
   $("#network_comment").focus(function() {
     $("#network_comment").addClass("network_update_red");
-    $(".network_arrow").attr("src", "/images/network_arrow_red.gif");
+    $(".network_arrow").attr("src", Base.current_site_url + "/images/network_arrow_red.gif");
   });  
   
   $("#network_comment").blur(function() {
     $("#network_comment").removeClass("network_update_red");
-    $(".network_arrow").attr("src", "/images/network_arrow.gif");
+    $(".network_arrow").attr("src", Base.current_site_url + "/images/network_arrow.gif");
     $(".network_red_msg").remove();
   }); 
 
@@ -1785,7 +1786,7 @@ Base.network.reload_comments = function(filter) {
 
   sort_link.parents('.sorting').after('<div class="small_loading at_sorting">');
 
-  jQuery.post("/activity/latest", params, function (response) {
+  jQuery.post(Base.current_site_url + "/activity/latest", params, function (response) {
     $("ul#network_comment_list").show();
     $("div.sorting a").removeClass("active");
     jQuery(".comments_list").html(response);
@@ -1797,7 +1798,7 @@ Base.network.reload_comments = function(filter) {
 
 /* Reviews */
 Base.reviews.load_playlist_reviews_list = function(container, playlist) {
-  var url = '/playlist/' + playlist + '/reviews/list';
+  var url = Base.current_site_url + '/playlist/' + playlist + '/reviews/list';
 
   $.get(url, function(response) {
     container.html(response);
@@ -1847,7 +1848,7 @@ Base.reviews.resetForm = function() {
   $('#' + $("#network_comment").attr('chars_counter')).html(140);
   $('div.network_red_msg').remove();
   $('#network_comment').removeClass('network_red_msg');
-  $('#network_comment').next('img').attr("src", "/images/network_arrow.gif");
+  $('#network_comment').next('img').attr("src", Base.current_site_url + "/images/network_arrow.gif");
   $('.rating_bottles').removeClass('red_round_box2');
 }
 ;
@@ -1875,7 +1876,7 @@ Base.reviews.showErrors = function(errors, form) {
       message_div.append(this[1] + "<br />");
       $(input_id).parents(".album_textarea").append(message_div);
       $(input_id).addClass(error_class);
-      $(arrow).attr("src", "/images/network_arrow_red.gif");
+      $(arrow).attr("src", Base.current_site_url + "/images/network_arrow_red.gif");
     } else {
       form.find('.rating_bottles').addClass('red_round_box2');
     }
@@ -1887,7 +1888,7 @@ Base.reviews.bind_textarea = function() {
   $("#comment_update,#network_comment").each(function (){
     $(this).focus(function() {
       $(this).addClass("network_update_red");
-      $(this).next('img').attr("src", "/images/network_arrow_red.gif");
+      $(this).next('img').attr("src", Base.current_site_url + "/images/network_arrow_red.gif");
     });
   });
 
@@ -1896,14 +1897,14 @@ Base.reviews.bind_textarea = function() {
       $("div.rating_input").removeClass("red_round_box2");
       $(this).removeClass("network_update_red");
       if (!($(this).hasClass('network_red_msg') || $(this).hasClass('edit_review_red_msg'))) {
-        $(this).next('img').attr("src", "/images/network_arrow.gif");
+        $(this).next('img').attr("src", Base.current_site_url + "/images/network_arrow.gif");
       }
     });
   });
 }
 
 Base.reviews.post = function(playlist) {
-  $.post('/playlists/' + playlist + '/reviews', Base.reviews.getParams(), Base.reviews.postCallback);
+  $.post(Base.current_site_url + '/playlists/' + playlist + '/reviews', Base.reviews.getParams(), Base.reviews.postCallback);
 };
 
 Base.reviews.postCallback = function(response) {
@@ -1921,7 +1922,7 @@ Base.reviews.postCallback = function(response) {
 };
 
 Base.reviews.confirm_remove = function(review) {
-  var url = "/reviews/" + review + "/confirm_remove";
+  var url = Base.current_site_url + "/reviews/" + review + "/confirm_remove";
   Base.utils.showPopup(url);
 };
 
@@ -1931,7 +1932,7 @@ Base.reviews.remove = function(review) {
 
   $.ajax({
     type : "DELETE",
-    url  : "/reviews/" + review,
+    url  : Base.current_site_url + "/reviews/" + review,
     success: Base.reviews.removeCallback
   });
 };
@@ -1943,7 +1944,7 @@ Base.reviews.removeCallback = function(response) {
 };
 
 Base.reviews.edit = function(review, full) {
-  var url = "/reviews/" + review + "/edit";
+  var url = Base.current_site_url + "/reviews/" + review + "/edit";
   if (full) {
     url = url + "?full=true";
   }
@@ -1964,7 +1965,7 @@ Base.reviews.update = function(review, full) {
   };
   $.ajax({
     type : "PUT",
-    url  : "/reviews/" + review,
+    url  : Base.current_site_url + "/reviews/" + review,
     data : params,
     success: Base.reviews.updateCallback
   });
@@ -1992,7 +1993,7 @@ Base.reviews.overwrite = function(review) {
 
   $.ajax({
     type : "PUT",
-    url  : "/reviews/" + review,
+    url  : Base.current_site_url + "/reviews/" + review,
     data : params,
     success: Base.reviews.overwriteCallback
   });
@@ -2062,7 +2063,7 @@ Base.reviews.paginate = function() {
 }
 
 Base.reviews.show = function(review) {
-  var url = "/reviews/" + review + "/show";
+  var url = Base.current_site_url + "/reviews/" + review + "/show";
   $.popup(function() {
     $.get(url, function(response) {
       $.popup(response);
@@ -2084,7 +2085,7 @@ Base.badges.init_notifications = function() {
 };
 
 Base.badges.set_notified = function() {
-  var url = "/my/badges/set_notified";
+  var url = Base.current_site_url + "/my/badges/set_notified";
    $.get(url, function(response) {
 		$("#congrats_popup").fadeOut('slow');
   });
@@ -2129,12 +2130,12 @@ Base.utils.ajax_pagination = function() {
 };
 
 Base.playlists.copy = function(slug, playlist_id) {
-  var url = '/' + slug + '/playlists/' + playlist_id + '/copy';
+  var url = Base.current_site_url + '/' + slug + '/playlists/' + playlist_id + '/copy';
   Base.utils.showPopup(url);
 };
 
 Base.playlists.duplicate = function(slug, playlist_id) {
-  var url = '/' + slug + '/playlists/' + playlist_id + '/duplicate';
+  var url = Base.current_site_url + '/' + slug + '/playlists/' + playlist_id + '/duplicate';
   var params = {};
   params['playlist[name]'] = $("#playlist_name").val();
   $.post(url, params, Base.playlists.duplicateCallback);

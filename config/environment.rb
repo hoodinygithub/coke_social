@@ -91,7 +91,7 @@ Rails::Initializer.run do |config|
   # Make sure the secret is at least 30 characters and all random,
   # no regular words or you'll be exposed to dictionary attacks.
   config.action_controller.session = {
-    :session_key => '_cyloop_session',
+    :session_key => '_coke_session',
     :secret      => '594277ca5ce59b371b451a4da2211838f92008860360e661ffc3b5fc4fcd53d957a48109811196d335aec8a0ea93d5d954cec6619a86694f4fc11515513dee31'
   }
 

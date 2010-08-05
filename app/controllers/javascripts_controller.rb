@@ -1,8 +1,6 @@
-class JavascriptsController < ApplicationController
+class JavascriptsController < ActionController::Base
   CONFIG_PATH     = File.join(RAILS_ROOT, 'config')
   LOCALES_PATH    = File.join(CONFIG_PATH, 'locales')
-  
-  skip_before_filter :login_required
   
   caches_page :locale
   

@@ -90,7 +90,7 @@
         <div id="avatar_upload_info"></div>
       </div>
       <div id="avatar_delete">
-        <b><a href="/my/settings/remove_avatar" class="black">[ <%= t('account_settings.delete') %> ]</a></b>
+        <b><%= link_to("[ #{t('account_settings.delete')} ]", remove_avatar_my_settings_path) %></b>
       </div>
       <% if false %>
       <div class="right_side maintain_private">

@@ -33,5 +33,3 @@ ActionController::Base.session = {
   :domain => ".hoodiny.com"
 }
 config.middleware.use "SetCookieDomain", ".hoodiny.com"
-
-config.gem 'hoptoad_notifier'

@@ -11,7 +11,8 @@ class UsersController < ApplicationController
   before_filter :set_return_to, :only => [:msn_login_redirect, :msn_registration_redirect]
   before_filter :set_dashboard_menu, :only => [:edit, :update]
 
-  ssl_required :edit, :destroy, :update, :create, :new, :errors_on, :confirm_cancellation, :forgot, :feedback unless RAILS_ENV == "development"
+  ssl_required_with_diff_domain :edit, :destroy, :new, :errors_on, :confirm_cancellation, :forgot, :feedback
+  ssl_allowed_with_diff_domain :update, :create
   
   current_tab :settings
   disable_sanitize_params
