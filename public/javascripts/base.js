@@ -1615,6 +1615,7 @@ Base.main_search.refresh_result = function() {
 			})
 			jQuery("#scope_" + value + "_toggle").parentsUntil('ul').find('img.mini_loader').addClass('hide');
 			Base.main_search.toggle_scope(false);
+			Base.main_search.init_pagination
       $('input[type=radio].star').rating();
 		},
     error: function(result) { alert("error"); }
@@ -1624,7 +1625,7 @@ Base.main_search.refresh_result = function() {
 Base.main_search.init_toggles = function() {
     jQuery(".scope_toggle a").click(function(e) {
 			e.preventDefault();
-			Base.main_search.refresh_result()
+			Base.main_search.refresh_result();
     });
     value = jQuery("#search_scope").get(0).value;
     jQuery("#search_" + value).addClass('active')
