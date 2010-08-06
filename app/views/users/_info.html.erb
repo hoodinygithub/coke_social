@@ -2,15 +2,15 @@
   <%= avatar_for(profile_user, :medium, :class => 'side_user_image', :width => "150", :height => "150", :disable_default_css => true) %>
 </div>
 <div class="big_black_box">
-  <b class="blue">
-    <%= link_to(profile_user.name, "") %>
+  <b class="red">
+    <%= profile_user.name %>
   </b>
   <br />
     <%= profile_user.country.name unless profile_user.country.nil? %>
   <br />
   <br />
-  <b class="blue">
-    <%= link_to(t('profile.navigation.age') + " //") %>
+  <b class="red">
+    <%= t('profile.navigation.age') + " //" %>
   </b>
   <br />
     <%= profile_user.age %>
