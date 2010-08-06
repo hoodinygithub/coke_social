@@ -116,7 +116,7 @@ module SslRequirementWithDiffDomain
 
   private
     def ensure_proper_protocol
-      return true if ssl_allowed?
+      return true if ssl_allowed? || Rails.env.development? # Comment all after || to test on dev envs
 
       if ssl_required? && !request_ssl?
         logger.info "[DEBUG] SSL: true - request: false - referer: #{request.env['HTTP_REFERER']} - request: #{request.request_uri} - controller: #{controller_name}##{action_name} - xhr: #{request.xhr?}" 
