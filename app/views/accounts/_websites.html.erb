@@ -2,7 +2,7 @@
   <% if defined? black_box and black_box %>
     <div class="big_black_box">
   <% end %>
-  <b class="blue"><%= link_to("Websites //") %></b><br>
+  <b class="red">Websites //</b><br>
   <% profile_account.websites.each do |website| %>
     <%= link_to website, 'http://' + url_for(website), :class => "white", :target => '_blank' %><br />
   <% end %>
