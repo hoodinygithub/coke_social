@@ -6,11 +6,8 @@
       <label><%= t("user.password") %></label> <%= password_field_tag 'password', nil, :class => 'text_input' %><br/>
       <%= check_box_tag 'remember_me' %>
       <small><b><%= t("sessions.new.remember_me")%></b></small><br/><br/>
-      
-      <%= submit_tag t('actions.enter'), :class => 'submit_button' %>
-      <br/>
-      <a href="#" class="left_side"><small><b><%= link_to t("actions.forgot_password"), forgot_path, :class => "forgot_link" %></b></small></a>
-      
+      <%= submit_tag t('actions.enter'), :class => 'submit_button' %><br/>
+      <div class="left_side"><small><b><%= link_to t("actions.forgot_password"), forgot_path, :class => "forgot_link" %></b></small></div>
       <div class="clearer"></div>
   </div>
 <% end %>
