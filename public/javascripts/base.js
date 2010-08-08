@@ -2009,7 +2009,6 @@ Base.reviews.overwriteCallback = function(response) {
   }
 };
 
-
 Base.reviews.remote_sort = function() {
   var sort_link = $(this);
   sort_link.siblings('.active').removeClass('active');

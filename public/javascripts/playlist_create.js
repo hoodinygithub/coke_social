@@ -453,108 +453,68 @@ function toggle_playlist_box()
   {
     $('#empty_playlist').hide();
     $('#populated_playlist').show();
-    //$('#autofill_button').show();
-    //$('#autofill_button_ques').show();
     $('#save_button').show();
   }
   else
   {
     $('#populated_playlist').hide();
     $('#empty_playlist').show();
-    //$('#autofill_button').hide();
-    //$('#autofill_button_ques').hide();
     $('#save_button').hide();
   }    
 }
 
-function open_save_popup()
-{
-  if(_pv.valid)
-  {
-    if(edit_mode)
-    {
+function open_save_popup() {
+  if(_pv.valid) {
+    if(edit_mode) {
       form = $('#update_playlist_form');
       form.find("input[name='item_ids']").attr("value", _pv.item_ids);
-		  $.ajax({
-		    url: '/playlist/edit/' + $('#playlist_item_list').attr('playlist_id'),
-		    type: "POST",
-		    data: form.serialize(),
-		    success: function(r){ 
-					if(!has_custom_avatar) {
-						update_playlist_avatar('#update_layer_avatar', $('#' + _pv.item_ids[0]).find('img').attr('src').replace(/image\/thumbnail/i, "image/hi-thumbnail"));
-/*			      img_src = $('#' + _pv.item_ids[0]).find('img').attr('src');
-			      $('#update_layer_avatar').attr('src', img_src.replace(/image\/thumbnail/i, "image/hi-thumbnail"));
-*/					}
-					$('#edit_conf_popup').fadeIn('fast');
-				},
-		    error: function(r){alert('Error!')}
-		  });
-
-/*      form = $('#update_playlist_form');
-      form.find("input[name='item_ids']").attr("value", _pv.item_ids);
-      form.submit();
-*/
-	
+      $.ajax({
+        url: '/playlist/edit/' + $('#playlist_item_list').attr('playlist_id'),
+        type: "POST",
+        data: form.serialize(),
+        success: function(r) { 
+          if(!has_custom_avatar) {
+            update_playlist_avatar('#update_layer_avatar', $('#' + _pv.item_ids[0]).find('img').attr('src').replace(/image\/thumbnail/i, "image/hi-thumbnail"));
+          }
+          $.popup({ div: '#edit_conf_popup' });
+        },
+   	    error: function(r){alert('Error!')}
+      });	
+    } else {
+      if(!has_custom_avatar) {	
+        $('#save_layer_avatar').attr('src', $('#' + _pv.item_ids[0]).find('img').attr('src').replace(/image\/thumbnail/i, "image/hi-thumbnail"));
+      }
+      $.popup({ div: '#save_mix_popup' });
     }
-    else
-    {
-			if(!has_custom_avatar) {	
-				$('#save_layer_avatar').attr('src', $('#' + _pv.item_ids[0]).find('img').attr('src').replace(/image\/thumbnail/i, "image/hi-thumbnail"));
-			}
-      $('#save_mix_popup').fadeIn('fast');
-    }
+  } else {
+    $.popup({ div: '#unable_popup' });
   }
-  else
-    $('#unable_popup').fadeIn('fast');
 }
 
-function submit_save_form()
-{
-  var form = $('#save_playlist_form');
+function submit_save_form() {
+  var form = $('.save_playlist_form:visible');
   
-  if(_pv.valid)
-  {
+  if(_pv.valid) {
     var name = form.find("input[name='name']");
-    if(name.val() != "")
-    {
-	    var button = $('.red_loading');
-	    button.empty().prepend('<img class="btn_red_loading" src="/images/red_loading.gif"/>' + 
-	      button.attr('loading_message'));
+    if(name.val() != "") {
+      var button = $('.red_loading');
+      button.empty().prepend('<img class="btn_red_loading" src="/images/red_loading.gif"/>' + 
+      button.attr('loading_message'));
 
       form.find("input[name='item_ids']").attr("value", _pv.item_ids);
-			/*		  $.ajax({
-					    url: '/mixes/create',
-					    type: "POST",
-					    data: form.serialize(),
-					    success: function(r){ 
-								$('#edit_conf_popup').fadeIn('fast');
-							},
-					    error: function(r){alert('Error!')}
-					  });
-			*/      
-			//form.find("input[name='item_ids']").attr("value", playlist_ids);
-      setTimeout(function(){ $('#save_playlist_form').submit(); }, 500);
-    }
-    else
-    {
+      setTimeout(function(){ form.submit(); }, 500);
+    } else {
       name.parent().addClass('error_field');
-			name.keyup(function(e){
-				e.preventDefault();
-				$(this).parent().removeClass('error_field');
-			});
-      //$('#save_mix_popup').fadeOut('fast');
-      //$('#unable_popup').fadeIn('fast');
+      name.keyup(function(e) {
+        e.preventDefault();
+        $(this).parent().removeClass('error_field');
+      });
     }
-  }
-  else
-  {
-    $('#save_mix_popup').fadeOut('fast');
-    $('#unable_popup').fadeIn('fast');
+  } else {
+    $(document).trigger("close.facebox");
     toggle_playlist_box();
   }
 }
-
-
 
 function image_path(id, artist_id)
 {
