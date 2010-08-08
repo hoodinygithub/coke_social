@@ -1,3 +1,8 @@
+<script type="text/javascript">
+  $(document).ready(function(){
+    Base.main_search.init_pagination();
+  });
+</script>
 <ul class="followers_list">
   <% @results[:users].each do |user| %>
   <% is_self = (current_user and current_user == user) %>
