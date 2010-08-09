@@ -870,11 +870,9 @@ Base.stations.launch_edit_layer = function(station_id) {
 
 Base.stations.remove_from_layer = function(station_id) {
   $("#station_to_delete").attr('value', station_id);
-  $.popup(function() {
-    url = Base.currentSiteUrl() + '/stations/' + station_id + '/delete_confirmation';
-    $.get(url, function(data) {
-      $.popup(data);
-    });
+  url = Base.currentSiteUrl() + '/stations/' + station_id + '/delete_confirmation';
+  $.get(url, function(data) {
+    $.popup(data);
   });
 };
 
