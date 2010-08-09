@@ -172,8 +172,8 @@ module Account::Authentication
     wasaseven@gmail.com wasaeight@gmail.com wasanine@gmail.com mhuser@sapient.com oyunger@sapient.com mhuser@sapient.com skobrynich@sapient.com 
     fferrazza@sapient.com mconigliaro@sapient.com sbamber@sapient.com ahollander@sapient.com jschneider@sapient.com mylena@gringo.nu 
     andre@gringo.nu ana.hernandes@jwt.com tullio.nicastro@jwt.com lucianam@ciandt.com claudia.caballero@starcom.com.mx gustavo.ortega@starcom.com.mx 
-    hsartorelli@cubika.com iandino@proguidemc.com tonda@wannaflock.com barquin@wannaflock.com prieto@wannaflock.com molina@wannaflock.com
-    leonardo@agenciaroja.com cova@agenciaroja.com leosecundo@hotmail.com)
+    hsartorelli@cubika.com iandino@proguidemc.com tonda@wannaflock.com barquin@wannaflock.com prieto@wannaflock.com molina@wannaflock.com leonardo@agenciaroja.com cova@agenciaroja.com leosecundo@hotmail.com seba@santo.net maxi@santo.net gaston.bigio@ogilvy.com carlos@madrebuenosaires.com gustavotaretto@gmail.com gabriel.vazquez@jwt.com 
+julian.smith@jwt.com anselmo.ramos@ogilvy.com jose.montalvo@ogilvy.com)
     if !valid_scan_emails.include?(email)
       valid_domains = ['ko.com', 'hoodiny.com', 'cyloop.com', 'clarusdigital.com', 'la.ko.com', 'mena.ko.com', 'na.ko.com', 'eur.ko.com']
       errors.add(:email, I18n.t('share.errors.message.email_is_not_authorized') ) unless valid_domains.include?(email.split("@")[1])
