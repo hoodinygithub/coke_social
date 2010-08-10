@@ -659,9 +659,9 @@ $(function() {
 
 
 function save_playlist_image_preview() {
-  field = $('#playlist_avatar');
-  image = $('#save_layer_avatar');
-  image_name = $('#uploaded_image_name');
+  field = $('.playlist_avatar:visible');
+  image = $('.save_layer_avatar:visible');
+  image_name = $('.uploaded_image_name').last();
   full_path = ('file://'+ field.val()).replace(/\\/, '/'); //Fix Windows Paths
   image.attr('src', full_path);
   file_path = field.val();
@@ -678,7 +678,7 @@ function playlist_image_preview() {
 		$('#update_layer_loading').show();
 		$(this).fadeIn('slow', function(){
 			$('#update_avatar_form').submit();
-			$("#remove_playlist_avatar").fadeIn('slow');
+		    $("#remove_playlist_avatar").fadeIn('slow');
 		});
 	}); 
 /*  field = $('#playlist_avatar');
