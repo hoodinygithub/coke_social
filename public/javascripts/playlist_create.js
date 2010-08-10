@@ -678,6 +678,7 @@ function playlist_image_preview() {
 		$('#update_layer_loading').show();
 		$(this).fadeIn('slow', function(){
 			$('#update_avatar_form').submit();
+			$("#remove_playlist_avatar").fadIn('slow');
 		});
 	}); 
 /*  field = $('#playlist_avatar');
@@ -699,7 +700,6 @@ function update_playlist_avatar(selector, avatar_path) {
 		$('#update_layer_loading').hide();
 		$(selector).attr('src', avatar_path);
 		$(this).fadeIn('slow');
-        $("#remove_playlist_avatar").show();
 	});
 /*	$(selector).fadeOut('fast', function(){
 		$(this).attr('src', avatar_path);
