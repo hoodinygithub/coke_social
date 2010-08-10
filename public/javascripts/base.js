@@ -2155,5 +2155,6 @@ Base.playlists.avatarDeleteCallback = function(response) {
     $("#update_layer_avatar_container img").replaceWith(response.avatar);
     $("#remove_playlist_avatar").hide();
     $(document).trigger('close.facebox');
+    has_custom_avatar = false;
   }
 }
