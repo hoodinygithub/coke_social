@@ -2058,11 +2058,9 @@ Base.reviews.paginate = function() {
 
 Base.reviews.show = function(review) {
   var url = Base.currentSiteUrl() + "/reviews/" + review + "/show";
-  $.popup(function() {
-    $.get(url, function(response) {
-      $.popup(response);
-      $('input[type=radio].star').rating();
-    });
+  $.get(url, function(response) {
+    $.popup(response);
+    $('input[type=radio].star').rating();
   });
 };
 
