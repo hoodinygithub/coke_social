@@ -678,7 +678,7 @@ function playlist_image_preview() {
 		$('#update_layer_loading').show();
 		$(this).fadeIn('slow', function(){
 			$('#update_avatar_form').submit();
-			$("#remove_playlist_avatar").fadIn('slow');
+			$("#remove_playlist_avatar").fadeIn('slow');
 		});
 	}); 
 /*  field = $('#playlist_avatar');
