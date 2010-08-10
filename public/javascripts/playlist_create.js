@@ -699,6 +699,7 @@ function update_playlist_avatar(selector, avatar_path) {
 		$('#update_layer_loading').hide();
 		$(selector).attr('src', avatar_path);
 		$(this).fadeIn('slow');
+        $("#remove_playlist_avatar").show();
 	});
 /*	$(selector).fadeOut('fast', function(){
 		$(this).attr('src', avatar_path);

@@ -51,9 +51,13 @@
     <%= form_tag playlist_avatar_update_path(:format => 'js'), :multipart => true, :target => 'upload_frame', :method => :post, :id => :update_avatar_form %>
       <label class='label_holder'>
         <a href="#" id="avatar_upload_button" class="red_button valign_middle"><span><span><%= t('account_settings.update') %></span></span></a>
-        <input id="playlist_avatar" type="file" class="file" name="playlist[avatar]" size="30" onchange="playlist_image_preview();"/>
+        <input id="playlist_avatar" type="file" class="file" name="playlist[avatar]" size="20" onchange="playlist_image_preview();"/>
         <iframe id='upload_frame' name="upload_frame" style="width:1px;height:1px;border:0px" src="about:blank"></iframe>
       </label>
+        <div id="remove_playlist_avatar" <%= 'style="display:none;"' unless @playlist.avatar_file_name %>
+          <b><%= link_to("[ #{t('account_settings.delete')} ]", playlist_avatar_delete_path(@playlist), :onclick => "Base.playlists.avatarDelete(); return false;") %></b>
+        </div>
+
     </form>
     <div id="uploaded_image_name">filename</div>
   </div>

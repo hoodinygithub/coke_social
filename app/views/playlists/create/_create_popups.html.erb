@@ -113,3 +113,24 @@
     </div>
   </form>
 </div>
+
+<div id="avatar_delete_popup" style="display:none;">
+  <form action="" method="post" class="account_settings">
+    <div class="title"><%= t('playlists.avatar_delete_confirm_title') %></div>
+    <div class="form_row">
+      <div class="auto_fill_text">
+        <%= t('playlists.avatar_delete_confirm_text') %> 
+      </div>
+      <br/>
+    </div>
+    <br/>
+    <div class="align_right">
+      <a href="#" class="red_button valign_middle" onclick="Base.playlists.avatarDeleteConfirm(); return false;">
+        <span><span><%= t('basics.yes') %></span></span>
+      </a>&nbsp;&nbsp;
+      <a href="#" onclick="$(document).trigger('close.facebox'); return false;" class="red_button valign_middle">
+        <span><span><%= t('basics.no') %></span></span>
+      </a>
+    </div>
+  </form>
+</div>

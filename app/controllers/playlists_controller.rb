@@ -54,9 +54,10 @@ class PlaylistsController < ApplicationController
     if @playlist
       @playlist.avatar = nil 
       @playlist.save!      
-      render :text => 'updated'
+      render :json => { :success => true, :avatar => render_to_string("avatar") }
+    else
+      render :json => { :success => false }
     end
-    render :text => 'avatar not found'
   end
 
 
