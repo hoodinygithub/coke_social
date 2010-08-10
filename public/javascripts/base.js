@@ -1945,12 +1945,10 @@ Base.reviews.edit = function(review, full) {
   if (full) {
     url = url + "?full=true";
   }
-  $.popup(function() {
-    $.get(url, function(response) {
-      $.popup(response);
-      $('input[type=radio].star').rating();
-      Base.reviews.bind_textarea();
-    });
+  $.get(url, function(response) {
+    $.popup(response);
+    $('input[type=radio].star').rating();
+    Base.reviews.bind_textarea();
   });
 };
 
