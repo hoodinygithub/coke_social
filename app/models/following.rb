@@ -14,6 +14,8 @@
 #
 
 class Following < ActiveRecord::Base
+  include Badges::Awards
+  
   after_create :after_create_callback
   after_destroy :after_destroy_callback
 
@@ -50,8 +52,28 @@ class Following < ActiveRecord::Base
     # Account.increment_counter(:followee_count, follower.id)
     followee.increment!(:follower_count)
     follower.increment!(:followee_count)
+    award_fame_badges
+    award_networker_badges
   end
 
+  def award_fame_badges
+    badge_keys = { :leader => 5, :master => 25, :guru => 100, :idol => 500 }
+    badge_keys.each_pair do |k, v|
+      if followee.follower_count >= v
+        award_badge(k, followee)
+      end
+    end      
+  end
+  
+  def award_networker_badges
+    badge_keys = { :networker => 5, :networker_bronze => 25, :networker_silver => 50, :networker_gold => 100, :networker_platinum => 250, :networker_diamond => 500 }
+    badge_keys.each_pair do |k, v|
+      if follower.followee_count >= v
+        award_badge(k, follower)
+      end
+    end  
+  end
+  
   def decrement_counts
     # Account.decrement_counter(:follower_count, followee.id)
     # Account.decrement_counter(:followee_count, follower.id)

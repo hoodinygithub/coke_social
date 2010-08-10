@@ -17,7 +17,7 @@ function PlaylistValidations(items_req, max_artist, max_album, max_items)
     this.max_items  = max_items;
     this.items_req  = items_req;
     
-    // atributes
+    // attibutes
     this.valid      = false;
     this.item_count = 0;
     this.item_ids   = [];
@@ -30,7 +30,25 @@ function PlaylistValidations(items_req, max_artist, max_album, max_items)
     this.artist_errors  = new ValidationList();
     this.album_errors   = new ValidationList();
     
+
+
     // methods
+    this.autofill_validate = function() {
+      this.clear_errors();
+	    this.valid = true;
+      artists = this.artists.hasCountGreater(this.max_artist);
+      if (artists.length) {
+				this.valid = false;
+			}
+			
+			if(!this.valid){
+	      albums = this.albums.hasCountGreater(this.max_album);
+	      if (albums.length){
+					this.valid = false;			
+				}				
+			}
+		}
+
     this.validate = function() {
       this.clear_errors();
       this.valid = true;
@@ -114,9 +132,9 @@ function PlaylistValidations(items_req, max_artist, max_album, max_items)
     }
   
     
-    this.add_item = function(song_id, title, artist_id, artist_name, album_id, album_name, image_src, suppress_validation, item_id) {
+    this.add_item = function(song_id, title, artist_id, artist_name, album_id, album_name, image_src, suppress_validation, item_id, station) {
       // Add Song ID to playlist
-      this.items.setItem(song_id, new PlaylistItem(song_id, title, artist_id, artist_name, album_id, album_name, image_src, item_id));
+      this.items.setItem(song_id, new PlaylistItem(song_id, title, artist_id, artist_name, album_id, album_name, image_src, item_id, station));
       this.item_ids.push(song_id);
       this.item_count = this.item_ids.length;
       
@@ -128,6 +146,8 @@ function PlaylistValidations(items_req, max_artist, max_album, max_items)
       
       if(!suppress_validation)
         this.validate();
+
+			
     }
     
     this.remove_item = function(song_id) {
@@ -147,6 +167,11 @@ function PlaylistValidations(items_req, max_artist, max_album, max_items)
       this.remove_album(album_id, song_id);
       
       this.validate();
+
+			if(!this.item_count) {
+				$('#autofill_button').hide();
+				$('#lucky_10_desc').hide();      	      
+			}
     }
     
     this.add_artist = function(artist_id, song_id) {
@@ -183,7 +208,7 @@ function PlaylistValidations(items_req, max_artist, max_album, max_items)
 
 }
 
-function PlaylistItem(song_id, song, artist_id, artist_name, album_id, album_name, image_src)
+function PlaylistItem(song_id, song, artist_id, artist_name, album_id, album_name, image_src, item_id, station)
 {
   //attributes
   this.song_id = song_id;
@@ -196,6 +221,10 @@ function PlaylistItem(song_id, song, artist_id, artist_name, album_id, album_nam
   this.album_name = album_name;
   
   this.image_src = image_src;
+  this.item_id = item_id;
+
+  this.station = station;
+
 }
 
 function ValidationList()
@@ -229,7 +258,8 @@ function ValidationList()
 		if (typeof(this.items[in_key]) != 'undefined') {
 			this.length--;
 			var tmp_previous = this.items[in_key];
-			delete this.items[in_key];
+			//delete this.items[in_key];
+			this.items.splice(in_key, 1);
 		}
 	   
 		return tmp_previous;
@@ -284,10 +314,12 @@ function ValidationList()
 		return typeof(this.items[in_key]) != 'undefined';
 	}
 
+
 	this.clear = function()
 	{
 		for (var i in this.items) {
-			delete this.items[i];
+			//delete this.items[i];
+			this.items.splice(i, 1);
 		}
 
 		this.length = 0;
@@ -295,11 +327,40 @@ function ValidationList()
 }
 
 
-function add_item(id, title, artist_id, artist_name, album_id, album_name, image_src, suppress_validation, item_id)
+function autofill_add_item(item) {
+  if(!_pv.contains(item.id) && (_pv.item_count < _pv.max_items)) {
+    _pv.add_item(item.id, item.title, item.artist_id, item.artist_name, item.album_id, item.album_name, item.image_src, true, 0, item.station);
+		_pv.autofill_validate();
+		if(!_pv.valid){
+			_pv.remove_item(item.id);
+		} else {
+			li = '<li id="'+item.id+'" artist_id="'+item.artist_id+'" album_id="'+item.album_id+'" item_id="'+ item.item_id+'" station="'+ item.station+'">'
+	          + '<img alt="'+item.id+'" class="icon avatar small" src="'+item.image_src+'" />'
+	          + '<div class="text">'
+	              + '<big><b>'+unescape(item.title)+'</b></big><br/>'
+	              + '<b>album:</b> '+unescape(item.album_name)+'<br/>'
+	              + '<b>by:</b> '+unescape(item.artist_name)+''
+	          + '</div>'
+	          + '<br class="clearer" />'
+	          + '<a href="#" onclick="remove_item('+item.id+'); return false;"><img src="/images/close_grey.gif" class="close_x" alt="" /></a>'
+	        + '</li>';
+
+	    $('#playlist_item_list').append(li);
+			update_ui();
+		}
+		
+	} else {
+		return false;
+	}
+	
+	return true;
+}
+
+function add_item(id, title, artist_id, artist_name, album_id, album_name, image_src, suppress_validation, item_id, station)
 {
   if(!_pv.contains(id) && (_pv.item_count < _pv.max_items))
   {
-    li = '<li id="'+id+'" artist_id="'+artist_id+'" album_id="'+album_id+'" item_id="'+ item_id+'">'
+    li = '<li id="'+id+'" artist_id="'+artist_id+'" album_id="'+album_id+'" item_id="'+ item_id+'" station="'+ station+'">'
           + '<img alt="'+id+'" class="icon avatar small" src="'+image_src+'" />'
           + '<div class="text">'
               + '<big><b>'+unescape(title)+'</b></big><br/>'
@@ -311,7 +372,7 @@ function add_item(id, title, artist_id, artist_name, album_id, album_name, image
         + '</li>';
         
     $('#playlist_item_list').append(li);
-    _pv.add_item(id, title, artist_id, artist_name, album_id, album_name, image_src, suppress_validation);
+    _pv.add_item(id, title, artist_id, artist_name, album_id, album_name, image_src, suppress_validation, item_id, station);
     update_ui();
     
     if(!suppress_validation)
@@ -446,6 +507,131 @@ function refresh_similar_artists(id)
 	  });
 	}
 }
+
+function StationItem(id, title, artist_id, artist_name, album_id, album_name, image_src, suppress_validation, item_id, station) {
+	this.id = parseInt(id, 10);
+	this.title = title;
+	this.artist_id = parseInt(artist_id, 10);
+	this.artist_name = artist_name;
+	this.album_id = parseInt(album_id, 10);
+	this.album_name = album_name;
+	this.image_src = image_src;
+	this.suppress_validation = suppress_validation;
+	this.item_id = parseInt(item_id, 10);
+	this.station = parseInt(station, 10);
+}
+
+var current_station = 0;
+var lucky_size = 10;
+var autofill_fetching = false;
+var previous_stations = new Array();
+var station_items = new Array();
+
+function get_station_items() {
+	if(_pv.items.length) {
+		var station_id = 0;
+		var item = null;
+		for(var i=0; i < _pv.item_ids.length; i++){
+			item = _pv.items.getItem(_pv.item_ids[i]);
+			if (item){
+				station_id = parseInt(item.station, 10);
+				if(station_id > 0 && !station_used(station_id)){
+					current_station = station_id;
+					break;
+				}				
+			}
+		}
+		if(!isNaN(current_station) && current_station > 0){
+			autofill_fetching = true;
+		  $.ajax({
+		    url: '/playlist/autofill/' + current_station + '.xml',
+		    type: "GET",
+		    data: null,
+		    success: function(xml){ 
+					autofill_fetching = false;
+					station_items = new Array();
+					if(!$(xml).find('song').length){
+						previous_stations[previous_stations.length] = current_station;
+						get_station_items();
+					}
+					$(xml).find('song').each(function(){
+						station_items[station_items.length] = new StationItem( $(this).find('idsong').text()
+																																	,$(this).find('title').text()
+																																	,$(this).find('idband').text()
+																																	,$(this).find('band').text()
+																																	,$(this).find('album_id').text()
+																																	,$(this).find('album').text()
+																																	//http://assets.cyloop.com/storage?fileName=/.elhood.com-2/usr/33785/image/thumbnail/093624590125.sml.jpg
+																																	,$(this).find('fotofile').text().replace('/storage/', 'http://assets.cyloop.com/')
+																																	,true
+																																	,0
+																																	,$(this).find('station_id').text() );
+					});
+					add_autofill_items();
+					previous_stations[previous_stations.length] = current_station;
+					current_station = 0;
+					$('img#autofill_loading').fadeOut('fast');
+					$('div#lucky_10_desc').fadeIn('fast');
+				},
+		    error: function(r){
+					autofill_fetching = false; 
+					alert('Error!')
+				}
+		  });
+		}		
+	}
+}
+
+function autofill() {
+
+	jQuery('div#lucky_10_desc').fadeOut('fast', function(){
+		jQuery('img#autofill_loading').fadeIn('fast', function(){
+			if(station_items.length < 1) {
+				get_station_items();
+			}
+
+			if(!autofill_fetching){
+				add_autofill_items();
+				jQuery('img#autofill_loading').fadeOut('fast');
+				jQuery('div#lucky_10_desc').fadeIn('fast');
+			}
+		});
+		
+	});
+}
+
+function clean_station_items(){
+	for(var i=0; i < station_items.length; i++){
+		if(_pv.contains(station_items[i].id)) {
+			station_items.splice(i, 1);
+		}
+	}
+} 
+
+function add_autofill_items(){
+	//var fill = ( (_pv.item_count >= (_pv.max_count - lucky_size))? (_pv.max_count - _pv.item_count) : lucky_size) ;
+	clean_station_items();
+	var fill_count = 0;
+	while(fill_count < lucky_size) {
+		if(station_items[fill_count] && autofill_add_item(station_items[fill_count])){
+			station_items.splice(fill_count, 1);
+		}
+		fill_count++;
+	}
+	save_playlist_state();
+} 
+
+function station_used(id) {
+	var in_array = false;
+	for(var i=0; i < previous_stations.length; i++) {
+		if(previous_stations[i] == id) {
+			in_array = true;
+			break;
+		}
+	}
+	return in_array;
+}
+
 
 function toggle_playlist_box()
 {

@@ -152,6 +152,7 @@ ActionController::Routing::Routes.draw do |map|
   map.playlist_comment '/playlist/comment/:id', :controller => 'playlists', :action => 'comment'
   map.playlist_avatar_update '/playlist/avatar_update/:id', :controller => 'playlists', :action => 'avatar_update'
   map.playlist_avatar_delete '/playlist/avatar_delete/:id', :controller => 'playlists', :action => 'avatar_delete'
+  map.playlist_auto_fill '/playlist/autofill/:abstract_station_id.:format', :controller => 'playlists', :action => 'autofill'
   
   map.playlist_reviews         '/playlist/:playlist_id/reviews/list', :controller => 'reviews', :action => 'list'
   map.playlist_reviews_items   '/playlist/:playlist_id/reviews/items', :controller => 'reviews', :action => 'items'

@@ -235,7 +235,7 @@ class PlaylistsController < ApplicationController
     
     @recommended_artists = []
     @recommended_artists = artist.similar(20) if artist
-
+    
     if @recommended_artists and @recommended_artists.empty?
       @recommended_artists = current_site.top_artists.all(:limit => 10)
     else
@@ -243,6 +243,15 @@ class PlaylistsController < ApplicationController
     end
 
     render :partial => 'playlists/create/recommendations'
+  end
+
+  def autofill
+    station = AbstractStation.find(params[:abstract_station_id]) rescue nil
+    if station
+      @songs = rec_engine.get_rec_engine_play_list(:artist_id => station.amg_id)
+    else
+      render :text => 'Could not find artist or station'
+    end
   end
 
   def update

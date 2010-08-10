@@ -20,7 +20,7 @@ class RecEngine::Song < RecEngine::Abstract
     :subcategory,
     :user_type
 
-  integer_reader :artist_id, :song_id
+  integer_reader :artist_id, :song_id, :album_id
   integer_reader :song_year, :collection
   integer_reader :plays, :total_plays, :rating
   decimal_reader :total_rating

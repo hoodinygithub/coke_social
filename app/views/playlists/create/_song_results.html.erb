@@ -40,7 +40,7 @@
       <ul class="hoverable_list" id="result_container">
         <% @results.each do |song| %>
           <% if song.artist and song.album %>
-            <li id="search_result_<%= song.id %>" artist_id="<%= song.artist_id %>" class="draggable_item">
+            <li id="search_result_<%= song.id %>" artist_id="<%= song.artist_id %>" class="draggable_item" station="<%= song.artist.station ? song.artist.station.id : 0 %>">
                 <div class="song_image"><%= avatar_for song, :small%></div>
                 <div class="song_name" title="<%= song.title %>">
                   <%= link_to_function image_tag("icon_play_button.png", :class => "png_fix icon_play_button"), "Base.playlists.playStream(this, 'http://media.cyloop.com/storage/storage?fileName=#{song.path}', '#{song.id}')"%>
@@ -49,7 +49,7 @@
 
                 <div class="artist_name" title="<%= song.artist.name %>"><b><%= truncate(song.artist.name, :length => 20) %></b></div>
                 <div class="album_name" title="<%= song.album.name %>"><%= truncate(song.album.name, :length => 22) %></div>
-                <div class="large_bnt" onclick="add_item_wrapper(<%= song.id %>, '<%= escape_for_js(song.title) %>', <%= song.artist.id %>, '<%= escape_for_js(song.artist.name) %>', <%= song.album.id %>, '<%= escape_for_js(song.album.name) %>', '<%= AvatarsHelper.avatar_path( song, :small ) %>', false, 0); remove_search_result(<%= song.id %>); refresh_similar_artists(<%= song.artist_id %>); return false;">
+                <div class="large_bnt" onclick="add_item_wrapper(<%= song.id %>, '<%= escape_for_js(song.title) %>', <%= song.artist.id %>, '<%= escape_for_js(song.artist.name) %>', <%= song.album.id %>, '<%= escape_for_js(song.album.name) %>', '<%= AvatarsHelper.avatar_path( song, :small ) %>', false, 0, <%= song.artist.station ? song.artist.station.id : 0 %>); remove_search_result(<%= song.id %>); refresh_similar_artists(<%= song.artist_id %>); return false;">
                   <b><a href="javascript:void(0);" class="black" >+</a></b></div>
                 <br class="clearer" />
             </li>

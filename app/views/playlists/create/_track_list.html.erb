@@ -60,20 +60,33 @@
 
 <div class="playlist_creation_buttons align_right">
   <div class="inner_box">
+    <% if false %>
     <div class="left_side">
-        <!-- <a href="#" id="autofill_button" onclick="void(0); return false;" class="green_button" style="display:none"><span><span><%= t('playlists.autofill') %></span></span></a>
-
-                <a href="#" id="autofill_button_ques" style="display:none" onclick="$('#auto_fill_popup').fadeIn('fast'); return false;"><img src="/images/unable_qmark.gif" class="unable_qmark" alt="" /></a> -->                        
+        <a href="#" id="autofill_button" onclick="void(0); return false;" class="green_button" style="display:none"><span><span><%= t('playlists.autofill') %></span></span></a>
+        <a href="#" id="autofill_button_ques" style="display:none" onclick="$('#auto_fill_popup').fadeIn('fast'); return false;"><img src="/images/unable_qmark.gif" class="unable_qmark" alt="" /></a>
     </div>
-  
+   <% end %>
   
     <div class="right_side">
-        <a href="#" class="cancel_button" onclick="$.popup({ div: '#cancel_popup' }); return false;"><%= t('actions.cancel') %></a>
-        <a href="#" id="save_button" class="red_button" style="display:none" onclick="open_save_popup(); return false;"><span><span><%= t('actions.save') %></span></span></a>
+        <div id="lucky_10_desc" style="display:none"><%= t('playlists.lucky_10_desc') %></div>
+        <%= image_tag 'loading.gif', :id => 'autofill_loading', :style => "display:none" %>
+        <a href="#" id="autofill_button" class="green_button" style="display:none" onclick="autofill(); return false;"><span><span><%= t('playlists.lucky_10') %></span></span></a-->
+        <!--a href="#" class="cancel_button" onclick="$('#cancel_popup').fadeIn('fast'); return false;"><%= t('actions.cancel') %></a-->
+        <!--a href="#" id="save_button" class="red_button" style="display:none" onclick="open_save_popup(); return false;"><span><span><%= t('actions.save') %></span></span></a-->
     </div><!--/end right_side -->
   
     <div class="clearer"></div>
   </div>
+
+  <div class="playlist_save_buttons align_right">
+      <div class="right_side">
+          <a href="#" class="cancel_button" onclick="$('#cancel_popup').fadeIn('fast'); return false;"><%= t('actions.cancel') %></a>
+          <a href="#" id="save_button" class="red_button" style="display:none" onclick="open_save_popup(); return false;"><span><span><%= t('actions.save') %></span></span></a>
+      </div><!--/end right_side -->
+
+      <div class="clearer"></div>
+    </div>
+  
 </div>
 <%= render :partial => "playlists/create/create_popups" %>
 
@@ -92,9 +105,14 @@
     });
   }
   
-  function add_item_wrapper(id, title, artist_id, artist_name, album_id, album_name, image_src, suppress_validation, item_id)
+  function add_item_wrapper(id, title, artist_id, artist_name, album_id, album_name, image_src, suppress_validation, item_id, station)
   {
-    add_item(id, title, artist_id, artist_name, album_id, album_name, image_src, suppress_validation, item_id);
+    add_item(id, title, artist_id, artist_name, album_id, album_name, image_src, suppress_validation, item_id, station);
+
+    if(_pv.items.length && $('#autofill_button').css('display')=='none'){      
+      $('#autofill_button').show();
+      $('#lucky_10_desc').show();      
+    }
   }
   
   function artist_text_wrapper(num, name, item_count, max_artist)
@@ -129,16 +147,16 @@
     return text;
   }
   
+  <%= "$('#autofill_button').show(); $('#lucky_10_desc').show();" if @playlist_items.size > 0 %>
   <% if @playlist_items %>
-    
   <% @playlist_items.each do |item| %>
     <% if item.is_a? PlaylistItem %>
       <% unless item.song.artist.nil? || item.song.album.nil? %>
-        add_item_wrapper(<%= item.song.id %>, '<%= escape_for_js(item.song.title) %>', <%= item.song.artist.id %>, '<%= escape_for_js(item.song.artist.name) %>', <%= item.song.album.id %>, '<%= escape_for_js(item.song.album.name) %>', '<%= AvatarsHelper.avatar_path(item.song, :small) %>', true, <%= item.id %>);
+        add_item_wrapper(<%= item.song.id %>, '<%= escape_for_js(item.song.title) %>', <%= item.song.artist.id %>, '<%= escape_for_js(item.song.artist.name) %>', <%= item.song.album.id %>, '<%= escape_for_js(item.song.album.name) %>', '<%= AvatarsHelper.avatar_path(item.song, :small) %>', true, <%= item.id %>, <%= item.song.artist.station ? item.song.artist.station.id : 0 %> );
       <% end %>
     <% else %>
       <% unless item.artist.nil? || item.album.nil? %>
-        add_item_wrapper(<%= item.id %>, '<%= escape_for_js(item.title) %>', <%= item.artist.id %>, '<%= escape_for_js(item.artist.name) %>', <%= item.album.id %>, '<%= escape_for_js(item.album.name) %>', '<%= AvatarsHelper.avatar_path(item, :small) %>', true, 0);        
+        add_item_wrapper(<%= item.id %>, '<%= escape_for_js(item.title) %>', <%= item.artist.id %>, '<%= escape_for_js(item.artist.name) %>', <%= item.album.id %>, '<%= escape_for_js(item.album.name) %>', '<%= AvatarsHelper.avatar_path(item, :small) %>', true, 0, <%= item.artist.station ? item.artist.station.id : 0 %>);        
       <% end %>
     <% end %>
     

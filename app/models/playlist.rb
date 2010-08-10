@@ -15,6 +15,7 @@
 class Playlist < ActiveRecord::Base
   include AvatarImporter
   include Station::Playable
+  include Badges::Awards
 
   acts_as_taggable
 
@@ -84,6 +85,15 @@ class Playlist < ActiveRecord::Base
     increment_owner_total_playlists
   end
 
+  def award_mixmaster_badges
+    badge_keys = { :mixmaster_white => 2, :mixmaster_yellow => 5, :mixmaster_green => 10, :mixmaster_brown => 25, :mixmaster_black => 50, :mixmaster_red => 100 }
+    badge_keys.each_pair do |k, v|
+      if owner.total_playlists >= v
+        award_badge(k, owner)
+      end
+    end      
+  end
+  
   def owner_is?(user)
     is_owner = false
     unless user.nil?
@@ -103,6 +113,7 @@ class Playlist < ActiveRecord::Base
 
   def increment_owner_total_playlists
     self.owner.increment!(:total_playlists)
+    award_mixmaster_badges
   end
 
   def all_artists
