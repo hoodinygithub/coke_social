@@ -109,7 +109,7 @@
   {
     add_item(id, title, artist_id, artist_name, album_id, album_name, image_src, suppress_validation, item_id, station);
 
-    if(_pv.items.length && $('#autofill_button').css('display')=='none'){      
+    if(_pv.items.length && $('#autofill_button').css('display')=='none' && _pv.station_ids.length){      
       $('#autofill_button').show();
       $('#lucky_10_desc').show();      
     }
@@ -146,23 +146,26 @@
           + '</li>';
     return text;
   }
-  
-  <%= "$('#autofill_button').show(); $('#lucky_10_desc').show();" if @playlist_items.size > 0 %>
+
+  <% station_ids = [] %>
   <% if @playlist_items %>
   <% @playlist_items.each do |item| %>
     <% if item.is_a? PlaylistItem %>
       <% unless item.song.artist.nil? || item.song.album.nil? %>
+        <% station_ids << item.song.artist.station.id unless item.song.artist.station.nil? %>
         add_item_wrapper(<%= item.song.id %>, '<%= escape_for_js(item.song.title) %>', <%= item.song.artist.id %>, '<%= escape_for_js(item.song.artist.name) %>', <%= item.song.album.id %>, '<%= escape_for_js(item.song.album.name) %>', '<%= AvatarsHelper.avatar_path(item.song, :small) %>', true, <%= item.id %>, <%= item.song.artist.station ? item.song.artist.station.id : 0 %> );
       <% end %>
     <% else %>
       <% unless item.artist.nil? || item.album.nil? %>
+        <% station_ids << item.artist.station.id unless item.artist.station.nil? %>
         add_item_wrapper(<%= item.id %>, '<%= escape_for_js(item.title) %>', <%= item.artist.id %>, '<%= escape_for_js(item.artist.name) %>', <%= item.album.id %>, '<%= escape_for_js(item.album.name) %>', '<%= AvatarsHelper.avatar_path(item, :small) %>', true, 0, <%= item.artist.station ? item.artist.station.id : 0 %>);        
       <% end %>
     <% end %>
     
   <% end %>
-  
-    
+
+  <%= "$('#autofill_button').show(); $('#lucky_10_desc').show();" if @playlist_items.size > 0 and station_ids.size > 0 %>
+      
     validate_items();
   <% end %>
   

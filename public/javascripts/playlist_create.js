@@ -21,6 +21,7 @@ function PlaylistValidations(items_req, max_artist, max_album, max_items)
     this.valid      = false;
     this.item_count = 0;
     this.item_ids   = [];
+    this.station_ids   = [];
     
     
     // collections
@@ -131,13 +132,24 @@ function PlaylistValidations(items_req, max_artist, max_album, max_items)
   		}
     }
   
+    this.fill_station_ids = function() {
+				var _station_ids = [];
+				var station = 0;
+				$('#playlist_item_list li').each(function(){
+					station = parseInt($(this).attr('station'), 10);
+					if(station > 0) {
+						_station_ids.push(station);
+					}
+				});
+			this.station_ids = _station_ids;
+		}
     
     this.add_item = function(song_id, title, artist_id, artist_name, album_id, album_name, image_src, suppress_validation, item_id, station) {
       // Add Song ID to playlist
       this.items.setItem(song_id, new PlaylistItem(song_id, title, artist_id, artist_name, album_id, album_name, image_src, item_id, station));
       this.item_ids.push(song_id);
       this.item_count = this.item_ids.length;
-      
+      this.fill_station_ids();
       // Increment Song Artist count
       this.add_artist(artist_id, song_id);
       
@@ -159,6 +171,7 @@ function PlaylistValidations(items_req, max_artist, max_album, max_items)
       this.items.removeItem(song_id);
       this.item_ids.remove(song_id);
       this.item_count = this.item_ids.length;
+      this.fill_station_ids();
       
       // Decrement Song Artist count
       this.remove_artist(artist_id, song_id);
@@ -168,7 +181,7 @@ function PlaylistValidations(items_req, max_artist, max_album, max_items)
       
       this.validate();
 
-			if(!this.item_count) {
+			if(!this.item_count || !this.station_ids.length) {
 				$('#autofill_button').hide();
 				$('#lucky_10_desc').hide();      	      
 			}
@@ -258,8 +271,8 @@ function ValidationList()
 		if (typeof(this.items[in_key]) != 'undefined') {
 			this.length--;
 			var tmp_previous = this.items[in_key];
-			//delete this.items[in_key];
-			this.items.splice(in_key, 1);
+			delete this.items[in_key];
+			//this.items.splice(in_key, 1);
 		}
 	   
 		return tmp_previous;
@@ -318,8 +331,8 @@ function ValidationList()
 	this.clear = function()
 	{
 		for (var i in this.items) {
-			//delete this.items[i];
-			this.items.splice(i, 1);
+			delete this.items[i];
+			//this.items.splice(i, 1);
 		}
 
 		this.length = 0;
@@ -327,12 +340,14 @@ function ValidationList()
 }
 
 
-function autofill_add_item(item) {
+function autofill_add_item(item, index) {
   if(!_pv.contains(item.id) && (_pv.item_count < _pv.max_items)) {
     _pv.add_item(item.id, item.title, item.artist_id, item.artist_name, item.album_id, item.album_name, item.image_src, true, 0, item.station);
 		_pv.autofill_validate();
 		if(!_pv.valid){
 			_pv.remove_item(item.id);
+			station_items.splice(index, 1);
+			return false
 		} else {
 			li = '<li id="'+item.id+'" artist_id="'+item.artist_id+'" album_id="'+item.album_id+'" item_id="'+ item.item_id+'" station="'+ item.station+'">'
 	          + '<img alt="'+item.id+'" class="icon avatar small" src="'+item.image_src+'" />'
@@ -348,8 +363,8 @@ function autofill_add_item(item) {
 	    $('#playlist_item_list').append(li);
 			update_ui();
 		}
-		
 	} else {
+		station_items.splice(index, 1);
 		return false;
 	}
 	
@@ -583,21 +598,21 @@ function get_station_items() {
 }
 
 function autofill() {
+	if(_pv.item_count < _pv.max_items) {
+		jQuery('div#lucky_10_desc').fadeOut('fast', function(){
+			jQuery('img#autofill_loading').fadeIn('fast', function(){
+				if(station_items.length < 1) {
+					get_station_items();
+				}
 
-	jQuery('div#lucky_10_desc').fadeOut('fast', function(){
-		jQuery('img#autofill_loading').fadeIn('fast', function(){
-			if(station_items.length < 1) {
-				get_station_items();
-			}
-
-			if(!autofill_fetching){
-				add_autofill_items();
-				jQuery('img#autofill_loading').fadeOut('fast');
-				jQuery('div#lucky_10_desc').fadeIn('fast');
-			}
-		});
-		
-	});
+				if(!autofill_fetching){
+					add_autofill_items();
+					jQuery('img#autofill_loading').fadeOut('fast');
+					jQuery('div#lucky_10_desc').fadeIn('fast');
+				}
+			});
+		});		
+	}
 }
 
 function clean_station_items(){
@@ -612,11 +627,17 @@ function add_autofill_items(){
 	//var fill = ( (_pv.item_count >= (_pv.max_count - lucky_size))? (_pv.max_count - _pv.item_count) : lucky_size) ;
 	clean_station_items();
 	var fill_count = 0;
-	while(fill_count < lucky_size) {
-		if(station_items[fill_count] && autofill_add_item(station_items[fill_count])){
-			station_items.splice(fill_count, 1);
+	var item = 0;
+	while(fill_count < lucky_size && station_items[fill_count] && _pv.item_count < _pv.max_items) {
+		if(station_items.length > lucky_size && station_items.length < (lucky_size * 2)){ 
+			get_station_items(); 
 		}
-		fill_count++;
+		if(station_items[fill_count]) {
+			if(autofill_add_item(station_items[fill_count])){
+			station_items.splice(fill_count, 1);
+			fill_count++;
+			}
+		}
 	}
 	save_playlist_state();
 } 
