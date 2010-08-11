@@ -129,6 +129,7 @@ class UserNotification < BaseMailer
         badge_name = I18n.t("badges.#{badge_award.badge_key}.name")
         badge_qualification = I18n.t("badges.#{badge_award.badge_key}.qualification")
         UserNotification.deliver_badge_notification(subject_line, badge_award.winner, badge_name, badge_qualification)
+        badge_award.update_attribute(:email_sent, true)
       end
     end
 
