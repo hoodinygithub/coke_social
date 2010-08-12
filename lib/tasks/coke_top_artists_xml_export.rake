@@ -28,7 +28,7 @@ namespace :db do
       rescue 
         false
       end
-    end    
+    end
 
     def write_rss_artist_feed(feed, site, path)
       limit = 20
