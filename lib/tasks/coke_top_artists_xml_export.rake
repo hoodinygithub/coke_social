@@ -35,7 +35,7 @@ namespace :db do
       return if site.nil?
       items = site.top_artists.all(:limit => limit)
       return if items.empty?
-      
+
       count = items.size
 
       file = File.open("#{path}/#{site.code}/top_artists_#{site.code}.xml", 'w')
