@@ -31,7 +31,7 @@ namespace :db do
     end    
 
     def write_rss_artist_feed(feed, site, path)
-      limit = 30
+      limit = 40
       return if site.nil?
       items = site.top_artists.all(:limit => limit)
       return if items.empty?
