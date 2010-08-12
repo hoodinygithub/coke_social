@@ -67,8 +67,8 @@ input:focus {
 }
 
 #homepage_box {
-    background: url("../images/home_bg.jpg") no-repeat left top;
-    height: 1100px;
+    background: url("../images/loginbackground.jpg") no-repeat left top;
+    height: 550px;
     position: relative;
     z-index: 1;
     margin-bottom: -130px;
@@ -77,13 +77,16 @@ input:focus {
 #login_box {
     position: absolute;
     width: 318px;
-    right: 20px;
-    top: 562px;
+    right: 150px;
+    top: 50px !important;
 }
-
+.footer_home{
+    padding: 150px 20px 20px !important;
+    background: none !important; 
+}
 #footer {
     padding: 200px 20px 20px;
-    background: url("../images/footer_bg.gif") no-repeat left top;
+    background: url("../images/footer_bg.gif") no-repeat left top; 
     position: relative;
     z-index: 2;
     zoom: 1;
