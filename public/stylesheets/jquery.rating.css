@@ -2,8 +2,8 @@
 div.star-rating{float:left;width:9px;height:20px;text-indent:-999em;cursor:pointer;display:block;background:transparent;overflow:hidden}
 div.star-rating,div.star-rating a{background:url(/images/coke.png) no-repeat 0 0px}
 div.star-rating a{display:block;width:16px;height:100%;background-position:0 0px;border:0}
-div.star-rating-on a{background-position:0 -18px!important}
-div.star-rating-hover a{background-position:0 -18px}
+div.star-rating-on a{background-position:0 -20px!important}
+div.star-rating-hover a{background-position:0 -20px}
 /* Read Only CSS */
 div.star-rating-readonly a{cursor:default !important}
 /* Partial Star CSS */
@@ -16,6 +16,6 @@ div.red_round_box2 span div.star-rating-on a {background-position:0 -36px!import
 
 
 div.visible span div.star-rating a, div.hidden span div.star-rating a {background-position:0 -54px!important}
-div.visible span div.star-rating-on a, div.hidden span div.star-rating-on a {background-position:0 -18px!important}
+div.visible span div.star-rating-on a, div.hidden span div.star-rating-on a {background-position:0 -20px!important}
 
 div.red_round_box2 span div.star-rating-hover a{background-position:0 -36px}
