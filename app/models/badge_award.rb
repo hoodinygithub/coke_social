@@ -3,6 +3,7 @@ class BadgeAward < ActiveRecord::Base
   belongs_to :playlist
   belongs_to :winner, :foreign_key => 'winner_id', :class_name => 'User'
   delegate :badge_key, :name, :image, :to => :badge
+  delegate :name, :to => :playlist, :prefix => true
 
   before_save :increment_badge_counts
   named_scope :latest, lambda { |*num| { :limit => num.flatten.first || 6, :order => 'badge_awards.created_at DESC', :include => [:winner, :badge], :conditions => 'accounts.deleted_at IS NULL' } }

@@ -20,7 +20,7 @@
           <%= image_tag badge_award.image(:mega), :class => "congrats_badge" %>       
           <div class="congrats_text">
             <big><b><%= t("badges.#{badge_award.badge_key}.name") %></b></big><br/>
-            <b class="grey"><%= t("badges.#{badge_award.badge_key}.qualification") %></b><br/><br/><br/>
+            <b class="grey"><%= t("badges.#{badge_award.badge_key}.qualification", :playlist_name => badge_award.playlist_name) %></b><br/><br/><br/>
             <%= "#{t('badges.unlocked_on')}: #{l(badge_award.created_at)}" %>           
           </div> 
           <div class="clearer"></div>
