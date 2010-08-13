@@ -3,7 +3,7 @@
   <div class="empty_results_box">
     <div class="step_no">1</div>
     <h2><%= t('playlists.select_your_songs') %></h2>
-    <div><%= t('playlists.select_your_songs_text') %></div>
+    <div><%= t('playlists.select_your_songs_text',:break => "<br />") %></div>
   </div>
 <% else %>
   <h2><%= t('search.search_results_for') %> &quot;[<%=@result_text%>]&quot;</h2>
