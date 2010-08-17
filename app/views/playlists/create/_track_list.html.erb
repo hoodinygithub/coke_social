@@ -68,11 +68,9 @@
    <% end %>
   
     <div class="right_side">
-        <div id="lucky_10_desc" style="display:none"><%= t('playlists.lucky_10_desc') %></div>
+        <div id="lucky_10_desc" style="display:none"></div>
         <%= image_tag 'loading.gif', :id => 'autofill_loading', :style => "display:none" %>
-        <a href="#" id="autofill_button" class="green_button" style="display:none" onclick="autofill(); return false;"><span><span><%= t('playlists.lucky_10') %></span></span></a-->
-        <!--a href="#" class="cancel_button" onclick="$('#cancel_popup').fadeIn('fast'); return false;"><%= t('actions.cancel') %></a-->
-        <!--a href="#" id="save_button" class="red_button" style="display:none" onclick="open_save_popup(); return false;"><span><span><%= t('actions.save') %></span></span></a-->
+        <a href="#" id="autofill_button" class="green_button" style="display:none" onclick="autofill(); return false;"><span><span><%= t('playlists.lucky_10') %></span></span></a>
     </div><!--/end right_side -->
   
     <div class="clearer"></div>
