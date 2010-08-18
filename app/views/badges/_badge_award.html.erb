@@ -2,7 +2,7 @@
   <%= link_to image_tag("#{badge_award.image}"), badge_path(badge_award) %>
   <div class="text">
     <big><b><%= t("badges.#{badge_award.badge_key}.name")%></b></big><br/>
-    <span class="grey_text"><%= t("badges.#{badge_award.badge_key}.qualification")%></span><br/>
+    <span class="grey_text"><%= t("badges.#{badge_award.badge_key}.qualification", :playlist_name => badge_award.playlist_name)%></span><br/>
   </div>
   <div class="clearer"></div>
 </li>
