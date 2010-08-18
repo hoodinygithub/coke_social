@@ -946,6 +946,16 @@ h2 {
     cursor:pointer;
 }
 
+.rule.info_default_text {
+  background: #000 url("/images/info_black.gif") no-repeat scroll right center;
+  cursor: pointer;
+}
+
+.rule.info_success_text {
+  background: #33CC33 url("/images/info_green.gif") no-repeat scroll right center;
+  cursor: pointer;
+}
+
 .black_count {
     float: right;
     background: #000;
@@ -1241,7 +1251,7 @@ h2 {
     cursor: default;
 }
 
-.rule_tooltip .top_round, .rule_tooltip .bottom_round {
+.rule_tooltip .top_round, .top_round_blk, .top_round_grn, .rule_tooltip .bottom_round, .bottom_round_blk, .botton_round_grn {
     width: 243px;
     height: 5px;
     font-size: 0px;
@@ -1249,15 +1259,53 @@ h2 {
 }
 
 .rule_tooltip .top_round {
-    background: url("../images/tooltip_top.gif") no-repeat left top;
+    background: url("/images/tooltip_top.gif") no-repeat left top;
+}
+
+.rule_tooltip .top_round_blk {
+    background: url("/images/tooltip_top_blk.gif") no-repeat left top;
+}
+
+.rule_tooltip .top_round_grn {
+    background: url("/images/tooltip_top_grn.gif") no-repeat left top;
 }
 
 .rule_tooltip .bottom_round {
-    background: url("../images/tooltip_bottom.gif") no-repeat left top;
+    background: url("/images/tooltip_bottom.gif") no-repeat left top;
+}
+
+.rule_tooltip .bottom_round_blk {
+    background: url("../images/tooltip_bottom_blk.gif") no-repeat left top;
+}
+
+.rule_tooltip .bottom_round_grn {
+    background: url("../images/tooltip_bottom_grn.gif") no-repeat left top;
 }
 
 .rule_tooltip .tooltip_content {
     background: url("../images/tooltip_bg.gif") repeat-y left top;
+    width: 235px;
+    padding: 10px 4px;
+    color: #1b1b1b;
+    font-size: 12px;
+    position: relative;
+    z-index: 2;
+    zoom: 1;
+}
+
+.rule_tooltip .tooltip_content_blk {
+    background: url("/images/tooltip_bg_blk.gif") repeat-y left top;
+    width: 235px;
+    padding: 10px 4px;
+    color: #1b1b1b;
+    font-size: 12px;
+    position: relative;
+    z-index: 2;
+    zoom: 1;
+}
+
+.rule_tooltip .tooltip_content_grn {
+    background: url("/images/tooltip_bg_grn.gif") repeat-y left top;
     width: 235px;
     padding: 10px 4px;
     color: #1b1b1b;

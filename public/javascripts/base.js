@@ -422,7 +422,7 @@ Base.layout.bind_events = function() {
   });
 
   //observe .rule_tooltip mouse over
-  $('.rule.info_text').live('mouseenter mouseout', function(event) {
+  $('.rule.info_text, .rule.info_default_text, .rule.info_success_text').live('mouseenter mouseout', function(event) {
       $t= $('.rule_tooltip', this);
       if (event.type == 'mouseenter') {
         $t.css('top', -($t.height()/2));

@@ -1,21 +1,20 @@
 <div class="rules_list">
+
+    <!-- artist error alert -->
     <div id="artist_error_tag" class="rule lower"><%= t('playlists.maximum_songs_from',:num => 3, :type => "#{t('basics.artist')}") %>
-        
         <div class="rule_tooltip">
           <div class="top_round">&nbsp;</div>
-
           <div class="tooltip_content">
               <ul class="tooltip_list">
-                  <!-- <li><span class="number red">1</span> You have <b class="red">3</b> songs from <b class="red">metallica</b>, please remove 1 from mix.</li> -->
               </ul>
           </div>
           <div class="bottom_round">&nbsp;</div>
           <img src="/images/tooltip_arrow.gif" class="tooltip_arrow" alt="" />
       </div>
-      
-    </div>
+    </div><!-- /end artist error alert -->
+
+    <!-- album error alert -->
     <div id="album_error_tag" class="rule lower"><%= t('playlists.maximum_songs_from',:num => 3, :type => "#{t('basics.album')}") %>
-    
         <div class="rule_tooltip">
           <div class="top_round">&nbsp;</div>
 
@@ -27,8 +26,21 @@
           <div class="bottom_round">&nbsp;</div>
           <img src="/images/tooltip_arrow.gif" class="tooltip_arrow" alt="" />
       </div>
-      
-    </div>
+    </div><!-- /end album error alert -->
+
+    <!-- playlist minimum alert -->
+    <div id="playlist_minimum_tag" class="rule lower info_default_text"><%= t('playlists.minimum_songs_full',:num => 60) %>
+        <div class="rule_tooltip">
+          <div id="tool_top" class="top_round_blk">&nbsp;</div>
+          <div id="tool_content" class="tooltip_content_blk">
+              <ul class="tooltip_list">
+              </ul>
+          </div>
+          <div id="tool_bottom" class="bottom_round_blk">&nbsp;</div>
+          <img id="tool_arrow" src="/images/tooltip_arrow_blk.gif" class="tooltip_arrow" alt="" />
+      </div>
+    </div><!-- /end playlist minimum alert -->
+
 </div><!--/end rules_list -->
 
 <h2 class="left_side" id="playlist_error_tag"><span id="remaining_track_count">10</span> <%= t('playlists.tracks_remaining') %></h2>
@@ -78,7 +90,7 @@
 
   <div class="playlist_save_buttons align_right">
       <div class="right_side">
-          <a href="#" class="cancel_button" onclick="$('#cancel_popup').fadeIn('fast'); return false;"><%= t('actions.cancel') %></a>
+        <a href="#" class="cancel_button" onclick="$.popup({div: '#cancel_popup'}); return false;"><%= t('actions.cancel') %></a>
           <a href="#" id="save_button" class="red_button" style="display:none" onclick="open_save_popup(); return false;"><span><span><%= t('actions.save') %></span></span></a>
       </div><!--/end right_side -->
 
@@ -90,11 +102,11 @@
 
 
 <script language="javascript">
-  
+
   <% if @playlist %>
     edit_mode = true;
   <% end %>
-  
+
   function close_cancel_popup()
   {
     redirect_url = '<%= my_dashboard_path %>';
@@ -142,6 +154,19 @@
           + ' ' + (item_count - max_album) + ' '
           + ((parseInt(item_count - max_album, 10) == 1)? '<%= t('playlists.song_from_mix') %>.' : '<%= t('playlists.songs_from_mix') %>.' )
           + '</li>';
+    return text;
+  }
+
+  function full_listen_wrapper(max_songs, items, full)
+  {
+    if(full)
+    {
+      text = "<%= t('playlists.congrats') %>";
+    }
+    else
+    {
+      text = "<%= t('playlists.full_listen', :songsleft => '" + ( Number(max_songs) - Number(items) ) + "', :maxsongs => '" + max_songs + "') %>";
+    }
     return text;
   }
 
