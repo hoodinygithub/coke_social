@@ -14,6 +14,7 @@ class DashboardsController < ApplicationController
     @top_playlists = current_site.top_playlists.all(:limit => @top_playlists_limit)
     @notifications = profile_owner? ? profile_user.badge_awards.notifications : []
     
+    
     respond_to do |format|
       format.html
       format.json do
