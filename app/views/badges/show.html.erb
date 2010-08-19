@@ -11,7 +11,7 @@
         <div class="detail_text">
             <div class="title"><%= t("badges.#{@badge_award.badge_key}.name") %></div>
             
-            <big><b class="grey"><%= @badge_award.playlist.nil? ? t("badges.#{@badge_award.badge_key}.qualification") : t("badges.#{@badge_award.badge_key}.qualification", :playlist_name => @badge_award.playlist.name) %></b></big>
+            <big><b class="grey"><%=  t("badges.#{@badge_award.badge_key}.qualification", :playlist_name => @badge_award.playlist.name) unless @badge_award.playlist.nil? %></b></big>
             <br/><br/><br/>
             
             <%= avatar_for(profile_user, :small) %>
