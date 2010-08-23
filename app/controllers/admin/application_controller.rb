@@ -1,6 +1,10 @@
 class Admin::ApplicationController < ApplicationController
   layout "admin"
+<<<<<<< HEAD
   before_filter :admin_only_in_english
+=======
+  skip_before_filter :do_basic_http_authentication
+>>>>>>> Valid tags - Work in progress
   skip_before_filter :login_required
 
   private
