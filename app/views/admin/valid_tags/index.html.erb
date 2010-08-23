@@ -1,0 +1,27 @@
+<h2>Listing valid tags</h2>
+
+<form action="<%= admin_valid_tags_path %>" method="get">
+  <label for="search_market">Market:</label>
+  <select id="search_market" name="search[market]">
+    <option value="">ALL</option>
+    <%= options_from_collection_for_select Site.all, :id, :name %>
+  </select>
+  &nbsp;
+  <label for="search_name">Tag:</label>
+  <input type="text" id="search_name" name="search[market]" value="" />
+  &nbsp;
+  <input type="submit" value="Filter &rarr;">
+</form>
+
+<br />
+
+<% @valid_tags.group_by{|t| t.site }.each do |site, tags_by_site| %>
+  <h2><%= site.name %></h2>
+  <% tags_by_site.each do |valid_tag| %>
+    <%= valid_tag.name %> (<%= valid_tag.playlists %> | <%= link_to 'X', [:admin, valid_tag], :confirm => "Are you sure want remove '#{valid_tag.name}'?", :method => :delete %>)
+  <% end %>
+<% end %>
+
+<br />
+
+<%= link_to 'New valid_tag', new_admin_valid_tag_path %>
