@@ -1,4 +1,6 @@
 ActionController::Routing::Routes.draw do |map|
+  map.resources :valid_tags
+
   map.root :controller => 'sessions', :action => 'new'
   map.home "/home", :controller => "pages", :action => 'home'
   map.login  'login',  :controller => 'sessions', :action => 'new'
@@ -223,6 +225,7 @@ ActionController::Routing::Routes.draw do |map|
   map.justin_tv_chat '/chat/:id/justin_tv', :controller => 'chats', :action => 'justin_tv'
   map.namespace :admin do |admin|
     admin.resources :chats, :member => {:messages => :any, :confirm_remove => :any}
+    admin.resources :valid_tags, :member => {:confirm_remove => :any}    
     admin.resources :messages, :only => [:approve, :unapprove, :next, :back, :more, :more_interviewee], :member => {:approve => :any, :unapprove =>:any, :next =>:any, :back =>:any, :more =>:any, :more_interviewee=>:any}
     admin.moderator 'moderator/:id',  :controller => 'messages', :action => 'moderator'
     admin.interviewee 'interviewee/:id', :controller => 'messages', :action => 'interviewee'
