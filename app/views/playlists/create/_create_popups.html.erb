@@ -31,7 +31,11 @@
       <div class="grey_round_box">
         <input type="text" class="input full_width" name="name" value="<%= params[:name] %>" />
       </div>
-      <label><b><%= t('playlists.tag_your_playlist') %></b> <small class="grey"><%= t('playlists.seperated_commas') %></small></label>
+      <label><b><%= t('playlists.tag_your_playlist') %></b> 
+        <a href="#" onclick ="Base.playlists.showTagsLayer();return false;"class="red">
+          <%= t('playlists.click_here_to_add_tags') %>
+        </a>
+      </label>
       <div class="grey_round_box">
         <input type="text" class="input full_width" name="tags" value="<%= params[:tags] %>" />
       </div>
@@ -134,3 +138,72 @@
     </div>
   </form>
 </div>
+
+<div class="popup" id="tags_popup">
+  <div class="top_shadow">
+    <div class="top_left corner"></div>
+    <div class="center_shadow"></div>
+    <div class="top_right corner"></div>
+    <a href="#" onclick="$('#tags_popup').fadeOut('fast'); return false;">
+      <img src="/images/popup_close.png" class="popup_close png_fix" alt="X" title="Close" />
+    </a>
+  </div>
+    
+  <div class="popup_content">
+    <div class="title"><%= t('playlists.add_tags') %></div>
+    <div class="tag_box">
+      <div class="grey_round_box" id="tag_container">
+        <div id="tag_counts">
+          <span id="available_tags_count">(280)</span>
+          <span id="selected_tags_count">(5)</span>&nbsp; 
+          <a href="#" class="red">Remove all</a>
+        </div>
+        <div id="available_tags">
+          <ul class="available_tags">
+            <li><a href="#">Adrenalina</a></li>
+            <li><a href="#">Alternativo</a></li>
+            <li><a href="#">Aplausos</a></li>
+            <li><a href="#">Celebracion</a></li>
+            <li><a href="#">Felicidad</a></li>
+            <li><a href="#">Fuerza</a></li>
+            <li><a href="#">Emocion</a></li>
+            <li><a href="#">Energia</a></li>
+            <li><a href="#">Intensidad</a></li>
+            <li><a href="#">Teste</a></li>
+          </ul>
+        </div>
+        <div id="selected_tags">
+          <ul class="selected_tags">
+            <li><a href="#">Adrenalina</a></li>
+            <li><a href="#">Alternativo</a></li>
+            <li><a href="#">Aplausos</a></li>
+            <li><a href="#">Celebracion</a></li>
+            <li><a href="#">Adrenalina</a></li>
+            <li><a href="#">Alternativo</a></li>
+            <li><a href="#">Aplausos</a></li>
+            <li><a href="#">Celebracion</a></li>
+            <li><a href="#">Adrenalina</a></li>
+            <li><a href="#">Alternativo</a></li>
+            <li><a href="#">Aplausos</a></li>
+            <li><a href="#">Celebracion</a></li>
+          <ul/>
+        </div>
+      </div>
+    </div>
+    <br/>
+    <div class="align_right">
+      <a href="#" class="red_button valign_middle" onclick="Base.playlists.avatarDeleteConfirm(); return false;">
+        <span><span><%= t('actions.cancel') %></span></span>
+      </a>&nbsp;&nbsp;
+      <a href="#" onclick="$(document).trigger('close.facebox'); return false;" class="red_button valign_middle">
+        <span><span><%= t('actions.save') %></span></span>
+      </a>
+    </div>
+  </div>
+    
+  <div class="bottom_shadow">
+    <div class="bottom_left corner"></div>
+    <div class="center_shadow"></div>
+    <div class="bottom_right corner"></div>
+  </div>
+</div><!--/end popup -->

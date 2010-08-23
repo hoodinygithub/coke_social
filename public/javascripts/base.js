@@ -2176,3 +2176,10 @@ Base.playlists.avatarDeleteCallback = function(response) {
     has_custom_avatar = false;
   }
 }
+
+Base.playlists.showTagsLayer = function() {
+ $('#tags_popup').css('z-index', 1000)
+                 .css('top', $('#facebox').position().top + 80).show();
+  $(document).bind('close.facebox', function() { $('#tags_popup').hide(); });
+}
+
