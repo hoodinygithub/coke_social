@@ -194,6 +194,7 @@ class Playlist < ActiveRecord::Base
   !
 
   def rate_with(rating)
+    rating ||= 0
     add_rating(rating)
     update_attribute(:rating_cache, self.rating)
   end

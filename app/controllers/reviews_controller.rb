@@ -51,7 +51,7 @@ class ReviewsController < ApplicationController
   def update
     review = Comment.find(params[:id])
     review.comment = params[:comment]
-    review.rating  = params[:rating]
+    review.rating  = params[:rating] ? params[:rating] : 0
     partial = params[:full] ? 'item' : 'playlist_review_item'
     if review.save
       review.commentable.update_attribute(:rating_cache, review.commentable.rating)
@@ -67,7 +67,7 @@ class ReviewsController < ApplicationController
   def create
     @playlist = Playlist.find(params[:playlist_id])
     review  = Comment.new(:comment => params[:comment],
-                          :rating  => params[:rating],
+                          :rating  => params[:rating] ? params[:rating] : 0,
                           :user_id => current_user.id )
     if review.valid?
       has_commented = @playlist.comments.find_by_user_id(current_user.id) if @playlist

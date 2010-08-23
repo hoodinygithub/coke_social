@@ -3,9 +3,7 @@ Comment.class_eval do
   extend ActionView::Helpers::SanitizeHelper::ClassMethods
   include ActionView::Helpers::SanitizeHelper
 
-  validates_presence_of :comment
-  validates_presence_of :rating
-
+  validate :rating_or_review
   validate :sanitize_comment
 
   def rating_cache
@@ -13,6 +11,13 @@ Comment.class_eval do
   end  
 
 protected
+
+  def rating_or_review
+    if comment.blank? && rating == 0 
+      errors.add(:comment, errors.generate_message(:comment, :blank))
+      errors.add(:rating, errors.generate_message(:rating, :blank))
+    end
+  end
 
   def self.valid(options = {})
     find_options = { 

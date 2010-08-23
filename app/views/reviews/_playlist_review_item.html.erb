@@ -10,7 +10,7 @@
     <div class="text">
       <%= playlist_review_item.comment %>
       <% if playlist_review_item.user == current_user %>
-        <div class="align_right">
+        <div class="align_right edit_review">
           <a href="#" onclick="Base.reviews.edit(<%= playlist_review_item.id %>);return false;"><%= t('actions.edit') %></a>
         </div>
       <% end %>
