@@ -1,0 +1,19 @@
+<h2><%= @valid_tag.new_record? ? "New" : "Update" %> valid tag</h2>
+
+<% form_for([:admin, @valid_tag]) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :site_id %><br />
+    <%= f.collection_select :site_id, Site.all, :id, :name %>
+  </p>
+  <p>
+    <%= f.label :tag_name %><br />
+    <%= f.text_field :tag_name %>
+  </p>
+  <p>
+    <%= f.submit 'Create' %>
+  </p>
+<% end %>
+
+<%= link_to 'Back', valid_tags_path %>
