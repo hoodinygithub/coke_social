@@ -36,11 +36,7 @@
           <%= t('playlists.click_here_to_add_tags') %>
         </a>
       </label>
-      <div class="grey_round_box">
-        <div class="tag_list">
-          <input type="text" class="real_tags input full_width" name="tags" value="<%= params[:tags] %>" />
-        </div>
-      </div>
+      <input id="real_tags" type="hidden" name="tags" value="<%= params[:tags] %>" />
     </div><!--/end form_row -->
     <br/>
     <div class="form_row">
