@@ -2159,9 +2159,54 @@ Base.playlists.avatarDeleteCallback = function(response) {
   }
 }
 
+Base.playlists.removeTag = function() {
+  var tag = $(this).text();
+  $('ul.available_tags').append('<li><a href="#">' + $(this).text() + '</a></li>');
+  $(this).parent().remove();
+  $('ul.available_tags li a').click(Base.playlists.selectTag);
+  $("#selected_tags").val( $("#selected_tags").val().replace(new RegExp(',' + tag),"") );   
+  Base.playlists.updateSelectedTagCount();
+  return false;
+}
+
+Base.playlists.updateSelectedTagCount = function() {
+  $('#selected_tags_count').text('(' + $('ul.selected_tags li a').length + ')');
+}
+
+Base.playlists.selectTag = function() {
+  var tag = $(this).text();
+  if ( $("ul.selected_tags li a:contains('" + tag + "')").length == 0 ) {
+    $('ul.selected_tags').append('<li><a href="#">' + tag + '</a></li>');
+    $('ul.selected_tags li a').click(Base.playlists.removeTag);
+    Base.playlists.updateSelectedTagCount();
+    $('#selected_tags').val( $('#selected_tags').val() + ',' + tag );
+  }
+  return false;
+}
+
 Base.playlists.showTagsLayer = function() {
- $('#tags_popup').css('z-index', 1000)
-                 .css('top', $('#facebox').position().top + 80).show();
+  $('ul.selected_tags li').remove();
+  if ($('#real_tags').val() != "") {
+    var pre_selected_tags = $('#real_tags').val().split(',');
+    $.each(pre_selected_tags, function() {
+      $('ul.selected_tags').append('<li><a href="#">' + this + '</a></li>');        
+      $('ul.selected_tags li a').click(Base.playlists.removeTag);
+    });
+  }
+  Base.playlists.updateSelectedTagCount();
+  $('ul.available_tags li a').click(Base.playlists.selectTag);
+  $('#tags_popup').css('z-index', 1000)
+                  .css('top', $('#facebox').position().top + 80).show();
   $(document).bind('close.facebox', function() { $('#tags_popup').hide(); });
 }
 
+Base.playlists.removeAllTags = function() {
+  $('ul.selected_tags li').remove();   
+  Base.playlists.updateSelectedTagCount();
+  $('#selected_tags').val('');
+}
+
+Base.playlists.saveTags = function() { 
+  $("#real_tags").val($("#selected_tags").val().replace(/^,/,"") ); 
+  $('#tags_popup').hide();
+}
