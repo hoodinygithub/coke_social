@@ -2243,3 +2243,4 @@ Base.playlists.saveTags = function() {
   $('#selected_tags').val('');
   $('#tags_popup').hide();
 }
+
