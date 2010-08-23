@@ -2193,8 +2193,7 @@ Base.playlists.removeTag = function() {
 }
 
 Base.playlists.updateSelectedTagCount = function() {
-  $('#selected_tags_count').text('(' + $('ul.selected_tags li a').length + ')');
-  
+  $('#selected_tags_count').text('(' + $('ul.selected_tags li a').length + ')');  
   $('#available_tags_count').text('(' + $('ul.available_tags li:visible a').length + ')');
 }
 
