@@ -36,9 +36,7 @@
           <%= t('playlists.click_here_to_add_tags') %>
         </a>
       </label>
-      <div class="grey_round_box">
-        <input type="text" class="input full_width" name="tags" value="<%= params[:tags] %>" />
-      </div>
+      <input id="real_tags" type="hidden" name="tags" value="<%= params[:tags] %>" />
     </div><!--/end form_row -->
     <br/>
     <div class="form_row">
@@ -150,13 +148,16 @@
   </div>
     
   <div class="popup_content">
+    <form id="add_tags">
+      <input type="hidden" id="selected_tags" />
+    </form>
     <div class="title"><%= t('playlists.add_tags') %></div>
     <div class="tag_box">
       <div class="grey_round_box" id="tag_container">
         <div id="tag_counts">
           <span id="available_tags_count">(280)</span>
-          <span id="selected_tags_count">(5)</span>&nbsp; 
-          <a href="#" class="red">Remove all</a>
+          <span id="selected_tags_count">(0)</span>&nbsp; 
+          <a href="#" class="red" onclick="Base.playlists.removeAllTags();return false;">Remove all</a>
         </div>
         <div id="available_tags">
           <ul class="available_tags">
@@ -174,28 +175,16 @@
         </div>
         <div id="selected_tags">
           <ul class="selected_tags">
-            <li><a href="#">Adrenalina</a></li>
-            <li><a href="#">Alternativo</a></li>
-            <li><a href="#">Aplausos</a></li>
-            <li><a href="#">Celebracion</a></li>
-            <li><a href="#">Adrenalina</a></li>
-            <li><a href="#">Alternativo</a></li>
-            <li><a href="#">Aplausos</a></li>
-            <li><a href="#">Celebracion</a></li>
-            <li><a href="#">Adrenalina</a></li>
-            <li><a href="#">Alternativo</a></li>
-            <li><a href="#">Aplausos</a></li>
-            <li><a href="#">Celebracion</a></li>
           <ul/>
         </div>
       </div>
     </div>
     <br/>
     <div class="align_right">
-      <a href="#" class="red_button valign_middle" onclick="Base.playlists.avatarDeleteConfirm(); return false;">
+      <a href="#" class="red_button valign_middle" onclick="$('#tags_popup').hide(); return false;">
         <span><span><%= t('actions.cancel') %></span></span>
       </a>&nbsp;&nbsp;
-      <a href="#" onclick="$(document).trigger('close.facebox'); return false;" class="red_button valign_middle">
+      <a href="#" onclick="Base.playlists.saveTags(); return false;" class="red_button valign_middle">
         <span><span><%= t('actions.save') %></span></span>
       </a>
     </div>
