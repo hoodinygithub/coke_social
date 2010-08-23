@@ -1,6 +1,9 @@
 class ValidTag < ActiveRecord::Base
   belongs_to :tag
   belongs_to :site
+  validates_uniqueness_of :tag_id, :scope => :site_id
+  
+  default_scope :conditions => { :deleted_at => nil }
   
   attr_accessor :tag_name
   delegate :name, :to => :tag
