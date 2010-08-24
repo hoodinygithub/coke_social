@@ -2278,4 +2278,3 @@ var windowHeight
   }
   return windowHeight
 }
-
