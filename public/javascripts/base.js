@@ -2185,7 +2185,6 @@ Base.playlists.avatarDeleteCallback = function(response) {
 
 Base.playlists.removeTag = function() {
   var tag = $(this).text();
-  $('ul.available_tags').append('<li><a href="#">' + $(this).text() + '</a></li>');
   $(this).parent().remove();
   $("ul.available_tags li a:contains('" + tag + "')").parent().show();
   $("#selected_tags").val( $("#selected_tags").val().replace(new RegExp('(,)?' + tag),"") );   
