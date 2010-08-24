@@ -28,6 +28,7 @@
       <div class="tag">
         <h2><%= site.name %></h2>
         <p>Click to remove.</p>
+
         <% tags_by_site.each do |valid_tag| %>
           <%= link_to valid_tag.name, [:admin, valid_tag], :title => "Remove '#{valid_tag.name}'", :confirm => "Are you sure want remove '#{valid_tag.name}'?", :method => :delete, :class => "tag" %>
         <% end %>
