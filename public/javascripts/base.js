@@ -1774,7 +1774,7 @@ $(document).ready(function() {
     $('#facebox .real_tags').val('');
     $('#selected_tags').val('');
     if ($('#facebox .real_tags').length != 0) {
-      $t = new $.TextboxList('#facebox .real_tags', {  });
+      $tag_box = new $.TextboxList('#facebox .real_tags', {  });
     }
  })
  
@@ -2194,11 +2194,12 @@ Base.playlists.selectTag = function() {
 
 Base.playlists.showTagsLayer = function() {
   $('ul.selected_tags li').remove();
-  if ( $('#facebox .real_tags').val() != "") {
-    $('#selected_tags').val($('#facebox .real_tags').val());
-    var pre_selected_tags = $('#facebox .real_tags').val().split(',');
-    $.each(pre_selected_tags, function() {
-      $('ul.selected_tags').append('<li><a href="#">' + this + '</a></li>');        
+  pre_selected_tags = $('#facebox .real_tags, input.edit_tags').val();
+  if ( pre_selected_tags != "") {
+    $('#selected_tags').val(pre_selected_tags);
+    $.each(pre_selected_tags.split(','), function() {
+      $('ul.selected_tags').append('<li><a href="#">' + this + '</a></li>');
+      $("ul.available_tags li a:contains('" + this + "')").parent().hide();        
       $('ul.selected_tags li a').click(Base.playlists.removeTag);
     });
   }
@@ -2217,10 +2218,10 @@ Base.playlists.removeAllTags = function() {
 
 Base.playlists.saveTags = function() { 
   $('.textboxlist-bit-box-deletable').remove();
-  $('#facebox .real_tags').val(''); 
+  $('#facebox .real_tags, input.edit_tags').val(''); 
   $.each($("#selected_tags").val().replace(/^,/,"").split(','), function() {
     if (this.cleanupURL() != "") {
-      $t.add(this.cleanupURL());     
+      $tag_box.add(this.cleanupURL());     
     }
   });
   $('#selected_tags').val('');
