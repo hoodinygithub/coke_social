@@ -165,16 +165,9 @@
         </div>
         <div id="available_tags">
           <ul class="available_tags">
-            <li><a href="#">Adrenalina</a></li>
-            <li><a href="#">Alternativo</a></li>
-            <li><a href="#">Aplausos</a></li>
-            <li><a href="#">Celebracion</a></li>
-            <li><a href="#">Felicidad</a></li>
-            <li><a href="#">Fuerza</a></li>
-            <li><a href="#">Emocion</a></li>
-            <li><a href="#">Energia</a></li>
-            <li><a href="#">Intensidad</a></li>
-            <li><a href="#">Teste</a></li>
+            <% current_site.tags.each do |tag| %>
+              <li><a href="#"><%= tag.name %></a></li>            
+            <% end %>
           </ul>
         </div>
         <div id="selected_tags">
