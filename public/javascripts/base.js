@@ -2170,8 +2170,8 @@ Base.playlists.avatarDeleteCallback = function(response) {
 Base.playlists.removeTag = function() {
   var tag = $(this).text();
   $(this).parent().remove();
-  $('ul.available_tags li a').click(Base.playlists.selectTag);
-  $("#selected_tags").val( $("#selected_tags").val().replace(new RegExp(',' + tag),"") );   
+  $("ul.available_tags li a:contains('" + tag + "')").parent().show();
+  $("#selected_tags").val( $("#selected_tags").val().replace(new RegExp('(,)?' + tag),"") );   
   Base.playlists.updateSelectedTagCount();
   return false;
 }
@@ -2187,6 +2187,7 @@ Base.playlists.selectTag = function() {
     $('ul.selected_tags li a').click(Base.playlists.removeTag);
     Base.playlists.updateSelectedTagCount();
     $('#selected_tags').val( $('#selected_tags').val() + ',' + tag );
+    $(this).parent().hide();
   }
   return false;
 }
