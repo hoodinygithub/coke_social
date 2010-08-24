@@ -14,4 +14,3 @@ class Admin::ApplicationController < ApplicationController
     I18n.locale = :en
   end
 end
-
