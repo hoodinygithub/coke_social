@@ -2234,6 +2234,7 @@ Base.playlists.showTagsLayer = function() {
 
 Base.playlists.removeAllTags = function() {
   $('ul.selected_tags li').remove();   
+  $('ul.available_tags li').show();
   Base.playlists.updateSelectedTagCount();
   $('#selected_tags').val('');
 }
