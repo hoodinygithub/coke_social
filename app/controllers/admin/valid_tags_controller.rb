@@ -7,9 +7,9 @@ class Admin::ValidTagsController < Admin::ApplicationController
       conditions = [["tags.name like ?", "#{search[:tag_name]}%"]]
       conditions << ["site_id = ?", search[:market]] unless search[:market].to_s.empty?
       conditions = [conditions.map{|c| c.first}.join(" AND "), *conditions.map{|c| c.last}]
-      @valid_tags = ValidTag.all(:conditions => conditions, :include => :tag)
+      @valid_tags = ValidTag.all(:conditions => conditions, :include => [:tag, :site])
     else
-      @valid_tags = ValidTag.all
+      @valid_tags = ValidTag.all(:include => [:tag, :site])
     end
     @valid_tag = ValidTag.new(params[:valid_tag])    
   end
