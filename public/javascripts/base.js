@@ -2185,7 +2185,6 @@ Base.playlists.avatarDeleteCallback = function(response) {
 
 Base.playlists.removeTag = function() {
   var tag = $(this).text();
-  $('ul.available_tags').append('<li><a href="#">' + $(this).text() + '</a></li>');
   $(this).parent().remove();
   $("ul.available_tags li a:contains('" + tag + "')").parent().show();
   $("#selected_tags").val( $("#selected_tags").val().replace(new RegExp('(,)?' + tag),"") );   
@@ -2241,10 +2240,17 @@ Base.playlists.removeAllTags = function() {
 
 Base.playlists.saveTags = function() { 
   $('.textboxlist-bit-box-deletable').remove();
+<<<<<<< HEAD
   $('#facebox .real_tags, input.edit_tags').val(''); 
   $.each($("#selected_tags").val().replace(/^,/,"").split(','), function() {
     if (this.cleanupURL() != "") {
       $tag_box.add(this.cleanupURL());     
+=======
+  $('#facebox .real_tags').val(''); 
+  $.each($("#selected_tags").val().replace(/^,/,"").split(','), function() {
+    if (this.cleanupURL() != "") {
+      $t.add(this.cleanupURL());     
+>>>>>>> Input tag with expansion
     }
   });
   $('#selected_tags').val('');
