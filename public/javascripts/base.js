@@ -1277,10 +1277,8 @@ Base.account_settings.delete_account_confirmation = function() {
     success: function(data){
       delete_account_data = data;
       cancelled_account_email = data.email;
-      $.popup(function() {
-        jQuery.get(Base.currentSiteUrl() + '/my/cancellation/feedback?address='+ cancelled_account_email, function(data) {
-          jQuery.popup(data);
-        });
+      $.get(Base.currentSiteUrl() + '/my/cancellation/feedback?address='+ cancelled_account_email, function(data) {
+        $.popup(data);
       });
       $(document).bind('close.facebox', function() {
         window.location = data.redirect_to;
