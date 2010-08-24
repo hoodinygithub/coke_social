@@ -2,7 +2,16 @@ class Admin::ValidTagsController < Admin::ApplicationController
   before_filter :find_valid_tag, :except => [:index, :new, :create]
   
   def index
-    @valid_tags = ValidTag.search(params[:search])
+    if params[:search]
+      search = params[:search]
+      conditions = [["tags.name like ?", "#{search[:tag_name]}%"]]
+      conditions << ["site_id = ?", search[:market]] unless search[:market].to_s.empty?
+      conditions = [conditions.map{|c| c.first}.join(" AND "), *conditions.map{|c| c.last}]
+      @valid_tags = ValidTag.all(:conditions => conditions, :include => :tag)
+    else
+      @valid_tags = ValidTag.all
+    end
+    @valid_tag = ValidTag.new(params[:valid_tag])    
   end
   
   def new
