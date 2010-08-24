@@ -2212,7 +2212,7 @@ Base.playlists.selectTag = function() {
 
 Base.playlists.showTagsLayer = function() {
   $('ul.selected_tags li').remove();
-  pre_selected_tags = $('#facebox .real_tags, input.edit_tags').val();
+  pre_selected_tags = $('#facebox .real_tags,input.edit_tags').val();
   if ( pre_selected_tags != "") {
     $('#selected_tags').val(pre_selected_tags);
     $.each(pre_selected_tags.split(','), function() {
@@ -2222,9 +2222,12 @@ Base.playlists.showTagsLayer = function() {
     });
   }
   $('ul.available_tags li a').click(Base.playlists.selectTag);
-  $('#tags_popup').css('z-index', 1000)
-                  .css('left', $(window).width() / 2)
-                  .css('top', (getPageScroll()[1] + (getPageHeight() / 10)) + 80 ).show();
+  var left = $(window).width() / 2;
+  var top  = getPageScroll()[1] + (getPageHeight() / 10)
+  if (!top) {
+    top = 60;
+  }
+  $('#tags_popup').css('z-index', 1000).css('left', left).css('top', top).show();
   $(document).bind('close.facebox', function() { $('#tags_popup').hide(); });
   Base.playlists.updateSelectedTagCount();
 }
