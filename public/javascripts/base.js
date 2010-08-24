@@ -2196,6 +2196,8 @@ Base.playlists.removeTag = function() {
 
 Base.playlists.updateSelectedTagCount = function() {
   $('#selected_tags_count').text('(' + $('ul.selected_tags li a').length + ')');
+  
+  $('#available_tags_count').text('(' + $('ul.available_tags li:visible a').length + ')');
 }
 
 Base.playlists.selectTag = function() {
@@ -2221,11 +2223,11 @@ Base.playlists.showTagsLayer = function() {
       $('ul.selected_tags li a').click(Base.playlists.removeTag);
     });
   }
-  Base.playlists.updateSelectedTagCount();
   $('ul.available_tags li a').click(Base.playlists.selectTag);
   $('#tags_popup').css('z-index', 1000)
                   .css('top', $('#facebox').position().top + 80).show();
   $(document).bind('close.facebox', function() { $('#tags_popup').hide(); });
+  Base.playlists.updateSelectedTagCount();
 }
 
 Base.playlists.removeAllTags = function() {
