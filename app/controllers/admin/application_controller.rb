@@ -1,7 +1,6 @@
 class Admin::ApplicationController < ApplicationController
   layout "admin"
   before_filter :admin_only_in_english
-  skip_before_filter :do_basic_http_authentication
   skip_before_filter :login_required
 
   private

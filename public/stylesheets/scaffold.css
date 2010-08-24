@@ -82,10 +82,15 @@ table thead th {
 
 #tags h2,
 #tags h3,
-#tags hr {
+#tags hr,
+#tags br {
   clear: both;
 }
-#tags .tag {
+#tags div.tag {
+  clear: both;
+  padding: 10px 0 20px 0;
+}
+#tags a.tag {
   float: left;
   margin-right: 10px;
   padding-right: 20px;
@@ -94,7 +99,7 @@ table thead th {
   margin-left: 3px;
   background: transparent url(../images/tag_blue_delete.png) no-repeat center right;
 }
-#tags .tag:hover {
+#tags a.tag:hover {
   background-color: #ddd;
   color: red;
 }
