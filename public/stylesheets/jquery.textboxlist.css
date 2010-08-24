@@ -5,8 +5,7 @@
 .textboxlist-bit-editable-input { border: 0; padding: 2px 0; *padding-bottom: 0; height: 14px; font: 11px "Lucida Grande", Verdana; }
 .textboxlist-bit-editable-input:focus { outline: 0; }
 .textboxlist-bit-box { position: relative; line-height: 18px; padding: 0 5px; -moz-border-radius: 3px; -webkit-border-radius: 3px; border-radius: 3px; border: 1px solid red; background: red; cursor: default; }
-.textboxlist-bit-box-deletable { padding-right: 15px; }
-.textboxlist-bit-box-deletebutton { position: absolute; right: 4px; top: 6px; display: block; width: 7px; height: 7px; font-size: 1px; background: url('../images/close.gif'); }
-.textboxlist-bit-box-deletebutton:hover { border: none; background-position: bottom; text-decoration: none; }
+.textboxlist-bit-box-deletable { padding-right: 17px; }
+.textboxlist-bit-box-deletebutton { position: absolute; right: 2px; top: 3px; display: block; width: 11px; height: 11px; font-size: 1px; background: url('../images/close.gif'); }
+.textboxlist-bit-box-deletebutton:hover { border: none; text-decoration: none; }
 .textboxlist-bit-box-hover { background: black; border: 1px solid black; }
-.textboxlist-bit-box-focus .textboxlist-bit-box-deletebutton { background-position: bottom; }

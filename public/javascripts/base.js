@@ -2207,7 +2207,8 @@ Base.playlists.showTagsLayer = function() {
   }
   $('ul.available_tags li a').click(Base.playlists.selectTag);
   $('#tags_popup').css('z-index', 1000)
-                  .css('top', $('#facebox').position().top + 80).show();
+                  .css('left', $(window).width() / 2)
+                  .css('top', (getPageScroll()[1] + (getPageHeight() / 10)) + 80 ).show();
   $(document).bind('close.facebox', function() { $('#tags_popup').hide(); });
   Base.playlists.updateSelectedTagCount();
 }
@@ -2228,4 +2229,33 @@ Base.playlists.saveTags = function() {
   });
   $('#selected_tags').val('');
   $('#tags_popup').hide();
+}
+
+// getPageScroll() by quirksmode.com
+function getPageScroll() {
+  var xScroll, yScroll;
+  if (self.pageYOffset) {
+   yScroll = self.pageYOffset;
+   xScroll = self.pageXOffset;
+  } else if (document.documentElement && document.documentElement.scrollTop) {	 // Explorer 6 Strict
+    yScroll = document.documentElement.scrollTop;
+    xScroll = document.documentElement.scrollLeft;
+  } else if (document.content) {// all other Explorers
+    yScroll = document.content.scrollTop;
+    xScroll = document.content.scrollLeft;
+  }
+  return new Array(xScroll,yScroll)
+}
+
+// Adapted from getPageSize() by quirksmode.com
+function getPageHeight() {
+var windowHeight
+  if (self.innerHeight) {	// all except Explorer
+    windowHeight = self.innerHeight;
+  } else if (document.documentElement && document.documentElement.clientHeight) { // Explorer 6 Strict Mode
+    windowHeight = document.documentElement.clientHeight;
+  } else if (document.content) { // other Explorers
+    windowHeight = document.content.clientHeight;
+  }
+  return windowHeight
 }
