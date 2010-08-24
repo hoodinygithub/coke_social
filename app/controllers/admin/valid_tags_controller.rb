@@ -40,6 +40,7 @@ class Admin::ValidTagsController < Admin::ApplicationController
       render :new
     end    
   end
+
   
   # def edit
   #   render :new
