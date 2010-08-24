@@ -5,7 +5,7 @@
 
   <p>
     <%= f.label :site_id %><br />
-    <%= f.collection_select :site_id, Site.all, :id, :name %>
+    <%= f.collection_select :site_id, Site.all(:conditions => "code in ('cokebr', 'cokemx', 'cokear', 'cokelatam')"), :id, :name %>
   </p>
   <p>
     <%= f.label :tag_name %><br />

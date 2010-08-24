@@ -1,5 +1,6 @@
 class Admin::ApplicationController < ApplicationController
   layout "admin"
+  before_filter :admin_only_in_english
   skip_before_filter :do_basic_http_authentication
   skip_before_filter :login_required
 
@@ -8,5 +9,9 @@ class Admin::ApplicationController < ApplicationController
     authenticate_or_request_with_http_basic do |username, password|
       username == "hoodiny" && password == "3057227000"
     end
+  end
+  
+  def admin_only_in_english
+    I18n.locale = :en
   end
 end
