@@ -794,6 +794,7 @@ function submit_save_form() {
     $(document).trigger("close.facebox");
     toggle_playlist_box();
   }
+
 }
 
 function image_path(id, artist_id)
