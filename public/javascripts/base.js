@@ -2240,17 +2240,10 @@ Base.playlists.removeAllTags = function() {
 
 Base.playlists.saveTags = function() { 
   $('.textboxlist-bit-box-deletable').remove();
-<<<<<<< HEAD
   $('#facebox .real_tags, input.edit_tags').val(''); 
   $.each($("#selected_tags").val().replace(/^,/,"").split(','), function() {
     if (this.cleanupURL() != "") {
       $tag_box.add(this.cleanupURL());     
-=======
-  $('#facebox .real_tags').val(''); 
-  $.each($("#selected_tags").val().replace(/^,/,"").split(','), function() {
-    if (this.cleanupURL() != "") {
-      $t.add(this.cleanupURL());     
->>>>>>> Input tag with expansion
     }
   });
   $('#selected_tags').val('');
