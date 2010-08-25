@@ -36,7 +36,7 @@ set :dbuser,              "hoodiny_db"
 set :dbpass,              "Q97t42WGDj8a"
 
 set :shared_path,         "#{deploy_to}/shared"
-set :sites,               ["coke_brazil", "coke_latam"]
+set :sites,               ["coke_brazil", "coke_latam", "coke_ar", "coke_mx"]
 
 
 # comment out if it gives you trouble. newest net/ssh needs this set.
@@ -124,7 +124,16 @@ task :symlink_remaining, :roles => :app, :except => {:no_release => true, :no_sy
       ln -s #{shared_path}/system/db/geoip #{latest_release}/db/geoip
     CMD
     
-    site_code = application == 'coke_latam' && 'cokelatam' || 'cokebr'
+    site_code = case application 
+      when 'coke_brazil' then
+        'cokebr'
+      when 'coke_latam' then
+        'cokelatam'
+      when 'coke_ar' then
+        'cokear'
+      else 
+        'cokemx'
+      end
 
     run <<-CMD
       rm -rf #{latest_release}/public/404.html && rm -rf #{latest_release}/public/422.html && rm -rf #{latest_release}/public/500.html && rm -rf #{latest_release}/public/400.html &&
