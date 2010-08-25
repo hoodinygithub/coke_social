@@ -2,6 +2,9 @@ namespace :coke do
   desc "Unlink all invalid tags (that aren't on valid tags)"
   task :unlink_invalid_tags => :environment do
     #@TODO: Remove links from invalid relationships between tags and playlists
+    sites = Site.all(:conditions => "code in ('cokebr', 'cokemx', 'cokear', 'cokelatam')")    
+    valid_tag_ids = sites.map(&:tag_ids)
+    puts valid_tag_ids.inspect
   end
   
   desc "Insert the pre-defined valid tags received from Claro"
