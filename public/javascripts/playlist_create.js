@@ -261,12 +261,14 @@ function PlaylistValidations(items_req, max_artist, max_album, max_items, min_fu
 		}
 
 	this.activate_lucky_10 = function() {
-        $("#autofill_button").show();
-        $("#lucky_10_desc").show();
+        $('#autofill_button').show();
+        $('#lucky_10_desc').show();
+        $('#autofill_button_ques').show();
 	}
 	this.deactivate_lucky_10 = function() {
-        $("#autofill_button").hide();
-        $("#lucky_10_desc").hide();
+        $('#autofill_button').hide();
+        $('#lucky_10_desc').hide();
+        $('#autofill_button_ques').hide();
 	}
 }
 
