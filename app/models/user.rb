@@ -64,6 +64,18 @@
 #  ip_address                       :string(255)
 #  country_id                       :integer(4)
 #  total_user_stations              :integer(4)      default(0), not null
+#  total_albums                     :integer(4)      default(0), not null
+#  cached_tag_list                  :text
+#  network_id                       :integer(4)
+#  total_playlists                  :integer(4)      default(0), not null
+#  total_badges                     :integer(4)      default(0), not null
+#  receives_coke_newsletter         :boolean(1)      default(TRUE), not null
+#  encrypted_born_on_string         :string(255)
+#  encrypted_name                   :string(255)
+#  encrypted_gender                 :string(255)
+#  encrypted_email                  :string(255)
+#  receives_reviews_notifications   :boolean(1)      default(TRUE), not null
+#  receives_badges_notifications    :boolean(1)      default(TRUE), not null
 #
 
 class User < Account

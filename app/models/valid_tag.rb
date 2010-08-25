@@ -1,3 +1,15 @@
+# == Schema Information
+#
+# Table name: valid_tags
+#
+#  id         :integer(4)      not null, primary key
+#  site_id    :integer(4)
+#  tag_id     :integer(4)
+#  deleted_at :datetime
+#  created_at :datetime
+#  updated_at :datetime
+#
+
 class ValidTag < ActiveRecord::Base
   belongs_to :tag
   belongs_to :site

@@ -2,14 +2,27 @@
 #
 # Table name: playlists
 #
-#  id             :integer(4)      not null, primary key
-#  owner_id       :integer(4)
-#  name           :string(255)
-#  comments_count :integer(4)      default(0)
-#  songs_count    :integer(4)      default(0)
-#  created_at     :datetime
-#  updated_at     :datetime
-#  total_time     :integer(4)      default(0)
+#  id                      :integer(4)      not null, primary key
+#  owner_id                :integer(4)
+#  name                    :string(255)
+#  reviews_count           :integer(4)      default(0), not null
+#  songs_count             :integer(4)      default(0)
+#  created_at              :datetime
+#  updated_at              :datetime
+#  deleted_at              :datetime
+#  total_time              :integer(4)      default(0)
+#  avatar_file_name        :string(255)
+#  avatar_file_size        :integer(4)
+#  avatar_content_type     :string(255)
+#  avatar_updated_at       :datetime
+#  total_plays             :integer(4)      default(0), not null
+#  locked                  :boolean(1)      default(TRUE), not null
+#  cached_tag_list         :text
+#  cached_artist_list      :text
+#  rating_cache            :float           default(0.0), not null
+#  site_id                 :integer(4)
+#  playlist_copyings_count :integer(4)      default(0), not null
+#  locked_at               :datetime
 #
 
 class Playlist < ActiveRecord::Base

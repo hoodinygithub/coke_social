@@ -13,6 +13,7 @@
 #  deleted_at     :datetime
 #  total_plays    :integer(4)      default(0), not null
 #  total_artists  :integer(4)      default(0), not null
+#  poll_attempts  :integer(4)      default(0), not null
 #
 
 class AbstractStation < ActiveRecord::Base

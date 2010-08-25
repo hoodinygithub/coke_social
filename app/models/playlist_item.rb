@@ -8,6 +8,7 @@
 #  position    :integer(4)
 #  created_at  :datetime
 #  updated_at  :datetime
+#  artist_id   :integer(4)
 #
 
 class PlaylistItem < ActiveRecord::Base

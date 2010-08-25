@@ -2,15 +2,17 @@
 #
 # Table name: followings
 #
-#  id          :integer(4)      not null, primary key
-#  follower_id :integer(4)
-#  followee_id :integer(4)
-#  created_at  :datetime
-#  updated_at  :datetime
-#  songs       :boolean(1)
-#  playlists   :boolean(1)
-#  stations    :boolean(1)
-#  approved_at :datetime
+#  id            :integer(4)      not null, primary key
+#  follower_id   :integer(4)
+#  followee_id   :integer(4)
+#  created_at    :datetime
+#  updated_at    :datetime
+#  songs         :boolean(1)
+#  playlists     :boolean(1)
+#  stations      :boolean(1)
+#  approved_at   :datetime
+#  follower_name :string(255)
+#  followee_name :string(255)
 #
 
 class Following < ActiveRecord::Base

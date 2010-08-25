@@ -1,3 +1,33 @@
+# == Schema Information
+#
+# Table name: player_bases
+#
+#  name               :string
+#  start              :datetime
+#  end                :datetime
+#  hexcolor           :string
+#  code               :string
+#  campaign_status_id :integer
+#  locale             :string
+#  header_logo_file   :string
+#  footer_logo_file   :string
+#  ad_zone_id         :string
+#  promo_code         :string
+#  google_profile_id  :string
+#  name               :string
+#  start              :datetime
+#  end                :datetime
+#  hexcolor           :string
+#  code               :string
+#  campaign_status_id :integer
+#  locale             :string
+#  header_logo_file   :string
+#  footer_logo_file   :string
+#  ad_zone_id         :string
+#  promo_code         :string
+#  google_profile_id  :string
+#
+
 class Player::PlayerCampaign < Player::Base
 
   column :name,                  :string
