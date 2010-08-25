@@ -265,7 +265,7 @@ module ApplicationHelper
   def tag_links(item, active_scope = :all, limit=3, include_text=true, link_options={})
     links = []
     
-    conditions = "valid_tags.site_id = #{current_site.site_id}"
+    conditions = "valid_tags.site_id = #{current_site.id}"
     joins      = "INNER JOIN valid_tags ON valid_tags.tag_id = #{Tag.table_name}.id"
     
     tags = item.tags.all(:limit => limit, :joins => joins, :conditions => conditions)
