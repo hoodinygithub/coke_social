@@ -88,9 +88,9 @@ class Site < ActiveRecord::Base
 
   def tag_counts_from_playlists(limit=60)
     options = { :select => "DISTINCT tags.*",
-                :joins => "INNER JOIN #{Tagging.table_name} ON #{Tag.table_name}.id = #{Tagging.table_name}.tag_id INNER JOIN #{Playlist.table_name} ON #{Tagging.table_name}.taggable_id = #{Playlist.table_name}.id AND #{Tagging.table_name}.taggable_type = 'Playlist'",
+                :joins => "INNER JOIN #{Tagging.table_name} ON #{Tag.table_name}.id = #{Tagging.table_name}.tag_id INNER JOIN #{Playlist.table_name} ON #{Tagging.table_name}.taggable_id = #{Playlist.table_name}.id AND #{Tagging.table_name}.taggable_type = 'Playlist' INNER JOIN valid_tags ON valid_tags.tag_id = #{Tag.table_name}.id",
                 :order => "taggings.created_at DESC",
-                :conditions => "playlists.site_id = #{self.id}",
+                :conditions => "playlists.site_id = #{self.id} AND playlists.deleted_at IS NULL AND valid_tags.site_id = #{self.id}",
                 :limit => limit }
     
     Tag.all(options)
