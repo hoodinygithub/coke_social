@@ -14,6 +14,19 @@ class Admin::ValidTagsController < Admin::ApplicationController
     @valid_tag = ValidTag.new(params[:valid_tag])    
   end
   
+  def deleted
+    if params[:search]
+      search = params[:search]
+      conditions = [["tags.name like ?", "#{search[:tag_name]}%"]]
+      conditions << ["site_id = ?", search[:market]] unless search[:market].to_s.empty?
+      conditions = [conditions.map{|c| c.first}.join(" AND "), *conditions.map{|c| c.last}]
+      @valid_tags = ValidTag.with_exclusive_scope(:conditions => conditions, :include => [:tag, :site])
+    else
+      @valid_tags = ValidTag.all(:include => [:tag, :site])
+    end
+    @valid_tag = ValidTag.new(params[:valid_tag])    
+  end
+  
   def new
     @valid_tag = ValidTag.new(params[:valid_tag])
   end

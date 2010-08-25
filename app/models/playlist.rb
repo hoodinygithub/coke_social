@@ -142,9 +142,9 @@ class Playlist < ActiveRecord::Base
 
   def tag_cloud
     options = { :select => "DISTINCT tags.*",
-                :joins => "INNER JOIN #{Tagging.table_name} ON #{Tag.table_name}.id = #{Tagging.table_name}.tag_id AND #{Tagging.table_name}.taggable_type = 'Playlist'",
+                :joins => "INNER JOIN #{Tagging.table_name} ON #{Tag.table_name}.id = #{Tagging.table_name}.tag_id AND #{Tagging.table_name}.taggable_type = 'Playlist' INNER JOIN valid_tags ON valid_tags.tag_id = #{Tag.table_name}.id",
                 :order => "taggings.created_at DESC",
-                :conditions => "taggings.taggable_id = #{self.id}" }
+                :conditions => "taggings.taggable_id = #{self.id} AND valid_tags.site_id = #{self.site_id}" }
                 
     @tags = Tag.all(options)
   end
