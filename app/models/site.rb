@@ -60,7 +60,7 @@ class Site < ActiveRecord::Base
   has_many :networks, :through => :network_sites
   
   has_many :valid_tags
-  has_many :tags, :through => :valid_tags
+  has_many :tags, :through => :valid_tags, :order => "tags.name ASC"
   
   belongs_to :login_type
 
