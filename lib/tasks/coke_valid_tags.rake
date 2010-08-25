@@ -40,10 +40,13 @@ namespace :coke do
     
     sites = Site.all(:conditions => "code in ('cokebr', 'cokemx', 'cokear', 'cokelatam')")
     sites.each do |site|
-      site_tags = tags[:all].concat(tags[site.code.to_sym]).uniq
-      site_tags.each do |tag_name|
+      puts site.name
+      puts "--------"
+      puts (tags[:all] + tags[site.code.to_sym]).inspect 
+      (tags[:all] + tags[site.code.to_sym]).uniq.each do |tag_name|
         ValidTag.create(:tag_name => tag_name, :site => site)
       end
+      puts "--------\n\n"      
     end
   end
 end

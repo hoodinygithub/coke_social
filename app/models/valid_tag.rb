@@ -39,8 +39,4 @@ private
   def find_and_update_tag_related
     self.tag ||= Tag.find_or_create_by_name(tag_name)
   end
-  
-  def remove_taggings_records
-    
-  end
 end
