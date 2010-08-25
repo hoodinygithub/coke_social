@@ -11,6 +11,7 @@
 #  msn_live_account_id :string(255)
 #  login_type_id       :integer(4)
 #  domain              :string(255)
+#  ssl_domain          :string(255)
 #
 
 class Site < ActiveRecord::Base

@@ -1,3 +1,18 @@
+# == Schema Information
+#
+# Table name: badges
+#
+#  id                 :integer(4)      not null, primary key
+#  name               :string(255)
+#  image_path         :string(255)
+#  badge_awards_count :integer(4)
+#  created_at         :datetime
+#  updated_at         :datetime
+#  badge_key          :string(255)     not null
+#  name_coke_es       :string(255)
+#  name_coke_br       :string(255)
+#
+
 class Badge < ActiveRecord::Base
   has_many :badge_awards
   has_many :winners, :through => :badge_awards, :class_name => 'User' do
