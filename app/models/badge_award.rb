@@ -1,3 +1,20 @@
+# == Schema Information
+#
+# Table name: badge_awards
+#
+#  id           :integer(4)      not null, primary key
+#  badge_id     :integer(4)
+#  winner_id    :integer(4)
+#  created_at   :datetime
+#  updated_at   :datetime
+#  notified_at  :datetime
+#  name         :string(255)
+#  name_coke_es :string(255)
+#  name_coke_br :string(255)
+#  playlist_id  :integer(4)
+#  email_sent   :boolean(1)      default(FALSE), not null
+#
+
 class BadgeAward < ActiveRecord::Base
   belongs_to :badge
   belongs_to :playlist

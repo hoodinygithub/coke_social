@@ -10,6 +10,7 @@
 #  user_id       :integer
 #  artist_id     :integer
 #  station_count :integer
+#  tracking_id   :integer
 #  name          :string
 #  station_id    :integer
 #  station_url   :string
@@ -18,6 +19,7 @@
 #  user_id       :integer
 #  artist_id     :integer
 #  station_count :integer
+#  tracking_id   :integer
 #
 
 class Player::Station < Player::Base
