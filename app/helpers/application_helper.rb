@@ -280,7 +280,12 @@ module ApplicationHelper
 
   def tag_links(item, active_scope = :all, limit=3, include_text=true, link_options={})
     links = []
-    tags = item.tags.all(:limit => limit).map{ |tag| link_to(tag.name, main_search_path(:scope => active_scope.to_s, :q => tag.name), link_options) }
+    
+    conditions = "valid_tags.site_id = #{current_site.site_id}"
+    joins      = "INNER JOIN valid_tags ON valid_tags.tag_id = #{Tag.table_name}.id"
+    
+    tags = item.tags.all(:limit => limit, :joins => joins, :conditions => conditions)
+    tags.map{ |tag| link_to(tag.name, main_search_path(:scope => active_scope.to_s, :q => tag.name), link_options) }
 
     unless tags.empty?
       if include_text

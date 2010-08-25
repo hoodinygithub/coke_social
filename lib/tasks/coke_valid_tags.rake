@@ -1,11 +1,11 @@
-namespace :valid_tags do
-  desc "Clear all invalid tags from Coke Markets"
-  task :clear => :environment do
-
+namespace :coke do
+  desc "Unlink all invalid tags (that aren't on valid tags)"
+  task :unlink_invalid_tags => :environment do
+    #@TODO: Remove links from invalid relationships between tags and playlists
   end
   
   desc "Insert the pre-defined valid tags received from Claro"
-  task :insert => :environment do 
+  task :insert_tags => :environment do 
     ValidTag.delete_all
     tags = {
       :all => ["Alegre", "Amor", "Feliz", "Cool", "Pop", "Relax", "Sexy", "Chillout", "Reggae", "Energía", "Energy", "Dance", "Hip-Hop", "House", "Indie", "Rock n' Roll", "Rap", "Romântico", "Divertido", "De karaoke", "Rocker", "Hippie", "Super", "Lounge", "Metal"],
