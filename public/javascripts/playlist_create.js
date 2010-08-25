@@ -745,6 +745,7 @@ function toggle_playlist_box()
 }
 
 function open_save_popup() {
+  $('#save_button span span').prepend('<img class="btn_red_loading" src="/images/red_loading.gif"/>');
   if(_pv.valid) {
     if(edit_mode) {
       form = $('#update_playlist_form');
@@ -770,6 +771,7 @@ function open_save_popup() {
   } else {
     $.popup({ div: '#unable_popup' });
   }
+  $('.btn_red_loading').remove()
 }
 
 function submit_save_form() {
