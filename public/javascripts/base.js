@@ -1440,7 +1440,7 @@ Base.playlist_search.dropdown = function() {
 
 
 Base.playlist_search.autocomplete = function(last_value) {
-  jQuery('.content_search_results_ajax').show();
+  jQuery('.content_search_results_ajax').css('top', $('#playlist_search_query').offset().top - 180).show();
   //var form_values = jQuery("#playlist_search_form").serializeArray();
   //var q = Base.header_search.getFieldValue(form_values,'q');
   var q = jQuery('#playlist_search_query').val();
