@@ -127,6 +127,13 @@ function PlaylistValidations(items_req, max_artist, max_album, max_items, min_fu
         $('#playlist_minimum_tag ul').append( full_listen_wrapper(this.min_full, this.item_count, false) );
       }
 
+      
+      if (this.item_count && this.station_ids.length && !this.artist_errors.length && !this.album_errors.length) {
+    	  this.activate_lucky_10();
+      } else {
+    	  this.deactivate_lucky_10();
+      }
+
       this.add_errors_to_list();
     }
 
@@ -199,8 +206,6 @@ function PlaylistValidations(items_req, max_artist, max_album, max_items, min_fu
       
       if(!suppress_validation)
         this.validate();
-
-			
     }
     
     this.remove_item = function(song_id) {
@@ -221,11 +226,6 @@ function PlaylistValidations(items_req, max_artist, max_album, max_items, min_fu
       this.remove_album(album_id, song_id);
       
       this.validate();
-
-			if(!this.item_count || !this.station_ids.length) {
-				$('#autofill_button').hide();
-				$('#lucky_10_desc').hide();      	      
-			}
     }
     
     this.add_artist = function(artist_id, song_id) {
@@ -260,6 +260,14 @@ function PlaylistValidations(items_req, max_artist, max_album, max_items, min_fu
 		this.item_ids = _item_ids;
 		}
 
+	this.activate_lucky_10 = function() {
+        $("#autofill_button").show();
+        $("#lucky_10_desc").show();
+	}
+	this.deactivate_lucky_10 = function() {
+        $("#autofill_button").hide();
+        $("#lucky_10_desc").hide();
+	}
 }
 
 function PlaylistItem(song_id, song, artist_id, artist_name, album_id, album_name, image_src, item_id, station)
