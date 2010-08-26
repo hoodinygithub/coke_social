@@ -26,14 +26,20 @@ class ValidTag < ActiveRecord::Base
     Tagging.count(:conditions => ["taggable_type = 'Playlist' and tag_id = ?", tag_id])
   end
   
-  def self.site_ids
-    all(:group => "site_id").map{|t| t.site_id}
-  end
-  
   def mark_as_deleted
     self.deleted_at = Time.now
     save(false)
   end
+  
+  def self.site_ids
+    all(:group => "site_id").map{|t| t.site_id}
+  end  
+  
+  def self.all_deleted
+    with_exclusive_scope do
+      all :conditions => "deleted_at IS NOT NULL"
+    end
+  end  
   
 private
   def find_and_update_tag_related
