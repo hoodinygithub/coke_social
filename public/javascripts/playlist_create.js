@@ -263,7 +263,7 @@ function PlaylistValidations(items_req, max_artist, max_album, max_items, min_fu
 	this.activate_lucky_10 = function() {
         $('#autofill_button').show();
         // defaulting to display:none causes display:inline on show(), which is not what we want
-        $('#autofill_button').css('display', null);
+        $('#autofill_button').css('display', 'inline-block');`
         $('#lucky_10_desc').show();
         $('#autofill_button_ques').show();
 	}
