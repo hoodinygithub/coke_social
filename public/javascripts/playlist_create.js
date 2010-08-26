@@ -262,6 +262,8 @@ function PlaylistValidations(items_req, max_artist, max_album, max_items, min_fu
 
 	this.activate_lucky_10 = function() {
         $('#autofill_button').show();
+        // defaulting to display:none causes display:inline on show(), which is not what we want
+        $('#autofill_button').css('display', null);
         $('#lucky_10_desc').show();
         $('#autofill_button_ques').show();
 	}
@@ -411,7 +413,7 @@ function autofill_add_item(item, index) {
 	          + '<a href="#" onclick="remove_item('+item.id+'); return false;"><img src="/images/close_grey.gif" class="close_x" alt="" /></a>'
 	        + '</li>';
 
-	    $('#playlist_item_list').append(li);
+	        $('#playlist_item_list').append(li);
 			update_ui();
 		}
 	} else {
@@ -641,6 +643,7 @@ function get_station_items() {
 					station_items = new Array();
 					if(!$(xml).find('song').length){
 						previous_stations[previous_stations.length] = current_station;
+						// no results.  get some more.
 						get_station_items();
 					}
 					$(xml).find('song').each(function(){
@@ -677,9 +680,9 @@ function autofill() {
 			jQuery('img#autofill_loading').fadeIn('fast', function(){
 				if(station_items.length < 1) {
 					get_station_items();
-				}
-
-				if(!autofill_fetching){
+				} else if(!autofill_fetching){
+					// This is a timing bug just waiting to happen.
+					// You hit the button (again) before get_station_items() flags autofill_fetching = true
 					add_autofill_items();
 					jQuery('img#autofill_loading').fadeOut('fast');
 					jQuery('div#lucky_10_desc').fadeIn('fast');
@@ -704,12 +707,14 @@ function add_autofill_items(){
 	var item = 0;
 	while(fill_count < lucky_size && station_items[fill_count] && _pv.item_count < _pv.max_items) {
 		if(station_items.length > lucky_size && station_items.length < (lucky_size * 2)){ 
-			get_station_items(); 
+			get_station_items();
+			break;
 		}
+		
 		if(station_items[fill_count]) {
 			if(autofill_add_item(station_items[fill_count])){
-			station_items.splice(fill_count, 1);
-			fill_count++;
+			  station_items.splice(fill_count, 1);
+			  fill_count++;
 			}
 		}
 	}
