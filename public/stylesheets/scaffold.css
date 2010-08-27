@@ -97,6 +97,10 @@ table thead th {
   line-height: 20px;
   margin-left: 3px;
 }
+#tags a.deleted {
+  color: red;
+  text-decoration: line-through;
+}
 #tags a.tag:hover {
   background-color: #ddd;
   color: red;
