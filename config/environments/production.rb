@@ -25,7 +25,7 @@ config.action_mailer.smtp_settings = {
   :address => "smtp",
   :port => 25,
   :perform_deliveries => true,
-  :default_from => 'Cocacola.fm <no-reply@cyloop.com>'
+  :default_from => 'Coca-Cola.fm <no-reply@cyloop.com>'
 }
 config.action_mailer.delivery_method = :activerecord
 
