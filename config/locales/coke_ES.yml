@@ -56,7 +56,7 @@ coke_ES:
       message: "Creo que esta canci\xC3\xB3n te va a gustar."
     email: Tu Email
   artist: 
-    be_the_first_to_create_station: "S\xC3\xA9 el primero en crear un radio de {{user_name}}"
+    be_the_first_to_create_station: "S\xC3\xA9 el primero en crear una estaci\xC3\xB3n de radio de {{user_name}}"
   modules: 
     edit_station: 
       new_name: Nuevo nombre
@@ -259,31 +259,31 @@ coke_ES:
       bio: 
         short: Bio
       user: 
-        name: Nombre
-        slug: Este es tu Nombre de Perfil
-        bios: "Biograf\xC3\xADa"
+        name: "\xC2\xBFC\xC3\xB3mo te llamas?"
+        slug: Este es tu link de Coca-Cola.fm
+        bios: Bio
         terms_of_use: "T\xC3\xA9rminos de uso"
         location: "Ubicaci\xC3\xB3n"
         cyloop_password: "Contrase\xC3\xB1a Coca-Cola.fm"
-        twitter_username: Nombre de Usuario en Twitter
-        playlist_confirmation: "Tu playlist se ha creado. \xC2\xA1Contin\xC3\xBAa tu b\xC3\xBAsqueda!"
+        twitter_username: Nombre de usuario en Twitter
+        playlist_confirmation: "Tu mix se ha creado. \xC2\xA1Sigue buscando!"
         password_confirmation: "Confirmar contrase\xC3\xB1a"
-        cyloop_email: Email de Coca-Cola.fm
+        cyloop_email: Mail de Coca-Cola.fm
         current_password: "Contrase\xC3\xB1a actual"
-        female: Femenino
+        female: Mujer
         websites: Sitios web
         gender: Sexo
-        short_bio: "Biograf\xC3\xADa corta"
+        short_bio: Bio en corto
         new_password: "Nueva contrase\xC3\xB1a"
-        male: Masculino
-        city_id: Ciudad
-        time_zone: Franja horaria
+        male: Hombre
+        city_id: "\xC2\xBFEn qu\xC3\xA9 ciudad vives?"
+        time_zone: Zona horaria
         bio: Bio
         password: "Contrase\xC3\xB1a"
-        age: Edad
         privacy_policy: "Pol\xC3\xADtica de privacidad"
-        born_on: Fecha de nacimiento
-        email: Email
+        age: "\xC2\xBFCu\xC3\xA1ntos a\xC3\xB1os tienes?"
+        born_on: "\xC2\xBFCu\xC3\xA1ndo es tu cumplea\xC3\xB1os?"
+        email: Mail
       message: 
         name: Nombre
         location: "Lugar (Ciudad, Pa\xC3\xADs)"
@@ -296,17 +296,17 @@ coke_ES:
         comment: 
           attributes: 
             comment: 
-              blank: "El texto del review no puede quedar vac\xC3\xADo"
+              blank: No puedes irte sin dejar un comentario
         account: 
           attributes: 
             background: 
-              content_type: "Lo sentimos, pero s\xC3\xB3lo autorizamos la subida de im\xC3\xA1genes en formatos de .jpg, .gif y .png"
+              content_type: "Lo sentimos, pero s\xC3\xB3lo puedes subir im\xC3\xA1genes en formatos .jpg, .gif o .png"
             avatar: 
-              content_type: "Lo sentimos, pero s\xC3\xB3lo autorizamos la subida de im\xC3\xA1genes en formatos de .jpg, .gif y .png"
+              content_type: "Lo sentimos, pero s\xC3\xB3lo puedes subir im\xC3\xA1genes en formatos .jpg, .gif o .png"
         album: 
           attributes: 
             avatar: 
-              content_type: "Lo sentimos, pero s\xC3\xB3lo autorizamos la subida de im\xC3\xA1genes en formatos de .jpg, .gif y .png"
+              content_type: "Lo sentimos, pero s\xC3\xB3lo puedes subir im\xC3\xA1genes en formatos .jpg, .gif o .png"
         block: 
           attributes: 
             blockee_id: 
@@ -315,9 +315,9 @@ coke_ES:
           attributes: 
             slug: 
               cannot_end_with_punctuation: "no puede terminar con un signo de puntuaci\xC3\xB3n"
-              can_only_contain_letters_numbers_and_hyphens: "s\xC3\xB3lo puede inclu\xC3\xADr letras, n\xC3\xBAmeros, y guiones"
+              can_only_contain_letters_numbers_and_hyphens: "s\xC3\xB3lo puede inclu\xC3\xADr letras, n\xC3\xBAmeros y guiones"
               cannot_start_with_punctuation: "no puede empezar con un signo de puntuaci\xC3\xB3n"
-              taken: ya ha sido tomado
+              taken: ya te lo ganaron
             current_password: 
               is_incorrect: ""
               incorrect: es incorrecto
@@ -326,7 +326,7 @@ coke_ES:
             base: 
               you_must_be_13_or_older: "Debes tener por lo menos 13 a\xC3\xB1os de para usar este stio web"
             born_on: 
-              cant_be_in_future: no puede ser en futuro
+              cant_be_in_future: no puede ser en el futuro
         following: 
           attributes: 
             followee: 
@@ -337,26 +337,26 @@ coke_ES:
         confirmation: "no coincide con la confirmaci\xC3\xB3n"
         less_than_or_equal_to: debe ser menor o igual a {{count}}
         blank: "no puede quedar vac\xC3\xADo"
-        exclusion: "ya est\xC3\xA1 reservado"
-        invalid: "es inv\xC3\xA1lido"
+        exclusion: ya te lo ganaron
+        invalid: "no es v\xC3\xA1lido"
         odd: "debe ser n\xC3\xBAmero impar"
-        gender: debe ser Masculino o Femenino
+        gender: debe ser hombre o mujer
         even: "debe ser n\xC3\xBAmero par"
         too_short: "es demasiado corto (el m\xC3\xADnimo es {{count}} caracteres)"
         wrong_length: no tiene una cantidad correcta de caracteres  (deben ser {{count}})
         empty: "no puede quedar vac\xC3\xADo"
-        less_than: debe ser menor que {{count}}
+        less_than: debe ser menor a {{count}}
         equal_to: debe ser igual a {{count}}
-        greater_than: debe ser mayor de {{count}}
-        invalid_content_type: "Lo sentimos, pero s\xC3\xB3lo autorizamos la subida de im\xC3\xA1genes en formatos de .jpg, .gif y .png"
+        greater_than: debe ser mayor a {{count}}
+        invalid_content_type: "Lo sentimos, pero s\xC3\xB3lo puedes subir im\xC3\xA1genes en formatos .jpg, .gif o .png"
         too_long: "es demasiado largo (el m\xC3\xA1ximo es {{count}} caracteres)"
         taken: ya ha sido tomado
         accepted: debe ser aceptado
         inclusion: "no est\xC3\xA1 inclu\xC3\xADdo en la lista"
         not_a_number: "no es un n\xC3\xBAmero"
       template: 
-        body: "Hubieron problemas con los siguientes campos:"
-        header: "{{count}} errores no permitieron que este {{model}} pueda ser guardado"
+        body: "Hubo problemas con los siguientes campos:"
+        header: "{{count}} errores no permitieron que este {{model}} pueda guardarse"
       full_messages: 
         format: "{{attribute}} {{message}}"
   songs: 
@@ -530,22 +530,22 @@ coke_ES:
     captcha_invalid: "Ingresaste un c\xC3\xB3dio \"reCPATCHA\" incorrecto. Por favor, int\xC3\xA9ntalo otra vez."
     reset_message_sent: "Gracias. Las instrucciones para reconfigurar tu contrase\xC3\xB1a han sido enviadas a tu email."
   activity: 
-    created_playlist: "Cre\xC3\xB3 el Playlist '{{playlist}}'"
-    just_following: Siguiendo solamente
+    created_playlist: "Cre\xC3\xB3 el mix '{{playlist}}'"
     just_user: "S\xC3\xB3lo {{user}}"
+    just_following: Siguiendo solamente
     listened_to: "Escuch\xC3\xB3 '{{song}}' de '{{artist}}'"
     push_notification_refresh: Recargar
     no_more_activity: "No hay m\xC3\xA1s actividad"
     filters: 
       all: TODOS
       songs: CANCIONES
-      stations: RADIOS
-      playlists: PLAYLISTS
+      stations: ESTACIONES DE RADIO
+      playlists: MIXES
     push_notification: Tienes {{count}} actualizaciones nuevas. {{link}} la actividad en tu Dashboard para verlas.
     twitter_you_following: "Tweets de artistas que t\xC3\xBA est\xC3\xA1s siguiendo"
     push_notification_more_than: "Tienes m\xC3\xA1s de {{count}} actualizaciones nuevas. {{link}} la actividad en tu Dashboard para verlas."
-    created_station: "{{creator}} cre\xC3\xB3 la radio: {{station}}"
     user_following: "{{user}} + Siguiendo"
+    created_station: "{{creator}} cre\xC3\xB3 la estaci\xC3\xB3n de radio: {{station}}"
     twitter_following: "Tweets de los artistas que {{user}} est\xC3\xA1 siguiendo"
   time: 
     am: am
@@ -599,12 +599,12 @@ coke_ES:
     sony_disclaimer: El logo y s&#237;mbolo de Walkman&#8482; son marcas registrados de Sony Corporation.
   albums: 
     label: Disquera
-    song_count: Canciones
-    show: 
-      about_this_album: About this album
+    song_count: Conteo de Canciones
     year: !binary |
       QcOxbw==
 
+    show: 
+      about_this_album: "About this \xC3\xA1lbum"
     release_date: Fecha de lanzamiento
     total_plays: Reproducciones totales
   titles: 
@@ -966,9 +966,11 @@ coke_ES:
     email: Tu Email
   basics: 
     stations_created_by: Radios creadas por
-    album: Album
+    album: !binary |
+      w4FsYnVt
+
     radio: Radio
-    albums: Albumes
+    albums: "\xC3\x81lbumes"
     my: Mi
     created_at: Creada hace {{when}}
     play: Escuchar
@@ -976,7 +978,7 @@ coke_ES:
     followers: Seguidores
     playlists: Playlists
     listens: Escucha
-    charts: Rankings
+    charts: Tablas
     song: "Canci\xC3\xB3n"
     message: Mensaje
     tags: Emociones
@@ -985,24 +987,24 @@ coke_ES:
     artist_name: Nombre del artista
     artist: Artista
     done: Listo
+    click_to_follow: Clic {{follow_link}} para seguir a
     more: !binary |
       TcOhcw==
 
     and_more: "y m\xC3\xA1s..."
-    click_to_follow: Clic {{follow_link}} para seguir a
     followers_of: Seguidores de
     last_modified_at: "Ultima modificaci\xC3\xB3n hace {{when}}"
     created_on: Creada el
     plays: Reproducciones
-    chart: Ranking
-    follow_requests: Pedidos de Seguidores
-    comment: Review
+    chart: Tabla
+    follow_requests: Peticiones de seguir
+    comment: Comentario
     city: Ciudad
     badges: Badges
     song_name: "Nombre de la canci\xC3\xB3n"
     you_are: Estas
     station: Radio
-    followees_of: Seguidor de
+    followees_of: Lo sigue
     contains: Incluye
     here: !binary |
       YXF1w60=
@@ -1031,10 +1033,10 @@ coke_ES:
     artists: Artistas
     users: Usuarios
     by: por
-    follow_requests_for: Pedidos de Seguidores de
+    follow_requests_for: Pedidos de seguidores de
     last_modified: "Ultima modificaci\xC3\xB3n"
     previous: Anterior
-    charts_for: Rankings de
+    charts_for: Tablas de
     mixes: Mixes
     ago: !binary |
       YXRyw6Fz
@@ -1042,31 +1044,31 @@ coke_ES:
     me: mi
     followwes: ""
     person: Persona
-    albums_by: Albumes por
-    "no": "No"
-    followees: Seguidores
-    comments: Reviews
+    albums_by: "\xC3\x81lbumes por"
+    followees: Personas con seguidores
+    comments: Comentarios
     songs: Canciones
+    "no": "No"
   badges: 
     ratings_flying_tomatoes: 
       name: Tomatazo
-      qualification: "Por haber recibido una calificaci\xC3\xB3n de s\xC3\xB3lo 1 o 2 botellas, entre la mayor\xC3\xACa de tus primeros 25 playlists en los que te han dejado un review. \xC2\xA1Vamos! \xC2\xA1Insp\xC3\xADrate m\xC3\xA1s!"
-    unlocked_by_user_on: Unlocked by {{user}} on {{date_won}}
+      qualification: "Por haber recibido una calificaci\xC3\xB3n de s\xC3\xB3lo 1 o 2 en la mayor\xC3\xADa de tus primeros 25 mixes en los que te han dejado comentarios. \xC2\xA1Vamos! \xC2\xA1\xC3\x89chale ganitas!"
+    unlocked_by_user_on: Desbloqueado por {{user}} {{date_won}}
     dj_superstar: 
       name: DJ Superstar
-      qualification: "5000 personas han escuchado tus playlists. \xC2\xA1Ma\xC3\xB1ana puedes ser DJ en un estadio tranquilamente!"
+      qualification: "se obtiene cuando 5000 personas han escuchado tus mixes. \xC2\xA1Ya puedes ser DJ en un estadio!"
     beginner: 
       name: Principiante
-      qualification: For registering on the site.
+      qualification: Para registrarse en el sitio.
     mixmaster_black: 
-      name: "Mixmaster Cintur\xC3\xB3n Negro"
-      qualification: "Tienes 50 playlists creados. Este \"Cintur\xC3\xB3n Negro\" hace que tu profile sea mirado con respeto."
+      name: "Mixmaster: Black Belt"
+      qualification: "Has creado 50 mixes. Este \"Cintur\xC3\xB3n Negro\" inspira respeto."
+    mixmaster_green: 
+      name: "Mixmaster: Green Belt"
+      qualification: "Has creado 10 mixes. \xC2\xBFCu\xC3\xA1ntas m\xC3\xA1s crees que eres capaz de hacer?"
     dj_unbeatable: 
       name: DJ Imbatible
-      qualification: "Creaste 5 playlists en menos de 24 horas. Eso es algo muy dif\xC3\xADcil de superar."
-    mixmaster_green: 
-      name: "Mixmaster Cintur\xC3\xB3n Verde"
-      qualification: "Tienes 10 playlists creados. \xC2\xBFCu\xC3\xA1ntos m\xC3\xA1s crees que eres capaz de hacer?"
+      qualification: "Creaste 5 mixes en 24 horas. \xC2\xA1Eso es algo muy dif\xC3\xADcil de superar!"
     leader: 
       name: !binary |
         TMOtZGVy
@@ -1078,104 +1080,106 @@ coke_ES:
       name: Mi Primera Playlist
     critic_objective: 
       name: "Doctor en Tendencias: Cr\xC3\xADtico Objetivo"
-      qualification: "Por haber dado una calificaci\xC3\xB3n de 3 botellas, entre la mayoria de 25 reviews de playlists que has hecho.  \xC2\xBFTu segundo nombre es 'Justicia'?"
-    mixmaster_brown: 
-      name: "Mixmaster Cintur\xC3\xB3n Marr\xC3\xB3n"
-      qualification: Tienes 25 playlists creados. Ya eres parte de las ligas mayores.
+      qualification: "Por haber calificado con 3 a la mayor\xC3\xADa de 25 mixes"
     record_gold: 
-      name: Disco de Oro
-      qualification: Tu playlist {{playlist_name}} ha sido escuchado por 20 personas.
+      name: Disco Gold
+      qualification: Tu mix {{playlist_name}} ha sido escuchado por 20 personas.
+    mixmaster_brown: 
+      name: "Mixmaster: Brown Belt"
+      qualification: Has creado 25 mixes. Ya eres parte de las ligas mayores.
     king_of_djs: 
       name: El Rey de Djs
     dj_radio: 
       name: DJ de radio
       qualification: "1000 personas han escuchado tus playlists. \xC2\xA1Tu p\xC3\xBAblico no para de crecer y te aclama!"
     idol: 
-      name: Idolo
-      qualification: "500 personas te est\xC3\xA1n siguendo. \xC2\xA1Idolo de multitudes!"
+      name: !binary |
+        w41kb2xv
+
+      qualification: "500 personas te est\xC3\xA1n siguendo. \xC2\xA1\xC3\x8Ddolo de multitudes!"
     networker_gold: 
-      name: Networker de Oro
+      name: "Networker: Gold"
       qualification: "Est\xC3\xA1s siguiendo a 100 personas. Tienes un toque de oro para seguir gente."
     master: 
       name: Master
-      qualification: "25 personas te est\xC3\xA1n siguiendo. Algo debes estar haciendo bien. :)"
+      qualification: "25 personas te est\xC3\xA1n siguiendo. \xC2\xA1Algo debes estar haciendo bien!"
     critic_best_friend: 
-      name: "Doctor en Tendencias: Mejor Amigo"
-      qualification: "Por haber dado una calificaci\xC3\xB3n de 4 o 5 botellas, entre la mayoria de 25 reviews de playlists que has hecho. \xC2\xA1Cu\xC3\xA1nta generosidad!"
+      name: "Especialista en Tendencias: Mejor Amigo"
+      qualification: "Por haber calificado con 4 o 5 a la mayor\xC3\xADa de 25 mixes"
     networker_diamond: 
-      name: Networker de Diamante
+      name: "Networker: Diamond"
       qualification: "Est\xC3\xA1s siguiendo a 500 personas. \xC2\xA1Puedes considerarte un Seguidor VIP!"
-    unlocked_on: Unlocked on
+    unlocked_on: Desbloqueado
     dj_bedroom: 
-      name: Bedroom DJ
-      qualification: 5 personas han escuchado tus playlists.
+      name: "DJ de habitaci\xC3\xB3n"
+      qualification: se gana cuando 5 personas han escuchado mis mixes
     critic_harsh: 
       name: "Doctor en Tendencias: Cr\xC3\xADtico Inflexible"
-      qualification: "Por haber dado una calificaci\xC3\xB3n de 1 o 2 botellas, entre la mayoria de 25 reviews de playlists que has hecho. \xC2\xA1Qu\xC3\xA9 exigente!"
+      qualification: "Por haber calificado con 1 o 2 a la mayor\xC3\xADa de 25 mixes"
     record_platinum: 
-      name: Disco de Platino
-      qualification: Tu playlist {{playlist_name}} ha sido escuchado por 100 personas.
-    user_has_not_won_any_badges: "{{name}} no ganado ning\xC3\xBAn badge aun."
+      name: Disco Platinum
+      qualification: Tu mix {{playlist_name}} ha sido escuchado por 100 personas.
+    user_has_not_won_any_badges: "{{name}} todav\xC3\xADa no ha ganado badges"
     ratings_stading_ovation: 
-      name: "Ovaci\xC3\xB3n de Pie"
-      qualification: "Por haber recibido una calificaci\xC3\xB3n de 4 o 5 botellas, entre tus primeros 25 playlists en los que te han dejado un review. \xC2\xA1Tienes al p\xC3\xBAblico conquistado!"
+      name: "Ovaci\xC3\xB3n de pie"
+      qualification: "Por haber recibido una calificaci\xC3\xB3n de 4 o 5 en tus primeros 25 mixes en los que te han dejado comentarios. \xC2\xA1Has conquistado al p\xC3\xBAblico!"
     dj_club: 
-      name: Club DJ
-      qualification: "100 personas han escuchado tus playlists. \xC2\xA1Est\xC3\xA1s imparable!"
+      name: DJ de club
+      qualification: "100 personas han escuchado tus mixes. \xC2\xA1Est\xC3\xA1s con todo!"
     networker_silver: 
       name: Networker de Plata
       qualification: "Est\xC3\xA1s siguiendo a 50 personas. Llevas las Relaciones P\xC3\xBAblicas en la sangre."
     ratings_ok: 
       name: O.K.
-      qualification: "Por haber recibido una calificaci\xC3\xB3n de 3 botellas, entre tus primeros 25 playlists en los que te han dejado un review. Ni muy-muy, ni tan-tan."
+      qualification: "Por haber recibido una calificaci\xC3\xB3n de 3 en tus primeros 25 mixes en los que te han dejado comentarios. Ni muy-muy, ni tan-tan."
     master_of_hip_hop: 
       name: Maestro de Hip-Hop
       qualification: Por haber incluido 100 canciones Hip hop, en total entre all plists creados.
     dj_private_party: 
       name: DJ de fiesta privada
-      qualification: "10 personas han escuchado tus playlists. Naciste para \xC3\xA9sto."
+      qualification: "10 personas han escuchado tus mixes. \xC2\xA1Naciste para esto!"
     superuser: 
-      name: Super User
-      qualification: "Porque durante siete d\xC3\xADas consecutivos, cada d\xC3\xADa te dedicaste a crear por lo menos un playlist, o a dejar un review en un playlist, o comenzaste a seguir a alguien. Usuarios como t\xC3\xBA conforman la realeza de Coca-Cola.fm."
+      name: Superuser
+      qualification: "Porque durante siete d\xC3\xADas consecutivos te dedicaste a crear por lo menos un mix, o a dejar un comentario en un mix, o comenzaste a seguir a alguien. Usuarios como t\xC3\xBA conforman la crema y nata de Coca-Cola.fm"
     opinion_leader: 
       name: "L\xC3\xADder de Opini\xC3\xB3n"
-      qualification: "Por haber dejado reviews en m\xC3\xA1s de 15 playlists distintos. \xC2\xA1No todos se animan a opinar tanto como t\xC3\xBA!"
+      qualification: "Por haber rese\xC3\xB1ado 15 mixes distintos. \xC2\xA1No todos se animan a opinar tanto como t\xC3\xBA!"
     record_diamond: 
-      name: Disco de Diamante
-      qualification: Tu playlist {{playlist_name}} ha sido escuchado por 500 personas.
+      name: Disco Diamond
+      qualification: Tu mix {{playlist_name}} ha sido escuchado por 500 personas.
     networker: 
       name: Networker
-      qualification: "Est\xC3\xA1s siguiendo a 5 personas."
-    mixmaster_red: 
-      name: "Mixmaster Cintur\xC3\xB3n Rojo"
-      qualification: "Tienes 100 playlists creados. Bienvenido al exclusivo c\xC3\xADrculo de elite de los Cinturones Rojos."
+      qualification: "Est\xC3\xA1s siguiendo a 5 personas"
     networker_platinum: 
-      name: Networker de Platino
+      name: "Networker: Platinum"
       qualification: "Est\xC3\xA1s siguiendo a 250 personas. Tu capacidad de seguimiento no conoce l\xC3\xADmites."
+    mixmaster_red: 
+      name: "Mixmaster: Red Belt"
+      qualification: "Has creado 100 mixes. Bienvenido al exclusivo c\xC3\xADrculo elite de los Cinturones Rojos."
     dj_on_fire: 
       name: DJ Imbatible
       qualification: Si un usuario crea 5 playlists dentro de 24 hs.
     others_that_have_this_badge: Otros usarios que se han ganado este badge.
     networker_bronze: 
       name: Networker de Bronce
-      qualification: "Est\xC3\xA1s siguiendo a 25 personas. Tu c\xC3\xADrculo de contactos se hace m\xC3\xA1s grande."
+      qualification: "Est\xC3\xA1s siguiendo a 25 personas. Tu c\xC3\xADrculo de contactos se hace m\xC3\xA1s grande"
     mixmaster_yellow: 
-      name: "Mixmaster Cintur\xC3\xB3n Amarillo"
-      qualification: "Tienes 5 playlists creados. Bien hecho, peque\xC3\xB1o saltamontes."
+      name: "Mixmaster: Yellow Belt"
+      qualification: "Has creado 5 mixes. Bien hecho, peque\xC3\xB1o saltamontes"
+    mixmaster_white: 
+      name: "Mixmaster: White Belt"
+      qualification: "\xC2\xA1Creaste tu primer mix!"
     trifecta: 
       name: Trifecta
-      qualification: "Porque en menos de 24 horas creaste ya 3 playlists, comenzaste a seguir a 3 usuarios, y dejaste reviews para 3 playlists. Todo de a tres, en armon\xC3\xADa perfecta."
-    mixmaster_white: 
-      name: "Mixmaster Cintur\xC3\xB3n Blanco"
-      qualification: "\xC2\xA1Creaste tu primer playlist!"
-    email: 
-      subject: "\xC2\xA1Felicitaciones! Te ganaste un badge nuevo en Coca-Cola.fm"
-      message: "\xC2\xA1Felicitaciones! Te ganaste el badge {{badge_name}}: {{badge_qualification}}. Ingresa en Coca-Cola.fm para ver su nuevo badge y fijarte qui\xC3\xA9nes se lo han ganado tambi\xC3\xA9n."
+      qualification: "Porque en 24 horas creaste 3 mixes, comenzaste a seguir a 3 usuarios y dejaste comentarios para 3 nuevos mixes. Todo de a tres, en armon\xC3\xADa perfecta."
     guru: 
       name: !binary |
         R3Vyw7o=
 
       qualification: "100 personas te est\xC3\xA1n siguiendo. La gente acude a ti como a un gur\xC3\xBA."
+    email: 
+      subject: "\xC2\xA1Felicidades! Has ganado un nuevo badge en Coca-Cola.fm"
+      message: "\xC2\xA1Felicidades! Ganaste {{badge_name}}: {{badge_qualification}}. Ingresa al sitio para ver tu badge y ver qui\xC3\xA9n m\xC3\xA1s la tiene."
   settings: 
     page_title: Controla tu Coca-Cola.fm
     background_not_saved_image_too_large: "Las im\xC3\xA1genes de fondo no pueden ser mayores a 1MB"
