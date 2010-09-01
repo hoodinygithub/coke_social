@@ -187,6 +187,10 @@
       if (klass) $('#facebox .content').addClass(klass)
       $('#facebox .content').append(data)
       $('#facebox .loading').remove()
+
+      // etoro: IE7 bg image bug
+      $('#facebox .top_shadow').css('z-index', 100);
+
       $('#facebox .content').children().fadeIn('normal')
       $('#facebox').css('left', $(window).width() / 2) 
       $(document).trigger('reveal.facebox').trigger('afterReveal.facebox')
