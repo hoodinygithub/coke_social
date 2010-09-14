@@ -26,6 +26,7 @@ module ApplicationHelper
   end
 
   def ssl_login_path
+    logger.info "-------------------------https://#{current_site.ssl_domain}#{session_path}-------------------------"
     "https://#{current_site.ssl_domain}#{session_path}"
   end
 
