@@ -3,7 +3,7 @@ class SessionsController < ApplicationController
   before_filter :set_return_to, :only => :new
   skip_before_filter :login_required  
   before_filter :go_home_if_logged_in, :except => :destroy
-  ssl_required_with_diff_domain :edit, :update, :create, :new
+  ssl_required_with_diff_domain :edit, :update, :create
 
   # GET /session/new
   def new
