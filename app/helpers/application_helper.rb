@@ -25,6 +25,9 @@ module ApplicationHelper
     end
   end
 
+  def ssl_login_path
+    "https://#{current_site.ssl_domain}#{session_path}"
+  end
 
   def is_index?
     request.request_uri == "/home"
