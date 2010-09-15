@@ -32,6 +32,7 @@ class SessionsController < ApplicationController
         redirect_to msn_login_url
       end
     else # Cyloop Login
+      logger.info "-----------------------#{cookies.include?(:auth_token)}--------------------------"
       render :new, :layout => false
     end
   end
