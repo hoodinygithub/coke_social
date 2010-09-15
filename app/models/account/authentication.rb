@@ -183,9 +183,9 @@ module Account::Authentication
     nescobedo@wallaby-group.com gvaldes@wallaby-group.com dom@fruktmusic.com 
     jack@fruktmusic.com floza@augeo.com.ar mfoncu29@gmail.com 
     julia.viloria@avatarla.com pablo.santos@avatarla.com)
-  @@valid_domains = %w(ko.com, hoodiny.com cyloop.com clarusdigital.com 
+  @@valid_domains = %w(ko.com hoodiny.com cyloop.com clarusdigital.com 
     la.ko.com mena.ko.com na.ko.com eur.ko.com fruktmusic.com sapient.com 
-    synovate.com)
+    synovate.com apac.ko.com)
   def email_domain_valid_for_beta
     unless @@valid_scan_emails.include?(email)
       unless @@valid_domains.include?(email.split("@")[1])
