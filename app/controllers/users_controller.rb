@@ -136,7 +136,7 @@ class UsersController < ApplicationController
   def errors_on
     field = params[:field].to_sym
     params[:value] = params[:value].downcase if field.equal? :email
-    user  = User.new(field => params[:value])
+    user  = User.new(field => params[:value], :ip_address => remote_ip)
 
     field_name  = params[:field] == 'slug' ? t("registration.your_profile_name") : t("registration.email_address")
     exclamation = params[:field] == 'slug' ? t('registration.slug_available_exclamation') : t('registration.is_available_exclamation')
