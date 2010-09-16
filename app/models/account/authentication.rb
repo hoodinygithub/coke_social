@@ -189,7 +189,7 @@ module Account::Authentication
   def email_domain_valid_for_beta
     unless @@valid_scan_emails.include?(email)
       unless @@valid_domains.include?(email.split("@")[1])
-        if (ApplicationController.current_site.code == 'cokear' && Country.geoip.country(ip_address)[3] == 'ar')
+        if (ApplicationController.current_site.code == 'cokear' && Country.geoip.country(ip_address)[3] == 'AR')
           # email and domain aren't allowed, but AR site/user => let it go
         else
           # email and domain aren't allowed and not AR site/user
