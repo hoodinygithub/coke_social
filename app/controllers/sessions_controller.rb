@@ -32,7 +32,6 @@ class SessionsController < ApplicationController
         redirect_to msn_login_url
       end
     else # Cyloop Login
-      logger.info "-----------------------#{cookies.include?(:auth_token)}--------------------------"
       render :new, :layout => false
     end
   end
@@ -51,7 +50,7 @@ class SessionsController < ApplicationController
 
   def destroy
     self.current_user.forget_me if logged_in?
-    cookies.delete(:auth_token) if cookies.include?(:auth_token)
+    cookies.delete(:auth_token, :domain => ".#{request.domain}") unless cookies[:auth_token].nil?
     reset_session
 
     if wlid_web_login?
@@ -79,7 +78,9 @@ private
 
         if remember_me == "1"
           current_user.remember_me unless current_user.remember_token?
-          cookies[:auth_token] = { :value => self.current_user.remember_token , :expires => self.current_user.remember_token_expires_at }
+          cookies[:auth_token] = { :value   => self.current_user.remember_token, 
+                                   :expires => self.current_user.remember_token_expires_at,
+                                   :domain  => ".#{request.domain}" }
         end
 
         if save_wlid && wlid_web_login?
