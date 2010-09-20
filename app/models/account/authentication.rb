@@ -167,7 +167,7 @@ module Account::Authentication
     end
   end
 
-  @@valid_scan_emails = %w(wasaone@gmail.com wasatwo@gmail.com wasathree@gmail.com 
+  @@valid_emails = %w(wasaone@gmail.com wasatwo@gmail.com wasathree@gmail.com 
     wasafour@gmail.com wasafive@gmail.com wasasix@gmail.com wasaseven@gmail.com 
     wasaeight@gmail.com wasanine@gmail.com mhuser@sapient.com oyunger@sapient.com 
     mhuser@sapient.com skobrynich@sapient.com fferrazza@sapient.com 
@@ -186,13 +186,19 @@ module Account::Authentication
   @@valid_domains = %w(ko.com hoodiny.com cyloop.com clarusdigital.com 
     la.ko.com mena.ko.com na.ko.com eur.ko.com fruktmusic.com sapient.com 
     synovate.com apac.ko.com)
+  # Coke's latam countries (copied from redirect proxy)
+  @@latam = %w(CL CO CR EC SV PY PE PA UY VE)
   def email_domain_valid_for_beta
-    unless @@valid_scan_emails.include?(email)
+    unless @@valid_emails.include?(email)
       unless @@valid_domains.include?(email.split("@")[1])
-        if (ApplicationController.current_site.code == 'cokear' && Country.geoip.country(ip_address)[3] == 'AR')
-          # email and domain aren't allowed, but AR site/user => let it go
+        country_code = Country.geoip.country(ip_address)[3]
+        site = ApplicationController.current_site.code
+        if (country_code == 'AR' && site == 'cokear')
+        elsif (country_code = 'BR' && site == 'cokebr')
+        elsif (country_code == 'MX' && site == 'cokemx')
+        elsif (@@latam.member? country_code && site == 'cokelatam')
         else
-          # email and domain aren't allowed and not AR site/user
+          # email and domain aren't allowed and not matching site/user
           errors.add(:email, I18n.t('share.errors.message.email_is_not_authorized'))
         end
       else 
