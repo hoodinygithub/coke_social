@@ -187,7 +187,7 @@ module Account::Authentication
     la.ko.com mena.ko.com na.ko.com eur.ko.com fruktmusic.com sapient.com 
     synovate.com apac.ko.com)
   # Coke's latam countries (copied from redirect proxy)
-  @@latam = %w(CL CO CR EC SV PY PE PA UY VE)
+  @@latam = %w(CL CO CR DO EC SV GT HN NI PY PE VE)
   def email_domain_valid_for_beta
     unless @@valid_emails.include?(email)
       unless @@valid_domains.include?(email.split("@")[1])
