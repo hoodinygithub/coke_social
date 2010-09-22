@@ -7,20 +7,20 @@ namespace :db do
       connection = ActiveRecord::Base.connection
       return unless connection.respond_to? :execute
       
-      connection.execute 'DROP TABLE IF EXISTS `_cached_following_count_updates`'
+      #connection.execute 'DROP TABLE IF EXISTS `_cached_following_count_updates`'
       connection.execute 'DROP TABLE IF EXISTS `_cached_visit_count_updates`'
 
-      timebox "Create temp table for followings count updates..." do
-        query = <<-EOF
-        CREATE TABLE `_cached_following_count_updates` (
-          `id` int(11),
-          `followee_count` int(11) DEFAULT 0,
-          `follower_count` int(11) DEFAULT 0,
-          PRIMARY KEY(`id`)          
-        ) ENGINE=InnoDB DEFAULT CHARSET=utf8
-        EOF
-        connection.execute query
-      end
+      #timebox "Create temp table for followings count updates..." do
+      #  query = <<-EOF
+      #  CREATE TABLE `_cached_following_count_updates` (
+      #    `id` int(11),
+      #    `followee_count` int(11) DEFAULT 0,
+      #    `follower_count` int(11) DEFAULT 0,
+      #    PRIMARY KEY(`id`)          
+      #  ) ENGINE=InnoDB DEFAULT CHARSET=utf8
+      #  EOF
+      #  connection.execute query
+      #end
 
       timebox "Create temp table for visit count updates..." do
         query = <<-EOF
@@ -72,14 +72,14 @@ namespace :db do
       end
 
 
-      timebox "Calculate and insert followings counts into temp table..." do
-        query = <<-EOF
-        INSERT INTO `_cached_following_count_updates`(`id`, `follower_count`, `followee_count`)
-        SELECT a.id, (SELECT count(*) FROM followings INNER JOIN accounts a2 ON follower_id = a2.id WHERE followee_id = a.id and approved_at IS NOT NULL AND a2.network_id = 2 AND a2.deleted_at IS NULL) AS follower_count, (SELECT count(*) FROM followings INNER JOIN accounts a2 ON followee_id = a2.id WHERE follower_id = a.id and approved_at IS NOT NULL AND a2.network_id = 2 AND a2.deleted_at IS NULL) AS followee_count FROM `accounts` a
-        WHERE a.type = 'User' 
-        EOF
-        connection.execute query
-      end
+      #timebox "Calculate and insert followings counts into temp table..." do
+      #  query = <<-EOF
+      #  INSERT INTO `_cached_following_count_updates`(`id`, `follower_count`, `followee_count`)
+      #  SELECT a.id, (SELECT count(*) FROM followings INNER JOIN accounts a2 ON follower_id = a2.id WHERE followee_id = a.id and approved_at IS NOT NULL AND a2.network_id = 2 AND a2.deleted_at IS NULL) AS follower_count, (SELECT count(*) FROM followings INNER JOIN accounts a2 ON followee_id = a2.id WHERE follower_id = a.id and approved_at IS NOT NULL AND a2.network_id = 2 AND a2.deleted_at IS NULL) AS followee_count FROM `accounts` a
+      #  WHERE a.type = 'User' 
+      #  EOF
+      #  connection.execute query
+      #end
 
       timebox "Calculate and insert visit counts into temp table..." do
         query = <<-EOF
@@ -93,14 +93,14 @@ namespace :db do
         connection.execute query
       end
 
-      timebox "Update followings counts in accounts..." do
-        query = <<-EOF
-        UPDATE `accounts` a
-        INNER JOIN `_cached_following_count_updates` t ON a.id = t.id 
-        SET a.follower_count = t.follower_count, a.followee_count = t.followee_count
-        EOF
-        connection.execute query
-      end
+      #timebox "Update followings counts in accounts..." do
+      #  query = <<-EOF
+      #  UPDATE `accounts` a
+      #  INNER JOIN `_cached_following_count_updates` t ON a.id = t.id 
+      #  SET a.follower_count = t.follower_count, a.followee_count = t.followee_count
+      #  EOF
+      #  connection.execute query
+      #end
 
       timebox "Update visit counts in accounts..." do
         query = <<-EOF
@@ -112,7 +112,7 @@ namespace :db do
       end
 
       timebox "Cleanup..." do
-        connection.execute 'DROP TABLE IF EXISTS `_cached_following_count_updates`'
+        #connection.execute 'DROP TABLE IF EXISTS `_cached_following_count_updates`'
         connection.execute 'DROP TABLE IF EXISTS `_cached_visit_count_updates`'
       end
     end
