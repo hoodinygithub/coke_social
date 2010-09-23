@@ -7,7 +7,17 @@
       cookie : true,
       xfbml  : true
     });
+
+    FB.Event.subscribe('xfbml.render', function(response) {
+      alert(response);
+    });
+
+    FB.Event.subscribe('fb.log', function(response) {
+      alert(response);
+    });
   };
+
+
   (function() {
     var e = document.createElement('script');
     e.src = document.location.protocol + '//connect.facebook.net/<%= lang_mappings %>/all.js';
