@@ -4,8 +4,8 @@
   <div class="try_list">
       <% @recommended_artists.each_with_index do |recommended_artists_item, index| %>
         <div class="small_thumb <%= index==9 ? "last_thumb" : "" %>">
-            <%= link_to_function avatar_for(recommended_artists_item, :spaced_img, {:disable_default_css => true}), "get_song_list('#{recommended_artists_item.id}','artist', null, null, null, #{recommended_artists_item.id})" %>
-            <%= link_to_function truncate(recommended_artists_item.name, :length => 10), "get_song_list('#{recommended_artists_item.id}','artist', null, null, null, #{recommended_artists_item.id})" %>
+          <%= link_to_function avatar_for(recommended_artists_item, :spaced_img, {:disable_default_css => true, :title => recommended_artists_item.name}), "get_song_list('#{recommended_artists_item.id}','artist', null, null, null, #{recommended_artists_item.id})", :alt => recommended_artists_item.name %>
+          <%= link_to_function truncate(recommended_artists_item.name, :length => 10), "get_song_list('#{recommended_artists_item.id}','artist', null, null, null, #{recommended_artists_item.id})", :title => recommended_artists_item.name, :alt => recommended_artists_item.name %>
         </div>
       <% end %> 
     <br class="clearer" />

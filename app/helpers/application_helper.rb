@@ -975,5 +975,20 @@ module ApplicationHelper
   def poll_link
     site_code == 'cokebr' ? 'http://polldaddy.com/s/4E940675C45189A2' : 'http://polldaddy.com/s/158304F6B410FA6A'
   end
+
+  def lang_mappings
+    case current_site.default_locale
+    when :coke_BR
+      "pt_BR"
+    when :coke_ES
+      "es_LA"
+    when :coke_MX
+      "es_MX"
+    when :coke_AR
+      "es_AR"
+    else
+      current_site.default_locale
+    end
+  end
   
 end
