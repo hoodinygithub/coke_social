@@ -15,6 +15,10 @@
     FB.Event.subscribe('fb.log', function(response) {
       alert(response);
     });
+
+    FB.Event.subscribe('edge.create', function(response) {
+      alert(response);
+    });
   };
 
 
