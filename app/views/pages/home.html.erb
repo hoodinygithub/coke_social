@@ -6,7 +6,7 @@
 <% content_for :header_space_content do %>
   <%= render :partial => 'shared/create_playlist' %>
   <div class="clearer"></div>
-  <%= render :partial => 'black_banner' if is_index? %>
+  <%= render :partial => 'black_banner' %>
 <% end %>
 
 <% cache("#{site_cache_key}/modules/tag_cloud", :expires_in => EXPIRATION_TIMES["home_tag_cloud"]) do %>

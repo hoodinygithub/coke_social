@@ -42,10 +42,6 @@ module ApplicationHelper
     "#{protocol}#{host}#{port}#{uri}"
   end
 
-  def is_index?
-    request.request_uri == "/home"
-  end
-  
   def filter_link_by(link_label, options)
     type = options.delete(:type).to_s
 
