@@ -18,7 +18,8 @@ class UsersController < ApplicationController
   disable_sanitize_params
   strip_tags_from_params
   
-  layout :compute_layout
+  # Show links buttons on reg page.
+  # layout :compute_layout
   
   # GET /users/id
   def show

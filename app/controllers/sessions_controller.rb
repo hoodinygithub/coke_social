@@ -5,7 +5,8 @@ class SessionsController < ApplicationController
   before_filter :go_home_if_logged_in, :except => :destroy
   ssl_required_with_diff_domain :edit, :update, :create
 
-  layout :compute_layout
+  # Show header links on login page.
+  # layout :compute_layout
 
   # GET /session/new
   def new

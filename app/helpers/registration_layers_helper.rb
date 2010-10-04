@@ -29,8 +29,7 @@ module RegistrationLayersHelper
   end
 
   def registered_link_to(text, params)
-    #link_to text, registration_layers_path(params)
-    link_to text, root_path
+    link_to text, new_user_path(params)
   end
 
 end

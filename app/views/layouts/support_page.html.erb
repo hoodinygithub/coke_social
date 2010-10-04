@@ -11,7 +11,8 @@
       <div id="header" class="<%= @section.nil? ? controller_name : @section %>">
           <%= link_to(image_tag('logo.png', :id => 'logo', :class => 'png_fix', :alt => 'Coca-Cola', :title => 'Coca-Cola'), home_path) %>
           <%= render 'shared/header_nav' %>
-          <%= render 'shared/search_form' if current_user %>
+          <%= render 'shared/search_form' %>
+          <%= render :partial => 'shared/user_data', :locals => {:logged_out => false} %>
           <div class="clearer"></div>
           <div id="flash_messages">
             <%= render_flash_messages %>
