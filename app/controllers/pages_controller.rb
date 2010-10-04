@@ -5,7 +5,7 @@ class PagesController < ApplicationController
   skip_before_filter :login_required, :except => [:home]
 
   layout "logged_out"
-  
+
   def home
     @latest_badges = BadgeAward.latest(5)
     @top_djs_limit = 5

@@ -1,0 +1,611 @@
+--- 
+modules: 
+  profile: 
+    top_playlists: 
+      title: Top playlists
+  more_playlists: 
+    title: More Playlists
+  top_playlists: 
+    title: Top Playlists
+  delete_playlist: 
+    title: Delete This Playlist
+    confirmation_text: Deleting this playlist is a permanent action. Are you sure you still want to delete this playlist?
+actions: 
+  awaiting_approval: Awaiting Approval
+  disaprove: Disapprove
+  add_song_to_playlist: Add Song to Playlist
+  edit: Edit
+  add: add
+  alphabetical: ALPHABETICAL
+  buy_album: Purchase Album
+  cancel: Cancel
+  delete: Delete
+  close: Close
+  enter: Enter
+  buy_song: Purchase Song
+  deny: Deny
+  block_this_person: Block This Person
+  add_this_song_into_the_following_playlists: Add this song into the following playlists
+  aprove: Approve
+  block: Block
+  add_to_playlist: Add to my Playlist
+  create: Create
+  approve: Approve
+  add_into_a_new_playlist: Add into a new playlist
+  add_more: Add More
+  add_song: Add Song
+  create_station: Create Station
+  create_a_playlist: Create a Playlist
+artist: 
+  be_the_first_to_create_station: Be the first to create a station for {{user_name}}
+buylink: 
+  no_buylinks: Not available to buy
+  select_store: Select your store
+  song: Buy this song
+dashboards: 
+  user_has_no_playlists: "{{name}} has no playlists"
+number: 
+  format: 
+    separator: .
+    delimiter: ","
+  human: 
+    storage_units: 
+      format: "%n %u"
+      units: 
+        kb: KB
+        tb: TB
+        gb: GB
+        byte: 
+          one: Byte
+          other: Bytes
+        mb: MB
+  currency: 
+    format: 
+      format: "%u%n"
+      unit: $
+      separator: .
+      delimiter: ","
+share: 
+  song: 
+    marketing: |-
+      Copyright \xC2\xA9 2008 Cyloop LLC. All rights reserved. Cyloop, Cyloop.com, the Cyloop logo and all other Cyloop marks
+      
+      contained herein are trademarks of Hoodiny Entertainment Group and/or its affiliated companies.
+      All other marks
+      contained herein are the property of their respective owners. Reproduction in whole or in
+      part in any
+      form or medium without express written permission of Cyloop LLC, is prohibited.
+      
+      Cyloop, LLC, 555 Washington Avenue, Miami Beach, FL 33139
+      Microsoft Corporation, One Microsoft Way, Redmond, WA 98052-6399, USA \xC2\xA9; 2008 Microsoft Corporation.
+      All rights reserved.
+player: 
+  license_message: 
+    body: Due to radio licensing, you are unable to listen to full tracks when playing your own playlist.
+activerecord: 
+  attributes: 
+    user: 
+      playlist_confirmation: Your Playlist has been created, continue searching!
+blocks: 
+  warning: 
+    title: Are you sure you want to block this person?
+    description_header: "By blocking:"
+    description_footer: You can unblock people just by starting to follow them again at any time.
+playlist_items: 
+  create: 
+    errors: 
+      click_checkbox_first: In order to add this song, you must click on a checkbox beside the playlist you wish to add it to
+possessives: 
+  third_person: 
+    has_not_subscribed: "{{subject}} has not subscribed to any playlists."
+    latest_playlists: "{{subject}}'s Latest Playlists"
+    playlists: "{{subject}}'s Playlists"
+    has_not_playlists: "{{subject}} has no playlist."
+    top_playlists: "{{subject}}'s Top Playlists"
+  first_person: 
+    has_not_subscribed: You have not subscribed to any playlists
+    playlists: My Playlists
+    has_not_playlists: You have no playlists.
+    top_playlists: My Top Playlists
+songs: 
+  play_confirmation: Enjoy {{title}}!
+marketing_msgs: 
+  home_page: 
+    second: "La m\xC3\xBAsica y tus emociones se mezclan aqu\xC3\xAD."
+    first: "En Coca-Cola.fm tus playlists hablen por t\xC3\xAD."
+  playlist: 
+    second: "La m\xC3\xBAsica y tus emociones se mezclan aqu\xC3\xAD."
+    first: "En Coca-Cola.fm tus playlists hablen por t\xC3\xAD."
+chat: 
+  moderator: 
+    title: Moderator Module
+comments: 
+  create_success: Comment successfully posted
+  delete_success: Comment successfully deleted
+profile: 
+  navigation: 
+    artists: Artists
+    songs: Songs
+    all: All
+    stations: Stations
+    dashboard: Dashboard
+    subscriptions: Subscriptions
+    followers: Followers
+    playlists: Playlists
+    albums: Albums
+    activity: Activity
+    account_settings: Account Settings
+    reviews: Reviews
+    music: Music
+    settings: Settings
+    badges: Badges
+    home: Home
+    age: Age
+    follow_requests: Follow Requests
+    community: Community
+    mixes: Mixes
+    following: Following
+    charts: Charts
+    biography: Biography
+stations: 
+  edit: 
+    edit_your_station: Edit Your Station
+  could_not_find_artist: "Could not find artist: {{artist}}"
+  deleted: Your station has been deleted.
+  no_stations_created: No stations have been created
+  last_station_created_at: Last station created {{when}} ago
+playlists: 
+  autofill_option_text: The auto-fill option will allow you to fill your playlist with recommended songs based on what you have already populated.
+  cancel_playlist_text: Cancelling your playlist will revert all your additions/edits.<br/>Are you sure you want to cancel?
+  edit: Edit Your Playlist
+  cancel_playlist: Cancel Playlist?
+  unable_save: Unable to save this playlist
+  name_your_playlist: Name of your playlist
+  full_listen: <li>You need <b class='red'>{{songsleft}}</b> more songs to be able to listen to your playlist in full. When your playlist reaches {{maxsongs}} songs, this tab will turn green.<br /><br /><b>TIP:</b> Use the <b class='green'>'Lucky 10'</b> button to help add songs to your playlist!</li>
+  edit_confirm_text: Your playlist edits have been saved. Would you like to continue editing?
+  delete_text: Are you sure you want to delete this playlist?
+  tag_your_playlist: Tag your playlist
+  rules: Playlist Rules
+  search_for_music: Search for music to add to your playlist
+  playlist_name: Playlist Name
+  last_playlist: Last Playlist
+  select_your_songs_text: Song search results will show up here{{break}}drag the songs you like the container to{{break}}the right to create your playlist
+  delete_title: Delete Playlist
+  name_dialog: What would you like to name this playlist?
+  unable_save_text: You have errors with your playlist.  These  errors must be corrected before you can share it with the rest of the community.
+  create_new: Create a New Playlist
+  copy: Copy Playlist
+  picture: Picture of your playlist
+  congrats: <li><b>Congratulations!</b> You can now listen to your playlist in full!</li>
+  save_your_playlist: Save your playlist
+forgot: 
+  captcha_invalid: You have entered the reCAPTCHA code incorrectly.  Do try again!
+  reset_message_sent: Thank you. Instructions to reset your password have been sent to the email you just provided.
+messenger_player: 
+  recengineerror_NO_PLAYLIST: No playlist could be found
+activity: 
+  created_playlist: Created Playlist '{{playlist}}'
+  filters: 
+    playlists: PLAYLISTS
+albums: 
+  label: Label
+  year: Year
+  show: 
+    about_this_album: About this album
+  song_count: Song Count
+  total_plays: Total Plays
+  release_date: Release Date
+custom_profiles: 
+  sony_disclaimer: The Walkman&#8482; symbol and logo are trademarks from Sony Corporation.
+time: 
+  am: am
+  formats: 
+    default: "%a, %d %b %Y %H:%M:%S %z"
+    short: "%d %b %H:%M"
+    long: "%B %d, %Y %H:%M"
+  pm: pm
+account_settings: 
+  password_change: PASSWORD CHANGE
+  change_password: CHANGE PASSWORD
+  email_me_subscribes_radios: Send me an email when someone subscribes to one of my radios
+  email_me_following_me: Send me an email when someone is following me
+  email_me_reviews_mixes: Send me an email when someone reviews/rates one of my mixes
+  cancel: Cancel
+  title: ACCOUNT SETTINGS
+  delete: DELETE
+  email_me_subscribes_mixes: Send me an email when someone subscribes to one of my mixes
+  email_me_win_badges: Send me an email when i win a new badge
+  email_me_communications: Send me periodical Cyloop Newsletters and communications
+  email_me_coke_newsletter: Send me periodical Coke Newsletters and communications
+  delete_my_account: DELETE MY ACCOUNT
+  delete_info: By checking this box, I understand that deleting my account means that my Cyloop page, music library and picture will be deleted. I understand that in order to return to Cyloop, I will have to create a new account with a new username.
+  password_required: You must enter a valid password
+  delete_info_required: You must click on the check box to continue
+  new_password: New Password
+  delete_account: DELETE ACCOUNT
+  add_update: ADD / UPDATE
+  save: SAVE
+  password: Password
+  basic_info: BASIC INFO
+  update: UPDATE
+  email_notifications: EMAIL NOTIFICATIONS
+  old_password: Old Password
+radio: 
+  search_hint: Enter the name of an artist
+  select_recommended_stations_below: "Or if you can\xE2\x80\x99t think of any, select a recommended station from below"
+  msn_stations: MSN Stations
+  now_playing: Now Playing
+  create_new_station: Create New Station
+  getting_started: To get started simply enter an artist name
+meta: 
+  description: Discover new music and videos from largest online library for free, follow what you friends listen to, and create and share playlists and personalized radio stations from your favorite artists.
+  keywords: Discover music, discover new music, discover videos, listen to music, listen to free music, free music, fee videos, music artists, discover artists, discover music artists, online music library, largest online music library, free online music, free online music library, follow friends, following friends, follower friends, create playlists, share playlists, create music playlists, share music playlists, personalized radio stations, favorite artists
+registration: 
+  layers: 
+    create_playlist: To create a mix, {{link}} to log in.
+    review: To review this mix, {{link}} to log in.
+    coke_music_is_free: Cyloop is free, {{link}}
+    follow: Follow
+    win: Win
+    create: Create
+    search: Search
+    copy: To copy this mix, {{link}} to log in.
+campaigns: 
+  destroyed_success: Campaign successfully destroyed
+  created_success: Campaign successfully created
+  deactivated_success: Campaign successfully deactivated
+  activated_success: Campaign successfully activated
+  start_date_gt_end_date: Start date must be less than end date
+  updated_success: Campaign successfully updated
+date: 
+  formats: 
+    default: "%Y-%m-%d"
+    short: "%b %d"
+    long: "%B %d, %Y"
+information: 
+  location: Location
+  influences: Influences
+  genre: Genre
+titles: 
+  awaiting_approval: Waiting for approval to follow this user
+  unfollow: Click here to stop following this user
+  follow: Click here to follow this user
+followings: 
+  awaiting_approval: You are awaiting approval from this user.
+  has_blocked_you: You are being blocked by this user, so you cannot follow!
+  create_success: You are now following {{name}}
+  followers: Followers
+  create_error: 
+    blocked_by_user: You are being blocked by this user, so you cannot follow!
+  delete_success: You are no longer following {{name}}
+  follow_requests: Follow Requests
+  following: Following
+  email: 
+    welcome: Hi, {{followee}}
+    subject: "{{follower}} is now following your updates on Cyloop!"
+    sig: |-
+      Your friends from,
+      
+      Cyloop
+    message: |-
+      {{follower}} is now following your updates on Cyloop.
+      
+      Check out {{follower}}'s profile here:
+      {{link}}
+  awaiting_approval_from: You are awaiting approval from {{name}}.
+widget: 
+  registration: 
+    share_text: songs, mixes, and radios with your friends
+block: 
+  blockee_id: User
+support: 
+  array: 
+    words_connector: ", "
+    last_word_connector: ", and "
+    two_words_connector: " and "
+  select: 
+    prompt: Please select
+badges: 
+  dj_superstar: 
+    qualification: is earned when 5000 people listen to my playlists
+  ratings_flying_tomatoes: 
+    qualification: For having received mostly 1 or 2 stars for my first 25 playlist ratings
+  mixmaster_black: 
+    qualification: For having created 50 playlists
+  mixmaster_green: 
+    qualification: For having created 10 playlists
+  record_gold: 
+    qualification: When 20 different people listened to {{playlist_name}}
+  mixmaster_brown: 
+    qualification: For having created 25 playlists
+  critic_objective: 
+    qualification: For having rated most of the 25 playlists with 3 stars
+  dj_radio: 
+    qualification: is earned when 1000 people listen to my playlists
+  critic_harsh: 
+    qualification: For having rated most of the 25 playlists with 1 or 2 stars
+  dj_bedroom: 
+    qualification: is earned when 5 people listen to my playlists
+  critic_best_friend: 
+    qualification: For having rated most of the 25 playlists with 4 or 5 stars
+  dj_club: 
+    qualification: is earned when 100 people listen to my playlists
+  ratings_stading_ovation: 
+    qualification: For having received mostly 4 or 5 stars for my first 25 playlist ratings
+  record_platinum: 
+    qualification: When 100 different people listened to {{playlist_name}}
+  ratings_ok: 
+    qualification: For having received mostly 3 stars for my first 25 playlist ratings
+  record_diamond: 
+    qualification: When 500 different people listened to {{playlist_name}}
+  opinion_leader: 
+    qualification: For having rated 15 different playlists
+  superuser: 
+    qualification: "For having created at least one of each of the following consecutively for seven days: 1 playlist, 1 new follow, 1 rating of a playlist"
+  dj_private_party: 
+    qualification: is earned when 10 people listen to my playlists
+  mixmaster_red: 
+    qualification: For having created 100 playlists
+  trifecta: 
+    qualification: For having created 3 playlists, followed 3 new users and rated 3 new playlists in a span of 24 hours
+  mixmaster_white: 
+    qualification: For having created my first playlist
+  mixmaster_yellow: 
+    qualification: For having created 5 playlists
+cancellation: 
+  confirmation: 
+    body: Cancelling your Cyloop account will permanently remove all of your profile information, including your photos, activity feeds and your personal network of followers. This information cannot be restored.
+    are_you_sure: Are you sure still want to cancel your account?
+    title: We are sorry you're leaving Cyloop!
+    irreversible_note: This action is irreversible
+    keep_account: No, Keep My Account
+    cancel_account: Yes, Cancel My Account
+  feedback: 
+    label: Feedback
+    body: We are sorry that you decided to leave Cyloop. Would you mind giving us some feedback as to why? We are always working on improving the user experience. Hope you will came back to check us out.
+    title: Why are you leaving Cyloop?
+    send: Send
+    no_thanks: No Thanks
+  email: 
+    body: Your Cyloop profile was removed.
+    title: Hi {{name}}
+    subject: Profile Removed
+    goodbye: Thank you
+footer: 
+  faq: FAQ
+  help: Help
+  terms_and_conditions: Terms and Conditions
+  support: Support
+  safety_tips: Safety Tips
+  feedback: Contact Us
+  privacy_policy: Privacy Policy
+contact_us: 
+  form: 
+    feedback_default: Please provide as much detail as possible
+    welcome: Welcome to Cyloop Support!
+    support_form: Support Form
+    submit: Submit Your Message
+    support_form_text: If you have a question or problem that isn't answered on this page or in the {{link}} or just want to provide us some feedback, you can use this form to send us a message.
+    header: "We want to help you\xC2\xA0get the answers you need as quickly as possible so you can get back to enjoying all the innovative features Cyloop has to offer."
+    os: Operating System
+    privacy_text: Learn about what Cyloop does about Spam, Impersonation, Trademark, Copyright and other violations.
+    new_cyloop: New to Cyloop?
+    resources: Resources
+    information: Please include as much information as you can
+    feedback: Message
+    new_cyloop_text: Check out our {{link}} to find answers to the most commonly asked questions.  If your questions are still not answered, then please use the {{link2}} form to get in touch with us.
+    privacy: Privacy and Security?
+demographics: 
+  edit: 
+    title: "Step 2: Customize Your Recommendations"
+    description: Enhance your experience by providing us with some more information
+  email: 
+    welcome: Hello {{user}},
+    subject: Your Cyloop Password
+    sig: |
+      Keep enjoying and discovering music on Cyloop,
+      
+      The Cyloop Team
+
+    message: |-
+      You are receiving this email because a new password was requested for your Cyloop account. If you did not request a new password for this account, ignore this email and continue to use your current password.
+      
+      If you do wish to reset your password, please use the following link:
+      {{password}}
+      
+      Tip: create a password with a mix of letters and numbers so it's more secure.
+settings: 
+  background_not_saved_image_too_large: Background image can't be larger than 1 MB
+  page_title: Control your Cyloop
+  private_profile: 
+    description: Description of what 'Keep profile private?' does
+  cancel_my_account: Cancel My Account
+  customizations: 
+    header_background: Header Background
+    link_font_color: Link Font Color
+    main_background_color: Main Background Color
+    main_font_color: Main Font Color
+    reset_to_default: Your profile's customization settings have been reset to Cyloop's defaults.
+    restore_defaults: Restore Defaults
+    remove_background_image: Remove Image
+    colors: Colors
+    browse: Browse...
+  not_saved: Your settings failed to save.
+  saved: Your settings have been saved.
+  tabs: 
+    account: Account
+    notifications: Notifications
+    password: Password
+site: 
+  profile_not_found: Profile Not Found
+  faq: Frequently asked questions
+  private_profile: Private Profile
+  terms_and_conditions: Terms and conditions
+  support: Support
+  about_cyloop: About Cyloop
+  profile_not_available: Profile Not Available
+  safety_tips: Safety Tips
+  feedback: Feedback
+  about_hoodiny: About Hoodiny
+  profile_not_available_sorry: Sorry but this profile is not available in your country
+  privacy_policy: Privacy Policy
+  sample_flag_description: Unfortunately this content is restricted for this territory and can't play in full. You should be able to listen to full songs from this artist and others similar in the Radio section.
+  profile_not_found_sorry: Sorry. We were unable to find a profile for {{profile}}.
+reviews: 
+  duplicate_warning_title: Oops...
+  reviewed_by: Reviewed by
+  delete_review_text: Deleting a review is a permenant action.  Are you sure you still want to delete this review?
+  edit_your_review: Edit your review
+  duplicate_warning_text: You have already posted a review for this playlist. If you post a new review it will overwrite your previous review.
+  post_your_review: POST YOUR REVIEW
+  delete_review_title: Delete this review
+  email: 
+    subject: "{{reviewer}} has posted a review on one of your playlists on Coca-Cola.fm"
+    message: |-
+      {{reviewer}} has posted a review on playlist: {{playlist}}.
+      
+      Log in to see what they posted.
+basics: 
+  playlists: Playlists
+  playlists_created_by: Playlists Created by
+feedback: 
+  country: Country
+  title: Feedback
+  submit: Submit Your Feedback
+  os: Operating System
+  feedback: Feedback
+  browser: Browser
+  email: Your Email
+main: 
+  navigation: 
+    stations: Stations
+    playlists: Playlists
+    home: Home
+    search: Search
+    mixes: Mixes
+playlist: 
+  review: REVIEW THIS PLAYLIST
+reset: 
+  message_delivered: We've sent out instructions on resetting your password to your email address.  You should receive an email shortly with instructions.
+  insert_valid_info: Insert Valid Info
+  msn_account: Please contact MSN account services to reset your password.
+  email: 
+    welcome: Hi, {{user}}
+    subject: Your Cyloop password
+    sig: |-
+      Keep enjoying and discovering music on Cyloop,
+      
+      The Cyloop Team
+    message: |-
+      You are receiving this email because a new password was requested for your Cyloop account.
+      
+      To login, use the temporary password below:
+      {{password}}
+      
+      After logging in, you may reset your password by going into settings.
+      
+      Tip: create a password with a mix of letters and numbers so it's more secure.
+users: 
+  new: 
+    step_1_vignette_start_collecting_songs: Start collecting songs and creating your own music playlists
+sort: 
+  highest_rated: HIGHEST RATED
+  alphabetical: ALPHABETICAL
+  relevance: RELEVANCE
+  newest: NEWEST
+  latest: LATEST
+  top: TOP
+tweet: 
+  message: Check out this mix on Coca-Cola.fm
+home: 
+  radios_recomended_for_you: RADIOS RECOMMENDED FOR YOU
+sessions: 
+  new: 
+    complete_registration: Complete Registration
+    register_cyloop: Register On Cyloop
+    register_link_msn: If you dont have a cyloop account, Go ahead and register to have it linked to your MSN ID.
+    sign_in: Log in
+    remember_me: Remember me
+    listener_account: Listener Account
+    title: Welcome, please log in.
+    sign_up_for_free: Sign Up For Free
+    not_registered: Not Registered?
+    sign_up_tag_line: Follow all your favorite artists and discover new music through friends.
+    dont_have_account: Don't you have an account?
+    recover_cyloop_password: Recover Cyloop Password
+  destroy: 
+    sign_out: Log out
+user: 
+  receives_following_notifications: Alert me when someone follows me
+  slug: Choose your Profile Name
+  terms_of_use: Terms of Use
+  private_profile: Keep profile private?
+  twitter_username: Twitter Username
+  terms_of_use_instructions: By signing up, you accept the {{link}} and confirm you're 13 or older
+  reset_password: Password Change
+  remove_avatar: Remove Image
+  terms_and_conditions: terms and conditions
+  websites: Websites
+  short_bio: Short bio
+  safety_tips: Safety Tips
+  time_zone: Time zone
+  saved: Your settings have been saved.
+datetime: 
+  prompts: 
+    minute: Minute
+    month: Month
+    second: Seconds
+    hour: Hour
+    day: Day
+    year: Year
+  distance_in_words: 
+    x_days: 
+      one: 1 day
+      other: "{{count}} days"
+    x_seconds: 
+      one: 1 second
+      other: "{{count}} seconds"
+    x_minutes: 
+      one: 1 minute
+      other: "{{count}} minutes"
+    x_months: 
+      one: 1 month
+      other: "{{count}} months"
+    less_than_x_seconds: 
+      one: 1 second
+      other: "{{count}} seconds"
+    over_x_years: 
+      one: 1 year
+      other: "{{count}} years"
+navigation: 
+  search_web: Search Web
+  search_songs: Search Songs
+  search_artists: Search Artists
+  dashboard: Dashboard
+  search_stations: Search Stations
+  radio: Radio
+  search_users: Search People
+  search_people: Search People
+  homepage: Home
+  search_albums: Search Albums
+  discover: Discover
+biography: 
+  no_bio_availible: No bio available
+  management: 
+    label: Label
+    title: Management
+    type: Type
+    email: Management
+  biography: Biography
+following: 
+  approval: "{{name}} will now receive your updates"
+  denial: "{{name}} will not be allowed to receive your updates"
+search: 
+  search_results: Search Results
+  search_hint: Search for your favorite artist & music
+  see_all_albums_with_term: see all albums with "{{term}}"
+  content_search_hint: Enter the name of an artist, album or song
+  search_title: Search
+  see_all_songs_with_term: see all songs with "{{term}}"
+  see_all_artists_with_term: see all artists with "{{term}}"
+  search_results_for: Search results for
