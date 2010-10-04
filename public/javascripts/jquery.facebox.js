@@ -171,8 +171,10 @@
       }
 
       $('#facebox').css({
-        top:	top_position
-      }).show()
+        top:	top_position,
+        // etoro: copied from latest copy of jquery.facebox on github
+        left:	$(window).width() / 2 - 205
+      }).show();
 
       $(document).bind('keydown.facebox', function(e) {
         if (e.keyCode == 27) $.facebox.close()
@@ -191,9 +193,12 @@
       // etoro: IE7 bg image bug
       $('#facebox .top_shadow').css('z-index', 100);
 
-      $('#facebox .content').children().fadeIn('normal')
-      $('#facebox').css('left', $(window).width() / 2) 
-      $(document).trigger('reveal.facebox').trigger('afterReveal.facebox')
+      $('#facebox .content').children().fadeIn('normal');
+
+      // etoro: copied from latest jquery facebox in github
+      $('#facebox').css('left', $(window).width() / 2 - ($('#facebox table').width() / 2));
+
+      $(document).trigger('reveal.facebox').trigger('afterReveal.facebox');
       $('#facebox .close').click($.facebox.close);
       $('.png_fix').supersleight({shim: '/images/blank.gif'});
     },

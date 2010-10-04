@@ -8,7 +8,7 @@ module RegistrationLayersHelper
   end
   
   def layer_background_image
-    srand Time.now.to_i
+    # srand Time.now.to_i
     # case current_site.code.to_s
     # when 'msnbr'
     #   image = rand(10)
@@ -25,7 +25,7 @@ module RegistrationLayersHelper
     # else
       image = rand(10)
     # end
-    "#{current_site.code}/#{(image + 1)}.jpg"
+    "cyloop/#{(image + 1)}.jpg"
   end
 
   def registered_link_to(text, params)

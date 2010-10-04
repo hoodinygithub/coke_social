@@ -61,7 +61,7 @@ namespace :db do
           end          
 
           xml.item do
-            xml.thumb thumbnail
+            xml.thumb large_image
             xml.detail ""
             xml.link link
             xml.dynamicReflection false
@@ -79,7 +79,7 @@ namespace :db do
               large_image = AvatarsHelper.avatar_path(artist, :medium)  #s.artist.avatar_file_name.nil? ? "http://assets.cyloop.com/storage?fileName=/.elhood.com-2/usr/#{s.artist_id}/image/hi-thumbnail/x46b.jpg" : s.artist.avatar_file_name.sub(/hires/,'hi-thumbnail')
 
               xml.item do
-                xml.thumb thumbnail
+                xml.thumb large_image
                 xml.detail ""
                 xml.link link
                 xml.dynamicReflection false
@@ -96,7 +96,7 @@ namespace :db do
               large_image = AvatarsHelper.avatar_path(artist, :medium)  #s.artist.avatar_file_name.nil? ? "http://assets.cyloop.com/storage?fileName=/.elhood.com-2/usr/#{s.artist_id}/image/hi-thumbnail/x46b.jpg" : s.artist.avatar_file_name.sub(/hires/,'hi-thumbnail')
 
               xml.item do
-                xml.thumb thumbnail
+                xml.thumb large_image
                 xml.detail ""
                 xml.link link
                 xml.dynamicReflection false

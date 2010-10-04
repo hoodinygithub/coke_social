@@ -2,7 +2,9 @@ class PlaylistsController < ApplicationController
   current_tab :playlists
   current_filter :all
   
-  before_filter :login_required, :except => [:index, :widget, :avatar_update, :show]
+  before_filter :geo_check, :only => :show
+  before_filter :xhr_login_required, :only => :copy
+  before_filter :login_required, :except => [:index, :widget, :avatar_update, :show, :copy]
 
   def index
     @dashboard_menu = :playlists
@@ -376,6 +378,24 @@ class PlaylistsController < ApplicationController
   end
 
   private
+
+    def geo_check
+      unless current_country.enable_radio
+        render :xml => "<player error='NO_RADIO'></player>"
+      end
+    end
+
+    def xhr_login_required
+      unless current_user
+        session[:return_to] = request.referer
+        @code = "/registration/#{params[:action].classify.downcase}layer"
+        registration_layer = render_to_string 'registration_layers/copy_playlist.html.haml'
+        return render(:json => { :status => 'redirect',
+                                 :html   => registration_layer
+                               })
+      end
+    end
+
     def get_seeded_results
       results = nil
       result_text = ""

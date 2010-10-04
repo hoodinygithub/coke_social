@@ -3,8 +3,9 @@
 
 <br/>
 <div id="third_party_apps">
-  <div class='twt'><a href="http://twitter.com/share" class="twitter-share-button" data-count="horizontal">Tweet</a><script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script></div>
-  <div class='fb'><fb:like show_faces="false"></fb:like></div>
+  <% station_id = Playlist.find(params[:playlist_id]).station.id %>
+  <div class='twt'><a href="http://twitter.com/share" class="twitter-share-button" data-url="<%= host_with_port("/playlists?station_id=#{station_id}", {:host => 'www.coca-cola.fm'}) %>" data-text="<%= t("tweet.message") %>Check out this mix on Coca-Cola.fm" data-counturl="<%= host_with_port("/playlists?station_id=#{station_id}", {:host => 'www.coca-cola.fm'}) %>" data-count="horizontal">Tweet</a><script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script></div>
+  <div class='fb'><fb:like width="350" show_faces="false"></fb:like></div>
   <div class="clearer"></div>
 </div>
 <br/>
@@ -18,7 +19,7 @@
       <div class="album_detail_area">
           <div class="album_textarea">
             <textarea chars_counter="new_comment_counter"
-                      id="network_comment" cols="20" rows="3"
+                      id="network_comment" class="<%= "requires_auth" unless logged_in? %>" cols="20" rows="3"
                       name="comment"
                       onkeyup="Base.reviews.count_chars(this);"
                       onchange="Base.reviews.count_chars(this);"></textarea>
@@ -40,7 +41,7 @@
           </div>
 
         <div class="right_side post_button">
-          <a class="red_button compartir_button" onclick="Base.reviews.post('<%= @playlist.id %>'); return false;"
+          <a class="red_button compartir_button" onclick="<%= logged_in? ? "Base.reviews.post('#{@playlist.id}');" : "Base.utils.showRegistrationLayer(document.location, 'review_playlist');" %> return false;"
              href="#"><span><span><%= t('reviews.post_your_review')%></span></span></a>
 
           <% if false %>

@@ -5,6 +5,8 @@ class SessionsController < ApplicationController
   before_filter :go_home_if_logged_in, :except => :destroy
   ssl_required_with_diff_domain :edit, :update, :create
 
+  layout :compute_layout
+
   # GET /session/new
   def new
     if wlid_web_login?
@@ -32,7 +34,7 @@ class SessionsController < ApplicationController
         redirect_to msn_login_url
       end
     else # Cyloop Login
-      render :new, :layout => false
+      #render :new, :layout => false
     end
   end
 
@@ -97,10 +99,15 @@ private
       end
     elsif !wlid_web_login?
       flash[:error] = t("registration.login_failed")
-      render :new, :layout => false
+      render :new
       return false
     end
     flash.discard(:error)
     true
+  end
+
+  protected
+  def compute_layout
+    [:new, :create].include?(action_name.to_sym) ? "no_search_form" : "application" 
   end
 end

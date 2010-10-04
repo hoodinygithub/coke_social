@@ -1,3 +1,14 @@
+<!-- fb sdk auth and meta info -->
+<% content_for :fbmeta do %>
+  <meta property="og:title"       content="<%= @station_obj.playable.name %>"/>
+  <meta property="og:type"        content="song"/>
+  <meta property="og:url"         content="<%= host_with_port(request.request_uri, {:host => 'www.coca-cola.fm'}) %>"/>
+  <meta property="og:image"       content="<%= AvatarsHelper.avatar_path(@station_obj.playable, :small) %>"/>
+  <meta property="og:site_name"   content="Coca-Cola.fm"/>
+  <meta property="og:app_id"      content="160520280625515"/>
+  <meta property="og:description" content="<%= "#{@station_obj.playable.name} includes #{@station_obj.playable.includes.map { |s| s.artist.name }.join(', ') }" %>"/>
+<% end %>
+
 <div id="fb-root"></div>
 <script>
   window.fbAsyncInit = function() {
@@ -16,6 +27,7 @@
     document.getElementById('fb-root').appendChild(e);
   }());
 </script>
+<!-- /fb sdk auth and meta info -->
 
 <% blank_msg = t('modules.edit_station.blank_station_name_message').gsub(/\"/, '\"') %>
 <script type="text/javascript">

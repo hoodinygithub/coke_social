@@ -28,9 +28,18 @@ module ApplicationHelper
   def ssl_login_path
     if request.ssl?
       session_path
+    elsif request.host =~ /localhost/
+      "http://#{request.host}:#{request.port}#{session_path}"
     else
       "https://#{current_site.ssl_domain}#{session_path}"
     end
+  end
+
+  def host_with_port(uri=nil, options={})
+    protocol = "#{request.ssl? ? 'https://' : 'http://'}"
+    host     = options[:host] || request.host
+    port     = options.has_key?(:host) ? nil : (request.port == nil ? nil : ":#{request.port}")
+    "#{protocol}#{host}#{port}#{uri}"
   end
 
   def is_index?

@@ -23,6 +23,7 @@
     <% end %>
   </div>
   <div class="right_side" style="width:170px">
-    <%= red_button(t('actions.create_a_playlist'), :href => playlist_create_path) %>
+    <%= red_button(t('actions.create_a_playlist'), :href => logged_in? ? playlist_create_path : nil,
+      :onclick => logged_in? ? nil : "Base.utils.showRegistrationLayer('#{playlist_create_path}', 'create_playlist')" ) %>
   </div>
 </div><!--/end create_playlist_form -->

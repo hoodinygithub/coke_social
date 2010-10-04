@@ -23,7 +23,7 @@ class ApplicationController < ActionController::Base
 
   before_filter :do_basic_http_authentication
   before_filter :confirm_registration_code
-  before_filter :login_required  
+  #before_filter :login_required  
 
   filter_parameter_logging :password, :password_confirmation
 
@@ -56,6 +56,8 @@ class ApplicationController < ActionController::Base
   def current_site_url
     if request.ssl?
       "https://#{current_site.ssl_domain}"
+    elsif request.host =~ /localhost/
+      "http://#{request.host}:#{request.port}"
     else
       "http://#{current_site.domain}"
     end

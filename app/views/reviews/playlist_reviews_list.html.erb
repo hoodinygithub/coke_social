@@ -1,3 +1,14 @@
+<% if @playlist.owner == current_user %>
+  <br/>
+  <div id="third_party_apps">
+    <% station_id = @playlist.station.id %>
+    <div class='twt'><a href="http://twitter.com/share" class="twitter-share-button" data-url="<%= host_with_port("/playlists?station_id=#{station_id}", {:host => 'www.coca-cola.fm'}) %>" data-text="<%= t("tweet.message") %>" data-counturl="<%= host_with_port("/playlists?station_id=#{station_id}", {:host => 'www.coca-cola.fm'}) %>" data-count="horizontal">Tweet</a><script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script></div>
+    <div class='fb'><fb:like width="350" show_faces="false"></fb:like></div>
+    <div class="clearer"></div>
+  </div>
+  <br/>
+<% end %>
+
 <%= render 'form' unless @playlist.owner == current_user or @playlist.owner.blocks?(current_user) %>
 <h1>
   <%= "#{t('modules.reviews.title').upcase} (<span class=\"reviews_count\">#{@records.size}</span>)" %>

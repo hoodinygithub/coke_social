@@ -1,5 +1,6 @@
 ActionController::Routing::Routes.draw do |map|
-  map.root :controller => 'sessions', :action => 'new'
+  #map.root :controller => 'sessions', :action => 'new'
+  map.root  :controller => 'pages', :action => 'home'
   map.home "/home", :controller => "pages", :action => 'home'
   map.login  'login',  :controller => 'sessions', :action => 'new'
   map.logout 'logout', :controller => 'sessions', :action => 'destroy'  
@@ -35,7 +36,9 @@ ActionController::Routing::Routes.draw do |map|
      :radio_add_song  => :any,
      :add_mixer       => :any,
      :max_song        => :any,
-     :max_radio       => :any
+     :max_radio       => :any,
+     :create_playlist => :any,
+     :review_playlist => :any
   }
 
   map.signup 'signup', :controller => 'users', :action => 'new'

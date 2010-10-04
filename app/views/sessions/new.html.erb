@@ -1,49 +1,14 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-    <title>Coca-Cola</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
-    <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE8" />
-    <meta name="KEYWORDS" content="" />
+<% content_for :head do %>
+  <%= stylesheet_link_tag 'registration_form' %>
+<% end %>
 
-    <%= render 'shared/javascripts' %>
-    <%= render 'shared/stylesheets' %>
-</head>
-<body>
-    <div id="container">
-        <div id="homepage_box">
-            <div id="login_box">
-              <% if flash[:error] %>
-              <div id="login_error">
-                <div class="left"></div>
-                <div class="error_message">
-                  <span><%= flash[:error] %></span>
-                </div>
-                <div class="right"></div>
-              </div>
-              <br class="clearer" />
-              <% end %>
-                <div class="red_box">
-                    <div class="box_content">
-                      <%= render 'form' %>                      
-                    </div><!--/end box_content -->
-                    
-                    <div class="corners">
-                        <%= image_tag "corner_red_top_left.gif", :class => 'top_left' %>
-                        <%= image_tag "corner_red_top_right.gif", :class => 'top_right' %>
-                        <%= image_tag "corner_red_bottom_left.gif", :class => 'bottom_left' %>
-                        <%= image_tag "corner_red_bottom_right.gif", :class => 'bottom_right' %>
-                    </div>
-                </div><!--/end red_box -->
-                
-                <div class="register_text">
-                    <%= t('sessions.new.dont_have_account')%><br/>
-                    <%= link_to t('registration.layers.click_here').titleize, signup_path %>
-                </div>
-            </div><!--/end login_box -->
-        </div><!--/end homepage_box -->
-        <%= render 'shared/footer' %>
-    </div><!--/end container -->
+<h2 class="page_title"><%= t('sessions.new.sign_in') %></h2>
 
-</body>
-</html>
+<div id="content">
+  <div id="main_content" class="registration">
+    <%= render 'form' %>
+  </div>
+</div>
+
+<%= render 'sidebox' %>
+<br class="clearer" />

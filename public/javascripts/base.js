@@ -352,8 +352,6 @@ Base.utils.get_target = function(e) {
   return targ;
 }
 
-
-
 /*
  * Layout shared behavior
  */
@@ -567,7 +565,7 @@ Base.locale.date_difference = function(old_date, new_date) {
 Base.community.approve = function(user_slug, button) {
   var params = {'user_slug':user_slug};
   $list      = jQuery('.followers_list');
-  
+ 
   $approve_button = jQuery(button);
   var old_button_content = $approve_button.html();
   $approve_button.removeClass('yellow_button').addClass('yellow_button_wo_hover');
@@ -606,7 +604,7 @@ Base.community.__follow_request_handler = function(type, user_slug, link, callba
   var $main_element    = $link.parent().parent().parent().parent();
   var $black_ul        = $link.parent().parent();
   var $settings_button = $main_element.find('.settings_button').children().children();
-  
+ 
   return;
 
   // $black_ul.fadeOut();
@@ -641,7 +639,7 @@ Base.community.follow = function(user_slug, button, remove_div, layer_path) {
 
     if (status == 'success') {
       $button_label.html("");
-      $button.removeClass("blue_button");
+      $button.removeClass("red_button");
       if (response.status == 'following') {
         $button_label.html(Base.locale.t('actions.unfollow'));
         $button.addClass("green_button");
@@ -1835,8 +1833,26 @@ Base.reviews.count_chars = function(textarea) {
 
 Base.utils.showPopup = function(url) {
   $.get(url, function(response) {
-    $.popup(response);
+    if (response.status == 'redirect')
+    {
+      $.simple_popup(response.html);
+    }
+    else
+    {
+      $.popup(response);
+    }
   });
+};
+
+Base.utils.showRegistrationLayer = function(url, type) {
+  if (url == undefined) {
+    url = '/my/dashboard';	
+  }
+  type || (type = '')
+  $.get('/registration_layers/' + type + '?return_to=' + url, function(response) {
+    $.simple_popup(response);
+  });
+  return false;
 };
 
 Base.reviews.resetForm = function() {
@@ -1885,6 +1901,8 @@ Base.reviews.showErrors = function(errors, form) {
 Base.reviews.bind_textarea = function() {
   $("#comment_update,#network_comment").each(function (){
     $(this).focus(function() {
+        if ( $("#network_comment").hasClass("requires_auth") )
+          Base.utils.showRegistrationLayer( document.location, 'review_playlist' );
       $(this).addClass("network_update_red");
       $(this).next('img').attr("src", Base.currentSiteUrl() + "/images/network_arrow_red.gif");
     });
