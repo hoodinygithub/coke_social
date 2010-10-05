@@ -1,6 +1,6 @@
-.registration_layer{:onclick => onclick_to_with_gat_code(site_login_url, @code)}
+.registration_layer{:onclick => onclick_to_with_gat_code(site_login_url(:return_to => session[:origin_to]), @code)}
   .top{:style => "background-image: url(/images/layers/#{layer_background_image});"}
-    %h2.channel_headline=t('registration.layers.copy', :link => link_to(t("registration.layers.click_here"), site_login_url, :onclick => gat_code(@code)))
+    %h2.channel_headline=t('registration.layers.copy', :link => link_to(t("registration.layers.click_here"), site_login_url(:return_to => session[:origin_to]), :onclick => gat_code(@code)))
     = render :partial => '/registration_layers/stats'
   = render :partial => '/registration_layers/bottom'
 

@@ -387,7 +387,6 @@ class PlaylistsController < ApplicationController
 
     def xhr_login_required
       unless current_user
-        session[:return_to] = request.referer
         @code = "/registration/#{params[:action].classify.downcase}layer"
         registration_layer = render_to_string 'registration_layers/copy_playlist.html.haml'
         return render(:json => { :status => 'redirect',
