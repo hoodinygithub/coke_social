@@ -51,9 +51,7 @@ module SslRequirementWithDiffDomain
           session[:return_to].gsub(path, "")
         elsif request.ssl? && !(session[:return_to] =~ Regexp.new("^#{path}"))
           logger.info "[DEBUG] No Path With path"          
-          # Modified to fit our needs
-          # "#{path}/#{session[:return_to]}"
-          nil
+          "#{path}/#{session[:return_to]}"
         end
       end
       logger.info "[DEBUG] #{return_to} - #{session[:return_to]}"
