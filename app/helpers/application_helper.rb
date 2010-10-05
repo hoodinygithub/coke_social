@@ -187,7 +187,7 @@ module ApplicationHelper
     return_to = attrs[:return_to_ajax] if attrs.has_key?(:return_to_ajax)
 
     layer_path = send("follow_#{account.class.name.downcase}_registration_layers_path",
-                      :return_to => return_to
+                      :return_to => return_to,
                       :account_id => account.id,
                       :follow_profile => account.id)
 
