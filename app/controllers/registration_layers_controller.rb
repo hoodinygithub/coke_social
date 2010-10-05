@@ -1,9 +1,10 @@
 class RegistrationLayersController < ApplicationController
-  before_filter :find_stats
+  # Not displaying stats on layer anymore.
+  # before_filter :find_stats
   before_filter :not_display_layer, :except => [:add_song, :radio_add_song]  
   before_filter :display_layer, :only => [:add_song, :radio_add_song]  
   before_filter :set_return_to
-  before_filter :set_return_to_with_back, :only => [:radio_add_song, :max_radio, :add_mixer, :max_song, :copy_playlist, :create_playlist, :review_playlist]
+  before_filter :set_return_to_with_back, :only => [:radio_add_song, :max_radio, :add_mixer, :max_song, :copy_playlist, :review_playlist]
     
   def index
   end
