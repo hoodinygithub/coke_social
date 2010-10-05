@@ -1,6 +1,5 @@
 class RegistrationLayersController < ApplicationController
-  # Not displaying stats on layer anymore.
-  # before_filter :find_stats
+  before_filter :find_stats
   before_filter :not_display_layer, :except => [:add_song, :radio_add_song]  
   before_filter :display_layer, :only => [:add_song, :radio_add_song]  
   before_filter :set_return_to
@@ -44,10 +43,11 @@ class RegistrationLayersController < ApplicationController
   private
     def find_stats
       @account = Account.find(params[:account_id]) if params[:account_id]
-      @songs   = current_site.site_statistic.total_songs   rescue 0
-      @artists = current_site.site_statistic.total_artists rescue 0
-      @users   = current_site.site_statistic.total_global_users   rescue 0
       @code    = "/registration/#{params[:action].classify.downcase}layer"
+      # no displaying stats
+      # @songs   = current_site.site_statistic.total_songs   rescue 0
+      # @artists = current_site.site_statistic.total_artists rescue 0
+      # @users   = current_site.site_statistic.total_global_users   rescue 0
     end
     
     def set_return_to_with_back
