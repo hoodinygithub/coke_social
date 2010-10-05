@@ -387,7 +387,7 @@ class PlaylistsController < ApplicationController
 
     def xhr_login_required
       # session[:return_to] = request.referer
-      session[:return_to] = request.referer.gsub(host_with_port, '')
+      session[:return_to] = request.referer.gsub("http://#{request.host}", '')
       unless current_user
         @code = "/registration/#{params[:action].classify.downcase}layer"
         registration_layer = render_to_string 'registration_layers/copy_playlist.html.haml'
