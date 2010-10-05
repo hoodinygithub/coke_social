@@ -51,6 +51,7 @@ class RegistrationLayersController < ApplicationController
     end
     
     def set_return_to_with_back
-      session[:return_to] = request.referer
+      # return_to should be a relative path so it works on the ssl domain
+      session[:return_to] = request.referer.gsub("http://#{request.host}", '') # request.referer
     end
 end
