@@ -17,11 +17,13 @@
       </a>
       <br/>
       <%= render :partial => 'followings/action', :locals => { :item => item } %>
-      <div class="blocked">
-        <% if current_user.blocks?(item) %>
-        <%= image_tag('blocked.gif') %> <%= t('blocks.blocked') %>
-        <% end %>
-      </div>
+      <% if current_user %>
+        <div class="blocked">
+          <% if current_user.blocks?(item) %>
+            <%= image_tag('blocked.gif') %> <%= t('blocks.blocked') %>
+          <% end %>
+        </div>
+      <% end %>
     <% end %>
   </div>
   <br class="clearer" />
