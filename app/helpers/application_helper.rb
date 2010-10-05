@@ -889,7 +889,11 @@ module ApplicationHelper
   end
 
   def action_for(item)
-    current_user.blocks?(item) ? 'unblock' : 'block'
+    if logged_in?
+      current_user.blocks?(item) ? 'unblock' : 'block'
+    else
+      'block'
+    end
   end
   
   #'Movin Out Anthony's Song Out Anthonys Songs Song'
