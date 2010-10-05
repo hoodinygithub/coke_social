@@ -1,6 +1,7 @@
 %meta{"http-equiv" => 'Content-Type', :content => 'text/html;charset=utf-8'}
 %meta{"http-equiv" => 'Content-Script-Type', :content => 'text/javascript'}
 %title= h(@title || t("meta.title"))
+= yield :fbmeta
 %meta{'name' => 'keywords', :content => t("meta.keywords") }
 %meta{'name' => 'description', :content => t("meta.description") }
 %meta{'name' => 'robots', :content => "ALL"}
