@@ -386,6 +386,9 @@ class PlaylistsController < ApplicationController
     end
 
     def xhr_login_required
+      url = request.referer
+      path = url.gsub(url.split('/').first, '')
+      session[:return_to] = path
       unless current_user
         @code = "/registration/#{params[:action].classify.downcase}layer"
         registration_layer = render_to_string 'registration_layers/copy_playlist.html.haml'
