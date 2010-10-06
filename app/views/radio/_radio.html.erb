@@ -1,7 +1,7 @@
 <!-- fb sdk auth and meta info -->
 <% content_for :fbmeta do %>
   <meta property="og:title"       content="<%= @station_obj.playable.name %>"/>
-  <meta property="og:type"        content="movie"/>
+  <meta property="og:type"        content="song"/>
   <meta property="og:url"         content="<%= host_with_port(request.request_uri) %>"/>
   <meta property="og:image"       content="<%= AvatarsHelper.avatar_path(@station_obj.playable, :small) %>"/>
   <meta property="og:site_name"   content="Coca-Cola.fm"/>
