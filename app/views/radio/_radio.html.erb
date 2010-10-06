@@ -2,7 +2,7 @@
 <% content_for :fbmeta do %>
   <meta property="og:title"       content="<%= @station_obj.playable.name %>"/>
   <meta property="og:type"        content="website"/>
-  <meta property="og:url"         content="<%= host_with_port(request.request_uri, {:host => 'www.coca-cola.fm'}) %>"/>
+  <meta property="og:url"         content="<%= host_with_port(request.request_uri) %>"/>
   <meta property="og:image"       content="<%= AvatarsHelper.avatar_path(@station_obj.playable, :small) %>"/>
   <meta property="fb:app_id"      content="160520280625515"/>
   <meta property="og:description" content="<%= "#{@station_obj.playable.name} includes #{@station_obj.playable.includes.map { |s| s.artist.name }.join(', ') }" %>"/>
