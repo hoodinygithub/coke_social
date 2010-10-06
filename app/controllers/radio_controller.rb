@@ -13,6 +13,7 @@ class RadioController < ApplicationController
       @section = "player_page" #used for css styling
       @station_queue = @station_obj.playable.station_queue(:ip_address => remote_ip)
       @station_obj.playable.track_a_play_for(current_user) if @station_obj.playable
+      @title = @station_obj.playable.name
       set_origin
     else
       @top_djs_limit = 5
