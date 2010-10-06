@@ -894,7 +894,7 @@ function do_search_list_sort(t, term, scope, order_by, page)
 function get_search_results(term,scope)
 {
   hideCreateBox();
-  q = "term=" + term + "&scope=" + scope;
+  q = "term=" + unescape(term) + "&scope=" + scope;
   show_loading_image();
   jQuery.get('/playlist/create?' + q, function(data) {
       jQuery('#search_results_container').html(data);
