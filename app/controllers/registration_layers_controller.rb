@@ -44,7 +44,7 @@ class RegistrationLayersController < ApplicationController
     def find_stats
       @account = Account.find(params[:account_id]) if params[:account_id]
       @code    = "/registration/#{params[:action].classify.downcase}layer"
-      # no displaying stats
+      # not displaying stats anymore
       # @songs   = current_site.site_statistic.total_songs   rescue 0
       # @artists = current_site.site_statistic.total_artists rescue 0
       # @users   = current_site.site_statistic.total_global_users   rescue 0
