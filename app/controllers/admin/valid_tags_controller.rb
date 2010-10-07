@@ -6,23 +6,11 @@ class Admin::ValidTagsController < Admin::ApplicationController
       search = params[:search]
       conditions = [["tags.name like ?", "#{search[:tag_name]}%"]]
       conditions << ["site_id = ?", search[:market]] unless search[:market].to_s.empty?
+      conditions << ["deleted_at IS NOT ?", nil] if search[:deleted_at]
       conditions = [conditions.map{|c| c.first}.join(" AND "), *conditions.map{|c| c.last}]
-      @valid_tags = ValidTag.all(:conditions => conditions, :include => [:tag, :site])
+      @valid_tags = ValidTag.all_with_deleted(:conditions => conditions, :include => [:tag, :site])
     else
-      @valid_tags = ValidTag.all(:include => [:tag, :site])
-    end
-    @valid_tag = ValidTag.new(params[:valid_tag])    
-  end
-  
-  def deleted
-    if params[:search]
-      search = params[:search]
-      conditions = [["tags.name like ?", "#{search[:tag_name]}%"]]
-      conditions << ["site_id = ?", search[:market]] unless search[:market].to_s.empty?
-      conditions = [conditions.map{|c| c.first}.join(" AND "), *conditions.map{|c| c.last}]
-      @valid_tags = ValidTag.with_exclusive_scope(:conditions => conditions, :include => [:tag, :site])
-    else
-      @valid_tags = ValidTag.all(:include => [:tag, :site])
+      @valid_tags = ValidTag.all_with_deleted(:include => [:tag, :site])
     end
     @valid_tag = ValidTag.new(params[:valid_tag])    
   end
@@ -40,7 +28,6 @@ class Admin::ValidTagsController < Admin::ApplicationController
       render :new
     end    
   end
-
   
   # def edit
   #   render :new
@@ -60,9 +47,14 @@ class Admin::ValidTagsController < Admin::ApplicationController
     redirect_to admin_valid_tags_path
   end
   
+  def restore
+    @valid_tag.unmark_as_deleted
+    redirect_to admin_valid_tags_path
+  end  
+  
 private
   def find_valid_tag
-    @valid_tag = ValidTag.find(params[:id])
+    @valid_tag = ValidTag.find_with_deleted(params[:id])
   end
 end
 

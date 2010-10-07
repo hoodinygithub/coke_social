@@ -31,6 +31,11 @@ class ValidTag < ActiveRecord::Base
     save(false)
   end
   
+  def unmark_as_deleted
+    self.deleted_at = nil
+    save(false)
+  end
+  
   def self.site_ids
     all(:group => "site_id").map{|t| t.site_id}
   end  
@@ -38,6 +43,18 @@ class ValidTag < ActiveRecord::Base
   def self.all_deleted
     with_exclusive_scope do
       all :conditions => "deleted_at IS NOT NULL"
+    end
+  end  
+  
+  def self.find_with_deleted(id)
+    with_exclusive_scope do
+      find(id)
+    end
+  end  
+  
+  def self.all_with_deleted(*args)
+    with_exclusive_scope do
+      all(*args)
     end
   end  
   
