@@ -167,45 +167,25 @@ module Account::Authentication
     end
   end
 
-  @@valid_emails = %w(wasaone@gmail.com wasatwo@gmail.com wasathree@gmail.com 
-    wasafour@gmail.com wasafive@gmail.com wasasix@gmail.com wasaseven@gmail.com 
-    wasaeight@gmail.com wasanine@gmail.com mhuser@sapient.com oyunger@sapient.com 
-    mhuser@sapient.com skobrynich@sapient.com fferrazza@sapient.com 
-    mconigliaro@sapient.com sbamber@sapient.com ahollander@sapient.com 
-    jschneider@sapient.com mylena@gringo.nu andre@gringo.nu ana.hernandes@jwt.com 
-    tullio.nicastro@jwt.com lucianam@ciandt.com claudia.caballero@starcom.com.mx 
-    gustavo.ortega@starcom.com.mx hsartorelli@cubika.com iandino@proguidemc.com 
-    tonda@wannaflock.com barquin@wannaflock.com prieto@wannaflock.com 
-    molina@wannaflock.com leonardo@agenciaroja.com cova@agenciaroja.com 
-    leosecundo@hotmail.com seba@santo.net maxi@santo.net gaston.bigio@ogilvy.com 
-    carlos@madrebuenosaires.com gustavotaretto@gmail.com gabriel.vazquez@jwt.com 
-    julian.smith@jwt.com anselmo.ramos@ogilvy.com jose.montalvo@ogilvy.com 
-    nescobedo@wallaby-group.com gvaldes@wallaby-group.com dom@fruktmusic.com 
-    jack@fruktmusic.com floza@augeo.com.ar mfoncu29@gmail.com 
-    julia.viloria@avatarla.com pablo.santos@avatarla.com)
   @@valid_domains = %w(ko.com hoodiny.com cyloop.com clarusdigital.com 
     la.ko.com mena.ko.com na.ko.com eur.ko.com fruktmusic.com sapient.com 
     synovate.com apac.ko.com)
   # Coke's latam countries (copied from redirect proxy)
   @@latam = %w(CL CO CR DO EC SV GT HN NI PY PE VE)
   def email_domain_valid_for_beta
-    unless @@valid_emails.include?(email)
-      unless @@valid_domains.include?(email.split("@")[1])
-        country_code = Country.geoip.country(ip_address)[3]
-        site = ApplicationController.current_site.code
-        if (country_code == 'AR' && site == 'cokear')
-        elsif (country_code = 'BR' && site == 'cokebr')
-        elsif (country_code == 'MX' && site == 'cokemx')
-        elsif (@@latam.member? country_code && site == 'cokelatam')
-        else
-          # email and domain aren't allowed and not matching site/user
-          errors.add(:email, I18n.t('share.errors.message.email_is_not_authorized'))
-        end
-      else 
-        # email isn't allowed, but domain is allowed => let it go
+    unless @@valid_domains.include?(email.split("@")[1])
+      country_code = Country.geoip.country(ip_address)[3]
+      site = ApplicationController.current_site.code
+      if (country_code == 'AR' && site == 'cokear')
+      elsif (country_code == 'BR' && site == 'cokebr')
+      elsif (country_code == 'MX' && site == 'cokemx')
+      elsif (@@latam.include? country_code && site == 'cokelatam')
+      else
+        # domain not allowed and not matching site/geo
+        errors.add(:email, I18n.t('share.errors.message.email_is_not_authorized'))
       end
-    else
-      # email is allowed
+    else 
+      # domain is allowed => let it go
     end
   end
 
