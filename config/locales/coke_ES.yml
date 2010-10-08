@@ -474,7 +474,7 @@ coke_ES:
     duration: "Duraci\xC3\xB3n"
     autofill: Autofill
     song_from: "canci\xC3\xB3n de"
-    save_confirmation: "\xC2\xBFSeguro que quieres guardarlo?"
+    save_confirmation: ""
     total_time: Tiempo total
     cancel_playlist_text: "Si cancelas tu mix los cambios desaparecer\xC3\xA1n, al igual que las canciones que hayas agregado. <br/> \xC2\xBFEst\xC3\xA1s seguro que quieres cancelarlo?"
     autofill_option_text: "La opci\xC3\xB3n de autofill te permitir\xC3\xA1 completar tu mix con canciones recomendadas seg\xC3\xBAn el estilo de las que ya hayas agregado."
@@ -484,10 +484,10 @@ coke_ES:
     unable_save: No se puede guardar este mix
     saving_order: Orden de guardar
     tracks_remaining: tracks pendientes de publicar
-    delete_text: "\xC2\xBFSeguro quieres borrar este mix?"
     tag_your_playlist: Etiqueta tu mix
-    rules: Reglas del mix
+    delete_text: "\xC2\xBFSeguro quieres borrar este mix?"
     edit_confirm_text: "Las canciones seleccionadas para tu mix han quedado guardadas. \xC2\xBFQuieres hacer alguna modificaci\xC3\xB3n?"
+    rules: Reglas del mix
     minimum_songs_full: "m\xC3\xADnimo de {{num}} canciones para escucharlas t\xC3\xBA"
     full_listen: "<li>Necesitas agregar <b class='red'>{{songsleft}}</b> canciones m\xC3\xA1s para que puedas escuchar completas las canciones de tu propio mix. Cuando tu mix tenga {{maxsongs}} canciones, este alerta cambia a color verde.<br /><br /><b>TIP:</b> \xC2\xA1Usa el b\xC3\xB3t\xC3\xB3n <b class='green'>'Autofill'</b> para agregar 10 canciones m\xC3\xA1s a tu mix!</li>"
     name_your_playlist: Nombre de tu mix
@@ -496,8 +496,8 @@ coke_ES:
     lucky_10_desc: "Usa este bot\xC3\xB3n para agregar 10 canciones m\xC3\xA1s que creemos te van a gustar..."
     seperated_commas: "(sep\xC3\xA1ralas con comas)"
     avatar_delete_confirm_title: "Confirmaci\xC3\xB3n de avatar eliminado"
-    playlist_name: Nombre del mix
     lucky_10: Autofill
+    playlist_name: Nombre del mix
     select_your_songs_text: "Los resultados de la b\xC3\xBAsqueda de canciones aparecer\xC3\xA1n aqu\xC3\xAD.<br/>Arrastra las canciones que te gustan<br/>y ponlas en la columna de la derecha<br/>para crear tu mix"
     last_playlist: "\xC3\x9Altimo mix"
     maximum_songs_from: "m\xC3\xA1ximo de {{num}} canciones de un mismo {{type}}"
@@ -505,8 +505,8 @@ coke_ES:
     why_not_try: "\xC2\xBFY qu\xC3\xA9 te parecen \xC3\xA9stas recomendaciones...?"
     drag_songs_here: "Arrastra las canciones aqu\xC3\xAD"
     avatar_delete_confirm_text: "\xC2\xBFConfirmar?"
-    continue_btn: Continuar
     delete_title: Borrar mix
+    continue_btn: Continuar
     drag_songs_here_text: "Incluye por lo menos 10 canciones,<br/>usando m\xC3\xA1ximo 3 canciones<br/>de un mismo artista<br/>o de un mismo \xC3\xA1lbum<br/>dentro del mismo mix. Debes tener 60 canciones para que puedas escucharlo t\xC3\xBA tambi\xC3\xA9n. Con m\xC3\xA1s de 10 pero menos 60, s\xC3\xB3lo tus amigos pueden escucharlo."
     add_update: AGREGAR / ACTUALIZAR
     songs_from_album: "canciones del \xC3\xA1lbum"
@@ -514,16 +514,16 @@ coke_ES:
     song_from_mix: "canci\xC3\xB3n de este mix"
     name_dialog: "\xC2\xBFC\xC3\xB3mo quieres que se llame tu mix?"
     no_thanks: No, gracias
-    continue: Continuar
     from_mix: "canci\xC3\xB3n/es de este mix"
+    continue: Continuar
     unable_save_text: Tu mix tiene errores. Deben corregirse para que puedas compartirlo con todos.
     create_new: Crear un nuevo mix
     save_your_playlist: Guarda tu mix
     songs_from_mix: canciones de este mix
     you_have: Tienes
     picture: Foto para tu mix
-    copy: Copiar mix
     select_your_songs: Selecciona tus canciones.
+    copy: Copiar mix
     congrats: "<li><b>\xC2\xA1Felicidades!</b> \xC2\xA1Ya puedes escuchar tu mix completo!</li>"
     song_from_album: "canci\xC3\xB3n del \xC3\xA1lbum"
   forgot: 
@@ -610,15 +610,15 @@ coke_ES:
   registration: 
     sign_up: "Reg\xC3\xADstrate"
     sidebox: 
-      loop_text: "ent\xC3\xA9rate en tiempo real de lo que est\xC3\xA1n oyendo, y colecciona o escucha las canciones que m\xC3\xA1s te gusten."
+      loop_text: "Ent\xC3\xA9rate en tiempo real de lo que est\xC3\xA1n oyendo, y colecciona o escucha las canciones que m\xC3\xA1s te gusten."
       work_title: Pon tus conocimientos a trabajar
       create_title: Crea tus mixes de canciones
       friends_text: "Con tan s\xC3\xB3lo un clic, comienza a seguir a tus amigos, para estar al tanto de sus actividades en Twitter y otras noticias."
       badges_title: "G\xC3\xA1nate badges"
       friends_title: Sigue a tus amigos
       loop_title: "descubre m\xC3\xBAsica con tus amigos"
-      badges_text: "nuestro sistema de recomendaciones crea estaciones de radio hechas espec\xC3\xADficamente a tu medida con todos tus artistas favoritos."
-      work_text: utiliza los comentarios y los puntajes para opinar sobre los gustos musicales de tus amigos y sus mixes.
+      badges_text: "Nuestro sistema de recomendaciones crea estaciones de radio hechas espec\xC3\xADficamente a tu medida con todos tus artistas favoritos."
+      work_text: Utiliza los comentarios y los puntajes para opinar sobre los gustos musicales de tus amigos y sus mixes.
       create_text: "Si te gustar\xC3\xADa convertirte en un DJ, crea aqu\xC3\xAD tus propios mixes, agregando las canciones que quieras."
     sign_up_exclamation: "\xC2\xA1Reg\xC3\xADstrate!"
     sign_in: ""
@@ -709,7 +709,7 @@ coke_ES:
     terms_and_privacy_must_be_accepted: "Los t\xC3\xA9rminos de uso y la pol\xC3\xADtica de privacidad deben aceptarse"
     complete_all_fields_in_red: Completa todos los campos en rojo
     msn_login_error: Error de Login de Coca-Cola.fm. Intenta ingresar nuevamente.
-    customize: Ajusta tu perfil en Coca-Cola.fm
+    customize: Completa tu perfil en Coca-Cola.fm
     complete: Completar
     thats_it: "\xC2\xA1Listo!"
     sidebar: 
@@ -721,7 +721,7 @@ coke_ES:
       discover_title: "Descubre m\xC3\xBAsica con tus amigos"
       playlist_text: Si quieres convertirte en DJ, crea tus propios mixes agregando canciones que te gusten.
       follow_text: "Con s\xC3\xB3lo un clic puedes seguir a tus artistas favoritos y mantenerte al tanto de su Twitter y otras noticias."
-      radio_text: "nuestro sistema de recomendaciones crea estaciones de radio hechas espec\xC3\xADficamente a tu medida con todos tus artistas favoritos."
+      radio_text: "Nuestro sistema de recomendaciones crea estaciones de radio hechas espec\xC3\xADficamente a tu medida con todos tus artistas favoritos."
       follow_title: Sigue a tus artistas favoritos
     send: Enviar
     email_address: "Tu direcci\xC3\xB3n de mail"
@@ -1177,11 +1177,11 @@ coke_ES:
       category_error: Reporte de errores
       faq: "Preguntas m\xC3\xA1s frecuentes"
       category_security: Mi seguridad
-      category_business: "Informaciones generales sobre negocios o relaciones p\xC3\xBAblicas"
       category: "Categor\xC3\xADa"
+      category_business: "Informaciones generales sobre negocios o relaciones p\xC3\xBAblicas"
       submit: "Env\xC3\xADa tu mensaje"
-      support_form: "Formulario de soporte t\xC3\xA9cnico"
       welcome: "Bienvenido a la secci\xC3\xB3n de soporte t\xC3\xA9cnico de Coca-Cola.fm"
+      support_form: "Formulario de soporte t\xC3\xA9cnico"
       country: !binary |
         UGHDrXM=
 
@@ -1190,8 +1190,8 @@ coke_ES:
       privacy_text: "Ent\xC3\xA9rate c\xC3\xB3mo maneja Coca-Cola.fm temas como spam, suplantaci\xC3\xB3n, marcas, derechos reservados y otros aspectos legales."
       os: Sistema operativo
       business_inquires: "\xC2\xBFInformaciones generales sobre negocios?"
-      business_inquires_text: Por favor contactar
       header: "Queremos responder tus preguntas lo m\xC3\xA1s rapido posible para que puedas seguir disfrutando de Coca-Cola.fm"
+      business_inquires_text: Por favor contactar
       support_form_text: "Si tienes alguna pregunta o problema que no has podido resolver con la informaci\xC3\xB3n incluida en esta p\xC3\xA1gina o el link, o quieres dejar alg\xC3\xBAn comentario, puedes enviarnos un mensaje completando este formulario."
       resources: Recursos
       new_cyloop: "\xC2\xBFNuevo en Coca-Cola.fm?"
@@ -1355,7 +1355,7 @@ coke_ES:
   alert: 
     blocking: ""
   tweet: 
-    message: Estoy escuhando este mix en Coca-Cola.fm
+    message: Estoy escuchando este mix en Coca-Cola.fm
   users: 
     new: 
       step_1_vignette_get_music_recommendations: "Recibe recomendaciones de m\xC3\xBAsica elegida especialmente para ti"
@@ -1411,19 +1411,19 @@ coke_ES:
     search_albums: "Buscar \xC3\xA1lbumes"
     discover: Descubrir
   user: 
+    marketing_opt_out: "Por favor no me env\xC3\xADen mails de parte de Coca-Cola.fm o sus sitios relacionados."
     background_repeats: 
       horizontal_repeat: "Repetici\xC3\xB3n horizontal"
       full_repeat: "Repetici\xC3\xB3n completa"
       no_repeat: No repetir
       vertical_repeat: "Repetici\xC3\xB3n vertical"
-    marketing_opt_out: "Por favor no me env\xC3\xADen mails de parte de Coca-Cola.fm o sus sitios relacionados."
     color_links: Color del enlace
-    background_fixed_false: "No"
     name: Nombre
+    background_fixed_false: "No"
     forgot_message: "Coca-Cola.fm te enviar\xC3\xA1 instrucciones al mail registrado con tu cuenta. Por favor, ingresa tu mail."
     background_align: Alineamiento del fondo
-    slug: Elige tu nickname
     city_name: Ciudad
+    slug: Elige tu nickname
     receives_following_notifications: Avisarme cuando alguien empiece a seguirme
     is_not_following_anybody: "{{user_name}} no est\xC3\xA1 siguiendo a nadie"
     confirmation: 
@@ -1463,12 +1463,12 @@ coke_ES:
     doesnt_have_any_followers: "{{user_name}} no tiene seguidores"
     remove_avatar: Eliminar imagen
     short_bio: Bio en corto
-    gender: Sexo
     avatar: Imagen
-    negative_captcha: No completar este campo
+    gender: Sexo
     background_fixed: Fondo ajustado
-    privacy_policy_instructions: "\xC2\xA1Nuestra {{link}} existe para protegerte! Por favor l\xC3\xA9ela y confirma que est\xC3\xA1s de acuerdo con sus t\xC3\xA9rminos."
+    negative_captcha: No completar este campo
     color_main_font: "Color de la tipograf\xC3\xADa principal"
+    privacy_policy_instructions: "\xC2\xA1Nuestra {{link}} existe para protegerte! Por favor l\xC3\xA9ela y confirma que est\xC3\xA1s de acuerdo con sus t\xC3\xA9rminos."
     background_repeat: "Repetici\xC3\xB3n del fondo"
     has_no_tweet: "{{user_name}} no tiene tweets"
     has_no_followers: "{{user_name}} no tiene seguidores"
@@ -1478,9 +1478,9 @@ coke_ES:
     dont_stay_locked_out: "\xC2\xA1No te quedes fuera!"
     time_zone: Zona horaria
     saved: Tus preferencias han sido guardadas.
-    privacy_policy: "Pol\xC3\xADtica de  privacidad"
-    password: "Contrase\xC3\xB1a"
     color_header_bg: Color del encabezado
+    password: "Contrase\xC3\xB1a"
+    privacy_policy: "Pol\xC3\xADtica de  privacidad"
     hasnt_create_any_station: "{{user_name}} no ha creado estaciones de radio"
     born_on: Fecha de nacimiento
     has_no_activity: "{{user_name}} no tiene actividad"
