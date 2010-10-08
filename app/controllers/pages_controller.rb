@@ -35,6 +35,10 @@ class PagesController < ApplicationController
     render "pages/#{site_code}/faq"
   end
 
+  def bases_del_concurso
+    render "pages/#{site_code}/bases_del_concurso"
+  end
+
   def feedback
     render :layout => false if request.xhr?
     if request.post?
