@@ -842,38 +842,38 @@ module ApplicationHelper
     error_message_on model, method, :prepend_text => (!key.to_s.empty? ? "#{t(key)} " : "")
   end
 
-  def cyloop_logo_path(sm=true)
-    sufix = "_sm" if sm
-
-    path = case site_code.to_s
-    when 'msnbr'
-      'br'
-    when 'msnmx'
-      'mx'
-    when 'msncaen'
-      'canada_en'
-    when 'msncafr'
-      'canada_fr'
-    when 'msnlatam'
-      'latam'
-    when 'msnlatino'
-      'latino'
-    when 'msnar'
-      'ar'
-    else
-      return '/images/cyloop_logo.png'
-    end
-    "/images/msn_#{path}_music#{sufix}.png"
-  end
-
   def nice_elapsed_time(timestamp)
     time = Time.at(timestamp.to_i)
     distance_of_time_in_words_to_now(time, true)
   end
 
+  def coke_logo_path
+    logo_home = "/images/logo_home.png"
+    path = (( controller_name == 'pages' && action_name == 'home' ) ||
+           ( controller_name == 'radio' && action_name == 'index' && params[:station_id].nil? )) ? logo_home : nil
+
+    if path.nil?
+      path = case site_code.to_s
+             when 'cokebr'
+               "/images/logo_#{site_code}.png"
+             when 'cokear', 'cokemx', 'cokelatam'
+               "/images/logo_es.png"
+             else
+                logo_home
+             end
+    end
+
+    return path
+  end
+
   def market_logo
-    image = image_tag(cyloop_logo_path(false), :id => 'logo', :class => 'png_fix')
-    link_to(image, msn_home_page_link_path)
+    image = image_tag(coke_logo_path, :id => 'logo', :class => 'png_fix')
+    content = link_to(image, home_path)
+    if (['cokear', 'cokemx', 'cokelatam'].include?(site_code) && ( (controller_name == 'pages' && action_name == 'home') || 
+                                                                   (controller_name == 'radio' && action_name == 'index' && params[:station_id].nil?) ))
+      content << image_tag("/images/slogan_home_es.png", :id => 'slogan', :class => 'png_fix')
+    end
+    content
   end
   
   def artist_or_user_name(artist_or_user)
