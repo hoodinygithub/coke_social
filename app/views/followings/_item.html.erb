@@ -9,7 +9,7 @@
   </div>
   <div class="follower_actions w_settings">
     <%= follow_button(:account => item, :remove_div => (params[:controller] != 'followers' && page_owner?) ) %>
-    <% if item != current_user %>
+    <% if item != current_user && current_user %>
       <a href="#" class="black_button settings_button">
         <span><span>
           <img src="/images/settings_button.png" class="png_fix" alt="" />

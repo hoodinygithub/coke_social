@@ -404,7 +404,7 @@ module ApplicationHelper
     attrs = if is_msn_messenger_enabled? && current_site.is_msn?
       html_attrs.merge( 'xmlns:msgr' => 'http://messenger.live.com/2009/ui-tags', 'xml:lang' => current_site.default_locale.to_s.downcase.split('_').join('-') )
     else
-      html_attrs
+      html_attrs.merge( 'xmlns:og' => 'http://opengraphprotocol.org/schema/', 'xmlns:fb' => 'http://www.facebook.com/2008/fbml' )
     end
     attrs.map{|k,v| "#{k}='#{v}'"}.join(" ")
   end
@@ -894,7 +894,11 @@ module ApplicationHelper
   end
 
   def action_for(item)
-    current_user.blocks?(item) ? 'unblock' : 'block'
+    if logged_in?
+      current_user.blocks?(item) ? 'unblock' : 'block'
+    else
+      'block'
+    end
   end
   
   #'Movin Out Anthony's Song Out Anthonys Songs Song'
