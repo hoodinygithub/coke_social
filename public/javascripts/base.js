@@ -2212,6 +2212,7 @@ Base.playlists.selectTag = function() {
 Base.playlists.showTagsLayer = function() {
   $('ul.selected_tags li').remove();
   pre_selected_tags = $('#facebox .real_tags,input.edit_tags').val();
+  $("ul.available_tags li").show();
   if ( pre_selected_tags != "") {
     $('#selected_tags').val(pre_selected_tags);
     $.each(pre_selected_tags.split(','), function() {
