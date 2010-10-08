@@ -847,6 +847,30 @@ module ApplicationHelper
     distance_of_time_in_words_to_now(time, true)
   end
 
+def cyloop_logo_path(sm=true)
+    sufix = "_sm" if sm
+
+    path = case site_code.to_s
+    when 'msnbr'
+      'br'
+    when 'msnmx'
+      'mx'
+    when 'msncaen'
+      'canada_en'
+    when 'msncafr'
+      'canada_fr'
+    when 'msnlatam'
+      'latam'
+    when 'msnlatino'
+      'latino'
+    when 'msnar'
+      'ar'
+    else
+      return '/images/cyloop_logo.png'
+    end
+    "/images/msn_#{path}_music#{sufix}.png"
+  end
+
   def coke_logo_path
     logo_home = "/images/logo_home.png"
     path = (( controller_name == 'pages' && action_name == 'home' ) ||
