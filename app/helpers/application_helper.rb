@@ -867,7 +867,7 @@ module ApplicationHelper
   end
 
   def market_logo
-    image = image_tag(coke_logo_path, :id => 'logo', :class => 'png_fix')
+    image = image_tag(coke_logo_path, :id => 'logo', :class => 'png_fix', :alt => 'Coca-Cola', :title => 'Coca-Cola')
     content = link_to(image, home_path)
     if (['cokear', 'cokemx', 'cokelatam'].include?(site_code) && ( (controller_name == 'pages' && action_name == 'home') || 
                                                                    (controller_name == 'radio' && action_name == 'index' && params[:station_id].nil?) ))
