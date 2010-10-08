@@ -296,7 +296,7 @@ $.TextboxListBit = function(type, value, textboxlist, _options){
 			}
 			bit.children().click(function(e){ e.stopPropagation(); e.preventDefault(); });
 		} else {
-			element = $('<input type="text" readonly="readonly" class="'+ typeprefix +'-input" autocomplete="off" />').val(self.value ? self.value[1] : '').appendTo(bit);
+			element = $('<input type="text" readonly="readonly" tabindex="1000" class="'+ typeprefix +'-input" autocomplete="off" />').val(self.value ? self.value[1] : '').appendTo(bit);
 			if (chk(options.tabIndex)) element.tabIndex = options.tabIndex;
 			if (options.growing) new $.GrowingInput(element, options.growingOptions);		
 			element.focus(function(){ focus(true); }).blur(function(){
