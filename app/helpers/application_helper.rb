@@ -863,6 +863,9 @@ module ApplicationHelper
              end
     end
 
+    # WHEN ALL LOGOS ARE AVAILABLE
+    # path = "/images/logo_#{site_code.to_s}" if path.nil?
+
     return path
   end
 
