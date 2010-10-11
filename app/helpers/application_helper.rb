@@ -874,9 +874,7 @@ def cyloop_logo_path(sm=true)
   def coke_logo_path
     logo_home = "/images/logo_home.png"
     path = (( controller_name == 'pages' && action_name == 'home' ) ||
-           ( controller_name == 'radio' && action_name == 'index' && params[:station_id].nil? )) ? logo_home
-                                                                                                 : "/images/logo_#{site_code.to_s}.png"
-    end
+           ( controller_name == 'radio' && action_name == 'index' && params[:station_id].nil? )) ? logo_home : "/images/logo_#{site_code.to_s}.png"
     return path
   end
 
