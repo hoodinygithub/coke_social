@@ -36,7 +36,7 @@ class PagesController < ApplicationController
   end
 
   def bases_del_concurso
-    render "pages/#{site_code}/bases_del_concurso"
+    render "pages/#{site_code}/bases_del_concurso", :layout => "support_page"
   end
 
   def feedback
