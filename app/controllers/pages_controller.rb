@@ -68,6 +68,7 @@ class PagesController < ApplicationController
   end
 
   def profile_not_found
+    render :layout => "support_page"
   end
 
   def profile_not_available
