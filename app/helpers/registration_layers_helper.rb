@@ -9,7 +9,7 @@ module RegistrationLayersHelper
   
   def layer_background_image
     # "cyloop/#{(rand(10) + 1)}.jpg"
-    "coke/1.jpg"
+    "#{current_site.code.to_s}/1.jpg"
   end
 
   def registered_link_to(text, params)
