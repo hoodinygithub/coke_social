@@ -878,9 +878,9 @@ def cyloop_logo_path(sm=true)
 
     if path.nil?
       path = case site_code.to_s
-             when 'cokebr'
+             when 'cokebr', 'cokear'
                "/images/logo_#{site_code}.png"
-             when 'cokear', 'cokemx', 'cokelatam'
+             when 'cokemx', 'cokelatam'
                "/images/logo_es.png"
              else
                 logo_home
@@ -896,13 +896,20 @@ def cyloop_logo_path(sm=true)
   def market_logo
     image = image_tag(coke_logo_path, :id => 'logo', :class => 'png_fix', :alt => 'Coca-Cola', :title => 'Coca-Cola')
     content = link_to(image, home_path)
-    if (['cokear', 'cokemx', 'cokelatam'].include?(site_code) && ( (controller_name == 'pages' && action_name == 'home') || 
-                                                                   (controller_name == 'radio' && action_name == 'index' && params[:station_id].nil?) ))
-      content << image_tag("/images/slogan_home_es.png", :id => 'slogan', :class => 'png_fix')
+    if ( (controller_name == 'pages' && action_name == 'home') || (controller_name == 'radio' && action_name == 'index' && params[:station_id].nil?) )
+
+      # WHEN ALL SLOGANS ARE AVAILABLE
+      # content << image_tag("/images/slogan_#{site_code}.png", :id => 'slogan', :class => 'png_fix')
+
+      if ['cokemx', 'cokelatam'].include?(site_code)
+        content << image_tag("/images/slogan_es.png", :id => 'slogan', :class => 'png_fix')
+      else
+        content << image_tag("/images/slogan_#{site_code}.png", :id => 'slogan', :class => 'png_fix')
+      end
     end
     content
   end
-  
+
   def artist_or_user_name(artist_or_user)
     if artist_or_user.is_a?(Artist)
       artist_or_user.name
