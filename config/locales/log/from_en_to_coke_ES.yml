@@ -1,6 +1,6 @@
 --- 
 actions: 
-  search_text: Search Music on Cyloop
+  disaprove: Disapprove
 artist: 
   be_the_first_to_create_station: Be the first to create a station for {{user_name}}
 buylink: 
@@ -8,18 +8,45 @@ buylink:
   select_store: Select your store
   song: Buy this song
 dashboards: 
-  user_has_no_playlists: "{{name}} has no playlists"
+  latest_tweet: LATEST TWEET
 modules: 
-  profile: 
-    top_playlists: 
-      title: Top playlists
+  edit_station: 
+    new_name: New Name
+    title: Edit Station
+    no_edit_rights: You don't have rights to edit this station.
+    blank_station_name_message: You must enter a name for this station.
+  badge_notifications: 
+    title_plural: Congratulations, you've unlocked {{badge_count}} new badges!
+    title_singular: Congratulations, you've unlocked a new badge!
+  latest_badge_awards: 
+    title: Latest Badge Awards
+  network_activity: 
+    title: Network Activity
+  emotions: 
+    title: Emotions
   more_playlists: 
     title: More Playlists
-  top_playlists: 
-    title: Top Playlists
+  delete_station: 
+    title: Delete Station
+    confirmation_text: Are you sure you want to delete {{station_name}}?
+  concerts: 
+    title: Concerts
+  information: 
+    title: Information
   delete_playlist: 
     title: Delete This Playlist
     confirmation_text: Deleting this playlist is a permanent action. Are you sure you still want to delete this playlist?
+  members: 
+    title: Members
+  features_and_galleries: 
+    title: Features and Photo Galleries
+  my_stations: 
+    includes: Includes
+    station_name: Station Name
+  interviews: 
+    title: Interviews
+  biography: 
+    title: Biography
 number: 
   format: 
     separator: .
@@ -42,19 +69,11 @@ number:
       separator: .
       delimiter: ","
 share: 
-  song: 
-    marketing: |-
-      Copyright \xC2\xA9 2008 Cyloop LLC. All rights reserved. Cyloop, Cyloop.com, the Cyloop logo and all other Cyloop marks
-      
-      contained herein are trademarks of Hoodiny Entertainment Group and/or its affiliated companies.
-      All other marks
-      contained herein are the property of their respective owners. Reproduction in whole or in
-      part in any
-      form or medium without express written permission of Cyloop LLC, is prohibited.
-      
-      Cyloop, LLC, 555 Washington Avenue, Miami Beach, FL 33139
-      Microsoft Corporation, One Microsoft Way, Redmond, WA 98052-6399, USA \xC2\xA9; 2008 Microsoft Corporation.
-      All rights reserved.
+  errors: 
+    message: 
+      friend_email_blank: Friend email can't be blank
+      user_email_blank: Email can't be blank
+      user_name_blank: Name can't be blank
 player: 
   license_message: 
     body: Due to radio licensing, you are unable to listen to full tracks when playing your own playlist.
@@ -110,29 +129,7 @@ stations:
   no_stations_created: No stations have been created
   last_station_created_at: Last station created {{when}} ago
 playlists: 
-  cancel_playlist: Cancel Playlist?
-  edit: Edit Your Playlist
-  autofill_option_text: The auto-fill option will allow you to fill your playlist with recommended songs based on what you have already populated.
-  cancel_playlist_text: Cancelling your playlist will revert all your additions/edits.<br/>Are you sure you want to cancel?
-  unable_save: Unable to save this playlist
-  name_your_playlist: Name of your playlist
-  full_listen: <li>You need <b class='red'>{{songsleft}}</b> more songs to be able to listen to your playlist in full. When your playlist reaches {{maxsongs}} songs, this tab will turn green.<br /><br /><b>TIP:</b> Use the <b class='green'>'Lucky 10'</b> button to help add songs to your playlist!</li>
-  delete_text: Are you sure you want to delete this playlist?
-  edit_confirm_text: Your playlist edits have been saved. Would you like to continue editing?
-  rules: Playlist Rules
-  tag_your_playlist: Tag your playlist
-  search_for_music: Search for music to add to your playlist
-  playlist_name: Playlist Name
-  last_playlist: Last Playlist
-  select_your_songs_text: Song search results will show up here{{break}}drag the songs you like the container to{{break}}the right to create your playlist
-  delete_title: Delete Playlist
-  name_dialog: What would you like to name this playlist?
-  create_new: Create a New Playlist
-  unable_save_text: You have errors with your playlist.  These  errors must be corrected before you can share it with the rest of the community.
-  congrats: <li><b>Congratulations!</b> You can now listen to your playlist in full!</li>
-  copy: Copy Playlist
-  save_your_playlist: Save your playlist
-  picture: Picture of your playlist
+  save_confirmation: Save Confirmation
 forgot: 
   captcha_invalid: You have entered the reCAPTCHA code incorrectly.  Do try again!
   reset_message_sent: Thank you. Instructions to reset your password have been sent to the email you just provided.
@@ -151,13 +148,10 @@ albums:
 custom_profiles: 
   sony_disclaimer: The Walkman&#8482; symbol and logo are trademarks from Sony Corporation.
 messenger_player: 
-  recengineerror_NO_PLAYLIST: No playlist could be found
+  msn_music_is_free: MSN Music is free,
 time: 
-  am: am
   formats: 
-    default: "%a, %d %b %Y %H:%M:%S %z"
     short: "%d %b %H:%M"
-    long: "%B %d, %Y %H:%M"
   pm: pm
 account_settings: 
   email_me_communications: Send me periodical Cyloop Newsletters and communications
@@ -170,15 +164,8 @@ campaigns:
   start_date_gt_end_date: Start date must be less than end date
   updated_success: Campaign successfully updated
 registration: 
-  layers: 
-    create_playlist: To create a mix, {{link}} to log in.
-    review: To review this mix, {{link}} to log in.
-    coke_music_is_free: Cyloop is free, {{link}}
-    follow: Follow
-    win: Win
-    create: Create
-    search: Search
-    copy: To copy this mix, {{link}} to log in.
+  sidebox: 
+    work_text: let your friends know what you think about their music taste by reviewing and rating their playlists.
 date: 
   formats: 
     default: "%Y-%m-%d"
@@ -190,6 +177,8 @@ information:
   genre: Genre
 meta: 
   title: Cyloop | What do you want to listen to?
+  description: Discover new music and videos from largest online library for free, follow what you friends listen to, and create and share playlists and personalized radio stations from your favorite artists.
+  keywords: Discover music, discover new music, discover videos, listen to music, listen to free music, free music, fee videos, music artists, discover artists, discover music artists, online music library, largest online music library, free online music, free online music library, follow friends, following friends, follower friends, create playlists, share playlists, create music playlists, share music playlists, personalized radio stations, favorite artists
 radio: 
   search_hint: Enter the name of an artist
   select_recommended_stations_below: "Or if you can\xE2\x80\x99t think of any, select a recommended station from below"
@@ -223,55 +212,82 @@ support:
   select: 
     prompt: Please select
 widget: 
-  home: 
-    recommended_stations: STATIONS RECOMMENDED BY CYLOOP
-    recommended_mixes: MIXES RECOMMENDED BY CYLOOP
+  msn_music_is_free: MSN Music is free,
 badges: 
-  ratings_flying_tomatoes: 
-    qualification: For having received mostly 1 or 2 stars for my first 25 playlist ratings
   dj_superstar: 
+    name: Superstar DJ
     qualification: is earned when 5000 people listen to my playlists
+  ratings_flying_tomatoes: 
+    name: Flying Tomatoes
+    qualification: For having received mostly 1 or 2 stars for my first 25 playlist ratings
   mixmaster_black: 
+    name: "Mixmaster: Black Belt"
     qualification: For having created 50 playlists
+  leader: 
+    name: Leader
+    qualification: For being followed by 5 users
   mixmaster_green: 
+    name: "Mixmaster: Green Belt"
     qualification: For having created 10 playlists
+  dj_unbeatable: 
+    name: Unbeatable DJ
+    qualification: For having created 5 playists in a span of 24 hours
   mixmaster_brown: 
+    name: "Mixmaster: Brown Belt"
     qualification: For having created 25 playlists
-  critic_objective: 
-    qualification: For having rated most of the 25 playlists with 3 stars
-  record_gold: 
-    qualification: When 20 different people listened to {{playlist_name}}
   dj_radio: 
+    name: Radio DJ
     qualification: is earned when 1000 people listen to my playlists
-  critic_best_friend: 
-    qualification: For having rated most of the 25 playlists with 4 or 5 stars
-  critic_harsh: 
-    qualification: For having rated most of the 25 playlists with 1 or 2 stars
-  dj_bedroom: 
-    qualification: is earned when 5 people listen to my playlists
+  master: 
+    name: Master
+    qualification: For being followed by 25 users
+  networker_gold: 
+    name: "Networker: Gold"
+    qualification: For following 100 users
+  idol: 
+    name: Idol
+    qualification: For being followed by 500 users
+  networker_diamond: 
+    name: "Networker: Diamond"
+    qualification: For following 500 users
+  networker_silver: 
+    name: "Networker: Silver"
+    qualification: For following 50 users
   dj_club: 
+    name: Club DJ
     qualification: is earned when 100 people listen to my playlists
-  ratings_stading_ovation: 
-    qualification: For having received mostly 4 or 5 stars for my first 25 playlist ratings
-  record_platinum: 
-    qualification: When 100 different people listened to {{playlist_name}}
   ratings_ok: 
-    qualification: For having received mostly 3 stars for my first 25 playlist ratings
-  record_diamond: 
-    qualification: When 500 different people listened to {{playlist_name}}
-  opinion_leader: 
-    qualification: For having rated 15 different playlists
-  superuser: 
-    qualification: "For having created at least one of each of the following consecutively for seven days: 1 playlist, 1 new follow, 1 rating of a playlist"
+    name: O.K.
   dj_private_party: 
+    name: Private Party DJ
     qualification: is earned when 10 people listen to my playlists
+  opinion_leader: 
+    name: Opinion Leader
+    qualification: For having rated 15 different playlists
+  others_that_have_this_badge: Others users that have this badge
+  networker_platinum: 
+    name: "Networker: Platinum"
+    qualification: For following 250 users
   mixmaster_red: 
+    name: "Mixmaster: Red Belt"
     qualification: For having created 100 playlists
-  trifecta: 
-    qualification: For having created 3 playlists, followed 3 new users and rated 3 new playlists in a span of 24 hours
+  networker: 
+    name: Networker
+    qualification: For following 5 users
+  networker_bronze: 
+    name: "Networker: Bronze"
+    qualification: For following 25 users
+  email: 
+    subject: Congratulations! You have won a new badge on Coca-Cola.fm
+    message: "Congratulations! You have been awarded {{badge_name}}: {{badge_qualification}}. Log in to view your new badge and see who else has one too.        "
+  guru: 
+    name: Guru
+    qualification: For being followed by 100 users
   mixmaster_white: 
+    name: "Mixmaster: White Belt"
     qualification: For having created my first playlist
   mixmaster_yellow: 
+    name: "Mixmaster: Yellow Belt"
     qualification: For having created 5 playlists
 basics: 
   playlists: Playlists
@@ -287,11 +303,7 @@ cancellation:
     body: Your Cyloop profile was removed.
 contact_us: 
   form: 
-    welcome: Welcome to Cyloop Support!
-    header: "We want to help you\xC2\xA0get the answers you need as quickly as possible so you can get back to enjoying all the innovative features Cyloop has to offer."
     privacy_text: Learn about what Cyloop does about Spam, Impersonation, Trademark, Copyright and other violations.
-    category_other_features: Ohter Features on Cyloop
-    new_cyloop: New to Cyloop?
 feedback: 
   country: Country
   title: Feedback
@@ -425,14 +437,9 @@ navigation:
   discover: Discover
 sessions: 
   new: 
-    register_cyloop: Register On Cyloop
-    register_link_msn: If you dont have a cyloop account, Go ahead and register to have it linked to your MSN ID.
-    recover_cyloop_password: Recover Cyloop Password
+    complete_registration: Complete Registration
 user: 
-  forgot_message: Cyloop will send password reset instructions to the email address associated with your account.  Please type your email address below.
-  marketing_opt_out: "I don\xE2\x80\x99t wish to receive emails from Cyloop or its partners."
-  cyloop_password: Cyloop Password
-  cyloop_email: Cyloop Email
+  background_fixed: Background Fixed
 biography: 
   no_bio_availible: No bio available
   management: 

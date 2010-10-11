@@ -1,19 +1,9 @@
 --- 
 actions: 
-  add_song_to_playlist: Add Song to Playlist
-  select_playlist: Select playlist
-  add_this_song_into_the_following_playlists: Add this song into the following playlists
-  add_to_playlist: Add to my Playlist
-  add_into_a_new_playlist: Add into a new playlist
-  create_a_playlist: Create a Playlist
+  view_more_songs: view more songs
 modules: 
-  profile: 
-    top_playlists: 
-      title: Top playlists
-  top_playlists: 
-    title: Top Playlists
-  delete_playlist: 
-    title: Delete This Playlist
+  top_songs: 
+    title: Top Songs
 dashboards: 
   user_has_no_playlists: "{{name}} has no playlists"
 artist: 
@@ -72,39 +62,35 @@ activerecord:
     messages: 
       inclusion: is not included in the list
 player: 
-  license_message: 
-    body: Due to radio licensing, you are unable to listen to full tracks when playing your own playlist.
+  max_skips_message: 
+    body: Unfortunately our music licenses force us to limit the number of songs you may skip each hour. If you want to hear something else, try creating another stations with a different artist.
 playlist_items: 
   create: 
     errors: 
       click_checkbox_first: In order to add this song, you must click on a checkbox beside the playlist you wish to add it to
 blocks: 
+  been_unblocked: "{{name}} has been unblocked."
+  blocked: Blocked
+  been_blocked: "{{name}} has been blocked."
   warning: 
-    title: Are you sure you want to block this person?
-    description_header: "By blocking:"
-    description_footer: You can unblock people just by starting to follow them again at any time.
+    description_bullet_1: Your updates won't show up on the blocked person's profile page.
+    description_bullet_2: You will no longer show up in the list of people the blocked person is following.
+    description_bullet_3: The blocked person will not be able to start following you.
 possessives: 
-  third_person: 
-    has_not_subscribed: "{{subject}} has not subscribed to any playlists."
-    latest_playlists: "{{subject}}'s Latest Playlists"
-    playlists: "{{subject}}'s Playlists"
-    has_not_playlists: "{{subject}} has no playlist."
-    top_playlists: "{{subject}}'s Top Playlists"
   first_person: 
-    has_not_subscribed: You have not subscribed to any playlists
-    playlists: My Playlists
-    has_not_playlists: You have no playlists.
     top_playlists: My Top Playlists
 songs: 
   play_confirmation: Enjoy {{title}}!
 marketing_msgs: 
   home_page: 
+    second: "La m\xC3\xBAsica y tus emociones se mezclan aqu\xC3\xAD."
     first: "En Coca-Cola.fm tus playlists hablen por t\xC3\xAD."
   playlist: 
+    second: "La m\xC3\xBAsica y tus emociones se mezclan aqu\xC3\xAD."
     first: "En Coca-Cola.fm tus playlists hablen por t\xC3\xAD."
 profile: 
   navigation: 
-    playlists: Playlists
+    songs: Songs
 chat: 
   moderator: 
     title: Moderator Module
@@ -119,21 +105,26 @@ stations:
   no_stations_created: No stations have been created
   last_station_created_at: Last station created {{when}} ago
 playlists: 
-  unable_save: Unable to save this playlist
-  song_from_mix: song from mix
-  unable_save_text: You have errors with your playlist.  These  errors must be corrected before you can share it with the rest of the community.
-  from_mix: from mix
-  congrats: <li><b>Congratulations!</b> You can now listen to your playlist in full!</li>
+  autofill_option_text: The auto-fill option will allow you to fill your playlist with recommended songs based on what you have already populated.
+  songs_from: songs from
+  full_listen: <li>You need <b class='red'>{{songsleft}}</b> more songs to be able to listen to your playlist in full. When your playlist reaches {{maxsongs}} songs, this tab will turn green.<br /><br /><b>TIP:</b> Use the <b class='green'>'Lucky 10'</b> button to help add songs to your playlist!</li>
+  minimum_songs_full: minimum of {{num}} songs to listen to full
+  lucky_10_desc: Everytime you click on "Lucky 10" we'll add 10 songs that we think you'll like...
+  maximum_songs_from: maximum of {{num}} songs from the same {{type}}
+  select_your_songs_text: Song search results will show up here{{break}}drag the songs you like the container to{{break}}the right to create your playlist
+  drag_songs_here: Drag Songs Here
+  songs_from_album: songs from the album
+  drag_songs_here_text: include at least 10 songs,{{break}}with no more than 2 songs{{break}}from the same artist{{break}}or the same album
+  select_your_songs: Select Your Songs
   songs_from_mix: songs from mix
 forgot: 
   captcha_invalid: You have entered the reCAPTCHA code incorrectly.  Do try again!
   reset_message_sent: Thank you. Instructions to reset your password have been sent to the email you just provided.
 messenger_player: 
-  recengineerror_NO_PLAYLIST: No playlist could be found
+  we_hope_you_enjoyed: We hope you enjoyed the songs that you've heard. To hear more songs,
 activity: 
-  created_playlist: Created Playlist '{{playlist}}'
   filters: 
-    playlists: PLAYLISTS
+    songs: SONGS
 albums: 
   label: Label
   year: Year
@@ -145,50 +136,17 @@ albums:
 custom_profiles: 
   sony_disclaimer: The Walkman&#8482; symbol and logo are trademarks from Sony Corporation.
 time: 
-  am: am
   formats: 
-    default: "%a, %d %b %Y %H:%M:%S %z"
     short: "%d %b %H:%M"
-    long: "%B %d, %Y %H:%M"
   pm: pm
 registration: 
-  sidebox: 
-    create_title: create your playlists of songs
-    create_text: if you have aspirations of becoming a DJ, create your own mixes adding songs you like to your playlists.
-    work_text: let your friends know what you think about their music taste by reviewing and rating their playlists.
-  confirmation: 
-    email: 
-      info: |
-        As a Cyloop member, make sure you check out these cool features:
-        
-        - Start collecting songs and creating your own music playlists to listen to and share anytime
-        
-        - Create your own personalized radio stations just by entering the name of your favorite artists and share them with friends
-        
-        - Get music recommendations picked just for you
-        
-        - Start following your friends and let yourself be followed by others
-        
-        - The more you use Cyloop logged in, the better Cyloop learns what music matters to you the most
-        
-        - Connect to your favorite artists, their tours and latest news
-        
-        - Connect with friends and fans from around the world
-        
-        - Invite your friends to join the fun!
-
   layers: 
-    add_mixer: To save this mix, {{link}} to login.
-    share_text: songs, mixes, and radios with your friends
-    add_song: To add this song to your playlist, {{link}} to login.
-  sidebar: 
-    playlist_title: create your playlist of songs
-    playlist_text: if you have aspirations of becoming a DJ, create your own mixes adding songs you like to your playlists.
+    sign_in_with_your_coke_id: sign in with your credentials
 account_settings: 
-  email_me_reviews_mixes: Send me an email when someone reviews/rates one of my mixes
   email_me_subscribes_mixes: Send me an email when someone subscribes to one of my mixes
+  email_me_reviews_mixes: Send me an email when someone reviews/rates one of my mixes
 meta: 
-  keywords: Discover music, discover new music, discover videos, listen to music, listen to free music, free music, fee videos, music artists, discover artists, discover music artists, online music library, largest online music library, free online music, free online music library, follow friends, following friends, follower friends, create playlists, share playlists, create music playlists, share music playlists, personalized radio stations, favorite artists
+  title: Cyloop | What do you want to listen to?
 campaigns: 
   destroyed_success: Campaign successfully destroyed
   created_success: Campaign successfully created
@@ -209,8 +167,8 @@ radio:
   search_hint: Enter the name of an artist
   select_recommended_stations_below: "Or if you can\xE2\x80\x99t think of any, select a recommended station from below"
   msn_stations: MSN Stations
-  create_new_station: Create New Station
   now_playing: Now Playing
+  create_new_station: Create New Station
   getting_started: To get started simply enter an artist name
 titles: 
   awaiting_approval: Waiting for approval to follow this user
@@ -240,11 +198,12 @@ followings:
       {{link}}
   awaiting_approval_from: You are awaiting approval from {{name}}.
 widget: 
+  we_hope_you_enjoyed: We hope you enjoyed the songs that you've heard. To hear more songs,
   registration: 
     share_text: songs, mixes, and radios with your friends
-  recengineerror_NO_PLAYLIST: No playlist could be found
+    listen_text: over {{count}} songs, all free
   home: 
-    recommended_mixes: MIXES RECOMMENDED BY CYLOOP
+    top_songs: Top Songs
 block: 
   blockee_id: User
 support: 
@@ -328,7 +287,7 @@ feedback:
   browser: Browser
   email: Your Email
 basics: 
-  mixes: Mixes
+  songs: Songs
 playlist: 
   edit_your_playlist: Edit your playlist
   review: REVIEW THIS PLAYLIST
@@ -367,22 +326,17 @@ settings:
     notifications: Notifications
     password: Password
 site: 
-  profile_not_found: Profile Not Found
-  faq: Frequently asked questions
-  private_profile: Private Profile
-  terms_and_conditions: Terms and conditions
-  support: Support
-  profile_not_available: Profile Not Available
-  safety_tips: Safety Tips
-  about_cyloop: About Cyloop
-  feedback: Feedback
-  about_hoodiny: About Hoodiny
-  privacy_policy: Privacy Policy
-  profile_not_available_sorry: Sorry but this profile is not available in your country
   sample_flag_description: Unfortunately this content is restricted for this territory and can't play in full. You should be able to listen to full songs from this artist and others similar in the Radio section.
-  profile_not_found_sorry: Sorry. We were unable to find a profile for {{profile}}.
 reset: 
+  insert_valid_info: Insert Valid Info
+  message_delivered: We've sent out instructions on resetting your password to your email address.  You should receive an email shortly with instructions.
   email: 
+    welcome: Hi, {{user}}
+    subject: Your Cyloop password
+    sig: |-
+      Keep enjoying and discovering music on Cyloop,
+      
+      The Cyloop Team
     message: |-
       You are receiving this email because a new password was requested for your Cyloop account.
       
@@ -395,6 +349,7 @@ reset:
 users: 
   new: 
     step_1_vignette_start_collecting_songs: Start collecting songs and creating your own music playlists
+    step_2_vignette_songs_align_identity: When you create a personalized radio station, its songs will be better aligned with your identity.
 sort: 
   highest_rated: HIGHEST RATED
   alphabetical: ALPHABETICAL
@@ -402,6 +357,8 @@ sort:
   newest: NEWEST
   latest: LATEST
   top: TOP
+tweet: 
+  message: Check out this mix on Coca-Cola.fm
 datetime: 
   prompts: 
     minute: Minute
@@ -430,19 +387,9 @@ datetime:
       one: 1 year
       other: "{{count}} years"
 home: 
-  recommended_mixes: MIXES RECOMMENDED BY CYLOOP
+  top_songs: Top Songs
 navigation: 
-  search_web: Search Web
   search_songs: Search Songs
-  search_artists: Search Artists
-  dashboard: Dashboard
-  search_stations: Search Stations
-  radio: Radio
-  search_users: Search People
-  search_people: Search People
-  homepage: Home
-  search_albums: Search Albums
-  discover: Discover
 sessions: 
   new: 
     register_cyloop: Register On Cyloop
@@ -460,20 +407,53 @@ sessions:
   destroy: 
     sign_out: Log out
 user: 
-  receives_following_notifications: Alert me when someone follows me
-  slug: Choose your Profile Name
-  terms_of_use: Terms of Use
-  terms_of_use_instructions: By signing up, you accept the {{link}} and confirm you're 13 or older
-  private_profile: Keep profile private?
-  twitter_username: Twitter Username
-  reset_password: Password Change
-  remove_avatar: Remove Image
-  terms_and_conditions: terms and conditions
-  websites: Websites
-  short_bio: Short bio
-  safety_tips: Safety Tips
-  time_zone: Time zone
-  saved: Your settings have been saved.
+  city_name: City
+  background_align: Background Align
+  forgot_message: Cyloop will send password reset instructions to the email address associated with your account.  Please type your email address below.
+  background_fixed_false: "No"
+  color_links: Link Color
+  background_repeats: 
+    full_repeat: Full Repeat
+    horizontal_repeat: Horizontal Repeat
+    no_repeat: No Repeat
+    vertical_repeat: Vertical Repeat
+  doesnt_have_any_subscriptions: "{{user_name}} doesn't have any subscriptions"
+  background_fixed_true: "Yes"
+  confirmation: 
+    click_here: click here
+    email_resend_failed: The confirmation e-mail could not be resent. Please try again later.
+    still_pending: Your account has not been confirmed. Please check your e-mail and follow the confirmation instructions, or {{click_here}} to resend your confirmation link.
+    email_resent: Your confirmation e-mail has been resent.
+  cyloop_password: Cyloop Password
+  forgot_your_password: Forgot your password?
+  background_alignments: 
+    upper_right: Upper Right
+    left: Left
+    lower_right: Lower Right
+    center: Center
+    upper_left: Upper Left
+    lower_left: Lower Left
+    right: Right
+    upper_center: Upper Center
+    lower_center: Lower Center
+  color_bg: Background Color
+  current_password: Current Password
+  female: Female
+  cyloop_email: Cyloop Email
+  background: Background Image
+  doesnt_have_any_followers: "{{user_name}} doesn't have any followers"
+  background_repeat: Background Repeat
+  color_main_font: Main Font Color
+  background_fixed: Background Fixed
+  gender: Gender
+  avatar: Image
+  has_no_followers: "{{user_name}} has no followers"
+  has_no_tweet: "{{user_name}} has no tweet"
+  dont_stay_locked_out: Don't stay locked out
+  color_header_bg: Header Color
+  email: Email
+  has_no_activity: "{{user_name}} has no activity"
+  born_on: Birth date
 biography: 
   no_bio_availible: No bio available
   management: 
@@ -486,11 +466,4 @@ following:
   approval: "{{name}} will now receive your updates"
   denial: "{{name}} will not be allowed to receive your updates"
 search: 
-  search_results: Search Results
-  search_hint: Search for your favorite artist & music
-  see_all_albums_with_term: see all albums with "{{term}}"
-  content_search_hint: Enter the name of an artist, album or song
-  search_title: Search
   see_all_songs_with_term: see all songs with "{{term}}"
-  see_all_artists_with_term: see all artists with "{{term}}"
-  search_results_for: Search results for
