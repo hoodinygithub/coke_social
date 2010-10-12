@@ -11,6 +11,7 @@
 #  msn_live_account_id :string(255)
 #  login_type_id       :integer(4)
 #  domain              :string(255)
+#  ssl_domain          :string(255)
 #
 
 class Site < ActiveRecord::Base
@@ -58,6 +59,9 @@ class Site < ActiveRecord::Base
   has_many :network_sites
   has_many :networks, :through => :network_sites
   
+  has_many :valid_tags
+  has_many :tags, :through => :valid_tags, :order => "tags.name ASC"
+  
   belongs_to :login_type
 
   # Things I hate in life: this method
@@ -85,10 +89,10 @@ class Site < ActiveRecord::Base
 
   def tag_counts_from_playlists(limit=60)
     options = { :select => "DISTINCT tags.*",
-                :joins => "INNER JOIN #{Tagging.table_name} ON #{Tag.table_name}.id = #{Tagging.table_name}.tag_id INNER JOIN #{Playlist.table_name} ON #{Tagging.table_name}.taggable_id = #{Playlist.table_name}.id AND #{Tagging.table_name}.taggable_type = 'Playlist'",
+                :joins => "INNER JOIN #{Tagging.table_name} ON #{Tag.table_name}.id = #{Tagging.table_name}.tag_id INNER JOIN #{Playlist.table_name} ON #{Tagging.table_name}.taggable_id = #{Playlist.table_name}.id AND #{Tagging.table_name}.taggable_type = 'Playlist' INNER JOIN valid_tags ON valid_tags.tag_id = #{Tag.table_name}.id",
                 :order => "taggings.created_at DESC",
-                # :conditions => "playlists.site_id = #{self.id}",
-                :conditions => "playlists.site_id in (21, 22, 23, 24)", # Temp: coke sites all share tags
+                :conditions => "playlists.site_id in (21, 22, 23, 24) and playlists.deleted_at IS NULL and valid_tags.site_id = #{self.id}",
+                #:conditions => "playlists.site_id = #{self.id} AND playlists.deleted_at IS NULL AND valid_tags.site_id = #{self.id}",
                 :limit => limit }
     
     Tag.all(options)

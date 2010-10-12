@@ -1,3 +1,25 @@
+# == Schema Information
+#
+# Table name: player_bases
+#
+#  id            :integer         primary key
+#  player_key    :string
+#  license       :string
+#  max_plays     :integer
+#  site_id       :integer
+#  partner_id    :integer
+#  max_skips     :integer
+#  skip_duration :integer
+#  id            :integer         primary key
+#  player_key    :string
+#  license       :string
+#  max_plays     :integer
+#  site_id       :integer
+#  partner_id    :integer
+#  max_skips     :integer
+#  skip_duration :integer
+#
+
 class Player::Player < Player::Base
 
   column :id,         :integer

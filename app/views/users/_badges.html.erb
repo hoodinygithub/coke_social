@@ -1,26 +1,26 @@
-<div class="box_content">
+<div class="box_content <%= "ignore_new" unless on_dashboard? %>">
   <h1><%= possessive :badges %></h1>
-  <% cache("#{profile_user.slug_cache_key}/#{on_dashboard?.to_s}/modules/profile/badge_awards", :expires_in => EXPIRATION_TIMES['profile_modules_badge_awards']) do %>
+  <% cache("#{profile_user.slug_cache_key}/modules/profile/badge_awards", :expires_in => EXPIRATION_TIMES['profile_modules_badge_awards']) do %>
     <div class="badges_list">
       <% if profile_user.total_badges > 0 %>
         <% profile_user.badge_awards.all(:limit => 15, :order => 'created_at DESC').each do |badge_award| %>
-        <% new_image = (badge_award.new? and on_dashboard?) ? image_tag("new_#{current_site.default_locale.to_s.downcase}.png", :class => 'new') : ''  %>
-        <%= link_to ( image_tag(badge_award.image, :title => t("badges.#{badge_award.badge_key}.name")) + new_image, badge_path(badge_award)) %>
+          <% new_image = badge_award.new? ? image_tag("new_#{current_site.default_locale.to_s.downcase}.png", :class => 'new') : ''  %>
+          <%= link_to ( image_tag(badge_award.image, :title => t("badges.#{badge_award.badge_key}.name")) + new_image, badge_path(badge_award)) %>
         <% end %>
       <% else %>
-      <div class="medium_text">
-        <%= possessive :has_not_badges %>
-      </div>
+        <div class="medium_text">
+          <%= possessive :has_not_badges %>
+        </div>
       <% end %>
       <br class="clearer" />
     </div>
-    <% if profile_user.total_badges > 15 %>
-      <div class="align_right">
-        <b class="right_side">
-          <%= link_to t('actions.view_more'), (profile_user == current_user ? my_badges_path : user_badges_path(profile_user)) %>
-        </b>
-      </div>
-      <br />
-    <% end %>
+  <% end %>    
+  <% if profile_user.total_badges > 15 %>
+    <div class="align_right">
+      <b class="right_side">
+        <%= link_to t('actions.view_more'), (profile_user == current_user ? my_badges_path : user_badges_path(profile_user)) %>
+      </b>
+    </div>
+    <br />
   <% end %>
 </div><!--/end box_content -->  

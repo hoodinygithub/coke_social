@@ -1,0 +1,64 @@
+<h2>Listing valid tags</h2>
+
+<div id="tags">
+  <form action="<%= admin_valid_tags_path %>" method="get">
+    <label for="search_market">Market:</label>
+    <select id="search_market" name="search[market]">
+      <option value="">ALL</option>
+      <%= options_from_collection_for_select Site.all(:conditions => ["id in (?)", ValidTag.site_ids]), :id, :name, (params[:search] && params[:search][:market].to_i) %>
+    </select>
+    &nbsp;
+    <label for="search_name">Tag:</label>
+    <input type="text" id="search_name" name="search[tag_name]" value="<%= params[:search] && params[:search][:tag_name] %>" />
+    &nbsp;
+    <label for="search_deleted_at">Only Deleted:</label>
+    <input type="checkbox" name="search[deleted_at]" value="1" <%= 'checked="checked"' if params[:search] && params[:search][:deleted_at] %>/>
+    <input type="submit" value="Filter &rarr;">
+    <% if params[:search] %>
+      <%= link_to "Clear search", admin_valid_tags_path %>
+    <% end %>
+  </form>
+
+  <hr />
+
+  <% if @valid_tags.empty? %>
+    <p>No tags found with these criterias.</p>
+  <% else %>
+    <% @valid_tags.group_by{|t| t.site }.each do |site, tags_by_site| %>
+      <div class="tag">
+        <h2><%= site.name %></h2>
+        <p>Click to remove or restore.</p>
+        <br />
+        <% tags_by_site.each do |valid_tag| %>
+          <% if valid_tag.deleted_at.nil? %>
+            <%= link_to valid_tag.name, [:admin, valid_tag], :title => "Remove '#{valid_tag.name}'", :confirm => "Are you sure want REMOVE '#{valid_tag.name}'?", :method => :delete, :class => "tag" %>
+          <% else %>
+            <%= link_to valid_tag.name, [:restore, :admin, valid_tag], :title => "Restore '#{valid_tag.name}'", :confirm => "Are you sure want RESTORE '#{valid_tag.name}'?", :class => "tag deleted" %>
+          <% end %>
+        <% end %>
+        <br class="fix" />
+      </div>
+    <% end %>
+  <% end %>
+  
+  <hr />
+
+  <h2><%= @valid_tag.new_record? ? "New" : "Update" %> valid tag</h2>
+
+  <% form_for([:admin, @valid_tag]) do |f| %>
+    <%= f.error_messages %>
+
+    <p>
+      <%= f.label :site_id %><br />
+      <%= f.collection_select :site_id, Site.all(:conditions => "code in ('cokebr', 'cokemx', 'cokear', 'cokelatam')"), :id, :name %>
+    </p>
+    <p>
+      <%= f.label :tag_name %><br />
+      <%= f.text_field :tag_name %>
+    </p>
+    <p>
+      <%= f.submit 'Create' %>
+    </p>
+  <% end %>
+  <br />
+</div>

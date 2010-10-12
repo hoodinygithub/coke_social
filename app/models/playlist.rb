@@ -2,14 +2,27 @@
 #
 # Table name: playlists
 #
-#  id             :integer(4)      not null, primary key
-#  owner_id       :integer(4)
-#  name           :string(255)
-#  comments_count :integer(4)      default(0)
-#  songs_count    :integer(4)      default(0)
-#  created_at     :datetime
-#  updated_at     :datetime
-#  total_time     :integer(4)      default(0)
+#  id                      :integer(4)      not null, primary key
+#  owner_id                :integer(4)
+#  name                    :string(255)
+#  reviews_count           :integer(4)      default(0), not null
+#  songs_count             :integer(4)      default(0)
+#  created_at              :datetime
+#  updated_at              :datetime
+#  deleted_at              :datetime
+#  total_time              :integer(4)      default(0)
+#  avatar_file_name        :string(255)
+#  avatar_file_size        :integer(4)
+#  avatar_content_type     :string(255)
+#  avatar_updated_at       :datetime
+#  total_plays             :integer(4)      default(0), not null
+#  locked                  :boolean(1)      default(TRUE), not null
+#  cached_tag_list         :text
+#  cached_artist_list      :text
+#  rating_cache            :float           default(0.0), not null
+#  site_id                 :integer(4)
+#  playlist_copyings_count :integer(4)      default(0), not null
+#  locked_at               :datetime
 #
 
 class Playlist < ActiveRecord::Base
@@ -140,11 +153,19 @@ class Playlist < ActiveRecord::Base
     end
   end
 
-  def tag_cloud
+  def tag_cloud(current_site=nil)
+    conditions = "taggings.taggable_id = #{self.id}"
+    joins      = "INNER JOIN #{Tagging.table_name} ON #{Tag.table_name}.id = #{Tagging.table_name}.tag_id AND #{Tagging.table_name}.taggable_type = 'Playlist'"
+    
+    unless current_site.nil?
+      conditions << " AND valid_tags.site_id = #{current_site.site_id}"
+      joins      << " INNER JOIN valid_tags ON valid_tags.tag_id = #{Tag.table_name}.id"
+    end
+    
     options = { :select => "DISTINCT tags.*",
-                :joins => "INNER JOIN #{Tagging.table_name} ON #{Tag.table_name}.id = #{Tagging.table_name}.tag_id AND #{Tagging.table_name}.taggable_type = 'Playlist'",
+                :joins => joins,
                 :order => "taggings.created_at DESC",
-                :conditions => "taggings.taggable_id = #{self.id}" }
+                :conditions => conditions }
                 
     @tags = Tag.all(options)
   end

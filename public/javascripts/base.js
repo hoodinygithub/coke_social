@@ -1277,10 +1277,8 @@ Base.account_settings.delete_account_confirmation = function() {
     success: function(data){
       delete_account_data = data;
       cancelled_account_email = data.email;
-      $.popup(function() {
-        jQuery.get(Base.currentSiteUrl() + '/my/cancellation/feedback?address='+ cancelled_account_email, function(data) {
-          jQuery.popup(data);
-        });
+      $.get(Base.currentSiteUrl() + '/my/cancellation/feedback?address='+ cancelled_account_email, function(data) {
+        $.popup(data);
       });
       $(document).bind('close.facebox', function() {
         window.location = data.redirect_to;
@@ -1442,7 +1440,7 @@ Base.playlist_search.dropdown = function() {
 
 
 Base.playlist_search.autocomplete = function(last_value) {
-  jQuery('.content_search_results_ajax').show();
+  jQuery('.content_search_results_ajax').css('top', $('.search_playlist_form').position().top + 10).show();
   //var form_values = jQuery("#playlist_search_form").serializeArray();
   //var q = Base.header_search.getFieldValue(form_values,'q');
   var q = jQuery('#playlist_search_query').val();
@@ -1767,7 +1765,15 @@ $(document).ready(function() {
   $('.delete_site').click(Base.account_settings.delete_website);
 
   $(".ajax_pagination .pagination a:not(.disabled)").click(Base.utils.ajax_pagination);  
-  
+
+ $(document).bind('reveal.facebox', function() {     
+    $('#facebox .real_tags').val('');
+    $('#selected_tags').val('');
+    if ($('#facebox .real_tags').length != 0) {
+      $tag_box = new $.TextboxList('#facebox .real_tags', {  });
+    }
+ })
+ 
 });
 
 Base.network.reload_comments = function(filter) {
@@ -2175,4 +2181,101 @@ Base.playlists.avatarDeleteCallback = function(response) {
     $(document).trigger('close.facebox');
     has_custom_avatar = false;
   }
+}
+
+Base.playlists.removeTag = function() {
+  var tag = $(this).text();
+  $(this).parent().remove();
+  $("ul.available_tags li a:contains('" + tag + "')").parent().show();
+  $("#selected_tags").val( $("#selected_tags").val().replace(new RegExp('(,)?' + tag),"") );   
+  Base.playlists.updateSelectedTagCount();
+  return false;
+}
+
+Base.playlists.updateSelectedTagCount = function() {
+  $('#selected_tags_count').text('(' + $('ul.selected_tags li a').length + ')');  
+  $('#available_tags_count').text('(' + $('ul.available_tags li:visible a').length + ')');
+}
+
+Base.playlists.selectTag = function() {
+  var tag = $(this).text();
+  if ( $("ul.selected_tags li a:contains('" + tag + "')").length == 0 ) {
+    $('ul.selected_tags').append('<li><a href="#">' + tag + '</a></li>');
+    $('ul.selected_tags li a').click(Base.playlists.removeTag);
+    Base.playlists.updateSelectedTagCount();
+    $('#selected_tags').val( $('#selected_tags').val() + ',' + tag );
+    $(this).parent().hide();
+  }
+  return false;
+}
+
+Base.playlists.showTagsLayer = function() {
+  $('ul.selected_tags li').remove();
+  pre_selected_tags = $('#facebox .real_tags,input.edit_tags').val();
+  $("ul.available_tags li").show();
+  if ( pre_selected_tags != "") {
+    $('#selected_tags').val(pre_selected_tags);
+    $.each(pre_selected_tags.split(','), function() {
+      $('ul.selected_tags').append('<li><a href="#">' + this + '</a></li>');
+      $("ul.available_tags li a:contains('" + this + "')").parent().hide();        
+      $('ul.selected_tags li a').click(Base.playlists.removeTag);
+    });
+  }
+  $('ul.available_tags li a').click(Base.playlists.selectTag);
+  var left = $(window).width() / 2;
+  var top  = getPageScroll()[1] + (getPageHeight() / 10)
+  if (!top) {
+    top = 60;
+  }
+  $('#tags_popup').css('z-index', 1000).css('left', left).css('top', top).show();
+  $(document).bind('close.facebox', function() { $('#tags_popup').hide(); });
+  Base.playlists.updateSelectedTagCount();
+}
+
+Base.playlists.removeAllTags = function() {
+  $('ul.selected_tags li').remove();   
+  $('ul.available_tags li').show();
+  Base.playlists.updateSelectedTagCount();
+  $('#selected_tags').val('');
+}
+
+Base.playlists.saveTags = function() { 
+  $('.textboxlist-bit-box-deletable').remove();
+  $('#facebox .real_tags, input.edit_tags').val(''); 
+  $.each($("#selected_tags").val().replace(/^,/,"").split(','), function() {
+    if (this.cleanupURL() != "") {
+      $tag_box.add(this.cleanupURL());     
+    }
+  });
+  $('#selected_tags').val('');
+  $('#tags_popup').hide();
+}
+
+// getPageScroll() by quirksmode.com
+function getPageScroll() {
+  var xScroll, yScroll;
+  if (self.pageYOffset) {
+   yScroll = self.pageYOffset;
+   xScroll = self.pageXOffset;
+  } else if (document.documentElement && document.documentElement.scrollTop) {	 // Explorer 6 Strict
+    yScroll = document.documentElement.scrollTop;
+    xScroll = document.documentElement.scrollLeft;
+  } else if (document.content) {// all other Explorers
+    yScroll = document.content.scrollTop;
+    xScroll = document.content.scrollLeft;
+  }
+  return new Array(xScroll,yScroll)
+}
+
+// Adapted from getPageSize() by quirksmode.com
+function getPageHeight() {
+var windowHeight
+  if (self.innerHeight) {	// all except Explorer
+    windowHeight = self.innerHeight;
+  } else if (document.documentElement && document.documentElement.clientHeight) { // Explorer 6 Strict Mode
+    windowHeight = document.documentElement.clientHeight;
+  } else if (document.content) { // other Explorers
+    windowHeight = document.content.clientHeight;
+  }
+  return windowHeight
 }

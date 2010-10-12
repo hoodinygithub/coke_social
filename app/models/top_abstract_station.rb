@@ -1,13 +1,13 @@
 # == Schema Information
 #
-# Table name: top_stations
+# Table name: top_abstract_stations
 #
-#  id            :integer(4)      not null, primary key
-#  created_at    :datetime
-#  updated_at    :datetime
-#  site_id       :integer(4)
-#  station_id    :integer(4)
-#  station_count :integer(4)
+#  id                  :integer(4)      not null, primary key
+#  created_at          :datetime
+#  updated_at          :datetime
+#  site_id             :integer(4)
+#  abstract_station_id :integer(4)
+#  station_count       :integer(4)
 #
 
 class TopAbstractStation < ActiveRecord::Base

@@ -31,9 +31,15 @@
       <div class="grey_round_box">
         <input type="text" class="input full_width" name="name" value="<%= params[:name] %>" />
       </div>
-      <label><b><%= t('playlists.tag_your_playlist') %></b> <small class="grey"><%= t('playlists.seperated_commas') %></small></label>
+      <label><b><%= t('playlists.tag_your_playlist') %></b> 
+        <a href="#" onclick ="Base.playlists.showTagsLayer();return false;"class="red">
+          <%= t('playlists.click_here_to_add_tags') %>
+        </a>
+      </label>
       <div class="grey_round_box">
-        <input type="text" class="input full_width" name="tags" value="<%= params[:tags] %>" />
+        <div class="tag_list">
+          <input type="text" class="real_tags input full_width" name="tags" value="<%= params[:tags] %>" />
+        </div>
       </div>
     </div><!--/end form_row -->
     <br/>
@@ -134,3 +140,56 @@
     </div>
   </form>
 </div>
+
+<div class="popup" id="tags_popup">
+  <div class="top_shadow">
+    <div class="top_left corner"></div>
+    <div class="center_shadow"></div>
+    <div class="top_right corner"></div>
+    <a href="#" onclick="$('#tags_popup').fadeOut('fast'); return false;">
+      <img src="/images/popup_close.png" class="popup_close png_fix" alt="X" title="Close" />
+    </a>
+  </div>
+    
+  <div class="popup_content">
+    <form id="add_tags">
+      <input type="hidden" id="selected_tags" />
+    </form>
+    <div class="title"><%= t('playlists.add_tags') %></div>
+    <div class="tag_box">
+      <div class="grey_round_box" id="tag_container">
+        <div id="tag_counts">
+          <span id="available_tags_count">(280)</span>
+          <span id="selected_tags_count">(0)</span>&nbsp; 
+          <a href="#" class="red" onclick="Base.playlists.removeAllTags();return false;"><%= t('playlists.remove_all_tags') %></a>
+        </div>
+        <div id="available_tags">
+          <ul class="available_tags">
+            <% current_site.tags.each do |tag| %>
+              <li><a href="#"><%= tag.name %></a></li>            
+            <% end %>
+          </ul>
+        </div>
+        <div id="selected_tags">
+          <ul class="selected_tags">
+          <ul/>
+        </div>
+      </div>
+    </div>
+    <br/>
+    <div class="align_right">
+      <a href="#" class="red_button valign_middle" onclick="$('#tags_popup').hide(); return false;">
+        <span><span><%= t('actions.cancel') %></span></span>
+      </a>&nbsp;&nbsp;
+      <a href="#" onclick="Base.playlists.saveTags(); return false;" class="red_button valign_middle">
+        <span><span><%= t('actions.save') %></span></span>
+      </a>
+    </div>
+  </div>
+    
+  <div class="bottom_shadow">
+    <div class="bottom_left corner"></div>
+    <div class="center_shadow"></div>
+    <div class="bottom_right corner"></div>
+  </div>
+</div><!--/end popup -->

@@ -2,6 +2,10 @@
 en: 
   tweet:
     message: "Check out this mix on Coca-Cola.fm"
+  valid_tag:
+    site_id: Site
+    tag_id: Tag
+    tag_name: Tag  
   share: 
     name: Your Name
     station: 
@@ -315,6 +319,10 @@ en:
       latest_reviews: My Latest Reviews
   activerecord: 
     attributes: 
+      valid_tag:
+        site_id: Site
+        tag_id: Tag
+        tag_name: Tag        
       station: 
         updated_at: "Last modified: {{when}}"
       block: 
@@ -513,6 +521,9 @@ en:
     save_your_playlist: Save your playlist
     name_your_playlist: Name of your playlist
     tag_your_playlist: Tag your playlist
+    click_here_to_add_tags: click here to add tags
+    add_tags: Add tags
+    remove_all_tags: Remove all
     seperated_commas: seperated by commas
     picture: Picture of your playlist
     add_update: ADD/UPDATE

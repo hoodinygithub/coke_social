@@ -228,6 +228,10 @@ div.empty_playlist {
 	width: 385px;
 }
 
+.ignore_new .badges_list .new {
+  display: none;
+}
+
 .big_badges_list li .text .grey_text {
 	margin-top: 2px;
 	line-height: 13px;
@@ -874,4 +878,114 @@ label.label_holder {
     position: relative;
     float: right;
     margin-top: 10px;
+}
+
+#tag_counts {
+  height: 20px;
+  border: 1px solid #cccccc;
+  background-color: white;
+  font-size:12px;
+  padding-top: 3px;
+}
+
+.tag_box {
+  border-bottom:1px solid #E1E1E1;
+  padding: 8px 0;
+}
+
+#tag_container {
+  height: 203px;    
+}
+
+#available_tags_count {
+  display:block;
+  text-align: right;    
+  width: 180px;
+  float: left;
+}
+
+#selected_tags_count {
+  display:block;
+  text-align: right;    
+  width: 120px;
+  float: left;
+}
+
+#available_tags {
+  width: 204px; 
+  height: 175px;   
+  background-color: white;
+  border: 1px solid #cccccc;
+  float:left;
+  overflow: auto;
+}
+
+#selected_tags {
+  height: 175px;
+  width: 204px;    
+  background-color: white;
+  border: 1px solid #cccccc;
+  float: right;
+  overflow: auto;
+}
+
+ul.available_tags {
+  list-style-type: none;
+}
+
+ul.available_tags li{
+  background: url('../images/add.gif') no-repeat;
+  background-position: 95% center;
+  background-color: #ededed;
+  margin-bottom: 2px;
+  padding: 0px;
+  font-size: 12px;
+}
+
+ul.available_tags li a {
+  display: block;
+  text-decoration: none;
+  color: black;
+  height: 15px;
+  padding: 3px;
+}
+
+ul.available_tags li a:hover {
+  color: white;
+  background: url('../images/add.gif') no-repeat;
+  background-position: 95% center;
+  background-color: black;
+  font-weight: bold;
+}
+
+ul.selected_tags {
+  list-style-type: none;
+}
+
+ul.selected_tags li{
+  background: url('../images/close.gif') no-repeat;
+  background-position: 95% center;
+  background-color: red;
+  margin-bottom: 2px;
+  padding: 0px;
+  font-size: 12px;
+}
+
+ul.selected_tags li a {
+  display: block;
+  text-decoration: none;
+  color: white;
+  height: 15px;
+  padding: 3px;
+}
+
+ul.selected_tags li a:hover {
+  background: url('../images/close.gif') no-repeat;
+  background-position: 95% center;
+  background-color: black;
+  font-weight: bold;
+}
+
+.textboxlist {
+  background-color: white;    
 }
