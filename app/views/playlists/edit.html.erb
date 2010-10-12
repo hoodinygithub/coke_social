@@ -29,7 +29,7 @@
     </h2>
 
     <div class="grey_round_box align_center">
-      <input type="text" class="input full_width3 edit_tags" value="<%= @playlist.tags.join(',') %>" name="playlist[tags]" />
+      <input type="text" class="input full_width3 edit_tags" value="<%= @playlist.valid_tags.join(',') %>" name="playlist[tags]" />
     </div>
   </div><!--/end form_row -->
 

@@ -223,4 +223,8 @@ class Playlist < ActiveRecord::Base
    def to_s
     self.name
   end
+
+  def valid_tags
+    tags.find(:all, :conditions => "valid_tags.site_id = #{ApplicationController.current_site.id}", :joins => "INNER JOIN valid_tags ON valid_tags.tag_id = tags.id")
+  end
 end
