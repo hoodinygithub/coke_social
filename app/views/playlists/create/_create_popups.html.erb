@@ -178,8 +178,8 @@
     </div>
     <br/>
     <div class="align_right">
-      <a href="#" class="red_button valign_middle" onclick="$('#tags_popup').hide(); return false;">
-        <span><span><%= t('actions.cancel') %></span></span>
+      <a href="#" class="not_underlined black valign_middle popup_close_action" onclick="$('#tags_popup').hide(); return false;">
+        <%= t('actions.cancel') %>
       </a>&nbsp;&nbsp;
       <a href="#" onclick="Base.playlists.saveTags(); return false;" class="red_button valign_middle">
         <span><span><%= t('actions.save') %></span></span>
