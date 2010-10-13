@@ -771,7 +771,11 @@ function open_save_popup() {
   } else {
     $.popup({ div: '#unable_popup' });
   }
-  $('.btn_red_loading').remove()
+
+  // same name as the save button on the popup itself
+  // $('.btn_red_loading').remove()
+  // remove the loading animation on the save button on the playlist page, not the popup
+  $('#save_button span span .btn_red_loading').remove();
 }
 
 function submit_save_form() {
