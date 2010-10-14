@@ -2245,9 +2245,9 @@ Base.playlists.selectTag = function() {
   if ( $("ul.selected_tags li a:contains('" + tag + "')").length == 0 ) {
     $('ul.selected_tags').append('<li><a href="#">' + tag + '</a></li>');
     $('ul.selected_tags li a').click(Base.playlists.removeTag);
+    $(this).parent().hide();
     Base.playlists.updateSelectedTagCount();
     $('#selected_tags').val( $('#selected_tags').val() + ',' + tag );
-    $(this).parent().hide();
   }
   return false;
 }
