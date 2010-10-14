@@ -759,6 +759,7 @@ function open_save_popup() {
             update_playlist_avatar('#update_layer_avatar', $('#' + _pv.item_ids[0]).find('img').attr('src').replace(/image\/thumbnail/i, "image/hi-thumbnail"));
           }
           $.popup({ div: '#edit_conf_popup' });
+          $('#save_button span span .btn_red_loading').remove();
         },
         error: function(r){alert('Error!')}
       });
@@ -771,11 +772,6 @@ function open_save_popup() {
   } else {
     $.popup({ div: '#unable_popup' });
   }
-
-  // same name as the save button on the popup itself
-  // $('.btn_red_loading').remove()
-  // remove the loading animation on the save button on the playlist page, not the popup
-  $('#save_button span span .btn_red_loading').remove();
 }
 
 function submit_save_form() {
