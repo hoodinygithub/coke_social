@@ -12,7 +12,8 @@
       </div>
 
       <span class="share_button_container">
-        <%= red_button(t('actions.share'), :class => 'compartir_button post_button', :onclick => 'Base.network.push_update()') %>
+        <%= red_button(t('actions.share'), :class => 'compartir_button post_button', 
+                                           :onclick => 'Base.network.pushUpdate();return false;') %>
       </span>
 
       <% if false %>

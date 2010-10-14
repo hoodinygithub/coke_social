@@ -3,6 +3,10 @@ module Activity
   class UndefinedKeyMember < StandardError; end
 
   class Status
+    extend ActionView::Helpers::SanitizeHelper::ClassMethods
+    include ActionView::Helpers::SanitizeHelper
+    attr_accessor :errors    
+
     def initialize(account, id=nil)
       raise "Expecting an Account class but got a #{account.class}" unless account.is_a? Account
       @account    = account
@@ -23,18 +27,29 @@ module Activity
     def key
       @key
     end
+
+    def valid_status?(content)
+      @errors = []
+      @errors << I18n.t('share.errors.message.cant_be_blank') if content[:message].blank?
+      @errors << I18n.t('share.errors.message.invalid_chars') unless strip_tags(sanitize(content[:message])) == content[:message] 
+      @errors.empty?
+    end
         
     def put(content)
       raise ArgumentError unless content.is_a?(Hash)            
-      db.merge!({key => content.merge({
-        :id => id,  
-        :user_id => @account_id,
-        :user_avatar => @account.avatar.url(:medium),
-        :account_id => @account_id,
-        :type => 'status',
-        :user_slug => @account.slug,
-        :timestamp => Time.now.to_i            
-      })})
+      if valid_status?(content) 
+        db.merge!({key => content.merge({
+          :id => id,  
+          :user_id => @account_id,
+          :user_avatar => @account.avatar.url(:medium),
+          :account_id => @account_id,
+          :type => 'status',
+          :user_slug => @account.slug,
+          :timestamp => Time.now.to_i            
+        })})
+      else 
+        false
+      end
     end
     
     def last

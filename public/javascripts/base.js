@@ -1120,6 +1120,48 @@ Base.network.push_update = function() {
   return false;
 };
 
+Base.network.getPushUpdateParams = function() {
+  var params = {};
+  params['message'] = $("#network_comment").val();
+  return params;
+}
+
+Base.network.pushUpdateCallback = function(response) {
+ var commentField = $("#network_comment");
+ if (response.success) {
+   commentField.val("");
+   var charsCounter = $(".chars_counter");
+   charsCounter.html(140);
+   charsCounter.css({'color':'#cccccc'});
+   Base.network.__update_page_owner_page(response.latest, {'replace':true});
+   $("div.sorting a").removeClass("active");
+   $("div.sorting a[href*=all]").addClass("active");   
+ } else {
+    commentField.addClass('network_update_red');
+    var networkArrow = $(".network_arrow");
+    networkArrow.attr("src", Base.currentSiteUrl() + "/images/network_arrow_red.gif");    
+    $('.status_red_msg').remove();
+    var messageDiv = $('<div class="status_red_msg"></div>');
+    $.each($.parseJSON(response.errors), function() {
+      messageDiv.append(this + "<br />");
+    });
+    networkArrow.next().after(messageDiv);
+ }
+ $('a.compartir_button').removeClass('blue_button_wo_hover').addClass('blue_button').html($oldButtonContent);
+}
+
+Base.network.pushUpdate = function() {    
+  var shareButton = $('a.compartir_button');
+  $oldButtonContent = shareButton.html();
+  shareButton.removeClass('blue_button').addClass('blue_button_wo_hover');
+  var shareButtonLabel = shareButton.children().children();
+  shareButtonLabel.html(Base.layout.spanned_spin_image());
+
+  $.post(Base.currentSiteUrl() + '/activity/update/status', 
+         Base.network.getPushUpdateParams(), 
+         Base.network.pushUpdateCallback);
+}
+
 /*
  * Account settings page
  */
@@ -1756,6 +1798,7 @@ $(document).ready(function() {
     $("#network_comment").removeClass("network_update_red");
     $(".network_arrow").attr("src", Base.currentSiteUrl() + "/images/network_arrow.gif");
     $(".network_red_msg").remove();
+    $('.status_red_msg').remove();
   }); 
 
   $("#network_comment_list").show();

@@ -57,14 +57,21 @@ class ActivitiesController < ApplicationController
       end
 
       activity_status = Activity::Status.new(current_user)
-      hash_added = activity_status.put(item)
 
-      load_user_activities
-      latest
+      if activity_status.put(item)
+        load_user_activities
+        render :json => { :success => true, :latest => render_to_string(latest_activity) }   
+      else
+        render :json => { :success => false, :errors => activity_status.errors.to_json }
+      end  
     end
   end
 
   def latest
+    render latest_activity
+  end
+
+  def latest_activity
     if params[:after]
       last_element_index = @collection.collect {|a| a['timestamp']}.index(params[:after])
       @collection        = @collection.slice(0, last_element_index + ACTIVITY_SHOW_MORE_SIZE + 1)
@@ -73,9 +80,9 @@ class ActivitiesController < ApplicationController
     end
 
     if params[:public]
-      render :partial => 'activities/line', :collection => @collection
+      { :partial => 'activities/line', :collection => @collection }
     else
-      render :partial => 'activities/item', :collection => @collection
+      { :partial => 'activities/item', :collection => @collection }
     end
   end
 
