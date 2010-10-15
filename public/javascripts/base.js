@@ -1083,43 +1083,6 @@ Base.network.load_latest_tweet = function(params) {
   });
 };
 
-
-Base.network.push_update = function() {
-  $network_update_text = jQuery('#network_update_text');
-  $show_more_button    = jQuery('#show_more_comments');
-  $comment_field       = jQuery("#network_comment");
-  $chars_counter       = jQuery(".chars_counter");
-  $comment_field.css({'border':'10px solid #EDEDED'});
-  $(".network_arrow").attr("src", Base.currentSiteUrl() + "/images/network_arrow.gif");
-
-  var comment = jQuery.trim($comment_field.val());
-  var $old_network_update_text = $network_update_text.clone();
-  var $share_button = jQuery('a.compartir_button');
-  
-  var old_button_content = $share_button.html();
-  $share_button.removeClass('blue_button').addClass('blue_button_wo_hover');
-  $share_button_label = $share_button.children().children();
-  $share_button_label.html(Base.layout.spanned_spin_image());
-
-  if (comment && comment.length > 0) {
-    jQuery.post(Base.currentSiteUrl() + '/activity/update/status', {'message':comment}, function (response) {
-      $comment_field.val("");
-      jQuery(".chars_counter").html(140);
-      Base.network.__update_page_owner_page(response, {'replace':true});
-      $chars_counter.css({'color':'#cccccc'});
-      $share_button.removeClass('blue_button_wo_hover').addClass('blue_button').html(old_button_content);
-      $("div.sorting a").removeClass("active");
-      $("div.sorting a[href*=all]").addClass("active");
-    });
-  } else {
-    $comment_field.css({'border':'10px solid red'});
-    $(".network_arrow").attr("src", Base.currentSiteUrl() + "/images/network_arrow_red.gif");
-    $share_button.removeClass('blue_button_wo_hover').addClass('blue_button').html(old_button_content);
-  }
-
-  return false;
-};
-
 Base.network.getPushUpdateParams = function() {
   var params = {};
   params['message'] = $("#network_comment").val();
@@ -2196,6 +2159,9 @@ Base.playlists.duplicate = function(slug, playlist_id) {
   var url = Base.currentSiteUrl() + '/' + slug + '/playlists/' + playlist_id + '/duplicate';
   var params = {};
   params['playlist[name]'] = $("#playlist_name").val();
+
+  $("#duplicate_button").children().children().append(Base.layout.spin_image());
+
   $.post(url, params, Base.playlists.duplicateCallback);
 };
 
@@ -2207,6 +2173,7 @@ Base.playlists.duplicateCallback = function(response) {
     $(document).trigger('close.facebox');
     return false;
   }
+  $("#duplicate_button span span img").remove();
 };
 
 Base.playlists.avatarDelete = function() {
