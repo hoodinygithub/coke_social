@@ -22,7 +22,7 @@ namespace :sitemap do
       end
           
       # Support Pages
-      %w[support/cyloop support/terms_and_conditions support/privacy_policy support/safety_tips support/faq support/feedback].each do |url|
+      %w[support/terms_and_conditions support/privacy_policy].each do |url|
         xml.url do
           xml.loc        url
           xml.lastmod    Time.now.utc.strftime("%Y-%m-%dT%H:%M:%S+00:00")
