@@ -91,7 +91,7 @@ ActionController::Routing::Routes.draw do |map|
   map.feedback 'support/feedback', :controller => 'pages', :action => 'feedback'
   map.contact 'support/contact', :controller => 'pages', :action => 'contact'
   map.contact_us 'support/contact_us', :controller => 'pages', :action => 'contact_us', :collection => [:only_form]
-  map.contest 'support/bases_del_concurso', :controller => 'pages', :action => 'bases_del_concurso'
+  #map.contest 'support/bases_del_concurso', :controller => 'pages', :action => 'bases_del_concurso'
   #map.send_mail 'support/contact/send_mail', :controller => 'pages', :action => 'send_mail'
   map.banner_ads 'pages/banner_ads', :controller => 'pages', :action => 'banner'
   map.block_alert 'support/block_alert', :controller => 'pages', :action => 'block_alert'
