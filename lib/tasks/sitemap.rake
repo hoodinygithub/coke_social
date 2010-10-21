@@ -9,7 +9,7 @@ namespace :sitemap do
     xml.instruct! :"xml-stylesheet", :type=>"text/xsl", :href=>"sitemap_style.xsl"
     xml.urlset "xmlns:xsi" => "http://www.w3.org/2001/XMLSchema-instance",
                "xsi:schemaLocation" => "http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/siteindex.xsd",
-               "xmlns" => "http://www.sitemaps.org/schemas/sitemap/0.9" do
+               "xmlns" => "http://www.sitemaps.org/schemas/sitemap/0.9" do             
 
       %w[home playlists search].each do |url|
         xml.url do
@@ -21,15 +21,18 @@ namespace :sitemap do
         total_statics = total_statics + 1
       end
           
+          
       # Support Pages
-      %w[support/terms_and_conditions support/privacy_policy].each do |url|
-        xml.url do
-          xml.loc        url
-          xml.lastmod    Time.now.utc.strftime("%Y-%m-%dT%H:%M:%S+00:00")
-          xml.changefreq "always"
-          xml.priority   0.5
+      unless ENV['SITE'] == "Coke Brazil" do 
+        %w[support/terms_and_conditions support/privacy_policy].each do |url|
+          xml.url do
+            xml.loc        url
+            xml.lastmod    Time.now.utc.strftime("%Y-%m-%dT%H:%M:%S+00:00")
+            xml.changefreq "always"
+            xml.priority   0.5
+          end
+          total_statics = total_statics + 1
         end
-        total_statics = total_statics + 1
       end
 
       # Artists
