@@ -23,7 +23,7 @@ namespace :sitemap do
           
           
       # Support Pages
-      unless ENV['SITE'] == "Coke Brazil" do 
+      unless ENV['SITE'] == "Coke Brazil" then 
         %w[support/terms_and_conditions support/privacy_policy].each do |url|
           xml.url do
             xml.loc        url
