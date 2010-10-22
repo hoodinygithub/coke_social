@@ -143,7 +143,6 @@ task :symlink_remaining, :roles => :app, :except => {:no_release => true, :no_sy
       ln -s #{latest_release}/public/500_#{site_code}.html #{latest_release}/public/500.html &&
       rm #{latest_release}/public/robots.txt &&
       ln -s #{shared_path}/robots.txt #{latest_release}/public/robots.txt && 
-      ln -s #{shared_path}/system/sitemap.xml #{latest_release}/public/sitemap.xml &&
       ln -s #{shared_path}/system/sitemap_style.xls #{latest_release}/public/sitemap_style.xls
     CMD
   end
@@ -198,6 +197,7 @@ end
 task :hoodiny_custom, :roles => :app, :except => {:no_release => true, :no_symlink => true} do
   sudo <<-CMD
      /usr/bin/rake -f #{latest_release}/Rakefile gems:install RAILS_ENV=#{rails_env}
+     /usr/bin/rake -f #{latest_release}/Rakefile sitemap:create RAILS_ENV=#{rails_env}
   CMD
 end
 #

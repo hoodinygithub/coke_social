@@ -4,10 +4,10 @@
   <xsl:template match="/">
     <html xmlns="http://www.w3.org/1999/xhtml">
       <head>
-        <title>Sitemap: Cyloop</title>
+        <title>Sitemap: Coca-Cola.fm</title>
       </head>
       <body>
-        <h1><a href="/">Sitemap: Cyloop</a></h1>
+        <h1><a href="/">Sitemap: Coca-Cola.fm</a></h1>
         <ul>
         <xsl:for-each select="sitemap:urlset/sitemap:url">
           <li>
