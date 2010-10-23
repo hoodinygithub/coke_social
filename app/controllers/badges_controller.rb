@@ -29,4 +29,9 @@ class BadgesController < ApplicationController
       redirect_to profile_owner? ? my_dashboard_path : user_path(profile_user)
     end
   end
+  
+  def list
+    @badges = Badge.all
+    render :layout => "logged_out"
+  end
 end

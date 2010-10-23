@@ -1004,3 +1004,32 @@ ul.selected_tags li a:hover {
 #duplicate_button span span img {
   margin-left: 10px;    
 }
+
+table.coke {
+   border-color: black;
+   border-collapse: collapse;
+   width: 950px;
+}
+
+table.coke thead tr {
+  background-color: red;
+  color: white;
+  font-size: 12px;
+  font-weight: bold; 
+}
+
+table.coke thead tr td {
+  border: 1px solid #000000;
+  padding: 3px;
+  text-align: center;
+}
+
+table.coke tbody tr {
+  font-size: 12px; 
+}
+
+table.coke tbody tr td {
+  border: 1px solid #000000;
+  padding: 3px;
+  text-align: center;
+}

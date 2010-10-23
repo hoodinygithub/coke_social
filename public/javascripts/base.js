@@ -1770,7 +1770,9 @@ $(document).ready(function() {
 
   $('.delete_site').click(Base.account_settings.delete_website);
 
-  $(".ajax_pagination .pagination a:not(.disabled)").click(Base.utils.ajax_pagination);  
+  $(".ajax_pagination .pagination a:not(.disabled)").click(Base.utils.ajax_pagination); 
+
+  $("p.filter a").click(Base.badges.filter);
 
  $(document).bind('reveal.facebox', function() {     
     $('#facebox .real_tags').val('');
@@ -2112,6 +2114,20 @@ Base.badges.set_notified = function() {
     $("#congrats_popup").fadeOut('slow');
   });
 };
+
+Base.badges.filter = function() {
+  $("table.coke tbody tr").hide();
+  if ( $(this).attr('type') == "All" ) {
+	$("table.coke tbody tr").fadeIn();	
+  } else {
+    $("table.coke tbody tr:has(td:contains('" + $(this).attr('type') + "'))").fadeIn();		
+  }
+  var inactive_link = $("p.filter span.selected");
+  inactive_link.replaceWith('<a href="#" type="' + inactive_link.attr('type') + '">' + inactive_link.text() + '</a>');
+  $(this).replaceWith('<span class="selected" type="' + $(this).attr('type') + '">' + $(this).text() + '</span>');
+  $("p.filter a").click(Base.badges.filter);  
+  return false;	
+}
 
 Base.utils.rebind_list = function() {
   $('.artist_box').hover(function() {
