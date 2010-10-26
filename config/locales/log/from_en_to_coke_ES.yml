@@ -79,9 +79,10 @@ player:
     body: Due to radio licensing, you are unable to listen to full tracks when playing your own playlist.
 activerecord: 
   attributes: 
-    user: 
-      cyloop_password: Cyloop Password
-      cyloop_email: Cyloop Email
+    valid_tag: 
+      tag_id: Tag
+      tag_name: Tag
+      site_id: Site
 blocks: 
   warning: 
     title: Are you sure you want to block this person?
@@ -130,9 +131,16 @@ stations:
   last_station_created_at: Last station created {{when}} ago
 playlists: 
   save_confirmation: Save Confirmation
+  add_tags: Add tags
+  click_here_to_add_tags: click here to add tags
+  remove_all_tags: Remove all
 forgot: 
   captcha_invalid: You have entered the reCAPTCHA code incorrectly.  Do try again!
   reset_message_sent: Thank you. Instructions to reset your password have been sent to the email you just provided.
+valid_tag: 
+  tag_id: Tag
+  tag_name: Tag
+  site_id: Site
 activity: 
   created_playlist: Created Playlist '{{playlist}}'
   filters: 

@@ -40,8 +40,10 @@ player:
     body: Unfortunately our music licenses force us to limit the number of songs you may skip each hour. If you want to hear something else, try creating another stations with a different artist.
 activerecord: 
   attributes: 
-    user: 
-      playlist_confirmation: Your Playlist has been created, continue searching!
+    valid_tag: 
+      tag_id: Tag
+      tag_name: Tag
+      site_id: Site
 blocks: 
   warning: 
     title: Are you sure you want to block this person?
@@ -108,9 +110,16 @@ stations:
   last_station_created_at: Last station created {{when}} ago
 playlists: 
   save_confirmation: Save Confirmation
+  add_tags: Add tags
+  click_here_to_add_tags: click here to add tags
+  remove_all_tags: Remove all
 forgot: 
   captcha_invalid: You have entered the reCAPTCHA code incorrectly.  Do try again!
   reset_message_sent: Thank you. Instructions to reset your password have been sent to the email you just provided.
+valid_tag: 
+  tag_id: Tag
+  tag_name: Tag
+  site_id: Site
 messenger_player: 
   msn_music_is_free: MSN Music is free,
 activity: 
