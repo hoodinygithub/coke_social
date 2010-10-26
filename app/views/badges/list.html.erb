@@ -30,7 +30,7 @@
 	  <tr>
 	    <td><%= image_tag b.image, :class => "detail_img" %></td>
 	   	<td><%= t("badges.#{b.badge_key}.name") %></td>
-	    <td><%= t("badges.#{b.badge_key}.qualification") %></td>
+	    <td><%= t("badges.#{b.badge_key}.qualification", :playlist_name => t("badges.playlist_name")) %></td>
 	    <td><%= t("badges.status.#{b.status}") %></td>
 	  </tr>
 	  <% end %>
