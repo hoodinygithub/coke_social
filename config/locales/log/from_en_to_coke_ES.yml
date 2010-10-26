@@ -71,9 +71,7 @@ number:
 share: 
   errors: 
     message: 
-      friend_email_blank: Friend email can't be blank
-      user_email_blank: Email can't be blank
-      user_name_blank: Name can't be blank
+      cant_be_blank: Can't be blank
 player: 
   license_message: 
     body: Due to radio licensing, you are unable to listen to full tracks when playing your own playlist.
@@ -222,81 +220,17 @@ support:
 widget: 
   msn_music_is_free: MSN Music is free,
 badges: 
-  dj_superstar: 
-    name: Superstar DJ
-    qualification: is earned when 5000 people listen to my playlists
-  ratings_flying_tomatoes: 
-    name: Flying Tomatoes
-    qualification: For having received mostly 1 or 2 stars for my first 25 playlist ratings
-  mixmaster_black: 
-    name: "Mixmaster: Black Belt"
-    qualification: For having created 50 playlists
-  leader: 
-    name: Leader
-    qualification: For being followed by 5 users
-  mixmaster_green: 
-    name: "Mixmaster: Green Belt"
-    qualification: For having created 10 playlists
-  dj_unbeatable: 
-    name: Unbeatable DJ
-    qualification: For having created 5 playists in a span of 24 hours
-  mixmaster_brown: 
-    name: "Mixmaster: Brown Belt"
-    qualification: For having created 25 playlists
-  dj_radio: 
-    name: Radio DJ
-    qualification: is earned when 1000 people listen to my playlists
-  master: 
-    name: Master
-    qualification: For being followed by 25 users
-  networker_gold: 
-    name: "Networker: Gold"
-    qualification: For following 100 users
-  idol: 
-    name: Idol
-    qualification: For being followed by 500 users
-  networker_diamond: 
-    name: "Networker: Diamond"
-    qualification: For following 500 users
-  networker_silver: 
-    name: "Networker: Silver"
-    qualification: For following 50 users
-  dj_club: 
-    name: Club DJ
-    qualification: is earned when 100 people listen to my playlists
-  ratings_ok: 
-    name: O.K.
-  dj_private_party: 
-    name: Private Party DJ
-    qualification: is earned when 10 people listen to my playlists
-  opinion_leader: 
-    name: Opinion Leader
-    qualification: For having rated 15 different playlists
-  others_that_have_this_badge: Others users that have this badge
-  networker_platinum: 
-    name: "Networker: Platinum"
-    qualification: For following 250 users
-  mixmaster_red: 
-    name: "Mixmaster: Red Belt"
-    qualification: For having created 100 playlists
-  networker: 
-    name: Networker
-    qualification: For following 5 users
-  networker_bronze: 
-    name: "Networker: Bronze"
-    qualification: For following 25 users
-  email: 
-    subject: Congratulations! You have won a new badge on Coca-Cola.fm
-    message: "Congratulations! You have been awarded {{badge_name}}: {{badge_qualification}}. Log in to view your new badge and see who else has one too.        "
-  guru: 
-    name: Guru
-    qualification: For being followed by 100 users
-  mixmaster_white: 
-    name: "Mixmaster: White Belt"
-    qualification: For having created my first playlist
-  mixmaster_yellow: 
-    name: "Mixmaster: Yellow Belt"
-    qualification: For having created 5 playlists
+  playlist_name: Playlist Name
+  status: 
+    inactive: Inactive
+    active: Active
+  list_page: 
+    name: Name
+    title: Title
+    badge: Badge
+    description: Description
+    qualification: Qualification
+    status: Status
 basics: 
   playlists: Playlists
   playlists_created_by: Playlists Created by
