@@ -21,7 +21,7 @@
       </div><!--/end header -->
       <%= user_navigation %>
       <%= yield :header_space_content %> 
-      <div id="main_content" class="<%= @section.nil? ? controller_name : @section %>"><%= yield %></div>
+      <div id="main_content" class="<%= @section.nil? ? controller_name : @section %> <%= market_class %>"><%= yield %></div>
       <%= render 'shared/footer' %>
     </div><!--/end container -->
   </body>

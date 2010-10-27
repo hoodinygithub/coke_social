@@ -988,7 +988,7 @@ def cyloop_logo_path(sm=true)
         </tr>
       </table>
     </div>
-    <div id="tag_bottle" class="png_fix"></div>
+    <div id="tag_bottle" class="png_fix #{market_class}"></div>
     <div class="bottle_tags outer">
       <table width="100%" height="100%">
         <tr>
@@ -1018,6 +1018,19 @@ def cyloop_logo_path(sm=true)
     else
       current_site.default_locale
     end
+  end
+  
+  def market_class
+    case current_site.default_locale
+    when :coke_ES
+      "mx"
+    when :coke_MX
+      "mx"      
+    when :coke_AR
+      "ar"
+    else
+      ""
+    end  
   end
   
 end
