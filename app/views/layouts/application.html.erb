@@ -23,9 +23,8 @@
       <%= yield :header_space_content %> 
       <div id="main_content" class="<%= @section.nil? ? controller_name : @section %> <%= market_class if @section == 'player_page'  %>">
 		  <% unless market_class.blank? %>
-		  <div class="santa" onclick="location.href='http://www.coca-cola.com.<%= market_class %>/';" style="cursor: pointer;" />	
+		  <div class="santa" onclick="location.href='http://www.coca-cola.com.<%= market_class %>/';" style="cursor: pointer;"></div>	
 		  <% end %>      
-	  </div>
 		<%= yield %></div>
       <%= render 'shared/footer' %>
     </div><!--/end container -->
