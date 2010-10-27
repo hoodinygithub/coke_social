@@ -1023,7 +1023,7 @@ def cyloop_logo_path(sm=true)
   def market_class
     case current_site.default_locale
     when :coke_ES
-      "mx"
+      "es"
     when :coke_MX
       "mx"      
     when :coke_AR
