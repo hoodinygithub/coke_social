@@ -285,7 +285,7 @@ module ApplicationHelper
     joins      = "INNER JOIN valid_tags ON valid_tags.tag_id = #{Tag.table_name}.id"
     
     tags = item.tags.all(:limit => limit, :joins => joins, :conditions => conditions)
-    tags = tags.map{ |tag| link_to(tag.name, main_search_path(:scope => active_scope.to_s, :q => tag.name), link_options) }
+    tags = tags.map{ |tag| link_to(tag.nickname, main_search_path(:scope => active_scope.to_s, :q => tag.name), link_options) }
 
     unless tags.empty?
       if include_text
@@ -958,8 +958,8 @@ def cyloop_logo_path(sm=true)
     outer_tag_links = []
     inner_tag_links = []
     tag_cloud tags, %w(tag_css1 tag_css2 tag_css3 tag_css4, tag_css5) do |tag, css_class, index| 
-      outer_tag_links << link_to(tag.name, search_path(:q => tag.name, :scope => :playlists), :class => "tag_outer red #{css_class}", :id => "tag_outer_#{index}") rescue nil
-      inner_tag_links << link_to(tag.name, search_path(:q => tag.name, :scope => :playlists), :class => "tag_inner red #{css_class}", :id => "tag_inner_#{index}") rescue nil
+      outer_tag_links << link_to(tag.nickname, search_path(:q => tag.name, :scope => :playlists), :class => "tag_outer red #{css_class}", :id => "tag_outer_#{index}") rescue nil
+      inner_tag_links << link_to(tag.nickname, search_path(:q => tag.name, :scope => :playlists), :class => "tag_inner red #{css_class}", :id => "tag_inner_#{index}") rescue nil
     end
     <<-EOF
     <script type="text/javascript">
