@@ -87,7 +87,7 @@ class PlaylistsController < ApplicationController
                 song = @playlist_item_ids.select{ |s| s && s.id.equal?(item.to_i) }.first rescue nil
                 @playlist.items.create(:song => song, :artist_id => song.artist_id, :position => index + 1) if song
               end
-              @playlist.update_tags(params[:tags].split(','))
+              @playlist.update_tags(params[:tags].downcase.split(','))
               @playlist.create_station
               current_user.increment!(:total_playlists);
             end
@@ -126,7 +126,7 @@ class PlaylistsController < ApplicationController
               song = @playlist_item_ids.select{ |s| s && s.id.equal?(item.to_i) }.first rescue nil
               @playlist.items.create(:song => song, :artist_id => song.artist_id, :position => index + 1) if song
             end
-            !params[:playlist][:tags].blank? ? @playlist.update_tags(params[:playlist][:tags].split(',')) : @playlist.tag_list.clear
+            !params[:playlist][:tags].blank? ? @playlist.update_tags(params[:playlist][:tags].downcase.split(',')) : @playlist.tag_list.clear
             attributes = { :name => params[:playlist][:name], :site_id => current_site.id, :locked_at => nil }
             @playlist.update_attributes!(attributes)
           end
