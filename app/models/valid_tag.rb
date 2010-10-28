@@ -15,10 +15,9 @@ class ValidTag < ActiveRecord::Base
   belongs_to :site
   validates_uniqueness_of :tag_id, :scope => :site_id
   
-  default_scope :conditions => { :deleted_at => nil }
+  default_scope :conditions => { :deleted_at => nil }, :order => "promo DESC"
   
   attr_accessor :tag_name
-  delegate :name, :to => :tag
   
   before_validation :find_and_update_tag_related
   
@@ -56,8 +55,11 @@ class ValidTag < ActiveRecord::Base
     with_exclusive_scope do
       all(*args)
     end
-  end  
+  end
   
+  def name
+    self.promo.blank? ? self.tag.name : self.tag.name.upcase
+  end  
 private
   def find_and_update_tag_related
     self.tag ||= Tag.find_or_create_by_name(tag_name.downcase.capitalize)
