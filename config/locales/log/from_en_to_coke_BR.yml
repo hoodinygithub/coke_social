@@ -92,19 +92,9 @@ number:
       separator: .
       delimiter: ","
 share: 
-  song: 
-    marketing: |-
-      Copyright \xC2\xA9 2008 Cyloop LLC. All rights reserved. Cyloop, Cyloop.com, the Cyloop logo and all other Cyloop marks
-      
-      contained herein are trademarks of Hoodiny Entertainment Group and/or its affiliated companies.
-      All other marks
-      contained herein are the property of their respective owners. Reproduction in whole or in
-      part in any
-      form or medium without express written permission of Cyloop LLC, is prohibited.
-      
-      Cyloop, LLC, 555 Washington Avenue, Miami Beach, FL 33139
-      Microsoft Corporation, One Microsoft Way, Redmond, WA 98052-6399, USA \xC2\xA9; 2008 Microsoft Corporation.
-      All rights reserved.
+  errors: 
+    message: 
+      cant_be_blank: Can't be blank
 activerecord: 
   attributes: 
     valid_tag: 
@@ -302,18 +292,43 @@ demographics:
       
       Tip: create a password with a mix of letters and numbers so it's more secure.
 badges: 
-  mixmaster_black: 
-    name: "Mixmaster: Black Belt"
-  mixmaster_green: 
-    name: "Mixmaster: Green Belt"
-  mixmaster_brown: 
-    name: "Mixmaster: Brown Belt"
-  mixmaster_red: 
-    name: "Mixmaster: Red Belt"
-  mixmaster_white: 
-    name: "Mixmaster: White Belt"
-  mixmaster_yellow: 
-    name: "Mixmaster: Yellow Belt"
+  xmas_record_gold: 
+    name: Xmas gold record
+    qualification: When at least 20 different users have listened at least once to one single particular Mix among the ones I have created, and that have at least one Xmas tag assigned. Notice that a user can earn many/several of these
+  xmas_musician: 
+    name: Xmas Musician
+    qualification: "When user creates 3 Mixes with a at least one Xmas tag assigned to each of it. (or: when just assigning a Xmas tag to any 3 previously created mixes)."
+  rey_mago: 
+    qualification: For Having Created 1 or more playlist on January 6th with Xmas tag
+  xmas_rocker: 
+    name: Rocknxmas
+    qualification: When I receive a comment or get a ranking from at least 20 different users, for a specific single Mix that I have created and that has at least one Xmas tag assigned to it.
+  xmas_xpert: 
+    name: Xmas xpert
+    qualification: When I leave a comment or assign a ranking to, on at least 10 Mixes that each one has at least one Xmas tag assigned to it.
+  bota: 
+    name: Bota Bota Booo!!
+    qualification: For having created 10 mixes with one or more Xmas tags
+  cool_lo: 
+    name: Cool-lo
+    qualification: "The first time when I receive the maximum ranking (5 bottles), for a specific single Mix that I have created that has at least one Xmas tag assigned to it.  Note: this badge is earned only one time, for the 1st time that the rule verifies. All further Xmas Mixes that get a 5 star ranking, do NOT reward additional units of this badge."
+  santa_claus: 
+    name: Santa Claus
+    qualification: For Having Created 1 or more playlist on December 25th with Xmas tag
+  regalo: 
+    name: Xmas Giver
+    qualification: For having rated most out of 5 Xmas playlists with 4 or 5 bottles
+  recalentado: 
+    name: Recalentado
+    qualification: "The first time when I receive twice the same ranking, for a specific single Mix that I have created that has at least one Xmas tag assigned to it. E.g: I get a ranking of 2 bottles for Xmas-Mix A, 3 bottles for Xmas-Mix B, 5 bottles for Xmas-Mix C, and 3 bottles for Xmas-Mix D. When I get the \xE2\x80\x9Crepeated\xE2\x80\x9D 3-bottles-ranking for Xmas-Mix D, that\xE2\x80\x99s when this rule verifies. Note: this badge is earned only one time, for the 1st time that the rule verifies. All further Xmas Mixes that get a \xE2\x80\x9Cduplicated\xE2\x80\x9D ranking, do NOT reward additional units of this badge."
+  twinkle: 
+    qualification: "When user creates at least 5 Mixes with a at least one Xmas tag assigned to each of it, within one single calendar day. Notice is NOT within \xE2\x80\x9C24 hours\xE2\x80\x9D which is a \xE2\x80\x9Crelative\xE2\x80\x9D variable, but \xE2\x80\x9Csingle calendar day\xE2\x80\x9D which is an absolute value, defined as the period between 00:00:00 hs and 23:59:59 hs of each day."
+  xmas_record: 
+    name: Xmas record
+    qualification: When at least 10 different users have listened at least once to one single particular Mix among the ones I have created, and that have at least one Xmas tag assigned. Notice that a user can earn many/several of these
+  xmas_dj: 
+    name: Xmas DJ
+    qualification: "When user has 5 Mixes with a at least one Xmas tag assigned to each of it. Either because user has created those 5, or user has copied them from another user, and \xE2\x80\x9Cre-tagged\xE2\x80\x9D assigning a Xmas tag to it."
 contact_us: 
   form: 
     feedback_default: Please provide as much detail as possible
@@ -367,13 +382,7 @@ main:
   navigation: 
     mixes: Mixes
 footer: 
-  faq: FAQ
-  help: Help
-  terms_and_conditions: Terms and Conditions
-  support: Support
-  safety_tips: Safety Tips
-  feedback: Contact Us
-  privacy_policy: Privacy Policy
+  badges_listing: Badges Listing
 settings: 
   background_not_saved_image_too_large: Background image can't be larger than 1 MB
   page_title: Control your Cyloop

@@ -1,15 +1,28 @@
 --- 
 modules: 
-  recently_created_stations: 
-    title: Recently Created Stations
+  profile: 
+    top_playlists: 
+      title: Top playlists
+  more_playlists: 
+    title: More Playlists
+  top_playlists: 
+    title: Top Playlists
+  delete_playlist: 
+    title: Delete This Playlist
+    confirmation_text: Deleting this playlist is a permanent action. Are you sure you still want to delete this playlist?
 actions: 
-  rate_it: RATE IT
+  select_playlist: Select playlist
+  add_song_to_playlist: Add Song to Playlist
+  add_this_song_into_the_following_playlists: Add this song into the following playlists
+  add_to_playlist: Add to my Playlist
+  add_into_a_new_playlist: Add into a new playlist
+  create_a_playlist: Create a Playlist
 artist: 
   be_the_first_to_create_station: Be the first to create a station for {{user_name}}
 buylink: 
   no_buylinks: Not available to buy
 dashboards: 
-  latest_tweet: LATEST TWEET
+  user_has_no_playlists: "{{name}} has no playlists"
 number: 
   format: 
     separator: .
@@ -36,14 +49,12 @@ share:
     message: 
       email_is_not_authorized: Email address is not authorized.
 player: 
-  max_skips_message: 
-    body: Unfortunately our music licenses force us to limit the number of songs you may skip each hour. If you want to hear something else, try creating another stations with a different artist.
+  license_message: 
+    body: Due to radio licensing, you are unable to listen to full tracks when playing your own playlist.
 activerecord: 
   attributes: 
-    valid_tag: 
-      tag_id: Tag
-      tag_name: Tag
-      site_id: Site
+    user: 
+      playlist_confirmation: Your Playlist has been created, continue searching!
 blocks: 
   warning: 
     title: Are you sure you want to block this person?
@@ -69,10 +80,8 @@ songs:
   play_confirmation: Enjoy {{title}}!
 marketing_msgs: 
   home_page: 
-    second: "La m\xC3\xBAsica y tus emociones se mezclan aqu\xC3\xAD."
     first: "En Coca-Cola.fm tus playlists hablen por t\xC3\xAD."
   playlist: 
-    second: "La m\xC3\xBAsica y tus emociones se mezclan aqu\xC3\xAD."
     first: "En Coca-Cola.fm tus playlists hablen por t\xC3\xAD."
 chat: 
   moderator: 
@@ -121,10 +130,11 @@ valid_tag:
   tag_name: Tag
   site_id: Site
 messenger_player: 
-  msn_music_is_free: MSN Music is free,
+  recengineerror_NO_PLAYLIST: No playlist could be found
 activity: 
   created_playlist: Created Playlist '{{playlist}}'
-  created_station: "{{creator}} created a new station called: {{station}}"
+  filters: 
+    playlists: PLAYLISTS
 albums: 
   label: Label
   year: Year
@@ -202,8 +212,16 @@ support:
   select: 
     prompt: Please select
 badges: 
-  networker_gold: 
-    qualification: For following 100 users
+  list_page: 
+    see_all_active_badges: See All Active Badges
+    name: Name
+    see_all_badges: See All Badges
+    title: Title
+    see_all_retired_badges: See All Retired Badges
+    badge: Badge
+    description: Description
+    qualification: Qualification
+    status: Status
 cancellation: 
   confirmation: 
     body: Cancelling your Cyloop account will permanently remove all of your profile information, including your photos, activity feeds and your personal network of followers. This information cannot be restored.
@@ -285,7 +303,25 @@ reviews:
       
       Log in to see what they posted.
 basics: 
+  comment: Comment
+  charts_for: Charts for
+  artist: Artist
+  city: City
+  albums_by: Albums by
+  artists: Artists
+  by: By
+  comments: Comments
+  artist_name: Artist Name
+  click_to_unfollow: Click {{follow_link}} to stop following
+  albums: Albums
+  album: Album
+  album_name: Album Name
+  badges: Badges
   click_to_follow: Click {{follow_link}} to follow
+  and_more: and more...
+  ago: ago
+  chart: Chart
+  charts: Charts
 feedback: 
   country: Country
   title: Feedback
@@ -296,13 +332,10 @@ feedback:
   email: Your Email
 main: 
   navigation: 
-    stations: Stations
     playlists: Playlists
-    home: Home
-    search: Search
-    mixes: Mixes
 playlist: 
-  review: REVIEW THIS PLAYLIST
+  edit_your_playlist: Edit your playlist
+  doesnt_have_any_reviews: This playlist does not<br/> have any reviews
 reset: 
   email: 
     message: |-
