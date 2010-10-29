@@ -3,12 +3,13 @@ coke_AR:
   artist: 
     be_the_first_to_create_station: "S\xC3\xA9 el primero en crear una estaci\xC3\xB3n de radio de {{user_name}}"
   share: 
+    name: Tu nombre
     station: 
       subject: "{{user}} quiere compartir esta estaci\xC3\xB3n de radio contigo."
-    name: Tu nombre
     errors: 
       message: 
         invalid_url: Formato de URL incorrecto
+        cant_be_blank: "No puede ir vac\xC3\xADo"
         user_email_invalid: Tu mail es incorrecto
         email_is_not_authorized: "La direcci\xC3\xB3n de mail ingresada no corresponde a un formato autorizado."
         friend_email_blank: El mail de tu amigo no puede quedar sin completar
@@ -18,6 +19,7 @@ coke_AR:
         invalid_chars: Caracteres incorrectos
     friend_email: Email/s de tu/s amigo/s
     message: "Mensaje "
+    multiple_emails: "(si ingresas varios emails, sep\xC3\xA1ralos con comas)"
     song: 
       submit: "Compartir canci\xC3\xB3n"
       subject: "{{user}} quiere compartir esta canci\xC3\xB3n contigo."
@@ -27,7 +29,6 @@ coke_AR:
         o parcial a trav\xC3\xA9s de cualquier formato o medio sin la expresa autorizaci\xC3\xB3n por escrito de Cyloop LLC, queda prohibida. \r\n\
         Cyloop, LLC, 8725 NW 18 Terrace, Suite 401, Doral, FL 3172, USA\r\n"
       message: "Creo que esta canci\xC3\xB3n te va a gustar."
-    multiple_emails: "(si ingresas varios emails, sep\xC3\xA1ralos con comas)"
     email: Tu mail
   buylink: 
     no_buylinks: No se encuentra disponible para la compra
@@ -1225,6 +1226,9 @@ coke_AR:
     ratings_flying_tomatoes: 
       name: Tomatazo
       qualification: "Por haber recibido una calificaci\xC3\xB3n de s\xC3\xB3lo 1 o 2 en la mayor\xC3\xADa de tus primeros 25 mixes en los que te han dejado comentarios. \xC2\xA1Vamos! \xC2\xA1\xC3\x89chale ganitas!"
+    xmas_musician: 
+      name: "M\xC3\xBAsico navide\xC3\xB1o"
+      qualification: "Cuando un usuario crea 3 mixes con al menos un tag navide\xC3\xB1o en cada uno. (o: cuando asigna un tag navide\xC3\xB1o en 3 mixes creados previamente)."
     unlocked_by_user_on: Desbloqueado por {{user}} {{date_won}}
     dj_superstar: 
       name: DJ Superstar
@@ -1232,9 +1236,15 @@ coke_AR:
     beginner: 
       name: Principiante
       qualification: Para registrarse en el sitio.
+    xmas_record_gold: 
+      name: "Disco navide\xC3\xB1o de oro"
+      qualification: "Cuando al menos 20 diferentes usuarios han escuchado m\xC3\xADnimo una vez alguno de mis mixes con tags navide\xC3\xB1os. Este badge se puede ganar varias veces."
     mixmaster_black: 
       name: "Mixmaster: Cintur\xC3\xB3n Negro"
       qualification: "Has creado 50 mixes. Este \"Cintur\xC3\xB3n Negro\" inspira respeto."
+    que_bolas: 
+      name: "Contagia alegr\xC3\xADa"
+      qualification: "Cuando yo recibo la m\xC3\xA1xima calificaci\xC3\xB3n (5 botellitas) por 3 personas por un mix que hice con al menos un tag navide\xC3\xB1o. Nota: Este badge se puede ganar s\xC3\xB3lo una vez, con la m\xC3\xA1xima calificaci\xC3\xB3n de 3 personas."
     leader: 
       name: !binary |
         TMOtZGVy
@@ -1250,15 +1260,27 @@ coke_AR:
       qualification: "Has creado 10 mixes. \xC2\xBFCu\xC3\xA1ntos m\xC3\xA1s cre\xC3\xA9s que sos capaz de hacer?"
     favorite_dj: 
       name: Dj Favorito
-    mixmaster_brown: 
-      name: "Mixmaster: Cintur\xC3\xB3n Marr\xC3\xB3n"
-      qualification: Has creado 25 mixes. Ya sos parte de las ligas mayores.
+    xmas_xpert: 
+      name: "Experto navide\xC3\xB1o"
+      qualification: "Cuando dejo un comentario o califico, en al menos 10 mixes que contengan al menos un tag navide\xC3\xB1o."
+    xmas_rocker: 
+      name: Rocknxmas
+      qualification: "Cuando recibo un comentario u obtengo la calificaci\xC3\xB3n de al menos 20 diferentes usuarios, por alg\xC3\xBAn mix espec\xC3\xADfico que haya creado con al menos un tag navide\xC3\xB1o."
+    rey_mago: 
+      name: Rey mago
+      qualification: "Por haber creado 1 o m\xC3\xA1s mixes con al menos un tag navide\xC3\xB1o, el 6 de enero."
     critic_objective: 
       name: "Doctor en Tendencias: Cr\xC3\xADtico Objetivo"
       qualification: "Por haber calificado con 3 a la mayor\xC3\xADa de 25 mixes"
+    mixmaster_brown: 
+      name: "Mixmaster: Cintur\xC3\xB3n Marr\xC3\xB3n"
+      qualification: Has creado 25 mixes. Ya sos parte de las ligas mayores.
     record_gold: 
       name: Disco de oro
       qualification: Tu mix {{playlist_name}} ha sido escuchado por 20 personas.
+    bota: 
+      name: "Bota Navide\xC3\xB1a"
+      qualification: "Por haber creado 10 mixes con uno o m\xC3\xA1s tags navide\xC3\xB1os."
     playlist_name: Nombre del mix
     king_of_djs: 
       name: El Rey de Djs
@@ -1273,6 +1295,9 @@ coke_AR:
     networker_gold: 
       name: "Networker : Oro"
       qualification: "Est\xC3\xA1s siguiendo a 100 personas. Ten\xC3\xA9s un toque de oro para seguir gente."
+    merry_dj: 
+      name: "Muscalizador navide\xC3\xB1o"
+      qualification: "Cuando el usuario crea su primer mix con un tag navide\xC3\xB1o. (o: cuando etiqueta con un tag navide\xC3\xB1o a alg\xC3\xBAn mix creado previamente)"
     master: 
       name: Master
       qualification: "25 personas te est\xC3\xA1n siguiendo. \xC2\xA1Algo debes estar haciendo bien!"
@@ -1283,6 +1308,9 @@ coke_AR:
       name: "Networker: Diamante"
       qualification: "Est\xC3\xA1s siguiendo a 500 personas. \xC2\xA1Puedes considerarte un Seguidor VIP!"
     unlocked_on: Desbloqueado
+    cool_lo: 
+      name: Magia hecha realidad
+      qualification: "La primera vez que yo recibo la m\xC3\xA1xima calificaci\xC3\xB3n (5 botellitas), por un mix espec\xC3\xADfico que hice con al menos un tag navide\xC3\xB1o. Nota: Este badge se puede ganar \xC3\xBAnicamente una vez, cuando cumpla las reglas. Todos los dem\xC3\xA1s mixes que tengan como calificaci\xC3\xB3n 5 botellitas, NO dar\xC3\xA1n calificaci\xC3\xB3n o badges adicionales."
     dj_bedroom: 
       name: DJ casero
       qualification: se gana cuando 5 personas han escuchado mis mixes
@@ -1295,6 +1323,9 @@ coke_AR:
     record_platinum: 
       name: Disco de platino
       qualification: Tu mix {{playlist_name}} ha sido escuchado por 100 personas.
+    santa_claus: 
+      name: "Pap\xC3\xA1 Noel"
+      qualification: "Por haber creado 1 o m\xC3\xA1s mixes con al menos un tag navide\xC3\xB1o, el 25 de diciembre."
     networker_silver: 
       name: "Networker: Plata"
       qualification: "Est\xC3\xA1s siguiendo a 50 personas. Llevas las Relaciones P\xC3\xBAblicas en la sangre."
@@ -1302,6 +1333,9 @@ coke_AR:
     ratings_stading_ovation: 
       name: "Ovaci\xC3\xB3n de pie"
       qualification: "Por haber recibido una calificaci\xC3\xB3n de 4 o 5 en tus primeros 25 mixes en los que te han dejado comentarios. \xC2\xA1Has conquistado al p\xC3\xBAblico!"
+    regalo: 
+      name: "Regalo so\xC3\xB1ado"
+      qualification: "Por haber calificado 5 o m\xC3\xA1s mixes con 4 \xC3\xB3 5 botellitas."
     ratings_ok: 
       name: O.K..
       qualification: "Por haber recibido una calificaci\xC3\xB3n de 3 en tus primeros 25 mixes en los que te han dejado comentarios. Ni muy-muy, ni tan-tan."
@@ -1311,6 +1345,9 @@ coke_AR:
     dj_private_party: 
       name: DJ de fiesta privada
       qualification: "10 personas han escuchado tus mixes. \xC2\xA1Naciste para esto!"
+    twinkle: 
+      name: Estrella fugaz
+      qualification: "Por haber creado al menos 5 mixes con al menos un tag navide\xC3\xB1o, en la temporada y en un s\xC3\xB3lo d\xC3\xADa, es decir entre las 00:00:00 y las 23:59:59."
     superuser: 
       name: Super usuario
       qualification: "Porque durante siete d\xC3\xADas consecutivos te dedicaste a crear por lo menos un mix, o a dejar un comentario en un mix, o comenzaste a seguir a alguien. Usuarios como vos conforman la crema y nata de Coca-Cola.fm"
@@ -1320,6 +1357,9 @@ coke_AR:
     record_diamond: 
       name: Disco de diamante
       qualification: Tu mix {{playlist_name}} ha sido escuchado por 500 personas.
+    recalentado: 
+      name: Otra vez!
+      qualification: "Cuando la primera vez que recibo la misma calificaci\xC3\xB3n 2 veces, de un mix que hice y que contenga al menos un tag navide\xC3\xB1o. Por ejemplo: Si obtengo 2 botellitas por el mix navide\xC3\xB1o A, 3 botellitas por el mix navide\xC3\xB1o B, 5 botellitas por el mix navide\xC3\xB1o C y 3 botellitas por el mix navide\xC3\xB1o D, cuando yo obtenga nuevamente 3 botellitas del mix navide\xC3\xB1o D, ah\xC3\xAD es cuando se cumple la regla. Nota: Este badge se puede ganar s\xC3\xB3lo una vez, por la primera que cumpla las reglas. Todas las dem\xC3\xA1s calificaciones \"duplicadas\" NO ganar\xC3\xA1n ni dar\xC3\xA1n badges adicionales."
     networker: 
       name: Networker
       qualification: "Est\xC3\xA1s siguiendo a 5 personas"
@@ -1329,9 +1369,6 @@ coke_AR:
     dj_on_fire: 
       name: DJ Imbatible
       qualification: Si un usuario crea 5 playlists dentro de 24 hs.
-    networker_platinum: 
-      name: "Networker: Platino"
-      qualification: "Est\xC3\xA1s siguiendo a 250 personas. Tu capacidad de seguimiento no conoce l\xC3\xADmites"
     list_page: 
       name: Nombre
       see_all_active_badges: "Clic aqui para ver solamente los Badges actualmente activados. \xC2\xBFYa los ten\xC3\xA9s todos? \xC2\xBFCu\xC3\xA1les te faltan aun?"
@@ -1342,16 +1379,25 @@ coke_AR:
       qualification: "Explicaci\xC3\xB3n"
       description: "Encontr\xC3\xA1 ac\xC3\xA1 la enciclopedia completa de todos los badges que pod\xC3\xA9s ganarte en Coca-Cola.fm."
       status: Status
+    networker_platinum: 
+      name: "Networker: Platino"
+      qualification: "Est\xC3\xA1s siguiendo a 250 personas. Tu capacidad de seguimiento no conoce l\xC3\xADmites"
     others_that_have_this_badge: Otros usarios que han ganado este badge
+    xmas_record: 
+      name: "Disco navide\xC3\xB1o de plata"
+      qualification: "Cuando al menos 10 diferentes usuarios han escuchado m\xC3\xADnimo una vez alguno de mis mixes con tags navide\xC3\xB1os. Este badge se puede ganar varias veces."
     status: 
-      inactive: ""
-      active: ""
-    mixmaster_white: 
-      name: "Mixmaster: Cintur\xC3\xB3n Blanco"
-      qualification: "\xC2\xA1Creaste tu primer mix!"
+      inactive: Inactivo
+      active: Activo
     trifecta: 
       name: Trifecta
       qualification: "Porque en 24 horas creaste 3 mixes, comenzaste a seguir a 3 usuarios y dejaste comentarios para 3 nuevos mixes. Todo de a tres, en armon\xC3\xADa perfecta."
+    mixmaster_white: 
+      name: "Mixmaster: Cintur\xC3\xB3n Blanco"
+      qualification: "\xC2\xA1Creaste tu primer mix!"
+    xmas_dj: 
+      name: "DJ  navide\xC3\xB1o"
+      qualification: "Cuando un usuario tiene 5 mixes con al menos un tag navide\xC3\xB1o. No importa si cre\xC3\xB3 \xC3\xA9l mismo los 5 o si copi\xC3\xB3 de otro usuario y le asign\xC3\xB3 un tag navide\xC3\xB1o."
     guru: 
       name: !binary |
         R3Vyw7o=
@@ -1360,22 +1406,23 @@ coke_AR:
     email: 
       subject: "\xC2\xA1Felicidades! Has ganado un nuevo badge en Coca-Cola.fm"
       message: "\xC2\xA1Felicidades! Ganaste {{badge_name}}: {{badge_qualification}}. Ingresa al sitio: www.coca-cola.fm para ver tu badge y ver qui\xC3\xA9n m\xC3\xA1s la tiene."
-    mixmaster_yellow: 
-      name: "Mixmaster: Cintur\xC3\xB3n Amarillo"
-      qualification: "Has creado 5 mixes. Bien hecho, peque\xC3\xB1o saltamontes"
     networker_bronze: 
       name: "Networker : Bronce"
       qualification: "Est\xC3\xA1s siguiendo a 25 personas. Tu c\xC3\xADrculo de contactos se hace m\xC3\xA1s grande."
+    mixmaster_yellow: 
+      name: "Mixmaster: Cintur\xC3\xB3n Amarillo"
+      qualification: "Has creado 5 mixes. Bien hecho, peque\xC3\xB1o saltamontes"
   footer: 
     faq: FAQ
     help: Ayuda
+    badges_listing: Lista de badges
     about_coke: Sobre Coca-Cola
     terms_and_conditions: "T\xC3\xA9rminos y condiciones"
     support: Soporte
     feedback: Sugerencias
     about_us: Sobre nosotros
-    safety_tips: Consejos de seguridad
     about_cyloop: Sobre Coca-Cola.fm
+    safety_tips: Consejos de seguridad
     about_hoodiny: Sobre Hoodiny
     privacy_policy: "Pol\xC3\xADtica de privacidad"
   sort: 
