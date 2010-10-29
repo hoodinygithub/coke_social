@@ -31,7 +31,8 @@ class BadgesController < ApplicationController
   end
   
   def list
-    @badges = Badge.all
+    # promo_id doesn't mean anything yet.  Just CokeBR doesn't get to see it.
+    @badges = current_site.id == 22 ? Badge.all({:conditions => { :promo_id => nil}}) : Badge.all
     render :layout => "logged_out"
   end
 end

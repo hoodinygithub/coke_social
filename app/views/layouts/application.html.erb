@@ -22,7 +22,7 @@
       <%= user_navigation %>
       <%= yield :header_space_content %> 
       <div id="main_content" class="<%= @section.nil? ? controller_name : @section %> <%= market_class if @section == 'player_page'  %>">
-		  <% if !market_class.blank? and @section == 'player_page'  %>
+		  <% if !market_class.blank? and market_class != 'es' and @section == 'player_page'  %>
 		  <div class="santa" onclick="window.open('http://www.coca-cola.com.<%= market_class %>/');" style="cursor: pointer;"></div>	
 		  <% end %>      
 		<%= yield %></div>

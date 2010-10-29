@@ -35,10 +35,18 @@ namespace :coke do
                     'Niño jesus', 'Regalos', 'Hacer felices a los demás', 'Regalar canciones', 'Canciones navideñas',
                     'Villancicos', 'Estrellas navideñas', 'Artistas navideños', 'Regalar una canción', 
                     'Cantantes navideños', 'Para posadas', 'Nostálgica', 'Navideña', 'Época de navidad',
-                    'Época de compartir', 'Compartir']
+                    'Época de compartir', 'Compartir'],
+        :cokelatam => ['Dedicar canciones', 'Navidad', 'Xmas', 'Armonía', 'Felicidad', 'Felicidad en navidad',
+                    'Seres queridos', 'Música', 'Compartir', 'Dar y compartir', 'Felices fiestas', 'Año nuevo',
+                    'Canciones en año nuevo', 'Festejar', 'Festejar en navidad', 'Cenar en navidad', 'Cena navideña',
+                    'Amigos', 'Familia', 'Feliz navidad', 'Para nochebuena', 'Ser feliz', 'Reyes magos', 'Santa claus',
+                    'Niño jesus', 'Regalos', 'Hacer felices a los demás', 'Regalar canciones', 'Canciones navideñas',
+                    'Villancicos', 'Estrellas navideñas', 'Artistas navideños', 'Regalar una canción', 
+                    'Cantantes navideños', 'Para posadas', 'Nostálgica', 'Navideña', 'Época de navidad',
+                    'Época de compartir', 'Compartir']  
       }
       
-      sites = Site.all(:conditions => "code in ('cokemx','cokear')")
+      sites = Site.all(:conditions => "code in ('cokemx','cokear','cokelatam')")
       sites.each do |site|
         puts site.name
         puts "--------"
@@ -50,6 +58,12 @@ namespace :coke do
       end          
     end
     
+    desc 'Remove valid tags for xmas promo'
+    task :remove_xmas_promo => :environment do
+      tags = ValidTag.find_by_promo('xmas')
+      tags.destroy
+    end
+        
     desc "Insert the pre-defined valid tags received from Claro"
     task :insert_valid => :environment do 
       ValidTag.delete_all
