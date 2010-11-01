@@ -2243,7 +2243,7 @@ Base.playlists.showTagsLayer = function() {
     $('#selected_tags').val(pre_selected_tags);
     $.each(pre_selected_tags.split(','), function() {
       $('ul.selected_tags').append('<li><a href="#">' + this + '</a></li>');
-      $("ul.available_tags li a:contains('" + this + "')").parent().hide();        
+      $("ul.available_tags li a:contains('" + this + "')").first().parent().hide();        
       $('ul.selected_tags li a').click(Base.playlists.removeTag);
     });
   }
