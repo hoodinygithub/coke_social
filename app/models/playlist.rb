@@ -158,7 +158,7 @@ class Playlist < ActiveRecord::Base
     joins      = "INNER JOIN #{Tagging.table_name} ON #{Tag.table_name}.id = #{Tagging.table_name}.tag_id AND #{Tagging.table_name}.taggable_type = 'Playlist'"
     
     unless current_site.nil?
-      conditions << " AND valid_tags.site_id = #{current_site.id}"
+      conditions << " AND valid_tags.site_id = #{current_site.id} AND valid_tags.deleted_at IS NULL"
       joins      << " INNER JOIN valid_tags ON valid_tags.tag_id = #{Tag.table_name}.id"
     end
     
@@ -225,6 +225,6 @@ class Playlist < ActiveRecord::Base
   end
 
   def valid_tags
-    tags.find(:all, :conditions => "valid_tags.site_id = #{ApplicationController.current_site.id}", :joins => "INNER JOIN valid_tags ON valid_tags.tag_id = tags.id")
+    tags.find(:all, :conditions => "valid_tags.site_id = #{ApplicationController.current_site.id} and valid_tags.deleted_at IS NULL", :joins => "INNER JOIN valid_tags ON valid_tags.tag_id = tags.id")
   end
 end
