@@ -15,7 +15,7 @@ class ValidTag < ActiveRecord::Base
   belongs_to :site
   validates_uniqueness_of :tag_id, :scope => :site_id
   
-  default_scope :conditions => { :deleted_at => nil }, :order => "promo DESC"
+  default_scope :conditions => { :deleted_at => nil }, :order => "promo_id DESC"
   
   attr_accessor :tag_name
   

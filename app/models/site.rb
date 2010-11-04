@@ -60,7 +60,7 @@ class Site < ActiveRecord::Base
   has_many :networks, :through => :network_sites
   
   has_many :valid_tags
-  has_many :tags, :through => :valid_tags, :conditions => " valid_tags.deleted_at IS NULL",  :order => "valid_tags.promo DESC,tags.name ASC "
+  has_many :tags, :through => :valid_tags, :conditions => "valid_tags.deleted_at IS NULL", :order => "valid_tags.promo_id DESC, tags.name ASC"
   
   belongs_to :login_type
 
