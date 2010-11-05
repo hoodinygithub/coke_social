@@ -119,7 +119,9 @@ class User < Account
 
   has_many :taggings, :through => :playlists
 
-  has_many :badge_awards, :foreign_key => :winner_id, :include => :badge do
+  # Until we know what a promo is (besides id and timestamps), I haven't created a promo or promo_sites table.  CokeBR just doesn't play.
+  has_many :badge_awards, :foreign_key => :winner_id, :include => :badge,
+    :conditions => (ApplicationController.current_site.id == 22 ? "badges.promo_id IS NULL" : nil) do
     def notifications
       all(:conditions => 'notified_at IS NULL')
     end
@@ -127,7 +129,8 @@ class User < Account
       update_all('notified_at = now()', 'notified_at IS NULL')
     end
   end
-  has_many :badges, :through => :badge_awards
+  has_many :badges, :through => :badge_awards, :include => :badge_awards, 
+    :conditions => (ApplicationController.current_site.id == 22 ? { :promo_id => nil } : nil)
 
   has_many :followings, :foreign_key => 'follower_id'
   has_many :followees, :through => :followings, :conditions => "accounts.type = 'User' AND accounts.network_id = 2 AND followings.approved_at IS NOT NULL", :source => :followee do
