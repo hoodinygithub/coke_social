@@ -23,7 +23,14 @@ class BadgeAward < ActiveRecord::Base
   delegate :name, :to => :playlist, :prefix => true, :allow_nil => true
 
   before_save :increment_badge_counts
-  named_scope :latest, lambda { |*num| { :limit => num.flatten.first || 6, :order => 'badge_awards.created_at DESC', :include => [:winner, :badge], :conditions => 'accounts.deleted_at IS NULL' } }
+  named_scope :latest, lambda { |*num| {
+     :limit => num.flatten.first || 6,
+     :order => 'badge_awards.created_at DESC',
+     :include => [:winner, :badge],
+     # Upate this when promo table is finalized.
+     # include :promo, condition "promos.site_id = #{current_site.id}"
+     :conditions => "accounts.deleted_at IS NULL #{ApplicationController.current_site.id == 22 ? ' AND badges.promo_id IS NULL' : ''}"
+  }}
   
   def new?
     is_new = false
