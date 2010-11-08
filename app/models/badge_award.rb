@@ -31,7 +31,7 @@ class BadgeAward < ActiveRecord::Base
      # include :promo, condition "promos.site_id = #{current_site.id}"
      :conditions => "accounts.deleted_at IS NULL #{ApplicationController.current_site.id == 22 ? ' AND badges.promo_id IS NULL' : ''}"
   }}
-  
+
   def new?
     is_new = false
     if notified_at.nil? or (notified_at and (Time.now >= notified_at and Time.now <= notified_at + 24.hours))
