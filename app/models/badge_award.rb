@@ -22,7 +22,7 @@ class BadgeAward < ActiveRecord::Base
   delegate :badge_key, :name, :image, :to => :badge
   delegate :name, :to => :playlist, :prefix => true, :allow_nil => true
 
-  before_save :increment_badge_counts
+  before_create :increment_badge_counts
   named_scope :latest, lambda { |*num| {
      :limit => num.flatten.first || 6,
      :order => 'badge_awards.created_at DESC',

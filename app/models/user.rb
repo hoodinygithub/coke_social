@@ -126,7 +126,9 @@ class User < Account
       all(:conditions => 'notified_at IS NULL')
     end
     def set_notified!
-      update_all('notified_at = now()', 'notified_at IS NULL')
+      # Doesn't work because badges.promo_id in this scope is not a valid update condition
+      # update_all('notified_at = now()', 'notified_at IS NULL')
+      notifications.each{ |ba| ba.notified_at = Time.now(); ba.save! }
     end
   end
   has_many :badges, :through => :badge_awards, :include => :badge_awards, 
@@ -351,8 +353,10 @@ class User < Account
   end
 
   def update_followings_with_partial_name
-    followings.update_all(:follower_name => self.name[0..2])
-    followings_as_followee.update_all(:followee_name => self.name[0..2])
+    if name_changed?
+      followings.update_all(:follower_name => self.name[0..2]) 
+      followings_as_followee.update_all(:followee_name => self.name[0..2]) 
+    end
   end
 
 
