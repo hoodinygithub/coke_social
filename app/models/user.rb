@@ -353,7 +353,7 @@ class User < Account
   end
 
   def update_followings_with_partial_name
-    if name_changed?
+    if name_changed? or encrypted_name_changed?
       followings.update_all(:follower_name => self.name[0..2]) 
       followings_as_followee.update_all(:followee_name => self.name[0..2]) 
     end
