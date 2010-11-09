@@ -119,15 +119,20 @@ class User < Account
 
   has_many :taggings, :through => :playlists
 
-  has_many :badge_awards, :foreign_key => :winner_id, :include => :badge do
+  # Until we know what a promo is (besides id and timestamps), I haven't created a promo or promo_sites table.  CokeBR just doesn't play.
+  has_many :badge_awards, :foreign_key => :winner_id, :include => :badge,
+    :conditions => (ApplicationController.current_site.id == 22 ? "badges.promo_id IS NULL" : nil) do
     def notifications
       all(:conditions => 'notified_at IS NULL')
     end
     def set_notified!
-      update_all('notified_at = now()', 'notified_at IS NULL')
+      # Doesn't work because badges.promo_id in this scope is not a valid update condition
+      # update_all('notified_at = now()', 'notified_at IS NULL')
+      notifications.each{ |ba| ba.notified_at = Time.now(); ba.save! }
     end
   end
-  has_many :badges, :through => :badge_awards
+  has_many :badges, :through => :badge_awards, :include => :badge_awards, 
+    :conditions => (ApplicationController.current_site.id == 22 ? { :promo_id => nil } : nil)
 
   has_many :followings, :foreign_key => 'follower_id'
   has_many :followees, :through => :followings, :conditions => "accounts.type = 'User' AND accounts.network_id = 2 AND followings.approved_at IS NOT NULL", :source => :followee do
@@ -192,7 +197,7 @@ class User < Account
     options = { :select => "DISTINCT tags.*",
                 :joins => "INNER JOIN #{Tagging.table_name} ON #{Tag.table_name}.id = #{Tagging.table_name}.tag_id INNER JOIN #{Playlist.table_name} ON #{Tagging.table_name}.taggable_id = #{Playlist.table_name}.id AND #{Tagging.table_name}.taggable_type = 'Playlist' INNER JOIN valid_tags ON valid_tags.tag_id = #{Tag.table_name}.id",
                 :order => "taggings.created_at DESC",
-                :conditions => "playlists.owner_id = #{self.id} AND playlists.deleted_at IS NULL AND valid_tags.site_id = #{current_site.id}",
+                :conditions => "playlists.owner_id = #{self.id} AND playlists.deleted_at IS NULL AND valid_tags.site_id = #{current_site.id} AND valid_tags.deleted_at IS NULL",
                 :limit => limit }
 
     Tag.all(options)
@@ -348,8 +353,10 @@ class User < Account
   end
 
   def update_followings_with_partial_name
-    followings.update_all(:follower_name => self.name[0..2])
-    followings_as_followee.update_all(:followee_name => self.name[0..2])
+    if name_changed? or encrypted_name_changed?
+      followings.update_all(:follower_name => self.name[0..2]) 
+      followings_as_followee.update_all(:followee_name => self.name[0..2]) 
+    end
   end
 
 

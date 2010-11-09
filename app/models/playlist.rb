@@ -36,6 +36,7 @@ class Playlist < ActiveRecord::Base
   acts_as_rateable(:class => 'Comment', :as => 'commentable')
 
   before_save :update_cached_artist_list
+  after_save :award_xmas_badges
   before_create :increment_owner_total_playlists
   
   belongs_to :site
@@ -141,6 +142,12 @@ class Playlist < ActiveRecord::Base
     artists
   end
 
+  # ARTISTS_FROM_PLAYLIST = %Q!
+  #   SELECT a.* FROM accounts a
+  #   INNER JOIN songs s ON a.id = s.artist_id
+  #   INNER JOIN playlist_items p ON p.song_id = s.id
+  #   WHERE p.playlist_id = ?
+  # !
   # def artists
   #   @artists ||= Artist.find_by_sql( [ ARTISTS_FROM_PLAYLIST, self.id ] ).uniq
   # end
@@ -158,7 +165,7 @@ class Playlist < ActiveRecord::Base
     joins      = "INNER JOIN #{Tagging.table_name} ON #{Tag.table_name}.id = #{Tagging.table_name}.tag_id AND #{Tagging.table_name}.taggable_type = 'Playlist'"
     
     unless current_site.nil?
-      conditions << " AND valid_tags.site_id = #{current_site.id}"
+      conditions << " AND valid_tags.site_id = #{current_site.id} AND valid_tags.deleted_at IS NULL"
       joins      << " INNER JOIN valid_tags ON valid_tags.tag_id = #{Tag.table_name}.id"
     end
     
@@ -207,13 +214,6 @@ class Playlist < ActiveRecord::Base
     @total_time ||= items.sum(:duration).to_i
   end
  
-  ARTISTS_FROM_PLAYLIST = %Q!
-    SELECT a.* FROM accounts a
-    INNER JOIN songs s ON a.id = s.artist_id
-    INNER JOIN playlist_items p ON p.song_id = s.id
-    WHERE p.playlist_id = ?
-  !
-
   def rate_with(rating)
     rating ||= 0
     add_rating(rating)
@@ -225,6 +225,17 @@ class Playlist < ActiveRecord::Base
   end
 
   def valid_tags
-    tags.find(:all, :conditions => "valid_tags.site_id = #{ApplicationController.current_site.id}", :joins => "INNER JOIN valid_tags ON valid_tags.tag_id = tags.id")
+    tags.all(:joins => "INNER JOIN valid_tags ON valid_tags.tag_id = tags.id",
+      :conditions => ["valid_tags.site_id = ? and valid_tags.deleted_at IS NULL", ApplicationController.current_site.id])
+  end
+  
+  # defaults to xmas promo
+  def promo_tags(p_promo_id = 1)
+    tags.all(:joins => "INNER JOIN valid_tags ON valid_tags.tag_id = tags.id",
+      :conditions => ["valid_tags.promo_id = ? and valid_tags.site_id = ?", p_promo_id, ApplicationController.current_site.id])
+  end
+  
+  def award_xmas_badges
+    award_badge(:merry_dj, owner) if promo_tags(1).size > 0
   end
 end

@@ -22,7 +22,7 @@
 
   (function() {
     var e = document.createElement('script');
-    e.src = document.location.protocol + '//connect.facebook.net/<%= lang_mappings %>/all.js';
+    e.src = document.location.protocol + '//connect.facebook.net/<%= current_site.fb_locale %>/all.js';
     e.async = true;
     document.getElementById('fb-root').appendChild(e);
   }());

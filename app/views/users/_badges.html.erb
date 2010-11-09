@@ -1,9 +1,9 @@
 <div class="box_content <%= "ignore_new" unless on_dashboard? %>">
   <h1><%= possessive :badges %></h1>
-  <% cache("#{profile_user.slug_cache_key}/modules/profile/badge_awards", :expires_in => EXPIRATION_TIMES['profile_modules_badge_awards']) do %>
+  <% cache("#{site_cache_key}/#{profile_user.slug_cache_key}/modules/profile/badge_awards", :expires_in => EXPIRATION_TIMES['profile_modules_badge_awards']) do %>
     <div class="badges_list">
       <% if profile_user.total_badges > 0 %>
-        <% profile_user.badge_awards.all(:limit => 15, :order => 'created_at DESC').each do |badge_award| %>
+        <% profile_user.badge_awards.all(:limit => 15, :order => 'badge_awards.created_at DESC').each do |badge_award| %>
           <% new_image = badge_award.new? ? image_tag("new_#{current_site.default_locale.to_s.downcase}.png", :class => 'new') : ''  %>
           <%= link_to ( image_tag(badge_award.image, :title => t("badges.#{badge_award.badge_key}.name")) + new_image, badge_path(badge_award)) %>
         <% end %>

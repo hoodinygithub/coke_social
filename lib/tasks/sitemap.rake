@@ -11,7 +11,7 @@ namespace :sitemap do
                "xsi:schemaLocation" => "http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/siteindex.xsd",
                "xmlns" => "http://www.sitemaps.org/schemas/sitemap/0.9" do             
 
-      %w[home playlists search].each do |url|
+      %w[home playlists search badges/list].each do |url|
         xml.url do
           xml.loc        url 
           xml.lastmod    Time.now.utc.strftime("%Y-%m-%dT%H:%M:%S+00:00")
@@ -24,7 +24,7 @@ namespace :sitemap do
           
       # Support Pages
       unless ENV['SITE'] == "Coke Brazil" then 
-        %w[support/terms_and_conditions support/privacy_policy].each do |url|
+        %w[support/terms_and_conditions support/privacy_policy badges/list].each do |url|
           xml.url do
             xml.loc        url
             xml.lastmod    Time.now.utc.strftime("%Y-%m-%dT%H:%M:%S+00:00")
