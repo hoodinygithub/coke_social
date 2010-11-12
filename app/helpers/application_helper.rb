@@ -439,13 +439,13 @@ module ApplicationHelper
   def gatracker_id
     case current_site.code
     when "cokelatam"
-      "UA-410780-61"
+      "UA-19631092-3"
     when "cokebr"
-      "UA-410780-62"
+      "UA-19631092-2"
     when "cokemx"
-      "UA-410780-64"
+      "UA-19631092-4"
     when "cokear"
-      "UA-410780-65"
+      "UA-19631092-5"
     end
 
   end

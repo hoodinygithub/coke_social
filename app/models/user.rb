@@ -339,7 +339,7 @@ class User < Account
     born_on_string = date.to_s if date and date.is_a?(Date)
   end
 
-  def born_on    
+  def born_on
     Date.parse(born_on_string) unless born_on_string.nil?
   end
 
