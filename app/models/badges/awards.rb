@@ -23,7 +23,13 @@ module Badges::Awards
   end
 
   def award_xmas_badges_playlist
-    award_badge(:merry_dj, owner) if promo_tags(1).size > 0
+
+    award_badge(:merry_dj, owner) if promo_playlist?
+
+    if owner.playlists.all(:conditions => ["created_at > ?", Time.now - 1.day]).select { |p| p.promo_playlist? }.length == 5
+      award_badge(:twinkle, owner)
+    end
+
   end
 
   def award_xmas_badges_comment
