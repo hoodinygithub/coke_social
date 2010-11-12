@@ -92,21 +92,37 @@ number:
       separator: .
       delimiter: ","
 share: 
-  errors: 
-    message: 
-      cant_be_blank: Can't be blank
+  song: 
+    marketing: |-
+      Copyright \xC2\xA9 2008 Cyloop LLC. All rights reserved. Cyloop, Cyloop.com, the Cyloop logo and all other Cyloop marks
+      
+      contained herein are trademarks of Hoodiny Entertainment Group and/or its affiliated companies.
+      All other marks
+      contained herein are the property of their respective owners. Reproduction in whole or in
+      part in any
+      form or medium without express written permission of Cyloop LLC, is prohibited.
+      
+      Cyloop, LLC, 555 Washington Avenue, Miami Beach, FL 33139
+      Microsoft Corporation, One Microsoft Way, Redmond, WA 98052-6399, USA \xC2\xA9; 2008 Microsoft Corporation.
+      All rights reserved.
+  multiple_emails: (separate multiple emails with commas)
 activerecord: 
-  attributes: 
-    valid_tag: 
-      tag_id: Tag
-      tag_name: Tag
-      site_id: Site
+  errors: 
+    messages: 
+      invalid_content_type: Sorry, we only allow jpg, gif or png images to be uploaded
+    models: 
+      account: 
+        attributes: 
+          background: 
+            content_type: Sorry, we only allow jpg, gif or png images to be uploaded
+          avatar: 
+            content_type: Sorry, we only allow jpg, gif or png images to be uploaded
+      album: 
+        attributes: 
+          avatar: 
+            content_type: Sorry, we only allow jpg, gif or png images to be uploaded
 player: 
   license_message: 
-    body: Due to radio licensing, you are unable to listen to full tracks when playing your own playlist.
-    header: We're sorry...
-  max_skips_message: 
-    body: Unfortunately our music licenses force us to limit the number of songs you may skip each hour. If you want to hear something else, try creating another stations with a different artist.
     header: We're sorry...
 playlist_items: 
   delete_text: Are you sure you want to delete this song?
@@ -148,9 +164,7 @@ stations:
   no_stations_created: No stations have been created
   last_station_created_at: Last station created {{when}} ago
 playlists: 
-  add_tags: Add tags
-  click_here_to_add_tags: click here to add tags
-  remove_all_tags: Remove all
+  full_listen: <li>You need <b class='red'>{{songsleft}}</b> more songs to be able to listen to your playlist in full. When your playlist reaches {{maxsongs}} songs, this tab will turn green.<br /><br /><b>TIP:</b> Use the <b class='green'>'Lucky 10'</b> button to help add songs to your playlist!</li>
 forgot: 
   captcha_invalid: You have entered the reCAPTCHA code incorrectly.  Do try again!
   reset_message_sent: Thank you. Instructions to reset your password have been sent to the email you just provided.
@@ -292,43 +306,9 @@ demographics:
       
       Tip: create a password with a mix of letters and numbers so it's more secure.
 badges: 
-  xmas_record_gold: 
-    name: Xmas gold record
-    qualification: When at least 20 different users have listened at least once to one single particular Mix among the ones I have created, and that have at least one Xmas tag assigned. Notice that a user can earn many/several of these
-  xmas_musician: 
-    name: Xmas Musician
-    qualification: "When user creates 3 Mixes with a at least one Xmas tag assigned to each of it. (or: when just assigning a Xmas tag to any 3 previously created mixes)."
-  rey_mago: 
-    qualification: For Having Created 1 or more playlist on January 6th with Xmas tag
-  xmas_rocker: 
-    name: Rocknxmas
-    qualification: When I receive a comment or get a ranking from at least 20 different users, for a specific single Mix that I have created and that has at least one Xmas tag assigned to it.
-  xmas_xpert: 
-    name: Xmas xpert
-    qualification: When I leave a comment or assign a ranking to, on at least 10 Mixes that each one has at least one Xmas tag assigned to it.
-  bota: 
-    name: Bota Bota Booo!!
-    qualification: For having created 10 mixes with one or more Xmas tags
-  cool_lo: 
-    name: Cool-lo
-    qualification: "The first time when I receive the maximum ranking (5 bottles), for a specific single Mix that I have created that has at least one Xmas tag assigned to it.  Note: this badge is earned only one time, for the 1st time that the rule verifies. All further Xmas Mixes that get a 5 star ranking, do NOT reward additional units of this badge."
-  santa_claus: 
-    name: Santa Claus
-    qualification: For Having Created 1 or more playlist on December 25th with Xmas tag
-  regalo: 
-    name: Xmas Giver
-    qualification: For having rated most out of 5 Xmas playlists with 4 or 5 bottles
-  recalentado: 
-    name: Recalentado
-    qualification: "The first time when I receive twice the same ranking, for a specific single Mix that I have created that has at least one Xmas tag assigned to it. E.g: I get a ranking of 2 bottles for Xmas-Mix A, 3 bottles for Xmas-Mix B, 5 bottles for Xmas-Mix C, and 3 bottles for Xmas-Mix D. When I get the \xE2\x80\x9Crepeated\xE2\x80\x9D 3-bottles-ranking for Xmas-Mix D, that\xE2\x80\x99s when this rule verifies. Note: this badge is earned only one time, for the 1st time that the rule verifies. All further Xmas Mixes that get a \xE2\x80\x9Cduplicated\xE2\x80\x9D ranking, do NOT reward additional units of this badge."
-  twinkle: 
-    qualification: "When user creates at least 5 Mixes with a at least one Xmas tag assigned to each of it, within one single calendar day. Notice is NOT within \xE2\x80\x9C24 hours\xE2\x80\x9D which is a \xE2\x80\x9Crelative\xE2\x80\x9D variable, but \xE2\x80\x9Csingle calendar day\xE2\x80\x9D which is an absolute value, defined as the period between 00:00:00 hs and 23:59:59 hs of each day."
-  xmas_record: 
-    name: Xmas record
-    qualification: When at least 10 different users have listened at least once to one single particular Mix among the ones I have created, and that have at least one Xmas tag assigned. Notice that a user can earn many/several of these
-  xmas_dj: 
-    name: Xmas DJ
-    qualification: "When user has 5 Mixes with a at least one Xmas tag assigned to each of it. Either because user has created those 5, or user has copied them from another user, and \xE2\x80\x9Cre-tagged\xE2\x80\x9D assigning a Xmas tag to it."
+  beginner: 
+    name: Beginner
+    qualification: For registering on the site.
 contact_us: 
   form: 
     feedback_default: Please provide as much detail as possible
@@ -347,23 +327,9 @@ contact_us:
     privacy: Privacy and Security?
 cancellation: 
   confirmation: 
-    are_you_sure: Are you sure still want to cancel your account?
-    body: Cancelling your Cyloop account will permanently remove all of your profile information, including your photos, activity feeds and your personal network of followers. This information cannot be restored.
     title: We are sorry you're leaving Cyloop!
-    irreversible_note: This action is irreversible
-    keep_account: No, Keep My Account
-    cancel_account: Yes, Cancel My Account
   feedback: 
-    label: Feedback
     body: We are sorry that you decided to leave Cyloop. Would you mind giving us some feedback as to why? We are always working on improving the user experience. Hope you will came back to check us out.
-    title: Why are you leaving Cyloop?
-    send: Send
-    no_thanks: No Thanks
-  email: 
-    body: Your Cyloop profile was removed.
-    title: Hi {{name}}
-    subject: Profile Removed
-    goodbye: Thank you
 feedback: 
   country: Country
   title: Feedback
@@ -382,7 +348,7 @@ main:
   navigation: 
     mixes: Mixes
 footer: 
-  badges_listing: Badges Listing
+  safety_tips: Safety Tips
 settings: 
   background_not_saved_image_too_large: Background image can't be larger than 1 MB
   page_title: Control your Cyloop
@@ -406,17 +372,9 @@ settings:
     notifications: Notifications
     password: Password
 site: 
-  sample_flag_description: Unfortunately this content is restricted for this territory and can't play in full. You should be able to listen to full songs from this artist and others similar in the Radio section.
+  safety_tips: Safety Tips
 reset: 
-  insert_valid_info: Insert Valid Info
-  message_delivered: We've sent out instructions on resetting your password to your email address.  You should receive an email shortly with instructions.
   email: 
-    welcome: Hi, {{user}}
-    subject: Your Cyloop password
-    sig: |-
-      Keep enjoying and discovering music on Cyloop,
-      
-      The Cyloop Team
     message: |-
       You are receiving this email because a new password was requested for your Cyloop account.
       
@@ -497,15 +455,10 @@ sessions:
   destroy: 
     sign_out: Log out
 user: 
-  marketing_opt_out: "I don\xE2\x80\x99t wish to receive emails from Cyloop or its partners."
+  safety_tips: Safety Tips
 biography: 
-  no_bio_availible: No bio available
   management: 
-    label: Label
-    title: Management
     type: Type
-    email: Management
-  biography: Biography
 following: 
   approval: "{{name}} will now receive your updates"
   denial: "{{name}} will not be allowed to receive your updates"
