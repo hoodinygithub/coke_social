@@ -24,10 +24,27 @@ module Badges::Awards
 
   def award_xmas_badges_playlist
 
-    award_badge(:merry_dj, owner) if promo_playlist?
+    # NOTE: Must be optimized for performance
+    if promo_playlist?
 
-    if owner.playlists.all(:conditions => ["created_at > ?", Time.now - 1.day]).select { |p| p.promo_playlist? }.length == 5
-      award_badge(:twinkle, owner)
+      award_badge(:merry_dj, owner) 
+
+      if owner.playlists.all.select { |p| p.promo_playlist? }.length == 3
+        award_badge(:xmas_musician, owner)
+      end
+
+      if owner.playlists.all.select { |p| p.promo_playlist? }.length == 5
+        award_badge(:xmas_dj, owner)
+      end
+
+      if owner.playlists.all.select { |p| p.promo_playlist? }.length == 10
+        award_badge(:bota, owner)
+      end
+
+      if owner.playlists.all(:conditions => ["created_at > ?", Time.now - 1.day]).select { |p| p.promo_playlist? }.length == 5
+        award_badge(:twinkle, owner)
+      end
+
     end
 
   end
@@ -35,7 +52,7 @@ module Badges::Awards
   def award_xmas_badges_comment
 
     # Getting promo_tags for every playlist you've commented on may be too heavy.  Try to short circuit if already won.
-    unless Badge.find_by_badge_key("xmas_xpert").winners.include? user 
+    unless badge.find_by_badge_key("xmas_xpert").winners.include? user
       if commentable.promo_playlist? and user.comments.all(:include=>:commentable).select{|c| c.commentable.promo_playlist?}.length >= 10
         award_badge(:xmas_xpert, user)
       end
