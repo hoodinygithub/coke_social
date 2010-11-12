@@ -2,9 +2,12 @@ Comment.class_eval do
 
   extend ActionView::Helpers::SanitizeHelper::ClassMethods
   include ActionView::Helpers::SanitizeHelper
+  include Badges::Awards
 
   validate :rating_or_review
   validate :sanitize_comment
+
+  after_save :award_xmas_badges_comment
 
   def rating_cache
     self.rating
