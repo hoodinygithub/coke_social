@@ -38,15 +38,13 @@ module Badges::Awards
       wins = BadgeAward.all(:conditions => { :winner_id => owner.id }).map(&:badge_id)
 
       if !wins.include? Badge.find_by_badge_key("santa_claus").id
-        # if Time.now.month == 12 and Time.now.day == 25
-        if Time.now.month == 11 and Time.now.day == 15
+        if Time.now.month == 12 and Time.now.day == 25
           award_badge(:santa_claus, owner)
         end
       end
 
       if !wins.include? Badge.find_by_badge_key("rey_mago").id
-        # if Time.now.month == 1 and Time.now.day == 6
-        if Time.now.month == 11 and Time.now.day == 15
+        if Time.now.month == 1 and Time.now.day == 6
           award_badge(:rey_mago, owner)
         end
       end
