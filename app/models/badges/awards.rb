@@ -24,25 +24,32 @@ module Badges::Awards
 
   def award_xmas_badges_playlist
 
-    # NOTE: Must be optimized for performance
     if promo_playlist?
 
-      award_badge(:merry_dj, owner) 
+      award_badge(:merry_dj, owner)
 
-      if owner.playlists.all.select { |p| p.promo_playlist? }.length == 3
-        award_badge(:xmas_musician, owner)
+      unless Badge.find_by_badge_key("twinkle").winners.include? owner
+        if owner.playlists.all(:conditions => ["created_at > ?", Time.now - 1.day]).select { |p| p.promo_playlist? }.length == 5
+          award_badge(:twinkle, owner)
+        end
       end
 
-      if owner.playlists.all.select { |p| p.promo_playlist? }.length == 5
-        award_badge(:xmas_dj, owner)
+      count = nil
+      wins = BadgeAward.all(:conditions => { :winner_id => owner.id }).map(&:badge_id)
+
+      if !wins.include? Badge.find_by_badge_key("xmas_musician").id
+        count ||= owner.playlists.select { |p| p.promo_playlist? }.length
+        award_badge(:xmas_musician, owner) if count >= 3
       end
 
-      if owner.playlists.all.select { |p| p.promo_playlist? }.length == 10
-        award_badge(:bota, owner)
+      if (count.nil? or count >= 5) and !wins.include? Badge.find_by_badge_key("xmas_dj").id
+        count ||= owner.playlists.select { |p| p.promo_playlist? }.length
+        award_badge(:xmas_dj, owner) if count >= 5
       end
 
-      if owner.playlists.all(:conditions => ["created_at > ?", Time.now - 1.day]).select { |p| p.promo_playlist? }.length == 5
-        award_badge(:twinkle, owner)
+      if (count.nil? or count >= 10) and !wins.include? Badge.find_by_badge_key("bota").id
+        count ||= owner.playlists.select { |p| p.promo_playlist? }.length
+        award_badge(:bota, owner) if count >= 10
       end
 
     end
@@ -52,7 +59,7 @@ module Badges::Awards
   def award_xmas_badges_comment
 
     # Getting promo_tags for every playlist you've commented on may be too heavy.  Try to short circuit if already won.
-    unless badge.find_by_badge_key("xmas_xpert").winners.include? user
+    unless Badge.find_by_badge_key("xmas_xpert").winners.include? user
       if commentable.promo_playlist? and user.comments.all(:include=>:commentable).select{|c| c.commentable.promo_playlist?}.length >= 10
         award_badge(:xmas_xpert, user)
       end
