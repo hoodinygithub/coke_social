@@ -58,7 +58,7 @@ class ValidTag < ActiveRecord::Base
   end
   
   def name
-    self.promo.blank? ? self.tag.name : self.tag.name.upcase
+    self.promo_id.blank? ? self.tag.name : self.tag.name.upcase
   end  
 private
   def find_and_update_tag_related
