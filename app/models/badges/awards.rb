@@ -28,14 +28,14 @@ module Badges::Awards
 
       award_badge(:merry_dj, owner)
 
-      unless Badge.find_by_badge_key("twinkle").winners.include? owner
+      count = nil
+      wins = BadgeAward.all(:conditions => { :winner_id => owner.id }).map(&:badge_id)
+
+      if !wins.include? Badge.find_by_badge_key("twinkle").id
         if owner.playlists.all(:conditions => ["created_at > ?", Time.now - 1.day]).select { |p| p.promo_playlist? }.length == 5
           award_badge(:twinkle, owner)
         end
       end
-
-      count = nil
-      wins = BadgeAward.all(:conditions => { :winner_id => owner.id }).map(&:badge_id)
 
       if !wins.include? Badge.find_by_badge_key("santa_claus").id
         if Time.now.month == 12 and Time.now.day == 25
