@@ -98,12 +98,12 @@ module Badges::Awards
       award_badge_for_playlist(:que_bolas, commentable.owner, commentable.id)
     end
 
-    unless owner_wins.include? Badge.find_by_badge_key("recalentado").id
-      # This line of code is flippin' awesome!  (and heavy)
-      if commentable.owner.playlists.all(:include => :comments).select{|p| p.promo_playlist?}.map(&:comments).flatten.map(&:rating).inject({}) { |hash, x| hash[x].nil? ? hash[x] = 1 : hash[x] += 1; hash }.select{|k,v| v >= 2; }.size > 0
-        award_badge(:recalentado, commentable.owner) 
-      end
-    end
+    #unless owner_wins.include? Badge.find_by_badge_key("recalentado").id
+    #  # This line of code is flippin' awesome!  (and heavy)
+    #  if commentable.owner.playlists.all(:include => :comments).select{|p| p.promo_playlist?}.map(&:comments).map{|c_arr| c_arr.map(&:rating)}.map {|r_arr| r_arr.inject({}) { |hash, x| hash[x].nil? ? hash[x] = 1 : hash[x] += 1; hash }.select{|k,v| v >= 2 and k > 0; }}.flatten.size > 0
+    #    award_badge(:recalentado, commentable.owner) 
+    #  end
+    #end
 
     unless user_wins.include? Badge.find_by_badge_key("regalo").id
       if rating > 3 and user.comments.all(:order => "created_at DESC", :include => :commentable).select{|c| c.commentable.promo_playlist?}[0..4].select{|c| c.rating > 3}.size >= 3 
