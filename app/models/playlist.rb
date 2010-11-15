@@ -36,7 +36,7 @@ class Playlist < ActiveRecord::Base
   acts_as_rateable(:class => 'Comment', :as => 'commentable')
 
   before_save :update_cached_artist_list
-  after_save :award_xmas_badges
+  after_save :award_xmas_badges_playlist
   before_create :increment_owner_total_playlists
 
   belongs_to :site
@@ -214,10 +214,9 @@ class Playlist < ActiveRecord::Base
     @total_time ||= items.sum(:duration).to_i
   end
  
-  def rate_with(rating)
-    rating ||= 0
-    add_rating(rating)
-    update_attribute(:rating_cache, self.rating)
+  def rate_with(p_review)
+    add_rating(p_review)
+    update_attribute(:rating_cache, rating) if rating_cache != rating
   end
 
    def to_s
@@ -234,8 +233,8 @@ class Playlist < ActiveRecord::Base
     tags.all(:joins => "INNER JOIN valid_tags ON valid_tags.tag_id = tags.id",
       :conditions => ["valid_tags.promo_id = ? and valid_tags.site_id = ?", p_promo_id, ApplicationController.current_site.id])
   end
-  
-  def award_xmas_badges
-    award_badge(:merry_dj, owner) if promo_tags(1).size > 0
+
+  def promo_playlist?(p_promo_id = 1)
+    promo_tags(p_promo_id).size > 0
   end
 end

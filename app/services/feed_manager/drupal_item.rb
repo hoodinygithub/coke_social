@@ -28,6 +28,10 @@ class FeedManager::DrupalItem < FeedManager::Abstract
     read_attribute('description/link')
   end
 
+  def link_action
+    read_attribute('description/link_action');
+  end
+
   def url
     read_attribute('link')
   end
@@ -35,17 +39,18 @@ class FeedManager::DrupalItem < FeedManager::Abstract
   protected
 
     def image_path(size, site)
-      if site == "caen" or site == "cafr"
-        "http://cm-msncanada.cyloop.com/cms/files/imagecache/#{size}/"
-      elsif site == "cyloop" or site == "cyloopes"
-        "http://cm.cyloop.com/drupal/files/imagecache/#{size}/"
-      elsif site == "ar"
-        "http://cm-msnlatam.cyloop.com/cms/files/imagecache/#{size}/"
-      elsif ["cyloop", "cyloopes"].include?(site)
-        "http://cm.cyloop.com/drupal/files/imagecache/#{size}/"        
-      else
-        "http://cm-msn#{site}.cyloop.com/cms/files/imagecache/#{size}/"
-      end
+      "http://cm-#{site}.cyloop.com/cms/files/imagecache/#{size}/"
+      # if site == "caen" or site == "cafr"
+      #   "http://cm-msncanada.cyloop.com/cms/files/imagecache/#{size}/"
+      # elsif site == "cyloop" or site == "cyloopes"
+      #   "http://cm.cyloop.com/drupal/files/imagecache/#{size}/"
+      # elsif site == "ar"
+      #   "http://cm-msnlatam.cyloop.com/cms/files/imagecache/#{size}/"
+      # elsif ["cyloop", "cyloopes"].include?(site)
+      #   "http://cm.cyloop.com/drupal/files/imagecache/#{size}/"        
+      # else
+      #   "http://cm-msn#{site}.cyloop.com/cms/files/imagecache/#{size}/"
+      # end
     end
 
 end
