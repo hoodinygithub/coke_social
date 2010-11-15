@@ -5,6 +5,15 @@
     <%= render 'shared/javascripts' %>
     <%= render 'shared/stylesheets' %>
     <%= yield :head %>
+
+    <script type="text/javascript">
+      $(window).load(function() {
+          $('#slider').nivoSlider({
+              effect: 'fade'
+            });
+      });
+    </script>
+
   </head>
   <body locale="<%= current_site.default_locale %>" market="<%= current_site.code %>" current_site_url="<%= ENV['RAILS_ENV'] == "development" ? "" : current_site_url %>">
     <div id="container">

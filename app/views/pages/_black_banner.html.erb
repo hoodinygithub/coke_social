@@ -1,5 +1,20 @@
 <div class="black_banner">
   <div class="banner_flash_box">
+
+    <% if @drupal_feed %>
+      <div id="slider">
+        <% @drupal_feed.each_with_index do |item, index| %>
+          <%= link_to image_tag(item.image("616x250", site_code), {:title => "#htmlcaption#{index}"}), item.link, {:target => "#{item.link_action == 'New' ? '_blank' : '_self'}"} %>
+        <% end %>
+      </div>
+
+      <% @drupal_feed.each_with_index do |item, index| %>
+        <div id="htmlcaption<%= index %>" class="nivo-html-caption">
+          <span class="title"><%= item.artist %></span><br />
+          <%= item.text %>
+        </div>
+      <% end %>
+    <% else %>
       <script type="text/javascript" charset="utf-8">
         var flashvars = "MARKET=<%= current_site.code %>&TITLE=<%= t('modules.todays_top_artists.title') %>";
         AC_FL_RunContent(
@@ -18,7 +33,8 @@
           "flashVars", flashvars
         );
       </script>
-    <!--a href="#"><img src="images/banner_flash_box1.jpg" alt="" /></a-->
+    <% end %>
+
   </div>
     
   <div class="open_happiness_box">
