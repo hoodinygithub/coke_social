@@ -86,16 +86,16 @@ module Badges::Awards
     unless Badge.find_by_badge_key("xmas_rocker").winners.with_playlist(commentable.id).include? commentable.owner
       # Assumes each comment must be from a unique user.  No duplicate comments per user.
       if is_promo_playlist and commentable.comments.count >= 20
-        award_badge_for_playlist(:xmas_rocker, commentable.owner, commentable.id, false)
+        award_badge_for_playlist(:xmas_rocker, commentable.owner, commentable, false)
       end
     end
 
     if rating == 5 and is_promo_playlist
-      award_badge_for_playlist(:cool_lo, commentable.owner, commentable.id)
+      award_badge_for_playlist(:cool_lo, commentable.owner, commentable)
     end
 
     if rating == 5 and is_promo_playlist and !owner_wins.include? Badge.find_by_badge_key("que_bolas").id and commentable.comments.count(:conditions => {:rating => 5}) >= 3
-      award_badge_for_playlist(:que_bolas, commentable.owner, commentable.id)
+      award_badge_for_playlist(:que_bolas, commentable.owner, commentable)
     end
 
     unless owner_wins.include? Badge.find_by_badge_key("recalentado").id
