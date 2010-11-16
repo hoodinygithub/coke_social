@@ -83,7 +83,7 @@ module Badges::Awards
     end
 
     # award_badge doesn't check for multiple badges per user for each playlist
-    unless Badge.find_by_badge_key("xmas_rocker").winners.with_playlist(commentable.id).include? user
+    unless Badge.find_by_badge_key("xmas_rocker").winners.with_playlist(commentable.id).include? commentable.owner
       # Assumes each comment must be from a unique user.  No duplicate comments per user.
       if is_promo_playlist and commentable.comments.count >= 20
         award_badge_for_playlist(:xmas_rocker, commentable.owner, commentable.id, false)
