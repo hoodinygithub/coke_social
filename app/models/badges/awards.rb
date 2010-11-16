@@ -70,10 +70,10 @@ module Badges::Awards
 
   def award_xmas_badges_comment
 
-   # cache these for perf
-   user_wins = BadgeAward.all(:conditions => { :winner_id => user.id }).map(&:badge_id)
-   owner_wins = BadgeAward.all(:conditions => { :winner_id => commentable.owner.id }).map(&:badge_id)
-   is_promo_playlist = commentable.promo_playlist?
+    # cache these for perf
+    user_wins = BadgeAward.all(:conditions => { :winner_id => user.id }).map(&:badge_id)
+    owner_wins = BadgeAward.all(:conditions => { :winner_id => commentable.owner.id }).map(&:badge_id)
+    is_promo_playlist = commentable.promo_playlist?
 
     # Getting promo_tags for every playlist you've commented on may be too heavy.  Try to short circuit if already won.
     unless user_wins.include? Badge.find_by_badge_key("xmas_xpert").id
@@ -83,7 +83,7 @@ module Badges::Awards
     end
 
     # award_badge doesn't check for multiple badges per user for each playlist
-    unless owner_wins.include? Badge.find_by_badge_key("xmas_rocker").id
+    unless Badge.find_by_badge_key("xmas_rocker").winners.with_playlist(commentable.id).include? user
       # Assumes each comment must be from a unique user.  No duplicate comments per user.
       if is_promo_playlist and commentable.comments.count >= 20
         award_badge_for_playlist(:xmas_rocker, commentable.owner, commentable.id, false)
@@ -94,16 +94,16 @@ module Badges::Awards
       award_badge_for_playlist(:cool_lo, commentable.owner, commentable.id)
     end
 
-    if rating == 5 and is_promo_playlist and commentable.comments.count(:conditions => {:rating => 5}) >= 3
+    if rating == 5 and is_promo_playlist and !owner_wins.include? Badge.find_by_badge_key("que_bolas").id and commentable.comments.count(:conditions => {:rating => 5}) >= 3
       award_badge_for_playlist(:que_bolas, commentable.owner, commentable.id)
     end
 
-    #unless owner_wins.include? Badge.find_by_badge_key("recalentado").id
-    #  # This line of code is flippin' awesome!  (and heavy)
-    #  if commentable.owner.playlists.all(:include => :comments).select{|p| p.promo_playlist?}.map(&:comments).map{|c_arr| c_arr.map(&:rating)}.map {|r_arr| r_arr.inject({}) { |hash, x| hash[x].nil? ? hash[x] = 1 : hash[x] += 1; hash }.select{|k,v| v >= 2 and k > 0; }}.flatten.size > 0
-    #    award_badge(:recalentado, commentable.owner) 
-    #  end
-    #end
+    unless owner_wins.include? Badge.find_by_badge_key("recalentado").id
+      # This line of code is flippin' awesome!  (and heavy)
+      if commentable.owner.playlists.all(:include => :comments).select{|p| p.promo_playlist?}.map(&:comments).map{|c_arr| c_arr.map(&:rating)}.map {|r_arr| r_arr.inject({}) { |hash, x| hash[x].nil? ? hash[x] = 1 : hash[x] += 1; hash }.select{|k,v| v >= 2 and k > 0; }}.flatten.size > 0
+        award_badge(:recalentado, commentable.owner) 
+      end
+    end
 
     unless user_wins.include? Badge.find_by_badge_key("regalo").id
       if rating > 3 and user.comments.all(:order => "created_at DESC", :include => :commentable).select{|c| c.commentable.promo_playlist?}[0..4].select{|c| c.rating > 3}.size >= 3 
