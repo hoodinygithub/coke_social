@@ -124,10 +124,11 @@ class UserNotification < BaseMailer
 
     def send_badge_notification(options)
       badge_award = BadgeAward.find(options[:badge_award_id])
+      playlist_name = badge_award.playlist.name rescue nil
       I18n.with_locale( badge_award.winner.default_locale ) do
         subject_line = I18n.t('badges.email.subject')
         badge_name = I18n.t("badges.#{badge_award.badge_key}.name")
-        badge_qualification = I18n.t("badges.#{badge_award.badge_key}.qualification")
+        badge_qualification = I18n.t("badges.#{badge_award.badge_key}.qualification", :playlist_name => playlist_name)
         UserNotification.deliver_badge_notification(subject_line, badge_award.winner, badge_name, badge_qualification)
         badge_award.update_attribute(:email_sent, true)
       end
