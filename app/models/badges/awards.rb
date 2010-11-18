@@ -113,4 +113,3 @@ module Badges::Awards
 
   end
 end
-
