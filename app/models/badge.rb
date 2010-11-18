@@ -19,7 +19,7 @@ class Badge < ActiveRecord::Base
 
     def other_than_user_and_followees(user, limit=40)
       followee_cache = [user.id].concat(user.read_attribute(:followee_cache) || [])
-      all(:select => 'DISTINCT(accounts.id)', :conditions => ["accounts.deleted_at IS NULL AND accounts.id NOT IN (?)", followee_cache], :order => 'badge_awards.created_at DESC', :limit => limit)
+      all(:conditions => ["accounts.deleted_at IS NULL AND accounts.id NOT IN (?)", followee_cache], :order => 'badge_awards.created_at DESC', :limit => limit).uniq
     end
 
     def with_playlist(p_playlist_id)
