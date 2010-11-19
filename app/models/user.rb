@@ -145,7 +145,7 @@ class User < Account
         badge
       end
       
-      find(:all, :joins => "INNER JOIN `badge_awards` ON `followings`.`followee_id` = `badge_awards`.`winner_id` AND `badge_awards`.`badge_id` = #{badge}", :limit => limit, :order => 'badge_awards.created_at DESC')
+      find(:all, :joins => "INNER JOIN `badge_awards` ON `followings`.`followee_id` = `badge_awards`.`winner_id` AND `badge_awards`.`badge_id` = #{badge}", :limit => limit, :order => 'badge_awards.created_at DESC').uniq
     end
 
     def with_limit(limit=10)
