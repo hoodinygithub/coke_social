@@ -173,10 +173,10 @@ coke_MX:
       title: "Informaci\xC3\xB3n del usuario"
     top_activity: 
       title: Actividad principal
-    recommended_stations: 
-      title: Estaciones de radio recomendadas
     information: 
       title: "Informaci\xC3\xB3n"
+    recommended_stations: 
+      title: Estaciones de radio recomendadas
     recent_listeners: 
       title: Escuchas recientes
     top_playlists: 
@@ -188,10 +188,10 @@ coke_MX:
     delete_playlist: 
       title: Borrar este mix
       confirmation_text: "El borrado de este mix es una acci\xC3\xB3n permanente. \xC2\xBFEst\xC3\xA1s seguro de que deseas eliminar este mix?"
-    reviews: 
-      title: Comentarios
     top_djs: 
       title: Top DJs
+    reviews: 
+      title: Comentarios
     members: 
       title: Integrantes
     news: 
@@ -309,8 +309,8 @@ coke_MX:
         slug: Este es tu link de Coca-Cola.fm
         location: "Ubicaci\xC3\xB3n"
         terms_of_use: "T\xC3\xA9rminos de uso"
-        twitter_username: Nombre de usuario en Twitter
         playlist_confirmation: "Tu mix se ha creado. \xC2\xA1Sigue buscando!"
+        twitter_username: Nombre de usuario en Twitter
         cyloop_password: "Contrase\xC3\xB1a de Coca-Cola.fm"
         password_confirmation: "Confirmar contrase\xC3\xB1a"
         cyloop_email: Mail de Coca-Cola.fm
@@ -638,7 +638,7 @@ coke_MX:
     influences: Influencias
     genre: "G\xC3\xA9nero"
   registration: 
-    sign_in: ""
+    sign_up_exclamation: "\xC2\xA1Reg\xC3\xADstrate!"
     sidebox: 
       work_title: Pon tus conocimientos a trabajar
       create_title: Crea tus mixes de canciones
@@ -650,7 +650,7 @@ coke_MX:
       badges_text: "nuestro sistema de recomendaciones crea estaciones de radio hechas espec\xC3\xADficamente a tu medida con todos tus artistas favoritos."
       create_text: "Si te gustar\xC3\xADa convertirte en un DJ, crea aqu\xC3\xAD tus propios mixes, agregando las canciones que quieras."
       work_text: utiliza los comentarios y los puntajes para opinar sobre los gustos musicales de tus amigos y sus mixes.
-    sign_up_exclamation: "\xC2\xA1Reg\xC3\xADstrate!"
+    sign_in: ""
     your_profile_name_tip: "(Tu direcci\xC3\xB3n para que puedas envi\xC3\xA1rsela a tus amigos)"
     you_are: Eres...
     artist_login_denied: "\xC2\xA1El login para artistas estar\xC3\xA1 disponible muy pronto!"
@@ -659,10 +659,6 @@ coke_MX:
     msg: 
       privacy: Debe aceptarse
       terms: Debe aceptarse
-    messages: 
-      terms_of_use: Debe aceptarse
-      pivacy_policy: Debe aceptarse
-      privacy_policy: Debe aceptarse
     confirmation: 
       click_here: "clic aqu\xC3\xAD"
       email_resend_failed: "El mail de confirmaci\xC3\xB3n no pudo ser reenviado. Por favor intenta m\xC3\xA1s tarde."
@@ -689,6 +685,10 @@ coke_MX:
           {{confirm_url}}\r\n\
           \r\n\
           Utiliza la direcci\xC3\xB3n de correo electr\xC3\xB3nico {{email}} y la clave que proporcionaste durante el registro para acceder a {{host_url}}.\r\n"
+    messages: 
+      terms_of_use: Debe aceptarse
+      pivacy_policy: Debe aceptarse
+      privacy_policy: Debe aceptarse
     terms_of_use: "T\xC3\xA9rminos de uso"
     is_available_exclamation: "\xC2\xA1Est\xC3\xA1 disponible el Email!"
     your_name: "\xC2\xBFC\xC3\xB3mo te llamas?"
@@ -1379,11 +1379,11 @@ coke_MX:
       search: Buscar
   cancellation: 
     confirmation: 
-      are_you_sure: "\xC2\xBFEst\xC3\xA1s seguro que quieres cancelar tu cuenta?"
       title: "\xC2\xA1Te vamos a extra\xC3\xB1ar en Coca-Cola.fm!"
+      are_you_sure: "\xC2\xBFEst\xC3\xA1s seguro que quieres cancelar tu cuenta?"
       body: "La cancelaci\xC3\xB3n de tu cuenta de Coca-Cola.fm eliminar\xC3\xA1 en forma permanente toda la informaci\xC3\xB3n de tu perfil, incluyendo tus fotos, canales de actividad y tu red personal de seguidores. Esta informaci\xC3\xB3n no podr\xC3\xA1 ser recuperada una vez borrada."
-      cancel_account: "S\xC3\xAD, cancelar mi cuenta"
       keep_account: No, conservar mi cuenta
+      cancel_account: "S\xC3\xAD, cancelar mi cuenta"
       irreversible_note: "Esta acci\xC3\xB3n es irreversible"
     feedback: 
       label: Feedback
@@ -1473,19 +1473,19 @@ coke_MX:
   user: 
     is_not_following_anybody: "{{user_name}} no est\xC3\xA1 siguiendo a nadie"
     name: Nombre
+    background_align: Alineamiento del fondo
+    city_name: Ciudad
     background_repeats: 
       full_repeat: "Repetici\xC3\xB3n completa"
       horizontal_repeat: "Repetici\xC3\xB3n horizontal"
       no_repeat: No repetir
       vertical_repeat: "Repetici\xC3\xB3n vertical"
-    city_name: Ciudad
-    background_align: Alineamiento del fondo
     background_fixed_false: "No"
-    slug: Elige tu nickname
     receives_following_notifications: Avisarme cuando alguien empiece a seguirme
+    slug: Elige tu nickname
     marketing_opt_out: "Por favor no me env\xC3\xADen mails de parte de Coca-Cola.fm o sus sitios relacionados."
-    color_links: Color del enlace
     forgot_message: "Coca-Cola.fm te enviar\xC3\xA1 instrucciones al mail registrado con tu cuenta. Por favor, ingresa tu mail."
+    color_links: Color del enlace
     confirmation: 
       click_here: "clic aqu\xC3\xAD"
       email_resend_failed: "El mail de confirmaci\xC3\xB3n no pudo ser reenviado. Por favor intenta m\xC3\xA1s tarde."
@@ -1498,11 +1498,10 @@ coke_MX:
     terms_of_use: "T\xC3\xA9rminos de uso"
     private_profile: "\xC2\xBFMantener tu perfil privado?"
     forgot_your_password: "\xC2\xBFSe te olvid\xC3\xB3 tu contrase\xC3\xB1a?"
-    terms_of_use_instructions: "Al registrarte, aceptas {{link}} y confirmas que tienes por lo menos 13 a\xC3\xB1os."
     reset_password: "Cambio de contrase\xC3\xB1a"
+    terms_of_use_instructions: "Al registrarte, aceptas {{link}} y confirmas que tienes por lo menos 13 a\xC3\xB1os."
     twitter_username: Nombre de usuario en Twitter
     cyloop_password: "Contrase\xC3\xB1a"
-    password_confirmation: "Confirmar contrase\xC3\xB1a"
     background_alignments: 
       upper_right: Superior derecha
       left: Izquierda
@@ -1513,20 +1512,21 @@ coke_MX:
       right: Derecha
       upper_center: Centro superior
       lower_center: Centro inferior
+    password_confirmation: "Confirmar contrase\xC3\xB1a"
     cyloop_email: Email de Coca-Cola.fm
     current_password: "Contrase\xC3\xB1a actual"
-    female: Mujer
     color_bg: Color del fondo
+    female: Mujer
     background: Imagen de fondo
     remove_avatar: Eliminar imagen
     terms_and_conditions: "t\xC3\xA9rminos y condiciones"
     doesnt_have_any_followers: "{{user_name}} no tiene seguidores"
     websites: Sitios web
-    negative_captcha: No completar este campo
-    background_fixed: Fondo ajustado
     short_bio: Bio en corto
-    gender: Sexo
+    background_fixed: Fondo ajustado
+    negative_captcha: No completar este campo
     color_main_font: "Color de la tipograf\xC3\xADa principal"
+    gender: Sexo
     privacy_policy_instructions: "\xC2\xA1Nuestra {{link}} existe para protegerte! Por favor lee y confirma que s\xC3\xAD est\xC3\xA1s de acuerdo con sus t\xC3\xA9rminos."
     background_repeat: "Repetici\xC3\xB3n del fondo"
     avatar: Imagen
@@ -1540,11 +1540,11 @@ coke_MX:
     color_header_bg: Color del encabezado
     password: "Contrase\xC3\xB1a"
     saved: Tus preferencias han sido guardadas.
-    hasnt_create_any_station: "{{user_name}} no ha creado estaciones de radio"
     privacy_policy: "Pol\xC3\xADtica de  privacidad"
+    hasnt_create_any_station: "{{user_name}} no ha creado estaciones de radio"
     born_on: Fecha de nacimiento
-    email: Mail
     has_no_activity: "{{user_name}} no tiene actividad"
+    email: Mail
   datetime: 
     prompts: 
       minute: Minuto
