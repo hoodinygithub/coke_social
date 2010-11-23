@@ -4,7 +4,7 @@ module TagsHelper
     
     max_count = tags.sort_by(&:taggings_count).last.taggings_count.to_f
     
-    tags.each_with_index do |tag, index|
+    tags.sort_by{rand}.each_with_index do |tag, index|
       idx = ((tag.taggings_count / max_count) * (classes.size - 1)).round
       yield tag, classes[idx], index
     end
