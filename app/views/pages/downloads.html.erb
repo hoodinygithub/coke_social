@@ -13,14 +13,17 @@
         width: 600px;
         margin: 0px auto;
       }
+
+      table.coke img {
+        border: 1px solid red;
+        margin: 20px;
+      }
     </style>
   <% end %>
 
-  <h1>DOWNLOADS</h1>
+  <h1><%= t("downloads.title") %></h1>
 
-  <p class="preamble">
-    DESCRIPTION OF DOWNLOADS
-  </p>
+  <p class="preamble"><%= t("downloads.description") %></p>
 
   <table class="coke">
     <thead>
@@ -31,20 +34,20 @@
     </thead>
     <tbody>
       <tr>
+        <td><a href="#" onclick="jQuery.facebox({ajax: '/downloads/screensaver/2D/energia.html'});"><img src="/downloads/screensaver/2D/2d-energia.jpg" width="200" height="150"/></a></td>
         <td><a href="/downloads/screensaver/2D/CocaFM_Energia2D_setup.zip">Energia - 2D</a></td>
-        <td><a href="#" onclick="jQuery.facebox({ajax: '/downloads/screensaver/2D/energia.html'});">preview</a></td>
       </tr>
       <tr>
-        <td><a href="/downloads/screensaver/2D/CocaFM_Diversion2D_setup.zip">Diversion - 2D</a></td>
-        <td><a href="#" onclick="jQuery.facebox({ajax: '/downloads/screensaver/2D/diversion.html'});">preview</a></td>
+        <td><a href="#" onclick="jQuery.facebox({ajax: '/downloads/screensaver/2D/diversion.html'});"><img src="/downloads/screensaver/2D/2d-diversion.jpg" width="200" height="150"/></a></td>
+        <td><a href="/downloads/screensaver/2D/CocaFM_Diversion2D_setup.zip">Diversión - 2D</a></td>
       </tr>
       <tr>
+        <td><a href="#" onclick="jQuery.facebox({ajax: '/downloads/screensaver/3D/energia.html'});"><img src="/downloads/screensaver/3D/3d-diversion.jpg" width="200" height="150"/></a></td>
         <td><a href="/downloads/screensaver/3D/CocaFM_Energia3D_setup.zip">Energia - 3D</a></td>
-        <td><a href="#" onclick="jQuery.facebox({ajax: '/downloads/screensaver/3D/energia.html'});">preview</a></td>
       </tr>
       <tr>
-        <td><a href="/downloads/screensaver/3D/CocaFM_Diversion3D_setup.zip">Diversion - 3D</a></td>
-        <td><a href="#" onclick="jQuery.facebox({ajax: '/downloads/screensaver/3D/diversion.html'});">preview</a></td>
+        <td><a href="#" onclick="jQuery.facebox({ajax: '/downloads/screensaver/3D/diversion.html'});"><img src="/downloads/screensaver/3D/3d-diversion.jpg" width="200" height="150"/></a></td>
+        <td><a href="/downloads/screensaver/3D/CocaFM_Diversion3D_setup.zip">Diversión - 3D</a></td>
       </tr>
     </tbody>
   </table>

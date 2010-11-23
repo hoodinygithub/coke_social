@@ -114,7 +114,10 @@ class PagesController < ApplicationController
   def error_pages
     render '/error_pages/errors'
   end
-  
+
+  def downloads
+    render :profile_not_found, :status => 404 unless current_site == "cokemx"
+  end
 
   private
     def authenticate
@@ -150,5 +153,6 @@ class PagesController < ApplicationController
     def blog_feed( url, size, full = true )
       FeedManager.new(site_code, url, full).get_blog_feed(size)
     end
+
 end
 
