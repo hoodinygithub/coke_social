@@ -167,19 +167,19 @@ module Account::Authentication
     end
   end
 
-  @@valid_domains = %w(ko.com hoodiny.com cyloop.com clarusdigital.com 
+  VALID_DOMAINS = %w(ko.com hoodiny.com cyloop.com clarusdigital.com 
     la.ko.com mena.ko.com na.ko.com eur.ko.com fruktmusic.com sapient.com 
-    synovate.com apac.ko.com)
+    synovate.com apac.ko.com cgsinc.com cgsinc.ro prisacom.com prisa.es)
   # Coke's latam countries (copied from redirect proxy)
-  @@latam = %w(CL CO CR DO EC SV GT HN NI PY PE VE)
+  LATAM = %w(CL CO CR DO EC SV GT HN NI PY PE VE)
   def email_domain_valid_for_beta
-    unless @@valid_domains.include?(email.split("@")[1])
+    unless VALID_DOMAINS.include?(email.split("@")[1])
       country_code = Country.geoip.country(ip_address)[3]
       site = ApplicationController.current_site.code
       if (country_code == 'AR' && site == 'cokear')
       elsif (country_code == 'BR' && site == 'cokebr')
       elsif (country_code == 'MX' && site == 'cokemx')
-      elsif (@@latam.include? country_code && site == 'cokelatam')
+      elsif (LATAM.include? country_code && site == 'cokelatam')
       else
         # domain not allowed and not matching site/geo
         errors.add(:email, I18n.t('share.errors.message.email_is_not_authorized'))
