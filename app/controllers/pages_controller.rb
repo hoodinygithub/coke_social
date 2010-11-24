@@ -116,7 +116,11 @@ class PagesController < ApplicationController
   end
 
   def downloads
-    render :profile_not_found, :status => 404 unless current_site.code == "cokemx"
+    if current_site.code == "cokemx"
+      render :layout => "support_page"
+    else
+      render :profile_not_found, :status => 404
+    end
   end
 
   private
