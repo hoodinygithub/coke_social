@@ -983,7 +983,7 @@ def cyloop_logo_path(sm=true)
       <table width="100%" height="100%">
         <tr>
           <td valign="bottom" align="center">
-            #{inner_tag_links.compact.join('&nbsp;&nbsp;')}
+            #{inner_tag_links.compact.join(' ')}
           </td>
         </tr>
       </table>
@@ -993,7 +993,7 @@ def cyloop_logo_path(sm=true)
       <table width="100%" height="100%">
         <tr>
           <td valign="bottom" align="center">    
-            #{outer_tag_links.compact.join('&nbsp;&nbsp;')}
+            #{outer_tag_links.compact.join(' ')}
           </td>
         </tr>
       </table>
