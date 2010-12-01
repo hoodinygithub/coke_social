@@ -6,7 +6,7 @@ class FollowersController < ApplicationController
 
   def index
     @dashboard_menu = :followers
-    sort_types  = { :latest => 'followings.approved_at DESC', :alphabetical => 'followings.follower_name'  }
+    sort_types  = { :latest => 'followings.approved_at DESC', :alphabetical => 'followings.follower_name ASC'  }
     @sort_type = get_sort_by_param(sort_types.keys, :latest) #params.fetch(:sort_by, nil).to_sym rescue :latest
 
     if profile_artist?
