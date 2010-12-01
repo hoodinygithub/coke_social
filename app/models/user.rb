@@ -89,7 +89,7 @@ class User < Account
 
   index [:type]
 
-  after_update :update_followings_with_partial_name
+  after_save :update_followings_with_partial_name
 
   default_scope :conditions => { :network_id => 2 }  
   has_one :bio, :autosave => true, :foreign_key => :account_id
