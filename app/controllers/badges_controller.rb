@@ -1,7 +1,7 @@
 class BadgesController < ApplicationController
   def index
     @dashboard_menu = :badges
-    sort_types = { :latest => 'badge_awards.created_at DESC', :alphabetical => "badge_awards.name_#{['coke_mx','coke_ar'].include? current_site.default_locale.to_s.downcase ? 'coke_es' : current_site.default_locale.to_s.downcase }"  }
+    sort_types = { :latest => 'badge_awards.created_at DESC', :alphabetical => "badge_awards.name_#{(['coke_mx','coke_ar'].include? current_site.default_locale.to_s.downcase) ? 'coke_es' : current_site.default_locale.to_s.downcase }"  }
     @sort_type = get_sort_by_param(sort_types.keys, :latest) #params.fetch(:sort_by, nil).to_sym rescue :latest
     @collection = profile_user.badge_awards.paginate :page => params[:page], :per_page => 10, :order => sort_types[@sort_type]
     
