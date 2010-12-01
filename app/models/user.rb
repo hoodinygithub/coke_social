@@ -89,7 +89,7 @@ class User < Account
 
   index [:type]
 
-  after_save :update_followings_with_partial_name
+  after_update :update_followings_with_partial_name
 
   default_scope :conditions => { :network_id => 2 }  
   has_one :bio, :autosave => true, :foreign_key => :account_id
@@ -218,7 +218,7 @@ class User < Account
 
   def follow(followee)
     followee_id = followee.kind_of?(Account) ? followee.id : followee
-    following = followings.create(:followee_id => followee_id)
+    following = followings.create(:followee_id => followee_id, :followee_name => User.find(followee_id).name[0..2], :follower_name => self.name[0..2])
   end
 
   def unfollow(followee_id)
