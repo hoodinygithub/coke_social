@@ -218,7 +218,7 @@ class User < Account
 
   def follow(followee)
     followee_id = followee.kind_of?(Account) ? followee.id : followee
-    following = followings.create(:followee_id => followee_id)
+    following = followings.create(:followee_id => followee_id, :followee_name => User.find(followee_id).name[0..2], :follower_name => self.name[0..2])
   end
 
   def unfollow(followee_id)
