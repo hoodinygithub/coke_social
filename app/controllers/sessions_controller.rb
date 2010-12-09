@@ -36,10 +36,10 @@ class SessionsController < ApplicationController
       end
     elsif !params[:code].nil?
       # FacebookConnect.parse_facebook_code(params[:code], current_site.domain)
-      user = FacebookConnect.parse_facebook_code(params[:code], request.url[/^.*\//])
+      user = FacebookConnect.parse_code(params[:code], request.url[/^.*\//])
       # puts user.inspect
       session[:sso_user] = user
-      redirect_to new_user_path 
+      redirect_to new_user_path unless user.nil?
     else # Cyloop Login
       #render :new, :layout => false
     end
