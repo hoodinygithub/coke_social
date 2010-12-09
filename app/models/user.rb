@@ -336,7 +336,7 @@ class User < Account
   end
 
   def born_on=(date)
-    born_on_string = date.to_s if date and date.is_a?(Date)
+    self.born_on_string = date.to_s if date and date.is_a?(Date)
   end
 
   def born_on
