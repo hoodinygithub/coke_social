@@ -169,6 +169,9 @@ class User < Account
 
   validate :check_born_on_in_future, :unless => Proc.new { |user| user.born_on.blank? }
   validate :check_age_is_at_least_13, :unless => Proc.new { |user| user.born_on.blank? }
+  
+  validates_uniqueness_of :sso_facebook, :scope => :deleted_at, :allow_nil => true
+  validates_uniqueness_of :msn_live_id, :scope => :deleted_at, :allow_nil => true
 
   def self.forgot?(attributes, current_site=nil)
     user = User.new(attributes)
