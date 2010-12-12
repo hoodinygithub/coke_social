@@ -7,6 +7,20 @@
       cookie : true,
       xfbml  : true
     });
+
+    FB.Event.subscribe('auth.sessionChange', function(response) {
+      if (response.session) {
+        // console.log("User has logged in");
+        // console.dir(response);
+        // A user has logged in, and a new cookie has been saved
+        document.location = document.location.protocol + '//' + document.location.host + '/login?'
+          + 'access_token=' + escape(response.session.access_token) + '&expires=' + escape(response.session.expires);
+      } else {
+        // console.log("User has logged out.");
+        // console.dir(response);
+        // The user has logged out, and the cookie has been cleared
+      }
+    });
   };
 
   (function() {

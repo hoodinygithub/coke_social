@@ -29,12 +29,16 @@ class FacebookConnect
       response_params = CGI::parse(response.to_str)
       access_token = response_params["access_token"].first
       expires = response_params["expires"].first
+      parse_access_token(access_token, expires)
     else
       Rails.logger.error response.inspect
       return nil
     end
-    
-    params = { :access_token => access_token }
+  end
+
+  def self.parse_access_token(p_token, p_expires)
+    # TODO: use p_expires somehow?
+    params = { :access_token => p_token }
     Rails.logger.info "#{PROFILE_URL}?#{params.to_query}"
     response = RestClient.get "#{PROFILE_URL}?#{params.to_query}"
     Rails.logger.info response.inspect

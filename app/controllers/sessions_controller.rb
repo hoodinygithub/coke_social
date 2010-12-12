@@ -35,9 +35,15 @@ class SessionsController < ApplicationController
         redirect_to msn_login_url
       end
     elsif !params[:code].nil?
+      # Faceboook Connect through full page login
       # FacebookConnect.parse_facebook_code(params[:code], current_site.domain)
       user = FacebookConnect.parse_code(params[:code], request.url[/^.*\//])
       # puts user.inspect
+      session[:sso_user] = user
+      redirect_to new_user_path unless user.nil?
+    elsif !params[:access_token].nil?
+      # Facebook Connect through popup login
+      user = FacebookConnect.parse_access_token(params[:access_token], params[:expires])
       session[:sso_user] = user
       redirect_to new_user_path unless user.nil?
     else # Cyloop Login
