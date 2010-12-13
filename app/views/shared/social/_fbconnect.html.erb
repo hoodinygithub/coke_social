@@ -8,6 +8,17 @@
       xfbml  : true
     });
 
+    // A user is already logged in to facebook, user is logged in
+    FB.getLoginStatus(function(response) {
+      if (response.session) {
+        $('#fb_login a').click(function() {
+          document.location = document.location.protocol + '//' + document.location.host + '/login?'
+          + 'access_token=' + escape(response.session.access_token) + '&expires=' + escape(response.session.expires);
+        });
+        return false;
+      }
+    });
+
     FB.Event.subscribe('auth.sessionChange', function(response) {
       if (response.session) {
         // console.log("User has logged in");
