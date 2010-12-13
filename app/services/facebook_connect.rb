@@ -48,13 +48,14 @@ class FacebookConnect
       #puts profile["name"]
       #puts profile["email"]
       #puts Date.parse profile["birthday"]
-      Rails.logger.info profile["gender"].nil? ? 'null gender' : profile["gender"]
+      Rails.logger.error profile["gender"].nil? ? 'null gender' : profile["gender"]
       User.new(
         :name => profile["name"], 
         :email => profile["email"], 
         :born_on => Date.parse(profile["birthday"]), 
         :gender => profile["gender"],
-        :slug => profile["email"].split("@")[0]
+        :slug => profile["email"].split("@")[0],
+        :sso_facebook => profile["id"]
       )
     else
       Rails.logger.error response.to_str
