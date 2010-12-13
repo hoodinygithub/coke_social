@@ -10,43 +10,43 @@ class SessionsController < ApplicationController
 
   # GET /session/new
   def new
-    if wlid_web_login?
-      token = params[:stoken] || nil
-      wll.setDebug(true) if Rails.env.development?
+    #if wlid_web_login?
+    #  token = params[:stoken] || nil
+    #  wll.setDebug(true) if Rails.env.development?
 
-      if(token)
-        msn_live_id = wll.processLogin(params) || nil
+    #  if(token)
+    #    msn_live_id = wll.processLogin(params) || nil
 
-        if msn_live_id
-          session[:msn_live_id] = msn_live_id
-          account = User.find_by_msn_live_id_and_deleted_at(msn_live_id, nil)
-          if account
-            do_login(account, 1, false)
-          elsif session[:return_to] == '/messenger_player'
-            redirect_to( session.delete(:return_to) )
-          else
-            redirect_to(new_user_path)
-          end
-        else
-          flash[:error] = t("registration.msn_login_error")
-          redirect_to "/"
-        end
-      else
-        redirect_to msn_login_url
-      end
-    elsif !params[:code].nil?
+    #    if msn_live_id
+    #      session[:msn_live_id] = msn_live_id
+    #      account = User.find_by_msn_live_id_and_deleted_at(msn_live_id, nil)
+    #      if account
+    #        do_login(account, 1, false)
+    #      elsif session[:return_to] == '/messenger_player'
+    #        redirect_to( session.delete(:return_to) )
+    #      else
+    #        redirect_to(new_user_path)
+    #      end
+    #    else
+    #      flash[:error] = t("registration.msn_login_error")
+    #      redirect_to "/"
+    #    end
+    #  else
+    #    redirect_to msn_login_url
+    #  end
+    if !params[:code].nil?
       # Faceboook Connect through full page login
       # FacebookConnect.parse_facebook_code(params[:code], current_site.domain)
       user = FacebookConnect.parse_code(params[:code], request.url[/^.*\//])
       # puts user.inspect
-      session[:sso_user] = user
-      redirect_to new_user_path unless user.nil?
+
+      handle_facebook_sso_user(user);
     elsif !params[:access_token].nil?
       # Facebook Connect through popup login
       user = FacebookConnect.parse_access_token(params[:access_token], params[:expires])
-      session[:sso_user] = user
-      redirect_to new_user_path unless user.nil?
-    else # Cyloop Login
+      handle_facebook_sso_user(user);
+    else
+      # Cyloop Login
       #render :new, :layout => false
     end
   end
@@ -56,11 +56,11 @@ class SessionsController < ApplicationController
   # POST /session
   def create
     # Cyloop Login
-    unless wlid_web_login?
-      email = params[:email].downcase if params[:email]
-      account = User.authenticate(email, params[:password], current_site)
-      do_login(account, params[:remember_me])
-    end
+    # unless wlid_web_login?
+    email = params[:email].downcase if params[:email]
+    account = User.authenticate(email, params[:password], current_site)
+    do_login(account, params[:remember_me])
+    # end
   end
 
   def destroy
@@ -122,5 +122,17 @@ private
   protected
   def compute_layout
     [:new, :create].include?(action_name.to_sym) ? "no_search_form" : "application" 
+  end
+  
+  def handle_facebook_sso_user(p_user)
+    return nil if p_user.nil?
+    
+    same_sso_user = User.find_by_sso_facebook p_user.sso_facebook
+    unless same_sso_user.nil?
+      do_login(same_sso_user, nil)
+    else
+      session[:sso_user] = user
+      redirect_to new_user_path
+    end
   end
 end
