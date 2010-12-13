@@ -44,6 +44,7 @@ class SessionsController < ApplicationController
     elsif !params[:access_token].nil?
       # Facebook Connect through popup login
       user = FacebookConnect.parse_access_token(params[:access_token], params[:expires])
+      raise user.inspect
       session[:sso_user] = user
       redirect_to new_user_path unless user.nil?
     else # Cyloop Login
