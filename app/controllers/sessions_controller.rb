@@ -105,7 +105,7 @@ private
         session[:registered_from] = nil
         flash[:google_code] = 'loginOK'
         redirect_back_or_default(home_path(:host => corrected_registration_host))
-      else        
+      else
         flash[:error] = t("registration.login_failed")
         render :new, :layout => false
         return false

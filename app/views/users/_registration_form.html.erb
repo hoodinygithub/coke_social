@@ -12,6 +12,7 @@
 <% end %>
 
 <% form_for @user, :html => { :multipart => true, :class => "account_settings" } do |f| %>
+  <%= f.hidden_field :sso_facebook %>
   <div class="form_content">
 
     <div class="form_row last">
