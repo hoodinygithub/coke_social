@@ -4,8 +4,12 @@
     <%= t('registration.customize')%>
   </div>
 
+
   <div class="auth_left">
-    <%= render 'registration_form' %>
+    <%= render "shared/social/social" %>
+    <div class="form_content">
+      <%= render 'registration_form' %>
+    </div>
   </div>
 
   <div class="auth_right">
