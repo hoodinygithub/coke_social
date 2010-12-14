@@ -120,8 +120,7 @@ private
       return nil
     else
       # TODO: cross network-login
-      # TODO: appropriate translated message
-      flash[:error] = t("registration.login_failed")
+      flash[:error] = t("registration.cross_network_failed")
       render :new, :layout => false
       return false
     end
@@ -139,8 +138,7 @@ private
     same_email_user = User.find_by_email p_user.email
     unless same_email_user.nil?
       logger.info "Found same email user."
-      # TODO: translation
-      flash[:error] = "Account with that email already exists.  Please login."
+      flash[:error] = t("registration.link_sso_account")
       session[:sso_facebook] = p_user.sso_facebook
       redirect_to login_path
       return
