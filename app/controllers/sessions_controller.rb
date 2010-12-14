@@ -59,6 +59,7 @@ class SessionsController < ApplicationController
     # unless wlid_web_login?
     email = params[:email].downcase if params[:email]
     account = User.authenticate(email, params[:password], current_site)
+    
     do_login(account, params[:remember_me])
     # end
   end
@@ -82,57 +83,76 @@ private
   end
 
   def do_login(account, remember_me, save_wlid=false)
-    flash.discard(:error)    
-    if account.kind_of?(Artist)
-      flash[:error] = t("registration.artist_login_denied")
-      redirect_to(new_user_path)
-    elsif account
-      if account.part_of_network?
-        self.current_user = account
-        AccountLogin.create!( :account_id => account.id, :site_id => current_site.id )
-
-        if remember_me == "1"
-          current_user.remember_me unless current_user.remember_token?
-          cookies[:auth_token] = { :value   => self.current_user.remember_token, 
-                                   :expires => self.current_user.remember_token_expires_at,
-                                   :domain  => ".#{request.domain}" }
-        end
-
-        if save_wlid && wlid_web_login?
-          account.update_attribute(:msn_live_id, session[:msn_live_id].to_s)
-          session[:msn_live_id] = nil
-        end
-        session[:registered_from] = nil
-        flash[:google_code] = 'loginOK'
-        redirect_back_or_default(home_path(:host => corrected_registration_host))
-      else
-        flash[:error] = t("registration.login_failed")
-        render :new, :layout => false
-        return false
-      end
-    elsif !wlid_web_login?
+    if account.nil?
       flash[:error] = t("registration.login_failed")
       render :new
       return false
+    elsif account.kind_of?(Artist)
+      flash[:error] = t("registration.artist_login_denied")
+      #redirect_to(new_user_path)
+      render :new
+      return false;
+    elsif account.part_of_network?
+      self.current_user = account
+      AccountLogin.create!( :account_id => account.id, :site_id => current_site.id )
+      
+      if remember_me == "1"
+        current_user.remember_me unless current_user.remember_token?
+        cookies[:auth_token] = { :value   => self.current_user.remember_token, 
+                                 :expires => self.current_user.remember_token_expires_at,
+                                 :domain  => ".#{request.domain}" }
+      end
+      
+      #if save_wlid && wlid_web_login?
+      #  account.update_attribute(:msn_live_id, session[:msn_live_id].to_s)
+      #  session[:msn_live_id] = nil
+      #end
+      
+      # Attach current FB session to upcoming user session.
+      account.update_attribute(:sso_facebook, session[:sso_facebook].to_s) if session[:sso_facebook]
+      session[:sso_facebook] = nil
+      
+      session[:registered_from] = nil
+      flash[:google_code] = 'loginOK'
+      flash.discard(:error)
+
+      redirect_back_or_default(home_path(:host => corrected_registration_host))      
+      return nil
+    else
+      # TODO: cross network-login
+      # TODO: appropriate translated message
+      flash[:error] = t("registration.login_failed")
+      render :new, :layout => false
+      return false
     end
-    flash.discard(:error)
-    true
   end
 
-  protected
-  def compute_layout
-    [:new, :create].include?(action_name.to_sym) ? "no_search_form" : "application" 
-  end
-  
   def handle_facebook_sso_user(p_user)
     return nil if p_user.nil?
     
     same_sso_user = User.find_by_sso_facebook p_user.sso_facebook
     unless same_sso_user.nil?
       do_login(same_sso_user, nil)
-    else
-      session[:sso_user] = user
-      redirect_to new_user_path
+      return
     end
+    
+    same_email_user = User.find_by_email p_user.email
+    unless same_email_user.nil?
+      logger.info "Found same email user."
+      # TODO: translation
+      flash[:error] = "Account with that email already exists.  Please login."
+      session[:sso_facebook] = p_user.sso_facebook
+      redirect_to login_path
+      return
+    end
+    
+    session[:sso_user] = p_user
+    redirect_to new_user_path
   end
+
+  protected
+  def compute_layout
+    [:new, :create].include?(action_name.to_sym) ? "no_search_form" : "application" 
+  end
+
 end

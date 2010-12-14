@@ -44,7 +44,7 @@ class FacebookConnect
     Rails.logger.info response.inspect
     if response.code == 200
       profile = JSON.parse(response.to_str)
-      Rails.logger.info profile["id"]
+      #Rails.logger.info profile["id"]
       #puts profile["name"]
       #puts profile["email"]
       #puts Date.parse profile["birthday"]
