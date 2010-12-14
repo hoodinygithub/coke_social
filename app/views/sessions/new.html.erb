@@ -2,17 +2,10 @@
   <%= stylesheet_link_tag 'registration_form' %>
 <% end %>
 
-<%= render "shared/social/fbconnect" %>
-
 <h2 class="page_title"><%= t('sessions.new.sign_in') %></h2>
 
 <div id="content">
-  <div id="social">
-    <div class="container">
-      <h3><%= t('sessions.new.social') %></h3><br />
-      <fb:login-button id="fb_login" perms="user_birthday, email"></fb:login-button>
-    </div>
-  </div>
+  <%= render "shared/social/social" %>
   <div id="main_content" class="registration">
     <%= render 'form' %>
   </div>
