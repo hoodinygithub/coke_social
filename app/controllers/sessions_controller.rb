@@ -131,7 +131,7 @@ private
     unless same_sso_user.nil?
       do_login(same_sso_user, nil)
     else
-      session[:sso_user] = user
+      session[:sso_user] = p_user
       redirect_to new_user_path
     end
   end
