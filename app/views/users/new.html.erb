@@ -6,7 +6,7 @@
 
 
   <div class="auth_left">
-    <%= render "shared/social/social" %>
+    <%= render "shared/social/social" if @user.nil? %>
     <div class="form_content">
       <%= render 'registration_form' %>
     </div>
