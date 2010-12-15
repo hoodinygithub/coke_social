@@ -39,7 +39,6 @@ class SessionsController < ApplicationController
       # FacebookConnect.parse_facebook_code(params[:code], current_site.domain)
       user = FacebookConnect.parse_code(params[:code], request.url[/^.*\//])
       # puts user.inspect
-
       handle_facebook_sso_user(user);
     elsif !params[:access_token].nil?
       # Facebook Connect through popup login
@@ -109,8 +108,9 @@ private
       #end
       
       # Attach current FB session to upcoming user session.
-      account.update_attribute(:sso_facebook, session[:sso_facebook].to_s) if session[:sso_facebook]
-      session[:sso_facebook] = nil
+      account.update_attribute(:sso_facebook, session[:sso_user].sso_facebook.to_s) unless !session.has_key? :sso_user or session[:sso_user].sso_facebook.nil?
+      session[:sso_user] = nil
+      session[:sso_type] = nil
       
       session[:registered_from] = nil
       flash[:google_code] = 'loginOK'
@@ -128,22 +128,23 @@ private
 
   def handle_facebook_sso_user(p_user)
     return nil if p_user.nil?
-    
+
     same_sso_user = User.find_by_sso_facebook p_user.sso_facebook
     unless same_sso_user.nil?
       do_login(same_sso_user, nil)
       return
     end
-    
+
     same_email_user = User.find_by_email p_user.email
     unless same_email_user.nil?
       logger.info "Found same email user."
       flash[:error] = t("registration.link_sso_account")
-      session[:sso_facebook] = p_user.sso_facebook
+      session[:sso_user] = p_user
+      session[:sso_type] = "Facebook"
       redirect_to login_path
       return
     end
-    
+
     session[:sso_user] = p_user
     redirect_to new_user_path
   end

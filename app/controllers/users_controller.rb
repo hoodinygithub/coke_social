@@ -69,6 +69,7 @@ class UsersController < ApplicationController
       # pre-populate user object with sso fields
       @user = session[:sso_user].nil? ? User.new : session[:sso_user]
       session[:sso_user] = nil
+      session[:sso_type] =  nil
     else
       msn_registration_redirect
     end
