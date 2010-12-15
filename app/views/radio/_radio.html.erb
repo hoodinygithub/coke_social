@@ -59,7 +59,7 @@
       <input type="hidden" id="msn_stations_toggle" value="0" />
       <input type="hidden" id="create_station_toggle" value="0" />
     </form>
-    <%= render 'top_buttons' %> 
+    <% # hide top buttons PT#7138591 = render 'top_buttons' %> 
     <div id="my_stations_container">
       <%= render "my_#{@station_obj.playable.class.to_s.pluralize.underscore}" if logged_in? && current_user && current_user.total_playlists > 0 %>
       <!--%= render 'my_playlists' if logged_in? && current_user && current_user.total_user_stations > 0 %-->
