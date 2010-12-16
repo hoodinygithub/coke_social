@@ -34,6 +34,7 @@ class SessionsController < ApplicationController
     #  else
     #    redirect_to msn_login_url
     #  end
+    session[:linking] = params[:link_account] if params.has_key? :link_account
     if !params[:code].nil?
       # Faceboook Connect through full page login
       # FacebookConnect.parse_facebook_code(params[:code], current_site.domain)
@@ -84,7 +85,10 @@ private
   def do_login(account, remember_me, save_wlid=false)
     if account.nil?
       flash[:error] = t("registration.login_failed")
-      render :new
+      linking = session[:linking]
+      session[:linking] = nil
+      redirect_to login_path(:link_account => linking)
+      # render :new
       return false
     elsif account.kind_of?(Artist)
       flash[:error] = t("registration.artist_login_denied")
@@ -146,6 +150,7 @@ private
     end
 
     session[:sso_user] = p_user
+    session[:sso_type] = "Facebook"
     redirect_to new_user_path
   end
 

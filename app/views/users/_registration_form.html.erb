@@ -12,7 +12,7 @@
 <% end %>
 
 <% form_for @user, :html => { :multipart => true, :class => "account_settings" } do |f| %>
-  <%= f.hidden_field :sso_facebook %>
+  <%= f.hidden_field :sso_facebook unless @user.sso_facebook.nil? %>
   <div class="form_content">
 
     <div class="form_row last">
@@ -52,19 +52,21 @@
 
     <div class="clearer"></div>
 
-    <div class="form_row last">
-      <%= f.label :password, "<b>#{t("registration.your_password")}</b>" %>
-      <div class="grey_round_box">
-        <%= f.password_field :password, :class => 'input full_width', :autocomplete => "off" %>
-      </div>
-    </div><!--/end form_row -->
+    <% if @user.sso_facebook.nil? %>
+      <div class="form_row last">
+        <%= f.label :password, "<b>#{t("registration.your_password")}</b>" %>
+        <div class="grey_round_box">
+          <%= f.password_field :password, :class => 'input full_width', :autocomplete => "off" %>
+        </div>
+      </div><!--/end form_row -->
 
-    <div class="form_row last">
-      <%= f.label :password_confirmation, "<b>#{t("registration.confirm_your_password")}</b>" %>
-      <div class="grey_round_box">
-        <%= f.password_field :password_confirmation, :class => 'input full_width', :autocomplete => "off" %>
-      </div>
-    </div><!--/end form_row -->
+      <div class="form_row last">
+        <%= f.label :password_confirmation, "<b>#{t("registration.confirm_your_password")}</b>" %>
+        <div class="grey_round_box">
+          <%= f.password_field :password_confirmation, :class => 'input full_width', :autocomplete => "off" %>
+        </div>
+      </div><!--/end form_row -->
+    <% end %>
 
     <br/>
 

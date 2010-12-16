@@ -9,7 +9,8 @@
     <div id="social">
       <div class="container">
         <span class="title"><%= t('sessions.new.almost_done') %></span><br /><br />
-        <b><%= t('sessions.new.link_acct', :provider => session[:sso_type].to_s) %></b>
+        <b><%= t('sessions.new.link_acct', :provider => session[:sso_type].to_s) %></b><br /><br />
+        <%= "<b>#{t('sessions.new.account')} #{link_to t('sessions.new.join'), new_user_path}</b>" if params[:link_account] == "1" %>
       </div>
     </div>
   <% else %>
