@@ -3,7 +3,7 @@ require "cgi"
 require "json"
 
 class FacebookConnect
-  settings = YAML.load_file("#{RAILS_ROOT}/config/facebook.yml")
+  settings = YAML.load_file("#{RAILS_ROOT}/config/facebook.yml")[RAILS_ENV]
   APP_ID = settings["appid"]
   SECRET = settings["secret"]
   AUTH_URL = settings["authorize_url"]
