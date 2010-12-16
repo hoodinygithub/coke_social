@@ -108,7 +108,7 @@ private
       #end
       
       # Attach current FB session to upcoming user session.
-      account.update_attribute(:sso_facebook, session[:sso_user].sso_facebook.to_s) unless !session.has_key? :sso_user or session[:sso_user].sso_facebook.nil?
+      account.update_attribute(:sso_facebook, session[:sso_user].sso_facebook.to_s) if session.has_key?(:sso_user) and !session[:sso_user].sso_facebook.nil?
       session[:sso_user] = nil
       session[:sso_type] = nil
       
