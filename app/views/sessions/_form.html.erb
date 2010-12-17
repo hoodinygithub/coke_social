@@ -10,7 +10,7 @@
          has_sso_id = session.has_key?(:sso_id)
          email_locked = has_sso_user && !has_link_account
         %>
-        <%= text_field_tag 'email', params[:email], :class => "input half_width3 #{email_locked ? 'field_disabled' : nil}", :value => "#{session[:sso_user].email if email_locked?}", :disabled => email_locked %>
+        <%= text_field_tag 'email', params[:email], :class => "input half_width3 #{email_locked ? 'field_disabled' : nil}", :value => "#{session[:sso_user].email if email_locked}", :disabled => email_locked %>
         <%= hidden_field_tag 'email', params[:email], :value => "#{session[:sso_user].email}" if email_locked %>
       </div>
       <br class="clearer" />
