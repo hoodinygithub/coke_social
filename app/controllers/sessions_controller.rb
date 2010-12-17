@@ -112,9 +112,11 @@ private
       #end
       
       # Attach current FB session to upcoming user session.
-      account.update_attribute(:sso_facebook, session[:sso_user].sso_facebook.to_s) if session.has_key?(:sso_user) and !session[:sso_user].sso_facebook.nil?
+      sso_id = session[:sso_id] ? session[:sso_id] : ( (session[:sso_user] and session[:sso_user].sso_facebook) ? session[:sso_user].sso_facebook : nil )
+      account.update_attribute(:sso_facebook, session[:sso_user].sso_facebook.to_s) if sso_id
       session[:sso_user] = nil
       session[:sso_type] = nil
+      session[:sso_id] = nil
       
       session[:registered_from] = nil
       flash[:google_code] = 'loginOK'
@@ -149,9 +151,10 @@ private
       return
     end
 
-    session[:sso_user] = p_user
+    session[:sso_id] = p_user.sso_facebook
     session[:sso_type] = "Facebook"
-    redirect_to new_user_path
+    # User attempted to login, but account wasn't found.  Default to link page.
+    redirect_to login_path
   end
 
   protected

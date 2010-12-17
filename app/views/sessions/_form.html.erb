@@ -4,8 +4,14 @@
     <div class="form_row">
       <label for="email"><b><%= t("user.email") %></b></label>
       <div class="grey_round_box left_side">
-        <%= text_field_tag 'email', params[:email], :class => "input half_width3 #{(session.has_key?(:sso_user) and !params.has_key?(:link_account)) ? 'field_disabled' : nil}", :value => "#{session[:sso_user].email if (session.has_key?(:sso_user) and !params.has_key?(:link_account))}", :disabled => (session.has_key?(:sso_user) and !params.has_key?(:link_account))  %>
-        <%= hidden_field_tag 'email', params[:email], :value => "#{session[:sso_user].email}" if (session.has_key?(:sso_user) and !params.has_key?(:link_account)) %>
+        <%
+         has_sso_user = session.has_key?(:sso_user)
+         has_link_account = session.has_key?(:link_account)
+         has_sso_id = session.has_key?(:sso_id)
+         email_locked = has_sso_user && !has_link_account
+        %>
+        <%= text_field_tag 'email', params[:email], :class => "input half_width3 #{email_locked ? 'field_disabled' : nil}", :value => "#{session[:sso_user].email if email_locked?}", :disabled => email_locked %>
+        <%= hidden_field_tag 'email', params[:email], :value => "#{session[:sso_user].email}" if email_locked %>
       </div>
       <br class="clearer" />
     </div>
