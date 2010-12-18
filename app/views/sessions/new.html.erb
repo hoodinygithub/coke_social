@@ -5,7 +5,7 @@
 <h2 class="page_title"><%= t('sessions.new.sign_in') %></h2>
 
 <div id="content">
-  <% if session.has_key? :sso_id %>
+  <% if session.has_key? :sso_user %>
     <div id="social">
       <div class="container">
         <span class="title"><%= t('sessions.new.almost_done') %></span><br /><br />
