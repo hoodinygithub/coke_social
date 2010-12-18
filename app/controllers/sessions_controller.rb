@@ -152,8 +152,18 @@ private
 
     session[:sso_user] = p_user
     session[:sso_type] = "Facebook"
-    # User attempted to login, but account wasn't found.  Default to link page.
-    redirect_to login_path
+
+    # If user was on reg page, redirect to pre-filled reg page.
+    # If user was on login path, redirect to link page.
+    if params[:page]
+      if params[:page] == 'registration'
+        redirect_to new_user_path
+      else
+        redirect_to login_path
+      end
+    else
+      redirect_to new_user_path
+    end
   end
 
   protected

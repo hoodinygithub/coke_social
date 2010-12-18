@@ -14,7 +14,7 @@
       </div>
     </div>
   <% else %>
-    <%= render "shared/social/social" %>
+    <%= render "shared/social/social", { :page => :login } %>
   <% end %>
   <div id="main_content" class="registration">
     <%= render 'form' %>
