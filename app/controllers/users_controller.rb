@@ -68,13 +68,6 @@ class UsersController < ApplicationController
     if cyloop_login? || session[:msn_live_id]
       # pre-populate user object with sso fields
       @user = session[:sso_user].nil? ? User.new : session[:sso_user]
-
-      # Needs refactor!!!
-      # Keeping session alive so that we can switch between
-      # linking acct and creating new acct with fields prefilled.
-      # @sso_type = session[:sso_type] unless session[:sso_type].nil?
-      # session[:sso_user] = nil
-      # session[:sso_type] = nil
     else
       msn_registration_redirect
     end
@@ -100,6 +93,8 @@ class UsersController < ApplicationController
       cookies.delete(:auth_token) if cookies.include?(:auth_token)
       session[:msn_live_id] = nil if wlid_web_login?
       session[:registration_layer] = true
+      session[:sso_user] = nil
+      session[:sso_type] = nil
       self.current_user = @user
 
       subject = t("registration.email.subject")
