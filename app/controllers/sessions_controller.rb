@@ -113,7 +113,6 @@ private
       account.update_attribute(:sso_facebook, sso_id) if sso_id
       session[:sso_user] = nil
       session[:sso_type] = nil
-      session[:link_email] = nil
       
       session[:registered_from] = nil
       flash[:google_code] = 'loginOK'
@@ -145,7 +144,6 @@ private
       same_email_user.sso_facebook = p_user.sso_facebook
       session[:sso_user] = same_email_user
       session[:sso_type] = "Facebook"
-      session[:link_email] = same_email_user.email
       redirect_to login_path
       return
     end

@@ -4,15 +4,8 @@
     <div class="form_row">
       <label for="email"><b><%= t("user.email") %></b></label>
       <div class="grey_round_box left_side">
-        <%
-         has_sso_user = session.has_key?(:sso_user)
-         has_link_account = session.has_key?(:link_email)
-         # User was found and not just created
-         found_sso_user = has_sso_user && !session[:sso_user].id.nil?
-         email_locked = found_sso_user && has_link_account
-        %>
-        <%= text_field_tag 'email', params[:email], :class => "input half_width3 #{email_locked ? 'field_disabled' : nil}", :value => "#{session[:sso_user].email if email_locked}", :disabled => email_locked %>
-        <%= hidden_field_tag 'email', params[:email], :value => "#{session[:sso_user].email}" if email_locked %>
+        <%= text_field_tag 'email', params[:email], :class => "input half_width3", :value => "#{session[:sso_user].email unless session[:sso_user].email.nil?}" %>
+        <%= hidden_field_tag 'email', params[:email], :value => "#{session[:sso_user].email}" unless session[:sso_user].email.nil? %>
       </div>
       <br class="clearer" />
     </div>
