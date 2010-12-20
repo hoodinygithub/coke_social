@@ -134,7 +134,7 @@ private
   def handle_facebook_sso_user(p_user)
     return nil if p_user.nil?
 
-    same_sso_user = User.find_by_sso_facebook p_user.sso_facebook
+    same_sso_user = User.find_by_sso_facebook_and_deleted_at p_user.sso_facebook, nil
     unless same_sso_user.nil?
       do_login(same_sso_user, nil)
       return
