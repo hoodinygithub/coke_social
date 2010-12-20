@@ -12,7 +12,7 @@
     FB.getLoginStatus(function(response) {
       if (response.session) {
         $('#fb_login a').click(function() {
-          document.location = current_url_site + '/login' + document.location.search
+          document.location = current_url_site + '/login?' + document.location.search
             + '&access_token=' + escape(response.session.access_token) + '&expires=' + escape(response.session.expires) + '&page=<%= page %>';
         });
         return false;
@@ -22,7 +22,7 @@
     FB.Event.subscribe('auth.sessionChange', function(response) {
       if (response.session) {
         // A user has logged in, and a new cookie has been saved
-        document.location = current_url_site + '/login' + document.location.search
+        document.location = current_url_site + '/login?' + document.location.search
           + '&access_token=' + escape(response.session.access_token) + '&expires=' + escape(response.session.expires) + '&page=<%= page %>';
       } else {
         // console.log("User has logged out.");
