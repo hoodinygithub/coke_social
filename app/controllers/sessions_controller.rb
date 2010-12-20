@@ -34,7 +34,6 @@ class SessionsController < ApplicationController
     #  else
     #    redirect_to msn_login_url
     #  end
-    session[:linking] = params[:link_account] if params.has_key? :link_account
     if !params[:code].nil?
       # Faceboook Connect through full page login
       # FacebookConnect.parse_facebook_code(params[:code], current_site.domain)
@@ -85,9 +84,7 @@ private
   def do_login(account, remember_me, save_wlid=false)
     if account.nil?
       flash[:error] = t("registration.login_failed")
-      linking = session[:linking]
-      session[:linking] = nil
-      redirect_to login_path(:link_account => linking)
+      redirect_to login_path
       # render :new
       return false
     elsif account.kind_of?(Artist)
@@ -116,6 +113,7 @@ private
       account.update_attribute(:sso_facebook, sso_id) if sso_id
       session[:sso_user] = nil
       session[:sso_type] = nil
+      session[:link_email] = nil
       
       session[:registered_from] = nil
       flash[:google_code] = 'loginOK'
@@ -142,10 +140,12 @@ private
 
     same_email_user = User.find_by_email p_user.email
     unless same_email_user.nil?
-      logger.info "Found same email user."
-      flash[:error] = t("registration.link_sso_account")
-      session[:sso_user] = p_user
+      # logger.info "Found same email user."
+      # flash[:error] = t("registration.link_sso_account")
+      same_email_user.sso_facebook = p_user.sso_facebook
+      session[:sso_user] = same_email_user
       session[:sso_type] = "Facebook"
+      session[:link_email] = same_email_user.email
       redirect_to login_path
       return
     end

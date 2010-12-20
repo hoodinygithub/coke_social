@@ -95,6 +95,7 @@ class UsersController < ApplicationController
       session[:registration_layer] = true
       session[:sso_user] = nil
       session[:sso_type] = nil
+      session[:link_email] = nil
       self.current_user = @user
 
       subject = t("registration.email.subject")
