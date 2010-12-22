@@ -152,7 +152,7 @@ private
     session[:sso_type] = "Facebook"
 
     # If user was on reg page, redirect to pre-filled reg page.
-    # If user was on login path, redirect to link page.
+    # If user was on login page, redirect to link page.
     if params[:page]
       if params[:page] == 'registration'
         redirect_to new_user_path
