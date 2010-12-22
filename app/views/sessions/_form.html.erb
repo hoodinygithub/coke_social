@@ -5,7 +5,6 @@
       <label for="email"><b><%= t("user.email") %></b></label>
       <div class="grey_round_box left_side">
         <%= text_field_tag 'email', params[:email], :class => "input half_width3", :value => "#{session[:sso_user].email if session[:sso_user] and session[:sso_user].email}" %>
-        <%= hidden_field_tag 'email', params[:email], :value => "#{session[:sso_user].email}" if session[:sso_user] and session[:sso_user].email %>
       </div>
       <br class="clearer" />
     </div>
