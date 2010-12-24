@@ -25,7 +25,7 @@
           <%= market_logo %>
           <%= render 'shared/header_nav' %>
           <%= render 'shared/search_form' %>
-          <%= render :partial => 'shared/user_data', :locals => {:logged_out => !logged_in? ? true : false} %>
+          <%= render :partial => 'shared/user_data', :locals => {:logged_out => logged_in? ? false : true} %>
           <div class="clearer"></div>
       </div><!--/end header -->      
       <%#= user_navigation %>
