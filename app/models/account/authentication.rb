@@ -141,7 +141,12 @@ module Account::Authentication
   end
 
   def current_password_required?
-    !new_record? && password_changed? && !resetting_password?
+    # SSO users may not have passwords, but can still set their passwords later if they want to
+    if crypted_password.blank?
+      false
+    else
+      !new_record? && password_changed? && !resetting_password?
+    end
   end
 
   def check_negative_captcha
