@@ -142,7 +142,7 @@ private
       # logger.info "Found same email user."
       # flash[:error] = t("registration.link_sso_account")
       same_email_user.sso_facebook = p_user.sso_facebook
-      session[:sso_user] = same_email_user.attributes.delete_if { |key,value| !%w[name born_on slug email sso_facebook].include?(key) }.update({"email" => same_email_user.email})
+      session[:sso_user] = same_email_user.attributes.delete_if { |key,value| !%w[name born_on slug email sso_facebook].include?(key) }.update({"name" => same_email_user.name, "born_on" => same_email_user.born_on, "email" => same_email_user.email})
       session[:sso_type] = "Facebook"
       redirect_to login_path
       return
