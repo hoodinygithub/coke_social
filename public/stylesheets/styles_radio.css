@@ -110,17 +110,19 @@
 	display: inline-block;
 	height: 20px;
 	overflow: hidden;
-	text-indent: 1000px;
+	/*text-indent: 1000px; */ 
+	text-indent:0;
 	width: 20px;
 }
 
 .small_btn_box {
-	display: inline-block;
+	display: inline-block; 
 	line-height: 20px;
 	margin: 0 2px;
 	padding-top: 4px;
 	position: relative;
 	vertical-align: middle;
+
 }
 
 .big_btn_box {
