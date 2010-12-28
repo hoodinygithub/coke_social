@@ -67,7 +67,7 @@ class UsersController < ApplicationController
   def new
     if cyloop_login? || session[:msn_live_id]
       # pre-populate user object with sso fields
-      @user = session[:sso_user].nil? ? User.new : User.new(session[:sso_user])
+      @user = session[:sso_user].nil? ? User.new : session[:sso_user]
     else
       msn_registration_redirect
     end
