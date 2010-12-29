@@ -157,8 +157,7 @@ class UsersController < ApplicationController
   def confirm_cancellation
     user = current_user
     result = { :user_id => user.id }
-    password_valid = cyloop_login? ? user.authenticated?(params[:delete_password]) : true
-    unless params[:delete_info_accepted] and password_valid
+    unless params[:delete_info_accepted]
       result[:errors] = { :delete_password => I18n.t('account_settings.password_required') }
       render :json => result.to_json
     else
@@ -192,8 +191,7 @@ class UsersController < ApplicationController
   def destroy
     user = current_user
     result = { :user_id => user.id }
-    password_valid = cyloop_login? ? user.authenticated?(params[:delete_password]) : true
-    if params[:delete_info_accepted] and password_valid
+    if params[:delete_info_accepted]
       options = {
         :user_id => user.id,
         :site_id => request.host
