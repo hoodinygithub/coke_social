@@ -1278,8 +1278,6 @@ Base.account_settings.delete_account_confirmation = function() {
     url  : Base.currentSiteUrl() + "/my/cancellation",
     data : { delete_info_accepted: "true" },
     success: function(data){
-      console.log(data);
-      console.log(data.email);
       delete_account_data = data;
       cancelled_account_email = data.email;
       $.get(Base.currentSiteUrl() + '/my/cancellation/feedback?address='+ cancelled_account_email, function(data) {
