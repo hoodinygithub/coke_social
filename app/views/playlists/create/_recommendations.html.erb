@@ -1,13 +1,23 @@
-<h2><%= t('playlists.why_not_try') %></h2>
-
+<div class="inner_box">
+	<h2><%= t('playlists.why_not_try') %></h2>
+</div>
 <%# cache("#{site_cache_key}/modules/playlist_creation/top_artists", :expires_in => EXPIRATION_TIMES["top_modules_artists"]) do %>
-  <div class="try_list">
-      <% @recommended_artists.each_with_index do |recommended_artists_item, index| %>
-        <div class="small_thumb <%= index==9 ? "last_thumb" : "" %>">
-          <%= link_to_function avatar_for(recommended_artists_item, :spaced_img, {:disable_default_css => true, :title => recommended_artists_item.name}), "get_song_list('#{recommended_artists_item.id}','artist', null, null, null, #{recommended_artists_item.id})", :alt => recommended_artists_item.name %>
-          <%= link_to_function truncate(recommended_artists_item.name, :length => 10), "get_song_list('#{recommended_artists_item.id}','artist', null, null, null, #{recommended_artists_item.id})", :title => recommended_artists_item.name, :alt => recommended_artists_item.name %>
-        </div>
-      <% end %> 
-    <br class="clearer" />
-  </div><!--/end try_list -->
+<div class="try_list">
+	<% @recommended_artists.each_with_index do |recommended_artists_item, index| %>
+		<% if index < 3 then %>
+			<%= link_to_function avatar_for(recommended_artists_item, :spaced_img, {:disable_default_css => true, :title => recommended_artists_item.name}), "get_song_list('#{recommended_artists_item.id}','artist', null, null, null, #{recommended_artists_item.id})", :alt => recommended_artists_item.name %>
+			<%= link_to_function recommended_artists_item.name, "get_song_list('#{recommended_artists_item.id}','artist', null, null, null, #{recommended_artists_item.id})", :title => recommended_artists_item.name, :alt => recommended_artists_item.name, :class => 'small_thumb_artist_name' %>
+		<% else %>
+			<% if index == 3 then %>
+				<br/><hr>
+			<% end %>
+			<% if index == 9 then %>
+				<%= link_to_function recommended_artists_item.name, "get_song_list('#{recommended_artists_item.id}','artist', null, null, null, #{recommended_artists_item.id})", :title => recommended_artists_item.name, :alt => recommended_artists_item.name, :class => 'artist_name_without_thumb' %>
+			<% else %>
+				<%= link_to_function recommended_artists_item.name, "get_song_list('#{recommended_artists_item.id}','artist', null, null, null, #{recommended_artists_item.id})", :title => recommended_artists_item.name, :alt => recommended_artists_item.name, :class => 'artist_name_without_thumb' %>,
+			<% end %>
+		<% end %>
+	<% end %>
+	<br class="clearer" />
+</div><!--/end try_list -->
 <%# end %>

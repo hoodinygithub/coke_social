@@ -1219,13 +1219,55 @@ h2 {
     margin-bottom: 12px;
 }
 
+.small_thumb_artist_name {
+    font-size: 14px;
+    font-weight: bold;
+    margin-left: 2px;
+    margin-right: 35px;
+}
+
+.artist_name_without_thumb {
+	  font-weight: bold;
+    margin-left: 2px;
+    
+}
+
+#playlist_recommended_artists_container {
+    border: 1px solid #CCCCCC;
+    padding-bottom: 10px;
+}
+
+#playlist_recommended_artists_container .inner_box {
+    background-color: #CCCCCC;
+    height: 30px;
+    margin-bottom: 6px;
+    margin-right: 0;
+}
+
+#playlist_recommended_artists_container h2 {
+    margin-left: 6px;
+    margin-right: 5px;
+    padding: 3px;
+}
+
+#playlist_recommended_artists_container .try_list {
+    margin-left: 4px;
+    margin-right: 4px;
+    margin-top: -3px;
+    padding: 3px;
+}
+
+#playlist_recommended_artists_container .try_list hr{
+    color: #CCCCCC;
+}
+
 .small_thumb.last_thumb, .medium_thumb.last_thumb {
     float: right;
     margin-right: 0px;
 }
 
 .try_list .small_thumb {
-    margin-right: 14px;
+    margin-right: 160px;
 }
 
 .try_list .small_thumb.last_thumb {
