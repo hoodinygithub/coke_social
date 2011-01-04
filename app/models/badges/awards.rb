@@ -38,13 +38,13 @@ module Badges::Awards
       end
 
       if !wins.include? Badge.find_by_badge_key("santa_claus").id
-        if created_at.month == 12 and created_at.day == 25
+        if Time.now.month == 12 and Time.now.day == 25
           award_badge(:santa_claus, owner)
         end
       end
 
       if !wins.include? Badge.find_by_badge_key("rey_mago").id
-        if created_at.month == 1 and created_at.day == 6
+        if created_at.month == 1 and created_at.day == 6 and created_at.year = 2011
           award_badge(:rey_mago, owner)
         end
       end
