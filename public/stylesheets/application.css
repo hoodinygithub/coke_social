@@ -1223,7 +1223,7 @@ h2 {
     font-size: 14px;
     font-weight: bold;
     margin-left: 2px;
-    margin-right: 35px;
+		margin-right: 35px;
 }
 
 .artist_name_without_thumb {
@@ -3202,8 +3202,8 @@ followers_list .follower_actions.w_settings .orange_button.settings_button img, 
 
 .mix_box .album_detail {
     background: #fff;
-    /* padding: 10px 8px; */
-    /* border-top: solid 1px #ccc; */
+    padding: 10px 8px;
+    border-top: solid 1px #ccc;
     border-bottom: solid 1px #ccc;
     border-bottom: solid 1px #ccc;
     zoom: 1;
@@ -3792,4 +3792,16 @@ body li.ui-draggable-dragging .song_name a {
   margin-left:15px;
   margin-right:15px;
 }
-
+#fix_width {
+	width:204px;
+	float:left;
+	padding-bottom:10px;
+	
+}
+#fix_name{
+width:100px;
+float:right;
+}
+#img_list{
+	border-bottom:1px solid;
+}
