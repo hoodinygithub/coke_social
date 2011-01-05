@@ -605,6 +605,10 @@ module ApplicationHelper
     "http://#{url}"
   end
 
+  def fb_appid
+    Rails.env.production? ? "160520280625515" : "182370788441621"
+  end
+
   # For permalink, use to_param method on model instead (see song.rb)
   # def perma_link(options={})
   #   "#{options[:id]}-#{options[:name].gsub(/[^a-z0-9]+/i, '-')}"
