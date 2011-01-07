@@ -237,4 +237,12 @@ class Playlist < ActiveRecord::Base
   def promo_playlist?(p_promo_id = 1)
     promo_tags(p_promo_id).size > 0
   end
+
+  # Default scopes with where conditions are evil.
+  def self.find_including_deleted(p_id)
+    with_exclusive_scope {
+      Playlist.find(p_id)
+    }
+  end
 end
+
