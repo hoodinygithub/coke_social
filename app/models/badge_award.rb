@@ -46,7 +46,7 @@ class BadgeAward < ActiveRecord::Base
   end
 
   def deleted_playlist_name
-    Playlist.find_including_deleted(playlist_id).name
+    Playlist.find_including_deleted(playlist_id).name if playlist_id
   end
 end
 
