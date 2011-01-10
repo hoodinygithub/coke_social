@@ -8,6 +8,27 @@
   <%= render :partial => 'shared/create_playlist' %>
   <div class="clearer"></div>
   <%= render :partial => 'black_banner' %>
+  <% if current_site.code == "cokemx" %>
+      <div id="goomRadio">
+        <script type="text/javascript">
+          goomDefaultRadio='4242705';
+          goomPartnerId='COCA-COLA-MX';
+          goomAutoPlay='1';
+          goomPopUpMode='1';
+          goomAutoPopup='0';
+          goomCustomUI='coca-cola-mexico';
+          goomOneStreamMode='1';
+          goomJsUI='0';
+          goomBgColor='0';
+          goomWidth='488';
+          goomHeight='77';
+          goomFbUrl='http%3A//mx.coca-cola.fm';
+          goomFbX='400';
+          goomFbY='39';
+        </script>
+        <script type="text/javascript" src="http://sunbear.goomradio.com/include.js"></script>
+      </div>
+    <% end %>
 <% end %>
 
 <% cache("#{site_cache_key}/modules/tag_cloud", :expires_in => EXPIRATION_TIMES["home_tag_cloud"]) do %>
