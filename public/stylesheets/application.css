@@ -102,17 +102,20 @@ input:focus {
     text-decoration: underline;
 }
 
+/*STYLES FOR XMAS PROMO*/
+/*
 #footer.ar {
-    background: url("../images/footer_bg_ar.gif") no-repeat left top !important; 	
+  background: url("../images/footer_bg_ar.gif") no-repeat left top !important;
 }
 
 #footer.mx {
-	background: url("../images/footer_bg_mx.gif") no-repeat left top !important; 
+  background: url("../images/footer_bg_mx.gif") no-repeat left top !important;
 }
 
 #footer.es {
-	background: url("../images/footer_bg_es.gif") no-repeat left top !important; 
+  background: url("../images/footer_bg_es.gif") no-repeat left top !important;
 }
+*/
 
 .left_side {
     float: left;
@@ -238,7 +241,7 @@ input:focus {
     background: url("../images/header_bg.gif") repeat-x left top;
     position: relative;
     padding-left: 250px;
-    z-index: 5;
+    z-index: 91;
 }
 
 #logo {
@@ -324,7 +327,7 @@ h2 {
     border: solid 1px #cccccc;
     padding: 10px 0px 0px;
     display: none;
-    z-index: 5;
+    z-index: 70;
 }
 
 .search_results_box h1 {
@@ -1219,13 +1222,55 @@ h2 {
     margin-bottom: 12px;
 }
 
+.small_thumb_artist_name {
+    font-size: 14px;
+    font-weight: bold;
+    margin-left: 2px;
+		margin-right: 35px;
+}
+
+.artist_name_without_thumb {
+	  font-weight: bold;
+    margin-left: 2px;
+    
+}
+
+#playlist_recommended_artists_container {
+    border: 1px solid #CCCCCC;
+    padding-bottom: 10px;
+}
+
+#playlist_recommended_artists_container .inner_box {
+    background-color: #CCCCCC;
+    height: 30px;
+    margin-bottom: 6px;
+    margin-right: 0;
+}
+
+#playlist_recommended_artists_container h2 {
+    margin-left: 6px;
+    margin-right: 5px;
+    padding: 3px;
+}
+
+#playlist_recommended_artists_container .try_list {
+    margin-left: 4px;
+    margin-right: 4px;
+    margin-top: -3px;
+    padding: 3px;
+}
+
+#playlist_recommended_artists_container .try_list hr{
+    color: #CCCCCC;
+}
+
 .small_thumb.last_thumb, .medium_thumb.last_thumb {
     float: right;
     margin-right: 0px;
 }
 
 .try_list .small_thumb {
-    margin-right: 14px;
+    margin-right: 160px;
 }
 
 .try_list .small_thumb.last_thumb {
@@ -3755,6 +3800,20 @@ body li.ui-draggable-dragging .song_name a {
   margin-left:15px;
   margin-right:15px;
 }
+#fix_width {
+	width:204px;
+	float:left;
+	padding-bottom:10px;
+	
+}
+#fix_name{
+width:100px;
+float:right;
+}
+#img_list{
+	border-bottom:1px solid;
+}
+
 
 #social {
   border-bottom: 1px solid #CCC;

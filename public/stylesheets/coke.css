@@ -212,13 +212,19 @@ div.empty_playlist {
   height: 180px;
   margin-bottom: 10px;
   background: #e9e9e9;
-}
+} 
 
 .spaced_img {
-  width: 50px;
-  height: 50px;
+    height: 50px;
+    padding-bottom: 1px;
+    width: 50px;
 }
 
+.try_list .spaced_img {
+    height: 84px;
+    padding-bottom: 1px;
+    width: 84px;
+}
 .search_playlist_form {
   position: relative;
 }
@@ -718,17 +724,20 @@ a.black {
   z-index: 2;
 }
 
+/*STYLES FOR XMAS PROMO*/
+/*
 #tag_bottle.ar {
-  background: url(/images/bottle_mask_small_ar.png) !important;	
+  background: url(/images/bottle_mask_small_ar.png) !important;
 }
 
 #tag_bottle.mx {
-  background: url(/images/bottle_mask_small_mx.png) !important;	
+  background: url(/images/bottle_mask_small_mx.png) !important;
 }
 
 #tag_bottle.es {
-  background: url(/images/bottle_mask_small_es.png) !important;	
+  background: url(/images/bottle_mask_small_es.png) !important;
 }
+*/
 
 .tag_css1 { font-size: 12px !important; }
 .tag_css2 { font-size: 14px !important; }

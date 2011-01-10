@@ -5,7 +5,7 @@
   <meta property="og:url"         content="<%= host_with_port(request.request_uri) %>"/>
   <meta property="og:image"       content="<%=host_with_port("/images/FB_logo.jpeg")%>"/>
   <meta property="og:site_name"   content="Coca-Cola.fm"/>
-  <meta property="fb:app_id"      content="160520280625515"/>
+  <meta property="fb:app_id"      content="<%= fb_appid %>"/>
   <meta property="og:description" content="<%= "#{@station_obj.playable.name} includes #{@station_obj.playable.includes.map { |s| s.artist.name }.join(', ') }" %>"/>
 <% end %>
 

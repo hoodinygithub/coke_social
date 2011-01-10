@@ -176,12 +176,13 @@ module Account::Authentication
     la.ko.com mena.ko.com na.ko.com eur.ko.com fruktmusic.com sapient.com 
     synovate.com apac.ko.com cgsinc.com cgsinc.ro prisacom.com prisa.es)
   # Coke's latam countries (copied from redirect proxy)
-  LATAM = %w(CL CO CR DO EC SV GT HN NI PY PE VE)
+  LATAM = %w(BO CL CO CR DO EC SV GT HN NI PE VE)
+  AR = %w(AR PY UY)
   def email_domain_valid_for_beta
     unless VALID_DOMAINS.include?(email.split("@")[1])
       country_code = Country.geoip.country(ip_address)[3]
       site = ApplicationController.current_site.code
-      if (country_code == 'AR' && site == 'cokear')
+      if (AR.include? country_code && site == 'cokear')
       elsif (country_code == 'BR' && site == 'cokebr')
       elsif (country_code == 'MX' && site == 'cokemx')
       elsif (LATAM.include? country_code && site == 'cokelatam')

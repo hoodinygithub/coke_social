@@ -44,4 +44,9 @@ class BadgeAward < ActiveRecord::Base
     self.winner.increment!(:total_badges)
     self.badge.increment!(:badge_awards_count)
   end
+
+  def deleted_playlist_name
+    Playlist.find_including_deleted(playlist_id).name if playlist_id
+  end
 end
+

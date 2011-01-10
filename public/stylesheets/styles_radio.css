@@ -1,3 +1,4 @@
+
 /* @override http://localhost:3000/stylesheets/styles_radio.css */
 
 /*RADIO CSS SPECIFICS ARE BELOW THIS LINE */
@@ -24,6 +25,7 @@
 	padding: 110px 24px 14px 20px;
 }
 
+/*
 #main_content.ar
 {
 	background: url("/images/radio_background_ar.jpg") no-repeat scroll center top transparent !important;
@@ -38,6 +40,7 @@
 {
 	background: url("/images/radio_background_es.jpg") no-repeat scroll center top transparent !important;
 }
+  */
 
 .reviews_box {
 	-moz-border-radius: 5px 5px 5px 5px;
@@ -121,6 +124,1020 @@
 	padding-top: 4px;
 	position: relative;
 	vertical-align: middle;
+}
+
+.big_btn_box {
+/*	display: inline-block; */
+	margin: 0 2px;
+	padding-top: 4px;
+	position: relative;
+	vertical-align: middle;
+}
+
+.play_btn {
+	background: url("/images/play_button.png") no-repeat scroll left top transparent;
+}
+
+.play_btn:hover {
+	background: url("/images/play_button_grey.png") no-repeat scroll left top transparent;
+}
+
+.big_btn {
+	display:inline-block;
+	height:28px;
+	overflow:hidden;
+	text-indent:1000px;
+	width:28px;
+}
+
+.grey_button_big {
+    display: inline-block;
+    height: 28px;
+    line-height: 28px;
+    overflow: hidden;
+    color: #fff;
+    /* padding-left: 5px; */
+    padding-left: 4px;	
+    font-size: 12px;
+    font-weight: bold;
+    text-align: center;
+    text-decoration: none;
+    vertical-align: middle;
+}
+
+
+.grey_button_big {
+    background: url("../images/grey_button_big_left.gif") no-repeat left top;
+}
+
+.grey_button_big span {
+    display: inline-block;
+    height: 28px;
+    color: #fff;
+    cursor: pointer;
+    /* padding-right: 5px; */
+    padding-right: 4px;	
+}
+
+.grey_button_big span {
+    background: url("../images/grey_button_big_right.gif") no-repeat right top;
+}
+
+.grey_button_big span span {
+    padding: 0px 10px;
+}
+
+.grey_button_big span span {
+    background: #bdbdbd;
+}
+
+.red_button:hover, .green_button:hover, .orange_button:hover, .black_button:hover, .grey_button_big:hover {
+    text-decoration: none;
+}
+
+.my_mix .songs_box ul.size3 {
+    width: 605px;
+	/* width: 595px; */
+	
+}
+
+
+.radio_left_side {
+    width: 150px;
+    float: left;
+}
+
+.radio_row {
+    padding: 15px 20px;
+}
+
+.mix_box {
+    background: #f9f9f9 url("../images/mix_box_bg.gif") repeat-x left bottom;
+    border: solid 1px #d9d9d9;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+}
+
+.mix_box .album_detail {
+    background: #fff;
+    /* padding: 10px 8px; */
+    /* border-top: solid 1px #ccc; */
+    padding: 0 8px 10px;
+    border-bottom: solid 1px #ccc;
+    border-bottom: solid 1px #ccc;
+    zoom: 1;
+}
+
+.top_buttons {
+    background: #fff;
+    padding: 8px;
+    zoom: 1;
+    -moz-border-radius-topright: 5px;
+    -moz-border-radius-topleft: 5px;
+    -webkit-border-top-left-radius: 5px;
+    -webkit-border-top-right-radius: 5px;
+}
+
+.now_playing {
+    vertical-align: middle;
+    margin-top: 0px !important;
+    margin-top: 10px;
+    top: 0px !important;
+    top: -4px;
+    position: relative;
+    zoom: 1;
+}
+
+.mix_box.grey_accents {
+    background-position: left bottom;
+}
+
+.mix_box.grey_accents .top_buttons {
+    background: none;
+}
+
+.mix_box.grey_accents .album_detail {
+    background: none;
+}
+
+.radio_row .overlay_content {
+    padding: 5px 10px;
+}
+
+.radio_row .overlay_content small {
+    line-height: 12px;
+    font-size: 11px;
+}
+
+.radio_right_side {
+    width: 418px;
+    float: right;
+}
+
+.radio_tabs {
+    position: relative;
+    z-index: 10;
+}
+
+.radio_tabs a {
+	display: inline-block;
+	color: #FF0000;
+	text-decoration: none;
+	font-size: 12px;
+	font-weight: bold;
+	margin: 0px 10px;
+	line-height: 31px;
+}
+
+.radio_tabs a span {
+    display: inline-block;
+}
+
+.radio_tabs a.active {
+    background: url("../images/tab_left.gif") no-repeat left top;
+    padding-left: 8px;
+    margin-right: 15px;
+    color: #000;
+}
+
+.radio_tabs a.active.first {
+    margin-left: 0px;
+    background: url("../images/tab_left_first.gif") no-repeat left top;
+    padding-left: 4px;
+}
+
+.radio_tabs a.active span {
+    background: url("../images/tab_right.gif") no-repeat right top;
+    padding-right: 8px;
+}
+
+.radio_tabs a.active span span {
+    background: url("../images/tab_bg.gif") repeat-x left top;
+    padding: 0px 12px;
+}
+
+.radio_tabs_content {
+    position: relative;
+    z-index: 2;
+    top: -1px;
+    background: #fff;
+    border: solid 1px #e3e3e3;
+    padding: 10px 13px;
+    overflow: auto;
+    height: 195px;
+}
+
+.radio_station_row {
+    border-bottom: solid 1px #e3e3e3;
+    padding: 10px 0px;
+}
+
+.radio_station_row .station_icon {
+    float: left;
+    margin-right: 8px;
+}
+
+.radio_station_row .station_text {
+	float: left;
+	width: 250px;
+	font-size: 12px;
+	line-height: 16px;
+}
+
+.radio_station_row .station_text small {
+    font-size: 11px;
+}
+
+.radio_station_row .reviews_stars {
+    display: inline-block;
+    padding-top: 3px;
+}
+
+.radio_station_row .station_buttons {
+	float: right;
+	padding-top: 0px;
+}
+
+.radio_tabs_content .small_thumb {
+    margin-right: 15px;
+}
+
+.black_boxes {
+    margin-bottom: 7px;
+}
+
+.black_box {
+    width: 65px;
+    padding: 6px 0px 6px 7px;
+    line-height: 16px;
+    color: #fff;
+    background: #000;
+    font-size: 12px;
+    margin-bottom: 6px;
+}
+.red_button.full_width, .red_button.full_width span {
+    display: block;
+    margin-bottom: 7px;
+}
+
+.red_button.full_width span span {
+    padding: 0px;
+}
+
+
+.album_detail {
+    position: relative;
+}
+
+.album_detail .album_image {
+    float: left;
+}
+
+.album_detail .album_text {
+    float: left;
+    width: 250px;
+    padding-left: 10px;
+    font-size: 13px;
+    line-height: 16px;
+}
+
+.album_detail .album_text big {
+    font-size: 20px;
+    line-height: 24px;
+}
+
+
+.album_detail .album_text2 {
+    float:left;
+    font-size:14px;
+    line-height:16px;
+    padding-left:10px;
+    width:365px;
+}
+
+.album_detail .album_text2 small {
+    font-size: 11px;
+    line-height: 14px;
+}
+
+.album_detail .album_actions {
+    float: right;
+    width: 110px;
+    text-align: right;
+}
+
+.album_detail .album_actions2 {
+    float: right;
+    text-align: right;
+    width: 175px;
+}
+
+.album_detail .album_actions2 .red_button {
+    margin-bottom: 5px;
+}
+
+.grey_button {
+    display: inline-block;
+    height: 21px;
+    line-height: 21px;
+    overflow: hidden;
+    color: #333;
+   /* background: url("../images/grey_button_left.gif") no-repeat left top; */
+   /* padding-left: 3px; */
+    font-size: 11px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.grey_button span {
+    display: inline-block;
+    height: 21px;
+    line-height: 23px;
+    cursor: pointer;
+   /* padding-right: 3px; */
+   /* background: url("../images/grey_button_right.gif") no-repeat right top; */
+}
+
+.grey_button span span {
+   /* background: url("../images/grey_button_bg.gif") repeat-x left top; */
+   /* padding: 0px 2px; */
+}
+
+.grey_button img {
+   /* vertical-align: middle; */
+   vertical-align: top;
+}
+
+.grey_button:hover {
+    text-decoration: none;
+}
+.iefix .grey_button span span img {
+   /* margin-top: 4px; */
+    position: relative;
+}
+
+.iefix .grey_button span span i {
+    font-style: normal;
+    vertical-align: middle;
+    display: inline-block;
+    position: relative;
+    top: 0px !important;
+    top: 3px;
+}
+
+.iefix .grey_button i img {
+    top: -2px;
+}
+
+.songs_list.my_mix .headers div.large_bnt3 {
+    width: 95px;
+}
+.my_mix .songs_box .large_bnt3 {
+    width: 90px;
+	padding-right: 5px;
+    text-align: right;
+}
+.listen_icon_small {
+    position: absolute;
+    margin: 0;
+    left: -1px;
+    top: -5px;
+}
+
+/* @override http://localhost:3000/stylesheets/styles_radio.css */
+
+/*RADIO CSS SPECIFICS ARE BELOW THIS LINE */
+/*=======================================================================*/
+
+.css1 { font-size: 1.0em; }
+.css2 { font-size: 1.4em; }
+.css3 { font-size: 1.8em; }
+.css4 { font-size: 2.2em; }
+
+#radio_player {
+  border-bottom: 1px solid #CCC;
+}
+
+#header.player_page
+{
+	height: 42px;
+}
+
+#main_content.player_page
+{
+	background: url("/images/bottle_background.jpg") no-repeat scroll center top transparent;
+	margin: 0;
+	padding: 110px 24px 14px 20px;
+}
+
+/*
+#main_content.ar
+{
+	background: url("/images/radio_background_ar.jpg") no-repeat scroll center top transparent !important;
+}
+
+#main_content.mx
+{
+	background: url("/images/radio_background_mx.jpg") no-repeat scroll center top transparent !important;
+}
+
+#main_content.es
+{
+	background: url("/images/radio_background_es.jpg") no-repeat scroll center top transparent !important;
+}
+  */
+
+.reviews_box {
+	-moz-border-radius: 5px 5px 5px 5px;
+	background: url("/images/reviews_box_bg.gif") repeat-x scroll left top #F2F2F2;
+	border: 1px solid #CCC;
+	padding: 10px 10px;
+}
+
+.reviews_box .network_update textarea {
+	width: 470px;
+}
+
+.playlist_reviews {
+	list-style-type: none;
+	margin-bottom: 15px;
+}
+
+.playlist_reviews li {
+	border-bottom: 1px solid #EDEDED;
+	padding: 10px 0;
+	position: relative;
+}
+
+.playlist_reviews li .icon {
+	float: left;
+	margin-right: 10px;
+}
+
+.playlist_reviews li .info {
+	float: left;
+	width: 110px;
+}
+
+.playlist_reviews .text {
+	color: #333;
+	float: right;
+	width: 410px;
+}
+
+.large_btn3 {
+	text-align: right;
+	width: 85px;
+}
+
+.delete_btn {
+	background: url("/images/delete_button_small.png") no-repeat scroll left top transparent;
+}
+
+.delete_btn:hover {
+	background: url("/images/delete_button_small_grey.png") no-repeat scroll left top transparent;
+}
+
+.edit_btn {
+	background: url("/images/edit_button_small.png") no-repeat scroll left top transparent;
+}
+
+.edit_btn:hover {
+	background: url("/images/edit_button_small_grey.png") no-repeat scroll left top transparent;
+}
+
+.listen_btn {
+	background: url("/images/listen_icon_small.png") no-repeat scroll left top transparent;
+}
+
+.listen_btn:hover {
+	background: url("/images/listen_icon_small_grey.png") no-repeat scroll left top transparent;
+}
+
+.small_btn {
+	display: inline-block;
+	height: 20px;
+	overflow: hidden;
+	/*text-indent: 1000px; */ 
+	text-indent:0;
+	width: 20px;
+}
+
+.small_btn_box {
+	display: inline-block; 
+	line-height: 20px;
+	margin: 0 2px;
+	padding-top: 4px;
+	position: relative;
+	vertical-align: middle;
+
+}
+
+.big_btn_box {
+/*	display: inline-block; */
+	margin: 0 2px;
+	padding-top: 4px;
+	position: relative;
+	vertical-align: middle;
+}
+
+.play_btn {
+	background: url("/images/play_button.png") no-repeat scroll left top transparent;
+}
+
+.play_btn:hover {
+	background: url("/images/play_button_grey.png") no-repeat scroll left top transparent;
+}
+
+.big_btn {
+	display:inline-block;
+	height:28px;
+	overflow:hidden;
+	text-indent:1000px;
+	width:28px;
+}
+
+.grey_button_big {
+    display: inline-block;
+    height: 28px;
+    line-height: 28px;
+    overflow: hidden;
+    color: #fff;
+    /* padding-left: 5px; */
+    padding-left: 4px;	
+    font-size: 12px;
+    font-weight: bold;
+    text-align: center;
+    text-decoration: none;
+    vertical-align: middle;
+}
+
+
+.grey_button_big {
+    background: url("../images/grey_button_big_left.gif") no-repeat left top;
+}
+
+.grey_button_big span {
+    display: inline-block;
+    height: 28px;
+    color: #fff;
+    cursor: pointer;
+    /* padding-right: 5px; */
+    padding-right: 4px;	
+}
+
+.grey_button_big span {
+    background: url("../images/grey_button_big_right.gif") no-repeat right top;
+}
+
+.grey_button_big span span {
+    padding: 0px 10px;
+}
+
+.grey_button_big span span {
+    background: #bdbdbd;
+}
+
+.red_button:hover, .green_button:hover, .orange_button:hover, .black_button:hover, .grey_button_big:hover {
+    text-decoration: none;
+}
+
+.my_mix .songs_box ul.size3 {
+    width: 605px;
+	/* width: 595px; */
+	
+}
+
+
+.radio_left_side {
+    width: 150px;
+    float: left;
+}
+
+.radio_row {
+    padding: 15px 20px;
+}
+
+.mix_box {
+    background: #f9f9f9 url("../images/mix_box_bg.gif") repeat-x left bottom;
+    border: solid 1px #d9d9d9;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+}
+
+.mix_box .album_detail {
+    background: #fff;
+    /* padding: 10px 8px; */
+    /* border-top: solid 1px #ccc; */
+    padding: 0 8px 10px;
+    border-bottom: solid 1px #ccc;
+    border-bottom: solid 1px #ccc;
+    zoom: 1;
+}
+
+.top_buttons {
+    background: #fff;
+    padding: 8px;
+    zoom: 1;
+    -moz-border-radius-topright: 5px;
+    -moz-border-radius-topleft: 5px;
+    -webkit-border-top-left-radius: 5px;
+    -webkit-border-top-right-radius: 5px;
+}
+
+.now_playing {
+    vertical-align: middle;
+    margin-top: 0px !important;
+    margin-top: 10px;
+    top: 0px !important;
+    top: -4px;
+    position: relative;
+    zoom: 1;
+}
+
+.mix_box.grey_accents {
+    background-position: left bottom;
+}
+
+.mix_box.grey_accents .top_buttons {
+    background: none;
+}
+
+.mix_box.grey_accents .album_detail {
+    background: none;
+}
+
+.radio_row .overlay_content {
+    padding: 5px 10px;
+}
+
+.radio_row .overlay_content small {
+    line-height: 12px;
+    font-size: 11px;
+}
+
+.radio_right_side {
+    width: 418px;
+    float: right;
+}
+
+.radio_tabs {
+    position: relative;
+    z-index: 10;
+}
+
+.radio_tabs a {
+	display: inline-block;
+	color: #FF0000;
+	text-decoration: none;
+	font-size: 12px;
+	font-weight: bold;
+	margin: 0px 10px;
+	line-height: 31px;
+}
+
+.radio_tabs a span {
+    display: inline-block;
+}
+
+.radio_tabs a.active {
+    background: url("../images/tab_left.gif") no-repeat left top;
+    padding-left: 8px;
+    margin-right: 15px;
+    color: #000;
+}
+
+.radio_tabs a.active.first {
+    margin-left: 0px;
+    background: url("../images/tab_left_first.gif") no-repeat left top;
+    padding-left: 4px;
+}
+
+.radio_tabs a.active span {
+    background: url("../images/tab_right.gif") no-repeat right top;
+    padding-right: 8px;
+}
+
+.radio_tabs a.active span span {
+    background: url("../images/tab_bg.gif") repeat-x left top;
+    padding: 0px 12px;
+}
+
+.radio_tabs_content {
+    position: relative;
+    z-index: 2;
+    top: -1px;
+    background: #fff;
+    border: solid 1px #e3e3e3;
+    padding: 10px 13px;
+    overflow: auto;
+    height: 195px;
+}
+
+.radio_station_row {
+    border-bottom: solid 1px #e3e3e3;
+    padding: 10px 0px;
+}
+
+.radio_station_row .station_icon {
+    float: left;
+    margin-right: 8px;
+}
+
+.radio_station_row .station_text {
+	float: left;
+	width: 250px;
+	font-size: 12px;
+	line-height: 16px;
+}
+
+.radio_station_row .station_text small {
+    font-size: 11px;
+}
+
+.radio_station_row .reviews_stars {
+    display: inline-block;
+    padding-top: 3px;
+}
+
+.radio_station_row .station_buttons {
+	float: right;
+	padding-top: 0px;
+}
+
+.radio_tabs_content .small_thumb {
+    margin-right: 15px;
+}
+
+.black_boxes {
+    margin-bottom: 7px;
+}
+
+.black_box {
+    width: 65px;
+    padding: 6px 0px 6px 7px;
+    line-height: 16px;
+    color: #fff;
+    background: #000;
+    font-size: 12px;
+    margin-bottom: 6px;
+}
+.red_button.full_width, .red_button.full_width span {
+    display: block;
+    margin-bottom: 7px;
+}
+
+.red_button.full_width span span {
+    padding: 0px;
+}
+
+
+.album_detail {
+    position: relative;
+}
+
+.album_detail .album_image {
+    float: left;
+}
+
+.album_detail .album_text {
+    float: left;
+    width: 250px;
+    padding-left: 10px;
+    font-size: 13px;
+    line-height: 16px;
+}
+
+.album_detail .album_text big {
+    font-size: 20px;
+    line-height: 24px;
+}
+
+
+.album_detail .album_text2 {
+    float:left;
+    font-size:14px;
+    line-height:16px;
+    padding-left:10px;
+    width:365px;
+}
+
+.album_detail .album_text2 small {
+    font-size: 11px;
+    line-height: 14px;
+}
+
+.album_detail .album_actions {
+    float: right;
+    width: 110px;
+    text-align: right;
+}
+
+.album_detail .album_actions2 {
+    float: right;
+    text-align: right;
+    width: 175px;
+}
+
+.album_detail .album_actions2 .red_button {
+    margin-bottom: 5px;
+}
+
+.grey_button {
+    display: inline-block;
+    height: 21px;
+    line-height: 21px;
+    overflow: hidden;
+    color: #333;
+   /* background: url("../images/grey_button_left.gif") no-repeat left top; */
+   /* padding-left: 3px; */
+    font-size: 11px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.grey_button span {
+    display: inline-block;
+    height: 21px;
+    line-height: 23px;
+    cursor: pointer;
+   /* padding-right: 3px; */
+   /* background: url("../images/grey_button_right.gif") no-repeat right top; */
+}
+
+.grey_button span span {
+   /* background: url("../images/grey_button_bg.gif") repeat-x left top; */
+   /* padding: 0px 2px; */
+}
+
+.grey_button img {
+   /* vertical-align: middle; */
+   vertical-align: top;
+}
+
+.grey_button:hover {
+    text-decoration: none;
+}
+.iefix .grey_button span span img {
+   /* margin-top: 4px; */
+    position: relative;
+}
+
+.iefix .grey_button span span i {
+    font-style: normal;
+    vertical-align: middle;
+    display: inline-block;
+    position: relative;
+    top: 0px !important;
+    top: 3px;
+}
+
+.iefix .grey_button i img {
+    top: -2px;
+}
+
+.songs_list.my_mix .headers div.large_bnt3 {
+    width: 95px;
+}
+.my_mix .songs_box .large_bnt3 {
+    width: 90px;
+	padding-right: 5px;
+    text-align: right;
+}
+.listen_icon_small {
+    position: absolute;
+    margin: 0;
+    left: -1px;
+    top: -5px;
+}
+
+/* @override http://localhost:3000/stylesheets/styles_radio.css */
+
+/*RADIO CSS SPECIFICS ARE BELOW THIS LINE */
+/*=======================================================================*/
+
+.css1 { font-size: 1.0em; }
+.css2 { font-size: 1.4em; }
+.css3 { font-size: 1.8em; }
+.css4 { font-size: 2.2em; }
+
+#radio_player {
+  border-bottom: 1px solid #CCC;
+}
+
+#header.player_page
+{
+	height: 42px;
+}
+
+#main_content.player_page
+{
+	background: url("/images/bottle_background.jpg") no-repeat scroll center top transparent;
+	margin: 0;
+	padding: 110px 24px 14px 20px;
+}
+
+/*
+#main_content.ar
+{
+	background: url("/images/radio_background_ar.jpg") no-repeat scroll center top transparent !important;
+}
+
+#main_content.mx
+{
+	background: url("/images/radio_background_mx.jpg") no-repeat scroll center top transparent !important;
+}
+
+#main_content.es
+{
+	background: url("/images/radio_background_es.jpg") no-repeat scroll center top transparent !important;
+}
+  */
+
+.reviews_box {
+	-moz-border-radius: 5px 5px 5px 5px;
+	background: url("/images/reviews_box_bg.gif") repeat-x scroll left top #F2F2F2;
+	border: 1px solid #CCC;
+	padding: 10px 10px;
+}
+
+.reviews_box .network_update textarea {
+	width: 470px;
+}
+
+.playlist_reviews {
+	list-style-type: none;
+	margin-bottom: 15px;
+}
+
+.playlist_reviews li {
+	border-bottom: 1px solid #EDEDED;
+	padding: 10px 0;
+	position: relative;
+}
+
+.playlist_reviews li .icon {
+	float: left;
+	margin-right: 10px;
+}
+
+.playlist_reviews li .info {
+	float: left;
+	width: 110px;
+}
+
+.playlist_reviews .text {
+	color: #333;
+	float: right;
+	width: 410px;
+}
+
+.large_btn3 {
+	text-align: right;
+	width: 85px;
+}
+
+.delete_btn {
+	background: url("/images/delete_button_small.png") no-repeat scroll left top transparent;
+}
+
+.delete_btn:hover {
+	background: url("/images/delete_button_small_grey.png") no-repeat scroll left top transparent;
+}
+
+.edit_btn {
+	background: url("/images/edit_button_small.png") no-repeat scroll left top transparent;
+}
+
+.edit_btn:hover {
+	background: url("/images/edit_button_small_grey.png") no-repeat scroll left top transparent;
+}
+
+.listen_btn {
+	background: url("/images/listen_icon_small.png") no-repeat scroll left top transparent;
+}
+
+.listen_btn:hover {
+	background: url("/images/listen_icon_small_grey.png") no-repeat scroll left top transparent;
+}
+
+.small_btn {
+	display: inline-block;
+	height: 20px;
+	overflow: hidden;
+	/*text-indent: 1000px; */ 
+	text-indent:0;
+	width: 20px;
+}
+
+.small_btn_box {
+	display: inline-block; 
+	line-height: 20px;
+	margin: 0 2px;
+	padding-top: 4px;
+	position: relative;
+	vertical-align: middle;
+
 }
 
 .big_btn_box {
@@ -408,7 +1425,7 @@
     font-size:14px;
     line-height:16px;
     padding-left:10px;
-    width:350px;
+    width:365px;
 }
 
 .album_detail .album_text2 small {
@@ -425,6 +1442,7 @@
 .album_detail .album_actions2 {
     float: right;
     text-align: right;
+	width: 175px;
 }
 
 .album_detail .album_actions2 .red_button {
@@ -498,3 +1516,4 @@
     left: -1px;
     top: -5px;
 }
+
