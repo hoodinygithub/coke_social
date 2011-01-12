@@ -40,7 +40,7 @@ class Site < ActiveRecord::Base
   has_many :summary_top_artists, :order => 'total_listens DESC', :class_name => 'TopArtist', :include => :artist
   has_many :top_artists, :through => :summary_top_artists, :class_name => 'Artist', :foreign_key => 'artist_id', :source => :artist, :order => 'top_artists.total_listens DESC'
   has_many :summary_top_abstract_stations, :order => 'station_count DESC', :class_name => 'TopAbstractStation', :include => :station
-  has_many :top_abstract_stations, :through => :summary_top_abstract_stations, :class_name => 'AbstractStation', :foreign_key => 'abstract_station_id', :source => :abstract_station, :order => 'top_abstract_stations.station_count DESC'
+  has_many :top_abstract_stations, :through => :summary_top_abstract_stations, :class_name => 'AbstractStation', :foreign_key => 'abstract_station_id', :source => :abstract_station, :order => 'top_abstract_stations.station_count DESC', :conditions => "abstract_stations.deleted_at IS NULL"
   has_many :summary_top_user_stations, :order => 'total_requests DESC', :class_name => 'TopUserStation', :include => :user_station
   has_many :top_user_stations, :through => :summary_top_user_stations, :class_name => 'UserStation', :foreign_key => 'user_station_id', :source => :user_station, :order => 'top_user_stations.total_requests DESC'
 
