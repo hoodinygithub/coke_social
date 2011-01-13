@@ -4,8 +4,22 @@
     <%= t('registration.customize')%>
   </div>
 
+
   <div class="auth_left">
-    <%= render 'registration_form' %>
+    <% unless session.has_key? :sso_user %>
+      <%= render "shared/social/social", { :page => :registration } %>
+    <% else %>
+      <div id="social">
+        <div class="container">
+          <span class="title"><%= t('sessions.new.almost_done') %></span><br /><br />
+          <b><%= t('sessions.new.create_link_acct', :provider => session[:sso_type].to_s) %></b><br /><br />
+          <%= "<b>#{t('sessions.new.already_own')} #{link_to t('sessions.new.sign_in'), login_path }</b>" %>
+        </div>
+      </div>
+    <% end %>
+    <div class="form_content">
+      <%= render 'registration_form' %>
+    </div>
   </div>
 
   <div class="auth_right">

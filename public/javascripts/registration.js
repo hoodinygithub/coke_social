@@ -33,16 +33,28 @@ jQuery(document).ready(function($){
     $(input).data('id', setTimeout(function() {validateSlug.apply(input)},delay));
   }
 
-  $("#user_email").keypress(function() {
+  var email_input = $("#user_email");
+  var slug_input = $("#user_slug");
+
+  email_input.keypress(function() {
     checkAfterEmail(this, 1000)
   }).blur(function() {
     checkAfterEmail(this, 0)
   });
 
-  $("#user_slug").keypress(function() {
+  slug_input.keypress(function() {
     checkAfterSlug(this, 1000)
   }).blur(function() {
     checkAfterSlug(this, 0)
   });
 
+  if (email_input.val().length > 0) {
+    validateEmail.apply(email_input);
+  }
+
+  if (slug_input.val().length > 0) {
+    validateEmail.apply(slug_input);
+  }
+
 });
+

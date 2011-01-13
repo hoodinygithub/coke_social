@@ -2792,10 +2792,15 @@ followers_list .follower_actions.w_settings .orange_button.settings_button img, 
 }
 
 .auth_left {
-    width: 434px;
+    width: 470px;
     float: left;
     border-right: solid 1px #ccc;
-    padding: 25px 35px 0px 0px;
+    /*padding: 25px 35px 0px 0px;*/
+}
+
+.form_content {
+  float: left;
+  width: 435px;
 }
 
 .auth_area .account_settings .form_row .input.full_width  {
@@ -3807,4 +3812,22 @@ float:right;
 }
 #img_list{
 	border-bottom:1px solid;
+}
+
+
+#social {
+  border-bottom: 1px solid #CCC;
+}
+
+#social .container {
+  margin: 20px 24px 14px 20px;
+}
+
+.field_disabled {
+  background-color: #CCC !important;
+}
+
+span.title {
+  font-size: 18px;
+  font-weight: bold;
 }
