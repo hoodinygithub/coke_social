@@ -137,7 +137,7 @@ private
       return
     end
 
-    same_email_user = User.find_by_email(p_user.email, :select => "slug, encrypted_gender, encrypted_email, encrypted_name, encrypted_born_on_string")
+    same_email_user = User.find_by_email(p_user.email, :select => "slug, encrypted_gender, encrypted_email, encrypted_name, encrypted_born_on_string", :conditions => { :deleted_at => nil })
     unless same_email_user.nil?
       # logger.info "Found same email user."
       # flash[:error] = t("registration.link_sso_account")
