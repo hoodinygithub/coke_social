@@ -287,7 +287,6 @@ class Account < ActiveRecord::Base
     options[:group] = :all if self.is_a?(Artist)
     raise ArgumentError unless [:all, :listen, :twitter, :station, :playlist, :status].include?(options[:kind])
     raise ArgumentError unless [:all, :just_me, :just_following].include?(options[:group])
-    return []
     Activity::Feed.query :for => options[:kind],
                                 :page => options[:page].to_i,
                                 :account_ids => determine_account_ids(options[:group]),

@@ -4,7 +4,7 @@
   <div class="overlay">
 
     <div class="hidden fh">
-      <b><%= link_to truncate(p.name,:length=>10,:omission=>"..."), radio_path(:station_id => p.station.id) %></b><br/>
+      <b><%= link_to truncate(p.name,:length=>10,:omission=>"...") , radio_path(:station_id => p.station.id) %></b><br/>
       <%= rating(p, false, "rating_#{p.id}_top") %>
       <br/><br/>
 
@@ -17,15 +17,15 @@
         <a href="#" title = "Subscribe"><img src="images/listen_button.png" class="png_fix" alt="" /></a>
         <a href="#" title="Copy"><img src="images/duplicate_button.png" class="png_fix" alt="" /></a>
         <% end %>
-          <%= link_to image_tag('duplicate_button.png', :class=> "png_fix"), '#', 
-            :onclick => "Base.playlists.copy('#{p.owner.slug}', #{p.id}); return false;" , :title=>t('actions.copy') %>
-        <%= link_to(image_tag('play_button.png', :class => 'png_fix'), radio_path(:station_id => p.station.id), :title=> t('actions.play'))%>
+          <%= link_to image_tag('duplicate_button.png', :class=> "png_fix"), '#', :title=> t('actions.copy'), 
+            :onclick => "Base.playlists.copy('#{p.owner.slug}', #{p.id}); return false;" %>
+        <%= link_to(image_tag('play_button.png', :class => 'png_fix'), radio_path(:station_id => p.station.id) , :title=> t('actions.play'))%>
       </div>
     </div>
 
     <div class="visible fh">
       <%= link_to(image_tag('play_button.png', :class => 'png_fix play_button'), radio_path(:station_id => p.station.id))%>
-      <%= link_to truncate(p.name, :length=>15, :omission=>'...'), 
+      <%= link_to truncate(p.name, :length=>15, :omission=> '...'), 
                   radio_path(:station_id => p.station.id),
                   :alt => p.name %><br/>
       <%= rating(p) %>
