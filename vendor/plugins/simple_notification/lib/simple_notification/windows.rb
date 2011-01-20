@@ -1,4 +1,4 @@
-require 'snarl' if RUBY_PLATFORM =~ /mswin/
+#~ require 'snarl' if RUBY_PLATFORM =~ /mswin/
 
 module SimpleNotification
   class Windows
