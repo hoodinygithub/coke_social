@@ -278,7 +278,7 @@ module ApplicationHelper
     end
   end
 
-  def tag_links(item, active_scope = :all, limit=3, include_text=true, link_options={})
+  def tag_links(item, active_scope = :playlists, limit=3, include_text=true, link_options={})
     links = []
     conditions = "valid_tags.site_id = #{current_site.id} and valid_tags.deleted_at IS NULL"
     joins      = "INNER JOIN valid_tags ON valid_tags.tag_id = #{Tag.table_name}.id"
@@ -969,8 +969,8 @@ def cyloop_logo_path(sm=true)
     outer_tag_links = []
     inner_tag_links = []
     tag_cloud tags, %w(tag_css1 tag_css2 tag_css3 tag_css4, tag_css5) do |tag, css_class, index| 
-      outer_tag_links << link_to(tag.nickname, search_path(:q => tag.name, :scope => :playlists), :class => "tag_outer red #{css_class}", :id => "tag_outer_#{index}") rescue nil
-      inner_tag_links << link_to(tag.nickname, search_path(:q => tag.name, :scope => :playlists), :class => "tag_inner red #{css_class}", :id => "tag_inner_#{index}") rescue nil
+      outer_tag_links << link_to(tag.nickname, main_search_path(:scope => 'playlists', :q => CGI::escape(tag.name)), :class => "tag_outer red #{css_class}", :id => "tag_outer_#{index}") rescue nil
+      inner_tag_links << link_to(tag.nickname, main_search_path(:scope => 'playlists', :q => CGI::escape(tag.name)), :class => "tag_inner red #{css_class}", :id => "tag_inner_#{index}") rescue nil
     end
     <<-EOF
     <script type="text/javascript">

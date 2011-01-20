@@ -8,6 +8,10 @@
 %meta{'name' => 'site', :content => current_site.id}
 %meta{'name' => 'created', :content => Time.now }
 %link{:rel=>"shortcut icon", :href=>"#{current_site_url}/favicon.ico"}
+- if site_code == "cokebr"
+  %link{:rel=>"canonical", :href=>"http://br.coca-cola.fm#{request.path}"}
+- else
+  %link{:rel=>"canonical", :href=>"http://la.coca-cola.fm#{request.path}"}
 
 - if protect_against_forgery?
   %meta{:name => 'authenticity_token', :content => form_authenticity_token}
