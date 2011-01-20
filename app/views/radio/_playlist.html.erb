@@ -3,12 +3,12 @@
 <div class="album_text2">
   <b><%= @station_obj.playable.name %></b>
   <% if logged_in? && current_user.id == @station_obj.playable.owner.id %>
-    <!--span class="small_btn_box hoverable_item"><%= link_to_function "Edit","Base.stations.launch_edit_layer(#{@station_obj.id})", :class => "small_btn edit_btn" , :alt=>"t('actions.edit')"%></span-->
-    <span class="small_btn_box hoverable_item"><%= link_to "", playlist_edit_path(@station_obj.playable), :class => "small_btn edit_btn" ,:title=>t('actions.edit')%></span>
+    <!--span class="small_btn_box hoverable_item"><%= link_to_function "Edit","Base.stations.launch_edit_layer(#{@station_obj.id})", :class => "small_btn edit_btn" %></span-->
+    <span class="small_btn_box hoverable_item"><%= link_to "", playlist_edit_path(@station_obj.playable), :class => "small_btn edit_btn" ,:title=> t('actions.edit')%></span>
 
   <% end %>
     <span class="small_btn_box hoverable_item"><%= link_to "", "#", :class => "small_btn copy_btn", 
-      :title => t('actions.copy'), :onclick => "Base.playlists.copy('#{@station_obj.playable.owner.slug}', #{@station_obj.playable.id});return false;" %></span>
+      :title => t('actions.copy') , :onclick => "Base.playlists.copy('#{@station_obj.playable.owner.slug}', #{@station_obj.playable.id});return false;" %></span>
   <br/>
   <small class="grey"><%= l(@station_obj.playable.updated_at.to_date) %></small>
   <br/>
