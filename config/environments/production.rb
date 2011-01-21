@@ -21,11 +21,11 @@ config.action_controller.perform_caching             = true
 # config.action_mailer.raise_delivery_errors = false
 
 config.action_mailer.smtp_settings = {
-  :domain => "cyloop.com",
+  :domain => "coca-cola.fm",
   :address => "smtp",
   :port => 25,
   :perform_deliveries => true,
-  :default_from => 'Coca-Cola.fm <no-reply@cyloop.com>'
+  :default_from => 'Coca-Cola.fm <no-reply@coca-cola.fm>'
 }
 config.action_mailer.delivery_method = :activerecord
 
@@ -37,3 +37,4 @@ config.middleware.use "SetCookieDomain", ".coca-cola.fm"
 config.cache_store = :mem_cache_store, '10.122.200.134:11211', '10.122.200.136:11211', '10.122.200.137:11211', '10.122.200.138:11211', '10.122.200.139:11211', '10.122.200.140:11211', '10.122.200.141:11211', '10.122.200.142:11211', '10.122.200.143:11211', '10.122.200.132:11211', '10.122.200.133:11211'
 
 config.gem 'hoptoad_notifier'
+
