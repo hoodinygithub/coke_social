@@ -21,11 +21,11 @@ config.cache_store = :smart_mem_cache_store
 # config.action_mailer.raise_delivery_errors = false
 
 config.action_mailer.smtp_settings = {
-  :domain => "cyloop.com",
+  :domain => "coca-cola.fm",
   :address => "smtp",
   :port => 25,
   :perform_deliveries => true,
-  :default_from => 'Coca-Cola.fm <no-reply@cyloop.com>'
+  :default_from => 'Coca-Cola.fm <no-reply@coca-cola.fm>'
 }
 config.action_mailer.delivery_method = :activerecord
 
@@ -33,3 +33,4 @@ ActionController::Base.session = {
   :domain => ".hoodiny.com"
 }
 config.middleware.use "SetCookieDomain", ".hoodiny.com"
+
