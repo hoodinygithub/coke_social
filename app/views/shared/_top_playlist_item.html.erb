@@ -2,7 +2,7 @@
   <%= link_to (top_playlist_item_counter + 1), radio_path(:station_id => top_playlist_item.station.id), :class => "item_number" %>
   <span class="item_image">
     <%= link_to avatar_for(top_playlist_item, :small, :class => "spaced_img", :disable_default_css => true, :width => "50px", :height => "50px"), radio_path(:station_id => top_playlist_item.station.id) %>
-    <%= link_to image_tag("play_icon_red.png", :class=> "play_icon png_fix", :title => t('basics.play')), radio_path(:station_id => top_playlist_item.station.id) %>
+    <%= link_to image_tag("play_icon_red.png", :class=> "play_icon png_fix", :title => t('actions.play')), radio_path(:station_id => top_playlist_item.station.id) %>
   </span>
   <div class="item_text">
     <big><b><%= link_to top_playlist_item.name, radio_path(:station_id => top_playlist_item.station.id) ,:class => "red" %></b></big><br/>
