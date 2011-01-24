@@ -182,10 +182,10 @@ module Account::Authentication
     unless VALID_DOMAINS.include?(email.split("@")[1])
       country_code = Country.geoip.country(ip_address)[3]
       site = ApplicationController.current_site.code
-      if (AR.include? country_code && site == 'cokear')
+      if (AR.include?(country_code) && site == 'cokear')
       elsif (country_code == 'BR' && site == 'cokebr')
       elsif (country_code == 'MX' && site == 'cokemx')
-      elsif (LATAM.include? country_code && site == 'cokelatam')
+      elsif (LATAM.include?(country_code) && site == 'cokelatam')
       else
         # domain not allowed and not matching site/geo
         errors.add(:email, I18n.t('share.errors.message.email_is_not_authorized'))
