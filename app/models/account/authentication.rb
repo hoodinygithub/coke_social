@@ -185,7 +185,7 @@ module Account::Authentication
       if (AR.include? country_code && site == 'cokear')
       elsif (country_code == 'BR' && site == 'cokebr')
       elsif (country_code == 'MX' && site == 'cokemx')
-      elsif (LATAM.include? country_code && site == 'cokelatam')
+      elsif (LATAM.include?(country_code) && site == 'cokelatam')
       else
         # domain not allowed and not matching site/geo
         errors.add(:email, I18n.t('share.errors.message.email_is_not_authorized'))
