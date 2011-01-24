@@ -283,21 +283,17 @@ module ApplicationHelper
     conditions = "valid_tags.site_id = #{current_site.id} and valid_tags.deleted_at IS NULL"
     joins      = "INNER JOIN valid_tags ON valid_tags.tag_id = #{Tag.table_name}.id"
     tags = item.tags.all(:limit => limit, :joins => joins, :conditions => conditions)
-    tags = tags.map{ |tag| link_to(tag.nickname, main_search_path(:scope => active_scope.to_s, :q => tag.name), link_options) }
     count=0
-    truncate_num=32
-    for num in 0...tags.length
-      var=tags[num].split(">")
-      c=var[1].split("</a")
-      count=count+c.to_s.size
-      if count>=truncate_num
-        tags[num]=var[0]<<">"<<c[0][0...truncate_num-(count-c.to_s.size)]<<"...</a>"
-        for sub_num in num+1...tags.length
-          tags[sub_num]=''
-        end
-        break
-      end
-    end
+    max_tags_len = 32
+    tags=tags.map{ |tag|
+        link_text=tag.name
+        count=max_tags_len
+        max_tags_len-=link_text.length
+        if max_tags_len <= 0
+          link_text = truncate(link_text, :length=>count) 
+        end  
+        link_to(link_text, main_search_path(:scope => active_scope.to_s, :q => tag.name), link_options)  
+    }
     unless tags.empty?
       if include_text
         "#{t('basics.tags')}: #{tags.join(", ")}"
