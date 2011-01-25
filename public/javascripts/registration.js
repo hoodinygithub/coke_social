@@ -53,7 +53,7 @@ jQuery(document).ready(function($){
   }
 
   if (slug_input.val().length > 0) {
-    validateEmail.apply(slug_input);
+    validateSlug.apply(slug_input);
   }
 
 });
