@@ -48,7 +48,7 @@ class FacebookConnect
       #puts profile["name"]
       #puts profile["email"]
       #puts Date.parse profile["birthday"]
-      Rails.logger.error profile["gender"].nil? ? 'null gender' : profile["gender"]
+      #Rails.logger.error profile["gender"].nil? ? 'null gender' : profile["gender"]
       User.new(
         :name => profile["name"], 
         :email => profile["email"], 
