@@ -55,6 +55,7 @@ Rails::Initializer.run do |config|
   config.gem 'resque',                  :version => '1.2.3'
   config.gem 'attr_encrypted',          :version => '1.1.2'
   # config.gem "ambethia-recaptcha",      :lib => "recaptcha/rails", :source => "http://gems.github.com"
+  config.gem 'rest-client',             :version => '1.6.1'
   
   # config.gem "methodmissing-scrooge", :lib => 'scrooge', :source => 'http://gems.github.com'
   # Only load the plugins named here, in the order given. By default, all

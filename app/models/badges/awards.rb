@@ -44,7 +44,7 @@ module Badges::Awards
       end
 
       if !wins.include? Badge.find_by_badge_key("rey_mago").id
-        if Time.now.month == 1 and Time.now.day == 6
+        if created_at.month == 1 and created_at.day == 6 and created_at.year == 2011
           award_badge(:rey_mago, owner)
         end
       end

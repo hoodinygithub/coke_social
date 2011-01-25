@@ -5,29 +5,11 @@
   <meta property="og:url"         content="<%= host_with_port(request.request_uri) %>"/>
   <meta property="og:image"       content="<%=host_with_port("/images/FB_logo.jpeg")%>"/>
   <meta property="og:site_name"   content="Coca-Cola.fm"/>
-  <meta property="fb:app_id"      content="160520280625515"/>
+  <meta property="fb:app_id"      content="<%= fb_appid %>"/>
   <meta property="og:description" content="<%= "#{@station_obj.playable.name} includes #{@station_obj.playable.includes.map { |s| s.artist.name }.join(', ') }" %>"/>
 <% end %>
 
-<div id="fb-root"></div>
-<script>
-  window.fbAsyncInit = function() {
-    FB.init({
-      appId  : '160520280625515',
-      status : true,
-      cookie : true,
-      xfbml  : true
-    });
-  };
-
-  (function() {
-    var e = document.createElement('script');
-    e.src = document.location.protocol + '//connect.facebook.net/<%= current_site.fb_locale %>/all.js';
-    e.async = true;
-    document.getElementById('fb-root').appendChild(e);
-  }());
-</script>
-<!-- /fb sdk auth and meta info -->
+<%= render "shared/social/fbconnect" %>
 
 <% blank_msg = t('modules.edit_station.blank_station_name_message').gsub(/\"/, '\"') %>
 <script type="text/javascript">
@@ -59,7 +41,7 @@
       <input type="hidden" id="msn_stations_toggle" value="0" />
       <input type="hidden" id="create_station_toggle" value="0" />
     </form>
-    <% # hide top buttons PT#7138591 = render 'top_buttons' %> 
+    <%= render 'top_buttons' %> 
     <div id="my_stations_container">
       <%= render "my_#{@station_obj.playable.class.to_s.pluralize.underscore}" if logged_in? && current_user && current_user.total_playlists > 0 %>
       <!--%= render 'my_playlists' if logged_in? && current_user && current_user.total_user_stations > 0 %-->
