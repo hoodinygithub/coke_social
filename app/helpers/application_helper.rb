@@ -291,8 +291,8 @@ module ApplicationHelper
         max_tags_len-=link_text.length
         if max_tags_len <= 0
           link_text = truncate(link_text, :length=>count) 
-        end  
-        link_to(link_text, main_search_path(:scope => active_scope.to_s, :q => tag.name), link_options)  
+        end 
+        link_to(link_text, main_search_path(:scope => active_scope.to_s, :q => tag.name), link_options)
     }
     unless tags.empty?
       if include_text
