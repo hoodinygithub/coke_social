@@ -29,7 +29,7 @@ class UsersController < ApplicationController
   # GET /users/id/edit
   def edit
     @user = User.find(current_user.id)
-    puts request.host
+    # puts request.host
   end
 
   # POST /users/id
@@ -66,7 +66,8 @@ class UsersController < ApplicationController
   # Temp as of 8/17/09
   def new
     if cyloop_login? || session[:msn_live_id]
-      @user = User.new
+      # pre-populate user object with sso fields
+      @user = session[:sso_user].nil? ? User.new : session[:sso_user]
     else
       msn_registration_redirect
     end
@@ -92,6 +93,8 @@ class UsersController < ApplicationController
       cookies.delete(:auth_token) if cookies.include?(:auth_token)
       session[:msn_live_id] = nil if wlid_web_login?
       session[:registration_layer] = true
+      session[:sso_user] = nil
+      session[:sso_type] = nil
       self.current_user = @user
 
       subject = t("registration.email.subject")
@@ -154,8 +157,7 @@ class UsersController < ApplicationController
   def confirm_cancellation
     user = current_user
     result = { :user_id => user.id }
-    password_valid = cyloop_login? ? user.authenticated?(params[:delete_password]) : true
-    unless params[:delete_info_accepted] and password_valid
+    unless params[:delete_info_accepted]
       result[:errors] = { :delete_password => I18n.t('account_settings.password_required') }
       render :json => result.to_json
     else
@@ -189,8 +191,7 @@ class UsersController < ApplicationController
   def destroy
     user = current_user
     result = { :user_id => user.id }
-    password_valid = cyloop_login? ? user.authenticated?(params[:delete_password]) : true
-    if params[:delete_info_accepted] and password_valid
+    if params[:delete_info_accepted]
       options = {
         :user_id => user.id,
         :site_id => request.host

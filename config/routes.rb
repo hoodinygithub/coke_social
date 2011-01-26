@@ -57,9 +57,9 @@ ActionController::Routing::Routes.draw do |map|
   map.resource :search
   #map.friendly_empty_search '/search', :controller => 'searches', :action => 'index'
   #map.friendly_empty_search_with_page '/search/empty/:mkt/:scope/:page', :controller => 'searches', :action => 'show'
-  map.content_local_search '/search/content_local/:scope/:q', :controller => 'searches', :action => 'content', :local => true
-  map.content_search '/search/content/:scope/:q', :controller => 'searches', :action => 'content'
-  map.main_search '/search/:scope/:q', :controller => 'searches', :action => 'show'
+  map.content_local_search '/search/content_local/:scope/:q', :controller => 'searches', :action => 'content', :local => true, :requirements => { :q => /.*/ }
+  map.content_search '/search/content/:scope/:q', :controller => 'searches', :action => 'content', :requirements => { :q => /.*/ }
+  map.main_search '/search/:scope/:q', :controller => 'searches', :action => 'show', :requirements => { :q => /.*/ }
   map.empty_search '/search/:scope', :controller => 'searches', :action => 'show'
 
   #map.friendly_search_with_page '/search/:scope/:q/', :controller => 'searches', :action => 'show'

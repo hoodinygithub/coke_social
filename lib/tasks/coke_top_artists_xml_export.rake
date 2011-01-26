@@ -8,7 +8,7 @@ namespace :db do
       output_path = ENV.has_key?('xml_output_path') ? ENV['xml_output_path'] : '/shared/common_coke/system/db/xml'
 
       Site.all(:conditions => "code like 'coke%'").each do |site|
-        timebox "XML File Created to #{site.name}..." do
+        timebox "#{site.name} XML file created..." do
           write_rss_artist_feed(feed, site, output_path)
         end
       end
@@ -39,6 +39,7 @@ namespace :db do
       count = items.size
 
       file = File.open("#{path}/#{site.code}/top_artists_#{site.code}.xml", 'w')
+      puts file.path
 
       xml = Builder::XmlMarkup.new(:target => file, :indent => 2)
 

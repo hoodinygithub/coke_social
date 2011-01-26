@@ -124,7 +124,7 @@ module Account::Authentication
   end
 
   def password_required?
-    (crypted_password.blank? || !password.blank? || !current_password.blank?) && msn_live_id.nil?
+    (crypted_password.blank? || !password.blank? || !current_password.blank?) && (msn_live_id.nil? && sso_facebook.nil?)
   end
 
   def password_changed?
@@ -141,7 +141,12 @@ module Account::Authentication
   end
 
   def current_password_required?
-    !new_record? && password_changed? && !resetting_password?
+    # SSO users may not have passwords, but can still set their passwords later if they want to
+    if crypted_password.blank?
+      false
+    else
+      !new_record? && password_changed? && !resetting_password?
+    end
   end
 
   def check_negative_captcha
@@ -171,15 +176,16 @@ module Account::Authentication
     la.ko.com mena.ko.com na.ko.com eur.ko.com fruktmusic.com sapient.com 
     synovate.com apac.ko.com cgsinc.com cgsinc.ro prisacom.com prisa.es)
   # Coke's latam countries (copied from redirect proxy)
-  LATAM = %w(CL CO CR DO EC SV GT HN NI PY PE VE)
+  LATAM = %w(BO CL CO CR DO EC SV GT HN NI PE VE)
+  AR = %w(AR PY UY)
   def email_domain_valid_for_beta
     unless VALID_DOMAINS.include?(email.split("@")[1])
       country_code = Country.geoip.country(ip_address)[3]
       site = ApplicationController.current_site.code
-      if (country_code == 'AR' && site == 'cokear')
+      if (AR.include?(country_code) && site == 'cokear')
       elsif (country_code == 'BR' && site == 'cokebr')
       elsif (country_code == 'MX' && site == 'cokemx')
-      elsif (LATAM.include? country_code && site == 'cokelatam')
+      elsif (LATAM.include?(country_code) && site == 'cokelatam')
       else
         # domain not allowed and not matching site/geo
         errors.add(:email, I18n.t('share.errors.message.email_is_not_authorized'))

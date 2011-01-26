@@ -36,7 +36,7 @@ class Playlist < ActiveRecord::Base
   acts_as_rateable(:class => 'Comment', :as => 'commentable')
 
   before_save :update_cached_artist_list
-  after_save :award_xmas_badges_playlist
+  # after_save :award_xmas_badges_playlist
   before_create :increment_owner_total_playlists
 
   belongs_to :site
@@ -237,4 +237,12 @@ class Playlist < ActiveRecord::Base
   def promo_playlist?(p_promo_id = 1)
     promo_tags(p_promo_id).size > 0
   end
+
+  # Default scopes with where conditions are evil.
+  def self.find_including_deleted(p_id)
+    with_exclusive_scope {
+      Playlist.find(p_id)
+    }
+  end
 end
+
