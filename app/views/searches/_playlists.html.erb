@@ -12,9 +12,9 @@
 
         <div class="transparency_thumbanils png_fix">
             <% if false %><a href="#"><img src="images/listen_button.png" alt="" /></a><% end %>
-            <%= link_to image_tag('duplicate_button.png', :class=> "png_fix"), '#', 
+            <%= link_to image_tag('duplicate_button.png', :class=> "png_fix"), '#', :title=> t('actions.copy'),
               :onclick => "Base.playlists.copy('#{playlist.owner.slug}', #{playlist.id}); return false;" %>
-            <%= link_to image_tag('play_button.png'), radio_path(:station_id => playlist.station.id) %>
+            <%= link_to image_tag('play_button.png'), radio_path(:station_id => playlist.station.id), :title=> t('actions.play') %>
         </div>
 
         <div class="susbcription_text">
