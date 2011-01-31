@@ -1,27 +1,4 @@
 <div class="right_side" style="margin:20px 0px 30px !important" >
-  <div class="left_side" style="width:500px">
-    <% if (controller_name == "pages" and action_name == "home") %>
-      <div class="right_side" style="padding-right:20px">
-        <h2><%= t("marketing_msgs.home_page.first") %></h2>
-      </div>
-      <div class="right_side" style="padding-right:20px">
-        <h2 class="right_side" style="padding-right:20px">
-          <%= t("marketing_msgs.home_page.second") %>
-        </h2>
-      </div>
-    <% else %>
-      <div class="right_side" style="padding-right:20px">
-        <h2>
-          <%= t("marketing_msgs.playlist.first") %>
-        </h2>
-      </div>
-      <div class="right_side" style="padding-right:20px">
-        <h2>
-          <%= t("marketing_msgs.playlist.second") %>
-        </h2>
-      </div>
-    <% end %>
-  </div>
   <div class="right_side" style="width:170px">
     <%= red_button(t('actions.create_a_playlist'), :href => logged_in? ? playlist_create_path : nil,
       :onclick => logged_in? ? nil : "Base.utils.showRegistrationLayer('#{playlist_create_path}', 'create_playlist')" ) %>
