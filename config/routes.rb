@@ -163,7 +163,7 @@ ActionController::Routing::Routes.draw do |map|
   map.playlist_reviews_items   '/playlist/:playlist_id/reviews/items', :controller => 'reviews', :action => 'items'
 
   map.resources :playlists, :has_many => [:reviews]
-  map.list_badges '/badges/list', :controller => 'badges', :action => 'list'
+  map.list_badges '/badges-dj', :controller => 'badges', :action => 'list'
 
   profile_routes = lambda do |profile|
     profile.resources :comments
