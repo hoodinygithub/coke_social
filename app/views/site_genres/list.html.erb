@@ -1,0 +1,30 @@
+<div class="support_pages">
+
+  <% content_for :title do %>
+    <%= t("music_index.title") %>
+  <% end %>
+
+  <h1><%= t("music_index.title") %></h1>
+
+  <p class="preamble">
+    <%= t("music_index.description") %>  
+  </p>
+
+  
+
+  <table class="coke">
+	<thead>
+      <tr>
+	    <td>Music Style</td>
+	  </tr>
+	</thead>
+	<tbody>
+	  <% @site_genres.each do |sg|%>
+	  <tr>
+	   	<td><h2><a href="/search/playlists/<%=sg.genre.name%>"><%=sg.genre.name%></a></h2></td>
+	  </tr>
+	  <% end %>
+	</tbody>
+  </table>	
+
+</div>

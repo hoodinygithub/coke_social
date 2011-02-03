@@ -164,7 +164,7 @@ ActionController::Routing::Routes.draw do |map|
 
   map.resources :playlists, :has_many => [:reviews]
   map.list_badges '/badges-dj', :controller => 'badges', :action => 'list'
-
+  map.index_of_music '/index-music', :controller => 'site_genres', :action => 'list'
   profile_routes = lambda do |profile|
     profile.resources :comments
     profile.resources :follow_requests
