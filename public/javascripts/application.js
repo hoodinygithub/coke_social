@@ -258,14 +258,6 @@ function getTarget(e) {
 	return targ;
 }
 
-function redirectLayerTo(url, code, event) {
-  var targ = getTarget(event);
-  if (targ && targ.tagName != "A") {
-    pageTracker._trackPageview(code);
-    location.href = url;    
-  }
-}
-
 HeaderSearch = {
   getFieldValue: function(arr, fieldName) {
     for(i=0; i<arr.length; i++) {

@@ -337,7 +337,7 @@ Base.utils.handle_login_required = function(response, url, button_label) {
 Base.utils.redirect_layer_to = function(url, code, event) {
   var targ = Base.utils.get_target(event);
   if (targ && targ.tagName != "A") {
-    pageTracker._trackPageview(code);
+    if (typeof(_gaq) != 'undefined') _gaq.push(['_trackPageview', code]);
     location.href = url;
   }
 }
