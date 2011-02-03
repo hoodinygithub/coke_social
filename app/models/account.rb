@@ -97,6 +97,10 @@ class Account < ActiveRecord::Base
   #   set_property :allow_star => 1
   #   has visit_count, created_at
   # end
+  
+  serialize_with_options do
+    only :id, :slug, :encrypted_name, :encrypted_email
+  end
 
   default_scope :conditions => { :deleted_at => nil }
 

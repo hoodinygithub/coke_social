@@ -17,6 +17,8 @@ class AccountsController < ApplicationController
     @followers = profile_account.followers.all(:limit => 4)
 
     respond_to do |format|
+      format.xml { render :xml => profile_account }
+      format.json { render :json => profile_account }
       format.html
       format.rss do
         @activities = load_related_item_activity(
