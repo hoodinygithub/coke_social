@@ -21,7 +21,7 @@
 
     <% if controller_name == 'sessions' and action_name == 'new' %>
     FB.Event.subscribe('auth.sessionChange', function(response) {
-      if (response.session && <%= ()  %>) {
+      if (response.session) {
         // A user has logged in, and a new cookie has been saved
         document.location = current_url_site + '/login?' + document.location.search
           + '&access_token=' + escape(response.session.access_token) + '&expires=' + escape(response.session.expires) + '&page=<%= page if defined? page %>';
