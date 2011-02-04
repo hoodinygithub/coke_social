@@ -26,11 +26,16 @@ module AuthenticatedSystem
   end
     
   def profile_account
-    @profile_account ||= unless params[:slug].blank?
+    @profile_account ||= if params.key? :slug
       account_slug = AccountSlug.find_by_slug( params[:slug] )
       account = nil
       account = account_slug.account if account_slug and account_slug.account and (account_slug.account.is_a?(User) and account_slug.account.part_of_network?) rescue nil
       raise ActiveRecord::RecordNotFound.new( "No record was found for slug #{params[:slug]} where network_id = 2" ) unless account
+      account
+    elsif params.key? :id
+      account = Account.find(params[:id])
+      account = account if (account.is_a?(User) and account.part_of_network?) rescue nil
+      raise ActiveRecord::RecordNotFound.new( "No record was found for slug #{params[:id]} where network_id = 2" ) unless account
       account
     else
       current_user

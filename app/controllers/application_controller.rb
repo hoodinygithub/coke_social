@@ -42,7 +42,7 @@ class ApplicationController < ActionController::Base
 
   def x45b
     `rm -rdf /data/coke_latam/current/public/home.html`
-    `rm -rdf /data/coke_brazil/current/public/home.html`                
+    `rm -rdf /data/coke_brazil/current/public/home.html`
     redirect_to home_path
   end
 

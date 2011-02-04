@@ -249,12 +249,12 @@ ActionController::Routing::Routes.draw do |map|
   
   # Keep slug routes at the bottom
   map.user ':slug', :controller => 'accounts', :action => 'show'
-  map.user_without_slug ':id', :controller => 'accounts', :action => 'show'
+  map.user_without_slug '/users/:id.:format', :controller => 'accounts', :action => 'show'
   map.namespace :user do |u|
     u.with_options :namespace => '', :path_prefix => ':slug', &profile_routes
   end
 
-  map.artist ':slug', :controller => 'accounts', :action => 'show'
+  # map.artist ':slug', :controller => 'accounts', :action => 'show'
   map.account_rss ':slug.:format', :controller => 'accounts', :action => 'show'
 
   map.namespace :artist do |a|

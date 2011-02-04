@@ -8,13 +8,15 @@ class AccountsController < ApplicationController
 
   RECOMMENDED_STATIONS = 6
   def show
-    return redirect_to( user_path( profile_account.slug ) ) if params[:slug] != profile_account.slug
-    @dashboard_menu = :home
-    @mixes_recommended = (1..6).to_a
-    @comments = (1..3).to_a
-    @reviews = profile_account.comments.valid({:limit => 5, :order => "comments.updated_at DESC"})
-    
-    @followers = profile_account.followers.all(:limit => 4)
+
+    unless params.key? :id
+      return redirect_to( user_path( profile_account.slug ) ) if params[:slug] != profile_account.slug
+      @dashboard_menu = :home
+      @mixes_recommended = (1..6).to_a
+      @comments = (1..3).to_a
+      @reviews = profile_account.comments.valid({:limit => 5, :order => "comments.updated_at DESC"})
+      @followers = profile_account.followers.all(:limit => 4)
+    end
 
     respond_to do |format|
       format.xml { render :xml => profile_account }
