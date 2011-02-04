@@ -34,6 +34,27 @@ class ArtistsController < ApplicationController
     end
   end
 
+	def list
+		if params[:id] then
+			if params[:id] == 'special' then
+        @account = Account.all(:select=>:id,
+					:conditions=>"type = 'Artist' AND deleted_at IS NULL AND LCASE(name) LIKE '/([^A-Za-z0-9])+/%'",
+					#:limit=>10,
+					:order=>:name)
+			else
+				@account = Account.all(:select=>:id,
+					:conditions=>"type = 'Artist' AND deleted_at IS NULL AND LCASE(name) LIKE '#{params[:id]}%'",
+					#:limit=>10,
+					:order=>:name)
+			end
+		else
+			@account = Account.all(:select=>:id,
+				:conditions=>"type = 'Artist' AND deleted_at IS NULL",
+				#:limit=>7,
+				:order=>:name)
+		end
+	end
+
   private
 
   def artist_cache_path_url

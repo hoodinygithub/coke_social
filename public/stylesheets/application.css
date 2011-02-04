@@ -1223,16 +1223,17 @@ h2 {
 }
 
 .small_thumb_artist_name {
-    font-size: 14px;
-    font-weight: bold;
-    margin-left: 2px;
-		margin-right: 35px;
+	font-size: 14px;
+	font-weight: bold;
+
+
 }
 
 .artist_name_without_thumb {
-	  font-weight: bold;
-    margin-left: 2px;
-    
+	font-weight: bold;
+	margin-left: 2px;
+	padding-top:5px;
+
 }
 
 #playlist_recommended_artists_container {
@@ -1241,10 +1242,10 @@ h2 {
 }
 
 #playlist_recommended_artists_container .inner_box {
-    background-color: #CCCCCC;
-    height: 30px;
-    margin-bottom: 6px;
-    margin-right: 0;
+	background-color: #F1F1F1;
+	height: 30px;
+	margin-bottom: 6px;
+	margin-right: 0;
 }
 
 #playlist_recommended_artists_container h2 {
@@ -3803,13 +3804,31 @@ body li.ui-draggable-dragging .song_name a {
 #fix_width {
 	width:204px;
 	float:left;
-	padding-bottom:10px;
-	
+	padding-bottom:6px;
+	border-bottom:1px solid #ccc;
+}
+.recommended_image{
+	float: left;
+	height: 84px;
+	width: 84px;
 }
 #fix_name{
-width:100px;
-float:right;
+	width:100px;
+	float:left;
+	padding-left:5px;
 }
+
+.try_list .thumb_name{
+	float:left;
+	padding-top : 6px;
+	padding-left:2px;
+	font-size:12px;
+}
+
+.recomended_border{
+	border-top:1px solid #ccc;
+}
+
 #img_list{
 	border-bottom:1px solid;
 }
@@ -3831,3 +3850,41 @@ span.title {
   font-size: 18px;
   font-weight: bold;
 }
+
+.alplabetic_filter_list{
+	font-size:14px;
+	text-align: center;
+}
+
+.alplabetic_filter_list a{
+	color: gray;
+	text-decoration: none;
+}
+.alplabetic_filter_list a:hover{
+	color: gray;
+	text-decoration: underline;
+}
+.numeric_filter_list{
+	font-size:14px;
+	text-align: center;
+}
+.numeric_filter_list a{
+	font-size:14px;
+	color: gray;
+	text-decoration:none;
+}
+.numeric_filter_list a:hover{
+	font-size:14px;
+	color: gray;
+	text-decoration:underline;
+
+}
+.alplabetic_filter_list #current_alphabet a{
+	text-decoration: none;
+	color: #ff0014;
+}
+.numeric_filter_list #current_numeric a{
+	text-decoration: none;
+	color: #ff0014;
+}
+

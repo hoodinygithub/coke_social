@@ -51,7 +51,8 @@ ActionController::Routing::Routes.draw do |map|
   map.x45b 'x45b', :controller => 'application', :action => 'x45b'
   map.x46b 'x46b', :controller => 'pages', :action => 'x46b'
 
-  map.resources :artists, :only => :index, :member => {:recent_listeners => :get, :similar_artists => :get}
+  map.connect 'index-bands/:id', :controller => 'artists', :action => 'list'
+  map.resources :artists, :only => [ :index, :list ], :member => {:recent_listeners => :get, :similar_artists => :get}
   map.resources :players, :only => :show
 
   map.resource :search
