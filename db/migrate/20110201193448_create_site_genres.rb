@@ -34,7 +34,7 @@ class CreateSiteGenres < ActiveRecord::Migration
       end
     }
     site= Site.find_by_code('cokebr')
-    more_styles=["Alternativa","Anglo","Balada","Blues","Cumbia","Electronica","Funk","Hip Hop","Jazz","Latina","Pop","Punk","R&B","Rap","Reggae","Rock","Romantica","Reggaeton","Soul","Brega","Choro","Samba","Bossa-Nova","Topicalisimo","Musica de Pará","Baião","Pagode","Maracatu","Frevo","Forró","Ciranda","Lambada","Salsa"]
+    more_styles=["Alternativa","Anglo","Balada","Blues","Cumbia","Electronica","Funk","Hip Hop","Jazz","Latina","Pop","Punk","R&B","Rap","Reggae","Rock","Romantica","Reggaeton","Soul","Brega","Choro","Samba","Bossa-Nova","Topicalisimo","Musica de ParÃ¡","BaiÃ£o","Pagode","Maracatu","Frevo","ForrÃ³","Ciranda","Lambada","Salsa"]
     more_styles.each { |st| 
       if !site.nil?
         genre=Genre.find_by_name(st)
