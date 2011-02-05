@@ -19,10 +19,9 @@
 			</tr>
 		</thead>
 		<tbody>
-		  <% unless @account.nil? or @account.blank? then %>
+		  <% unless @accounts.nil? or @accounts.blank? then %>
 			<%
-         @account.each { |a|
-						account = Account.find(a.id) %>
+         @accounts.each { |account| %>
 						<tr>
 							<td>
 								<h2>
