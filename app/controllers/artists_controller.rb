@@ -1,6 +1,7 @@
 class ArtistsController < ApplicationController
   caches_action :recent_listeners, :cache_path => :artist_cache_path, :expires_delta => EXPIRATION_TIMES['artist_recent_listeners_js']
   caches_action :similar_artists, :cache_path => :artist_cache_path, :expires_delta => EXPIRATION_TIMES['artist_similar_artists_js']
+  before_filter :do_basic_http_authentication, :only => :list
 
   def index
     @query = "#{params[:name] || params[:q]}*"
@@ -34,17 +35,23 @@ class ArtistsController < ApplicationController
     end
   end
 
-	def list
-		if params[:id] then
-			if params[:id] == 'special' then
-        render :file   => File.join('../../public/artists', '#.html')
-			else
-				render :file   => File.join('../../public/artists', params[:id]+'.html')
-			end
-		else
-			render :file   => File.join('../../public/artists', 'A.html')
-		end
-	end
+  def list
+    if params[:q] and !params[:q].blank? then
+      if params[:q] == 'special' then
+        @accounts = Artist.all(:select=>"id, name",
+          :conditions=>"LCASE(name) LIKE '/([^A-Za-z0-9])+/%'",
+          #:limit=>10,
+          :order=>:name)
+      else
+        @accounts = Artist.all(:select=>"id, name",
+          :conditions=>"LCASE(name) LIKE '#{params[:q]}%'",
+          #:limit=>10,
+          :order=>:name)
+      end
+    else
+      @accounts = nil
+    end
+  end
 
   private
 
@@ -54,6 +61,12 @@ class ArtistsController < ApplicationController
 
   def profile_artist
     @profile_artist ||= Artist.find_by_slug(params[:id])
+  end
+
+  def do_basic_http_authentication
+    authenticate_or_request_with_http_basic do |username, password|
+      username == "happiness" && password == "d0ral8725"
+    end
   end
 
 end
