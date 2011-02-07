@@ -141,12 +141,12 @@ var AUTH_TOKEN = "OfTLU+sW5GtolZQHGzRjey7uEGOtbR5ZDGSNoIOPZQI=";
      if var == '#' then
         @accounts = Artist.all(:select=>"id, name",
           :conditions=>"LCASE(name) REGEXP '^[^[:alnum:]].*'",
-          :limit=>2,
+          #:limit=>2,
           :order=>:name)
       else
         @accounts = Artist.all(:select=>"id, name",
           :conditions=>"LCASE(name) LIKE '#{var}%'",
-          :limit=>2,
+          #:limit=>2,
           :order=>:name)
       end
 			@accounts.each { |a|
