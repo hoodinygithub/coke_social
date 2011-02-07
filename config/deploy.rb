@@ -113,8 +113,7 @@ task :symlink_remaining, :roles => :app, :except => {:no_release => true, :no_sy
     ln -s #{shared_path}/system/db/xml/cokelatam/top_artists_cokelatam.xml #{latest_release}/public/feeds/top_artists_cokelatam.xml &&
     ln -s #{shared_path}/system/db/xml/cokemx/top_artists_cokemx.xml #{latest_release}/public/feeds/top_artists_cokemx.xml &&
     ln -s #{shared_path}/system/db/xml/cokear/top_artists_cokear.xml #{latest_release}/public/feeds/top_artists_cokear.xml &&
-    ln -s #{shared_path}/artist_index #{latest_release}/public/index-bands &&
-    ln -s #{shared_path}/artists_index/A.html #{latest_release}/public/index-bands/index.html
+    ln -s #{shared_path}/artist_index #{latest_release}/public/index-bands
   CMD
 
   if ['staging','production'].include?(rails_env)
