@@ -34,9 +34,8 @@ namespace :artist_index do
         }
       }
       open("http://#{domain}/artists/list/special", http_basic_authentication=>['happiness', 'd0ral8725'] ) { |page|
-          puts "-> /shared/#{app_path}/artist_index/"
-          File.open("/shared/#{app_path}/artist_index/special.html", 'w') { |file| file.write(page.read) }
-        }
+        puts "-> /shared/#{app_path}/artist_index/"
+        File.open("/shared/#{app_path}/artist_index/special.html", 'w') { |file| file.write(page.read) }
       }
     }
 
