@@ -1,13 +1,21 @@
 require 'open-uri'
 
 namespace :artist_index do
-  desc "Create aindex_bands"
+  desc "Create index_bands"
   task :create => :environment do
-    puts ApplicationController.current_site.id
+
+    def cache_html(domain, query, app_path)
+      puts "http://#{domain}/artists/list/#{query}"
+      open("http://#{domain}/artists/list/#{query}", :http_basic_authentication=>['happiness', 'd0ral8725'] ) { |page|
+        puts "-> /shared/#{app_path}/artist_index/#{query}.html"
+        File.open("/shared/#{app_path}/artist_index/#{query}.html", 'w') { |file| file.write(page.read) }
+      }
+    end
+
     Site.all(:conditions=>"code LIKE 'coke%'").each { |site|
       puts site.domain
       puts RAILS_ENV
-      domain = RAILS_ENV="development" ? "localhost:3000" : site.domain
+      domain = RAILS_ENV=="development" ? "localhost:3000" : site.domain
 
       # Convert site_code to app_path.  Why is this different?
       app_path = case site.code
@@ -20,24 +28,13 @@ namespace :artist_index do
       puts app_path
 
       "A".upto("Z") { |letter|
-        puts "http://#{domain}/artists/list/#{letter}"
-        open("http://#{domain}/artists/list/#{letter}", :http_basic_authentication=>['happiness', 'd0ral8725'] ) { |page|
-          puts "-> /shared/#{app_path}/artist_index/"
-          File.open("/shared/#{app_path}/artist_index/#{letter}.html", 'w') { |file| file.write(page.read) }
-        }
+        cache_html(domain, letter, app_path)
       }
       0.upto(9) { |number| 
-        puts "http://#{domain}/artists/list/#{number}"
-        open("http://#{domain}/artists/list/#{number}", :http_basic_authentication=>['happiness', 'd0ral8725'] ) { |page|
-          puts "-> /shared/#{app_path}/artist_index/"
-          File.open("/shared/#{app_path}/artist_index/#{number}.html", 'w') { |file| file.write(page.read) }
-        }
+        cache_html(domain, number, app_path)
       }
-      open("http://#{domain}/artists/list/special", http_basic_authentication=>['happiness', 'd0ral8725'] ) { |page|
-        puts "-> /shared/#{app_path}/artist_index/"
-        File.open("/shared/#{app_path}/artist_index/special.html", 'w') { |file| file.write(page.read) }
-      }
+      cache_html(domain, "special", app_path)
     }
-
+    
   end 
 end
