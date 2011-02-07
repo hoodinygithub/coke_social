@@ -50,23 +50,27 @@
   
   <div class="alplabetic_filter_list">
         <% "A".upto("Z") do | var | %>
-          <% if var == params[:id] then %>
-            <span id="current_alphabet"><a href="/index-bands/<%=  var %>"><%=  var %></a>&nbsp;</span>
+          <% if var == params[:q] then %>
+            <span id="current_alphabet"><a href="/index-bands/<%= var %>"><%= var %></a>&nbsp;</span>
           <% else %>
-            <a href="/index-bands/<%=  var %>"><%=  var %></a>&nbsp;
+            <a href="/index-bands/<%= var %>"><%= var %></a>&nbsp;
           <% end %>
         <% end %>
   </div>
   <div class="numeric_filter_list">
         <% 0.upto(9) do | var | %>
-          <% if var == params[:id] then %>
-            <span id="current_numeric"><a href="/index-bands/<%=  var %>"><%=  var %></a>&nbsp;</span>
+          <% if var.to_s == params[:q] then %>
+            <span id="current_numeric"><a href="/index-bands/<%= var %>"><%= var %></a>&nbsp;</span>
           <% else %>
-            <a href="/index-bands/<%=  var %>"><%=  var %></a>&nbsp;
+            <a href="/index-bands/<%= var %>"><%= var %></a>&nbsp;
           <% end %>
-          
         <% end %>
+
+        <% if "special" == params[:q] then %>
+         <span id="current_numeric"><a href="/index-bands/special">#</a>&nbsp;</span>
+        <% else %>
          <a href="/index-bands/special">#</a>&nbsp;
+        <% end %>
   </div>
 </div>
 
