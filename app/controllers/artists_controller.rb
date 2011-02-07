@@ -39,7 +39,7 @@ class ArtistsController < ApplicationController
     if params[:q] and !params[:q].blank? then
       if params[:q] == 'special' then
         @accounts = Artist.all(:select=>"id, name",
-          :conditions=>"LCASE(name) LIKE '/([^A-Za-z0-9])+/%'",
+          :conditions=>"LCASE(name) REGEXP '^[^[:alnum:]].*'",
           #:limit=>10,
           :order=>:name)
       else
