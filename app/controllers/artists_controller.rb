@@ -37,21 +37,12 @@ class ArtistsController < ApplicationController
 	def list
 		if params[:id] then
 			if params[:id] == 'special' then
-        @account = Account.all(:select=>:id,
-					:conditions=>"type = 'Artist' AND deleted_at IS NULL AND LCASE(name) LIKE '/([^A-Za-z0-9])+/%'",
-					#:limit=>10,
-					:order=>:name)
+        render :file   => File.join('../../public/artists', '#.html')
 			else
-				@account = Account.all(:select=>:id,
-					:conditions=>"type = 'Artist' AND deleted_at IS NULL AND LCASE(name) LIKE '#{params[:id]}%'",
-					#:limit=>10,
-					:order=>:name)
+				render :file   => File.join('../../public/artists', params[:id]+'.html')
 			end
 		else
-			@account = Account.all(:select=>:id,
-				:conditions=>"type = 'Artist' AND deleted_at IS NULL",
-				#:limit=>7,
-				:order=>:name)
+			render :file   => File.join('../../public/artists', 'A.html')
 		end
 	end
 
