@@ -30,8 +30,11 @@ class Playlist < ActiveRecord::Base
   include Station::Playable
   include Badges::Awards
 
-  acts_as_taggable
+  serialize_with_options do
+    only :id, :owner_id, :name, :slug
+  end
 
+  acts_as_taggable
   acts_as_commentable
   acts_as_rateable(:class => 'Comment', :as => 'commentable')
 

@@ -15,6 +15,7 @@ class SearchesController < ApplicationController
     @page = params[:page] || 1
     @counts = {}
     @results = {}
+
     if request.xhr?
       if @active_scope == :all
         search_results(@search_types, 4)
@@ -40,9 +41,17 @@ class SearchesController < ApplicationController
         @search_types.each do |t| 
           @results.store(t, [])
           @counts.store(t, 0)
-        end      
-      end      
+        end
+      end
     end
+
+    respond_to do |format|
+      format.html
+      format.xml { render :xml => @results }
+      format.json { render :json => @results }
+      format.js { render :json => @results }
+    end
+
   end
 
   def content

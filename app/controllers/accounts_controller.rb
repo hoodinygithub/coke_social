@@ -7,9 +7,9 @@ class AccountsController < ApplicationController
   current_tab :home
 
   RECOMMENDED_STATIONS = 6
-  def show
 
-    unless params.key? :id
+  def show
+    unless params.key? :format
       return redirect_to( user_path( profile_account.slug ) ) if params[:slug] != profile_account.slug
       @dashboard_menu = :home
       @mixes_recommended = (1..6).to_a
@@ -19,9 +19,10 @@ class AccountsController < ApplicationController
     end
 
     respond_to do |format|
-      format.xml { render :xml => profile_account }
-      format.json { render :json => profile_account }
       format.html
+      format.xml { render :xml => profile_account }
+      format.js { render :json => profile_account }
+      format.json { render :json => profile_account }
       format.rss do
         @activities = load_related_item_activity(
           profile_account.transformed_activity_feed(
