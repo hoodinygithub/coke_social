@@ -12,6 +12,11 @@ class FolloweesController < ApplicationController
     @collection = profile_user.followees.paginate :page => params[:page], :per_page => 15, :order => sort_types[@sort_type]
     if request.xhr?
       render :partial => 'followings/ajax_list'
+    else
+      respond_to do |format|
+        format.html
+        format.xml { render :xml => @collection }
+      end
     end
   end
 

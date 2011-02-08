@@ -30,7 +30,9 @@ class PlaylistsController < ApplicationController
     else
       respond_to do |format|
         format.html
-        format.xml { render :layout => false }
+        format.xml { render :xml => @collection }
+        format.json { render :json => @collection }
+        format.js { render :json => @collection }
       end
     end
   end
