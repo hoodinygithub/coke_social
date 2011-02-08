@@ -63,6 +63,7 @@ class Site < ActiveRecord::Base
   has_many :tags, :through => :valid_tags, :conditions => "valid_tags.deleted_at IS NULL", :order => "valid_tags.promo_id DESC, tags.name ASC"
   
   belongs_to :login_type
+  has_many :site_genres
 
   # Things I hate in life: this method
   def default_locale

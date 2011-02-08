@@ -51,7 +51,9 @@ ActionController::Routing::Routes.draw do |map|
   map.x45b 'x45b', :controller => 'application', :action => 'x45b'
   map.x46b 'x46b', :controller => 'pages', :action => 'x46b'
 
-  map.resources :artists, :only => :index, :member => {:recent_listeners => :get, :similar_artists => :get}
+  map.resources :artists, :only => [ :index ], :member => {:recent_listeners => :get, :similar_artists => :get}
+  map.artist_list 'artists/list/:q', :controller => 'artists', :action => 'list'
+
   map.resources :players, :only => :show
 
   map.resource :search
@@ -163,8 +165,8 @@ ActionController::Routing::Routes.draw do |map|
   map.playlist_reviews_items   '/playlist/:playlist_id/reviews/items', :controller => 'reviews', :action => 'items'
 
   map.resources :playlists, :has_many => [:reviews]
-  map.list_badges '/badges/list', :controller => 'badges', :action => 'list'
-
+  map.list_badges '/badges-dj', :controller => 'badges', :action => 'list'
+  map.index_of_music '/index-music', :controller => 'site_genres', :action => 'list'
   profile_routes = lambda do |profile|
     profile.resources :comments
     profile.resources :follow_requests
