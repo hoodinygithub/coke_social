@@ -5,6 +5,9 @@
     <%= render 'shared/javascripts' %>
     <%= render 'shared/stylesheets' %>
     <%= yield :head %>
+
+    <%= render 'shared/google_analytics' %>
+
   </head>
   <body locale="<%= current_site.default_locale %>" market="<%= current_site.code %>" current_site_url="<%= current_site_url %>">
     <div id="container">
