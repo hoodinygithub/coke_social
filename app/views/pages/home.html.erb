@@ -1,7 +1,8 @@
 <% content_for :head do %>
   <%= javascript_include_tag 'AC_OETags', 'nivoslider.pack2_.2/jquery.nivo.slider.pack' %>
   <%= stylesheet_link_tag 'nivoslider.pack2_.2/nivo-slider' %>
-  <%= render :partial => 'shared/logged_in_callback' %>
+  <% # The Coke homepage isn't cached, so don't overwrite the login partial with JS. %>
+  <!-- %= render :partial => 'shared/logged_in_callback' % -->
 <% end %>
 
 <% content_for :header_space_content do %>
