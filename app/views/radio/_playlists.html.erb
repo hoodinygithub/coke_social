@@ -5,7 +5,7 @@
 <% end %>
 
 <div class="two_columns">
-  <h1><%= t("modules.top_playlists.title").upcase %></h1>
+  <h2><%= t("modules.top_playlists.title").upcase %></h2>
 
   <div class="playlist_items">
 
@@ -33,7 +33,7 @@
   <% end %>
 
   <div class="top_playlists_column">
-    <h1><%= t("modules.top_artists.title").upcase %></h1>
+    <h2><%= t("modules.top_artists.title").upcase %></h2>
 
     <% cache("#{site_cache_key}/modules/playlists/top_artists", :expires_in => EXPIRATION_TIMES['top_modules_artists']) do %>
       <ul class="list_items">
@@ -54,7 +54,7 @@
 
   <br/>
 
-  <h1><%= t("modules.latest_badge_awards.title").upcase%></h1>
+  <h2><%= t("modules.latest_badge_awards.title").upcase%></h2>
 
   <% cache("#{site_cache_key}/modules/playlists/badge_awards", :expires_in => EXPIRATION_TIMES['top_modules_badge_awards']) do %>
     <ul class="list_items">

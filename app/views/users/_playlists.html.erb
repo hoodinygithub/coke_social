@@ -1,5 +1,5 @@
 <div class="box_content">
-  <h1><%= possessive :top_playlists %></h1>
+  <h2><%= possessive :top_playlists %></h2>
   <% if profile_account.playlists.size > 0 %>
     <ul class="top_mixes_list">
       <% profile_account.playlists.top(3).each do |p| %>

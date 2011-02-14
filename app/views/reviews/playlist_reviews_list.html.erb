@@ -10,9 +10,9 @@
 <% end %>
 
 <%= render 'form' unless @playlist.owner == current_user or @playlist.owner.blocks?(current_user) %>
-<h1>
+<h2>
   <%= "#{t('modules.reviews.title').upcase} (<span class=\"reviews_count\">#{@records.size}</span>)" %>
-</h1>
+</h2>
 
 <div class="sorting">
   <a class="ajax_sorting active { url:'/playlist/<%= @playlist.id %>/reviews/items', sort_by: 'latest' }" href="#">

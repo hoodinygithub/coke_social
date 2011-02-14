@@ -2,7 +2,7 @@
 <b class="right_side"><%= link_to t("actions.view_more"), user_playlists_path %></a></b>
 <% end %>
 
-<h1><%= possessive :latest_playlists %></h1>
+<h2><%= possessive :latest_playlists %></h2>
 
 <% if profile_account.total_playlists < 1 %>
   <div class="medium_text">
