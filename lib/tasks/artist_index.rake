@@ -8,7 +8,7 @@ namespace :artist_index do
       puts "http://#{domain}/artists/list/#{query}"
       open("http://#{domain}/artists/list/#{query}", :http_basic_authentication=>['happiness', 'd0ral8725'] ) { |page|
         puts "-> /shared/#{app_path}/artist_index/#{query}.html"
-        File.open("/shared/#{app_path}/artist_index/#{query}.html", 'w') { |file| file.write(page.read) }
+        File.open("/shared/#{app_path}/artist_index/#{query}.html", 'w') { |file| file.write(page.read.gsub('/artists/list/', '/index-bands/')) }
       }
     end
 
