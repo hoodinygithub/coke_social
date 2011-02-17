@@ -3836,10 +3836,26 @@ body li.ui-draggable-dragging .song_name a {
 
 #social {
   border-bottom: 1px solid #CCC;
+  float: left;
+  width: 100%;
+}
+
+#social .container {
+  padding-bottom: 28px;
+}
+
+#social .container div {
+ float: left;
+ padding-right: 5px;
 }
 
 #social .container {
   margin: 20px 24px 14px 20px;
+}
+
+#registration_form {
+  float: left;
+  padding-top: 10px;
 }
 
 .field_disabled {

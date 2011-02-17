@@ -2,14 +2,17 @@
 <%= render "/shared/social/winconnect", { :page => page } %>
 <div id="social">
   <div class="container">
-    <span class="title"><%= t('sessions.new.social') %></span><br /><br />
-    <fb:login-button id="fb_login" perms="user_birthday, email"></fb:login-button>
-    <wl:signin id="signInControl" 
-      <% # signedintext="<%= t('win_connect.login.in') % >" %>
-      signedintext = "You are logged in"
-      <% # signedouttext="<%= t('win_connect.login.out') % >" %>
-      signedouttext = "You are logged out"
-      onsignin="onWinConnectLogin"></wl:signin>
+    <span class="title"><%= t('sessions.new.social') %></span>
+    <br /><br class="clearer"/>
+    <div>
+      <fb:login-button id="fb_login" perms="user_birthday, email"></fb:login-button>
+    </div>
+    <div>
+      <wl:signin id="signInControl"
+        signedintext="You are logged in"
+        signedouttext="You are logged out"
+        onsignin="onWinConnectLogin"></wl:signin>
+    </div>
   </div>
 </div>
 
@@ -18,3 +21,6 @@ function onWinConnectLogin() {
   alert('win connect login');
 }
 <% end %>
+
+<% # signedintext="<%= t('win_connect.login.in') % >" %>
+<% # signedouttext="<%= t('win_connect.login.out') % >" %>
