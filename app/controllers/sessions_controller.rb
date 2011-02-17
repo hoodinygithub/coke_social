@@ -43,7 +43,11 @@ class SessionsController < ApplicationController
     elsif !params[:access_token].nil?
       # Facebook Connect through popup login
       user = FacebookConnect.parse_access_token(params[:access_token], params[:expires])
-      handle_facebook_sso_user(user);
+      handle_facebook_sso_user(user)
+    elsif !params[:wrap_verification_code].nil?
+      # Windows Connect through popup login
+      user = WindowsConnect.parse(params[:wrap_verification_code], request, cookies, current_site_url + new_session_path)
+      render :js => "self.close();"
     else
       # Cyloop Login
       #render :new, :layout => false

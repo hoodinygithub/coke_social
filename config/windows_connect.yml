@@ -1,0 +1,13 @@
+defaults: &defaults
+  client_id: 000000004004753A
+  secret: pbZ1V8qGMrjKW3DHJZO7viehlvlIUfLZ
+
+development:
+  <<: *defaults
+
+staging:
+  <<: *defaults
+
+production:
+  <<: *defaults
+

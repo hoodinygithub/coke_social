@@ -1,0 +1,26 @@
+<wl:app
+  channel-url="/channel.html"
+  callback-url="<%= new_session_path %>"
+  client-id="<%= WindowsConnect::CLIENT_ID %>"
+  scope="WL_Profiles.View" 
+  onload="winConnectLoaded">
+</wl:app>
+
+<div id="winconnect-root">
+  <% javascript_tag do %>
+    function winConnectLoaded() {
+      alert('win connect app tag initialized');
+    }
+
+    // <%= current_site_url %>/channel.html <%= current_site_url %><%= new_session_path %>
+    // <%= current_site_url %><%= new_session_path %>
+
+    (function() {
+      var e = document.createElement('script');
+      e.src = document.location.protocol + '//js.live.net/4.1/loader.js';
+      e.async = true;
+      document.getElementById('winconnect-root').appendChild(e);
+    }());
+  <% end %>
+</div>
+
