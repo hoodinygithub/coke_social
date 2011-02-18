@@ -1,4 +1,9 @@
 <% content_for :head do %>
   <%= javascript_include_tag "AC_OETags", "swf_utils", "radio", "htmlcomponent" %>
+	<% content_for :playlists_meta do %>
+	<meta content='<%= t('meta.title.playlists')%>' name='title'/>
+	<meta content='<%= t('meta.keywords.playlists')%>' name='keywords'/>
+	<meta content='<%= t('meta.description.playlists')%>' name='description'/>
+<% end %>
 <% end %>
 <%= render @station_obj.nil? && 'playlists' || 'radio' %>
