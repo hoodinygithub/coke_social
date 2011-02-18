@@ -17,8 +17,25 @@
 </div>
 
 <% javascript_tag do %>
-function onWinConnectLogin() {
+function onWinConnectLogin(p_event) {
   alert('win connect login');
+  //debugAuth();
+  if (Microsoft.Live.App.get_auth().get_state() == Microsoft.Live.AuthState.failed) {
+    alert('win login fail');
+  }
+  else if (Microsoft.Live.App.get_auth().get_state() == Microsoft.Live.AuthState.authenticated) {
+    alert('win login success');
+    dataContext = Microsoft.Live.App.get_dataContext();
+    dataContext.loadAll(Microsoft.Live.DataType.profile, function(p_event) {
+      if (p_event.get_resultCode() !== Microsoft.Live.AsyncResultCode.success) {
+        alert("Profiles not loaded.");
+      }
+      else {
+        console.dir(p_event);
+        alert(p_event.first_name);
+      } 
+    });
+  }  
 }
 <% end %>
 
