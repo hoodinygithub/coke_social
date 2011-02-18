@@ -8,8 +8,25 @@
 
 <div id="winconnect-root">
   <% javascript_tag do %>
-    function winConnectLoaded() {
+    function winConnectLoaded(p_event) {
       alert('win connect app tag initialized');
+      // setTimeout('debugAuth();', 1000);
+      //debugAuth();
+    }
+
+    function debugAuth() {
+      auth = Microsoft.Live.App.get_auth();
+      console.log('access token: ' + auth.get_accessToken());
+      console.log('appplication content url: ' + auth.get_applicationConsentUrl());
+      console.log('callback url: ' + auth.get_callbackUrl());
+      console.log('client id: ' + auth.get_clientId());
+      console.log('req scopes: ' + auth.get_requestedScopes());
+      console.log('state: ' + auth.get_state());
+      console.log('cid: ' + auth.get_cid());
+      console.log('errorMsg: ' + auth.get_errorMsg());
+      console.log('expireDates: ' + auth.get_expirationDates());
+      console.log('granted scopes: ' + auth.get_grantedScopes());
+      console.log('isLiveUser: ' + auth.get_isLiveUser());
     }
 
     // <%= current_site_url %>/channel.html <%= current_site_url %><%= new_session_path %>

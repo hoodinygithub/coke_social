@@ -44,10 +44,17 @@ class SessionsController < ApplicationController
       # Facebook Connect through popup login
       user = FacebookConnect.parse_access_token(params[:access_token], params[:expires])
       handle_facebook_sso_user(user)
+
+      # Called by the Facebook popup before closing.
+      render :nothing => true
     elsif !params[:wrap_verification_code].nil?
       # Windows Connect through popup login
-      user = WindowsConnect.parse(params[:wrap_verification_code], request, cookies, current_site_url + new_session_path)
-      render :js => "self.close();"
+      user = WindowsConnect.parse_verification_code(params[:wrap_verification_code], current_site_url + new_session_path)
+
+      # Close the Windows Connect login popup.  Facebook does this for us.
+      respond_to do |format|
+        format.html { render 'shared/_close_popup.html.erb', :layout => false }
+      end
     else
       # Cyloop Login
       #render :new, :layout => false
@@ -166,6 +173,12 @@ private
     else
       redirect_to new_user_path
     end
+  end
+  
+  def handle_windows_sso_user(p_user)
+    return nil if p_user.nil?
+
+    p_user
   end
 
   protected
