@@ -1,3 +1,14 @@
+<% content_for :search_meta do %>
+	<meta content='<%= t('meta.title.search')%>' name='title'/>
+	<meta content='<%= t('meta.keywords.search')%>' name='keywords'/>
+	<meta content='<%= t('meta.description.search')%>' name='description'/>
+<% end %>
+<% content_for :search_with_parameter do %>
+	<meta content='<%= t('meta.title.search_with_parameter', :keyword => "#{@query.nil? ? '' : @query}") %>' name='title'/>
+	<meta content='<%= t('meta.keywords.search_with_parameter', :keyword => "#{@query.nil? ? '' : @query}")%>' name='keywords'/>
+	<meta content='<%= t('meta.description.search_with_parameter', :keyword => "#{@query.nil? ? '' : @query}")%>' name='description'/>
+<% end %>
+
 <script type="text/javascript">
    $(document).ready(function() {
       Base.main_search.initialize_scope_toggle();

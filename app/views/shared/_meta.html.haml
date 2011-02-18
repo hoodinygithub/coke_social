@@ -3,6 +3,15 @@
 %title= h(@title || t("meta.title"))
 = yield :fbmeta
 = yield :player_page_meta
+= yield :search_meta
+= yield :search_with_parameter
+= yield :home_meta
+= yield :playlists_meta
+= yield :login_meta
+= yield :registration_meta
+= yield :badges_dj_meta
+= yield :index_music_meta
+= yield :index_artists_meta
 %meta{'name' => 'keywords', :content => t("meta.keywords") }
 %meta{'name' => 'description', :content => t("meta.description") }
 %meta{'name' => 'robots', :content => "ALL"}

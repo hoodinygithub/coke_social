@@ -1,4 +1,9 @@
 <% content_for :head do %>
+	<% content_for :login_meta do %>
+		<meta content='<%= t('meta.title.login')%>' name='title'/>
+		<meta content='<%= t('meta.keywords.login')%>' name='keywords'/>
+		<meta content='<%= t('meta.description.login')%>' name='description'/>
+	<% end %>
   <%= stylesheet_link_tag 'registration_form' %>
 <% end %>
 
