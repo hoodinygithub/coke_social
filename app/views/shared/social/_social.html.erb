@@ -9,8 +9,8 @@
     </div>
     <div>
       <wl:signin id="signInControl"
-        signedintext="You are logged in"
-        signedouttext="You are logged out"
+        signedintext="Logout"
+        signedouttext="Login"
         onsignin="onWinConnectLogin"></wl:signin>
     </div>
   </div>
@@ -18,24 +18,26 @@
 
 <% javascript_tag do %>
 function onWinConnectLogin(p_event) {
-  alert('win connect login');
-  //debugAuth();
-  if (Microsoft.Live.App.get_auth().get_state() == Microsoft.Live.AuthState.failed) {
-    alert('win login fail');
+  // console.log('win connect login event');
+  // debugAuth();
+  state = Microsoft.Live.App.get_auth().get_state();
+  switch (state) {
+    case Microsoft.Live.AuthState.authenticated:
+      // alert('Windows Connect login');
+      document.location = current_url_site + '/login?' + document.location.search
+        + '&page=<%= page if defined? page %>'
+      break;
+    case Microsoft.Live.AuthState.failed:
+      alert('Windows Connect login fail');
+      break;
+    case Microsoft.Live.AuthState.canceled:
+      alert('Windows Connect login canceled');
+      break;
+    default:
+      alert('Windows Connect login state: ' + state);
   }
-  else if (Microsoft.Live.App.get_auth().get_state() == Microsoft.Live.AuthState.authenticated) {
-    alert('win login success');
-    dataContext = Microsoft.Live.App.get_dataContext();
-    dataContext.loadAll(Microsoft.Live.DataType.profile, function(p_event) {
-      if (p_event.get_resultCode() !== Microsoft.Live.AsyncResultCode.success) {
-        alert("Profiles not loaded.");
-      }
-      else {
-        console.dir(p_event);
-        alert(p_event.first_name);
-      } 
-    });
-  }  
+
+  // debugProfile();
 }
 <% end %>
 

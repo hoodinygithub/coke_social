@@ -375,5 +375,11 @@ class User < Account
     end
   end
 
+  def self.find_with_exclusive_scope( *args )
+    with_exclusive_scope do
+      find(*args)
+    end
+  end
+
 end
 
