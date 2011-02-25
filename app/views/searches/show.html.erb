@@ -33,7 +33,12 @@
   <div id="center_column" class="search_results">
     <% @search_types.each do |type| %>
     <div id="<%= type.to_s %>_result" class="scope_result<%= @active_scope == type ? '' : ' hide' %>" result_count="<%= @counts[type] %>">
-      <h2><%= t("basics.#{type.to_s}")%></h2>
+			<% if type.to_s == 'playlists' %>
+				 <h1><%= t('search.playlists_results_title', :keyword => "#{@query.nil? ? '' : @query}")%></h1>
+			<% else %>
+			   <h1><%= t('search.users_results_title', :keyword => "#{@query.nil? ? '' : @query}")%></h1>
+			<% end %>
+		
       <%= render :partial => "#{type.to_s}_sorting" %>
       <div id="<%= type.to_s %>_result_details">
         <%= render type.to_s unless @results[type].empty? %>
