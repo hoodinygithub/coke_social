@@ -12,7 +12,8 @@
 <% end %>
 
 <% form_for @user, :html => { :multipart => true, :class => "account_settings" } do |f| %>
-  <%= f.hidden_field :sso_facebook unless @user.sso_facebook.nil? %>
+  <%= f.hidden_field :sso_facebook unless @user['sso_facebook'].nil? %>
+  <%= f.hidden_field :sso_windows unless @user['sso_windows'].nil? %>
   <div class="form_content">
 
     <div class="form_row last">
@@ -52,7 +53,7 @@
 
     <div class="clearer"></div>
 
-    <% if @user.sso_facebook.nil? %>
+    <% if @user['sso_facebook'].nil? and @user['sso_windows'].nil? %>
       <div class="form_row last">
         <%= f.label :password, "<b>#{t("registration.your_password")}</b>" %>
         <div class="grey_round_box">
