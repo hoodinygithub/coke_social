@@ -2794,11 +2794,15 @@ followers_list .follower_actions.w_settings .orange_button.settings_button img, 
 	width: 434px;
 	float: left;
 	border-right: solid 1px #ccc;
-	padding: 25px 35px 0px 0px;
+	/*padding: 25px 35px 0px 0px;*/
+}
+
+.form_content {
+  margin-right: 35px;
 }
 
 .auth_area .account_settings .form_row .input.full_width  {
-    width: 404px;
+    width: 369px;
 }
 
 .auth_right {
@@ -2879,7 +2883,7 @@ followers_list .follower_actions.w_settings .orange_button.settings_button img, 
 
 .account_settings .form_row .input.half_width2 {
     margin-left:10px;
-    width:300px;
+    width:350px;
 }
 
 .left_side .grey_round_box {
@@ -2896,7 +2900,7 @@ followers_list .follower_actions.w_settings .orange_button.settings_button img, 
 
 .privacy_text {
     float: right;
-    width: 390px;
+    width: 350px;
     color: #666;
     font-size: 11px;
 }
@@ -3833,7 +3837,6 @@ body li.ui-draggable-dragging .song_name a {
 
 #social {
   border-bottom: 1px solid #CCC;
-  float: left;
   width: 100%;
 }
 
