@@ -747,41 +747,45 @@ function toggle_playlist_box()
 }
 
 function open_save_popup() {
-	$('#save_button span span').prepend('<img class="btn_red_loading" src="/images/red_loading.gif"/>');
-	if(_pv.valid) {
-		if(edit_mode) {
-			form = $('#update_playlist_form');
-			form.find("input[name='item_ids']").attr("value", _pv.item_ids);
-			$.ajax({
-				url: '/playlist/edit/' + $('#playlist_item_list').attr('playlist_id'),
-				type: "POST",
-				data: form.serialize(),
-				success: function(r) {
-					if(!has_custom_avatar) {
-						update_playlist_avatar('#update_layer_avatar', $('#' + _pv.item_ids[0]).find('img').attr('src').replace(/image\/thumbnail/i, "image/hi-thumbnail"));
-					}
-					$.popup({
-						div: '#edit_conf_popup'
-					});
-					$('#save_button span span .btn_red_loading').remove();
-				},
-				error: function(r){
-					alert('Error!')
-					}
-			});
-		} else {
-			if(!has_custom_avatar) {
-				$('#save_layer_avatar').attr('src', $('#' + _pv.item_ids[0]).find('img').attr('src').replace(/image\/thumbnail/i, "image/hi-thumbnail"));
-			}
-			$.popup({
-				div: '#save_mix_popup'
-			});
-		}
-	} else {
-		$.popup({
-			div: '#unable_popup'
-		});
-	}
+  if($('#save_button').attr("disabled")==undefined) {
+    $('#save_button span span').prepend('<img class="btn_red_loading" src="/images/red_loading.gif"/>');
+    $('#save_button').attr("disabled", true);
+  }  
+  if(_pv.valid) {
+    if(edit_mode) {
+      form = $('#update_playlist_form');
+      form.find("input[name='item_ids']").attr("value", _pv.item_ids);
+      $.ajax({
+        url: '/playlist/edit/' + $('#playlist_item_list').attr('playlist_id'),
+        type: "POST",
+        data: form.serialize(),
+        success: function(r) {
+          if(!has_custom_avatar) {
+            update_playlist_avatar('#update_layer_avatar', $('#' + _pv.item_ids[0]).find('img').attr('src').replace(/image\/thumbnail/i, "image/hi-thumbnail"));
+          }
+          $.popup({
+            div: '#edit_conf_popup'
+          });
+          $('#save_button span span .btn_red_loading').remove();
+        },
+        error: function(r){
+          alert('Error!')
+          }
+      });
+    } else {
+      if(!has_custom_avatar) {
+        $('#save_layer_avatar').attr('src', $('#' + _pv.item_ids[0]).find('img').attr('src').replace(/image\/thumbnail/i, "image/hi-thumbnail"));
+      }
+      $.popup({
+        div: '#save_mix_popup'
+      });
+    }
+  } else {
+    $.popup({
+      div: '#unable_popup'
+    });
+    $('#save_button span span .btn_red_loading').remove();
+  }
 }
 
 function submit_save_form() {
