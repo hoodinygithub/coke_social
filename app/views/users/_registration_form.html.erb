@@ -14,7 +14,6 @@
 <% form_for @user, :html => { :multipart => true, :class => "account_settings" } do |f| %>
   <%= f.hidden_field :sso_facebook unless @user['sso_facebook'].nil? %>
   <%= f.hidden_field :sso_windows unless @user['sso_windows'].nil? %>
-  <div class="form_content">
 
     <div class="form_row last">
       <%= f.label :gender, "<b>#{t("registration.you_are")}</b>" %>
@@ -89,5 +88,4 @@
     <div class="right_side">
       <big class="grey"><%= t("registration.thats_it") %></big> &nbsp; <a class="red_button valign_middle" onclick="$(this).closest('form').submit();"><span><span><%= t("registration.complete") %></span></span></a>
     </div>
-  </div><!--/end form_content -->
 <% end %><!--/end account_settings -->
