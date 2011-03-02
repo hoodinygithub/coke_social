@@ -169,11 +169,11 @@ private
       return
     end
 
-    # TODO: account unification search
-    same_email_user = User.find_by_email(p_user.email, :select => "slug, encrypted_gender, encrypted_email, encrypted_name, encrypted_born_on_string", :conditions => { :deleted_at => nil })
+    # AccountUni search
+    ## Rails validation enforces global email uniqueness
+    same_email_user = User.find_by_email_with_exclusive_scope(p_user.email, :first, :select => "slug, gender, encrypted_gender, email, encrypted_email, name, encrypted_name, born_on, encrypted_born_on_string")
     unless same_email_user.nil?
       # logger.info "Found same email user."
-      # flash[:error] = t("registration.link_sso_account")
       same_email_user.sso_facebook = p_user.sso_facebook
       session[:sso_user] = same_email_user
       session[:sso_type] = "Facebook"
@@ -208,6 +208,23 @@ private
       # Upgrade LiveID user to ConnectID user
       same_wlid_user.update_attribute(:sso_windows, p_user.sso_windows)
       do_login(same_wlid_user, nil)
+      return
+    end
+
+    # AccountUni search
+    ## Rails validation enforces global email uniqueness
+    same_email_user = User.find_by_email_with_exclusive_scope(p_user.email, :first, :select => "slug, gender, encrypted_gender, email, encrypted_email, name, encrypted_name, born_on, encrypted_born_on_string")
+    unless same_email_user.nil?
+      # logger.info "Found same email user."
+      same_email_user.sso_windows = p_user.sso_windows
+      unless same_email_user.part_of_network?
+        same_email_user.gender = same_email_user.gender
+        same_email_user.email = same_email_user.email
+        same_email_user.name = same_email_user.name
+        same_email_user.born_on = same_email_user.born_on
+      end
+      session[:sso_user] = same_email_user
+      session[:sso_type] = "Windows"
       return
     end
 

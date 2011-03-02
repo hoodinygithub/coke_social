@@ -363,6 +363,7 @@ class User < Account
   end
 
 
+  # deprecated.  Use find_by_email_with_exclusive_scope.  It supports additional find conditions.
   def self.find_by_email_on_all_networks(email)
     unless email.nil?
       with_exclusive_scope do
@@ -381,5 +382,17 @@ class User < Account
     end
   end
 
+  # Don't use this directly.  Use find_by_email_with_exclusive_scope to find across all sites.
+  named_scope :with_email, lambda { |email|
+    { :conditions => ["deleted_at IS NULL AND (email = ? OR encrypted_email = ?)", email, User.encrypt_email(email)] }
+  }
+  # Find by email, ignoring default scopes.  Supports additional find options.
+  def self.find_by_email_with_exclusive_scope(email, *args)
+    args = [ :all ] if args.size == 0
+
+    with_exclusive_scope {
+      with_email(email).find(*args)
+    }
+  end
 end
 
