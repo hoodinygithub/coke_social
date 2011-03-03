@@ -246,7 +246,7 @@ ActionController::Routing::Routes.draw do |map|
   map.javascript_locale '/utils/locale.js', :controller => :javascripts, :action => :locale
 
   # Widget
-  map.widget 'widget', :controller => 'popups'
+  map.widget 'widget/:station_id', :controller => 'popups'
   #map.resources :popups, :collection => {:widget => :any}
   
   # Keep slug routes at the bottom

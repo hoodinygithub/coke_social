@@ -1,0 +1,163 @@
+/* @override http://coca-cola.fm:3000/stylesheets/popup/player.css */
+
+#content-pop {
+  width:720px;
+  margin:0 auto;
+  background:url(/images/popup/bg-div.jpg) no-repeat center bottom;
+}
+
+#head {
+  background:url(/images/popup/bg-head.jpg) repeat-x;
+  height:120px;
+}
+
+.head-center {
+  margin:0 auto;
+  width:720px;
+  position:relative;
+  height:120px;
+}
+
+.head-center h1 {
+  width:290px;
+  height:115px;
+  text-indent:-9999px;
+  margin-left:45px;
+  border-bottom:none;
+  float:left;
+  _margin-left:20px;
+  display:block;
+}
+
+.head-center h1.cokear {
+  background:url(/images/popup/logo-cokear.png) no-repeat 0 0;
+  _background:url(/images/popup/logo-coke.gif) no-repeat 0 0;
+}
+
+.head-center h1.cokebr {
+  background:url(/images/popup/logo-cokebr.png) no-repeat 0 0;
+  _background:url(/images/popup/logo-coke.gif) no-repeat 0 0;
+}
+
+.head-center h1.cokelatam {
+  background:url(/images/popup/logo-cokelatam.png) no-repeat 0 0;
+  _background:url(/images/popup/logo-coke.gif) no-repeat 0 0;
+}
+
+.head-center h1.cokemx {
+  background:url(/images/popup/logo-cokemx.png) no-repeat 0 0;
+  _background:url(/images/popup/logo-coke.gif) no-repeat 0 0;
+}
+
+.head-center a.mix-ply {
+  height:60px;
+  width:210px;
+  text-indent:-9999px;
+  position:absolute;
+  right:20px;
+  bottom:20px;
+}
+
+.head-center a.cokear {
+  background:url(/images/popup/btn-mix_cokear.gif) no-repeat 0 0;
+}
+
+.head-center a.cokebr {
+  background:url(/images/popup/btn-mix_cokebr.gif) no-repeat 0 0;
+}
+
+.head-center a.cokelatam {
+  background:url(/images/popup/btn-mix_cokelatam.gif) no-repeat 0 0;
+}
+
+.head-center a.cokemx {
+  background:url(/images/popup/btn-mix_cokemx.gif) no-repeat 0 0;
+}
+
+.mix_box.grey_accents.pop-play {
+  width:630px;
+  border:0;
+  margin:20px auto;
+}
+
+.mix_box.grey_accents.pop-play .album_detail .album_actions2 {
+  display:none;
+}
+
+.mix_box.grey_accents.pop-play .album_detail .album_text2 {
+  text-align:left;
+  padding-top:5px;
+}
+
+.mix_box.grey_accents.pop-play .small_btn_box {
+  display:none;
+}
+
+
+.mix_box.grey_accents.pop-play #third_party_apps {
+  height:40px;
+  position:relative;
+  padding: 0;
+}
+
+.mix_box.grey_accents.pop-play #third_party_apps ul {
+  padding: 10px 0 0 20px;
+}
+
+.mix_box.grey_accents.pop-play #third_party_apps ul li {
+  float:left;
+  display:inline;
+  background:none;
+  text-indent:inherit;
+  overflow:hidden;
+  height:30px;
+  width: 90px;
+}
+
+.mix_box.grey_accents.pop-play #third_party_apps ul li.fb {
+  width: 380px;
+  height: 109px;
+  text-align: left;
+}
+
+.foot {
+  background:#cfcfcf url(/images/popup/bg-foot.jpg) repeat-x;
+  width:100%;
+  height:35px;
+}
+
+.foot-center {
+  margin:0 auto;
+  width:720px;
+  height:35px;
+}
+
+.foot ul {
+  display:block;
+  float:right;
+  margin-right:20px;
+  _margin-right:10px;
+}
+
+.foot ul li {
+  display:inline;
+  float:left;
+}
+
+.foot ul li a {
+  color:#444;
+  font-size:11px;
+  display:block;
+  padding:10px 0 0 0;
+  text-decoration:underline;
+}
+
+.foot ul li a.cyloop {
+  background:url(/images/popup/logo-cyclop.jpg) no-repeat 0 7px;
+  width:65px;
+  height:20px;
+  text-indent:-9999px;
+  text-decoration:none;
+  margin-left:5px;
+}
+

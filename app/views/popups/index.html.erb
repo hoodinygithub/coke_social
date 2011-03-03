@@ -1,4 +1,88 @@
-<div id="widget_window"></div>
-<script>
-  loadWidget({elementId: 'widget_window', playerId: 'messengerradio_msnbr'});
-</script>
+<% content_for :head do %>
+  <%= javascript_include_tag "AC_OETags", "swf_utils", "radio", "htmlcomponent" %>
+<% end %>
+
+<% content_for :fbmeta do %>
+<!-- fb sdk auth and meta info -->
+  <meta property="og:title"       content="<%= @station_obj.playable.name %>"/>
+  <meta property="og:type"        content="station"/>
+  <meta property="og:url"         content="<%= host_with_port(request.request_uri) %>"/>
+  <meta property="og:image"       content="<%=host_with_port("/images/FB_logo.jpeg")%>"/>
+  <meta property="og:site_name"   content="Coca-Cola.fm"/>
+  <meta property="fb:app_id"      content="<%= fb_appid %>"/>
+  <meta property="og:description" content="<%= "#{@station_obj.playable.name} includes #{@station_obj.playable.includes.map { |s| s.artist.name }.join(', ') }" %>"/>
+<!---->
+<% end %>
+
+<%= render "shared/social/fbconnect" %>
+
+<div id="content-pop">
+
+  <!-- module header -->
+  <div id="head">
+    <div class="head-center">
+      <h1 class="<%= current_site.code %>">Coca-Cola FM la energía de tu vida</h1>
+      <%= link_to t('actions.create_a_playlist'), (logged_in? ? playlist_create_path : '#'), :class => "mix-ply #{current_site.code }", :onclick => (logged_in? ? nil : "Base.utils.showRegistrationLayer('#{playlist_create_path}', 'create_playlist')"), :target => (logged_in? ? '_blank' : nil)%>
+    </div>
+  </div>
+  <!---->
+
+  <div class="mix_box grey_accents pop-play">
+
+    <!-- playlist details -->
+    <div class="album_detail" id="current_station_info">
+      <%= render @station_obj.playable.class.to_s.underscore %>
+      <br class="clearer" />
+    </div>
+    <!---->
+
+    <!-- radio player -->
+    <div id="radio_player">
+      <script type="text/javascript" charset="utf-8">
+        var flashvars = "urlContext=/&market=<%= current_site.code %>&playerId=widget_radio_<%= current_site.code %>";
+        flashvars += "&stationId=<%= @station_obj.id %>&station=<%= @station_queue %>";
+        AC_FL_RunContent(
+          "src", "/flash/coke_radio",
+          "wmode", "opaque",
+          "width", "628",
+          "height", "196",
+          "align", "middle",
+          "id", "coke_radio",
+          "quality", "high",
+          "bgcolor", "#f2f2f2",
+          "name", "coke_radio",
+          "allowScriptAccess", "sameDomain",
+          "type", "application/x-shockwave-flash",
+          "pluginspage", "http://www.adobe.com/go/getflashplayer",
+          "flashVars", flashvars
+        );
+      </script>
+    </div>
+    <!---->
+
+    <!-- social components -->
+    <% station_id = @station_obj.id %>
+    <div id="third_party_apps">
+      <ul>
+        <li><a href="http://twitter.com/share" class="twitter-share-button" data-url="<%= host_with_port("widget/#{station_id}") %>" data-text="<%= t("tweet.message") %>" data-counturl="<%= host_with_port("widget/#{station_id}") %>" data-count="horizontal">Tweet</a><script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script></li>
+        <li class="fb"><fb:like layout="button_count" width="116" show_faces="false"></fb:like></li>
+      </ul>
+      <div class="clearer"></div>
+    </div>
+    <!---->
+
+  </div>
+
+
+  <!-- footer -->
+  <div class="foot">
+    <div class="foot-center">
+      <ul>
+        <li><%= link_to 'Coca-Cola.fm', root_path, :target => '_blank' %></li>
+        <li><a href="http://www.cyloop.com/" title="ir a cyclop" class="cyloop" target="_blank">cyloop</a></li>
+      </ul>
+    </div>
+  </div>
+  <!---->
+
+</div>
