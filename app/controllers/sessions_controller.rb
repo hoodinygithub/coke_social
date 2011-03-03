@@ -218,10 +218,11 @@ private
       # logger.info "Found same email user."
       same_email_user.sso_windows = p_user.sso_windows
       unless same_email_user.part_of_network?
-        same_email_user.gender = same_email_user.gender
-        same_email_user.email = same_email_user.email
-        same_email_user.name = same_email_user.name
-        same_email_user.born_on = same_email_user.born_on
+        # set encrypted fields from unencrypted fields
+        same_email_user.name = same_email_user['name']
+        same_email_user.email = same_email_user['email']
+        same_email_user.gender = same_email_user['gender']
+        same_email_user.born_on_string = same_email_user['born_on'].to_s
       end
       session[:sso_user] = same_email_user
       session[:sso_type] = "Windows"

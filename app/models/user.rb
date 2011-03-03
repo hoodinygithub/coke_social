@@ -284,8 +284,15 @@ class User < Account
     true
   end
 
+  # User is part of the current site's network
   def part_of_network?
     ApplicationController.current_site.networks.include? self.network
+  end
+
+  # User is part of a secure network with encrypted demographics
+  def secure_network?
+    # TODO: add boolean column network.is_secure
+    self.network_id == 2
   end
 
   def private?
