@@ -8,20 +8,17 @@ module Account::Encryption
     end
   end
 
-
   class MySQLEncryptor
     def self.encrypt(options)
-      result = nil
       if options[:value]
         query = "SELECT hex(aes_encrypt('#{options[:value]}', '#{options[:key]}')) AS result"
-        result = ActiveRecord::Base.connection.select_all(query).first['result']
+        ActiveRecord::Base.connection.select_all(query).first['result']
       end
     end
     def self.decrypt(options)
-      result = nil
       if options[:value]
         query = "SELECT aes_decrypt(unhex('#{options[:value]}'), '#{options[:key]}') AS result"
-        result = ActiveRecord::Base.connection.select_all(query).first['result']
+        ActiveRecord::Base.connection.select_all(query).first['result']
       end
     end
   end
