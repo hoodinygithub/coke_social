@@ -1,3 +1,9 @@
+/* @override http://coca-cola.fm:3000/stylesheets/popup/player.css */
+
+body, html {
+  background: none !important;
+}
+
 #content-pop {
   width:720px;
   margin:0 auto;
@@ -107,7 +113,8 @@
 }
 
 .mix_box.grey_accents.pop-play #third_party_apps ul li {
-  float:left;
+  position: absolute;
+  text-align: left;
   display:inline;
   background:none;
   text-indent:inherit;
@@ -119,7 +126,11 @@
 .mix_box.grey_accents.pop-play #third_party_apps ul li.fb {
   width: 380px;
   height: 109px;
-  text-align: left;
+}
+
+.mix_box.grey_accents.pop-play #third_party_apps ul li.twt {
+  left:112px;
+  top: 7px;
 }
 
 .foot {
