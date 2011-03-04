@@ -6,7 +6,7 @@
 <!-- fb sdk auth and meta info -->
   <meta property="og:title"       content="<%= @station_obj.playable.name %>"/>
   <meta property="og:type"        content="station"/>
-  <meta property="og:url"         content="<%= host_with_port(request.request_uri) %>"/>
+  <meta property="og:url"         content="<%= host_with_port("/playlists?station_id=#{params[:station_id]}") %>"/>
   <meta property="og:image"       content="<%=host_with_port("/images/FB_logo.jpeg")%>"/>
   <meta property="og:site_name"   content="Coca-Cola.fm"/>
   <meta property="fb:app_id"      content="<%= fb_appid %>"/>
@@ -31,7 +31,7 @@
   <div id="head">
     <div class="head-center">
       <h1 class="<%= current_site.code %>">Coca-Cola FM la energía de tu vida</h1>
-      <%= link_to t('actions.create_a_playlist'), (logged_in? ? playlist_create_path : '#'), :class => "mix-ply #{current_site.code }", :onclick => (logged_in? ? nil : "Base.utils.showRegistrationLayer('#{playlist_create_path}', 'create_playlist')"), :target => (logged_in? ? '_blank' : nil)%>
+      <%= link_to t('actions.create_a_playlist'), playlist_create_path, :class => "mix-ply #{current_site.code }", :target => '_blank' %>
     </div>
   </div>
   <!---->
@@ -74,7 +74,7 @@
     <div id="third_party_apps">
       <ul>
         <li class="fb"><fb:like layout="button_count" width="116" show_faces="false"></fb:like></li>
-        <li class="twt"><a href="http://twitter.com/share" class="twitter-share-button" data-url="<%= host_with_port("widget/#{station_id}") %>" data-text="<%= t("tweet.message") %>" data-counturl="<%= host_with_port("widget/#{station_id}") %>" data-count="horizontal">Tweet</a><script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script></li>
+        <li class="twt"><a href="http://twitter.com/share" class="twitter-share-button" data-url="<%= host_with_port("/playlists?station_id=#{params[:station_id]}") %>" data-text="<%= t("tweet.message") %>" data-counturl="<%= host_with_port("/playlists?station_id=#{params[:station_id]}") %>" data-count="horizontal">Tweet</a><script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script></li>
       </ul>
       <div class="clearer"></div>
     </div>
