@@ -74,7 +74,7 @@
     <div id="third_party_apps">
       <ul>
         <li class="fb"><fb:like layout="button_count" width="116" show_faces="false"></fb:like></li>
-        <li class="twt"><a href="http://twitter.com/share" class="twitter-share-button" data-url="<%= host_with_port("/playlists?station_id=#{params[:station_id]}") %>" data-text="<%= t("tweet.message") %>" data-counturl="<%= host_with_port("/playlists?station_id=#{params[:station_id]}") %>" data-count="horizontal">Tweet</a><script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script></li>
+        <li class="twt"><a href="http://twitter.com/share" class="twitter-share-button" data-url="<%= host_with_port("/playlists?station_id=#{params[:station_id]}") %>" data-text="<%= t("tweet.message") %>" data-counturl="<%= host_with_port() %>" data-count="horizontal">Tweet</a><script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script></li>
       </ul>
       <div class="clearer"></div>
     </div>
@@ -88,6 +88,7 @@
     <div class="foot-center">
       <ul>
         <li><%= link_to 'Coca-Cola.fm', root_path, :target => '_blank' %></li>
+        <li class="cyloop">cyloop</li>
       </ul>
     </div>
   </div>
