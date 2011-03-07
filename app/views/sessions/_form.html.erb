@@ -4,7 +4,7 @@
 
 <div id="registration_form">
   <h3><%= t('sessions.new.site_credentials') if session[:sso_user].nil? %></h3><br />
-  <% form_tag "http://coca-cola.fm:3000/session", :class=> "account_settings" do %>
+  <% form_tag ssl_login_path, :class=> "account_settings" do %>
     <div class="form_row">
       <label for="email"><b><%= t("user.email") %></b></label>
       <div class="grey_round_box left_side">
