@@ -1,0 +1,14 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" <%= application_html_attrs %>>
+  <head>
+    <%= render 'shared/meta' %>
+    <%= render 'shared/popup_css' %>
+    <%= render 'shared/popup_js' %>
+    <%= stylesheet_link_tag 'popup/player' %>
+    <%= yield :head %>
+    <%= render 'shared/google_analytics' %>
+  </head>
+  <body locale="<%= current_site.default_locale %>" market="<%= current_site.code %>" current_site_url="<%= current_site_url %>">
+    <%= yield %>
+  </body>
+</html>
