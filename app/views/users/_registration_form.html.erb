@@ -11,9 +11,15 @@
   <% end %>
 <% end %>
 
+<<<<<<< Updated upstream
 <% form_for @user, :html => { :multipart => true, :class => "account_settings" } do |f| %>
   <%= f.hidden_field :sso_facebook unless @user.sso_facebook.nil? %>
   <div class="form_content">
+=======
+<% form_for @user, :url => users_path, :html => { :multipart => true, :class => "account_settings" } do |f| %>
+  <%= f.hidden_field :sso_facebook unless @user['sso_facebook'].nil? %>
+  <%= f.hidden_field :sso_windows unless @user['sso_windows'].nil? %>
+>>>>>>> Stashed changes
 
     <div class="form_row last">
       <%= f.label :gender, "<b>#{t("registration.you_are")}</b>" %>
