@@ -46,7 +46,7 @@ class SessionsController < ApplicationController
       handle_facebook_sso_user(user)
 
       # Called by the Facebook popup before closing.
-      render :nothing => true
+      # render :nothing => true
     elsif !params[:wrap_verification_code].nil?
       # Windows Connect through popup login
       user = WindowsConnect.parse_verification_code(params[:wrap_verification_code], current_site_url + new_session_path, cookies, params[:wrap_client_state], params[:exp])
@@ -106,7 +106,7 @@ private
   #
   # Login
   #
-  def do_login(account, remember_me, save_wlid=false)
+  def do_login(account, remember_me, p_render=true)
     if account.nil?
       flash[:error] = t("registration.login_failed")
       redirect_to login_path
@@ -126,11 +126,6 @@ private
                                  :domain  => ".#{request.domain}" }
       end
       
-      #if save_wlid && wlid_web_login?
-      #  account.update_attribute(:msn_live_id, session[:msn_live_id].to_s)
-      #  session[:msn_live_id] = nil
-      #end
-      
       # Attach current FB session to upcoming user session.
       sso_facebook_id = (session[:sso_user] and session[:sso_user]['sso_facebook']) ? session[:sso_user]['sso_facebook'] : nil
       account.update_attribute(:sso_facebook, sso_facebook_id) if sso_facebook_id
@@ -146,12 +141,12 @@ private
       flash[:google_code] = 'loginOK'
       flash.discard(:error)
 
-      redirect_back_or_default(home_path(:host => corrected_registration_host))      
+      redirect_back_or_default(home_path(:host => corrected_registration_host)) if p_render
       return nil
     else
       # TODO: cross network-login
       flash[:error] = t("registration.cross_network_failed")
-      render :new, :layout => false
+      render :new, :layout => false if p_render
       return false
     end
   end
@@ -175,6 +170,9 @@ private
     unless same_email_user.nil?
       # logger.info "Found same email user."
       same_email_user.sso_facebook = p_user.sso_facebook
+      unless same_email_user.part_of_network?
+        same_email_user.transfer_encrypted_demographics
+      end
       session[:sso_user] = same_email_user
       session[:sso_type] = "Facebook"
       redirect_to login_path
@@ -197,17 +195,18 @@ private
     ## db enforces uniqueness of sso_windows, deleted_at, so pick first
     same_sso_user = User.find_with_exclusive_scope(:first, :conditions => { :sso_windows => p_user.sso_windows, :deleted_at => nil })
     unless same_sso_user.nil?
-      do_login(same_sso_user, nil)
+      do_login(same_sso_user, nil, false)
       return
     end
 
     # AccountUni search
     ## db doesn't enforce uniqueness of msn_live_id, deleted_at, so just pick the most recent one
+    ## This case isn't going to work because the appid doesn't match.
     same_wlid_user = User.find_with_exclusive_scope(:first, :conditions => { :msn_live_id => p_user.msn_live_id, :deleted_at => nil }, :order => "created_at DESC")
     unless same_wlid_user.nil?
       # Upgrade LiveID user to ConnectID user
       same_wlid_user.update_attribute(:sso_windows, p_user.sso_windows)
-      do_login(same_wlid_user, nil)
+      do_login(same_wlid_user, nil, false)
       return
     end
 
@@ -218,11 +217,7 @@ private
       # logger.info "Found same email user."
       same_email_user.sso_windows = p_user.sso_windows
       unless same_email_user.part_of_network?
-        # set encrypted fields from unencrypted fields
-        same_email_user.name = same_email_user['name']
-        same_email_user.email = same_email_user['email']
-        same_email_user.gender = same_email_user['gender']
-        same_email_user.born_on_string = same_email_user['born_on'].to_s
+        same_email_user.transfer_encrypted_demographics
       end
       session[:sso_user] = same_email_user
       session[:sso_type] = "Windows"
