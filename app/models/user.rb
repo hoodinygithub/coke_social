@@ -353,6 +353,14 @@ class User < Account
     Date.parse(born_on_string) unless born_on_string.nil?
   end
 
+  # AccountUni - set encrypted demographics from unencrypted
+  def transfer_encrypted_demographics
+    self.name = self['name'] if self.name.nil?
+    self.email = self['email'] if self.email.nil?
+    self.gender = self['gender'] if self.gender.nil?
+    self.born_on_string = self['born_on'].to_s if self.born_on_string.nil?
+  end
+
   protected
   def check_born_on_in_future
     errors.add(:born_on, :cant_be_in_future) if born_on > Date.today
