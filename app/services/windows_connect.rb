@@ -8,7 +8,6 @@ class WindowsConnect
 
   TOKEN_URL = "https://consent.live.com/AccessToken.aspx"
   TOKEN_PARAMS = { :wrap_client_id => CLIENT_ID, :wrap_client_secret => SECRET }
-  WLID_TOKEN_PARAMS = TOKEN_PARAMS.merge :idtype => 'PWID'
 
   API_PROFILES_URL = "https://apis.live.net/V4.1/cid-%s/Profiles"
   API_PROFILES_URL_HEADERS = {"Accept" => "application/json"}
