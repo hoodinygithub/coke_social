@@ -16,6 +16,7 @@ class PagesController < ApplicationController
   end
 
   def messenger_home
+    @recent_playlists = current_site.playlists.all(:limit => 50, :order => 'updated_at desc')
     render 'coke_messenger/home', :layout => 'messenger'
   end
 
