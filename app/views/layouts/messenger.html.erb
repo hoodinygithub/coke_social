@@ -1,0 +1,17 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" <%= application_html_attrs %>>
+  <head>
+    <%= stylesheet_link_tag 'coke_messenger/messenger' %>
+  </head>
+  <body locale="<%= current_site.default_locale %>" market="<%= current_site.code %>">
+    <div class="posicion">
+      <div class="cokeFM_MSN">
+        <%= render :partial => 'coke_messenger/header' %>
+        <div id="content">
+          <%= yield %>
+        </div>
+        <%= render :partial => 'coke_messenger/footer' %>
+      </div>
+    </div>
+  </body>
+</html>

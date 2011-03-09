@@ -46,6 +46,10 @@ class ApplicationController < ActionController::Base
     redirect_to home_path
   end
 
+  def url_prefix?(prefix)
+    request.path_info.split('/')[1] == prefix
+  end
+
   helper_method :site_includes
   def site_includes(*sites)
     sites.include? site_code.to_sym
