@@ -15,70 +15,16 @@
 <div class="contenido">
   <div class="columna_izq">
     <ul class="ult_mixes">
-      <li class="estirar">
-      <img class="avatar" src="/images/coke_messenger/mixes/sim_portada1.jpg" alt="portada CD" />
-      <div class="datos">
-        <h3><a class="link_rojo" href="#" title="M&uacute;sica para despertar">M&uacute;sica para despertar</a></h3>
-        <p>Por: <a class="link_gris" href="#" title="Martinez DJ">Martinez DJ</a></p>
-      </div>
-      <a class="btn_play" href="#" title="Play">Play</a>
-      </li>
-      <li class="estirar">
-      <img class="avatar" src="/images/coke_messenger/mixes/sim_portada2.jpg" alt="portada CD" />
-      <div class="datos">
-        <h3><a class="link_rojo" href="#" title="De todo un poco">De todo un poco</a></h3>
-        <p>Por: <a class="link_gris" href="#" title="luisito">luisito</a></p>
-      </div>
-      <a class="btn_play" href="#" title="Play">Play</a>
-      </li>
-      <li class="estirar">
-      <img class="avatar" src="/images/coke_messenger/mixes/sim_portada3.jpg" alt="portada CD" />
-      <div class="datos">
-        <h3><a class="link_rojo" href="#" title="La oreja de Van Gogh">La oreja de Van Gogh</a></h3>
-        <p>Por: <a class="link_gris" href="#" title="luisito">luisito</a></p>
-      </div>
-      <a class="btn_play" href="#" title="Play">Play</a>
-      </li>
-      <li class="estirar">
-      <img class="avatar" src="/images/coke_messenger/mixes/sim_portada4.jpg" alt="portada CD" />
-      <div class="datos">
-        <h3><a class="link_rojo" href="#" title="M&uacute;sica para despertar">M&uacute;sica para despertar</a></h3>
-        <p>Por: <a class="link_gris" href="#" title="Martinez DJ">Martinez DJ</a></p>
-      </div>
-      <a class="btn_play" href="#" title="Play">Play</a>
-      </li>
-      <li class="estirar">
-      <img class="avatar" src="/images/coke_messenger/mixes/sim_portada1.jpg" alt="portada CD" />
-      <div class="datos">
-        <h3><a class="link_rojo" href="#" title="M&uacute;sica para despertar">M&uacute;sica para despertar</a></h3>
-        <p>Por: <a class="link_gris" href="#" title="Martinez DJ">Martinez DJ</a></p>
-      </div>
-      <a class="btn_play" href="#" title="Play">Play</a>
-      </li>
-      <li class="estirar">
-      <img class="avatar" src="/images/coke_messenger/mixes/sim_portada2.jpg" alt="portada CD" />
-      <div class="datos">
-        <h3><a class="link_rojo" href="#" title="De todo un poco">De todo un poco</a></h3>
-        <p>Por: <a class="link_gris" href="#" title="luisito">luisito</a></p>
-      </div>
-      <a class="btn_play" href="#" title="Play">Play</a>
-      </li>
-      <li class="estirar">
-      <img class="avatar" src="/images/coke_messenger/mixes/sim_portada3.jpg" alt="portada CD" />
-      <div class="datos">
-        <h3><a class="link_rojo" href="#" title="La oreja de Van Gogh">La oreja de Van Gogh</a></h3>
-        <p>Por: <a class="link_gris" href="#" title="luisito">luisito</a></p>
-      </div>
-      <a class="btn_play" href="#" title="Play">Play</a>
-      </li>
-      <li class="estirar">
-      <img class="avatar" src="/images/coke_messenger/mixes/sim_portada4.jpg" alt="portada CD" />
-      <div class="datos">
-        <h3><a class="link_rojo" href="#" title="M&uacute;sica para despertar">M&uacute;sica para despertar</a></h3>
-        <p>Por: <a class="link_gris" href="#" title="Martinez DJ">Martinez DJ</a></p>
-      </div>
-      <a class="btn_play" href="#" title="Play">Play</a>
-      </li>
+      <% @recent_playlists.each do |playlist| %>
+        <li class="estirar">
+        <%= avatar_for(playlist, :small, :class => 'avatar', :disable_default_css => true) %>
+        <div class="datos">
+          <h3><a class="link_rojo" href="#" title="M&uacute;sica para despertar"><%= playlist.name %></a></h3>
+          <p>Por: <a class="link_gris" href="#" title="Martinez DJ"><%= playlist.owner.name %></a></p>
+        </div>
+        <a class="btn_play" href="#" title="Play">Play</a>
+        </li>
+      <% end %>
     </ul>
   </div><!-- .columna_izq -->
   <div class="columna_der">
