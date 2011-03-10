@@ -13,7 +13,13 @@ body{font-family:Arial,Helvetica,sans-serif;text-align:center;}
 ------------ */
 .cabecera{height:96px;padding:10px 9px 0 10px;background:#e10015;overflow:hidden;}
 .logo{float:left;}
-.claim{display:block;width:94px;height:42px;background:url(/images/coke_messenger/cocacola_claim.png) no-repeat 0 0;float:left;margin:39px 0 0 12px;text-indent:-99em;overflow:hidden;}
+.claim{display:block;width:94px;height:42px;float:left;margin:39px 0 0 12px;text-indent:-99em;overflow:hidden;}
+
+.claim.cokear { background:url(/images/coke_messenger/cokear_claim.png) no-repeat 0 0; }
+.claim.cokebr { background:url(/images/coke_messenger/cokebr_claim.png) no-repeat 0 0; }
+.claim.cokelatam { background:url(/images/coke_messenger/cokelatam_claim.png) no-repeat 0 0; }
+.claim.cokemx { background:url(/images/coke_messenger/cokemx_claim.png) no-repeat 0 0; }
+
 .nav_cab{width:29em;float:right;text-align:right;}
 .destacados{clear:both;width:285px;text-align:left;position:absolute;top:57px;right:10px;}
 .conectado {font-size:12px;}

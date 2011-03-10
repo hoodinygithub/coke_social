@@ -1,28 +1,26 @@
 <div class="cabecera">
-  <img class="logo" src="/images/coke_messenger/cocacola_fm.png" alt="Destapa tus emociones" width="114" height="82" />
-  <h1 class="claim">Escucha musica, crea y comparte tus mixes</h1>
+  <%= image_tag "coke_messenger/#{current_site.code}_fm.png", :class => 'logo', :width => '114', :height => '82', :alt => 'Destapa tus emociones' %>
+  <h1 class="claim <%= current_site.code %>">Escucha musica, crea y comparte tus mixes</h1>
   <div class="nav_cab">
     <% if logged_in? %>
       <ul class="conectado">
-        <li><%= link_to "<span>Logout</span>", logout_path, :class => 'link_logout' %></li>
-        <li>Hola <%= link_to current_user.name, '#', :class => 'link_usuario' %></li>
+        <li><%= link_to "<span>#{t('coke_messenger.logout')}</span>", logout_path, :class => 'link_logout' %></li>
+        <li><%= "#{t('coke_messenger.greeting')} #{link_to current_user.name, '#', :class => 'link_usuario'}" %></li>
       </ul>
     <% else %>
       <a class="btn_connect" href="#" title="Connect">Connect</a>
     <% end %>
     <!--<wl:signin></wl:signin>-->
     <div class="destacados estirar">
-      <a class="btn_envivo" href="#" title="Radio en vivo">Radio en vivo</a>
-      <%= link_to "Crear nuevo Mix", playlist_create_path, :class => 'btn_nuevomix', :target => '_blank' %> 
+      <%= link_to t('coke_messenger.live_radio'), '#', :class => 'btn_envivo' %>
+      <%= link_to t('coke_messenger.create_mix'), playlist_create_path, :class => 'btn_nuevomix', :target => '_blank' %> 
     </div><!-- .btn_destacados -->
   </div><!-- .nav -->
 </div><!-- .cabecera -->
 <ul class="menu_principal">
-  <li class="inicio"><a href="#" title="">INICIO</a></li>
-  <li><a href="#" title="">MIXES</a></li>
-  <li><a href="#" title="">DJs</a></li>
-  <li><a href="#" title="">MIS MIXES</a></li>
-  <li><a href="#" title="">AMIGOS</a></li>
+  <% %w(home mixes dj my_mixes friends).each do |channel| %>
+    <li <%= "class='inicio'" if channel == 'home' %>><%= link_to t("coke_messenger.#{channel}"), '#' %></li>
+  <% end %>
   <li class="buscador">
     <form class="buscar" action="#">
       <input class="boton" type="submit" value="Buscar" />
