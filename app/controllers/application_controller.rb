@@ -46,6 +46,7 @@ class ApplicationController < ActionController::Base
     redirect_to home_path
   end
 
+  helper_method :url_prefix?
   def url_prefix?(prefix)
     request.path_info.split('/')[1] == prefix
   end
