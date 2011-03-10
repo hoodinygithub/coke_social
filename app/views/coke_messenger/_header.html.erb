@@ -2,11 +2,18 @@
   <img class="logo" src="/images/coke_messenger/cocacola_fm.png" alt="Destapa tus emociones" width="114" height="82" />
   <h1 class="claim">Escucha musica, crea y comparte tus mixes</h1>
   <div class="nav_cab">
-    <a class="btn_connect" href="#" title="Connect">Connect</a>
+    <% if logged_in? %>
+      <ul class="conectado">
+        <li><%= link_to "<span>Logout</span>", logout_path, :class => 'link_logout' %></li>
+        <li>Hola <%= link_to current_user.name, '#', :class => 'link_usuario' %></li>
+      </ul>
+    <% else %>
+      <a class="btn_connect" href="#" title="Connect">Connect</a>
+    <% end %>
     <!--<wl:signin></wl:signin>-->
     <div class="destacados estirar">
       <a class="btn_envivo" href="#" title="Radio en vivo">Radio en vivo</a>
-      <a class="btn_nuevomix" href="#" title="Crear nuevo Mix">Crear nuevo Mix</a>
+      <%= link_to "Crear nuevo Mix", playlist_create_path, :class => 'btn_nuevomix', :target => '_blank' %> 
     </div><!-- .btn_destacados -->
   </div><!-- .nav -->
 </div><!-- .cabecera -->
