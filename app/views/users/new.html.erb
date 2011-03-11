@@ -13,7 +13,7 @@
         <div class="container">
           <span class="title"><%= t('sessions.new.almost_done') %></span><br /><br />
           <b><%= t('sessions.new.create_link_acct', :provider => session[:sso_type].to_s) %></b><br /><br />
-          <%= "<b>#{t('sessions.new.already_own')} #{link_to t('sessions.new.sign_in'), login_path }</b>" %>
+          <%= "<b>#{t('sessions.new.already_own')} #{link_to t('sessions.new.sign_in'), login_path(:return_to => my_dashboard_path) }</b>" %>
         </div>
       </div>
     <% end %>
