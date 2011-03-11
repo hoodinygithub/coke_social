@@ -1,7 +1,45 @@
 <%= render "/shared/social/fbconnect", { :page => page } %>
+<%= render "/shared/social/winconnect", { :page => page } %>
 <div id="social">
   <div class="container">
-    <span class="title"><%= t('sessions.new.social') %></span><br /><br />
-    <fb:login-button id="fb_login" perms="user_birthday, email"></fb:login-button>
+    <span class="title"><%= t('sessions.new.social') %></span>
+    <br /><br class="clearer"/>
+    <div>
+      <fb:login-button id="fb_login" perms="user_birthday, email"></fb:login-button>
+    </div>
+    <div>
+      <wl:signin id="signInControl"
+        signedintext="Logout"
+        signedouttext="Login"
+        onsignin="onWinConnectLogin"></wl:signin>
+    </div>
   </div>
 </div>
+
+<% javascript_tag do %>
+function onWinConnectLogin(p_event) {
+  // console.log('win connect login event');
+  // debugAuth();
+  state = Microsoft.Live.App.get_auth().get_state();
+  switch (state) {
+    case Microsoft.Live.AuthState.authenticated:
+      // alert('Windows Connect login');
+      document.location = current_url_site + '/login?' + document.location.search
+        + '&page=<%= page if defined? page %>'
+      break;
+    case Microsoft.Live.AuthState.failed:
+      alert('Windows Connect login fail');
+      break;
+    case Microsoft.Live.AuthState.canceled:
+      alert('Windows Connect login canceled');
+      break;
+    default:
+      alert('Windows Connect login state: ' + state);
+  }
+
+  // debugProfile();
+}
+<% end %>
+
+<% # signedintext="<%= t('win_connect.login.in') % >" %>
+<% # signedouttext="<%= t('win_connect.login.out') % >" %>

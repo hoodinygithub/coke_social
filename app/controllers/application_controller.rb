@@ -66,6 +66,8 @@ class ApplicationController < ActionController::Base
     else
       "http://#{current_site.domain}"
     end
+
+    'http://coca-cola.fm:3000'
   end
   helper_method :current_site_url
 
