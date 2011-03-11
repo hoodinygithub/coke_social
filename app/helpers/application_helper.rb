@@ -381,7 +381,9 @@ module ApplicationHelper
 
 
   def nav_aux_login_url
-    if params.fetch(:controller) == "pages" && params.fetch(:action) == "home"
+    if ((params[:controller] == "pages" and params[:action] == "home") or
+        (params[:controller] == "users" and params[:action] == "new") or
+        (params[:controller] == "sessions" and params[:action] == "new"))
       my_dashboard_path
     else
       request.request_uri
