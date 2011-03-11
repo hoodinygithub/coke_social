@@ -63,11 +63,11 @@ class ApplicationController < ActionController::Base
       "https://#{current_site.ssl_domain}"
     elsif request.host =~ /localhost/
       "http://#{request.host}:#{request.port}"
+    elsif RAILS_ENV =~ /development/
+      'http://coca-cola.fm:3000'
     else
       "http://#{current_site.domain}"
     end
-
-    'http://coca-cola.fm:3000'
   end
   helper_method :current_site_url
 
