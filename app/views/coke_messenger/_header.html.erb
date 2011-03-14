@@ -29,6 +29,61 @@
   </li>
 </ul><!-- .menu_principal -->
 <div class="reproductor">
+
+  <div class="player player_mix">
+    <div class="controles">
+      <a class="r_play" href="#" title="Play">Play</a>
+      <a class="r_forward" href="#" title="Forward">Forward</a>
+      <a class="r_random" href="#" title="Random">Random</a>
+    </div><!-- .controles -->
+    <div class="sonando">
+      <div class="caratula">
+        <img src="/images/coke_messenger/cds/sim_caratula2.jpg" alt="CD" width="35" height="35" />
+      </div><!-- .caratula -->
+      <div class="cancion">
+        <div class="mascara"></div>
+        <ul>
+          <li class="nombre_mix">M&uacute;sica para despertar</li>
+          <li>The tings tings - We walk</li>
+          <li>Grupo - Titulo de la canci&oacute;n</li>
+        </ul>
+      </div>
+      <div class="tiempo">
+        <div class="barra">
+          <div class="relleno" style="width:50%;">
+            <a class="puntero" href="#">Puntero</a>
+          </div>
+        </div><!-- .barra -->
+        <span class="minuto">-05:35</span>
+      </div><!-- .tiempo -->
+      <a class="tooltip punt_botellas" href="#" rel="tip_valorar" title="Valorar Mix">
+        <span class="llena"></span>
+        <span class="llena"></span>
+        <span class="llena"></span>
+        <span class="llena"></span>
+        <span class="vacia"></span>
+      </a><!-- .punt_botellas -->
+      <span class="tip" id="tip_valorar">Valorar Mix</span>
+    </div><!-- .sonando -->
+    <div class="info">
+      <a class="tooltip r_compartir" href="#" rel="tip_compartir" title="Compartir Mix">Compartir</a>
+      <span class="tip" id="tip_compartir">Compartir Mix</span>
+      <a class="tooltip r_copiar" href="#" rel="tip_copiar" title="Copiar Mix">Copiar</a>
+      <span class="tip" id="tip_copiar">Copiar Mix</span>
+      <a class="tooltip r_info" href="#" rel="tip_info" title="Información">Info</a>
+      <span class="tip" id="tip_info">Información</span>
+    </div><!-- .info -->
+    <div class="volumen">
+      <a class="vol" href="#" title="Volumen">Volumen</a>
+      <div class="barra">
+        <div class="relleno" style="width:50%;">
+          <a class="puntero" href="#">Puntero</a>
+        </div>
+      </div><!-- .barra -->
+    </div><!-- .volumen -->
+  </div>
+  <!-- .player .player_mix -->
+
   <div class="sound_engines">
     <div id="coke_player"></div>
     <div id="goom_player"></div>
@@ -47,5 +102,4 @@
       swfobject.embedSWF('/flash/sound_stub.swf', 'coke_player', '1', '1', '9.0.0', null, cFlashVars, cParams, cAttribs);
     </script>
   </div>
-  <img src="/images/coke_messenger/reproductor_flash.jpg" alt="Escucha nuestras canciones" width="555" height="47" />
 </div><!-- .reproductor -->
