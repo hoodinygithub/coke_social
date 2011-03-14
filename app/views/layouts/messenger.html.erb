@@ -2,6 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" <%= application_html_attrs %>>
   <head>
     <%= stylesheet_link_tag 'coke_messenger/messenger' %>
+    <%= javascript_include_tag 'swfobject' %>
   </head>
   <body locale="<%= current_site.default_locale %>" market="<%= current_site.code %>">
     <div class="posicion">
