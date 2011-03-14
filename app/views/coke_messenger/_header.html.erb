@@ -29,5 +29,23 @@
   </li>
 </ul><!-- .menu_principal -->
 <div class="reproductor">
+  <div class="sound_engines">
+    <div id="coke_player"></div>
+    <div id="goom_player"></div>
+    <script type="text/javascript">
+      /* Coke player configuration */
+      var cFlashVars = {
+        protocol: 'rtmp',
+        host:     'streaming.cyloop.com/vod',
+        debug:    '1'
+      };
+      var cParams  = {};
+      var cAttribs = {
+        id:   'coke_player',
+        name: 'coke_player'
+      };
+      swfobject.embedSWF('/flash/sound_stub.swf', 'coke_player', '1', '1', '9.0.0', null, cFlashVars, cParams, cAttribs);
+    </script>
+  </div>
   <img src="/images/coke_messenger/reproductor_flash.jpg" alt="Escucha nuestras canciones" width="555" height="47" />
 </div><!-- .reproductor -->
