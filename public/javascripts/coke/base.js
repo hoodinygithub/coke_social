@@ -22,24 +22,47 @@ $(document).ready(function() {
 var Base = {};
 
 // Helpers
-Base.XHR = function(req, type, func)
-{
-  $.ajax({
-    url: req,
-    dataType: type,
-    complete: func
-  });
-};
+Base.Util = {
+  XHR: function(req, type, func)
+  {
+    $.ajax({
+      url: req,
+      dataType: type,
+      complete: func
+    });
+  },
+
+  poller: function(func, interval)
+  {
+    return setInterval(func, interval);
+  },
+
+  time: function(time, duration)
+  {
+    var c = duration - time;
+    var mm = Math.floor(c / 60);
+    mm = (mm < 10 ? '0' + String(mm) : String(mm));
+    var ss = c % 60;
+    ss = (ss < 10 ? '0' + String(ss) : String(ss));
+    return mm + ":" + ss;
+  },
+
+  log: function(l)
+  {
+    if (console.typeof != "undefined") console.log(l);
+  }
+}
 
 Base.Station = {
 
   request: function(req, type, func)
   {
-    Base.XHR(req, type, func);
+    Base.Util.XHR(req, type, func);
   },
 
   // Callback
-  stationCollection: function(data) {
+  stationCollection: function(data) 
+  {
     var _station = new StationBean(data.responseXML);
     Base.Player.playlist(_station.songs);
   }
@@ -52,19 +75,42 @@ Base.Player = {
 
   index: 0,
 
-  service: function() {
+  _poll: null,
+
+  service: function() 
+  {
    return $('#' + this.player + '_player')[0];
   },
 
-  is_playing: function() {
+  streaming: function(b) 
+  {
+    if (b)
+    {
+      if (this._poll) clearInterval(this._poll);
+      this._poll = Base.Util.poller(function(){
+        var st = Base.Player.service().time();
+        Base.UI.controlUI().find('.tiempo .barra .relleno').css('width', (String((st.time/st.duration) * 100) + '%'));
+        Base.UI.controlUI().find('.minuto').html('-' + Base.Util.time(st.time, st.duration));
+      }, 500);
+    }
+    else
+    {
+      if (this._poll) clearInterval(this._poll);
+    }
+  },
+
+  is_playing: function() 
+  {
    return this.service.isPlaying;
   },
 
-  streamFinished: function() {
+  streamFinished: function() 
+  {
     this.next();
   },
 
-  next: function() {
+  next: function() 
+  {
     if(index < _playlist.length)
     {
       this.stream(_playlist[++index]);
@@ -79,7 +125,7 @@ Base.Player = {
   stream: function(song)
   {
     console.log('stream');
-    this.service().stream(song.songfile);
+    this.service().stream(song.songfile, 'mp3', Number(song.duration));
     Base.UI.setControlUI(this.player);
     Base.UI.reset();
     Base.UI.render(song);
@@ -145,7 +191,8 @@ function StationBean(data)
         title: $(this).find('title').text(),
         band: $(this).find('band').text(),
         profile: $(this).find('profile').text(),
-        rating: $(this).find('rating_total').text()
+        rating: $(this).find('rating_total').text(),
+        duration: $(this).find('duration').text()
       });
     });
     return _songs;
