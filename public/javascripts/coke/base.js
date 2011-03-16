@@ -16,7 +16,6 @@ $(document).ready(function() {
 
   // song slider
   $('.cancion ul').liScroll({travelocity: 0.05});
-
 });
 
 
@@ -52,7 +51,7 @@ Base.Player = {
   player: 'coke',
 
   index: 0,
-  
+
   service: function() {
    return $('#' + this.player + '_player')[0];
   },
@@ -62,29 +61,65 @@ Base.Player = {
   },
 
   streamFinished: function() {
-    this.playNext();
+    this.next();
   },
 
-  playNext: function() {
-    if(this.index < _playlist.length)
+  next: function() {
+    if(index < _playlist.length)
     {
-      this.service().stream(_playlist[++this.index].songfile);
+      this.stream(_playlist[++index]);
     }
     else
     {
-      this.index = 0;
-      this.service().stream(_playlist[0].songfile);
+      index = 0;
+      this.stream(_playlist[0]);
     }
+  },
+
+  stream: function(song)
+  {
+    console.log('stream');
+    this.service().stream(song.songfile);
+    Base.UI.setControlUI(this.player);
+    Base.UI.reset();
+    Base.UI.render(song);
   },
 
   _playlist: {},
   playlist: function(bean)
   {
-    this.index = 0;
+    index = 0;
     _playlist = bean;
-    this.service().stream(_playlist[this.index].songfile);
+    this.stream(_playlist[index]);
   }
-}
+};
+
+Base.UI = {
+
+  _control:'',
+  controlUI: function()
+  {
+    return $('#' + _control + '_ui');
+  },
+  setControlUI: function(ctl)
+  {
+    _control = ctl;
+  },
+
+  reset: function()
+  {
+    this.controlUI().find('.cancion li').empty();
+  },
+
+  render: function(s)
+  {
+    this.controlUI().find('.caratula img').attr('src', s.album_avatar);
+    this.controlUI().find('.cancion li:eq(0)').append(s.playlist_name);
+    this.controlUI().find('.cancion li:eq(1)').append(s.title);
+    this.controlUI().find('.cancion li:eq(2)').append(s.band);
+  }
+
+};
 
 // Collection classes
 function StationBean(data)
@@ -101,6 +136,7 @@ function StationBean(data)
     $(s).each(function() {
       _songs.push({
         id: $(this).find('idsong').text(),
+        playlist_name: $(this).find('playlist_name').text(),
         album_id: $(this).find('album_id').text(),
         idpl: $(this).find('idpl').text(),
         idband: $(this).find('idband').text(),
