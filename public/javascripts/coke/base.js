@@ -49,7 +49,7 @@ Base.Util = {
 
   log: function(l)
   {
-    if (console.typeof != "undefined") console.log(l);
+    if (typeof console != "undefined") console.log(l);
   }
 }
 
@@ -79,7 +79,7 @@ Base.Player = {
 
   service: function() 
   {
-   return $('#' + this.player + '_player')[0];
+   return $('#' + this.player + '_engine')[0];
   },
 
   streaming: function(b) 
@@ -101,7 +101,7 @@ Base.Player = {
 
   is_playing: function() 
   {
-   return this.service.isPlaying;
+   return this.service().isPlaying;
   },
 
   streamFinished: function() 
@@ -124,7 +124,6 @@ Base.Player = {
 
   stream: function(song)
   {
-    console.log('stream');
     this.service().stream(song.songfile, 'mp3', Number(song.duration));
     Base.UI.setControlUI(this.player);
     Base.UI.reset();

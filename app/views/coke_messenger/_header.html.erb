@@ -85,21 +85,21 @@
   <!-- .player .player_mix -->
 
   <div class="sound_engines">
-    <div id="coke_player"></div>
-    <div id="goom_player"></div>
     <script type="text/javascript">
       /* Coke player configuration */
       var cFlashVars = {
-        protocol: 'rtmp',
-        host:     'streaming.cyloop.com/vod',
-        debug:    '1'
+        protocol:'rtmp',
+        service:'streaming.cyloop.com/vod',
+        debug:'1'
       };
-      var cParams  = {};
+      var cParams = {};
       var cAttribs = {
-        id:   'coke_player',
-        name: 'coke_player'
+        id:'coke_engine',
+        name:'coke_engine'
       };
-      swfobject.embedSWF('/flash/sound_stub.swf', 'coke_player', '1', '1', '9.0.0', null, cFlashVars, cParams, cAttribs);
+      swfobject.embedSWF('/flash/sound_stub.swf', 'coke_player', '1', '1', '9', false, cFlashVars, cParams, cAttribs);
     </script>
+    <div id="coke_player"></div>
+    <div id="goom_player"></div>
   </div>
 </div><!-- .reproductor -->
