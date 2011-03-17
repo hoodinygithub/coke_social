@@ -1,7 +1,19 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" <%= application_html_attrs %>>
   <head>
+    <%= render "shared/javascripts" %>
     <%= stylesheet_link_tag 'coke_messenger/messenger' %>
+ 
+    <%= stylesheet_link_tag 'facebox' %>
+    <%= stylesheet_link_tag 'registration' %>
+    <!--[if lte IE 7]>
+    <%= stylesheet_link_tag 'ie' %>
+    <![endif]-->
+    <%= stylesheet_link_tag 'coke' %>
+    <%= stylesheet_link_tag 'styles_radio' %>
+    <%= stylesheet_link_tag 'jquery.rating' %>
+    <%= stylesheet_link_tag 'jquery.textboxlist' %>
+ 
     <%= javascript_include_tag 'jquery-1.5.1.min' %>
     <%= javascript_include_tag 'jquery.li-scroller.1.0' %>
     <%= javascript_include_tag 'swfobject' %>

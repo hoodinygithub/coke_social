@@ -150,7 +150,8 @@ ActionController::Routing::Routes.draw do |map|
 
   map.with_options(:path_prefix => 'messenger_player') do |player|
     player.root :controller => 'pages', :action => 'messenger_home'
-  end
+		player.mixes '/mixes', :controller => 'playlists', :action => 'messenger_mixes'
+    end
 
   map.resources :campaigns, :member => {:activate => :post, :deactivate => :post}
   
