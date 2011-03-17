@@ -1,0 +1,35 @@
+
+<div class="submenu">
+  <div class="columna">
+    <h2>MIXES</h2>
+    <form class="ord_mixes" action="#" >
+      <select>
+        <option>Ordenar por popularidad</option>
+        <option>-</option>
+      </select>
+    </form>
+  </div>
+</div><!-- .submenu -->
+<div class="contenido">
+  <div class="columna">
+    <ul class="mixes">
+      <% count=0 %>
+      <% @mixes.each do |playlist|
+         count = count+1
+      %>
+        <li class="estirar">
+          <span class="ord"><%= count %></span>
+          <%= avatar_for(playlist, :small, :class => 'avatar', :disable_default_css => true) %>
+          <div class="datos">
+            <h3><%= link_to playlist.name, radio_path(:station_id => playlist.station.id) ,:class => "link_rojo" %></h3>
+            <p><%= t("basics.by")%>: <%= link_to playlist.owner.name, user_path(playlist.owner) ,:class => "link_gris" %></a></p>
+            </div>
+          <div class="messenger_rating" style="margin-top: 10px;"><%= rating(playlist) %></div>
+          
+          <a class="btn_play" href="#" title="Play">Play</a>
+          <a class="btn_seguir" href="#" title="Seguir al autor">Seguir al autor</a>
+        </li>
+      <% end %>
+    </ul>
+  </div><!-- .columna -->
+</div><!-- .contenido -->

@@ -35,6 +35,12 @@ class PlaylistsController < ApplicationController
     end
   end
 
+	def messenger_mixes
+		@mixes = current_site.top_playlists.all(:limit => 50, :order => 'updated_at desc')
+    render 'coke_messenger/mixes', :layout => 'messenger'
+	end
+
+  
   def avatar_update
     @playlist = Playlist.find(params[:id])
     if @playlist
