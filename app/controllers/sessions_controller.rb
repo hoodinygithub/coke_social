@@ -110,11 +110,11 @@ private
     if account.nil?
       flash[:error] = t("registration.login_failed")
       redirect_to login_path
-      return false
+      false
     elsif account.kind_of?(Artist)
       flash[:error] = t("registration.artist_login_denied")
       render :new
-      return false;
+      false
     elsif account.part_of_network?
       self.current_user = account
       AccountLogin.create!( :account_id => account.id, :site_id => current_site.id )
@@ -142,12 +142,12 @@ private
       flash.discard(:error)
 
       redirect_back_or_default(home_path(:host => corrected_registration_host)) if p_render
-      return nil
+      nil
     else
-      # TODO: cross network-login
+      # TODO: cross-network login
       flash[:error] = t("registration.cross_network_failed")
       render :new, :layout => false if p_render
-      return false
+      false
     end
   end
 
