@@ -211,13 +211,16 @@ class WindowsConnect
       pwid = access_token_params[:uid]
       expires = access_token_params[:expires]
 
+      # These cookies are set when looking up the CID.
+      # Don't set these cookies twice.  Passenger doesn't like big request headers.  Rails doesn't dedup the cookies.
+
       # http://msdn.microsoft.com/en-us/library/gg251990.aspx
-      p_cookies["c_accessToken"] = access_token
-      p_cookies["c_expiry"] = expires
+      #p_cookies["c_accessToken"] = access_token
+      #p_cookies["c_expiry"] = expires
 
       # http://msdn.microsoft.com/en-us/library/ff752581.aspx
-      p_cookies["wl_accessToken"] = access_token
-      p_cookies["wl_accessTokenExpireTime"] = expires
+      #p_cookies["wl_accessToken"] = access_token
+      #p_cookies["wl_accessTokenExpireTime"] = expires
 
       Rails.logger.info access_token
       Rails.logger.info pwid
