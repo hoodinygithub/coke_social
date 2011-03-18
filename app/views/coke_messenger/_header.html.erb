@@ -87,5 +87,28 @@
   <div class="sound_engines">
     <div id="coke_player"></div>
     <div id="goom_player"></div>
+
+    <script type="text/javascript">
+    var pl = [];
+    <% top_playlists.each do |pl| %>
+    pl.push('/playlists/<%= pl.id %>.xml');
+    <% end %>
+
+    /* Coke player configuration */
+    var cFlashVars = {
+      protocol:'rtmp',
+      serviceHost:'streaming.cyloop.com/vod',
+      autostart:false,
+      debug:'1'
+    };
+    var cParams = {
+      allowScriptAccess: 'always'
+    };
+    var cAttribs = {
+      id:'coke_engine',
+      name:'coke_engine'
+    };
+    swfobject.embedSWF('/flash/sound_stub.swf', 'coke_player', '1', '1', '9', false, cFlashVars, cParams, cAttribs);
+    </script>
   </div>
 </div><!-- .reproductor -->

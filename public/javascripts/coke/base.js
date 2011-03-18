@@ -33,7 +33,6 @@ $(document).ready(function() {
   Base.Player.player('coke');
   Base.UI.setControlUI(Base.Player._player);
   Base.Player.random(true);
-  Base.Station.request(pl[Math.round(Math.random() * (pl.length - 1))], 'xml', Base.Station.stationCollection);
 });
 
 
@@ -88,6 +87,11 @@ Base.Station = {
 };
 
 Base.Player = {
+
+  ready: function()
+  {
+    Base.Station.request(pl[Math.round(Math.random() * (pl.length - 1))], 'xml', Base.Station.stationCollection);
+  },
 
   _player: "",
   player: function(p)
