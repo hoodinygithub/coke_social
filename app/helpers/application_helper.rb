@@ -25,6 +25,11 @@ module ApplicationHelper
     end
   end
 
+  # Look into caching for 24 hrs
+  def top_playlists(count=50)
+    current_site.top_playlists.all(:limit => count)
+  end
+
   def ssl_login_path
     if request.ssl?
       session_path
