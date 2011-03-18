@@ -32,8 +32,8 @@
 
   <div id="coke_ui" class="player player_mix">
     <div class="controles">
-      <a class="r_play" href="#" title="Play">Play</a>
-      <a class="r_forward" href="#" title="Forward">Forward</a>
+      <a class="r_play" href="#" onclick="Base.Player.playPause()" title="Play">Play</a>
+      <a class="r_forward" href="#" onclick="Base.Player.next()" title="Forward">Forward</a>
       <a class="r_random" href="#" title="Random">Random</a>
     </div><!-- .controles -->
     <div class="sonando">
@@ -50,7 +50,7 @@
       </div>
       <div class="tiempo">
         <div class="barra">
-          <div class="relleno" style="width:50%;">
+          <div class="relleno" style="width:0%;">
             <a class="puntero" href="#">Puntero</a>
           </div>
         </div><!-- .barra -->
@@ -76,7 +76,7 @@
     <div class="volumen">
       <a class="vol" href="#" title="Volumen">Volumen</a>
       <div class="barra">
-        <div class="relleno" style="width:50%;">
+        <div class="relleno" style="width:50px;left:-9px;">
           <a class="puntero" href="#">Puntero</a>
         </div>
       </div><!-- .barra -->
