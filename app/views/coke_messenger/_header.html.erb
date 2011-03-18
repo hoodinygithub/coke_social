@@ -32,9 +32,9 @@
 
   <div id="coke_ui" class="player player_mix">
     <div class="controles">
-      <a class="r_play" href="#" onclick="Base.Player.playPause()" title="Play">Play</a>
-      <a class="r_forward" href="#" onclick="Base.Player.next()" title="Forward">Forward</a>
-      <a class="r_random" href="#" title="Random">Random</a>
+      <a class="r_play" href="#" onclick="Base.Player.playPause();" title="Play">Play</a>
+      <a class="r_forward" href="#" onclick="Base.Player.next();" title="Forward">Forward</a>
+      <a class="r_random" href="#" onclick="Base.Player.random(!Base.Player._randomized);" title="Random">Random</a>
     </div><!-- .controles -->
     <div class="sonando">
       <div class="caratula">
@@ -96,6 +96,7 @@
     var cFlashVars = {
       protocol:'rtmp',
       serviceHost:'streaming.cyloop.com/vod',
+      autostart:false,
       debug:'1'
     };
     var cParams = {

@@ -22,7 +22,7 @@
           <h3><a class="link_rojo" href="#" title="M&uacute;sica para despertar"><%= playlist.name %></a></h3>
           <p>Por: <a class="link_gris" href="#" title="Martinez DJ"><%= playlist.owner.name %></a></p>
         </div>
-        <%= link_to_function 'Play', "Base.Station.request('/playlists/#{playlist.id}.xml', 'xml', Base.Station.stationCollection)", :class => 'btn_play' %>
+        <%= link_to_function 'Play', "Base.Station.request('/playlists/#{playlist.id}.xml', 'xml', Base.Station.stationCollection);Base.Player.random(false)", :class => 'btn_play' %>
         </li>
       <% end %>
     </ul>

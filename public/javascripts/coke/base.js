@@ -23,7 +23,6 @@ $(document).ready(function() {
   slider.ondrag = function(event, ui) 
   {
     Base.Player.service().vol(ui.position.left/33);
-    //console.log(ui.position.left / 33);
   }
 
   $('.volumen .puntero').draggable({
@@ -31,13 +30,10 @@ $(document).ready(function() {
     containment:'parent',
     drag:slider.ondrag});
 
-  $('.controles .r_random').click(function() {
-    Base.Player.random(!Base.Player._randomized);
-  });
-  
   Base.Player.player('coke');
   Base.UI.setControlUI(Base.Player._player);
-  Base.Station.request(pl[Math.round(Math.random() * pl.length)], 'xml', Base.Station.stationCollection);
+  Base.Player.random(true);
+  Base.Station.request(pl[Math.round(Math.random() * (pl.length - 1))], 'xml', Base.Station.stationCollection);
 });
 
 
@@ -160,7 +156,7 @@ Base.Player = {
       index = 0;
       if (this._randomized)
       {
-        Base.Station.request(pl[Math.round(Math.random() * pl.length)]);
+        Base.Station.request(pl[Math.round(Math.random() * (pl.length - 1))]);
       }
       else
       {
