@@ -86,6 +86,12 @@
 
   <div class="sound_engines">
     <script type="text/javascript">
+
+    var pl = [];
+    <% current_site.top_playlists.all(:limit => 50, :order => 'updated_at desc').each do |pl| %>
+    pl.push('/playlists/<%= pl.id %>.xml');
+    <% end %>
+
     /* Coke player configuration */
     var cFlashVars = {
       protocol:'rtmp',

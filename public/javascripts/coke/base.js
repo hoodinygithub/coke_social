@@ -20,7 +20,8 @@ $(document).ready(function() {
   $('.cancion ul').liScroll({travelocity: 0.05});
 
   var slider = {};
-  slider.ondrag = function(event, ui) {
+  slider.ondrag = function(event, ui) 
+  {
     Base.Player.service().vol(ui.position.left/33);
     //console.log(ui.position.left / 33);
   }
@@ -29,6 +30,14 @@ $(document).ready(function() {
     axis:'x',
     containment:'parent',
     drag:slider.ondrag});
+
+  $('.controles .r_random').click(function() {
+    Base.Player.random(!Base.Player._randomized);
+  });
+  
+  Base.Player.player('coke');
+  Base.UI.setControlUI(Base.Player._player);
+  Base.Station.request(pl[Math.round(Math.random() * pl.length)], 'xml', Base.Station.stationCollection);
 });
 
 
@@ -118,6 +127,13 @@ Base.Player = {
     }
   },
 
+  _randomized: false,
+  random: function(b)
+  {
+    Base.UI.random(b);
+    this._randomized =  b;
+  },
+
   playPause: function()
   {
     this.service().pauseStream(this.isPlaying());
@@ -135,21 +151,27 @@ Base.Player = {
 
   next: function() 
   {
-    if(index < _playlist.length)
+    if(index < (_playlist.length - 1))
     {
       this.stream(_playlist[++index]);
     }
     else
     {
       index = 0;
-      this.stream(_playlist[0]);
+      if (this._randomized)
+      {
+        Base.Station.request(pl[Math.round(Math.random() * pl.length)]);
+      }
+      else
+      {
+        this.stream(_playlist[0]);
+      }
     }
   },
 
   stream: function(song)
   {
     this.service().stream(song.songfile, 'mp3', Number(song.duration));
-    Base.UI.setControlUI(this._player);
     Base.UI.reset();
     Base.UI.render(song);
   },
@@ -186,6 +208,14 @@ Base.UI = {
     this.controlUI().find('.cancion li:eq(0)').append(s.playlist_name);
     this.controlUI().find('.cancion li:eq(1)').append(s.title);
     this.controlUI().find('.cancion li:eq(2)').append(s.band);
+  },
+
+  random: function(b)
+  {
+    if (b)
+      this.controlUI().find('.r_random').addClass('active');
+    else
+      this.controlUI().find('.controles .r_random').removeClass('active');
   }
 
 };
@@ -223,5 +253,3 @@ function StationBean(data)
 
   this.songs = this.getSongs(_xmlRoot.find('song'));
 }
-
-Base.Player.player('coke');
