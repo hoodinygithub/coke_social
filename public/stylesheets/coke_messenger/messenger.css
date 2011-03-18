@@ -270,7 +270,15 @@ h3.busq_titulo{font-size:18px;color:#343434;width:48%;float:left;padding-left:5p
 .controles .r_play{display:block;width:22px;height:28px;text-indent:-999em;overflow:hidden;background:url(/images/coke_messenger/player_iconos.png) no-repeat 0 0;float:left;margin:3px 0 0 17px;}
 .controles .r_play.activo{background-position:0 -225px;}
 .controles .r_forward{display:block;width:20px;height:18px;text-indent:-999em;overflow:hidden;background:url(/images/coke_messenger/player_iconos.png) no-repeat 0 -36px;float:left;margin:8px 0 0 6px;filter:alpha(opacity=50);-moz-opacity:0.5;-khtml-opacity:0.5;opacity:0.5;}
+
 .controles .r_random{display:block;width:22px;height:21px;text-indent:-999em;overflow:hidden;background:url(/images/coke_messenger/player_iconos.png) no-repeat 0 -60px;float:left;margin:7px 0 0 3px;filter:alpha(opacity=50);-moz-opacity:0.5;-khtml-opacity:0.5;opacity:0.5;}
+.controles .r_random.active {
+  filter:alpha(opacity:100);
+  -moz-opacity:1;
+  -khtml-opacity:1;
+  opacity:1;
+}
+
 .controles .r_forward:hover,.controles .r_random:hover{filter:alpha(opacity=100);-moz-opacity:1;-khtml-opacity:1;opacity:1;}
 .player .sonando{width:281px;height:35px;float:left;border-left:1px solid #252525;border-right:1px solid #4b4b4b;}
 .sonando .caratula{float:left;margin:0 7px;width:35px;height:35px;background:url(/images/coke_messenger/bg_caratula.jpg) no-repeat 0 0;padding-left:5px;}
