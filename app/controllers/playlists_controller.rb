@@ -4,7 +4,7 @@ class PlaylistsController < ApplicationController
   
   before_filter :geo_check, :only => :show
   before_filter :xhr_login_required, :only => :copy
-  before_filter :login_required, :except => [:index, :widget, :avatar_update, :show, :copy]
+  before_filter :login_required, :except => [:index, :widget, :avatar_update, :show, :copy, :messenger_mixes]
 
   def index
     @dashboard_menu = :playlists
