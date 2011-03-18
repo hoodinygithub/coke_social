@@ -14,8 +14,21 @@ $(document).ready(function() {
     $(this).removeClass('active');
   });
 
+  $('.volumen .puntero').css('left', 19);
+
   // song slider
   $('.cancion ul').liScroll({travelocity: 0.05});
+
+  var slider = {};
+  slider.ondrag = function(event, ui) {
+    Base.Player.service().vol(ui.position.left/33);
+    //console.log(ui.position.left / 33);
+  }
+
+  $('.volumen .puntero').draggable({
+    axis:'x',
+    containment:'parent',
+    drag:slider.ondrag});
 });
 
 
@@ -71,7 +84,11 @@ Base.Station = {
 
 Base.Player = {
 
-  player: 'coke',
+  _player: "",
+  player: function(p)
+  {
+    this._player = p;
+  },
 
   index: 0,
 
@@ -79,7 +96,7 @@ Base.Player = {
 
   service: function() 
   {
-   return $('#' + this.player + '_engine')[0];
+   return $('#' + this._player + '_engine')[0];
   },
 
   streaming: function(b) 
@@ -91,17 +108,24 @@ Base.Player = {
         var st = Base.Player.service().time();
         Base.UI.controlUI().find('.tiempo .barra .relleno').css('width', (String((st.time/st.duration) * 100) + '%'));
         Base.UI.controlUI().find('.minuto').html('-' + Base.Util.time(st.time, st.duration));
+        Base.UI.controlUI().find('.controles .r_play').addClass('activo');
       }, 500);
     }
     else
     {
       if (this._poll) clearInterval(this._poll);
+      Base.UI.controlUI().find('.controles .r_play').removeClass('activo');
     }
   },
 
-  is_playing: function() 
+  playPause: function()
   {
-   return this.service().isPlaying;
+    this.service().pauseStream(this.isPlaying());
+  },
+
+  isPlaying: function() 
+  {
+   return this.service().isStreaming();
   },
 
   streamFinished: function() 
@@ -125,7 +149,7 @@ Base.Player = {
   stream: function(song)
   {
     this.service().stream(song.songfile, 'mp3', Number(song.duration));
-    Base.UI.setControlUI(this.player);
+    Base.UI.setControlUI(this._player);
     Base.UI.reset();
     Base.UI.render(song);
   },
@@ -199,3 +223,5 @@ function StationBean(data)
 
   this.songs = this.getSongs(_xmlRoot.find('song'));
 }
+
+Base.Player.player('coke');
