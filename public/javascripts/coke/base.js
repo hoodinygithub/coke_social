@@ -16,9 +16,6 @@ $(document).ready(function() {
 
   $('.volumen .puntero').css('left', 19);
 
-  // song slider
-  $('.cancion ul').liScroll({travelocity: 0.05});
-
   var slider = {};
   slider.ondrag = function(event, ui) 
   {
@@ -33,6 +30,11 @@ $(document).ready(function() {
   Base.Player.player('coke');
   Base.UI.setControlUI(Base.Player._player);
   Base.Player.random(true);
+
+  $('a[content_switch_enabled=true]').bind('click', function() {
+    Base.Util.XHR($(this).attr('href'), 'text', Base.UI.contentswp);
+    return false;
+  });
 });
 
 
@@ -202,12 +204,19 @@ Base.UI = {
     this.controlUI().find('.cancion li').empty();
   },
 
+  liscrolling: false,
   render: function(s)
   {
     this.controlUI().find('.caratula img').attr('src', s.album_avatar);
     this.controlUI().find('.cancion li:eq(0)').append(s.playlist_name);
     this.controlUI().find('.cancion li:eq(1)').append(s.title);
     this.controlUI().find('.cancion li:eq(2)').append(s.band);
+    // song slider
+    //if (this.liscrolling == false) 
+    //{
+      $('.cancion ul').liScroll({travelocity: 0.05});
+      //this.liscrolling = true;
+    //}
   },
 
   random: function(b)
@@ -216,6 +225,11 @@ Base.UI = {
       this.controlUI().find('.r_random').addClass('active');
     else
       this.controlUI().find('.controles .r_random').removeClass('active');
+  },
+
+  contentswp: function(data)
+  {
+    $('#content').empty().html(data.responseText);
   }
 
 };

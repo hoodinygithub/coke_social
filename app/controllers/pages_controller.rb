@@ -17,7 +17,7 @@ class PagesController < ApplicationController
 
   def messenger_home
     @recent_playlists = current_site.playlists.all(:limit => 50, :order => 'updated_at desc')
-    render 'coke_messenger/home', :layout => 'messenger'
+    render 'coke_messenger/home', :layout => layout_unless_xhr('messenger')
   end
 
   def flash_callback
