@@ -88,22 +88,34 @@
     <% top_playlists.each do |pl| %>
     pl.push('/playlists/<%= pl.id %>.xml');
     <% end %>
-
     /* Coke player configuration */
     var cFlashVars = {
+      debug:1,
       protocol:'rtmp',
       serviceHost:'streaming.cyloop.com/vod',
-      autostart:0,
-      debug:1
+      autostart:0
     };
     var cParams = {
-      allowScriptAccess: 'always'
+      allowScriptAccess: 'sameDomain'
     };
     var cAttribs = {
       id:'coke_engine',
       name:'coke_engine'
     };
-    swfobject.embedSWF('/flash/sound_stub.swf', 'coke_player', '1', '1', '9', false, cFlashVars, cParams, cAttribs);
+    swfobject.embedSWF('/flash/sound_stub.swf', 'coke_player', '1', '1', '9.0.0', false, cFlashVars, cParams, cAttribs);
+    /*****************************/
+    /* Goom player configuration */
+    var gFlashVars = {
+      urlApi:'http://api.goomradio.com',
+      eStatUrl: 'http://www.goomradio.com/mini-audio/eStatNativeFlashTag.swf',
+      defaultVolume: '50',
+      uiid: 'goom_player'
+    };
+    var gParams = {
+      allowScriptAccess:'always'
+    };
+    swfobject.embedSWF('http://www.goomradio.com/mini-audio/goom-miniAudioLib.swf', 'goom_player', '1', '1', '9.0.0', false, gFlashVars, gParams);
+    /*****************************/
     </script>
   </div>
 </div><!-- .reproductor -->
