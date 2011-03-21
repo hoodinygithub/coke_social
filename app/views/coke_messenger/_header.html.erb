@@ -19,7 +19,7 @@
 </div><!-- .cabecera -->
 <ul class="menu_principal">
   <% %w(home mixes dj my_mixes friends).each do |channel| %>
-    <li <%= "class='inicio'" if channel == 'home' %>><%= link_to t("coke_messenger.#{channel}"), '#' %></li>
+    <li <%= "class='inicio'" if channel == 'home' %>><%= link_to t("coke_messenger.#{channel}"), "/messenger_player/#{channel}" , :content_switch_enabled => true %></li>
   <% end %>
   <li class="buscador">
     <form class="buscar" action="#">
@@ -43,9 +43,9 @@
       <div class="cancion">
         <div class="mascara"></div>
         <ul>
-          <li class="nombre_mix">M&uacute;sica para despertar</li>
-          <li>The tings tings - We walk</li>
-          <li>Grupo - Titulo de la canci&oacute;n</li>
+          <li class="nombre_mix"></li>
+          <li></li>
+          <li></li>
         </ul>
       </div>
       <div class="tiempo">
@@ -99,7 +99,7 @@
       protocol:'rtmp',
       serviceHost:'streaming.cyloop.com/vod',
       autostart:0,
-      debug:'1'
+      debug:1
     };
     var cParams = {
       allowScriptAccess: 'always'

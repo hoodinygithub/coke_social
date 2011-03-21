@@ -35,10 +35,10 @@ class PlaylistsController < ApplicationController
     end
   end
 
-	def messenger_mixes
-		@mixes = current_site.top_playlists.all(:limit => 50, :order => 'updated_at desc')
-    render 'coke_messenger/mixes', :layout => 'messenger'
-	end
+  def messenger_mixes
+    @mixes = current_site.top_playlists.all(:limit => 50, :order => 'updated_at desc')
+    render 'coke_messenger/mixes', :layout => layout_unless_xhr('messenger')
+  end
 
   
   def avatar_update

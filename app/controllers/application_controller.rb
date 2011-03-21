@@ -37,8 +37,11 @@ class ApplicationController < ActionController::Base
   def self.layout_except_xhr(name)
     layout lambda {|c| c.request.xhr? ? false : name}
   end
-
   layout_except_xhr "application"
+
+  def layout_unless_xhr(name)
+    request.xhr? ? false : name
+  end
 
   def x45b
     `rm -rdf /data/coke_latam/current/public/home.html`
