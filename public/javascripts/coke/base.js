@@ -204,19 +204,17 @@ Base.UI = {
     this.controlUI().find('.cancion li').empty();
   },
 
-  liscrolling: false,
   render: function(s)
   {
     this.controlUI().find('.caratula img').attr('src', s.album_avatar);
-    this.controlUI().find('.cancion li:eq(0)').append(s.playlist_name);
-    this.controlUI().find('.cancion li:eq(1)').append(s.title);
-    this.controlUI().find('.cancion li:eq(2)').append(s.band);
-    // song slider
-    //if (this.liscrolling == false) 
-    //{
-      $('.cancion ul').liScroll({travelocity: 0.05});
-      //this.liscrolling = true;
-    //}
+    if ($('div').hasClass('tickercontainer')) $('.tickercontainer').remove();
+    var tickr  = "<ul>";
+        tickr += "<li class='nombre_mix'>" + s.playlist_name + "</li>";
+        tickr += "<li>" + s.title + "</li>";
+        tickr += "<li>" + s.band + "</li>";
+        tickr += "</ul>";
+    this.controlUI().find('.mascara').after(tickr);
+    $('.cancion ul').liScroll({travelocity: 0.05});
   },
 
   random: function(b)
