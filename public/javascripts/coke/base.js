@@ -27,14 +27,14 @@ $(document).ready(function() {
     containment:'parent',
     drag:slider.ondrag});
 
-  Base.Player.player('coke');
-  Base.UI.setControlUI(Base.Player._player);
-  Base.Player.random(true);
-
   $('a[content_switch_enabled=true]').bind('click', function() {
     Base.Util.XHR($(this).attr('href'), 'text', Base.UI.contentswp);
     return false;
   });
+
+  //Base.Player.player('coke');
+  //Base.UI.setControlUI(Base.Player._player);
+  //Base.Player.random(true);
 });
 
 
@@ -92,7 +92,7 @@ Base.Player = {
 
   ready: function()
   {
-    Base.Station.request(pl[Math.round(Math.random() * (pl.length - 1))], 'xml', Base.Station.stationCollection);
+    //Base.Station.request(pl[Math.round(Math.random() * (pl.length - 1))], 'xml', Base.Station.stationCollection);
   },
 
   _player: "",
