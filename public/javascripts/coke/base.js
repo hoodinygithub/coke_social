@@ -162,7 +162,7 @@ Base.Player = {
       index = 0;
       if (this._randomized)
       {
-        Base.Station.request(pl[Math.round(Math.random() * (pl.length - 1))]);
+        Base.Station.request(pl[Math.round(Math.random() * (pl.length - 1))], 'xml', Base.Station.stationCollection);
       }
       else
       {
@@ -196,6 +196,7 @@ Base.UI = {
   },
   setControlUI: function(ctl)
   {
+    $('#' + ctl + '_ui').show();
     _control = ctl;
   },
 
