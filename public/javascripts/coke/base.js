@@ -32,9 +32,9 @@ $(document).ready(function() {
     return false;
   });
 
-  //Base.Player.player('coke');
-  //Base.UI.setControlUI(Base.Player._player);
-  //Base.Player.random(true);
+  Base.Player.player('coke');
+  Base.UI.setControlUI(Base.Player._player);
+  Base.Player.random(true);
 });
 
 
@@ -92,7 +92,7 @@ Base.Player = {
 
   ready: function()
   {
-    //Base.Station.request(pl[Math.round(Math.random() * (pl.length - 1))], 'xml', Base.Station.stationCollection);
+    Base.Station.request(pl[Math.round(Math.random() * (pl.length - 1))], 'xml', Base.Station.stationCollection);
   },
 
   _player: "",
@@ -215,7 +215,7 @@ Base.UI = {
         tickr += "<li>" + s.band + "</li>";
         tickr += "</ul>";
     this.controlUI().find('.mascara').after(tickr);
-    $('.cancion ul').liScroll({travelocity: 0.05});
+    this.controlUI().find('.cancion ul').liScroll({travelocity: 0.05});
   },
 
   random: function(b)
@@ -267,7 +267,7 @@ function StationBean(data)
   this.songs = this.getSongs(_xmlRoot.find('song'));
 }
 
-/* TEMP LOCATION */
+/* TEMPORARY PLACEMENT OF JS BLOCK */
 var clearInput = function(value, input) {
  if(input.value == value) {
    input.value = '';
