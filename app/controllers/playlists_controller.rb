@@ -40,6 +40,10 @@ class PlaylistsController < ApplicationController
     render 'coke_messenger/mixes', :layout => layout_unless_xhr('messenger')
   end
 
+  def messenger_my_mixes
+		@my_mixes = current_user.playlists.all(:limit => 50, :order => 'updated_at desc')
+    render 'coke_messenger/my_mixes', :layout => layout_unless_xhr('messenger')
+	end
   
   def avatar_update
     @playlist = Playlist.find(params[:id])

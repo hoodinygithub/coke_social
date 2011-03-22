@@ -152,6 +152,7 @@ ActionController::Routing::Routes.draw do |map|
     player.root :controller => 'pages', :action => 'messenger_home'
     player.home '/home', :controller => 'pages', :action => 'messenger_home'
     player.mixes '/mixes', :controller => 'playlists', :action => 'messenger_mixes'
+    player.mixes '/my_mixes', :controller => 'playlists', :action => 'messenger_my_mixes'
     end
 
   map.resources :campaigns, :member => {:activate => :post, :deactivate => :post}
