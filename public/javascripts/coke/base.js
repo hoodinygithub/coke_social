@@ -19,7 +19,7 @@ $(document).ready(function() {
   var slider = {};
   slider.ondrag = function(event, ui) 
   {
-    Base.Player.service().vol(ui.position.left/33);
+    Base.Player.service()[SoundEngines.APIMappings[Base.Player._player].vol](Base.Player._player == 'coke' ? (ui.position.left/33) : (ui.position.left/33 * 100));
   }
 
   $('.volumen .puntero').draggable({
@@ -37,6 +37,18 @@ $(document).ready(function() {
   Base.Player.random(true);
 });
 
+var SoundEngines = {
+  APIMappings: {
+    coke: {
+      vol: 'vol',
+      kill: 'kill'
+    },
+    goom: {
+      vol: 'setVolume',
+      kill: 'stopRadio'
+    }
+  }
+}
 
 var Base = {};
 
@@ -76,6 +88,11 @@ Base.Station = {
 
   request: function(req, type, func)
   {
+    if (Base.Player._player == 'goom') 
+    {
+      Base.Player.player('coke');
+      Base.UI.setControlUI(Base.Player._player);
+    }
     Base.Util.XHR(req, type, func);
   },
 
@@ -98,6 +115,11 @@ Base.Player = {
   _player: "",
   player: function(p)
   {
+    if (this._player != '')
+    {
+      if (this._player == 'coke' && this.isPlaying()) this.streaming(false);
+      Base.Player.service()[SoundEngines.APIMappings[this._player].kill]();
+    }
     this._player = p;
   },
 
@@ -184,7 +206,8 @@ Base.Player = {
     index = 0;
     _playlist = bean;
     this.stream(_playlist[index]);
-  }
+  },
+
 };
 
 Base.UI = {
@@ -192,12 +215,15 @@ Base.UI = {
   _control:'',
   controlUI: function()
   {
-    return $('#' + _control + '_ui');
+    return $('#' + this._control + '_ui');
   },
   setControlUI: function(ctl)
   {
-    $('#' + ctl + '_ui').show();
-    _control = ctl;
+    if (this._control != '') {
+      this.controlUI().hide();
+    }
+    this.switchui(ctl);
+    this._control = ctl;
   },
 
   reset: function()
@@ -207,13 +233,22 @@ Base.UI = {
 
   render: function(s)
   {
-    this.controlUI().find('.caratula img').attr('src', s.album_avatar);
     if ($('div').hasClass('tickercontainer')) $('.tickercontainer').remove();
     var tickr  = "<ul>";
-        tickr += "<li class='nombre_mix'>" + s.playlist_name + "</li>";
-        tickr += "<li>" + s.title + "</li>";
-        tickr += "<li>" + s.band + "</li>";
-        tickr += "</ul>";
+    if (Base.Player._player == 'coke')
+    {
+      this.controlUI().find('.caratula img').attr('src', s.album_avatar);
+          tickr += "<li class='nombre_mix'>" + s.playlist_name + "</li>";
+          tickr += "<li>" + s.title + "</li>";
+          tickr += "<li>" + s.band + "</li>";
+    }
+    else
+    {
+      if (s.artist) tickr += "<li class='nombre_mix'>" + s.artist + "</li>";
+      tickr += "<li>" + s.title + "</li>";
+    }
+    tickr += "</ul>";
+
     this.controlUI().find('.mascara').after(tickr);
     this.controlUI().find('.cancion ul').liScroll({travelocity: 0.05});
   },
@@ -229,6 +264,25 @@ Base.UI = {
   contentswp: function(data)
   {
     $('#content').empty().html(data.responseText);
+  },
+
+  switchui: function(ui)
+  {
+    $('#' + ui + '_ui').show();
+    if (ui == 'coke')
+    {
+      $('.btn_envivo').removeClass('activo');
+      $('.btn_envivo').bind('click', function(e) {
+        Base.Player.player('goom');
+        Base.UI.setControlUI(Base.Player._player);
+      });
+    }
+    else if (ui == 'goom')
+    {
+      $('.btn_envivo').addClass('activo');
+      $('.btn_envivo').unbind('click');
+      Base.Player.service().playStream(4242705);
+    }
   }
 
 };
