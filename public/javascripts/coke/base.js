@@ -266,3 +266,16 @@ function StationBean(data)
 
   this.songs = this.getSongs(_xmlRoot.find('song'));
 }
+
+/* TEMP LOCATION */
+var clearInput = function(value, input) {
+ if(input.value == value) {
+   input.value = '';
+ }
+}
+
+var restoreInput = function(value, input) {
+ if(input.value == '') {
+   input.value = value;
+ }
+}
