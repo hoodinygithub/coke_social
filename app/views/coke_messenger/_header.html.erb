@@ -21,7 +21,7 @@
   </div><!-- .nav -->
 </div><!-- .cabecera -->
 <ul class="menu_principal">
-  <% %w(home mixes dj my_mixes friends).each do |channel| %>
+  <% %w(home mixes djs my_mixes friends).each do |channel| %>
     <li <%= "class='inicio'" if channel == 'home' %>><%= link_to t("coke_messenger.#{channel}"), "/messenger_player/#{channel}" , :content_switch_enabled => true %></li>
   <% end %>
   <li class="buscador">

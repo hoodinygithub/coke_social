@@ -20,9 +20,9 @@ class PagesController < ApplicationController
     render 'coke_messenger/home', :layout => layout_unless_xhr('messenger')
   end
 
-	def messenger_djs
-		@djs = current_site.top_djs.all(:limit => 50, :order => 'updated_at desc')
-    render 'coke_messenger/djs', :layout => 'messenger'
+  def messenger_djs
+    @djs = current_site.top_djs.all(:limit => 50, :order => 'updated_at desc')
+    render 'coke_messenger/djs', :layout => layout_unless_xhr('messenger')
   end
 
   def flash_callback
