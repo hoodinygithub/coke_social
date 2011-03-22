@@ -15,6 +15,11 @@ class PagesController < ApplicationController
     @drupal_feed = drupal_feed("http://cm-#{site_code}.cyloop.com/feeds/#{site_code}/coke_home_featured.xml", 6, true) if ["cokemx"].include? site_code
   end
 
+  def messenger_home
+    @recent_playlists = current_site.playlists.all(:limit => 50, :order => 'updated_at desc')
+    render 'coke_messenger/home', :layout => layout_unless_xhr('messenger')
+  end
+
   def flash_callback
     respond_to do |format|
       format.js { render :template => 'pages/flash.js.erb', :layout => false }

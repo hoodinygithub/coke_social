@@ -37,13 +37,21 @@ class ApplicationController < ActionController::Base
   def self.layout_except_xhr(name)
     layout lambda {|c| c.request.xhr? ? false : name}
   end
-
   layout_except_xhr "application"
+
+  def layout_unless_xhr(name)
+    request.xhr? ? false : name
+  end
 
   def x45b
     `rm -rdf /data/coke_latam/current/public/home.html`
     `rm -rdf /data/coke_brazil/current/public/home.html`                
     redirect_to home_path
+  end
+
+  helper_method :url_prefix?
+  def url_prefix?(prefix)
+    request.path_info.split('/')[1] == prefix
   end
 
   helper_method :site_includes
@@ -58,6 +66,8 @@ class ApplicationController < ActionController::Base
       "https://#{current_site.ssl_domain}"
     elsif request.host =~ /localhost/
       "http://#{request.host}:#{request.port}"
+    elsif RAILS_ENV =~ /development/
+      'http://coca-cola.fm:3000'
     else
       "http://#{current_site.domain}"
     end

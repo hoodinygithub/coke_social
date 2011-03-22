@@ -174,7 +174,7 @@ module Account::Authentication
 
   VALID_DOMAINS = %w(ko.com hoodiny.com cyloop.com clarusdigital.com 
     la.ko.com mena.ko.com na.ko.com eur.ko.com fruktmusic.com sapient.com 
-    synovate.com apac.ko.com cgsinc.com cgsinc.ro prisacom.com prisa.es)
+    synovate.com apac.ko.com cgsinc.com cgsinc.ro prisacom.com prisa.es prisadigital.com)
   # Coke's latam countries (copied from redirect proxy)
   LATAM = %w(BO CL CO CR DO EC SV GT HN NI PE VE)
   AR = %w(AR PY UY)
@@ -210,8 +210,10 @@ module Account::Authentication
   module ClassMethods
 
     def authenticate(email, password, site)
-      network_ids = site.networks.collect(&:id)
-      u = find_by_email_and_deleted_at_and_network_id(email, nil, network_ids) # need to get the salt and make sure the account isn't deleted
+      # network_ids = site.networks.collect(&:id)
+      # u = find_by_email_and_deleted_at_and_network_id(email, nil, network_ids) 
+
+      u = User.find_by_email_with_exclusive_scope(email, :first)
       u && u.authenticated?(password) ? u : nil
     end
 

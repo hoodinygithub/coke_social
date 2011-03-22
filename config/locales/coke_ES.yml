@@ -1,5 +1,15 @@
 --- 
 coke_ES: 
+  coke_messenger:
+    greeting: "Hi"
+    logout: "Logout"
+    live_radio: "Live radio"
+    create_mix: "Create new Mix"
+    home: "INICIO"
+    mixes: "MIXES"
+    dj: "DJs"
+    my_mixes: "MIS MIXES"
+    friends: "AMIGOS"
   buylink: 
     no_buylinks: No se encuentra disponible para la compra
     song: "Comprar esta canci\xC3\xB3n"
@@ -600,6 +610,8 @@ coke_ES:
     continue: Continuar
     still_dont_have: "\xC2\xBFA\xC3\xBAn no tienes una cuenta de Coca-Cola.fm?"
     recengineerror_NO_RADIO: "No se pudo encontrar una estaci\xC3\xB3n de radio"
+    mix_page_blank: Vaya, parece que a&uacute;n no tienes ningun Mix personal
+    mix_page_blank_desc: No te preocupes, es muy f&aacute;cil crearlos. S&oacute;lo tienes que buscar tu m&uacute;sica favorita y crear tus listas personalizadas.
   time: 
     am: am
     formats: 
@@ -1687,3 +1699,4 @@ coke_ES:
     see_all_artists_with_term: ver todos los artistas con "{{term}}"
     see_all_songs_with_term: ver todas las canciones con  "{{term}}"
     search_results_for: Buscar resultados para
+    messenger_search_hint: Busca amigos o mixes

@@ -284,8 +284,15 @@ class User < Account
     true
   end
 
+  # User is part of the current site's network
   def part_of_network?
     ApplicationController.current_site.networks.include? self.network
+  end
+
+  # User is part of a secure network with encrypted demographics
+  def secure_network?
+    # TODO: add boolean column network.is_secure
+    self.network_id == 2
   end
 
   def private?
@@ -346,6 +353,14 @@ class User < Account
     Date.parse(born_on_string) unless born_on_string.nil?
   end
 
+  # AccountUni - set encrypted demographics from unencrypted
+  def transfer_encrypted_demographics
+    self.name = self['name'] if self.name.nil?
+    self.email = self['email'] if self.email.nil?
+    self.gender = self['gender'] if self.gender.nil?
+    self.born_on_string = self['born_on'].to_s if self.born_on_string.nil?
+  end
+
   protected
   def check_born_on_in_future
     errors.add(:born_on, :cant_be_in_future) if born_on > Date.today
@@ -363,6 +378,7 @@ class User < Account
   end
 
 
+  # deprecated.  Use find_by_email_with_exclusive_scope.  It supports additional find conditions.
   def self.find_by_email_on_all_networks(email)
     unless email.nil?
       with_exclusive_scope do
@@ -375,5 +391,23 @@ class User < Account
     end
   end
 
+  def self.find_with_exclusive_scope( *args )
+    with_exclusive_scope do
+      find(*args)
+    end
+  end
+
+  # Don't use this directly.  Use find_by_email_with_exclusive_scope to find across all sites.
+  named_scope :with_email, lambda { |email|
+    { :conditions => ["deleted_at IS NULL AND (email = ? OR encrypted_email = ?)", email, User.encrypt_email(email)] }
+  }
+  # Find by email, ignoring default scopes.  Supports additional find options.
+  def self.find_by_email_with_exclusive_scope(email, *args)
+    args = [ :all ] if args.size == 0
+
+    with_exclusive_scope {
+      with_email(email).find(*args)
+    }
+  end
 end
 

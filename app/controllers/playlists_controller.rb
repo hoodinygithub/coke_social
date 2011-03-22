@@ -4,7 +4,7 @@ class PlaylistsController < ApplicationController
   
   before_filter :geo_check, :only => :show
   before_filter :xhr_login_required, :only => :copy
-  before_filter :login_required, :except => [:index, :widget, :avatar_update, :show, :copy]
+  before_filter :login_required, :except => [:index, :widget, :avatar_update, :show, :copy, :messenger_mixes]
 
   def index
     @dashboard_menu = :playlists
@@ -35,6 +35,16 @@ class PlaylistsController < ApplicationController
     end
   end
 
+  def messenger_mixes
+    @mixes = current_site.top_playlists.all(:limit => 50, :order => 'updated_at desc')
+    render 'coke_messenger/mixes', :layout => layout_unless_xhr('messenger')
+  end
+
+  def messenger_my_mixes
+		@my_mixes = current_user.playlists.all(:limit => 50, :order => 'updated_at desc')
+    render 'coke_messenger/my_mixes', :layout => layout_unless_xhr('messenger')
+	end
+  
   def avatar_update
     @playlist = Playlist.find(params[:id])
     if @playlist

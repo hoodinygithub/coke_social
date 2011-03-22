@@ -138,16 +138,22 @@ ActionController::Routing::Routes.draw do |map|
     url.get_latest_tweet 'activity/latest_tweet', :action => 'latest_tweet'
   end
 
-  map.messenger_player '/messengerplayer', :controller => 'messenger_player/player', :action => 'index'
-  map.connect '/messenger_player', :controller => 'messenger_player/player', :action => 'index'
-  map.connect '/messenger_player/player/stats.:format', :controller => 'messenger_player/player', :action => 'stats'
-  map.messenger_player_sign_in '/messenger_player/msn_sign_in', :controller => 'messenger_player/player', :action => 'msn_sign_in'
-  map.namespace :messenger_player do |player|
-    player.resources :stations
-    player.resources :translations
-    player.resources :users, :collection => { :status => :get }
-  end
+  # map.messenger_player '/messengerplayer', :controller => 'messenger_player/player', :action => 'index'
+  # map.connect '/messenger_player', :controller => 'messenger_player/player', :action => 'index'
+  # map.connect '/messenger_player/player/stats.:format', :controller => 'messenger_player/player', :action => 'stats'
+  # map.messenger_player_sign_in '/messenger_player/msn_sign_in', :controller => 'messenger_player/player', :action => 'msn_sign_in'
+  # map.namespace :messenger_player do |player|
+  #   player.resources :stations
+  #   player.resources :translations
+  #   player.resources :users, :collection => { :status => :get }
+  # end
 
+  map.with_options(:path_prefix => 'messenger_player') do |player|
+    player.root :controller => 'pages', :action => 'messenger_home'
+    player.home '/home', :controller => 'pages', :action => 'messenger_home'
+    player.mixes '/mixes', :controller => 'playlists', :action => 'messenger_mixes'
+    player.mixes '/my_mixes', :controller => 'playlists', :action => 'messenger_my_mixes'
+    end
 
   map.resources :campaigns, :member => {:activate => :post, :deactivate => :post}
   

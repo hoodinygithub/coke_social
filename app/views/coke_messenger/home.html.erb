@@ -1,0 +1,51 @@
+<div class="submenu">
+  <div class="columna_izq">
+    <h2>ULTIMOS MIXES</h2>
+    <form class="ord_mixes" action="#" >
+      <select>
+        <option>Ordenar por popularidad</option>
+        <option>-</option>
+      </select>
+    </form>
+  </div>
+  <div class="columna_der">
+    <h2>EMOCIONES</h2>
+  </div>
+</div><!-- .submenu -->
+<div class="contenido">
+  <div class="columna_izq">
+    <ul class="ult_mixes">
+      <% @recent_playlists.each do |playlist| %>
+        <li class="estirar">
+        <%= avatar_for(playlist, :small, :class => 'avatar', :disable_default_css => true) %>
+        <div class="datos">
+          <h3><a class="link_rojo" href="#" title="M&uacute;sica para despertar"><%= playlist.name %></a></h3>
+          <p>Por: <a class="link_gris" href="#" title="Martinez DJ"><%= playlist.owner.name %></a></p>
+        </div>
+        <%= link_to_function 'Play', "Base.Station.request('/playlists/#{playlist.id}.xml', 'xml', Base.Station.stationCollection);Base.Player.random(false)", :class => 'btn_play' %>
+        </li>
+      <% end %>
+    </ul>
+  </div><!-- .columna_izq -->
+  <div class="columna_der">
+    <ul class="emociones">
+      <li><a class="link_rojo" href="#" title="Para celebrar">Para celebrar</a></li>
+      <li><a class="link_rojo" href="#" title="Divertido">Divertido</a></li>
+      <li><a class="link_rojo" href="#" title="House">House</a></li>
+      <li><a class="link_rojo" href="#" title="Sexy">Sexy</a></li>
+      <li><a class="link_rojo" href="#" title="Dance">Dance</a></li>
+      <li><a class="link_rojo" href="#" title="Buena onda">Buena onda</a></li>
+      <li><a class="link_rojo" href="#" title="Reggae">Reggae</a></li>
+      <li><a class="link_rojo" href="#" title="Super">Super</a></li>
+      <li><a class="link_rojo" href="#" title="Para celebrar">Para celebrar</a></li>
+      <li><a class="link_rojo" href="#" title="Divertido">Divertido</a></li>
+      <li><a class="link_rojo" href="#" title="House">House</a></li>
+      <li><a class="link_rojo" href="#" title="Sexy">Sexy</a></li>
+      <li><a class="link_rojo" href="#" title="Dance">Dance</a></li>
+      <li><a class="link_rojo" href="#" title="Buena onda">Buena onda</a></li>
+      <li><a class="link_rojo" href="#" title="Reggae">Reggae</a></li>
+      <li><a class="link_rojo" href="#" title="Super">Super</a></li>
+    </ul>
+  </div><!-- .columna_der -->
+</div><!-- .contenido -->
+

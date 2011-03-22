@@ -1,10 +1,11 @@
-xml.player :autoStart => 'yes', :canRate => '', :owner => @playlist.owner.id, :numResults => @playlist.songs_count do
+xml.player :autoStart => 'yes', :canRate => '', :owner => @playlist.owner.id, :numResults => @playlist.songs_count, :playlist_name => @playlist.name do
   playlist_id = @playlist.id
   songs = @playlist.songs.sort_by { rand }
   songs.each do |song|
     if song && song.artist && song.artist && song.album
       xml.song do
         xml.idsong song.id
+        xml.playlist_name @playlist.name
         xml.album_id song.album.id
         xml.idpl playlist_id
         xml.idband song.artist.id
