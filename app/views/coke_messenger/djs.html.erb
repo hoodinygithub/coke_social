@@ -1,0 +1,32 @@
+  <div class="submenu">
+    <div class="columna">
+      <h2>DJ's</h2>
+      <form class="ord_mixes" action="#" >
+        <select>
+          <option>Ordenar por popularidad</option>
+          <option>-</option>
+        </select>
+      </form>
+    </div>
+  </div><!-- .submenu -->
+
+  <div class="contenido">
+    <div class="columna">
+      <ul class="djs">
+       <% @djs.each do |dj| %>
+			  <li class="estirar">
+          <span class="ord"><%=@djs.index(dj)+1%></span>
+          <%= avatar_for(dj, :small, :class => 'avatar', :disable_default_css => true) %>
+          <div class="datos">
+            <h3><a class="link_rojo" href="#" title="M&uacute;sica para despertar"><%= dj.name %></a></h3>
+            <p>(<%= dj.country.name %>)</p>
+          </div>
+          <div class="num_mixes"><strong><%= dj.total_playlists %></strong> mixes</div>
+          <a class="btn_play" href="#" title="Play">Play</a>
+          <a class="btn_seguir" href="#" title="Seguir al autor">Seguir al autor</a>
+        </li>
+			<% end %>
+      </ul>
+    </div><!-- .columna -->
+  </div><!-- .contenido -->
+  
