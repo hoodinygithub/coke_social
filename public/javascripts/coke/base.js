@@ -40,12 +40,12 @@ $(document).ready(function() {
 var SoundEngines = {
   APIMappings: {
     coke: {
-      vol: 'vol',
-      kill: 'kill'
+      vol:'vol',
+      kill:'kill'
     },
     goom: {
-      vol: 'setVolume',
-      kill: 'stopRadio'
+      vol:'setVolume',
+      kill:'stopRadio'
     }
   }
 }
