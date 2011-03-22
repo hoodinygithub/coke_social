@@ -152,7 +152,7 @@ ActionController::Routing::Routes.draw do |map|
     player.root :controller => 'pages', :action => 'messenger_home'
     player.home '/home', :controller => 'pages', :action => 'messenger_home'
     player.mixes '/mixes', :controller => 'playlists', :action => 'messenger_mixes'
-		player.mixes '/djs', :controller => 'pages', :action => 'messenger_djs'
+    player.mixes '/djs', :controller => 'pages', :action => 'messenger_djs'
     player.mixes '/my_mixes', :controller => 'playlists', :action => 'messenger_my_mixes'
     player.messenger_search '/search', :controller => 'searches', :action => 'messenger_searchresults'
     end
