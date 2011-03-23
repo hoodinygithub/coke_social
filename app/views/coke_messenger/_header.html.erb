@@ -81,7 +81,7 @@
 
   <div id="goom_ui" class="player player_radio">
     <div class="controles">
-      <a class="r_play activo" href="#" title="Play">Play</a>
+      <a class="r_play activo" href="#" onclick="Base.Player.playPause()" title="Play">Play</a>
       <a class="r_random" href="#" title="Random">Random</a>
     </div><!-- .controles -->
     <div class="sonando">
@@ -112,15 +112,13 @@
     <div id="goom_callbacks"></div>
 
     <script type="text/javascript">
-    var pl = [];
-    <% top_playlists.each do |pl| %>
-    pl.push('/playlists/<%= pl.id %>.xml');
-    <% end %>
+    var pl = [<%= top_playlists.map { |p| "'/playlists/#{p.id}'" }.join(',') %>];
     /* Coke player configuration */
     var cFlashVars = {
       debug:1,
       protocol:'rtmp',
       serviceHost:'streaming.cyloop.com/vod',
+      player:'messengerradio_<%= current_site.code %>',
       autostart:0
     };
     var cParams = {

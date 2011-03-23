@@ -41,11 +41,13 @@ var SoundEngines = {
   APIMappings: {
     coke: {
       vol:'vol',
-      kill:'kill'
+      kill:'kill',
+      isstreaming:'isStreaming'
     },
     goom: {
       vol:'setVolume',
-      kill:'stopRadio'
+      kill:'stopRadio',
+      isstreaming:'isStreamRadio'
     }
   }
 }
@@ -160,12 +162,28 @@ Base.Player = {
 
   playPause: function()
   {
-    this.service().pauseStream(this.isPlaying());
+    if (this._player == 'coke')
+    {
+      this.service().pauseStream(this.isPlaying());
+    }
+    else if (this._player == 'goom')
+    {
+      if (this.isPlaying())
+      {
+        this.service().pauseRadio();
+        Base.UI.controlUI().find('.controles .r_play').removeClass('activo');
+      }
+      else
+      {
+        this.service().resumeRadio();
+        Base.UI.controlUI().find('.controles .r_play').addClass('activo');
+      }
+    }
   },
 
   isPlaying: function() 
   {
-   return this.service().isStreaming();
+    return this.service()[SoundEngines.APIMappings[Base.Player._player].isstreaming]();
   },
 
   streamFinished: function() 
@@ -195,7 +213,7 @@ Base.Player = {
 
   stream: function(song)
   {
-    this.service().stream(song.songfile, 'mp3', Number(song.duration));
+    this.service().stream(song.songfile, 'mp3', Number(song.duration), Number(song.plId));
     Base.UI.reset();
     Base.UI.render(song);
   },
@@ -237,8 +255,8 @@ Base.UI = {
     var tickr  = "<ul>";
     if (Base.Player._player == 'coke')
     {
-      this.controlUI().find('.caratula img').attr('src', s.album_avatar);
-          tickr += "<li class='nombre_mix'>" + s.playlist_name + "</li>";
+      this.controlUI().find('.caratula img').attr('src', s.albumAvatar);
+          tickr += "<li class='nombre_mix'>" + s.playlistName + "</li>";
           tickr += "<li>" + s.title + "</li>";
           tickr += "<li>" + s.band + "</li>";
     }
@@ -302,12 +320,12 @@ function StationBean(data)
     $(s).each(function() {
       _songs.push({
         id: $(this).find('idsong').text(),
-        playlist_name: $(this).find('playlist_name').text(),
-        album_id: $(this).find('album_id').text(),
-        idpl: $(this).find('idpl').text(),
+        playlistName: $(this).find('playlist_name').text(),
+        albumId: $(this).find('album_id').text(),
+        plId: $(this).find('idpl').text(),
         idband: $(this).find('idband').text(),
         songfile: $(this).find('songfile').text(),
-        album_avatar: $(this).find('fotofile').text(),
+        albumAvatar: $(this).find('fotofile').text(),
         title: $(this).find('title').text(),
         band: $(this).find('band').text(),
         profile: $(this).find('profile').text(),
