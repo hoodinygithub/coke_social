@@ -1,32 +1,32 @@
 <div class="cabecera">
-	<%= image_tag "coke_messenger/#{current_site.code}_fm.png", :class => 'logo', :width => '114', :height => '82', :alt => 'Destapa tus emociones' %>
-<script>
-  var msg="<%= t('search.messenger_search_hint', :default => 'Search for your favorite artist & music') %>";
-</script>
-<h1 class="claim <%= current_site.code %>">Escucha musica, crea y comparte tus mixes</h1>
-	<div class="nav_cab">
-		<% if logged_in? %>
-			<ul class="conectado">
-				<li><%= link_to "<span>#{t('coke_messenger.logout')}</span>", logout_path, :class => 'link_logout' %></li>
-				<li><%= "#{t('coke_messenger.greeting')} #{link_to current_user.name, '#', :class => 'link_usuario'}" %></li>
-			</ul>
-		<% else %>
-			<a class="btn_connect" href="#" title="Connect">Connect</a>
-		<% end %>
-		<!--<wl:signin></wl:signin>-->
-		<div class="destacados estirar">
-			<%= link_to t('coke_messenger.live_radio'), '#', :class => 'btn_envivo' %>
-			<%= link_to t('coke_messenger.create_mix'), playlist_create_path, :class => 'btn_nuevomix', :target => '_blank' %>
-		</div><!-- .btn_destacados -->
-	</div><!-- .nav -->
+  <%= image_tag "coke_messenger/#{current_site.code}_fm.png", :class => 'logo', :width => '114', :height => '82', :alt => 'Destapa tus emociones' %>
+  <script>
+    var msg="<%= t('search.messenger_search_hint', :default => 'Search for your favorite artist & music') %>";
+  </script>
+  <h1 class="claim <%= current_site.code %>">Escucha musica, crea y comparte tus mixes</h1>
+  <div class="nav_cab">
+    <% if logged_in? %>
+      <ul class="conectado">
+        <li><%= link_to "<span>#{t('coke_messenger.logout')}</span>", logout_path, :class => 'link_logout' %></li>
+        <li><%= "#{t('coke_messenger.greeting')} #{link_to current_user.name, '#', :class => 'link_usuario'}" %></li>
+      </ul>
+    <% else %>
+      <a class="btn_connect" href="#" title="Connect">Connect</a>
+    <% end %>
+    <!--<wl:signin></wl:signin>-->
+    <div class="destacados estirar">
+      <%= link_to t('coke_messenger.live_radio'), '#', :class => 'btn_envivo' %>
+      <%= link_to t('coke_messenger.create_mix'), playlist_create_path, :class => 'btn_nuevomix', :target => '_blank' %>
+    </div><!-- .btn_destacados -->
+  </div><!-- .nav -->
 </div><!-- .cabecera -->
 <ul class="menu_principal">
-	<% %w(home mixes dj my_mixes friends).each do |channel| %>
-		<li <%= "class='inicio'" if channel == 'home' %>><%= link_to t("coke_messenger.#{channel}"), "/messenger_player/#{channel}" , :content_switch_enabled => true %></li>
-	<% end %>
-	  <li class="buscador">
-      <%= render :partial => 'coke_messenger/search_form' %>
-		</li>
+  <% %w(home mixes djs my_mixes friends).each do |channel| %>
+    <li <%= "class='inicio'" if channel == 'home' %>><%= link_to t("coke_messenger.#{channel}"), "/messenger_player/#{channel}" , :content_switch_enabled => true %></li>
+  <% end %>
+  <li class="buscador">
+  <%= render :partial => 'coke_messenger/search_form' %>
+  </li>
 </ul><!-- .menu_principal -->
 <div class="reproductor">
 
@@ -89,19 +89,14 @@
         <img src="/images/coke_messenger/cds/sim_caratula1.jpg" alt="Radio" width="35" height="35" />
       </div><!-- .caratula -->
       <div class="cancion">
-        <p>Live Radio México</p>
+        <p>Live Coke Radio</p>
         <div class="mascara"></div>
-        <ul>
-          <li class="nombre_mix">M&uacute;sica para despertar</li>
-          <li>The tings tings - We walk</li>
-          <li>Grupo - Titulo de la canci&oacute;n</li>
-        </ul>
       </div>
     </div><!-- .sonando -->
     <div class="volumen">
       <a class="vol_menos" href="#" title="Bajar volumen">Menos</a>
       <div class="barra">
-        <div class="relleno" style="width:50%;">
+        <div class="relleno" style="width:50px;left:-9px;">
           <a class="puntero" href="#">Puntero</a>
         </div>
       </div><!-- .barra -->
@@ -114,6 +109,7 @@
   <div class="sound_engines">
     <div id="coke_player"></div>
     <div id="goom_player"></div>
+    <div id="goom_callbacks"></div>
 
     <script type="text/javascript">
     var pl = [];
@@ -137,16 +133,28 @@
     swfobject.embedSWF('/flash/sound_stub.swf', 'coke_player', '1', '1', '9.0.0', false, cFlashVars, cParams, cAttribs);
     /*****************************/
     /* Goom player configuration */
+    // Exposed goom engine callbacks
+    var goomui = document.getElementById('goom_callbacks');
+    goomui.currentMediaChanged = function(eobj)
+    {
+      var song = $.parseJSON(eobj);
+      if (song.title) Base.UI.render(song);
+    };
+
     var gFlashVars = {
       urlApi:'http://api.goomradio.com',
       eStatUrl: 'http://www.goomradio.com/mini-audio/eStatNativeFlashTag.swf',
       defaultVolume: '50',
-      uiid: 'goom_player'
+      uiid: 'goom_callbacks'
     };
     var gParams = {
-      allowScriptAccess:'always'
+      allowscriptaccess:'always'
     };
-    swfobject.embedSWF('http://www.goomradio.com/mini-audio/goom-miniAudioLib.swf', 'goom_player', '1', '1', '9.0.0', false, gFlashVars, gParams);
+    var gAttribs = {
+      id:'goom_engine',
+      name:'goom_engine'
+    };
+    swfobject.embedSWF('http://www.goomradio.com/mini-audio/goom-miniAudioLib.swf', 'goom_player', '1', '1', '9.0.0', {}, gFlashVars, gParams, gAttribs);
     /*****************************/
     </script>
   </div>
