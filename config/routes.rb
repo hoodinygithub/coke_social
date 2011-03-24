@@ -155,6 +155,7 @@ ActionController::Routing::Routes.draw do |map|
     player.djs '/djs', :controller => 'pages', :action => 'messenger_djs'
     player.my_mixes '/my_mixes', :controller => 'playlists', :action => 'messenger_my_mixes'
     player.messenger_search '/search', :controller => 'searches', :action => 'messenger_searchresults'
+    player.messenger_search_emotions '/search_emotions/:q', :controller => 'searches', :action => 'messenger_search_emotion_results'
   end
 
   map.resources :campaigns, :member => {:activate => :post, :deactivate => :post}

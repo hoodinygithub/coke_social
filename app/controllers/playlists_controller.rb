@@ -36,14 +36,21 @@ class PlaylistsController < ApplicationController
   end
 
   def messenger_mixes
-    @mixes = current_site.top_playlists.all(:limit => 50, :order => 'updated_at desc')
+    @mixes = current_site.top_playlists.all(:limit => 50)
     render 'coke_messenger/mixes', :layout => layout_unless_xhr('messenger')
   end
 
   def messenger_my_mixes
-		@my_mixes = current_user.playlists.all(:limit => 50, :order => 'updated_at desc')
-    render 'coke_messenger/my_mixes', :layout => layout_unless_xhr('messenger')
-	end
+        @my_mixes = current_user.playlists.all.paginate(:per_page => 4, :page => params[:page], :order => 'updated_at desc')
+    if request.xhr? and params[:page].to_i >1
+      logger.debug" IN XHR if condition and params[:page]=#{params[:page]}"
+	  # sleep 5
+      render :partial=> 'coke_messenger/my_mixes'#, :collection=>@my_mixes
+    else
+      logger.debug" Not in  XHR if condition" 
+      render 'coke_messenger/my_mixes', :layout => layout_unless_xhr('messenger')
+    end 
+  end
   
   def avatar_update
     @playlist = Playlist.find(params[:id])

@@ -79,6 +79,34 @@ class SearchesController < ApplicationController
     @page = params[:page] || 1
     @counts = {}
     @results = {}
+    @title = t('messenger_player.search.title')
+    msg = "msgr"
+    if !@query.blank?
+        search_results(msg,@search_types)
+    else
+      @search_types.each do |t|
+        @results.store(t, [])
+        @counts.store(t, 0)
+      end
+    end
+    render :layout => "messenger"
+  end
+
+  def messenger_search_emotion_results
+    @query = CGI::unescape(params[:q]) rescue nil
+    @search_types ||= [:playlists]
+    @sort_types = { :latest => { :playlists => 'updated_at DESC', :users => 'created_at DESC' }, \
+                    :alphabetical => 'normalized_name ASC', \
+                    :relevance => nil, \
+                    :highest_rated => { :playlists => 'rating_cache DESC', :users => nil }, \
+                    :top => { :playlists => 'playlist_total_plays DESC', :users => nil }
+                  }
+
+    @sort_type =  :relevance
+    @page = params[:page] || 1
+    @counts = {}
+    @results = {}
+    @title = t('messenger_player.emotions.title')
     msg = "msgr"
     if !@query.blank?
         search_results(msg,@search_types)
