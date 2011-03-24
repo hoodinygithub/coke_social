@@ -122,11 +122,13 @@ module SslRequirementWithDiffDomain
         logger.info "[DEBUG] SSL: true - request: false - referer: #{request.env['HTTP_REFERER']} - request: #{request.request_uri} - controller: #{controller_name}##{action_name} - xhr: #{request.xhr?}" 
         redirect_to(ssl_protocol + ssl_domain + ssl_request_uri)
         flash.keep
+        flash[:redirected_from] = request.url
         return false
       elsif request_ssl? && !ssl_required?
         logger.info "[DEBUG] SSL: false - request: true - referer: #{request.env['HTTP_REFERER']} - request: #{request.request_uri} - controller: #{controller_name}##{action_name} - xhr: #{request.xhr?}"        
         redirect_to(ssl_protocol + ssl_domain(false) + ssl_request_uri(false))
         flash.keep
+        flash[:redirected_from] = request.url
         return false
       else
         logger.info "[DEBUG] Nothing - referer: #{request.env['HTTP_REFERER']} - request: #{request.request_uri} - controller: #{controller_name}##{action_name} - xhr: #{request.xhr?}"

@@ -48,7 +48,10 @@ class SessionsController < ApplicationController
       # render :nothing => true
     elsif params[:wrap_verification_code]
       # Windows Connect through popup login
-      user = WindowsConnect.parse_verification_code(params[:wrap_verification_code], current_site_url + new_session_path, cookies, params[:wrap_client_state], params[:exp])
+      #  If the WindowsConnect button was on the SSL domain, need to specify that URL as the callback.
+      callback = (flash[:redirected_from] and flash[:redirected_from]["https"]) ? "https://#{current_site.ssl_domain}" : current_site_url
+      flash.discard(:redirected_from)
+      user = WindowsConnect.parse_verification_code(params[:wrap_verification_code], callback + new_session_path, cookies, params[:wrap_client_state], params[:exp])
       
       handle_windows_sso_user(user)
 
