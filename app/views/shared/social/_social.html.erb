@@ -25,13 +25,16 @@ function onWinConnectLogin(p_event) {
     case Microsoft.Live.AuthState.authenticated:
       // alert('Windows Connect login');
       document.location = current_url_site + '/login?' + document.location.search
-        + '&page=<%= page if defined? page %>'
+        + '&page=<%= page if defined? page %>';
       break;
     case Microsoft.Live.AuthState.failed:
       alert('Windows Connect login fail');
       break;
     case Microsoft.Live.AuthState.canceled:
-      alert('Windows Connect login canceled');
+      // alert('Windows Connect login canceled');
+      // SSL-page authentication drops to this auth state for some reason
+      document.location = current_url_site + '/login?' + document.location.search
+              + '&page=<%= page if defined? page %>';
       break;
     default:
       alert('Windows Connect login state: ' + state);
