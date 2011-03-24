@@ -112,7 +112,7 @@
     <div id="goom_callbacks"></div>
 
     <script type="text/javascript">
-    var pl = [<%= top_playlists.map { |p| "'/playlists/#{p.id}'" }.join(',') %>];
+    var pl = [<%= top_playlists.map { |p| "'/playlists/#{p.id}.xml'" }.join(',') %>];
     /* Coke player configuration */
     var cFlashVars = {
       debug:1,
