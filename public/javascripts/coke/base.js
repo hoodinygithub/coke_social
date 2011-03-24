@@ -211,20 +211,20 @@ Base.Player = {
 
   next: function() 
   {
-    if(index < (_playlist.length - 1))
+    if(this.index < (this._playlist.length - 1))
     {
-      this.stream(_playlist[++index]);
+      this.stream(this._playlist[++(this.index)]);
     }
     else
     {
-      index = 0;
+      this.index = 0;
       if (this._randomized)
       {
         Base.Station.request(pl[Math.round(Math.random() * (pl.length - 1))], 'xml', Base.Station.stationCollection);
       }
       else
       {
-        this.stream(_playlist[0]);
+        this.stream(this._playlist[0]);
       }
     }
   },
@@ -232,16 +232,14 @@ Base.Player = {
   stream: function(song)
   {
     this.service().stream(song.songfile, 'mp3', Number(song.duration), Number(song.plId));
-    Base.UI.reset();
-    Base.UI.render(song);
   },
 
   _playlist: {},
   playlist: function(bean)
   {
-    index = 0;
-    _playlist = bean;
-    this.stream(_playlist[index]);
+    this.index = 0;
+    this._playlist = bean;
+    this.stream(this._playlist[this.index]);
   },
 
 };
@@ -267,16 +265,18 @@ Base.UI = {
     this.controlUI().find('.cancion li').empty();
   },
 
-  render: function(s)
+  render: function()
   {
+    this.reset();
+    var s = Base.Player._playlist[Base.Player.index];
     if ($('div').hasClass('tickercontainer')) $('.tickercontainer').remove();
     var tickr  = "<ul>";
     if (Base.Player._player == 'coke')
     {
       this.controlUI().find('.caratula img').attr('src', s.albumAvatar);
-          tickr += "<li class='nombre_mix'>" + s.playlistName + "</li>";
-          tickr += "<li>" + s.title + "</li>";
-          tickr += "<li>" + s.band + "</li>";
+      tickr += "<li class='nombre_mix'>" + s.playlistName + "</li>";
+      tickr += "<li>" + s.title + "</li>";
+      tickr += "<li>" + s.band + "</li>";
     }
     else
     {
