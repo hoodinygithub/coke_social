@@ -1,0 +1,36 @@
+  <div class="submenu">
+    <div class="columna">
+      <h2><%= "#{t('messenger_player.emotions.tab_title')} \"#{@query.nil? ? '' : @query}\"" %></h2>
+      <form class="ord_mixes" action="#" >
+        <select>
+          <option>Ordenar por popularidad</option>
+          <option>-</option>
+        </select>
+      </form>
+    </div>
+  </div><!-- .submenu -->
+  <div class="contenido">
+    <div class="columna">
+      <ul class="mis_mixes">
+        <% if !@results[:playlists].blank? and @results[:playlists].size > 0 %>
+				<% @results[:playlists].each do|playlist| %>
+				<li class="estirar">
+					<%= link_to avatar_for(playlist, :small), radio_path(:station_id => playlist.station.id),:alt=>"portada del Mix" %>
+					<div class="datos">
+						<h3><%= link_to playlist.name, radio_path(:station_id => playlist.station.id) ,:class => "link_rojo" %></h3>
+					</div>
+					<div class="messenger_rating"><%= rating(playlist) %></div>
+					<a class="btn_play" href="#" title="Play">Play</a>
+				</li>
+					
+				<% end %>
+			<% else %>
+				<li class="no_resultados">
+					<%= t('messenger_player.emotions.no_results') %>
+				</li>
+			<% end %>
+          
+        
+      </ul>
+    </div><!-- .columna -->
+  </div><!-- .contenido -->

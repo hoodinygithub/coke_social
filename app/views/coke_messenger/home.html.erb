@@ -29,22 +29,12 @@
   </div><!-- .columna_izq -->
   <div class="columna_der">
     <ul class="emociones">
-      <li><a class="link_rojo" href="#" title="Para celebrar">Para celebrar</a></li>
-      <li><a class="link_rojo" href="#" title="Divertido">Divertido</a></li>
-      <li><a class="link_rojo" href="#" title="House">House</a></li>
-      <li><a class="link_rojo" href="#" title="Sexy">Sexy</a></li>
-      <li><a class="link_rojo" href="#" title="Dance">Dance</a></li>
-      <li><a class="link_rojo" href="#" title="Buena onda">Buena onda</a></li>
-      <li><a class="link_rojo" href="#" title="Reggae">Reggae</a></li>
-      <li><a class="link_rojo" href="#" title="Super">Super</a></li>
-      <li><a class="link_rojo" href="#" title="Para celebrar">Para celebrar</a></li>
-      <li><a class="link_rojo" href="#" title="Divertido">Divertido</a></li>
-      <li><a class="link_rojo" href="#" title="House">House</a></li>
-      <li><a class="link_rojo" href="#" title="Sexy">Sexy</a></li>
-      <li><a class="link_rojo" href="#" title="Dance">Dance</a></li>
-      <li><a class="link_rojo" href="#" title="Buena onda">Buena onda</a></li>
-      <li><a class="link_rojo" href="#" title="Reggae">Reggae</a></li>
-      <li><a class="link_rojo" href="#" title="Super">Super</a></li>
+      <% emotions = ["Para celebrar","Divertido","House","Sexy","Dance","Reggae","super"] %>	
+      <% emotions.each do|e| %>
+	    <li>
+	    	<%= link_to e, messenger_search_emotions_path(:q => CGI::escape(e)),:class=>"link_rojo" %>
+		</li>	
+	  <% end%> 
     </ul>
   </div><!-- .columna_der -->
 </div><!-- .contenido -->
