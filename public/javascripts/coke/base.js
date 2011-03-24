@@ -47,7 +47,7 @@ var SoundEngines = {
     goom: {
       vol:'setVolume',
       kill:'stopRadio',
-      isstreaming:'isStreamRadio'
+      isstreaming:'isRadioPaused'
     }
   }
 }
@@ -96,6 +96,17 @@ Base.Station = {
       Base.UI.setControlUI(Base.Player._player);
     }
     Base.Util.XHR(req, type, func);
+  },
+
+  random: function()
+  {
+    if (Base.Player._player == 'goom') 
+    {
+      Base.Player.player('coke');
+      Base.UI.setControlUI(Base.Player._player);
+      Base.Player.random(true);
+    }
+    this.request(pl[Math.round(Math.random() * (pl.length - 1))], 'xml', Base.Station.stationCollection);
   },
 
   // Callback
@@ -168,7 +179,14 @@ Base.Player = {
     }
     else if (this._player == 'goom')
     {
-      if (this.isPlaying())
+      /*
+       * !NOTE add new method just for goom
+       * Logic here is a bit strange.
+       * Coke checks if player isPlaying to see whether to play/pause
+       * Goom checks if player isPaused to figure out the same logic
+       * verbiage doesn't really represent it's meaning here
+       */
+      if (!this.isPlaying())
       {
         this.service().pauseRadio();
         Base.UI.controlUI().find('.controles .r_play').removeClass('activo');
@@ -293,6 +311,8 @@ Base.UI = {
       $('.btn_envivo').bind('click', function(e) {
         Base.Player.player('goom');
         Base.UI.setControlUI(Base.Player._player);
+        if (!Base.UI.controlUI().find('.controles .r_play').hasClass('activo')) 
+          Base.UI.controlUI().find('.controles .r_play').addClass('activo');
       });
     }
     else if (ui == 'goom')
