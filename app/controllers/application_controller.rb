@@ -4,14 +4,6 @@ class ApplicationController < ActionController::Base
           Application::Activities, Application::MsnMessenger, Application::Stations
   include AuthenticatedSystem
 
-  # Avoid loop on root_path (can be removed when the site opens to the public)
-  def go_home_if_logged_in
-    if logged_in? 
-      redirect_to(home_path)
-      false
-    end
-  end
-  
   # SSL
   include SslRequirementWithDiffDomain
   ssl_required_object :current_site

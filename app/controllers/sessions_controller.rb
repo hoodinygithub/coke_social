@@ -1,7 +1,6 @@
-require 'cgi'
 class SessionsController < ApplicationController
   before_filter :set_return_to, :only => :new
-  skip_before_filter :login_required  
+  skip_before_filter :login_required
   before_filter :go_home_if_logged_in, :except => :destroy
   ssl_required_with_diff_domain :edit, :update, :create
 
@@ -34,20 +33,20 @@ class SessionsController < ApplicationController
     #  else
     #    redirect_to msn_login_url
     #  end
-    if !params[:code].nil?
+    if params[:code]
       # Faceboook Connect through full page login
       # FacebookConnect.parse_facebook_code(params[:code], current_site.domain)
       user = FacebookConnect.parse_code(params[:code], request.url[/^.*\//])
       # puts user.inspect
       handle_facebook_sso_user(user);
-    elsif !params[:access_token].nil?
+    elsif params[:access_token]
       # Facebook Connect through popup login
       user = FacebookConnect.parse_access_token(params[:access_token], params[:expires])
       handle_facebook_sso_user(user)
 
       # Called by the Facebook popup before closing.
       # render :nothing => true
-    elsif !params[:wrap_verification_code].nil?
+    elsif params[:wrap_verification_code]
       # Windows Connect through popup login
       user = WindowsConnect.parse_verification_code(params[:wrap_verification_code], current_site_url + new_session_path, cookies, params[:wrap_client_state], params[:exp])
       
@@ -242,8 +241,16 @@ private
     end
   end
 
-  def compute_layout
-    [:new, :create].include?(action_name.to_sym) ? "no_search_form" : "application" 
-  end
+  #def compute_layout
+  #  [:new, :create].include?(action_name.to_sym) ? "no_search_form" : "application" 
+  #end
 
+  # Skip login page if logged in.
+  def go_home_if_logged_in
+    if logged_in?
+      redirect_to(home_path)
+      false
+    end
+  end
 end
+
