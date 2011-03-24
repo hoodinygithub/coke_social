@@ -21,7 +21,8 @@ class PagesController < ApplicationController
   end
 
   def messenger_djs
-    @djs = current_site.top_djs.all(:limit => 50, :order => 'updated_at desc')
+    @title = t('messenger_player.dj.title')
+    @djs = current_site.top_djs.all(:limit => 50)
     render 'coke_messenger/djs', :layout => layout_unless_xhr('messenger')
   end
 
