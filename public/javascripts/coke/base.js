@@ -47,7 +47,7 @@ var SoundEngines = {
     goom: {
       vol:'setVolume',
       kill:'stopRadio',
-      isstreaming:'isStreamRadio'
+      isstreaming:'isRadioPaused'
     }
   }
 }
@@ -96,6 +96,17 @@ Base.Station = {
       Base.UI.setControlUI(Base.Player._player);
     }
     Base.Util.XHR(req, type, func);
+  },
+
+  random: function()
+  {
+    if (Base.Player._player == 'goom') 
+    {
+      Base.Player.player('coke');
+      Base.UI.setControlUI(Base.Player._player);
+      Base.Player.random(true);
+    }
+    this.request(pl[Math.round(Math.random() * (pl.length - 1))], 'xml', Base.Station.stationCollection);
   },
 
   // Callback
@@ -168,7 +179,14 @@ Base.Player = {
     }
     else if (this._player == 'goom')
     {
-      if (this.isPlaying())
+      /*
+       * !NOTE add new method just for goom
+       * Logic here is a bit strange.
+       * Coke checks if player isPlaying to see whether to play/pause
+       * Goom checks if player isPaused to figure out the same logic
+       * verbiage doesn't really represent it's meaning here
+       */
+      if (!this.isPlaying())
       {
         this.service().pauseRadio();
         Base.UI.controlUI().find('.controles .r_play').removeClass('activo');
@@ -193,20 +211,20 @@ Base.Player = {
 
   next: function() 
   {
-    if(index < (_playlist.length - 1))
+    if(this.index < (this._playlist.length - 1))
     {
-      this.stream(_playlist[++index]);
+      this.stream(this._playlist[++(this.index)]);
     }
     else
     {
-      index = 0;
+      this.index = 0;
       if (this._randomized)
       {
         Base.Station.request(pl[Math.round(Math.random() * (pl.length - 1))], 'xml', Base.Station.stationCollection);
       }
       else
       {
-        this.stream(_playlist[0]);
+        this.stream(this._playlist[0]);
       }
     }
   },
@@ -214,16 +232,14 @@ Base.Player = {
   stream: function(song)
   {
     this.service().stream(song.songfile, 'mp3', Number(song.duration), Number(song.plId));
-    Base.UI.reset();
-    Base.UI.render(song);
   },
 
   _playlist: {},
   playlist: function(bean)
   {
-    index = 0;
-    _playlist = bean;
-    this.stream(_playlist[index]);
+    this.index = 0;
+    this._playlist = bean;
+    this.stream(this._playlist[this.index]);
   },
 
 };
@@ -249,16 +265,18 @@ Base.UI = {
     this.controlUI().find('.cancion li').empty();
   },
 
-  render: function(s)
+  render: function()
   {
+    this.reset();
+    var s = arguments.length > 0 ? arguments[0] : Base.Player._playlist[Base.Player.index];
     if ($('div').hasClass('tickercontainer')) $('.tickercontainer').remove();
     var tickr  = "<ul>";
     if (Base.Player._player == 'coke')
     {
       this.controlUI().find('.caratula img').attr('src', s.albumAvatar);
-          tickr += "<li class='nombre_mix'>" + s.playlistName + "</li>";
-          tickr += "<li>" + s.title + "</li>";
-          tickr += "<li>" + s.band + "</li>";
+      tickr += "<li class='nombre_mix'>" + s.playlistName + "</li>";
+      tickr += "<li>" + s.title + "</li>";
+      tickr += "<li>" + s.band + "</li>";
     }
     else
     {
@@ -293,6 +311,8 @@ Base.UI = {
       $('.btn_envivo').bind('click', function(e) {
         Base.Player.player('goom');
         Base.UI.setControlUI(Base.Player._player);
+        if (!Base.UI.controlUI().find('.controles .r_play').hasClass('activo')) 
+          Base.UI.controlUI().find('.controles .r_play').addClass('activo');
       });
     }
     else if (ui == 'goom')
