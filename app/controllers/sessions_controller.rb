@@ -96,6 +96,8 @@ class SessionsController < ApplicationController
 
     if wlid_web_login?
       redirect_to(msn_logout_url)
+    elsif params.has_key? :redirect_to
+      redirect_to params[:redirect_to]
     else
       redirect_back_or_default('/')
     end

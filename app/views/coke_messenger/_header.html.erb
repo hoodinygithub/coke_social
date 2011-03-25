@@ -7,8 +7,8 @@
   <div class="nav_cab">
     <% if logged_in? %>
       <ul class="conectado">
-        <li><%= link_to "<span>#{t('coke_messenger.logout')}</span>", logout_path, :class => 'link_logout' %></li>
-        <li><%= "#{t('coke_messenger.greeting')} #{link_to current_user.name, '#', :class => 'link_usuario'}" %></li>
+        <li><%= link_to "<span>#{t('coke_messenger.logout')}</span>", logout_path(:redirect_to => '/messenger_player'), :class => 'link_logout' %></li>
+        <li><%= "#{t('coke_messenger.greeting')} #{link_to current_user.name, '/my/dashboard', :target => 'blank', :class => 'link_usuario'}" %></li>
       </ul>
     <% else %>
       <a class="btn_connect" href="#" title="Connect">Connect</a>
