@@ -1,10 +1,5 @@
 <% form_for :search, :url => messenger_search_path , :html => {:class=>"buscar", :method => :get} do |f| %>
       <input class="boton" type="submit" value="Buscar" />
       <%= text_field_tag :q, @query.nil? ? t('search.messenger_search_hint') : @query ,  {:id => "btnBuscar", :class => "texto", :onfocus => "clearInput('#{t('search.messenger_search_hint')}', this);", :onblur => "restoreInput('#{t('search.messenger_search_hint')}', this);"} %>
-      <% #= f.hidden_field :scope, :name => :scope, :value => @active_scope.to_s %>
-      <%= f.hidden_field :sort, :name => :sort, :value => @sort_type.blank? ? "relevance" : @sort_type.to_s %>
-      <% #= f.hidden_field :page, :name => :page, :value => @page.to_s %>
-   <!--
-   <input id="btnBuscar" class="texto" type="text" value="Busca amigos o mixes" />
-   -->
+      <% #= f.hidden_field :sort, :name => :sort, :value => @sort_type.blank? ? "relevance" : @sort_type.to_s %>
 <% end %>
