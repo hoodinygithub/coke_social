@@ -7,7 +7,7 @@
     <%= javascript_include_tag 'jquery.rating' %>
 <div class="submenu">
   <div class="columna">
-    <h2>MIXES</h2>
+    <h2><%= t('messenger_player.mixes.tab_title') %></h2>
     <form class="ord_mixes" action="#" >
       <select>
         <option>Ordenar por popularidad</option>
@@ -28,12 +28,11 @@
           <%= avatar_for(playlist, :small, :class => 'avatar', :disable_default_css => true) %>
           <div class="datos">
             <h3><%= link_to playlist.name, radio_path(:station_id => playlist.station.id) ,:class => "link_rojo" %></h3>
-            <p><%= t("basics.by")%>: <%= link_to playlist.owner.name, user_path(playlist.owner) ,:class => "link_gris" %></a></p>
+            <p><%= t("basics.by")%>: <%= link_to playlist.owner.name, "/#{playlist.owner}/playlists" ,:class => "link_gris" %></a></p>
             </div>
           <div class="messenger_rating" style="margin-top: 10px;"><%= rating(playlist) %></div>
-          
-          <a class="btn_play" href="#" title="Play">Play</a>
-          <a class="btn_seguir" href="#" title="Seguir al autor">Seguir al autor</a>
+		  <a class="btn_play" href="#" title="Play"><%= t('messenger_player.play') %></a>
+		  <a class="btn_seguir" href="#" title="<%= t('messenger_player.follow_the_author') %>"><%= t('messenger_player.follow_the_author') %></a>
         </li>
       <% end %>
     </ul>
