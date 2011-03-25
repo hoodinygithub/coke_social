@@ -13,7 +13,7 @@
 </div><!-- .submenu -->
 <div class="contenido">
 	<div class="columna_busq">
-		<h3 class="busq_titulo"><%=  t('messenger_player.search.mixes') %></h3>
+		<h3 class="busq_titulo"><%=  t('messenger_player.mixes').capitalize %></h3>
 		<p class="busq_resultados"><span><%= @counts[:playlists] %></span> <%=  t('messenger_player.search.results') %></p>
 		<ul class="busquedas">
 			<% if !@results[:playlists].blank? and @results[:playlists].size > 0 %>
@@ -45,7 +45,7 @@
 							<h3><%= link_to user.name, "/#{user}/playlists",  :class => "link_rojo" %></h3>
 							<p><%= user.country.name %></p>
 						</div>
-						<div class="num_mixes"><strong><%= number_with_delimiter(user.total_playlists) %></strong> mixes</div>
+						<div class="num_mixes"><strong><%= number_with_delimiter(user.total_playlists) %></strong> <%= t('messenger_player.mixes') %></div>
 					</li>
 				<% end %>
 			<% else %>
