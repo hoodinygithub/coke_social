@@ -36,6 +36,7 @@ class PlaylistsController < ApplicationController
   end
 
   def messenger_mixes
+    @title = t('messenger_player.mixes.title')
     @mixes = current_site.top_playlists.all(:limit => 50)
     render 'coke_messenger/mixes', :layout => layout_unless_xhr('messenger')
   end
