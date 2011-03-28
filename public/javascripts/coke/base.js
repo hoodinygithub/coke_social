@@ -110,10 +110,11 @@ Base.Station = {
   },
 
   // Callback
+  _station: null,
   stationCollection: function(data) 
   {
-    var _station = new StationBean(data.responseXML);
-    Base.Player.playlist(_station.songs);
+    Base.Station._station = new StationBean(data.responseXML);
+    Base.Player.playlist(Base.Station._station.songs);
   }
 
 };
@@ -169,6 +170,11 @@ Base.Player = {
   {
     Base.UI.random(b);
     this._randomized =  b;
+  },
+
+  pause: function()
+  {
+    if(this.isPlaying()) this.service().pauseStream(true);
   },
 
   playPause: function()
@@ -294,7 +300,7 @@ Base.UI = {
     if (Base.Player._player == 'coke')
     {
       var rate = "";
-      var rating = Number(s.rating);
+      var rating = Number(Math.floor(Base.Station._station.rating));
       for(var r = 0; r < 5; r++)
       {
         if (r < rating)
@@ -302,6 +308,7 @@ Base.UI = {
         else
           rate += "<span class='vacia'></span>"
       }
+      this.controlUI().find('a.punt_botellas, a.r_info').attr('href', ('/playlists?station_id=' + Base.Station._station.sid));
       this.controlUI().find('a.punt_botellas').append(rate);
     }
   },
@@ -351,6 +358,10 @@ function StationBean(data)
   this.owner = _xmlRoot.attr('owner');
 
   this.songCount = _xmlRoot.attr('numResults');
+
+  this.rating = _xmlRoot.attr('rating');
+
+  this.sid = _xmlRoot.attr('station_id');
 
   this.getSongs = function(s)
   {
