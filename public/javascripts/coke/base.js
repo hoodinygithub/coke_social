@@ -209,7 +209,7 @@ Base.Player = {
     this.next();
   },
 
-  next: function() 
+  next: function()
   {
     if(this.index < (this._playlist.length - 1))
     {
@@ -217,15 +217,15 @@ Base.Player = {
     }
     else
     {
-      this.index = 0;
+      //this.index = 0;
       if (this._randomized)
       {
         Base.Station.request(pl[Math.round(Math.random() * (pl.length - 1))], 'xml', Base.Station.stationCollection);
       }
-      else
-      {
-        this.stream(this._playlist[0]);
-      }
+      //else
+      //{
+      //  this.stream(this._playlist[0]);
+      //}
     }
   },
 
@@ -263,6 +263,10 @@ Base.UI = {
   reset: function()
   {
     this.controlUI().find('.cancion li').empty();
+    if (Base.Player._player == 'coke')
+    {
+      this.controlUI().find('a.punt_botellas').empty();
+    }
   },
 
   render: function()
@@ -284,9 +288,22 @@ Base.UI = {
       tickr += "<li>" + s.title + "</li>";
     }
     tickr += "</ul>";
-
     this.controlUI().find('.mascara').after(tickr);
     this.controlUI().find('.cancion ul').liScroll({travelocity: 0.05});
+
+    if (Base.Player._player == 'coke')
+    {
+      var rate = "";
+      var rating = Number(s.rating);
+      for(var r = 0; r < 5; r++)
+      {
+        if (r < rating)
+          rate += "<span class='llena'></span>"
+        else
+          rate += "<span class='vacia'></span>"
+      }
+      this.controlUI().find('a.punt_botellas').append(rate);
+    }
   },
 
   random: function(b)
