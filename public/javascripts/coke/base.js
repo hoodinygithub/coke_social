@@ -104,8 +104,8 @@ Base.Station = {
     {
       Base.Player.player('coke');
       Base.UI.setControlUI(Base.Player._player);
-      Base.Player.random(true);
     }
+    Base.Player.random(true);
     this.request(pl[Math.round(Math.random() * (pl.length - 1))], 'xml', Base.Station.stationCollection);
   },
 
@@ -316,9 +316,15 @@ Base.UI = {
   random: function(b)
   {
     if (b)
-      this.controlUI().find('.r_random').addClass('active');
+    {
+      this.controlUI().find('.controles .r_random').addClass('active').css('cursor', 'default').unbind('click');
+    }
     else
-      this.controlUI().find('.controles .r_random').removeClass('active');
+    {
+      this.controlUI().find('.controles .r_random').removeClass('active').css('cursor', 'pointer').bind('click', function() {
+        Base.Station.random();
+      });
+    }
   },
 
   contentswp: function(data)

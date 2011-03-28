@@ -149,7 +149,7 @@ ActionController::Routing::Routes.draw do |map|
   # end
 
   map.with_options(:path_prefix => 'messenger_player') do |player|
-    player.root :controller => 'pages', :action => 'messenger_home'
+    player.messenger '/', :controller => 'pages', :action => 'messenger_home'
     player.home '/home', :controller => 'pages', :action => 'messenger_home'
     player.mixes '/mixes', :controller => 'playlists', :action => 'messenger_mixes'
     player.djs '/djs', :controller => 'pages', :action => 'messenger_djs'
