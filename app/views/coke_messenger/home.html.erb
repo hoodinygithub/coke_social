@@ -30,12 +30,11 @@
   </div><!-- .columna_izq -->
   <div class="columna_der">
     <ul class="emociones">
-      <% emotions = ["Para celebrar","Divertido","House","Sexy","Dance","Reggae","super"] %>	
-      <% emotions.each do|e| %>
-	    <li>
-	    	<%= link_to e, messenger_search_emotions_path(:q => CGI::escape(e)),:class=>"link_rojo" %>
-		</li>	
-	  <% end%> 
+      <% current_site.tag_counts_from_playlists.each do|em| %>
+        <li>
+        <%= link_to em.name, messenger_search_emotions_path(:q => CGS::escape(em.name)), :class => 'link_rojo', :content_switch_enabled => true %>
+        </li>	
+      <% end%> 
     </ul>
   </div><!-- .columna_der -->
 </div><!-- .contenido -->
