@@ -26,7 +26,7 @@ $(document).ready(function() {
     containment:'parent',
     drag:slider.ondrag});
 
-  $('a[content_switch_enabled=true]').bind('click', function() {
+  $('a[content_switch_enabled=true]').livequery('click', function() {
     Base.Util.XHR($(this).attr('href'), 'text', Base.UI.contentswp);
     return false;
   });
