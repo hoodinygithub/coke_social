@@ -217,9 +217,9 @@ Base.Player = {
 
   next: function()
   {
-    if(this.index < (this._playlist.length - 1))
+    if (this.index < (this._playlist.length - 1))
     {
-      this.stream(this._playlist[++(this.index)]);
+      this.stream(this._playlist[this.index + 1]);
     }
     else
     {
@@ -237,7 +237,10 @@ Base.Player = {
 
   stream: function(song)
   {
-    this.service().stream(song.songfile, 'mp3', Number(song.duration), Number(song.plId));
+    /* KEEP EYE ON LOGIC BELOW */
+    var valid = this.service().stream(song.songfile, 'mp3', Number(song.duration), Number(song.plId));
+    if (valid) this.index++;
+    /***************************/
   },
 
   _playlist: {},
