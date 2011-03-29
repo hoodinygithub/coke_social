@@ -1,0 +1,27 @@
+    <div class="aviso copiar" style="background:none;margin-top:none;margin-top:3px;margin-left:-25px;" >
+      <div class="aviso_cab">
+        <h1><%= t('playlists.copy') %></h1>
+      </div>
+        <p><%= t('messenger_player.layers.copy_mix_layer.info') %></p>
+        <div class="mix_portada">
+         <%= link_to avatar_for(@playlist, :large, :class => 'popup_mix_image',:size=>"109x103"),
+      radio_path(:station_id => @playlist.station.id) %>
+        </div>
+        <div class="mix_datos">
+	    <h3><%= link_to @playlist.name, radio_path(:station_id => @playlist.station.id), :class => "link_rojo" %></h3>
+        <p><strong><%= t('basics.by').camelize %>:</strong>
+        <%= link_to(@playlist.owner, @playlist.owner, :target => "_blank", :class => "link_grisb") %></p>
+        <p><%= station_contains(@playlist.station.playable, 3, true, :target => '_blank') %></p>
+	   
+	    </div>
+        <form class="f_copiar estirar" action="" method="post">
+          <label><span>Nombre del nuevo Mix:</span> 
+		  <input type="text" class="texto" name="playlist[name]" id="playlist_name" />
+		  </label>
+		  <a href="#" id="duplicate_button" class="boton" style="text-decoration:none;"
+	      onclick="Base.playlists.duplicate('<%= @playlist.owner.slug%>',<%= @playlist.id %>); return false;">
+	      <span><span><%= t('actions.save').upcase %></span></span>
+	    </a>
+          <input class="boton_gris" type="reset" value="CANCELAR" onclick="$(document).trigger('close.facebox'); return false;"/>
+        </form>
+    </div>

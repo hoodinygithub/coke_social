@@ -3,8 +3,8 @@ class PlaylistsController < ApplicationController
   current_filter :all
   
   before_filter :geo_check, :only => :show
-  before_filter :xhr_login_required, :only => :copy
-  before_filter :login_required, :except => [:index, :widget, :avatar_update, :show, :copy, :messenger_mixes]
+  before_filter :xhr_login_required, :only => [:copy,:messenger_copy]
+  before_filter :login_required, :except => [:index, :widget, :avatar_update, :show, :copy, :messenger_copy,:messenger_mixes]
 
   def index
     @dashboard_menu = :playlists
@@ -364,6 +364,10 @@ class PlaylistsController < ApplicationController
   end
 
   def copy
+    @playlist = Playlist.find(params[:id])
+  end
+
+  def messenger_copy
     @playlist = Playlist.find(params[:id])
   end
 

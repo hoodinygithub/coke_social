@@ -1,5 +1,4 @@
 $(document).ready(function() {
-
   // global tool tip helper
   $('a.tooltip').mouseover(function() {
     $(this).attr('title', '');
@@ -52,7 +51,13 @@ var SoundEngines = {
   }
 }
 
-var Base = {};
+var Base = {
+	getCurrentSiteUrl: function() {},
+	account_settings: {},
+	layout: {},
+	playlists: {},
+	utils: {}
+};
 
 // Helpers
 Base.Util = {
@@ -371,3 +376,245 @@ var restoreInput = function(value, input) {
    input.value = value;
  }
 }
+
+/*
+ * Account settings page
+ */
+Base.account_settings.highlight_field_with_errors = function() {
+  if (typeof(field_with_errors) != 'undefined') {
+    for(i=0; i < field_with_errors.length; i++) {
+      var field_name = field_with_errors[i][0];
+      var error = field_with_errors[i][1];
+      var field = $(":input[name*='" + field_name + "']:not(input[type='hidden'])").first();
+      Base.account_settings.add_message_on(field, error, 'error');
+      if(i==0) {
+        Base.account_settings.focus_first_section_with_error(field);
+      }
+    }
+  }
+};
+
+Base.account_settings.clear_info_and_errors_on = function(field) {
+  rounded_box = field.closest('.grey_round_box');
+  rounded_box.removeClass('red_error')
+             .removeClass('green_info')
+             .nextAll('div.clearer,span.red,span.green').remove();
+  rounded_box.children('b').removeClass('white');
+  $('big[for="' + field.attr('name') + '"]').remove();
+}
+
+Base.account_settings.add_message_on = function(field, message, type) {
+  var color = 'red';
+  if (type == 'info') { color = 'green' }
+
+  if (field.attr('type') != 'checkbox') {
+    var rounded_box = field.closest('.grey_round_box');
+    var label = $("label[for='" + field.attr('name') + "']").children('b');
+    var box_text = rounded_box.children('b');
+    rounded_box.addClass( color + '_' + type);
+    label.addClass(color);
+    box_text.addClass('white');
+    var message_content = $('<div class="clearer" /><span class="' + color + '" style="width:250px;display:block;">' + message + '</span>');
+    rounded_box.after(message_content);
+  } else {
+    var message_content = $('<big class="checkbox_error" for="'+ field.attr('name') + '"><b class="'+ color +'">' + message + '</b><br /></big>');
+    field.parents('.form_row').children('.checkbox').prepend(message_content);
+  }
+}
+
+
+Base.account_settings.show_validations = function(errorMap, errorList) {
+  $.each (errorList, function() {
+    field = $(this.element);
+    error = this.message;
+    Base.account_settings.clear_info_and_errors_on(field);
+    Base.account_settings.add_message_on(field, error, 'error');
+  });
+}
+
+Base.account_settings.focus_first_section_with_error = function(field_error) {
+  if (!field_error.closest('div.accordion_box').prev().hasClass('expanded')) {
+    $('div.accordion_box').hide().prev().removeClass('expanded');
+    field_error.closest('div.accordion_box')
+               .slideToggle(200)
+               .prev()
+               .toggleClass('expanded');
+  }
+};
+
+Base.account_settings.focus_first_field_with_error_by_label = function() {
+  var field_error = $('span.fieldWithErrors input').first();
+  $('div.accordion_box').hide().prev().removeClass('expanded');
+  field_error.closest('div.accordion_box')
+             .slideToggle(200, function() {
+               field_error.focus();
+             })
+             .prev()
+             .addClass('expanded');
+};
+
+
+Base.account_settings.add_website = function() {
+  var protocol_regex  = new RegExp("(ftp|http|https):\/\/");
+  var site_regex = new RegExp("^[A-Za-z]+://[A-Za-z0-9-_]+\\.[A-Za-z0-9-_%&\?\/.=]+$");
+  var value = $(this).val();
+
+  Base.account_settings.clear_info_and_errors_on($(this));
+
+  if (!protocol_regex.test(value)) {
+    value = "http://" + value;
+  }
+
+  if (site_regex.test(value)) {
+    value = value.replace(/(ftp|http|https):\/\//, "");
+    $('#websites_clearer').before('<div class="website_row">' +
+   '<input class="user_website" id="user_websites_" name="user[websites][]" type="hidden" value="' + value + '" />' +
+   '<b><big><a href="http://' + value + '">' + value + '</a></big> &nbsp; ' +
+   '<a href="#" class="black delete_site">[' + Base.locale.t('account_settings.delete') + ']</a></b><br/></div>');
+    $('.delete_site').click(Base.account_settings.delete_website);
+    $(this).val('');
+  } else {
+    Base.account_settings.add_message_on($(this), Base.locale.translate('share.errors.message.invalid_url'), 'error');
+  } 
+  return false;
+};
+
+Base.account_settings.delete_website = function() {
+  $(this).closest('.website_row').remove();
+  return false;
+};
+
+Base.account_settings.update_avatar_upload_info = function() {
+  $('#avatar_upload_info').text($(this).val());
+};
+
+Base.account_settings.delete_account_submit_as_msn = function() {
+  var form = $(this).closest('form');
+  var validator = form.validate();
+  if (form.valid()) {
+    $.popup(function() {
+      jQuery.get(Base.currentSiteUrl() + '/my/cancellation/confirm', function(data) {
+        jQuery.popup(data);
+      });
+    });
+  } else {
+    validator.showErrors();
+  }
+  return false;
+}
+
+Base.account_settings.delete_account_submit_as_cyloop = function() {
+  var form = $(this).closest('form');
+  var validator = form.validate({ showErrors : Base.account_settings.show_validations});
+  if (form.valid()) {
+    $.ajax({
+      type : "DELETE",
+      url  : Base.currentSiteUrl() + "/my/cancellation/confirm",
+      data : { delete_info_accepted: "true" },
+      success: function(data){
+        if (data.errors) {
+          validator.showErrors(data.errors);
+        } else {
+          jQuery.popup(data);
+        }
+      }
+    });
+  }
+  return false;
+}
+
+
+Base.account_settings.delete_account_confirmation = function() {
+  $.ajax({
+    type : "DELETE",
+    url  : Base.currentSiteUrl() + "/my/cancellation",
+    data : { delete_info_accepted: "true" },
+    success: function(data){
+      delete_account_data = data;
+      cancelled_account_email = data.email;
+      $.get(Base.currentSiteUrl() + '/my/cancellation/feedback?address='+ cancelled_account_email, function(data) {
+        $.popup(data);
+      });
+      $(document).bind('close.facebox', function() {
+        window.location = data.redirect_to;
+      });
+    }
+  });
+  return false;
+}
+
+Base.account_settings.send_feedback = function() {
+  $('#redirect_to').val(delete_account_data.redirect_to);
+  var form = $('#feedback_form').closest('form').submit();
+}
+
+/*
+ * header search
+ */
+
+
+
+Base.currentSiteUrl = function() {
+  return $("body").attr("current_site_url") || "";
+}
+
+Base.utils.showPopup = function(url) {
+  $.get(url, function(response) {
+    if (response.status == 'redirect')
+    {
+      $.simple_popup(response.html);
+    }
+    else
+    {
+      $.popup(response);
+    }
+  });
+};
+
+Base.layout.spin_image = function(type, no_margin) {
+  if (typeof(type) == 'undefined' || !type) {
+    image_name = 'red_loading.gif';
+  } else {
+    image_name = type + "_loading.gif";
+  }
+  $img = jQuery("<img></img>");
+  $img.attr('src', Base.currentSiteUrl() + '/images/' + image_name);
+
+
+  if (typeof(no_margin) == 'undefined' || no_margin) {
+    $img.css({'margin-top':'5px'});
+  }
+
+  return $img;
+};
+
+Base.playlists.messenger_copy = function(slug, playlist_id) {
+  var url = Base.currentSiteUrl() + '/' + slug + '/playlists/' + playlist_id + '/messenger_copy';
+  Base.utils.showPopup(url);
+};
+
+Base.playlists.duplicate = function(slug, playlist_id) {
+  var url = Base.currentSiteUrl() + '/' + slug + '/playlists/' + playlist_id + '/duplicate';
+  var params = {};
+  params['playlist[name]'] = $("#playlist_name").val();
+
+  $("#duplicate_button").children().children().append(Base.layout.spin_image());
+
+  $.post(url, params, Base.playlists.duplicateCallback);
+};
+
+Base.playlists.duplicateCallback = function(response) {
+  if (!response.success) {
+    field_with_errors = $.parseJSON(response.errors);
+    Base.account_settings.highlight_field_with_errors();
+  } else {
+    $(document).trigger('close.facebox');
+    return false;
+  }
+  $("#duplicate_button span span img").remove();
+};
+
+Base.max_skip_layer = function(){
+  var url = Base.currentSiteUrl() + '/messenger_player/max_skips' 
+  Base.utils.showPopup(url);
+};

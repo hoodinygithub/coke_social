@@ -156,6 +156,7 @@ ActionController::Routing::Routes.draw do |map|
     player.my_mixes '/my_mixes', :controller => 'playlists', :action => 'messenger_my_mixes'
     player.messenger_search '/search', :controller => 'searches', :action => 'messenger_searchresults'
     player.messenger_search_emotions '/search_emotions/:q', :controller => 'searches', :action => 'messenger_search_emotion_results'
+    player.max_skips '/max_skips', :controller => 'messenger_player/player', :action => 'max_skips'
   end
 
   map.resources :campaigns, :member => {:activate => :post, :deactivate => :post}
@@ -183,7 +184,7 @@ ActionController::Routing::Routes.draw do |map|
     map.with_options(:controller => 'badges') do |url|
       url.badges_set_notified '/:slug/badges/set_notified', :action => 'set_notified'
     end
-    profile.resources :playlists, :member => {:delete_confirmation => :get, :copy => :get, :duplicate => :post }
+    profile.resources :playlists, :member => {:delete_confirmation => :get, :copy => :get, :duplicate => :post,:messenger_copy => :get  }
     profile.resources :playlist_items,:member => {:delete_confirmation => :get}, :only => [:new, :create]
     profile.resources :playlists do |playlist|
       playlist.resources :items, :controller => 'playlist_items', :only => [:show, :update, :destroy]
