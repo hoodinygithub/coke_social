@@ -67,6 +67,10 @@ class SessionsController < ApplicationController
       #Rails.logger.info session
       WindowsConnect.clear_cookie_session(cookies)
     else
+      # WindowsConnect refreshes the page with a page param.  If it's registration, redirect to the reg page.
+      # This looks like a potential redirect loop if params[:page] = login
+      redirect_to_page_param if params[:page]
+
       # Cyloop Login
       #render :new, :layout => false
     end
@@ -92,6 +96,8 @@ class SessionsController < ApplicationController
 
     if wlid_web_login?
       redirect_to(msn_logout_url)
+    elsif params.has_key? :redirect_to
+      redirect_to params[:redirect_to]
     else
       redirect_back_or_default('/')
     end

@@ -1,4 +1,4 @@
 <div class="pie">
-  <a class="url_cyloop" href="#" title="CyLoop"><img src="/images/coke_messenger/cyloop_powered.png" alt="Powered by CyLoop" width="43" height="20" /></a>
-  <a class="url_cocacola" href="#" title="Ir a Coca-Cola.fm">Ir a Coca-Cola.fm</a>
+  <span class="url_cyloop"><img src="/images/coke_messenger/cyloop_powered.png" alt="Powered by Cyloop" width="43" height="20" /></span>
+  <%= link_to 'Coca-Cola.fm', root_url, :onclick => 'Base.Player.pause()', :target => '_blank', :class => 'url_cocacola' %>
 </div><!-- .pie -->

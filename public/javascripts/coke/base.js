@@ -109,16 +109,17 @@ Base.Station = {
     {
       Base.Player.player('coke');
       Base.UI.setControlUI(Base.Player._player);
-      Base.Player.random(true);
     }
+    Base.Player.random(true);
     this.request(pl[Math.round(Math.random() * (pl.length - 1))], 'xml', Base.Station.stationCollection);
   },
 
   // Callback
+  _station: null,
   stationCollection: function(data) 
   {
-    var _station = new StationBean(data.responseXML);
-    Base.Player.playlist(_station.songs);
+    Base.Station._station = new StationBean(data.responseXML);
+    Base.Player.playlist(Base.Station._station.songs);
   }
 
 };
@@ -176,6 +177,11 @@ Base.Player = {
     this._randomized =  b;
   },
 
+  pause: function()
+  {
+    if(this.isPlaying()) this.service().pauseStream(true);
+  },
+
   playPause: function()
   {
     if (this._player == 'coke')
@@ -214,29 +220,32 @@ Base.Player = {
     this.next();
   },
 
-  next: function() 
+  next: function()
   {
-    if(this.index < (this._playlist.length - 1))
+    if (this.index < (this._playlist.length - 1))
     {
-      this.stream(this._playlist[++(this.index)]);
+      this.stream(this._playlist[this.index]);
     }
     else
     {
-      this.index = 0;
+      //this.index = 0;
       if (this._randomized)
       {
         Base.Station.request(pl[Math.round(Math.random() * (pl.length - 1))], 'xml', Base.Station.stationCollection);
       }
-      else
-      {
-        this.stream(this._playlist[0]);
-      }
+      //else
+      //{
+      //  this.stream(this._playlist[0]);
+      //}
     }
   },
 
   stream: function(song)
   {
-    this.service().stream(song.songfile, 'mp3', Number(song.duration), Number(song.plId));
+    /* KEEP EYE ON LOGIC BELOW */
+    var valid = this.service().stream(song.songfile, 'mp3', Number(song.duration), Number(song.plId));
+    if (valid) ++this.index;
+    /***************************/
   },
 
   _playlist: {},
@@ -268,6 +277,10 @@ Base.UI = {
   reset: function()
   {
     this.controlUI().find('.cancion li').empty();
+    if (Base.Player._player == 'coke')
+    {
+      this.controlUI().find('a.punt_botellas').empty();
+    }
   },
 
   render: function()
@@ -289,17 +302,37 @@ Base.UI = {
       tickr += "<li>" + s.title + "</li>";
     }
     tickr += "</ul>";
-
     this.controlUI().find('.mascara').after(tickr);
     this.controlUI().find('.cancion ul').liScroll({travelocity: 0.05});
+
+    if (Base.Player._player == 'coke')
+    {
+      var rate = "";
+      var rating = Number(Math.floor(Base.Station._station.rating));
+      for(var r = 0; r < 5; r++)
+      {
+        if (r < rating)
+          rate += "<span class='llena'></span>"
+        else
+          rate += "<span class='vacia'></span>"
+      }
+      this.controlUI().find('a.punt_botellas, a.r_info').attr('href', ('/playlists?station_id=' + Base.Station._station.sid));
+      this.controlUI().find('a.punt_botellas').append(rate);
+    }
   },
 
   random: function(b)
   {
     if (b)
-      this.controlUI().find('.r_random').addClass('active');
+    {
+      this.controlUI().find('.controles .r_random').addClass('active').css('cursor', 'default').unbind('click');
+    }
     else
-      this.controlUI().find('.controles .r_random').removeClass('active');
+    {
+      this.controlUI().find('.controles .r_random').removeClass('active').css('cursor', 'pointer').bind('click', function() {
+        Base.Station.random();
+      });
+    }
   },
 
   contentswp: function(data)
@@ -339,6 +372,10 @@ function StationBean(data)
   this.owner = _xmlRoot.attr('owner');
 
   this.songCount = _xmlRoot.attr('numResults');
+
+  this.rating = _xmlRoot.attr('rating');
+
+  this.sid = _xmlRoot.attr('station_id');
 
   this.getSongs = function(s)
   {
