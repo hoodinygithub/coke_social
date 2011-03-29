@@ -150,7 +150,7 @@ ActionController::Routing::Routes.draw do |map|
 
   map.with_options(:path_prefix => 'messenger_player') do |player|
     player.messenger '/', :controller => 'pages', :action => 'messenger_home'
-    player.home '/home', :controller => 'pages', :action => 'messenger_home'
+    player.messenger_home '/home', :controller => 'pages', :action => 'messenger_home'
     player.mixes '/mixes', :controller => 'playlists', :action => 'messenger_mixes'
     player.djs '/djs', :controller => 'pages', :action => 'messenger_djs'
     player.djs_details '/dj_mix_details/:id', :controller => 'playlists', :action => 'messenger_dj_mix_details'
