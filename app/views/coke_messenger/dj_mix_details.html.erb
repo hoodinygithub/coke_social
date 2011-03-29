@@ -22,11 +22,11 @@
         <li class="estirar">
           <%= avatar_for(playlist, :small, :class => 'avatar', :disable_default_css => true) %>
           <div class="datos">
-            <h3><%= link_to playlist.name, radio_path(:station_id => playlist.station.id) ,:class => "link_rojo" %></a></h3>
+            <h3><%= link_to_function playlist.name, "Base.Station.request('/playlists/#{playlist.id}.xml', 'xml', Base.Station.stationCollection);Base.Player.random(false)", :class => 'link_rojo' %></h3>
           </div>
           
           <div class="messenger_rating"><%= rating(playlist) %></div>
-          <a class="btn_play" href="#" title="Play">Play</a>
+          <%= link_to_function t('messenger_player.play'), "Base.Station.request('/playlists/#{playlist.id}.xml', 'xml', Base.Station.stationCollection);Base.Player.random(false)", :class => 'btn_play' %>
         </li>
       <% end %>
 
