@@ -1,0 +1,15 @@
+lenght=<%= @my_mixes.length %>
+
+
+<% @my_mixes.each do |playlist|
+%>
+  <li class="estirar">
+    <%= avatar_for(playlist, :small, :class => 'avatar', :disable_default_css => true) %>
+    <div class="datos">
+      <h3><%= link_to playlist.name, radio_path(:station_id => playlist.station.id) ,:class => "link_rojo" %></a></h3>
+    </div>
+    <em class="mix_count"> <label><%= playlist.songs.size %></label> <%= t('coke_messenger.my_mixes_mixes_count') %> </em>
+    <div class="messenger_rating"><%= rating(playlist) %></div>
+    <a class="btn_play" href="#" title="Play">Play</a>
+  </li>
+<% end %>

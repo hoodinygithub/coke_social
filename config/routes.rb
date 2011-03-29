@@ -153,6 +153,7 @@ ActionController::Routing::Routes.draw do |map|
     player.home '/home', :controller => 'pages', :action => 'messenger_home'
     player.mixes '/mixes', :controller => 'playlists', :action => 'messenger_mixes'
     player.djs '/djs', :controller => 'pages', :action => 'messenger_djs'
+    player.djs '/dj_mix_details/:id', :controller => 'playlists', :action => 'messenger_dj_mix_details'
     player.my_mixes '/my_mixes', :controller => 'playlists', :action => 'messenger_my_mixes'
     player.messenger_search '/search', :controller => 'searches', :action => 'messenger_searchresults'
     player.messenger_search_emotions '/search_emotions/:q', :controller => 'searches', :action => 'messenger_search_emotion_results'

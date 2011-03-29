@@ -19,7 +19,7 @@
           <span class="ord"><%=@djs.index(dj)+1%></span>
           <%= avatar_for(dj, :small, :class => 'avatar', :disable_default_css => true) %>
           <div class="datos">
-            <h3><%= link_to dj.name, "/#{dj}/playlists" ,:class=>"link_rojo",:title=>dj.name%></h3>
+            <h3><%= link_to dj.name, "/messenger_player/dj_mix_details/#{dj.id}" ,:class=>"link_rojo",:title=>dj.name%></h3>
 			
             <p>(<%= dj.country.name %>)</p>
           </div>

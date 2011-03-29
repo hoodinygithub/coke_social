@@ -4,7 +4,7 @@ class PlaylistsController < ApplicationController
   
   before_filter :geo_check, :only => :show
   before_filter :xhr_login_required, :only => [:copy,:messenger_copy]
-  before_filter :login_required, :except => [:index, :widget, :avatar_update, :show, :copy, :messenger_copy,:messenger_mixes]
+  before_filter :login_required, :except => [:index, :widget, :avatar_update, :show, :copy, :messenger_copy, :messenger_mixes, :messenger_dj_mix_details]
 
   def index
     @dashboard_menu = :playlists
@@ -51,6 +51,12 @@ class PlaylistsController < ApplicationController
       logger.debug" Not in  XHR if condition" 
       render 'coke_messenger/my_mixes', :layout => layout_unless_xhr('messenger')
     end 
+  end
+
+  def messenger_dj_mix_details
+    @title = t('messenger_player.dj.title')
+    @dj_mixes = User.find_by_id(params[:id]).playlists.all(:limit => 50)
+    render 'coke_messenger/dj_mix_details', :layout => layout_unless_xhr('messenger')
   end
   
   def avatar_update

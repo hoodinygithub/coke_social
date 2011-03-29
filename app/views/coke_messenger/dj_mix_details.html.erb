@@ -1,7 +1,7 @@
 <%= render :partial => 'shared/javascripts' %>
 <div class="submenu">
   <div class="columna">
-    <h2><%= t('coke_messenger.my_mixes') %></h2>
+    <h2><%= t('messenger_player.dj.tab_title') %></h2>
     <a class="btn_perfil" href="/<%= current_user %>" target="_blank" title="<%= t('coke_messenger.my_mixes_view_profile') %>"><%= t('coke_messenger.my_mixes_view_profile') %></a>
     <form class="ord_mixes" action="#" >
       <select>
@@ -15,16 +15,22 @@
   <div class="columna">
     <ul class="mis_mixes">
 
-      <%  if @my_mixes.length > 3 then %>
-        <%= render(:partial => "coke_messenger/my_mixes") %>
-      <% else %>
-        <li class="no_resultados">
-          <h3><%= t('messenger_player.mix_page_blank') %></h3>
-          <p> <%= t('messenger_player.mix_page_blank_desc') %> </p>
-          <a class="btn_nuevomix" href="/playlist/create" title="<%= t('coke_messenger.create_mix') %>"><%= t('coke_messenger.create_mix') %></a>
+      
+
+      <% @dj_mixes.each do |playlist|
+      %>
+        <li class="estirar">
+          <%= avatar_for(playlist, :small, :class => 'avatar', :disable_default_css => true) %>
+          <div class="datos">
+            <h3><%= link_to playlist.name, radio_path(:station_id => playlist.station.id) ,:class => "link_rojo" %></a></h3>
+          </div>
+          
+          <div class="messenger_rating"><%= rating(playlist) %></div>
+          <a class="btn_play" href="#" title="Play">Play</a>
         </li>
       <% end %>
+
+
     </ul>
   </div><!-- .columna -->
 </div><!-- .contenido -->
-
