@@ -14,9 +14,18 @@
 <div class="contenido">
   <div class="columna">
     <ul class="mis_mixes">
-
-      <%  if @my_mixes.length > 3 then %>
-        <%= render(:partial => "coke_messenger/my_mixes") %>
+      <% if @my_mixes.length > 0 %>
+        <% @my_mixes.each_with_index do |playlist, index| %>
+          <li class="estirar">
+            <%= avatar_for(playlist, :small, :class => 'avatar', :disable_default_css => true) %>
+            <div class="datos">
+              <h3><%= link_to_function playlist.name, "Base.Station.request('/playlists/#{playlist.id}.xml', 'xml', Base.Station.stationCollection);Base.Player.random(false)", :class => 'link_rojo' %></h3>
+            </div>
+            <em class="mix_count"> <label>32</label> canciones </em>
+            <div class="messenger_rating"><%= rating(playlist) %></div>
+            <%= link_to_function t('messenger_player.play'), "Base.Station.request('/playlists/#{playlist.id}.xml', 'xml', Base.Station.stationCollection);Base.Player.random(false)", :class => 'btn_play' %>
+          </li>
+        <% end %>
       <% else %>
         <li class="no_resultados">
           <h3><%= t('messenger_player.mix_page_blank') %></h3>
@@ -27,4 +36,3 @@
     </ul>
   </div><!-- .columna -->
 </div><!-- .contenido -->
-

@@ -89,7 +89,7 @@ class SearchesController < ApplicationController
         @counts.store(t, 0)
       end
     end
-    render :layout => "messenger"
+    render 'coke_messenger/messenger_searchresults', :layout => layout_unless_xhr('messenger')
   end
 
   def messenger_search_emotion_results
@@ -116,7 +116,7 @@ class SearchesController < ApplicationController
         @counts.store(t, 0)
       end
     end
-    render :layout => "messenger"
+    render 'coke_messenger/messenger_search_emotion_results', :layout => layout_unless_xhr('messenger')
   end
 
   private

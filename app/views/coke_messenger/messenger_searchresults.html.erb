@@ -1,0 +1,57 @@
+<div class="submenu">
+  <div class="columna">
+    <!--h2>RESULTADOS DE LA B&Uacute;SQUEDA</h2-->
+    <h2><%= "#{t('messenger_player.search.tab_title')} \"#{@query.nil? ? '' : @query}\"" %></h2>
+    <form class="ord_mixes" action="#" >
+      <select>
+        <option>Ordenar por popularidad</option>
+        <option>-</option>
+      </select>
+    </form>
+  </div>
+</div><!-- .submenu -->
+<div class="contenido">
+  <div class="columna_busq">
+    <h3 class="busq_titulo"><%=  t('messenger_player.mixes').capitalize %></h3>
+    <p class="busq_resultados"><span><%= @counts[:playlists] %></span> <%=  t('messenger_player.search.results') %></p>
+    <ul class="busquedas">
+      <% if !@results[:playlists].blank? and @results[:playlists].size > 0 %>
+        <% @results[:playlists].each do|playlist| %>
+          <li class="estirar">
+          <%= link_to_function avatar_for(playlist, :small), "Base.Station.request('/playlists/#{playlist.id}.xml', 'xml', Base.Station.stationCollection);Base.Player.random(false)", :alt => playlist.name %>
+          <div class="datos">
+            <h3><%= link_to_function playlist.name, "Base.Station.request('/playlists/#{playlist.id}.xml', 'xml', Base.Station.stationCollection);Base.Player.random(false)", :class => 'link_rojo' %></h3>
+          </div>
+          <div class="messenger_rating" style="margin-top: 10px;"><%= rating(playlist) %></div>
+          </li>
+        <% end %>
+      <% else %>
+        <li class="no_resultados">
+        <%= t('messenger_player.search.no_results') %>
+        </li>
+      <% end %>
+    </ul>
+  </div><!-- .columna_busq -->
+  <div class="columna_busq">
+    <h3 class="busq_titulo"><%=  t('messenger_player.search.users') %></h3>
+    <p class="busq_resultados"><span><%= @counts[:users]%></span> <%=  t('messenger_player.search.results') %></p>
+    <ul class="busquedas">
+      <% if !@results[:users].blank? and @results[:users].size > 0 %>
+        <% @results[:users].each do|user|%>
+          <li class="estirar">
+          <%= avatar_for(user, :small, :class => 'avatar',:alt=>user.name) %>
+          <div class="datos">
+            <h3><%= link_to user.name, "/#{user}/playlists",  :class => "link_rojo" %></h3>
+            <p><%= user.country.name %></p>
+          </div>
+          <div class="num_mixes"><strong><%= number_with_delimiter(user.total_playlists) %></strong> <%= t('messenger_player.mixes') %></div>
+          </li>
+        <% end %>
+      <% else %>
+        <li class="no_resultados">
+        <%= t('messenger_player.search.no_results') %>
+        </li>
+      <% end%>
+    </ul>
+  </div><!-- .columna_busq -->
+</div><!-- .contenido -->
