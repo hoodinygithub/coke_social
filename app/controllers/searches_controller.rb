@@ -133,8 +133,11 @@ class SearchesController < ApplicationController
     end
 
     def search_results (msg,types=[], per_page = 12)
-      opts = { :page => @page, :per_page => per_page, :star => true, :retry_stale => true }
-
+      unless msg == "msgr"
+        opts = { :page => @page, :per_page => per_page, :star => true, :retry_stale => true }
+      else
+        opts = { :star => true, :retry_stale => true }
+      end  
       @search_types.each do |scope|
         dataset = []
         obj_scope = scope == :stations ? :abstract_stations : scope
@@ -159,22 +162,12 @@ class SearchesController < ApplicationController
               opts.merge!(:order => @sort_types[@sort_type]) unless custom_sort
             end
           end
-          if msg == "msgr"
-            dataset = obj.search(@query) if types.include? scope
-          else
             dataset = obj.search(@query, opts) if types.include? scope
-          end
-          send(sort_instruction, dataset) if custom_sort
+            send(sort_instruction, dataset) if custom_sort
         end
         @results.store(scope, dataset)
-        if msg == "msgr"
-          @counts.store(scope, obj.search_count(@query))
-        else
-          @counts.store(scope, obj.search_count(@query, opts))
-        end
-
+        @counts.store(scope, obj.search_count(@query, opts))
       end
     end
-
 end
 

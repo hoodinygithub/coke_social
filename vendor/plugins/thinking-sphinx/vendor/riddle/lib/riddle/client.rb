@@ -123,7 +123,7 @@ module Riddle
     def reset
       # defaults
       @offset         = 0
-      @limit          = 20
+      @limit          = 50
       @max_matches    = 1000
       @match_mode     = :all
       @sort_mode      = :relevance
