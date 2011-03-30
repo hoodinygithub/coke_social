@@ -114,6 +114,7 @@
       protocol:'rtmp',
       serviceHost:'cdn.cyloop.com/cfx/st',
       player:'messengerradio_<%= current_site.code %>',
+      key:<%= Player.find_by_player_key("messengerradio_#{current_site.code}").id %>,
       autostart:0
     };
     var cParams = {
