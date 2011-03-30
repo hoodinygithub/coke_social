@@ -4,10 +4,10 @@
 
 <% content_for :javascript do %>
   <% if @user.errors.size > 0 %>
-  $(document).ready(function(){
+    $(document).ready(function(){
     field_with_errors = <%= @user.custom_errors.to_json %>;
     Base.account_settings.highlight_field_with_errors();
-  });
+    });
   <% end %>
 <% end %>
 
@@ -74,10 +74,7 @@
       <%= f.check_box :terms_and_privacy, :class => "privacy_check" %>
 
       <div class="privacy_text checkbox">
-        <%= t("registration.terms_and_privacy",
-            :terms_link => link_to(t("registration.terms_of_use"),
-            terms_and_conditions_url),
-            :privacy_link => link_to(t("registration.privacy_policy"), privacy_policy_url)) %>
+        <%= t("registration.terms_and_privacy", :terms_link => link_to(t("registration.terms_of_use"), terms_and_conditions_url), :privacy_link => link_to(t("registration.privacy_policy"), privacy_policy_url)) %>
       </div>
     </div>
 
@@ -88,4 +85,5 @@
     <div class="right_side">
       <big class="grey"><%= t("registration.thats_it") %></big> &nbsp; <a class="red_button valign_middle" onclick="$(this).closest('form').submit();"><span><span><%= t("registration.complete") %></span></span></a>
     </div>
+  </div><!-- /end form_content -->
 <% end %><!--/end account_settings-->

@@ -6,6 +6,7 @@
 
 
   <div class="auth_left">
+
     <% unless session.has_key? :sso_user %>
       <%= render "shared/social/social", { :page => :registration } %>
     <% else %>
@@ -17,6 +18,7 @@
         </div>
       </div>
     <% end %>
+
     <div class="form_content">
       <%= render 'registration_form' %>
     </div>

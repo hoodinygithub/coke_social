@@ -253,6 +253,7 @@ Base.Player = {
   {
     this.index = 0;
     this._playlist = bean;
+    this.service().setStation({sid: Base.Station._station.sid, songCount: Base.Station._station.songCount});
     this.stream(this._playlist[this.index]);
   },
 
