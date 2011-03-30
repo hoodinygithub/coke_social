@@ -154,7 +154,8 @@ private
     else
       # TODO: cross-network login
       flash[:error] = t("registration.cross_network_failed")
-      render :new, :layout => false if p_render
+      #render :new, :layout => false if p_render
+      render :new if p_render
       false
     end
   end
