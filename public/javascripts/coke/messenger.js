@@ -64,7 +64,7 @@
     return this.click(clickHandler)
   }
   
-  // called one time to setup facebox on this page
+  // called one time to setup alert_layer on this page
   function init() {
     if ($.alert_layer.settings.inited) return true
     else $.alert_layer.settings.inited = true
@@ -147,9 +147,8 @@
   }
   
   $(document).bind('close.alert_layer', function() {
-    $(document).unbind('keydown.facebox')
+    $(document).unbind('keydown.alert_layer')
     $('#alert_layer').fadeOut(function() {
-      //$('#facebox .content').removeClass().addClass('content')
       hideOverlay();
       $('#alert_layer .loading').remove();
     })

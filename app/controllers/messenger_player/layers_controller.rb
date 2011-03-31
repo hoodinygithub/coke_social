@@ -14,7 +14,7 @@ class MessengerPlayer::LayersController < ApplicationController
       "/auth/copymixlayer/"
     when "follow_user"
       if params[:slug] && params[:gender]
-        @alert_text = t('messenger_connect.registration.layers.follow_user_details', :slug => params[:slug], :gender => t('gender.' + params[:gender]))
+        @alert_text = t('coke_messenger.registration.layers.follow_user_details', :slug => params[:slug], :gender => t('gender.' + params[:gender]))
       end
       "/auth/followuserlayer/"
     when "my_friends"
@@ -23,7 +23,7 @@ class MessengerPlayer::LayersController < ApplicationController
       "/auth/mymixeslayer/"
     end
     
-    @alert_text = t('messenger_connect.registration.layers.' + alert_type) unless @alert_text
+    @alert_text = t('coke_messenger.registration.layers.' + alert_type) unless @alert_text
   end
   
 end
