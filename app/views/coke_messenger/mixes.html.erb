@@ -1,6 +1,6 @@
 <div class="submenu">
   <div class="columna">
-    <h2><%= t('messenger_player.mixes_tab.tab_title') %></h2>
+    <h2><%= t('coke_messenger.mixes_tab.tab_title') %></h2>
     <form class="ord_mixes" action="#" >
       <select>
         <option>Ordenar por popularidad</option>
@@ -21,8 +21,8 @@
             <p><%= t("basics.by")%>: <%= link_to playlist.owner.name, "/#{playlist.owner}/playlists" ,:class => "link_gris" %></a></p>
           </div>
           <div class="messenger_rating" style="margin-top: 10px;"><%= rating(playlist) %></div>
-          <%= link_to_function t('messenger_player.play'), "Base.Station.request('/playlists/#{playlist.id}.xml', 'xml', Base.Station.stationCollection);Base.Player.random(false)", :class => 'btn_play' %>
-          <a class="btn_seguir" href="#" title="<%= t('coke_messenger.follow_the_author') %>"><%= t('messenger_player.follow_the_author') %></a>
+          <%= link_to_function t('coke_messenger.play'), "Base.Station.request('/playlists/#{playlist.id}.xml', 'xml', Base.Station.stationCollection);Base.Player.random(false)", :class => 'btn_play' %>
+          <a class="btn_seguir" href="#" title="<%= t('coke_messenger.follow_the_author') %>"><%= t('coke_messenger.follow_the_author') %></a>
           </li>
         <% end %>
       </ul>
