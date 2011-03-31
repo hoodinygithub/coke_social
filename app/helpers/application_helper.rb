@@ -957,6 +957,16 @@ def cyloop_logo_path(sm=true)
      </span>"
   end
 
+  # Helper for coke messenger ratings
+  def messenger_rating(rateable, bottles=5)
+    rating = "<div class='punt_botellas'>"
+    (1..bottles).each do |b|
+      rating << "<span class=#{rateable.rating_cache.to_i > b ? 'llena' : 'vacia' }></span>"
+    end
+    rating << "</div>"
+    rating
+  end
+
   def ajax_pagination_for(url, collection, per_page)
     total_pages = collection.paginate(:per_page => 5, :page => 1).total_pages
     if total_pages > 1

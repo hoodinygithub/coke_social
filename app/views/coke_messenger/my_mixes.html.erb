@@ -20,8 +20,8 @@
             <div class="datos">
               <h3><%= link_to_function playlist.name, "Base.Station.request('/playlists/#{playlist.id}.xml', 'xml', Base.Station.stationCollection);Base.Player.random(false)", :class => 'link_rojo' %></h3>
             </div>
-            <em class="mix_count"> <label>32</label> canciones </em>
-            <div class="messenger_rating"><%= rating(playlist) %></div>
+            <em class="mix_count"><label>32</label>canciones</em>
+            <%= messenger_rating(playlist) %>
             <%= link_to_function t('messenger_player.play'), "Base.Station.request('/playlists/#{playlist.id}.xml', 'xml', Base.Station.stationCollection);Base.Player.random(false)", :class => 'btn_play' %>
           </li>
         <% end %>
