@@ -465,6 +465,19 @@ module ApplicationHelper
 
   end
   
+  def messenger_gatracker_id
+    case current_site.code
+    when "cokear"
+      "UA-19631092-6"
+    when "cokebr"
+      "UA-19631092-7"
+    when "cokelatam"
+      "UA-19631092-8"
+    when "cokemx"
+      "UA-19631092-9"
+    end
+  end
+  
   def messenger_player_gatracker_id
     case current_site.name
     when "MSN Brazil"

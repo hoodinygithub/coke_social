@@ -22,9 +22,12 @@
     <%= javascript_include_tag 'swfobject' %>
     <%= javascript_include_tag 'supersleight.plugin' %>
     <%= javascript_include_tag 'coke/base' %>
+    <%= javascript_include_tag 'coke/messenger' %>
     <!-- -------------------------------------------------------------------- -->
 
-     <title><%= @title.blank? ? "CokeFM Messenger " : @title%> </title>
+    <%= render 'coke_messenger/google_analytics' %>
+    
+    <title><%= @title.blank? ? "CokeFM Messenger " : @title%> </title>
   </head>
   <body locale="<%= current_site.default_locale %>" market="<%= current_site.code %>">
     <div class="posicion">
@@ -36,5 +39,15 @@
         <%= render :partial => 'coke_messenger/footer' %>
       </div>
     </div>
+    
+    <!-- Testing Layers -->
+    <!-- <a href="<%= alert_layer_path("max_plays") %>" rel="layer">max_plays</a> | 
+    <a href="<%= alert_layer_path("share_mix") %>" rel="layer">share_mix</a> | 
+    <a href="<%= alert_layer_path("copy_mix") %>" rel="layer">copy_mix</a> | 
+    <a href="<%= alert_layer_path("follow_user") %>" rel="layer">follow_user</a> | 
+    <a href="<%= alert_layer_path("my_friends") %>" rel="layer">my_friends</a> | 
+    <a href="<%= alert_layer_path("my_mixes") %>" rel="layer">my_mixes</a> |  -->
+    <!-- END Testing Layers -->
+    
   </body>
 </html>
