@@ -3,7 +3,7 @@
 /* instrucciones
 -------------- */
 body{font-family:Arial,Helvetica,sans-serif;text-align:center;}
-.posicion{width:555px;height:450px;border:1px solid #6d6d6d;margin:20px auto;}
+.posicion{width:555px;height:450px;border:1px solid #6d6d6d;}
 
 /* estructura
 -------------- */
@@ -317,3 +317,31 @@ h3.busq_titulo{font-size:18px;color:#343434;width:48%;float:left;padding-left:5p
 .player_radio .volumen{width:89px;}
 
 #coke_ui, #goom_ui { display:none; }
+
+
+/* layers */
+#alert_layer {
+  position: absolute;
+  top: 40px;
+  left: 40px;
+  z-index: 100;
+  text-align: center;
+  height: 355px;
+  width: 478px;
+/*  overflow: hidden;*/
+}
+#alert_layer .aviso{ margin:0 auto; }
+#alert_layer .loading { margin-top: 130px; }
+#layer_overlay {
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  height:452px;
+  width:557px;
+}
+* html #layer_overlay { /* ie6 hack */
+  position: absolute;
+  height: expression(document.body.scrollHeight > document.body.offsetHeight ? document.body.scrollHeight : document.body.offsetHeight + 'px');
+}
+.layer_hide { z-index:-100; }
+.layer_overlayBG { background-color: #000; z-index: 99; }

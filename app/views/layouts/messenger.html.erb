@@ -38,16 +38,20 @@
         </div>
         <%= render :partial => 'coke_messenger/footer' %>
       </div>
+      
+      
+      <!-- Testing Layers -->
+      Alert Layers: 
+      <a href="<%= alert_layer_path("max_plays") %>" rel="layer">max_plays</a> | 
+      <a href="<%= alert_layer_path("share_mix") %>" rel="layer">share_mix</a> | 
+      <a href="<%= alert_layer_path("copy_mix") %>" rel="layer">copy_mix</a> | 
+      <a href="<%= alert_layer_path("follow_user") %>" rel="layer">follow_user</a> | 
+      <a href="<%= alert_layer_path("follow_user", :slug => "bigbadmachine", :gender => "male") %>" rel="layer">follow_user with details</a> | 
+      <a href="<%= alert_layer_path("my_friends") %>" rel="layer">my_friends</a> | 
+      <a href="<%= alert_layer_path("my_mixes") %>" rel="layer">my_mixes</a>
+      <!-- END Testing Layers -->
+      
     </div>
-    
-    <!-- Testing Layers -->
-    <!-- <a href="<%= alert_layer_path("max_plays") %>" rel="layer">max_plays</a> | 
-    <a href="<%= alert_layer_path("share_mix") %>" rel="layer">share_mix</a> | 
-    <a href="<%= alert_layer_path("copy_mix") %>" rel="layer">copy_mix</a> | 
-    <a href="<%= alert_layer_path("follow_user") %>" rel="layer">follow_user</a> | 
-    <a href="<%= alert_layer_path("my_friends") %>" rel="layer">my_friends</a> | 
-    <a href="<%= alert_layer_path("my_mixes") %>" rel="layer">my_mixes</a> |  -->
-    <!-- END Testing Layers -->
     
   </body>
 </html>

@@ -1,5 +1,19 @@
 --- 
 en: 
+  gender:
+    male: "he"
+    female: "she"
+  messenger_connect:
+    registration:
+      layers:
+        generic: "Please log in to Coca-Cola.fm."
+        max_plays: "We hope you enjoyed the songs you've heard. To hear more songs, log in to Coca-Cola.fm."
+        share_mix: "To share this mix, log in to Coca-Cola.fm."
+        copy_mix: "To copy this mix, log in to Coca-Cola.fm."
+        follow_user_details: "To follow {{slug}} and find out what {{gender}} is listening to, log in to Coca-Cola.fm."
+        follow_user: "To follow and find out what a user is listening to, log in to Coca-Cola.fm."
+        my_friends: "To hear what your friends have been listening to, log in to Coca-Cola.fm."
+        my_mixes: "To access your mixes, log in to Coca-Cola.fm."
   coke_messenger:
     greeting: "Hi"
     logout: "Logout"
@@ -7,7 +21,7 @@ en:
     create_mix: "Create new Mix"
     home: "INICIO"
     mixes: "MIXES"
-    dj: "DJs"
+    djs: "DJs"
     my_mixes: "MIS MIXES"
     friends: "AMIGOS"
   downloads:
