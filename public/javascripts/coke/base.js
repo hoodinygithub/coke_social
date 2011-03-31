@@ -243,7 +243,7 @@ Base.Player = {
   stream: function(song)
   {
     /* KEEP EYE ON LOGIC BELOW */
-    var valid = this.service().stream(song.songfile, 'mp3', Number(song.duration), Number(song.plId));
+    var valid = this.service().stream({id: song.id, url: song.songfile}, 'mp3', Number(song.duration), Number(song.plId));
     if (valid) ++this.index;
     /***************************/
   },
@@ -253,7 +253,7 @@ Base.Player = {
   {
     this.index = 0;
     this._playlist = bean;
-    this.service().setStation({sid: Base.Station._station.sid, songCount: Base.Station._station.songCount});
+    this.service().setStation({sid: Base.Station._station.sid, owner: Base.Station._station.owner, songCount: Base.Station._station.songCount});
     this.stream(this._playlist[this.index]);
   },
 
