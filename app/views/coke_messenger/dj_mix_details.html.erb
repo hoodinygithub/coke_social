@@ -1,7 +1,7 @@
 <div class="submenu">
   <div class="columna">
-    <h2><%= t('messenger_player.dj.tab_title') %></h2>
-    <a class="btn_perfil" href="/<%= current_user %>" target="_blank" title="<%= t('coke_messenger.my_mixes_view_profile') %>"><%= t('coke_messenger.my_mixes_view_profile') %></a>
+    <h2><%= t('coke_messenger.dj_mix_detail.mixes_of_dj',:dj_name => @dj_name).upcase %></h2>
+    <a class="btn_perfil" href= "<%= user_path(@dj_name)  %>" target="_blank" title="<%= t('coke_messenger.my_mixes_view_profile') %>"><%= t('coke_messenger.my_mixes_view_profile') %></a>
     <form class="ord_mixes" action="#" >
       <select>
         <option>Ordenar por popularidad</option>
@@ -21,11 +21,11 @@
         <li class="estirar">
           <%= avatar_for(playlist, :small, :class => 'avatar', :disable_default_css => true) %>
           <div class="datos">
-            <h3><%= link_to_function playlist.name, "Base.Station.request('/playlists/#{playlist.id}.xml', 'xml', Base.Station.stationCollection);Base.Player.random(false)", :class => 'link_rojo' %></h3>
+            <h3><%= playlist.name %></h3>
           </div>
           
           <div class="messenger_rating"><%= rating(playlist) %></div>
-          <%= link_to_function t('messenger_player.play'), "Base.Station.request('/playlists/#{playlist.id}.xml', 'xml', Base.Station.stationCollection);Base.Player.random(false)", :class => 'btn_play' %>
+          <%= link_to_function t('coke_messenger.play'), "Base.Station.request('/playlists/#{playlist.id}.xml', 'xml', Base.Station.stationCollection);Base.Player.random(false)", :class => 'btn_play' %>
         </li>
       <% end %>
 

@@ -79,7 +79,7 @@ class SearchesController < ApplicationController
     @page = params[:page] || 1
     @counts = {}
     @results = {}
-    @title = t('messenger_player.search.title')
+    @title = t('coke_messenger.search.title')
     msg = "msgr"
     if !@query.blank?
         search_results(msg,@search_types)
@@ -106,7 +106,7 @@ class SearchesController < ApplicationController
     @page = params[:page] || 1
     @counts = {}
     @results = {}
-    @title = t('messenger_player.emotions.title')
+    @title = t('coke_messenger.default_messenger_title')+CGI::unescape(params[:q])
     msg = "msgr"
     if !@query.blank?
         search_results(msg,@search_types)

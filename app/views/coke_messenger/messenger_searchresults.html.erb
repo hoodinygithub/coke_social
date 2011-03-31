@@ -1,7 +1,7 @@
 <div class="submenu">
   <div class="columna">
     <!--h2>RESULTADOS DE LA B&Uacute;SQUEDA</h2-->
-    <h2><%= "#{t('messenger_player.search.tab_title')} \"#{@query.nil? ? '' : @query}\"" %></h2>
+    <h2><%= "#{t('coke_messenger.search.tab_title')} \"#{@query.nil? ? '' : @query}\"" %></h2>
     <form class="ord_mixes" action="#" >
       <select>
         <option>Ordenar por popularidad</option>
@@ -12,8 +12,8 @@
 </div><!-- .submenu -->
 <div class="contenido">
   <div class="columna_busq">
-    <h3 class="busq_titulo"><%=  t('messenger_player.mixes').capitalize %></h3>
-    <p class="busq_resultados"><span><%= @counts[:playlists] %></span> <%=  t('messenger_player.search.results') %></p>
+    <h3 class="busq_titulo"><%=  t('coke_messenger.mixes').capitalize %></h3>
+    <p class="busq_resultados"><span><%= @counts[:playlists] %></span> <%=  t('coke_messenger.search.results') %></p>
     <ul class="busquedas">
       <% if !@results[:playlists].blank? and @results[:playlists].size > 0 %>
         <% @results[:playlists].each do|playlist| %>
@@ -27,29 +27,29 @@
         <% end %>
       <% else %>
         <li class="no_resultados">
-        <%= t('messenger_player.search.no_results') %>
+        <%= t('coke_messenger.search.no_results') %>
         </li>
       <% end %>
     </ul>
   </div><!-- .columna_busq -->
   <div class="columna_busq">
-    <h3 class="busq_titulo"><%=  t('messenger_player.search.users') %></h3>
-    <p class="busq_resultados"><span><%= @counts[:users]%></span> <%=  t('messenger_player.search.results') %></p>
+    <h3 class="busq_titulo"><%=  t('coke_messenger.search.users') %></h3>
+    <p class="busq_resultados"><span><%= @counts[:users]%></span> <%=  t('coke_messenger.search.results') %></p>
     <ul class="busquedas">
       <% if !@results[:users].blank? and @results[:users].size > 0 %>
         <% @results[:users].each do|user|%>
           <li class="estirar">
           <%= avatar_for(user, :small, :class => 'avatar',:alt=>user.name) %>
           <div class="datos">
-            <h3><%= link_to user.name, "/#{user}/playlists",  :class => "link_rojo" %></h3>
+            <h3><%= link_to user.name, djs_details_path(user.id),  :class => "link_rojo" %></h3>
             <p><%= user.country.name %></p>
           </div>
-          <div class="num_mixes"><strong><%= number_with_delimiter(user.total_playlists) %></strong> <%= t('messenger_player.mixes') %></div>
+          <div class="num_mixes"><strong><%= number_with_delimiter(user.total_playlists) %></strong> <%= t('coke_messenger.mixes').downcase %></div>
           </li>
         <% end %>
       <% else %>
         <li class="no_resultados">
-        <%= t('messenger_player.search.no_results') %>
+        <%= t('coke_messenger.search.no_results') %>
         </li>
       <% end%>
     </ul>
