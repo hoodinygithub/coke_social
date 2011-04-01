@@ -657,8 +657,3 @@ Base.playlists.duplicateCallback = function(response) {
   }
   $("#duplicate_button span  span img").remove();
 };
-
-Base.max_skip_layer = function(){
-  var url = Base.currentSiteUrl() + '/messenger_player/max_skips' 
-  Base.utils.showPopup(url);
-};
