@@ -74,9 +74,6 @@
   }
   
   function setDisplayType(data) {
-    console.log("setDisplayType: checking type from - " + data);
-    console.log("setDisplayType: regex - " + $.alert_layer.settings.imageTypesRegexp);
-    
     if (data.match(/#/))
       $.alert_layer.settings.displayType = "div";
     else if (data.match($.alert_layer.settings.imageTypesRegexp))
