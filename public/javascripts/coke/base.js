@@ -16,7 +16,7 @@ $(document).ready(function() {
   $('.volumen .puntero').css('left', 19);
 
   var slider = {};
-  slider.ondrag = function(event, ui) 
+  slider.ondrag = function(event, ui)
   {
     Base.Player.service()[SoundEngines.APIMappings[Base.Player._player].vol](Base.Player._player == 'coke' ? (ui.position.left/33) : (ui.position.left/33 * 100));
   }
@@ -282,6 +282,11 @@ Base.UI = {
     {
       this.controlUI().find('a.punt_botellas').empty();
     }
+  },
+
+  alertLayer: function(layer)
+  {
+    $.alert_layer(layer);
   },
 
   render: function()
