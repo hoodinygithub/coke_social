@@ -14,7 +14,7 @@
       opacity      : 0.8,
       skipOverlay  : false,
       loadingImage : '/images/loading_large.gif',
-      imageTypes   : [ 'png', 'jpg', 'jpeg', 'gif' ],
+      imageTypesRegexp : new RegExp('\.' + [ 'png', 'jpg', 'jpeg', 'gif' ].join('|') + '$', 'i'),
       layerHtml    : '\
         <div id="alert_layer" style="display:none;"> \
           <div class="alert_layer_content"></div> \
@@ -23,6 +23,7 @@
     
     loading: function(data) {
       init();
+      
       if ($('#alert_layer .loading').length == 1) return true;
       showOverlay();
       
@@ -69,13 +70,13 @@
     if ($.alert_layer.settings.inited) return true
     else $.alert_layer.settings.inited = true
    
-    var imageTypes = $.alert_layer.settings.imageTypes.join('|')
-    $.alert_layer.settings.imageTypesRegexp = new RegExp('\.' + imageTypes + '$', 'i')
-    
     $('body').append($.alert_layer.settings.layerHtml)
   }
   
   function setDisplayType(data) {
+    console.log("setDisplayType: checking type from - " + data);
+    console.log("setDisplayType: regex - " + $.alert_layer.settings.imageTypesRegexp);
+    
     if (data.match(/#/))
       $.alert_layer.settings.displayType = "div";
     else if (data.match($.alert_layer.settings.imageTypesRegexp))
