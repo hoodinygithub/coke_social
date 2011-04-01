@@ -646,10 +646,11 @@ Base.playlists.duplicateCallback = function(response) {
     field_with_errors = $.parseJSON(response.errors);
     Base.account_settings.highlight_field_with_errors();
   } else {
-    $(document).trigger('close.facebox');
+//    $(document).trigger('close.facebox');
+	$.alert_layer.close();
     return false;
   }
-  $("#duplicate_button span span img").remove();
+  $("#duplicate_button span  span img").remove();
 };
 
 Base.max_skip_layer = function(){

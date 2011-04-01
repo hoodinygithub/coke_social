@@ -159,6 +159,7 @@ ActionController::Routing::Routes.draw do |map|
     player.messenger_search_emotions '/search_emotions/:q', :controller => 'searches', :action => 'messenger_search_emotion_results'
     player.max_skips '/max_skips', :controller => 'messenger_player/player', :action => 'max_skips'
     player.alert_layer '/alert_layer/:alert_type', :controller => 'messenger_player/layers', :action => 'alert_layer'
+    player.copy_mix_layer '/copy_mix_layer/:id', :controller => 'messenger_player/layers', :action => 'messenger_copy'
   end
 
   map.resources :campaigns, :member => {:activate => :post, :deactivate => :post}

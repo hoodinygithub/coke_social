@@ -22,7 +22,7 @@
           <h3><%= playlist.name %></h3>
           <p>Por: <%= link_to playlist.owner.name,djs_details_path(playlist.owner.id), :title => playlist.owner.name, :class=>"link_gris" %></p> 
         </div>
-		 <%= link_to "Copiar", "#", :title => t('actions.copy') ,:rel=>"facebox", :onclick => "Base.playlists.messenger_copy('#{playlist.owner.name}', '#{playlist.id}');return false;" %>
+		 <%= link_to "Copiar",  copy_mix_layer_path(playlist.id), :title => t('actions.copy') , :rel=> "layer", :onclick => "Base.playlists.messenger_copy1('#{playlist.owner.name}', '#{playlist.id}');return false;" %>
         <%= link_to_function t('coke_messenger.play'), "Base.Station.request('/playlists/#{playlist.id}.xml', 'xml', Base.Station.stationCollection);Base.Player.random(false)", :class => 'btn_play' %>
         </li>
       <% end %>

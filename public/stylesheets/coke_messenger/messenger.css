@@ -107,7 +107,7 @@ p a{font-size:11px;padding-bottom:1px;}
 .mixes{}
 .mixes li{display:block;text-align:left;border-bottom:1px solid #ededed;padding:2px 15px 0 10px;}
 .ord{display:block;width:27px;height:38px;background:url(/images/coke_messenger/bg_ord.gif) repeat-x 0 0 #fff;text-align:center;padding-top:10px;font-size:11px;color:#636363;float:left;}
-.punt_botellas{width:58px;height:19px;float:left;}
+.punt_botellas{width:58px;height:19px;float:left;margin:15px 0 0;}
 .punt_botellas span{display:block;width:7px;height:19px;float:left;margin:0 2px;background:url(/images/coke_messenger/iconografia.png) no-repeat -4px -86px;}
 .punt_botellas .llena{background-position:-4px -85px;}
 .punt_botellas .vacia{background-position:-17px -85px;}
@@ -183,7 +183,7 @@ h3.busq_titulo{font-size:18px;color:#343434;width:48%;float:left;padding-left:5p
 .aviso p{text-align:left;font-size:12px;line-height:14px;color:#979797;margin:5px auto;padding:0 26px;}
 .aviso .scroll{overflow-x:hidden;overflow-y:scroll;}
 .aviso .columna_izq{width:194px;padding:0 10px 0 26px;float:left;text-align:left;border-right:1px solid #cacaca;min-height:210px;}
-.aviso .columna_der{width:215px;padding:0 10px;float:left;text-align:left;padding-left:15px;}
+.aviso .columna_der{width:212px;padding:0 10px;float:left;text-align:left;padding-left:15px;}
 .aviso small{font-size:8px;}
 
 .aviso form{overflow:hidden;margin:24px auto;padding:0 26px;clear:both;}
@@ -193,10 +193,12 @@ h3.busq_titulo{font-size:18px;color:#343434;width:48%;float:left;padding-left:5p
 .aviso form label{font-size:12px;color:#979797;display:block;overflow:hidden;padding-bottom:10px;}
 .aviso form label span{float:left;padding-top:5px;}
 .aviso form input.texto,
+.aviso form input.texto_nk,
 .aviso form textarea{border:1px solid #e6e6e6;background:#fff;float:right;font-size:12px;}
 .aviso form select{border:1px solid #e6e6e6;background:#fff;padding:1px;}
 .aviso form .alerta{float:left;font-size:12px;line-height:26px;text-align:right;color:#000;}
-.aviso form .boton{display:block;width:135px;height:30px;background:url(/images/coke_messenger/botones.png) no-repeat -1px -114px;text-align:center;color:#fff;font-size:15px;font-weight:bold;float:right;cursor:pointer;margin-bottom:0;border:0;}
+.aviso form .boton,
+.aviso .boton{display:block;width:135px;height:30px;background:url(/images/coke_messenger/botones.png) no-repeat -1px -114px;text-align:center;color:#fff;font-size:15px;font-weight:bold;float:right;cursor:pointer;margin-bottom:0;border:0;}
 .aviso form .boton_gris{display:block;width:137px;height:30px;background:url(/images/coke_messenger/botones.png) no-repeat -1px -146px;text-align:center;color:#fff;font-size:15px;font-weight:bold;float:right;cursor:pointer;margin-bottom:0;border:0;}
 
 /* compartir */
@@ -234,6 +236,9 @@ h3.busq_titulo{font-size:18px;color:#343434;width:48%;float:left;padding-left:5p
 .login p, .login form{padding:0;}
 .login .columna_izq{border:0;}
 .login .columna_der{padding-right:0;border-left:1px solid #cacaca;}
+.aviso .f_authen .texto{width:280px;}
+.aviso .f_authen .texto_nk{width:190px;}
+.aviso .f_authen span .ck_lbl{margin-left: 70px;}
 .aviso .f_acceso .texto{width:120px;}
 .aviso .f_acceso p{text-align:right;margin-bottom:10px;}
 .aviso .f_acceso p a{font-size:9px;}
@@ -243,7 +248,7 @@ h3.busq_titulo{font-size:18px;color:#343434;width:48%;float:left;padding-left:5p
 .aviso .f_registro .texto{width:110px;}
 .aviso .f_registro .urlname{background:#eaeaea;padding:2px;margin-bottom:10px;}
 .aviso .f_registro .fnacimiento span{float:none;display:block;margin-bottom:10px;}
-.aviso .f_registro .anyo{width:95px;}
+.aviso .f_registro .anyo{width:70px;}
 .aviso .f_registro .dia,
 .aviso .f_registro .mes{width:51px;}
 .aviso .f_registro label small{font-size:9px;}
@@ -345,3 +350,4 @@ h3.busq_titulo{font-size:18px;color:#343434;width:48%;float:left;padding-left:5p
 }
 .layer_hide { z-index:-100; }
 .layer_overlayBG { background-color: #000; z-index: 99; }
+.copy_mix_layer_save_btn { color:#ffffff; position:relative; top:8px; }

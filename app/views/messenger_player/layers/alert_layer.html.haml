@@ -1,4 +1,19 @@
-%h1.destacado.estirar= @alert_text
+- case @msg 
+  - when 'max_skips'
+    = render :partial =>"/messenger_player/layers/max_layer"
+  - when 'login_layer'
+    = render :partial =>"/messenger_player/layers/login_layer"  
+  - when 'license_message'
+    = render :partial =>"/messenger_player/layers/license_message"
+  - when 'opt_layer'
+    = render :partial =>"/messenger_player/layers/opt_layer"
+  - when 'authentication_layer'
+    = render :partial =>"/messenger_player/layers/authentication_layer"
+  - when 'registration_layer'
+    = render :partial =>"/messenger_player/layers/registration_layer"  
+  - else
+  "No Layer"
+  
 
 :javascript
   _gaq.push(['_trackPageview', '#{@ga_tracking_id}']);

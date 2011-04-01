@@ -1,0 +1,97 @@
+	   <div class="overlay">
+    <div class="aviso login registro">
+        <div class="aviso_cab">
+  	<h1><%= t('coke_messenger.layers.registration_form_view.register') %></h1>
+    <a class="btn_cerrar" href="#" onclick="$.alert_layer.close();" title="<%= t('actions.close') %>"><strong>X</strong> <Cerrar><%= t('actions.close') %></a>
+  </div><!-- .aviso_cab -->
+      <div class="scroll">
+
+        <div class="columna_izq">
+          <h2><%= t('coke_messenger.layers.registration_form_view.sign_up') %><strong><%= t('coke_messenger.layers.registration_form_view.coke_fm') %></strong></h2>
+          <p><%= t('coke_messenger.layers.registration_form_view.way_coke') %></p>
+          <form class="f_registro" action="#">
+            <label>
+              <span><%= t('coke_messenger.layers.registration_form_view.you') %></span>
+                <input type="radio" name="Genero" value="female" id="Genero_0" /><%= t('coke_messenger.layers.registration_form_view.female') %> 
+                <input type="radio" name="Genero" value="male" id="Genero_1" /><%= t('coke_messenger.layers.registration_form_view.male') %>
+            </label>
+
+            <label>
+              <span><%= t('coke_messenger.layers.registration_form_view.your_name') %></span>
+              <input class="texto" type="text" />
+            </label>
+            <label>
+              <span><%= t('coke_messenger.layers.registration_form_view.email') %></span>
+              <input class="texto" type="text" />
+            </label>
+
+            <p><%= t('coke_messenger.layers.registration_form_view.profile') %> <small><%= t('coke_messenger.layers.registration_form_view.share') %></small>:</p>
+            <label class="urlname">
+              <span><%= t('coke_messenger.layers.registration_form_view.coke') %></span>
+              <input class="texto" type="text" />
+            </label>
+            <label class="fnacimiento">
+              <span><%= t('coke_messenger.layers.registration_form_view.dob') %></span>
+
+              <select class="anyo">
+                <option value="1978">1978</option>
+                <option value="-">-</option>
+              </select>
+              <select class="dia">
+                <option value="25">25</option>
+                <option value="-">-</option>
+
+              </select>
+              <select class="mes">
+                <option value="02">02</option>
+                <option value="-">-</option>
+              </select>
+            </label>
+            <label>
+              <input class="check" type="checkbox" />
+
+              <small><%= t('coke_messenger.layers.registration_form_view.accept') %></small>
+            </label>
+            <div class="alerta"><%= t('coke_messenger.layers.registration_form_view.thats_it') %></div>
+            <input class="boton" type="submit" value="COMPLETE" />
+          </form>
+        </div><!-- .columna_izq -->
+        <div class="columna_der">
+          <h2><%= t('coke_messenger.layers.registration_form_view.reasons') %><strong><%= t('coke_messenger.layers.registration_form_view.coke') %></strong></h2>
+
+          <ul class="razones">
+            <li>
+              <span class="ico_lupa"><%= t('coke_messenger.layers.registration_form_view.view') %></span>
+              <h3><%= t('coke_messenger.layers.registration_form_view.discover') %></h3>
+              <p><%= t('coke_messenger.layers.registration_form_view.find_music') %></p>
+
+            </li>
+            <li>
+              <span class="ico_premio"><%= t('coke_messenger.layers.registration_form_view.recommendations') %></span>
+              <h3><%= t('coke_messenger.layers.registration_form_view.badgets') %></h3>
+              <p><%= t('coke_messenger.layers.registration_form_view.radio_stations') %></p>
+            </li>
+
+            <li>
+              <span class="ico_seguir"><%= t('coke_messenger.layers.registration_form_view.friends') %></span>
+              <h3><%= t('coke_messenger.layers.registration_form_view.follow') %></h3>
+              <p><%= t('coke_messenger.layers.registration_form_view.click_follow') %></p>
+            </li>
+            <li>
+              <span class="ico_mixes"><%= t('coke_messenger.layers.registration_form_view.create') %></span>
+
+              <h3><%= t('coke_messenger.layers.registration_form_view.create_mix') %></h3>
+              <p><%= t('coke_messenger.layers.registration_form_view.dj_create_mix') %></p>
+            </li>
+            <li>
+              <span class="ico_opinar"><%= t('coke_messenger.layers.registration_form_view.view') %></span>
+
+              <h3><%= t('coke_messenger.layers.registration_form_view.put_work') %></h3>
+              <p><%= t('coke_messenger.layers.registration_form_view.comment') %></p>
+            </li>
+          </ul>
+        </div><!-- .columna_der -->
+      </div><!-- .scroll -->
+    </div><!-- .aviso login registro -->
+  </div><!-- .overlay -->
+
