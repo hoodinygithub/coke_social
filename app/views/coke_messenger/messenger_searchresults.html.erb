@@ -22,7 +22,7 @@
           <div class="datos">
             <h3><%= link_to_function playlist.name, "Base.Station.request('/playlists/#{playlist.id}.xml', 'xml', Base.Station.stationCollection);Base.Player.random(false)", :class => 'link_rojo' %></h3>
           </div>
-          <div class="messenger_rating" style="margin-top: 10px;"><%= rating(playlist) %></div>
+          <div class="messenger_rating" style="margin-top: 10px;"><%= messenger_rating(playlist) %></div>
           </li>
         <% end %>
       <% else %>

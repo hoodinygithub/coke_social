@@ -18,17 +18,17 @@
           <li class="estirar">
             <%= avatar_for(playlist, :small, :class => 'avatar', :disable_default_css => true) %>
             <div class="datos">
-              <h3><%= link_to_function playlist.name, "Base.Station.request('/playlists/#{playlist.id}.xml', 'xml', Base.Station.stationCollection);Base.Player.random(false)", :class => 'link_rojo' %></h3>
+              <h3><%= playlist.name %></h3>
             </div>
-            <em class="mix_count"><label>32</label>canciones</em>
-            <%= messenger_rating(playlist) %>
-            <%= link_to_function t('messenger_player.play'), "Base.Station.request('/playlists/#{playlist.id}.xml', 'xml', Base.Station.stationCollection);Base.Player.random(false)", :class => 'btn_play' %>
+            <em class="mix_count"><%= playlist.songs.size %></label> <%= t('coke_messenger.my_mixes_mixes_count') %> </em>
+            <div class="messenger_rating" style="margin-top: 10px;"><%= messenger_rating(playlist) %></div>
+            <%= link_to_function t('coke_messenger.play'), "Base.Station.request('/playlists/#{playlist.id}.xml', 'xml', Base.Station.stationCollection);Base.Player.random(false)", :class => 'btn_play' %>
           </li>
         <% end %>
       <% else %>
         <li class="no_resultados">
-          <h3><%= t('messenger_player.mix_page_blank') %></h3>
-          <p> <%= t('messenger_player.mix_page_blank_desc') %> </p>
+          <h3><%= t('coke_messenger.mix_page_blank') %></h3>
+          <p> <%= t('coke_messenger.mix_page_blank_desc') %> </p>
           <a class="btn_nuevomix" href="/playlist/create" title="<%= t('coke_messenger.create_mix') %>"><%= t('coke_messenger.create_mix') %></a>
         </li>
       <% end %>

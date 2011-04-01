@@ -17,10 +17,10 @@
           <span class="ord"><%= index + 1 %></span>
           <%= avatar_for(playlist, :small, :class => 'avatar', :disable_default_css => true) %>
           <div class="datos">
-            <h3><%= link_to_function playlist.name, "Base.Station.request('/playlists/#{playlist.id}.xml', 'xml', Base.Station.stationCollection);Base.Player.random(false)", :class => 'link_rojo' %></h3>
-            <p><%= t("basics.by")%>: <%= link_to playlist.owner.name, "/#{playlist.owner}/playlists" ,:class => "link_gris" %></a></p>
+            <h3><%= playlist.name %></h3>
+            <p><%= t("basics.by")%>: <%= link_to playlist.owner.name, djs_details_path(playlist.owner.id) ,:class => "link_gris" %></a></p>
           </div>
-          <div class="messenger_rating" style="margin-top: 10px;"><%= rating(playlist) %></div>
+          <div class="messenger_rating" style="margin-top: 10px;"><%= messenger_rating(playlist) %></div>
           <%= link_to_function t('coke_messenger.play'), "Base.Station.request('/playlists/#{playlist.id}.xml', 'xml', Base.Station.stationCollection);Base.Player.random(false)", :class => 'btn_play' %>
           <a class="btn_seguir" href="#" title="<%= t('coke_messenger.follow_the_author') %>"><%= t('coke_messenger.follow_the_author') %></a>
           </li>
