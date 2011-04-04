@@ -21,6 +21,7 @@ class MessengerPlayer::LayersController < ApplicationController
     when "login_layer"
       @orig_msg = false
       @msg="login_layer"
+      @error_msgs = params[:errors].blank? ? nil : "show error msgs"
     when "license_message"
       @orig_msg = false
       @msg="license_message"
@@ -33,6 +34,7 @@ class MessengerPlayer::LayersController < ApplicationController
     when "registration_layer"
       @orig_msg = false
       @msg="registration_layer"
+      @error_msgs = params[:errors].blank? ? nil : "show error msgs"
     when "follow_user"
       @orig_msg = true
       if params[:slug] && params[:gender]

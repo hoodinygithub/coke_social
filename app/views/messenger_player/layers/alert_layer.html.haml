@@ -2,7 +2,8 @@
   - when 'max_skips'
     = render :partial =>"/messenger_player/layers/max_layer"
   - when 'login_layer'
-    = render :partial =>"/messenger_player/layers/login_layer"  
+    - class_name = @error_msgs.nil? ? "" : " error"
+    = render :partial =>"/messenger_player/layers/login_layer", :locals =>{:class_name => class_name}  
   - when 'license_message'
     = render :partial =>"/messenger_player/layers/license_message"
   - when 'opt_layer'
@@ -10,7 +11,8 @@
   - when 'authentication_layer'
     = render :partial =>"/messenger_player/layers/authentication_layer"
   - when 'registration_layer'
-    = render :partial =>"/messenger_player/layers/registration_layer"  
+    - class_name = @error_msgs.nil? ? "" : " error" 
+    = render :partial =>"/messenger_player/layers/registration_layer", :locals =>{:class_name => class_name}  
 - else
   %h1.destacado.estirar= @alert_text
   

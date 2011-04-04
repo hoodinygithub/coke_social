@@ -53,11 +53,12 @@
 	  <br/>
 	  <a href="<%= alert_layer_path("max_skips") %>" rel="layer">max_skips</a> |
 	  <a href="<%= alert_layer_path("login_layer") %>" rel="layer">login_layer</a> |
+		<a href="<%= alert_layer_path("login_layer",:errors => "true") %>" rel="layer">login_layer_errors</a> |
 	  <a href="<%= alert_layer_path("license_message") %>" rel="layer">license_message</a> |
 	  <a href="<%= alert_layer_path("opt_layer") %>" rel="layer">opt_layer</a> |
 	  <a href="<%= alert_layer_path("authentication_layer") %>" rel="layer">authentication_layer</a> |
-	  <a href="<%= alert_layer_path("registration_layer") %>" rel="layer">registration_layer</a> 
-	  
+	  <a href="<%= alert_layer_path("registration_layer") %>" rel="layer">registration_layer</a> |
+	  <a href="<%= alert_layer_path("registration_layer",:errors => "true") %>" rel="layer">registration_layer_errors</a>
 	  <!-- END Testing Layers -->
       
     </div>
