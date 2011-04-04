@@ -625,7 +625,7 @@ Base.layout.spin_image = function(type, no_margin) {
 
 
   if (typeof(no_margin) == 'undefined' || no_margin) {
-    $img.css({'margin-top':'5px'});
+    //$img.css({'margin-top':'5px'});
   }
 
   return $img;

@@ -11,8 +11,8 @@
     = render :partial =>"/messenger_player/layers/authentication_layer"
   - when 'registration_layer'
     = render :partial =>"/messenger_player/layers/registration_layer"  
-  - else
-  "No Layer"
+- else
+  %h1.destacado.estirar= @alert_text
   
 
 :javascript
