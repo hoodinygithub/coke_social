@@ -1,7 +1,7 @@
 <div class="aviso">
  <% if @orig_msg%>
   <div class="aviso_cab">
-    <a class="btn_cerrar" href="#" onclick="$.alert_layer.close();" title="Cerrar"><strong>X</strong> Cerrar</a>
+    <a class="btn_cerrar" href="#" onclick="$.alert_layer.close();" title="<%= t('actions.close') %>"><strong>X</strong> <%= t('actions.close') %></a>
   </div>	
   <%= yield %>
   <div class="connect">
