@@ -1,12 +1,7 @@
 <div class="submenu">
   <div class="columna_izq">
     <h2><%= t('coke_messenger.messenger_home.recent_mixes') %></h2>
-    <form class="ord_mixes" action="#" >
-      <select>
-        <option>Ordenar por popularidad</option>
-        <option>-</option>
-      </select>
-    </form>
+    <%= sortable_options_tag @recent_playlists, :name => "mixes", :class => "ord_mixes", :i18n_base => "coke_messenger.order_filter" %>
   </div>
   <div class="columna_der">
     <h2><%= t('coke_messenger.messenger_home.emotions') %></h2>
@@ -14,19 +9,17 @@
 </div><!-- .submenu -->
 <div class="contenido">
   <div class="columna_izq">
-    <ul class="ult_mixes">
-      <% @recent_playlists.each do |playlist| %>
-        <li class="estirar">
-        <%= avatar_for(playlist, :small, :class => 'avatar', :disable_default_css => true) %>
-        <div class="datos">
-          <h3><%= playlist.name %></h3>
-          <p>Por: <%= link_to playlist.owner.name,djs_details_path(playlist.owner.id), :title => playlist.owner.name, :class=>"link_gris" %></p> 
-        </div>
-		 <%= link_to "Copiar",  copy_mix_layer_path(playlist.id), :title => t('actions.copy') , :rel=> "layer" %>
-        <%= link_to_function t('coke_messenger.play'), "Base.Station.request('/playlists/#{playlist.id}.xml', 'xml', Base.Station.stationCollection);Base.Player.random(false)", :class => 'btn_play' %>
-        </li>
-      <% end %>
-    </ul>
+    <% sortable_list(@recent_playlists, {:name => "mixes", :class => "ult_mixes", :li_class => "estirar"}) do |playlist| %>
+
+      <%= avatar_for(playlist, :small, :class => 'avatar', :disable_default_css => true) %>
+      <div class="datos">
+        <h3><%= playlist.name %></h3>
+        <p>Por: <%= link_to playlist.owner.name,djs_details_path(playlist.owner.id), :title => playlist.owner.name, :class=>"link_gris" %></p> 
+      </div>
+      <%= link_to "Copiar",  copy_mix_layer_path(playlist.id), :title => t('actions.copy') , :rel=> "layer" %>
+      <%= link_to_function t('coke_messenger.play'), "Base.Station.request('/playlists/#{playlist.id}.xml', 'xml', Base.Station.stationCollection);Base.Player.random(false)", :class => 'btn_play' %>
+
+    <% end %>
   </div><!-- .columna_izq -->
   <div class="columna_der">
     <ul class="emociones">

@@ -16,7 +16,13 @@ class PagesController < ApplicationController
   end
 
   def messenger_home
-    @recent_playlists = current_site.playlists.all(:limit => 50, :order => 'updated_at desc')
+    @recent_playlists = current_site.playlists.all(:limit => 50, :order => 'total_plays desc').sortable(
+          :mixes,
+          [:popularity, :total_plays],
+          [:rating, :rating_cache],
+          [:most_recent, :updated_at],
+          [:alpha, :name]
+    )
     @title = t('coke_messenger.default_messenger_title')+t('coke_messenger.messenger_home.title')
     render 'coke_messenger/home', :layout => layout_unless_xhr('messenger')
   end
@@ -171,4 +177,3 @@ class PagesController < ApplicationController
     end
 
 end
-
