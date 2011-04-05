@@ -79,9 +79,9 @@ module MachineSort::SortableHelper
     options = {}
     ordered_fields.each do |field|
       if field.kind_of?(Array)
-        options[field[0]] = object.send(field[1])
+        options[field[0]] = field[1]==:default ? object.instance_variable_get("@default") : object.send(field[1])
       else
-        options[field] = object.send(field)
+        options[field] = field==:default ? object.instance_variable_get("@default") : object.send(field)
       end
     end
     options
