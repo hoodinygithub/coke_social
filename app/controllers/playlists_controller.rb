@@ -37,7 +37,13 @@ class PlaylistsController < ApplicationController
 
   def messenger_mixes
     @title = t('messenger_player.mixes.title')
-    @mixes = current_site.top_playlists.all(:limit => 50)
+    @mixes = current_site.top_playlists.all(:limit => 50).sortable(
+          :mixes,
+          [:popularity, :total_plays],
+          [:rating, :rating_cache],
+          [:most_recent, :updated_at],
+          [:alpha, :name]
+    )
     render 'coke_messenger/mixes', :layout => layout_unless_xhr('messenger')
   end
 
