@@ -326,6 +326,24 @@ module ApplicationHelper
     end
   end
 
+  def messenger_station_contains(item, limit=3, include_text=true, link_options={})
+    links = []
+    name_concat = []
+    station_artists = item.includes(limit)
+
+    station_artists.each do |station_artist|
+      name_concat << station_artist.artist.name unless station_artist.artist.nil?
+      break if link_options[:limit] && name_concat.to_s.length > link_options[:limit].to_i
+      links << station_artist.artist.name unless station_artist.artist.nil?
+    end
+
+    if include_text
+      "<strong>#{t('basics.contains')}:</strong> #{links.join(", ")}..."
+    else
+      "#{links.join(", ")}..."
+    end
+  end
+
   def render_flash_messages
     if flash[:success]
       message = flash[:success]

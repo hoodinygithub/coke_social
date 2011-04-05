@@ -4,23 +4,23 @@
 	    <a class="btn_cerrar" href="#" onclick="$.alert_layer.close();" title="<%= t('actions.close') %>"><strong>X</strong> <%= t('actions.close') %></a>
 	  </div>
 		<div class="mix_portada">
-         <%= link_to avatar_for(@playlist, :large), radio_path(:station_id => @playlist.station.id) %>
+         <%= avatar_for(@playlist, :large)%>
         </div>
         <div class="mix_datos">
-	    <h3><%= link_to @playlist.name, radio_path(:station_id => @playlist.station.id), :class => "link_rojo" %></h3>
+	    <h3><%=  @playlist.name %></h3>
         <p><strong><%= t('basics.by').camelize %>:</strong>
-        <%= link_to(@playlist.owner, @playlist.owner, :target => "_blank", :class => "link_grisb") %></p>
-        <p><%= station_contains(@playlist.station.playable, 3, true, :target => '_blank') %></p>
+        <%= @playlist.owner %></p>
+        <p><%= messenger_station_contains(@playlist.station.playable, 3, true, :target => '_blank') %></p>
 	   
 	    </div>
         <form class="f_copiar estirar" action="" method="post">
-          <label><span>Nombre del nuevo Mix:</span> 
+          <label><span><%= t('coke_messenger.layers.copy_mix_layer.new_mix_name') %></span> 
 		  <input type="text" class="texto" name="playlist[name]" id="playlist_name" />
 		  </label>
 		  <a href="#" id="duplicate_button" class="boton" style="text-decoration:none;"
 	      onclick="Base.playlists.duplicate('<%= @playlist.owner.slug%>',<%= @playlist.id %>); return false;">
 	      <span><span class="copy_mix_layer_save_btn" style="color:#ffffff;"><%= t('actions.save').upcase %></span></span>
 	    </a>
-		  <input class="boton_gris" type="reset" value="CANCELAR" onclick="$.alert_layer.close();"/>
+		  <input class="boton_gris" type="reset" value="<%= t('coke_messenger.layers.copy_mix_layer.cancel') %>" onclick="$.alert_layer.close();"/>
         </form>
 	</div>
