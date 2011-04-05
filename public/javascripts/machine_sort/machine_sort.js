@@ -46,6 +46,7 @@
         parent_ul.fadeOut('normal', function() {
           parent_ul.empty()
           for (var j=0; j<row_array.length; j++) {
+            $(row_array[j][1]).find("span.ord").html(j+1)
             parent_ul.append(row_array[j][1])
           }
           parent_ul.fadeIn()
@@ -67,8 +68,8 @@
       return bb-aa;
     },
     sort_alpha: function(a,b) {
-      if (a[0]==b[0]) return 0;
-      if (a[0]<b[0]) return -1;
+      if (a[0].toLowerCase()==b[0].toLowerCase()) return 0;
+      if (a[0].toLowerCase()<b[0].toLowerCase()) return -1;
       return 1;
     },
     sort_rubydate: function(a,b) {

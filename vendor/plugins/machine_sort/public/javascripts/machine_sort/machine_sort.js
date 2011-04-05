@@ -23,10 +23,9 @@
     },
     
     makeSortable: function() {
-      // work through each column and calculate its type
+      // work through each field and calculate its type
       sortable_fields = getSortableFields($.sortable.settings.parent_ul);
       for (var i=0; i<sortable_fields.length; i++) {
-        // manually override the type with a sorttable_type attribute
         sortable_fields[i].sortfunction = guessType(sortable_fields[i].toString(), $.sortable.settings.parent_ul);
       }
       $.sortable.settings.sortable_fields = sortable_fields;
@@ -47,6 +46,7 @@
         parent_ul.fadeOut('normal', function() {
           parent_ul.empty()
           for (var j=0; j<row_array.length; j++) {
+            $(row_array[j][1]).find("span.ord").html(j+1)
             parent_ul.append(row_array[j][1])
           }
           parent_ul.fadeIn()
@@ -169,7 +169,7 @@
           sortfn = $.sortable.sort_numeric;
         }
         
-        // check for Ruby date format
+        // check for Ruby date format - 2011-03-28 19:29:53 UTC
         rubydate = text.match($.sortable.settings.dateRegexpRuby)
         if (rubydate) {
           sortfn = $.sortable.sort_rubydate;

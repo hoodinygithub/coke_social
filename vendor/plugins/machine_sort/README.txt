@@ -55,7 +55,7 @@ View
   Sortable List
     call sortable_list(array_of_items, options_hash) do |item| { # rhtml to fill each <li> }
     example:
-      <% sortable_list(@recent_playlists, {:name => "mixes", :class => "ult_mixes", :li_class => "estirar"}) do |playlist| %>
+      <% sortable_list(@recent_playlists, {:name => "mixes", :class => "ult_mixes", :li_class => "estirar"}) do |playlist, index| %>
         <%= avatar_for(playlist, :small, :class => 'avatar', :disable_default_css => true) %>
         <div class="datos">
           <h3><%= playlist.name %></h3>
@@ -85,7 +85,8 @@ View
       1. sortable_list accepts the following options:
         :name => name of list to sort (must match name given to list or both need to be nil)
         :class or :ul_class => class to be appended to UL tag
-        :li_class => class to be appended to LI tag 
+        :li_class => class to be appended to LI tag
+      2. If you need to number the LIs, then add <span class="ord">1</span> around the indexes.
 
   
   

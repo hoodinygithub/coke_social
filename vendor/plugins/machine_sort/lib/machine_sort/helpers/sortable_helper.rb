@@ -65,9 +65,9 @@ module MachineSort::SortableHelper
     li_options = {}
     li_options[:class] = options[:li_class] || ""
     
-    list_items[2..-1].each do |item|
+    list_items[2..-1].each_with_index do |item,index|
       new_block = Proc.new do
-        block.call(item)
+        block.call(item,index)
       end
       html += content_tag :li, capture(&new_block), li_options.merge(sortable_options(item, ordered_fields))
     end
