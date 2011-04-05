@@ -1,35 +1,28 @@
   <div class="submenu">
     <div class="columna">
       <h2><%= t('coke_messenger.dj.tab_title') %></h2>
-      <form class="ord_mixes" action="#" >
-        <select>
-          <option><%= t('coke_messenger.dj.sort_by_popularity') %></option>
-          <option>-</option>
-        </select>
-      </form>
+      <%= sortable_options_tag @djs, :name => "djs", :class => "ord_mixes", :i18n_base => "coke_messenger.order_filter" %>
     </div>
   </div><!-- .submenu -->
 
 
   <div class="contenido">
     <div class="columna">
-      <ul class="djs">
-       <% @djs.each do |dj| %>
-			  <li class="estirar">
-          <span class="ord"><%=@djs.index(dj)+1%></span>
-          <%= avatar_for(dj, :small, :class => 'avatar', :disable_default_css => true) %>
-          <div class="datos">
-            <h3><%= link_to dj.name, djs_details_path(dj.id), :class => "link_rojo", :title => dj.name, :content_switch_enabled => true %></h3>
-			
-            <p>(<%= dj.country.name %>)</p>
-          </div>
-          <div class="num_mixes"><strong><%= dj.total_playlists %></strong> <%= t('coke_messenger.mixes').downcase %></div>
-          <%= link_to_function t('coke_messenger.play'), "Base.Station.request('/playlists/#{dj.playlists.latest(1).id}.xml', 'xml', Base.Station.stationCollection);Base.Player.random(false)", :class => 'btn_play' %>
-          <a class="btn_seguir" href="#" title="<%= t('coke_messenger.dj.follow_the_author') %>"><%= t('coke_messenger.dj.follow_the_author') %></a>
-		  
-        </li>
-			<% end %>
-      </ul>
+      <% sortable_list(@djs, {:name => "djs", :class => "djs", :li_class => "estirar"}) do |dj, index| %>
+
+        <span class="ord"><%=index+1%></span>
+        <%= avatar_for(dj, :small, :class => 'avatar', :disable_default_css => true) %>
+        <div class="datos">
+          <h3><%= link_to dj.name, djs_details_path(dj.id), :class => "link_rojo", :title => dj.name, :content_switch_enabled => true %></h3>
+		
+          <p>(<%= dj.country.name %>)</p>
+        </div>
+        <div class="num_mixes"><strong><%= dj.total_playlists %></strong> <%= t('coke_messenger.mixes').downcase %></div>
+        <%= link_to_function t('coke_messenger.play'), "Base.Station.request('/playlists/#{dj.playlists.latest(1).id}.xml', 'xml', Base.Station.stationCollection);Base.Player.random(false)", :class => 'btn_play' %>
+        <a class="btn_seguir" href="#" title="<%= t('coke_messenger.dj.follow_the_author') %>"><%= t('coke_messenger.dj.follow_the_author') %></a>
+
+		  <% end %>
+
     </div><!-- .columna -->
   </div><!-- .contenido -->
   
