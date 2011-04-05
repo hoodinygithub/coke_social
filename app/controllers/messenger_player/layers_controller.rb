@@ -61,7 +61,7 @@ class MessengerPlayer::LayersController < ApplicationController
     # session[:return_to] = request.referer
     session[:return_to] = request.referer.gsub("http://#{request.host}", '')
     unless current_user
-       render :partial =>"/messenger_player/layers/login_layer"
+       render :partial =>"/messenger_player/layers/login_layer",:locals=>{:class_name => nil}
     end
   end
 
