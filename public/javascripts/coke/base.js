@@ -653,6 +653,8 @@ Base.playlists.duplicateCallback = function(response) {
   } else {
 //    $(document).trigger('close.facebox');
 	$.alert_layer.close();
+	 var my_mixes_url = Base.currentSiteUrl() + '/messenger_player/my_mixes' 
+	Base.Util.XHR(my_mixes_url, 'text', Base.UI.contentswp);
     return false;
   }
   $("#duplicate_button span  span img").remove();

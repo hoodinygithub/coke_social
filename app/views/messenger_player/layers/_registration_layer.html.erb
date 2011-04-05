@@ -38,20 +38,7 @@
             </label>
             <label class="fnacimiento <%= class_name %>">
               <span><%= t('coke_messenger.layers.registration_form_view.dob') %></span>
-
-              <select class="anyo">
-                <option value="1978">1978</option>
-                <option value="-">-</option>
-              </select>
-              <select class="dia">
-                <option value="25">25</option>
-                <option value="-">-</option>
-
-              </select>
-              <select class="mes">
-                <option value="02">02</option>
-                <option value="-">-</option>
-              </select>
+							<%= date_select :user,:born_on, :start_year => Time.now.year, :end_year => 1900, :use_month_numbers => true %>
 							<small class="txt_error">Voc&ecirc; deve ter no m&iacute;nimo 13 anos para utilizar este site</small>
             </label>
             

@@ -21,7 +21,7 @@
               <small class="txt_error">E-mail e/ou senha inv&aacute;lidos</small>
             </label>
             <p><a class="link_rojob" href="#" title="<%= t('coke_messenger.layers.login_link_layer.forgot_pwd') %>"><%= t('coke_messenger.layers.login_link_layer.pwd_title') %></a></p>
-            <input class="boton" type="submit" value="ACEPTAR" />
+            <input class="boton" type="submit" value="<%= t('coke_messenger.layers.login_link_layer.accept')%>" />
           </form>
           <div class="fb_acceso">
             <p><%= t('coke_messenger.layers.login_link_layer.log_data_network') %></p>
@@ -44,7 +44,7 @@
           <h2><%= t('coke_messenger.layers.login_link_layer.reg_free') %><strong><%= t('coke_messenger.layers.login_link_layer.register_free')%></strong></h2>
           <p><%= t('coke_messenger.layers.login_link_layer.follow') %></p>
           <form>
-		  <p><a class="boton" href="#" title="<%= t('coke_messenger.layers.login_link_layer.sign_up')%>"><%= t('coke_messenger.layers.login_link_layer.sign_up')%></a></p>
+		  <p><a class="boton" href="#" title="<%= t('coke_messenger.layers.login_link_layer.sign_up')%>" style="text-decoration:none;"><span style="position:relative;top:7px"><%= t('coke_messenger.layers.login_link_layer.sign_up')%></span></a></p>
     	</form>    
 		</div><!-- .columna_der -->
       </div><!-- .scroll -->
