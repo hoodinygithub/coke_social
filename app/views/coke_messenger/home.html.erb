@@ -9,7 +9,7 @@
 </div><!-- .submenu -->
 <div class="contenido">
   <div class="columna_izq">
-    <% sortable_list(@recent_playlists, {:name => "mixes", :class => "ult_mixes", :li_class => "estirar"}) do |playlist| %>
+    <% sortable_list(@recent_playlists, {:name => "mixes", :class => "ult_mixes", :li_class => "estirar"}) do |playlist, index| %>
 
       <%= avatar_for(playlist, :small, :class => 'avatar', :disable_default_css => true) %>
       <div class="datos">
