@@ -19,8 +19,8 @@
           <div class="datos">
             <h3><%= playlist.name %></h3>
           </div>
-          <div class="messenger_rating"><%= rating(playlist) %></div>
-          <a class="btn_play" href="#" title="Play">Play</a>
+          <div class="messenger_rating" style="margin-top: 10px;"><%= messenger_rating(playlist) %></div>
+					<%= link_to_function t('coke_messenger.play'), "Base.Station.request('/playlists/#{playlist.id}.xml', 'xml', Base.Station.stationCollection);Base.Player.random(false)", :title =>t('coke_messenger.play'), :class => 'btn_play' %>
           </li>
 
         <% end %>

@@ -42,7 +42,7 @@ class PlaylistsController < ApplicationController
   end
 
   def messenger_my_mixes
-    @my_mixes = current_user.playlists.all.paginate(:per_page => 4, :page => params[:page], :order => 'updated_at desc')
+    @my_mixes = current_user.playlists.all(:order => 'updated_at desc')
     if request.xhr? and params[:page].to_i > 1
       logger.debug" IN XHR if condition and params[:page]=#{params[:page]}"
 	  # sleep 5
