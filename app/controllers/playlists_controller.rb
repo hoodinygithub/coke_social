@@ -48,7 +48,13 @@ class PlaylistsController < ApplicationController
   end
 
   def messenger_my_mixes
-    @my_mixes = current_user.playlists.all(:order => 'updated_at desc')
+    @my_mixes = current_user.playlists.all(:order => 'total_plays desc').sortable(
+          :mixes,
+          [:popularity, :total_plays],
+          [:most_recent, :updated_at],
+          [:rating, :rating_cache],
+          [:alpha, :name]
+    )
     if request.xhr? and params[:page].to_i > 1
       logger.debug" IN XHR if condition and params[:page]=#{params[:page]}"
 	  # sleep 5

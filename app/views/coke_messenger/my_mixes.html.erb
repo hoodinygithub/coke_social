@@ -2,39 +2,26 @@
   <div class="columna">
     <h2><%= t('coke_messenger.my_mixes') %></h2>
     <a class="btn_perfil" href="/<%= current_user %>" target="_blank" title="<%= t('coke_messenger.my_mixes_view_profile') %>"><%= t('coke_messenger.my_mixes_view_profile') %></a>
-    <form class="ord_mixes" action="#" >
-      <select>
-        <option>Ordenar por popularidad</option>
-        <option>-</option>
-      </select>
-    </form>
+    <%= sortable_options_tag @my_mixes, :name => "mixes", :class => "ord_mixes", :i18n_base => "coke_messenger.order_filter" %>
   </div>
 </div><!-- .submenu -->
 <div class="contenido">
   <div class="columna">
-    <ul class="mis_mixes">
-      <% if @my_mixes.length > 0 %>
-        <% @my_mixes.each_with_index do |playlist, index| %>
-          <li class="estirar">
-            <%= avatar_for(playlist, :small, :class => 'avatar', :disable_default_css => true) %>
-            <div class="datos">
-              <h3><%= playlist.name %></h3>
-            </div>
-            <em class="mix_count"><%= playlist.songs.size %></label> <%= t('coke_messenger.my_mixes_mixes_count') %> </em>
-            <div class="messenger_rating" style="margin-top: 10px;"><%= messenger_rating(playlist) %></div>
-            <%= link_to_function t('coke_messenger.play'), "Base.Station.request('/playlists/#{playlist.id}.xml', 'xml', Base.Station.stationCollection);Base.Player.random(false)", :class => 'btn_play' %>
-          </li>
-        <% end %>
-					<% if  @my_mixes.length < 3 %>
-				   <a class="btn_nuevomix" href="/playlist/create" target= "_blank" title="<%= t('coke_messenger.create_mix') %>"><%= t('coke_messenger.create_mix') %></a>
-				 <% end%>
-      <% else %>
-        <li class="no_resultados">
-          <h3><%= t('coke_messenger.mix_page_blank') %></h3>
-          <p> <%= t('coke_messenger.mix_page_blank_desc') %> </p>
-          <a class="btn_nuevomix" href="/playlist/create" target= "_blank" title="<%= t('coke_messenger.create_mix') %>"><%= t('coke_messenger.create_mix') %></a>
-        </li>
-      <% end %>
-    </ul>
+    <% sortable_list(@my_mixes, {:name => "mixes", :class => "mis_mixes", :li_class => "estirar", :no_results_class => "no_resultados", :no_results_partial => "coke_messenger/my_mixes_no_result"}) do |playlist, index| %>
+    
+      <%= avatar_for(playlist, :small, :class => 'avatar', :disable_default_css => true) %>
+      <div class="datos">
+        <h3><%= playlist.name %></h3>
+      </div>
+      <em class="mix_count"><%= playlist.songs.size %></label> <%= t('coke_messenger.my_mixes_mixes_count') %> </em>
+      <div class="messenger_rating" style="margin-top: 10px;"><%= messenger_rating(playlist) %></div>
+      <%= link_to_function t('coke_messenger.play'), "Base.Station.request('/playlists/#{playlist.id}.xml', 'xml', Base.Station.stationCollection);Base.Player.random(false)", :class => 'btn_play' %>
+    
+      <% if (playlist == @my_mixes.last) && (index < 2) %>
+		    <a class="btn_nuevomix" href="/playlist/create" target= "_blank" title="<%= t('coke_messenger.create_mix') %>"><%= t('coke_messenger.create_mix') %></a>
+      <% end%>
+		 
+    <% end %>
+
   </div><!-- .columna -->
 </div><!-- .contenido -->
