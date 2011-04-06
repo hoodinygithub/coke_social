@@ -56,23 +56,40 @@ module MachineSort::SortableHelper
     ordered_fields = list_items[1]
     return unless ordered_fields.kind_of?(Array)
     
-    ul_options = {}
-    ul_options[:id] = options.has_key?(:name) ? "sortable_options_ul_#{options[:name].to_s.underscore.parameterize("_")}" : "sortable_options_ul"
-    ul_options[:class] = "sortable_options_ul "
-    ul_options[:class] += options[:ul_class] || options[:class] || ""
-    ul_options[:sortable_fields] = ordered_fields.map{|field| field.kind_of?(Array) ? field[0] : field}.join(",")
+    if list_items.size > 2
+      ul_options = {}
+      ul_options[:id] = options.has_key?(:name) ? "sortable_options_ul_#{options[:name].to_s.underscore.parameterize("_")}" : "sortable_options_ul"
+      ul_options[:class] = "sortable_options_ul "
+      ul_options[:class] += options[:ul_class] || options[:class] || ""
+      ul_options[:sortable_fields] = ordered_fields.map{|field| field.kind_of?(Array) ? field[0] : field}.join(",")
+      
+      li_options = {}
+      li_options[:class] = options[:li_class] || ""
     
-    li_options = {}
-    li_options[:class] = options[:li_class] || ""
-    
-    list_items[2..-1].each_with_index do |item,index|
-      new_block = Proc.new do
-        block.call(item,index)
+      list_items[2..-1].each_with_index do |item,index|
+        new_block = Proc.new do
+          block.call(item,index)
+        end
+        html += content_tag :li, capture(&new_block), li_options.merge(sortable_options(item, ordered_fields))
       end
-      html += content_tag :li, capture(&new_block), li_options.merge(sortable_options(item, ordered_fields))
+      ul = content_tag(:ul, html, ul_options)
+      concat(ul, block.binding)
+    else
+      ul_options = {}
+      ul_options[:class] = options[:ul_class] || options[:class] || ""
+      
+      li_options = {}
+      li_options[:class] = options[:no_results_class] || "no_results"
+      
+      if options.has_key?(:no_results_partial)
+        li = content_tag(:li, (render :partial => options[:no_results_partial]), li_options)
+      else
+        li = content_tag(:li, (options.has_key?(:no_results_text) ? options[:no_results_text] : "No Results Found"), li_options)
+      end
+      
+      ul = content_tag(:ul, li, ul_options)
+      concat(ul, block.binding)
     end
-    ul = content_tag(:ul, html, ul_options)
-    concat(ul, block.binding)
   end
   
   def sortable_options(object, ordered_fields)

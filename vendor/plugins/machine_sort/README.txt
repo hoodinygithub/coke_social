@@ -86,6 +86,9 @@ View
         :name => name of list to sort (must match name given to list or both need to be nil)
         :class or :ul_class => class to be appended to UL tag
         :li_class => class to be appended to LI tag
+        :no_results_class => class to be appended to LI tag if No Results are found
+        :no_results_text => Text to be displayed if No Results are found (default = "No Results Found")
+        :no_results_partial => partial to be rendered instead of text if No Results are found
       2. If you need to number the LIs, then add <span class="ord">1</span> around the indexes.
 
   
