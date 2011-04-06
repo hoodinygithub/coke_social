@@ -60,7 +60,13 @@ class PlaylistsController < ApplicationController
   end
 
   def messenger_dj_mix_details
-    @dj_mixes = User.find_by_id(params[:id]).playlists.all(:limit => 50)
+    @dj_mixes = User.find_by_id(params[:id]).playlists.all(:limit => 50, :order => "total_plays DESC").sortable(
+          :mixes,
+          [:popularity, :total_plays],
+          [:most_recent, :updated_at],
+          [:rating, :rating_cache],
+          [:alpha, :name]
+    )
     @dj_name = User.find_by_id(params[:id]) rescue nil
     @title = t('coke_messenger.default_messenger_title')+@dj_name.to_s
     render 'coke_messenger/dj_mix_details', :layout => layout_unless_xhr('messenger')

@@ -2,34 +2,21 @@
   <div class="columna">
     <h2><%= t('coke_messenger.dj_mix_detail.mixes_of_dj',:dj_name => @dj_name).upcase %></h2>
     <a class="btn_perfil" href= "<%= user_path(@dj_name)  %>" target="_blank" title="<%= t('coke_messenger.my_mixes_view_profile') %>"><%= t('coke_messenger.my_mixes_view_profile') %></a>
-    <form class="ord_mixes" action="#" >
-      <select>
-        <option>Ordenar por popularidad</option>
-        <option>-</option>
-      </select>
-    </form>
+    <%= sortable_options_tag @dj_mixes, :name => "mixes", :class => "ord_mixes", :i18n_base => "coke_messenger.order_filter" %>
   </div>
 </div><!-- .submenu -->
 <div class="contenido">
   <div class="columna">
-    <ul class="mis_mixes">
+    <% sortable_list(@dj_mixes, {:name => "mixes", :class => "mis_mixes", :li_class => "estirar"}) do |playlist, index| %>
+    
+      <%= avatar_for(playlist, :small, :class => 'avatar', :disable_default_css => true) %>
+      <div class="datos">
+        <h3><%= playlist.name %></h3>
+      </div>
+    
+      <div class="messenger_rating"><%= messenger_rating(playlist) %></div>
+      <%= link_to_function t('coke_messenger.play'), "Base.Station.request('/playlists/#{playlist.id}.xml', 'xml', Base.Station.stationCollection);Base.Player.random(false)", :class => 'btn_play' %>
 
-      
-
-      <% @dj_mixes.each do |playlist|
-      %>
-        <li class="estirar">
-          <%= avatar_for(playlist, :small, :class => 'avatar', :disable_default_css => true) %>
-          <div class="datos">
-            <h3><%= playlist.name %></h3>
-          </div>
-          
-          <div class="messenger_rating"><%= messenger_rating(playlist) %></div>
-          <%= link_to_function t('coke_messenger.play'), "Base.Station.request('/playlists/#{playlist.id}.xml', 'xml', Base.Station.stationCollection);Base.Player.random(false)", :class => 'btn_play' %>
-        </li>
-      <% end %>
-
-
-    </ul>
+    <% end %>
   </div><!-- .columna -->
 </div><!-- .contenido -->
