@@ -16,7 +16,7 @@ class PagesController < ApplicationController
   end
 
   def messenger_home
-    @recent_playlists = current_site.playlists.all(:limit => 50, :order => 'total_plays desc').sortable(
+    @recent_playlists = current_site.playlists.all(:limit => 50, :order => 'updated_at DESC').sortable(
           :mixes,
           [:popularity, :total_plays],
           [:rating, :rating_cache],
