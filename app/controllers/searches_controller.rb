@@ -116,6 +116,14 @@ class SearchesController < ApplicationController
         @counts.store(t, 0)
       end
     end
+    
+    @results[:playlists] = @results[:playlists].sortable(
+          :results,
+          [:popularity, :total_plays],
+          [:most_recent, :updated_at],
+          [:rating, :rating_cache],
+          [:alpha, :name]
+    )
     render 'coke_messenger/messenger_search_emotion_results', :layout => layout_unless_xhr('messenger')
   end
 
