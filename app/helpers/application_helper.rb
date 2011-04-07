@@ -992,7 +992,7 @@ def cyloop_logo_path(sm=true)
   def messenger_rating(rateable, bottles=5)
     rating = "<div class='punt_botellas'>"
     (1..bottles).each do |b|
-      rating << "<span class=#{rateable.rating_cache.to_i > b ? 'llena' : 'vacia' }></span>"
+      rating << "<span class=#{rateable.rating_cache.to_i.floor >= b ? 'llena' : 'vacia' }></span>"
     end
     rating << "</div>"
     rating
