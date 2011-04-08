@@ -55,6 +55,7 @@ var Base = {
 	getCurrentSiteUrl: function() {},
 	account_settings: {},
 	layout: {},
+	community: {},
 	playlists: {},
 	utils: {}
 };
@@ -658,4 +659,81 @@ Base.playlists.duplicateCallback = function(response) {
     return false;
   }
   $("#duplicate_button span  span img").remove();
+};
+
+Base.utils.handle_login_required = function(response, url, button_label) {
+  if (typeof(response) == 'object') {
+    if (typeof(response.status) && response.status == 'redirect') {
+      $.simple_popup(function()
+      {
+        $.get(url, function(response)
+        {
+          $.simple_popup(response);
+          button_label.html(Base.locale.t('actions.follow'));
+        });
+      });
+      return true;
+    }
+  }
+  return false;
+};
+
+Base.community.follow = function(user_slug, button, remove_div, layer_path) {
+  var params = {'user_slug':user_slug}
+  var $button = jQuery(button);
+  var old_onclick = $button.attr('onclick');
+
+	$img = jQuery("<img></img>");
+  $img.attr('src', Base.currentSiteUrl() + '/images/grey_loading.gif');
+
+  $button_label = $button.children().children();
+  $button_label.append($img);
+
+  $button.attr('onclick', "");
+  $button.bind('click', function() { return false; });
+
+  jQuery.post(Base.currentSiteUrl() + '/users/follow', params, function(response, status) {
+    if (Base.utils.handle_login_required(response, layer_path, $button_label)) {
+      $button.unbind('click');
+      $button.bind('click', function() {
+        Base.community.follow(user_slug, button, remove_div, layer_path);
+        return false;
+      });
+      return;
+    }
+
+    if (status == 'success') {
+      $button_label.html("");
+      $button.removeClass("btn_seguir_red");
+      if (response.status == 'following') {
+        $button_label.html(Base.locale.t('actions.unfollow'));
+        $button.addClass("btn_seguir_green");
+      } 
+
+      $button.unbind('click');
+      $button.bind('click', function() { Base.community.unfollow(user_slug, this, remove_div); return false; });
+    }
+  });
+};
+
+Base.community.unfollow = function(user_slug, button, remove_div) {
+  var params = {'user_slug':user_slug}
+  var $button = jQuery(button);
+  var old_onclick = $button.attr('onclick');
+
+  $button_label = $button.children().children();
+  $button_label.html(Base.layout.spin_image());
+
+  $button.attr('onclick', "");
+  $button.bind('click', function() { return false; });
+
+  jQuery.post(Base.currentSiteUrl() + '/users/unfollow', params, function(response, status) {
+    if (status == 'success') {
+        $button.removeClass("btn_seguir_green");
+        $button.addClass("btn_seguir_red");
+        $button_label.html(Base.locale.t('actions.follow'));
+        $button.unbind('click');
+        $button.bind('click', function() { Base.community.follow(user_slug, this, remove_div); return false; });
+    }
+  });
 };

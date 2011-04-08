@@ -1,7 +1,7 @@
 <div class="submenu">
   <div class="columna">
     <h2><%= t('coke_messenger.my_mixes') %></h2>
-    <a class="btn_perfil" href="/<%= current_user %>" target="_blank" title="<%= t('coke_messenger.my_mixes_view_profile') %>"><%= t('coke_messenger.my_mixes_view_profile') %></a>
+    <a class="btn_perfil" href="<%= user_path(current_user) %>" target="_blank" title="<%= t('coke_messenger.my_mixes_view_profile') %>"><%= t('coke_messenger.my_mixes_view_profile') %></a>
     <%= sortable_options_tag @my_mixes, :name => "mixes", :class => "ord_mixes", :i18n_base => "coke_messenger.order_filter" %>
   </div>
 </div><!-- .submenu -->
