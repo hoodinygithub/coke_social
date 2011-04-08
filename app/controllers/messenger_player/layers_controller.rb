@@ -8,7 +8,7 @@ class MessengerPlayer::LayersController < ApplicationController
     @ga_tracking_id = case alert_type
   when "max_plays"
      @orig_msg = true
-      "/auth/maxplayslayer/"
+      "/auth/maxplays/"
     when "share_mix"
       @orig_msg = true
       "/auth/sharemixlayer/"
@@ -18,24 +18,30 @@ class MessengerPlayer::LayersController < ApplicationController
     when "max_skips"
       @orig_msg = false
       @msg="max_skips"
+      "/layer/max_skips"
     when "login_layer"
       @orig_msg = false
       @msg="login_layer"
       @error_msgs = params[:errors].blank? ? nil : "show error msgs"
+      "/auth/login"
     when "license_message"
       @orig_msg = false
       @msg="license_message"
+      "/layer/license"
     when "opt_layer"
       @orig_msg = false
       @msg="opt_layer"
       @error_msgs = params[:errors].blank? ? nil : "show error msgs"
+      "/auth/option"
     when "authentication_layer"
       @orig_msg = false
       @msg="authentication_layer"
+      "/layer/forgotpwd"
     when "registration_layer"
       @orig_msg = false
       @msg="registration_layer"
       @error_msgs = params[:errors].blank? ? nil : "show error msgs"
+      "/auth/registration"
     when "follow_user"
       @orig_msg = true
       if params[:slug] && params[:gender]
