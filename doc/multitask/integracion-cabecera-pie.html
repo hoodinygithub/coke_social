@@ -1,0 +1,624 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:og="http://opengraphprotocol.org/schema/" xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xmlns:fb="http://www.facebook.com/2008/fbml" xml:lang="en-US">
+<head>
+  <meta content="text/html;charset=utf-8" http-equiv="Content-Type" />
+  <title>Coca-Cola.fm |  Destapa tus emociones</title>
+  <link href="http://mx.coca-cola.fm/favicon.ico" rel="shortcut icon" />
+  <link href="http://la.coca-cola.fm/playlist/create" rel="canonical" />
+  <script type="text/javascript" charset="utf-8">
+  var current_url_site = "http://mx.coca-cola.fm";
+  </script>
+  <script src="http://mx.coca-cola.fm/javascripts/jquery-1.4.1.min.js?1299796828" type="text/javascript"></script>
+  <script src="http://mx.coca-cola.fm/javascripts/jquery.cycle.all.min.js?1299796828" type="text/javascript"></script>
+  <script src="http://mx.coca-cola.fm/javascripts/supersleight.plugin.js?1299796828" type="text/javascript"></script>
+  <script src="http://mx.coca-cola.fm/javascripts/jquery.metadata.js?1299796828" type="text/javascript"></script>
+  <script src="http://mx.coca-cola.fm/javascripts/jquery.autocomplete.js?1299796828" type="text/javascript"></script>
+  <script src="http://mx.coca-cola.fm/javascripts/jquery.validate.min.js?1299796828" type="text/javascript"></script>
+  <script src="http://mx.coca-cola.fm/javascripts/jquery.hotkeys.min.js?1299796828" type="text/javascript"></script>
+  <script src="http://mx.coca-cola.fm/javascripts/jquery.facebox.js?1299796828" type="text/javascript"></script>
+  <script src="http://mx.coca-cola.fm/javascripts/base.js?1299796828" type="text/javascript"></script>
+  <script src="http://mx.coca-cola.fm/utils/locale.js?1299797478" type="text/javascript"></script>
+  <script src="http://mx.coca-cola.fm/javascripts/jquery.rating.js?1299796828" type="text/javascript"></script>
+  <script src="http://mx.coca-cola.fm/javascripts/growinput.js?1299796828" type="text/javascript"></script>
+  <script src="http://mx.coca-cola.fm/javascripts/jquery.textboxlist.js?1299796828" type="text/javascript"></script>
+  <script type="text/javascript">
+  //<![CDATA[
+  var AUTH_TOKEN = "O5GQncF/7cGAdpYpZNKIjdJ1fULfvGyK3Dz/1gAI6RY=";
+  //]]>
+  </script>
+  <script>
+  Base.account.slug = "marijoti011";
+  Base.account.type = "user";
+  </script>
+
+  <!-- integracion -->
+  <script type="text/javascript" src="js/AC_RunActiveContent.js"></script>
+  <script type="text/javascript" src="js/cufon-yui.js"></script>
+  <script type="text/javascript" src="js/Myriad_Pro.font.js"></script>
+  <script type="text/javascript" src="js/jquery.li-scroller.1.0.js"></script>
+  <script type="text/javascript" src="js/player.js"></script>
+  <script type="text/javascript" src="js/general.js"></script>
+  <link rel="stylesheet" type="text/css" href="css/reset.css" />
+  <!-- fin integracion -->
+
+  <link href="http://mx.coca-cola.fm/stylesheets/application.css?1299796828" media="screen" rel="stylesheet" type="text/css" />
+  <link href="http://mx.coca-cola.fm/stylesheets/facebox.css?1299796828" media="screen" rel="stylesheet" type="text/css" />
+  <link href="http://mx.coca-cola.fm/stylesheets/registration.css?1299796828" media="screen" rel="stylesheet" type="text/css" />
+  <!--[if lte IE 7]>
+  <link href="http://mx.coca-cola.fm/stylesheets/ie.css?1299796828" media="screen" rel="stylesheet" type="text/css" />
+  <![endif]-->
+  <link href="http://mx.coca-cola.fm/stylesheets/coke.css?1299796828" media="screen" rel="stylesheet" type="text/css" />
+  <link href="http://mx.coca-cola.fm/stylesheets/styles_radio.css?1299796828" media="screen" rel="stylesheet" type="text/css" />
+  <link href="http://mx.coca-cola.fm/stylesheets/jquery.rating.css?1299796828" media="screen" rel="stylesheet" type="text/css" />
+  <link href="http://mx.coca-cola.fm/stylesheets/jquery.textboxlist.css?1299796828" media="screen" rel="stylesheet" type="text/css" />
+  <link href="http://mx.coca-cola.fm/stylesheets/promos/cultural_relevance.css?1299796828" media="screen" rel="stylesheet" type="text/css" />
+
+  <!-- integracion -->
+  <link rel="stylesheet" type="text/css" href="css/cab-pie-player.css" />
+  <!-- fin integracion -->
+
+</head>
+<body locale="coke_MX" market="cokemx" current_site_url="http://mx.coca-cola.fm">
+  
+  <!-- integracion -->
+  <?php include"i-cabecera.html"; ?>
+  <!-- fin integracion -->
+  
+  <div id="container">
+    <!-- quitamos la cabecera actual
+    <div id="header" class="playlists">
+      <a href="/home">
+        <img alt="Coca-Cola" class="png_fix" id="logo" src="http://mx.coca-cola.fm/images/logo_cokemx.png?1299796828" title="Coca-Cola" />
+      </a>
+      <ul id="header_nav">
+        <li><a href="/home" class="false">Inicio</a></li>
+        <li><a href="/playlists" class="">Mixes</a></li>
+        <li><a href="/search" class="">Buscar</a></li>
+      </ul>
+      <script>
+       var msg="Busca tus mixes y amigos favoritos";
+      </script>
+      <div id="search_form">
+        <form action="/search" class="line" id="header_search_form" method="get" onsubmit="return Base.header_search.buildSearchUrl();">
+          <div>
+            <input autocomplete="off" class="search_input" id="search_query" name="q" onblur="restoreInput(msg, this); setTimeout(function() {$(".search_results_box").hide();}, 300);" onfocus=" clearInput(msg, this);" type="text" value="Busca tus mixes y amigos favoritos" />
+            <img alt="Search_icon" class="search_button" src="http://mx.coca-cola.fm/images/search_icon.gif?1299796828" />
+            <div class="clearer"></div>
+          </div>
+        </form>
+        <div class="search_results_ajax">
+          <img alt="Ajax_activity_indicators_download_animated_icon_animated_busy" src="http://mx.coca-cola.fm/images/ajax_activity_indicators_download_animated_icon_animated_busy.gif?1299796828" />
+        </div>
+      </div>
+      <div class="search_results_box"></div>
+      <div id="userdata_box" class="user_data_logged_in">
+        <div class="user">
+          <img alt="Acuario" class="avatar avatar tiny" src="http://mx.coca-cola.fm/system/avatars/1/9/2/1923403/tiny/acuario.jpg?1292237026" />
+          <a href="/my/dashboard" class="user_name">marijo</a>
+        </div>
+        <ul class="links">
+          <li class=""><a href="/my/dashboard" class="">Inicio</a></li>
+          <li class=""><a href="/my/playlists" class="">Mixes</a></li>
+          <li class=""><a href="/my/badges" class="">Badges</a></li>
+          <li class=""><a href="/my/reviews" class="">Comentarios</a></li>
+          <li class=""><a href="/my/activities" class="">Actividad</a></li>
+          <li class=""><a href="/my/followers" class="">Seguidores</a></li>
+          <li class=""><a href="/my/following" class="">Siguiendo</a></li>
+          <li class=""><a href="/my/settings" class="">Configuración de cuenta</a></li>
+          <li class="last"><a href="/logout" class="">Logout</a></li>
+        </ul>
+        <a href="#" id="userdata_arrow">
+          <img alt="Userdata_arrow" class="png_fix" src="http://mx.coca-cola.fm/images/userdata_arrow.png?1299796828" />
+          <img alt="Arrow_up" class="arrow_up" src="http://mx.coca-cola.fm/images/arrow_up.gif?1299796828" />
+        </a>
+      </div>
+      <div class="clearer"></div>
+      <div id="flash_messages"></div>
+      <div class="clearer"></div>
+    </div>
+    <div class="header_spacer"></div>
+    end header -->
+  
+    <div id="main_content" class="playlists">
+    
+      <h1 class="tit_bloque gris">
+          <span class="txt">Crear nuevo mix</span>
+          <span class="bg_fin">&nbsp;</span>
+        </h1><!-- .tit_bloque -->
+    
+      <script src="http://mx.coca-cola.fm/javascripts/playlist.js?1299796828" type="text/javascript"></script>
+    	<script src="http://mx.coca-cola.fm/javascripts/jquery.ui.js?1299796828" type="text/javascript"></script>
+      <script src="http://mx.coca-cola.fm/javascripts/playlist_create.js?1299796828" type="text/javascript"></script>
+      <script src="http://mx.coca-cola.fm/javascripts/AC_OETags.js?1299796828" type="text/javascript"></script>
+      <div class="two_columns">
+        <h1>Crear un nuevo mix</h1>
+        <h2>Busca música para agregar a tu mix</h2>
+        <form action="/search" class="account_settings search_music" id="playlist_search_form" method="get" onsubmit="return Base.playlist_search.buildSearchUrl();">  
+          <div class="search_list" onmouseleave="restoreInput(content_msg, this); setTimeout(function() {$(".create_box").hide();}, 300);">
+            <div class="search_playlist_form">    
+              <div class="form_row last">
+                <div class="grey_round_box align_center">
+                  <input autocomplete="off" class="input full_width3" id="playlist_search_query" name="q" onblur="if (!$.browser.msie) { restoreInput(content_msg, this); setTimeout(function() {$(".create_box").hide();}, 300); }" onfocus=" clearInput(content_msg, this);" type="text" value="Escribe el nombre de un artista, un álbum, o una canción" />
+                </div>
+                <div id="playlist_search_results" class="create_box large_width"></div><!--/end create_box -->
+              </div><!--/end form_row -->
+            </div>
+            <div class="content_search_results_ajax playlist_create">
+              <img alt="Loading" src="http://mx.coca-cola.fm/images/loading.gif?1299796828" />
+            </div>
+          </div>
+      	  <script language="javascript">
+            var content_msg = "Escribe el nombre de un artista, un álbum, o una canción";
+            $("#playlist_search_query").keypress(function(e){
+              if(e.which==13) {
+                Base.playlist_search.buildSearchUrl();
+                return false;
+              }
+            });
+          </script>
+        </form>
+        <div id="search_results_container">
+          <h2>Resultados de búsqueda</h2>
+          <div class="empty_results_box">
+            <div class="step_no">1</div>
+            <h2>Selecciona tus canciones</h2>
+            <div>Los resultados de la búsqueda de canciones aparecerán aquí.<br/>Arrastra las canciones que te gustan<br/>y ponlas en la columna de la derecha<br/>para crear tu mix</div>
+          </div>
+        </div>
+        <div id="playlist_recommended_artists_container">
+          <div class="inner_box">
+    	    <h2>¿Y qué te parecen estas recomendaciones...?</h2>
+          </div>
+          <div class="try_list">
+            <div id="fix_width">
+              <div class="recomended_image">
+                <a alt="Paula Abdul" href="#" onclick="get_song_list("61815","artist", null, null, null, 61815); return false;"><img alt="561391" class=" recommended_image" disable_default_css="true" src="http://assets.cyloop.com/storage?fileName=/.elhood.com-2/usr/61815/image/thumbnail/561391.jpg" title="Paula Abdul" /></a>
+              </div>
+              <div id="fix_name">
+                <a alt="Paula Abdul" class="small_thumb_artist_name" href="#" onclick="get_song_list("61815","artist", null, null, null, 61815); return false;" title="Paula Abdul">Paula Abdul</a>
+              </div>
+            </div>
+            <div id="fix_width">
+              <div class="recomended_image">
+                <a alt="VHS or Beta" href="#" onclick="get_song_list("71725","artist", null, null, null, 71725); return false;"><img alt="225663" class=" recommended_image" disable_default_css="true" src="http://assets.cyloop.com/storage?fileName=/.elhood.com-2/usr/71725/image/thumbnail/225663.jpg" title="VHS or Beta" /></a>
+              </div>
+              <div id="fix_name">
+                <a alt="VHS or Beta" class="small_thumb_artist_name" href="#" onclick="get_song_list("71725","artist", null, null, null, 71725); return false;" title="VHS or Beta">VHS or Beta</a>
+              </div>
+            </div>
+            <div id="fix_width">
+              <div class="recomended_image">
+                <a alt="The Kooks" href="#" onclick="get_song_list("62032","artist", null, null, null, 62032); return false;"><img alt="177110" class=" recommended_image" disable_default_css="true" src="http://assets.cyloop.com/storage?fileName=/.elhood.com-2/usr/62032/image/thumbnail/177110.jpg" title="The Kooks" /></a>
+              </div>
+              <div id="fix_name">
+                <a alt="The Kooks" class="small_thumb_artist_name" href="#" onclick="get_song_list("62032","artist", null, null, null, 62032); return false;" title="The Kooks">The Kooks</a>
+              </div>
+            </div>
+            <div class="thumb_name">
+              <a alt="Robbie Williams" class="artist_name_without_thumb" href="#" onclick="get_song_list("60065","artist", null, null, null, 60065); return false;" title="Robbie Williams">Robbie Williams</a>,
+            </div>
+            <div class="thumb_name">
+              <a alt="Studio Allstars" class="artist_name_without_thumb" href="#" onclick="get_song_list("180276","artist", null, null, null, 180276); return false;" title="Studio Allstars">Studio Allstars</a>,
+            </div>
+            <div class="thumb_name">
+              <a alt="Phoenix" class="artist_name_without_thumb" href="#" onclick="get_song_list("61822","artist", null, null, null, 61822); return false;" title="Phoenix">Phoenix</a>,
+            </div>
+            <div class="thumb_name">
+              <a alt="Kim Carnes" class="artist_name_without_thumb" href="#" onclick="get_song_list("84813","artist", null, null, null, 84813); return false;" title="Kim Carnes">Kim Carnes</a>,
+            </div>
+            <div class="thumb_name">
+              <a alt="Daft Punk" class="artist_name_without_thumb" href="#" onclick="get_song_list("38727","artist", null, null, null, 38727); return false;" title="Daft Punk">Daft Punk</a>,
+            </div>
+            <div class="thumb_name">
+              <a alt="Empire Of The Sun" class="artist_name_without_thumb" href="#" onclick="get_song_list("184092","artist", null, null, null, 184092); return false;" title="Empire Of The Sun">Empire Of The Sun</a>
+            </div>
+            <br class="clearer" />
+          </div><!--/end try_list -->
+        </div>
+      </div><!--/end two_columns -->
+      <div id="right_column">
+        <h1>Reglas del mix</h1>
+        <div class="rules_list">
+          <!-- artist error alert -->
+          <div id="artist_error_tag" class="rule lower">máximo de 3 canciones de un mismo Artista
+            <div class="rule_tooltip">
+              <div class="top_round">&nbsp;</div>
+              <div class="tooltip_content">
+                  <ul class="tooltip_list">
+                  </ul>
+              </div>
+              <div class="bottom_round">&nbsp;</div>
+              <img src="http://mx.coca-cola.fm/images/tooltip_arrow.gif" class="tooltip_arrow" alt="" />
+            </div>
+          </div><!-- /end artist error alert -->
+          <!-- album error alert -->
+          <div id="album_error_tag" class="rule lower">máximo de 3 canciones de un mismo Álbum
+            <div class="rule_tooltip">
+              <div class="top_round">&nbsp;</div>
+              <div class="tooltip_content">
+                  <ul class="tooltip_list">
+                      <!-- <li><span class="number red">1</span> You have <b class="red">3</b> songs from the <b class="red">Greatest Hits</b> album, please remove 1 from mix.</li> -->
+                  </ul>
+              </div>
+              <div class="bottom_round">&nbsp;</div>
+              <img src="http://mx.coca-cola.fm/images/tooltip_arrow.gif" class="tooltip_arrow" alt="" />
+            </div>
+          </div><!-- /end album error alert -->
+          <!-- playlist minimum alert -->
+          <div id="playlist_minimum_tag" class="rule lower info_default_text">mínimo de 60 canciones para escucharlas tú
+            <div class="rule_tooltip">
+              <div id="tool_top" class="top_round_blk">&nbsp;</div>
+              <div id="tool_content" class="tooltip_content_blk">
+                <ul class="tooltip_list">
+                </ul>
+              </div>
+              <div id="tool_bottom" class="bottom_round_blk">&nbsp;</div>
+              <img id="tool_arrow" src="http://mx.coca-cola.fm/images/tooltip_arrow_blk.gif" class="tooltip_arrow" alt="" />
+            </div>
+          </div><!-- /end playlist minimum alert -->
+        </div><!--/end rules_list -->
+        <h2 class="left_side" id="playlist_error_tag"><span id="remaining_track_count">10</span> tracks pendientes de publicar</h2>
+        <div class="black_count" id="track_count">0</div>
+        <br class="clearer" />
+        <div class="dotted_box">
+          <div class="layer2">
+            <div id="empty_playlist" class="layer3">
+              <div class="step_no">2</div>
+              <h2>Arrastra las canciones aquí</h2>
+              <div>Incluye por lo menos 10 canciones,<br/>usando máximo 3 canciones<br/>de un mismo artista<br/>o de un mismo álbum<br/>dentro del mismo mix. Debes tener 60 canciones para que puedas escucharlo tú también. Con más de 10 pero menos 60, sólo tus amigos pueden escucharlo.</div>
+            </div>
+            <div id="populated_playlist" class="added_items_box hidden">
+              <ul id="playlist_item_list" class="added_items" playlist_id="0">
+              </ul>
+            </div><!--/end added_items_box -->
+          </div>
+        </div><!--/end dotted_box -->
+        <div class="playlist_creation_buttons align_right">
+          <div class="inner_box">
+            <div class="right_side">
+              <div id="lucky_10_desc" style="display:none"></div>
+              <span>
+                <img alt="Loading" id="autofill_loading" src="http://mx.coca-cola.fm/images/loading.gif?1299796828" style="display:none" />
+                <a href="#" id="autofill_button_ques" style="display:none" onclick="$.popup({div: "#auto_fill_popup" }); return false;"><img src="http://mx.coca-cola.fm/images/unable_qmark.gif" class="unable_qmark" alt="" /></a>
+                <a href="#" id="autofill_button" class="green_button" style="display:none" onclick="autofill(); return false;"><span><span>Autofill</span></span></a>
+              </span>
+            </div><!--/end right_side -->
+            <div class="clearer"></div>
+          </div>
+          <div class="playlist_save_buttons align_right">
+            <div class="right_side">
+              <a href="#" class="cancel_button" onclick="$.popup({div: "#cancel_popup"}); return false;">Cancelar</a>
+              <a href="#" id="save_button" class="red_button" style="display:none" onclick="open_save_popup(); return false;"><span><span>Guardar</span></span></a>
+            </div><!--/end right_side -->
+            <div class="clearer"></div>
+          </div>
+        </div>
+        <div id="auto_fill_popup" style="display:none;">
+        <!--
+          <div class="top_shadow">
+            <div class="top_left corner"></div>
+            <div class="center_shadow"></div>
+            <div class="top_right corner"></div>
+            <a href="#" onclick="$("#auto_fill_popup").fadeOut("fast"); return false;"><img src="http://mx.coca-cola.fm/images/popup_close.png" class="popup_close png_fix" alt="X" title="Close" /></a>
+          </div>
+          <div class="popup_content">
+        -->
+          <div class="title">Opción de autofill</div>
+          <div class="auto_fill_text">La opción de autofill te permitirá completar tu mix con canciones recomendadas según el estilo de las que ya hayas agregado.</div>
+        <!--
+          </div>
+           <div class="bottom_shadow">
+            <div class="bottom_left corner"></div>
+            <div class="center_shadow"></div>
+            <div class="bottom_right corner"></div>
+          </div>
+        -->
+        </div><!--/end popup -->
+    
+        <div id="save_mix_popup" style="display:none;">
+          <form action="/playlist/create" class="save_playlist_form account_settings" enctype="multipart/form-data" method="post">
+            <div style="margin:0;padding:0;display:inline">
+              <input name="authenticity_token" type="hidden" value="O5GQncF/7cGAdpYpZNKIjdJ1fULfvGyK3Dz/1gAI6RY=" />
+            </div>
+            <input type="hidden" name="item_ids" value="">
+            <div class="title">Guarda tu mix</div>
+            <div class="form_row">
+              <label><b>Nombre de tu mix</b></label>
+              <div class="grey_round_box">
+                <input type="text" class="input full_width" name="name" value="" />
+              </div>
+              <label><b>Etiqueta tu mix</b> 
+              <a href="#" onclick ="Base.playlists.showTagsLayer();return false;" class="red">Clic aquí para agregar tags</a>
+              </label>
+              <div class="grey_round_box">
+                <div class="tag_list">
+                  <input type="text" class="real_tags input full_width" name="tags" value="" />
+                </div>
+              </div>
+            </div><!--/end form_row -->
+            <br/>
+            <div class="form_row">
+              <label><b>Foto para tu mix</b></label>
+              <div class="playlist_image_container">
+                <img id="save_layer_avatar" alt="" class="save_layer_avatar valign_middle avatar playlist float_left" src="http://mx.coca-cola.fm/images/upload_image_placeholder.gif" />
+                <label class="label_holder">
+                <a href="#" onclick="return false;" id="avatar_upload_button" class="red_button valign_middle"><span><span>AGREGAR / ACTUALIZAR</span></span></a>
+                <input id="playlist_avatar" type="file" class="playlist_avatar file" name="avatar" size="30" onchange="save_playlist_image_preview();"/>
+                </label>
+                <div id="uploaded_image_name" class="uploaded_image_name">filename</div>
+                <br class="clearer" />
+              </div>
+            </div><!--/end form_row -->
+            <br/>
+            <div class="align_right">
+              <big>
+                <a href="#" onclick="$("#save_mix_popup").fadeOut("fast"); return false;" class="not_underlined black valign_middle popup_close_action">Cancelar</a>
+              </big>
+              <a href="#" class="red_button valign_middle btn_red_loading" onclick="submit_save_form(); return false;"><span><span class="red_loading" loading_message="Guardando">Guardar</span></span></a>
+            </div>
+          </form>
+        </div>
+        <div id="unable_popup" style="display:none;">
+          <div class="title">No se puede guardar este mix</div>
+          <div class="auto_fill_text">
+            Tu mix tiene errores. Deben corregirse para que puedas compartirlo con todos.
+          </div>
+        </div>
+        <div id="cancel_popup" style="display:none;">
+          <form action="" method="post" class="account_settings">
+            <div class="title">¿Cancelar mix?</div>
+            <div class="form_row">
+              <div class="auto_fill_text">Si cancelas tu mix los cambios desaparecerán, al igual que las canciones que hayas agregado. <br/> ¿Estás seguro que quieres cancelarlo?</div>
+              <br/>
+            </div>
+            <br/>
+            <div class="align_right">
+              <big>
+                <a href="#" onclick="$(document).trigger("close.facebox"); return false;" class="not_underlined black valign_middle popup_close_action">No, gracias</a>
+              </big>
+              <a href="#" onclick="close_cancel_popup(); return false;" class="red_button valign_middle"><span><span>Continuar</span></span></a>
+            </div>
+          </form>
+        </div>
+        <div id="edit_conf_popup" style="display:none;">
+          <form action="" method="post" class="account_settings">
+            <div class="title">Mix guardado</div>
+            <div class="form_row">
+              <div class="auto_fill_text">Las canciones seleccionadas para tu mix han quedado guardadas. ¿Quieres hacer alguna modificación?</div>
+              <br/>
+            </div>
+            <br/>
+            <div class="align_right">
+              <a href="#" onclick="$(document).trigger("close.facebox"); return false;" class="red_button valign_middle"><span><span>Sí</span></span></a>&nbsp;&nbsp;
+              <a href="/my/playlists" class="red_button valign_middle"><span><span>No</span></span></a>
+            </div>
+          </form>
+        </div>
+        <div id="avatar_delete_popup" style="display:none;">
+          <form action="" method="post" class="account_settings">
+            <div class="title">Confirmación de avatar eliminado</div>
+            <div class="form_row">
+              <div class="auto_fill_text">¿Confirmar?</div>
+              <br/>
+            </div>
+            <br/>
+            <div class="align_right">
+              <a href="#" class="red_button valign_middle" onclick="Base.playlists.avatarDeleteConfirm(); return false;"><span><span>Sí</span></span></a>&nbsp;&nbsp;
+              <a href="#" onclick="$(document).trigger("close.facebox"); return false;" class="red_button valign_middle"><span><span>No</span></span></a>
+            </div>
+          </form>
+        </div>
+        <div class="popup" id="tags_popup">
+          <div class="top_shadow">
+            <div class="top_left corner"></div>
+            <div class="center_shadow"></div>
+            <div class="top_right corner"></div>
+            <a href="#" onclick="$("#tags_popup").fadeOut("fast"); return false;">
+              <img src="http://mx.coca-cola.fm/images/popup_close.png" class="popup_close png_fix" alt="X" title="Close" />            </a>          </div>
+<div class="popup_content">
+            <form id="add_tags">
+              <input type="hidden" id="selected_tags" />
+            </form>
+            <div class="title">Agregar tags</div>
+            <div class="tag_box">
+              <div class="grey_round_box" id="tag_container">
+                <div id="tag_counts">
+                  <span id="available_tags_count">(280)</span>
+                  <span id="selected_tags_count">(0)</span>&nbsp; 
+                  <a href="#" class="red" onclick="Base.playlists.removeAllTags();return false;">Remover todos</a>
+                </div>
+                <div id="available_tags">
+                  <ul class="available_tags">
+                    <li><a href="#">A mil</a></li>            
+                    <li><a href="#">Alegre</a></li>            
+                    <li><a href="#">Alternativas</a></li>            
+                    <li><a href="#">Amor</a></li>            
+                    <li><a href="#">Antreras</a></li>            
+                    <li><a href="#">Bailar</a></li>            
+                    <li><a href="#">Bling bling</a></li>            
+                    <li><a href="#">Buena onda</a></li>            
+                    <li><a href="#">Buena vibra</a></li>            
+                    <li><a href="#">Cardio</a></li>            
+                    <li><a href="#">Chillout</a></li>            
+                    <li><a href="#">Cool</a></li>            
+                    <li><a href="#">Covers</a></li>            
+                    <li><a href="#">Cursis</a></li>            
+                    <li><a href="#">Cute</a></li>            
+                    <li><a href="#">Dance</a></li>            
+                    <li><a href="#">De bodas</a></li>            
+                    <li><a href="#">De buenas</a></li>            
+                    <li><a href="#">De carretera</a></li>            
+                    <li><a href="#">De fiesta</a></li>            
+                    <li><a href="#">De karaoke</a></li>            
+                    <li><a href="#">Divertido</a></li>            
+                    <li><a href="#">Domingueras</a></li>            
+                    <li><a href="#">Electro</a></li>            
+                    <li><a href="#">Enamorado</a></li>            
+                    <li><a href="#">Energia</a></li>            
+                    <li><a href="#">Energy</a></li>            
+                    <li><a href="#">Feliz</a></li>            
+                    <li><a href="#">Fresas</a></li>            
+                    <li><a href="#">Graduación</a></li>            
+                    <li><a href="#">Hip-hop</a></li>            
+                    <li><a href="#">Hippie</a></li>            
+                    <li><a href="#">House</a></li>            
+                    <li><a href="#">Indie</a></li>            
+                    <li><a href="#">Inspirado</a></li>            
+                    <li><a href="#">Ligue</a></li>            
+                    <li><a href="#">Lounge</a></li>            
+                    <li><a href="#">Mañaneras</a></li>            
+                    <li><a href="#">Memorias</a></li>            
+                    <li><a href="#">Metal</a></li>            
+                    <li><a href="#">Optimista</a></li>            
+                    <li><a href="#">Para celebrar</a></li>            
+                    <li><a href="#">Para despertarse</a></li>            
+                    <li><a href="#">Para estudiar</a></li>            
+                    <li><a href="#">Para motivarse</a></li>            
+                    <li><a href="#">Playeras</a></li>            
+                    <li><a href="#">Pop</a></li>            
+                    <li><a href="#">Poperas</a></li>            
+                    <li><a href="#">Rap</a></li>            
+                    <li><a href="#">Reggae</a></li>            
+                    <li><a href="#">Relax</a></li>            
+                    <li><a href="#">Retro</a></li>            
+                    <li><a href="#">Rock n" roll</a></li>            
+                    <li><a href="#">Rocker</a></li>            
+                    <li><a href="#">Rockeronas</a></li>            
+                    <li><a href="#">Romànticas</a></li>            
+                    <li><a href="#">Romantico</a></li>            
+                    <li><a href="#">Serenatas</a></li>            
+                    <li><a href="#">Sexy</a></li>            
+                    <li><a href="#">Sorpresa</a></li>            
+                    <li><a href="#">Super</a></li>            
+                    <li><a href="#">Te la dedico</a></li>            
+                    <li><a href="#">Tranquilas</a></li>            
+                    <li><a href="#">Verano</a></li>            
+                    <li><a href="#">Vivir de noche</a></li>            
+                  </ul>
+                </div>
+                <div id="selected_tags">
+                  <ul class="selected_tags">
+                  <ul/>
+                </div>
+              </div>
+            </div>
+            <br/>
+            <div class="align_right">
+                <a href="#" class="not_underlined black valign_middle popup_close_action" onclick="$("#tags_popup").hide(); return false;">Cancelar</a>&nbsp;&nbsp;
+              <a href="#" onclick="Base.playlists.saveTags(); return false;" class="red_button valign_middle"><span><span>Guardar</span></span></a>
+            </div>
+          </div>
+          <div class="bottom_shadow">
+            <div class="bottom_left corner"></div>
+            <div class="center_shadow"></div>
+            <div class="bottom_right corner"></div>
+          </div>
+</div><!--/end popup -->
+        <script language="javascript">
+          function close_cancel_popup()
+          {
+		    redirect_url = '/my/dashboard';
+    		jQuery.get('/playlist/clear_state', function(data) {
+        		document.location.href = redirect_url;
+    		});
+		  }
+    	  function add_item_wrapper(id, title, artist_id, artist_name, album_id, album_name, image_src, suppress_validation, item_id, station)
+		  {
+		    add_item(id, title, artist_id, artist_name, album_id, album_name, image_src, suppress_validation, item_id, station);
+		  }
+		  function artist_text_wrapper(num, name, item_count, max_artist)
+		  {
+		    // This is overriding the function in playlist_create.js to include translations
+  		    text = '<li>'
+			+ '<span class="number red">' + num + '</span> '
+			+ 'Tienes'
+			+ ' <b class="red">' + item_count + '</b> '
+			+ ((parseInt(item_count,10)== 1)? 'canción de' : 'canciones de' )
+			+ ' <b class="red">' + name + '</b>. '
+			+ 'Eliminar por favor'
+			+ ' ' + (item_count - max_artist) + ' '
+			+ ((parseInt(item_count - max_artist, 10)== 1)? 'canción de este mix.' : 'canciones de este mix.' )
+			+ '</li>';
+			return text;
+		  }
+		  function album_text_wrapper(num, name, item_count, max_album)
+		  {
+			// This is overriding the function in playlist_create.js to include translations
+			text = '<li>'
+			+ '<span class="number red">' + num + '</span> '
+			+ 'Tienes'
+			+ ' <b class="red">' + item_count + '</b> '
+			+ ((parseInt(item_count,10)== 1)? 'canción del álbum' : 'canciones del álbum' )
+			+ ' <b class="red">' + name + '</b>. '
+			+ 'Eliminar por favor'
+			+ ' ' + (item_count - max_album) + ' '
+			+ ((parseInt(item_count - max_album, 10) == 1)? 'canción de este mix.' : 'canciones de este mix.' )
+			+ '</li>';
+			return text;
+		  }
+		  function full_listen_wrapper(max_songs, items, full)
+		  {
+		    if(full)
+		    {
+		      text = "<li><b>¡Felicidades!</b> ¡Ya puedes escuchar tu mix completo!</li>";
+		    }
+		    else
+		    {
+		    text = "<li>Necesitas agregar <b class='red'>" + ( Number(max_songs) - Number(items) ) + "</b> canciones más para que puedas escuchar completas las canciones de tu propio mix. Cuando tu mix tenga " + max_songs + " canciones, este alerta cambia a color verde.<br /><br /><b>TIP:</b> ¡Usa el bótón <b class='green'>'Autofill'</b> para agregar 10 canciones más a tu mix!</li>";
+		    }
+		    return text;
+		  }
+		  validate_items();
+		  init_draggable();
+		</script> 
+      </div><!--/end right_column -->
+      <div class="clearer"></div>
+      <div id="stream_connector">
+        <script type="text/javascript" charset="utf-8">
+        var flashvars = "playerId=47";
+        AC_FL_RunContent(
+          "src", "http://mx.coca-cola.fm/flash/stream_connect",
+          "wmode", "opaque",
+          "width", "1",
+          "height", "1",
+          "align", "middle",
+          "id", "stream_connect",
+          "quality", "high",
+          "bgcolor", "#FFFFFF",
+          "name", "stream_connect",
+          "allowScriptAccess", "sameDomain",
+          "type", "application/x-shockwave-flash",
+          "pluginspage", "http://www.adobe.com/go/getflashplayer",
+          "flashVars", flashvars
+        );
+        </script>
+      </div><!-- /end stream_connector -->
+    </div><!-- /end main_content -->
+
+    <!-- quitamos el pie actual
+    <div id="footer" class="mx ">
+      <div class="footer_left">
+        <span class="feedback_button">
+          <a target="_blank" href="http://polldaddy.com/s/158304F6B410FA6A" class="red_button"><span><span>Sugerencias</span></span></a>
+          <a href="http://mx.coca-cola.fm/support/terms_and_conditions" target="_blank">Términos y condiciones</a>
+          <a href="http://mx.coca-cola.fm/support/privacy_policy" target="_blank">Política de privacidad</a>
+          <a href="http://mx.coca-cola.fm/badges-dj" target="_blank">Listado de Badges</a>
+          <a href="/index-bands/index.html" target="_blank">Índice de artistas</a>
+          <a href="http://mx.coca-cola.fm/index-music" target="_blank">Índice de música</a>
+        </span>
+      </div>
+      <div class="footer_right">
+        <a href="#"><img alt="Cyloop" class="cyloop_logo" src="http://mx.coca-cola.fm/images/cyloop.gif?1299796828" /></a>
+      </div>
+      <br class="clearer" />
+    </div>
+    end footer -->
+
+  </div><!--/end container -->
+
+  <!-- integracion -->
+  <?php include"i-pie.html"; ?>
+  <!-- fin integracion -->
+
+</body>
+</html>

@@ -1,0 +1,489 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:og='http://opengraphprotocol.org/schema/' xmlns='http://www.w3.org/1999/xhtml' lang='en-US' xmlns:fb='http://www.facebook.com/2008/fbml' xml:lang='en-US'>
+<head>
+  <meta content='text/html;charset=utf-8' http-equiv='Content-Type' />
+  <meta content='text/javascript' http-equiv='Content-Script-Type' />
+  <title>Coca-Cola.fm |  Destapa tus emociones</title>
+  <link href='http://mx.coca-cola.fm/favicon.ico' rel='shortcut icon' />
+  <link href='http://la.coca-cola.fm/badges-dj' rel='canonical' />
+  <script type="text/javascript" charset="utf-8">
+  var current_url_site = "http://mx.coca-cola.fm";
+  </script>
+  <script src="http://mx.coca-cola.fm/javascripts/jquery-1.4.1.min.js?1299796828" type="text/javascript"></script>
+  <script src="http://mx.coca-cola.fm/javascripts/jquery.cycle.all.min.js?1299796828" type="text/javascript"></script>
+  <script src="http://mx.coca-cola.fm/javascripts/supersleight.plugin.js?1299796828" type="text/javascript"></script>
+  <script src="http://mx.coca-cola.fm/javascripts/jquery.metadata.js?1299796828" type="text/javascript"></script>
+  <script src="http://mx.coca-cola.fm/javascripts/jquery.autocomplete.js?1299796828" type="text/javascript"></script>
+  <script src="http://mx.coca-cola.fm/javascripts/jquery.validate.min.js?1299796828" type="text/javascript"></script>
+  <script src="http://mx.coca-cola.fm/javascripts/jquery.hotkeys.min.js?1299796828" type="text/javascript"></script>
+  <script src="http://mx.coca-cola.fm/javascripts/jquery.facebox.js?1299796828" type="text/javascript"></script>
+  <script src="http://mx.coca-cola.fm/javascripts/base.js?1299796828" type="text/javascript"></script>
+  <script src="http://mx.coca-cola.fm/utils/locale.js?1299797478" type="text/javascript"></script>
+  <script src="http://mx.coca-cola.fm/javascripts/jquery.rating.js?1299796828" type="text/javascript"></script>
+  <script src="http://mx.coca-cola.fm/javascripts/growinput.js?1299796828" type="text/javascript"></script>
+  <script src="http://mx.coca-cola.fm/javascripts/jquery.textboxlist.js?1299796828" type="text/javascript"></script>
+  <script type="text/javascript">
+  //<![CDATA[
+  var AUTH_TOKEN = "O5GQncF/7cGAdpYpZNKIjdJ1fULfvGyK3Dz/1gAI6RY=";
+  //]]>
+  </script>
+  <script>
+  Base.account.slug = "marijoti011";
+  Base.account.type = "user";
+  </script>
+
+  <!-- integracion -->
+  <script type="text/javascript" src="js/AC_RunActiveContent.js"></script>
+  <script type="text/javascript" src="js/cufon-yui.js"></script>
+  <script type="text/javascript" src="js/Myriad_Pro.font.js"></script>
+  <script type="text/javascript" src="js/jquery.li-scroller.1.0.js"></script>
+  <script type="text/javascript" src="js/player.js"></script>
+  <script type="text/javascript" src="js/general.js"></script>
+  <link rel="stylesheet" type="text/css" href="css/reset.css" />
+  <!-- fin integracion -->
+
+  <link href="http://mx.coca-cola.fm/stylesheets/application.css?1299796828" media="screen" rel="stylesheet" type="text/css" />
+  <link href="http://mx.coca-cola.fm/stylesheets/facebox.css?1299796828" media="screen" rel="stylesheet" type="text/css" />
+  <link href="http://mx.coca-cola.fm/stylesheets/registration.css?1299796828" media="screen" rel="stylesheet" type="text/css" />
+  <!--[if lte IE 7]>
+  <link href="http://mx.coca-cola.fm/stylesheets/ie.css?1299796828" media="screen" rel="stylesheet" type="text/css" />
+  <![endif]-->
+  <link href="http://mx.coca-cola.fm/stylesheets/coke.css?1299796828" media="screen" rel="stylesheet" type="text/css" />
+  <link href="http://mx.coca-cola.fm/stylesheets/styles_radio.css?1299796828" media="screen" rel="stylesheet" type="text/css" />
+  <link href="http://mx.coca-cola.fm/stylesheets/jquery.rating.css?1299796828" media="screen" rel="stylesheet" type="text/css" />
+  <link href="http://mx.coca-cola.fm/stylesheets/jquery.textboxlist.css?1299796828" media="screen" rel="stylesheet" type="text/css" />
+  <link href="http://mx.coca-cola.fm/stylesheets/promos/cultural_relevance.css?1299796828" media="screen" rel="stylesheet" type="text/css" />
+
+  <!-- integracion -->
+  <link rel="stylesheet" type="text/css" href="css/cab-pie-player.css" />
+  <!-- fin integracion -->
+
+</head>
+<body locale="coke_MX" market="cokemx" current_site_url="http://mx.coca-cola.fm">
+
+  <!-- integracion -->
+  <?php include"i-cabecera.html"; ?>
+  <!-- fin integracion -->
+  
+  <div id="container">
+  
+    <!--
+    <div id="header">
+      <a href="/home"><img alt="Coca-Cola" class="png_fix" id="logo" src="http://mx.coca-cola.fm/images/logo_cokemx.png?1299796828" title="Coca-Cola" /></a>
+      <ul id="header_nav">
+        <li><a href="/home" class="false">Inicio</a></li>
+        <li><a href="/playlists" class="">Mixes</a></li>
+        <li><a href="/search" class="">Buscar</a></li>
+      </ul>
+      <script>
+        var msg="Busca tus mixes y amigos favoritos";
+      </script>
+      <div id="search_form">
+        <form action="/search" class="line" id="header_search_form" method="get" onsubmit="return Base.header_search.buildSearchUrl();">
+          <div>
+            <input autocomplete="off" class="search_input" id="search_query" name="q" onblur="restoreInput(msg, this); setTimeout(function() {$('.search_results_box').hide();}, 300);" onfocus=" clearInput(msg, this);" type="text" value="Busca tus mixes y amigos favoritos" />
+            <img alt="Search_icon" class="search_button" src="http://mx.coca-cola.fm/images/search_icon.gif?1299796828" />
+            <div class="clearer"></div>
+          </div>
+        </form>
+        <div class="search_results_ajax">
+          <img alt="Ajax_activity_indicators_download_animated_icon_animated_busy" src="http://mx.coca-cola.fm/images/ajax_activity_indicators_download_animated_icon_animated_busy.gif?1299796828" />
+        </div>
+      </div>
+      <div class="search_results_box"></div>
+      <div id="userdata_box" class="user_data_logged_in">
+        <div class="user">
+          <img alt="Female_tiny" class="avatar avatar tiny" src="/avatars/missing/female_tiny.jpg?1299796818" />
+          <a href="/my/dashboard" class="user_name">Natalí</a>
+        </div>
+        <ul class="links">
+        <li class=""><a href="/my/dashboard" class="">Inicio</a></li>
+        <li class=""><a href="/my/playlists" class="">Mixes</a></li>
+        <li class=""><a href="/my/badges" class="">Badges</a></li>
+        <li class=""><a href="/my/reviews" class="">Comentarios</a></li>
+        <li class=""><a href="/my/activities" class="">Actividad</a></li>
+        <li class=""><a href="/my/followers" class="">Seguidores</a></li>
+        <li class=""><a href="/my/following" class="">Siguiendo</a></li>
+        <li class=""><a href="/my/settings" class="">Configuración de cuenta</a></li>
+        <li class="last"><a href="/logout" class="">Logout</a></li>
+        </ul>
+        <a href="#" id="userdata_arrow">
+          <img alt="Userdata_arrow" class="png_fix" src="http://mx.coca-cola.fm/images/userdata_arrow.png?1299796828" />
+          <img alt="Arrow_up" class="arrow_up" src="http://mx.coca-cola.fm/images/arrow_up.gif?1299796828" />
+        </a>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    /end header -->      
+      
+    <div id="main_content">
+      <div class="support_pages">
+
+          
+        <h1 class="tit_bloque gris">
+          <span class="txt">Listado Completo de Badges</span>
+          <span class="bg_fin">&nbsp;</span>
+        </h1><!-- .tit_bloque -->  
+        
+        
+        <!--
+        <h1>Listado Completo de Badges</h1>
+        -->
+        
+        <p class="preamble">Encuentra aquí la enciclopedia completa de todos los badges que puedes ganarte en Coca-Cola.fm.</p>
+        <p class="filter">
+          <span class="selected" type="All">Clic aquí para ver todos los Badges de Coca-Cola.fm. Tanto los actualmente activados como los que ya no están.</span><br />
+          <a href="#" type="Activado">Clic aqui para ver solamente los Badges actualmente activados. ¿Ya los tienes todos? ¿Cuáles te faltan aun?</a><br />
+          <a href="#" type="Desactivado">Clic aquí para ver solamente Badges que no están activados actualmente. ¿Recuerdas haber ganado uno de éstos alguna vez?</a><br />  
+        </p>
+
+          <table class="coke">
+            <thead>
+              <tr>
+                <td>Badge</td>
+                <td>Nombre</td>
+                <td>Explicación</td>
+                <td>Status</td>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><img alt="Small_badge_beginner" class="detail_img" src="http://mx.coca-cola.fm/images/small_badge_beginner.jpg?1299796828" /></td>
+                <td>Principiante</td>
+                <td>Por haber creado un Mix, o haber comenzado a seguir a alguien, o haber dejado una calificación.</td>
+                <td>Activado</td>
+              </tr>
+              <tr>
+                <td><img alt="Small_badge_dj_bedroom" class="detail_img" src="http://mx.coca-cola.fm/images/small_badge_dj_bedroom.jpg?1299796828" /></td>
+                <td>DJ de habitación</td>
+                <td>se gana cuando 5 personas han escuchado tus mixes</td>
+                <td>Activado</td>
+              </tr>
+              <tr>
+                <td><img alt="Small_badge_dj_private_party" class="detail_img" src="http://mx.coca-cola.fm/images/small_badge_dj_private_party.jpg?1299796828" /></td>
+                <td>DJ de fiesta privada</td>
+                <td>10 personas han escuchado tus mixes. ¡Naciste para esto!</td>
+                <td>Activado</td>
+              </tr>
+              <tr>
+                <td><img alt="Small_badge_dj_club" class="detail_img" src="http://mx.coca-cola.fm/images/small_badge_dj_club.jpg?1299796828" /></td>
+                <td>DJ de club</td>
+                <td>100 personas han escuchado tus mixes. ¡Estás con todo!</td>
+                <td>Activado</td>
+              </tr>
+              <tr>
+                <td><img alt="Small_badge_dj_radio" class="detail_img" src="http://mx.coca-cola.fm/images/small_badge_dj_radio.jpg?1299796828" /></td>
+                <td>DJ de radio</td>
+                <td>1000 personas han escuchado tus mixes. ¡Tu público no para de crecer y te aclama!</td>
+                <td>Activado</td>
+              </tr>
+              <tr>
+                <td><img alt="Small_badge_dj_superstar" class="detail_img" src="http://mx.coca-cola.fm/images/small_badge_dj_superstar.jpg?1299796828" /></td>
+                <td>DJ Superstar</td>
+                <td>se obtiene cuando 5000 personas han escuchado tus mixes. ¡Ya puedes ser DJ en un estadio!</td>
+                <td>Activado</td>
+              </tr>
+              <tr>
+                <td><img alt="Small_badge_leader" class="detail_img" src="http://mx.coca-cola.fm/images/small_badge_leader.jpg?1299796828" /></td>
+                <td>Líder</td>
+                <td>5 personas te están siguiendo</td>
+                <td>Activado</td>
+              </tr>
+              <tr>
+                <td><img alt="Small_badge_master" class="detail_img" src="http://mx.coca-cola.fm/images/small_badge_master.jpg?1299796828" /></td>
+                <td>Master</td>
+                <td>25 personas te están siguiendo. ¡Algo debes estar haciendo bien!</td>
+                <td>Activado</td>
+              </tr>
+              <tr>
+                <td><img alt="Small_badge_guru" class="detail_img" src="http://mx.coca-cola.fm/images/small_badge_guru.jpg?1299796828" /></td>
+                <td>Gurú</td>
+                <td>100 personas te están siguiendo. ¡La gente acude a ti como a un gurú!</td>
+                <td>Activado</td>
+              </tr>
+              <tr>
+                <td><img alt="Small_badge_idol" class="detail_img" src="http://mx.coca-cola.fm/images/small_badge_idol.jpg?1299796828" /></td>
+                <td>Ídolo</td>
+                <td>500 personas te están siguendo. ¡Ídolo de multitudes!</td>
+                <td>Activado</td>
+              </tr>
+              <tr>
+                <td><img alt="Small_badge_networker" class="detail_img" src="http://mx.coca-cola.fm/images/small_badge_networker.jpg?1299796828" /></td>
+                <td>Networker</td>
+                <td>Estás siguiendo a 5 personas</td>
+                <td>Activado</td>
+              </tr>
+              <tr>
+                <td><img alt="Small_badge_networker_bronze" class="detail_img" src="http://mx.coca-cola.fm/images/small_badge_networker_bronze.jpg?1299796828" /></td>
+                <td>Networker: Bronce</td>
+                <td>Estás siguiendo a 25 personas. Tu círculo de contactos se hace más grande</td>
+                <td>Activado</td>
+              </tr>
+              <tr>
+                <td><img alt="Small_badge_networker_silver" class="detail_img" src="http://mx.coca-cola.fm/images/small_badge_networker_silver.jpg?1299796828" /></td>
+                <td>Networker de Plata</td>
+                <td>Estás siguiendo a 50 personas. Llevas las Relaciones Públicas en la sangre.</td>
+                <td>Activado</td>
+              </tr>
+              <tr>
+                <td><img alt="Small_badge_networker_gold" class="detail_img" src="http://mx.coca-cola.fm/images/small_badge_networker_gold.jpg?1299796828" /></td>
+                <td>Networker: Gold</td>
+                <td>Estás siguiendo a 100 personas. Tienes un toque de oro para seguir gente.</td>
+                <td>Activado</td>
+              </tr>
+              <tr>
+                <td><img alt="Small_badge_networker_platinum" class="detail_img" src="http://mx.coca-cola.fm/images/small_badge_networker_platinum.jpg?1299796828" /></td>
+                <td>Networker: Platino</td>
+                <td>Estás siguiendo a 250 personas. Tu capacidad de seguimiento no conoce límites</td>
+                <td>Activado</td>
+              </tr>
+              <tr>
+                <td><img alt="Small_badge_networker_diamond" class="detail_img" src="http://mx.coca-cola.fm/images/small_badge_networker_diamond.jpg?1299796828" /></td>
+                <td>Networker: Diamond</td>
+                <td>Estás siguiendo a 500 personas. ¡Puedes considerarte un seguidor VIP!</td>
+                <td>Activado</td>
+              </tr>
+              <tr>
+                <td><img alt="Small_badge_mixmaster_white" class="detail_img" src="http://mx.coca-cola.fm/images/small_badge_mixmaster_white.jpg?1299796828" /></td>
+                <td>Mixmaster: White Belt</td>
+                <td>¡Creaste tu primer mix!</td>
+                <td>Activado</td>
+              </tr>
+              <tr>
+                <td><img alt="Small_badge_mixmaster_yellow" class="detail_img" src="http://mx.coca-cola.fm/images/small_badge_mixmaster_yellow.jpg?1299796828" /></td>
+                <td>Mixmaster: Yellow Belt</td>
+                <td>Has creado 5 mixes. Bien hecho, pequeño saltamontes</td>
+                <td>Activado</td>
+              </tr>
+              <tr>
+                <td><img alt="Small_badge_mixmaster_green" class="detail_img" src="http://mx.coca-cola.fm/images/small_badge_mixmaster_green.jpg?1299796828" /></td>
+                <td>Mixmaster: Green Belt</td>
+                <td>Has creado 10 mixes. ¿Cuántos más crees que eres capaz de hacer?</td>
+                <td>Activado</td>
+              </tr>
+              <tr>
+                <td><img alt="Small_badge_mixmaster_red" class="detail_img" src="http://mx.coca-cola.fm/images/small_badge_mixmaster_red.jpg?1299796828" /></td>
+                <td>Mixmaster: Red Belt</td>
+                <td>Has creado 100 mixes. Bienvenido al exclusivo círculo elite de los Cinturones Rojos.</td>
+                <td>Activado</td>
+              </tr>
+              <tr>
+                <td><img alt="Small_badge_mixmaster_brown" class="detail_img" src="http://mx.coca-cola.fm/images/small_badge_mixmaster_brown.jpg?1299796828" /></td>
+                <td>Mixmaster: Brown Belt</td>
+                <td>Has creado 25 mixes. Ya eres parte de las ligas mayores.</td>
+                <td>Activado</td>
+              </tr>
+              <tr>
+                <td><img alt="Small_badge_mixmaster_black" class="detail_img" src="http://mx.coca-cola.fm/images/small_badge_mixmaster_black.jpg?1299796828" /></td>
+                <td>Mixmaster: Black Belt</td>
+                <td>Has creado 50 mixes. Este "Cinturón Negro" inspira respeto.</td>
+                <td>Activado</td>
+              </tr>
+              <tr>
+                <td><img alt="Small_badge_record_gold" class="detail_img" src="http://mx.coca-cola.fm/images/small_badge_record_gold.jpg?1299796828" /></td>
+                <td>Disco Gold</td>
+                <td>Tu mix ( Nombre del mix ) ha sido escuchado por 20 personas.</td>
+                <td>Activado</td>
+              </tr>
+              <tr>
+                <td><img alt="Small_badge_record_platinum" class="detail_img" src="http://mx.coca-cola.fm/images/small_badge_record_platinum.jpg?1299796828" /></td>
+                <td>Disco Platinum</td>
+                <td>Tu mix ( Nombre del mix ) ha sido escuchado por 100 personas.</td>
+                <td>Activado</td>
+              </tr>
+              <tr>
+                <td><img alt="Small_badge_record_diamond" class="detail_img" src="http://mx.coca-cola.fm/images/small_badge_record_diamond.jpg?1299796828" /></td>
+                <td>Disco Diamond</td>
+                <td>Tu mix ( Nombre del mix ) ha sido escuchado por 500 personas.</td>
+                <td>Activado</td>
+              </tr>
+              <tr>
+                <td><img alt="Small_badge_dj_unbeatable" class="detail_img" src="http://mx.coca-cola.fm/images/small_badge_dj_unbeatable.jpg?1299796828" /></td>
+                <td>DJ Imbatible</td>
+                <td>Creaste 5 mixes en 24 horas. ¡Eso es algo muy difícil de superar!</td>
+                <td>Activado</td>
+              </tr>
+              <tr>
+                <td><img alt="Small_badge_critic_harsh" class="detail_img" src="http://mx.coca-cola.fm/images/small_badge_critic_harsh.jpg?1299796828" /></td>
+                <td>Doctor en Tendencias: Crítico Inflexible</td>
+                <td>Por haber calificado con 1 o 2 a la mayoría de 25 mixes</td>
+                <td>Activado</td>
+              </tr>
+              <tr>
+                <td><img alt="Small_badge_critic_objective" class="detail_img" src="http://mx.coca-cola.fm/images/small_badge_critic_objective.jpg?1299796828" /></td>
+                <td>Doctor en Tendencias: Crítico Objetivo</td>
+                <td>Por haber calificado con 3 a la mayoría de 25 mixes</td>
+                <td>Activado</td>
+              </tr>
+              <tr>
+                <td><img alt="Small_badge_critic_best_friend" class="detail_img" src="http://mx.coca-cola.fm/images/small_badge_critic_best_friend.jpg?1299796828" /></td>
+                <td>Especialista en Tendencias: Mejor Amigo</td>
+                <td>Por haber calificado con 4 o 5 a la mayoría de 25 mixes</td>
+                <td>Activado</td>
+              </tr>
+              <tr>
+                <td><img alt="Small_badge_opinion_leader" class="detail_img" src="http://mx.coca-cola.fm/images/small_badge_opinion_leader.jpg?1299796828" /></td>
+                <td>Líder de Opinión</td>
+                <td>Por haber reseñado 15 mixes distintos. ¡No todos se animan a opinar tanto como tú!</td>
+                <td>Activado</td>
+              </tr>
+              <tr>
+                <td><img alt="Small_badge_superuser" class="detail_img" src="http://mx.coca-cola.fm/images/small_badge_superuser.jpg?1299796828" /></td>
+                <td>Superuser</td>
+                <td>Porque durante siete días consecutivos te dedicaste a crear por lo menos un mix, o a dejar un comentario en un mix, o comenzaste a seguir a alguien. Usuarios como tú conforman la crema y nata de Coca-Cola.fm</td>
+                <td>Activado</td>
+              </tr>
+              <tr>
+                <td><img alt="Small_badge_trifecta" class="detail_img" src="http://mx.coca-cola.fm/images/small_badge_trifecta.jpg?1299796828" /></td>
+                <td>Trifecta</td>
+                <td>Porque en 24 horas creaste 3 mixes, comenzaste a seguir a 3 usuarios y dejaste comentarios para 3 nuevos mixes. Todo de a tres, en armonía perfecta.</td>
+                <td>Activado</td>
+              </tr>
+              <tr>
+                <td><img alt="Small_badge_ratings_flying_tomatoes" class="detail_img" src="http://mx.coca-cola.fm/images/small_badge_ratings_flying_tomatoes.jpg?1299796828" /></td>
+                <td>Tomatazo</td>
+                <td>Por haber recibido una calificación de sólo 1 o 2 en la mayoría de tus primeros 25 mixes en los que te han dejado comentarios. ¡Vamos! ¡Échale ganitas!</td>
+                <td>Activado</td>
+              </tr>
+              <tr>
+                <td><img alt="Small_badge_ratings_ok" class="detail_img" src="http://mx.coca-cola.fm/images/small_badge_ratings_ok.jpg?1299796828" /></td>
+                <td>O.K.</td>
+                <td>Por haber recibido una calificación de 3 en tus primeros 25 mixes en los que te han dejado comentarios. Ni muy-muy, ni tan-tan.</td>
+                <td>Activado</td>
+              </tr>
+              <tr>
+                <td><img alt="Small_badge_ratings_standing_ovation" class="detail_img" src="http://mx.coca-cola.fm/images/small_badge_ratings_standing_ovation.jpg?1299796828" /></td>
+                <td>Ovación de pie</td>
+                <td>Por haber recibido una calificación de 4 o 5 en tus primeros 25 mixes en los que te han dejado comentarios. ¡Has conquistado al público!</td>
+                <td>Activado</td>
+              </tr>
+              <tr>
+                <td><img alt="Small_badge_merry_dj" class="detail_img" src="http://mx.coca-cola.fm/images/small_badge_merry_dj.jpg?1299796828" /></td>
+                <td>Merry DJ</td>
+                <td>Tu primer Mix con un tag navideño asignado acaba de hacerse realidad en Coca-Cola.fm. ¡La navidad ya se siente en el aire!</td>
+                <td>Desactivado</td>
+              </tr>
+              <tr>
+                <td><img alt="Small_badge_xmas_record" class="detail_img" src="http://mx.coca-cola.fm/images/small_badge_xmas_record.jpg?1299796828" /></td>
+                <td>Xmas record</td>
+                <td>¡Tus selecciones para estas navidades ya son un record! 10 usuarios en Coca-Cola-fm  ya han escuchados alguno de tus mixes etiquetado con tags navideños.</td>
+                <td>Desactivado</td>
+              </tr>
+              <tr>
+                <td><img alt="Small_badge_xmas_record_gold" class="detail_img" src="http://mx.coca-cola.fm/images/small_badge_xmas_record_gold.jpg?1299796828" /></td>
+                <td>Xmas gold record</td>
+                <td>¡Acabas de superar tu propio record navideño! Ahora son 20 los usuarios en Coca-Cola-fm  que ya han escuchados alguno de tus mixes etiquetados con tags navideños.</td>
+                <td>Desactivado</td>
+              </tr>
+              <tr>
+                <td><img alt="Small_badge_xmas_xpert" class="detail_img" src="http://mx.coca-cola.fm/images/small_badge_xmas_xpert.jpg?1299796828" /></td>
+                <td>Xmas xpert</td>
+                <td>¡El espíritu navideño se ha adueñado de ti! Ya has dejado comentarios o calificaciones en por lo menos 10 Mixes de otros usuarios, que tienen algún tipo de tag navideño asignado.</td>
+                <td>Desactivado</td>
+              </tr>
+              <tr>
+                <td><img alt="Small_badge_xmas_rocker" class="detail_img" src="http://mx.coca-cola.fm/images/small_badge_xmas_rocker.jpg?1299796828" /></td>
+                <td>Rocknxmas</td>
+                <td>¡Esta navidad estás imparable! Ya recibiste comentarios o calificaciones de por lo menos 20 personas distintas, en Mixes tuyos que tienen algún tag navideño.</td>
+                <td>Desactivado</td>
+              </tr>
+              <tr>
+                <td><img alt="Small_badge_snowman" class="detail_img" src="http://mx.coca-cola.fm/images/small_badge_snowman.jpg?1299796828" /></td>
+                <td>Cool-Io</td>
+                <td>Por haber obtenido máxima calificación en un mix creado por ti, etiquetado con algún tag navideño.</td>
+                <td>Desactivado</td>
+              </tr>
+              <tr>
+                <td><img alt="Small_badge_recalentado" class="detail_img" src="http://mx.coca-cola.fm/images/small_badge_recalentado.jpg?1299796828" /></td>
+                <td>Recalentado</td>
+                <td>¡¿Otra vez lo mismo?! Haz recibido una misma calificación repetida en uno de tus mixes, que contiene algún tag navideño.</td>
+                <td>Desactivado</td>
+              </tr>
+              <tr>
+                <td><img alt="Small_badge_twinkle" class="detail_img" src="http://mx.coca-cola.fm/images/small_badge_twinkle.jpg?1299796828" /></td>
+                <td>Twinkle Twinkle</td>
+                <td>En menos de un día creaste 5 mixes con al menos un tag navideño en cada uno. ¡Qué habilidad esta Navidad!</td>
+                <td>Desactivado</td>
+              </tr>
+              <tr>
+                <td><img alt="Small_badge_esfera" class="detail_img" src="http://mx.coca-cola.fm/images/small_badge_esfera.jpg?1299796828" /></td>
+                <td>Qué bolas!</td>
+                <td>Por haber recibido máxima calificación de tres personas distintas en un mix creado por ti, etiquetado con algún tag navideño.</td>
+                <td>Desactivado</td>
+              </tr>
+              <tr>
+                <td><img alt="Small_badge_xmas_dj" class="detail_img" src="http://mx.coca-cola.fm/images/small_badge_xmas_dj.jpg?1299796828" /></td>
+                <td>Xmas DJ</td>
+                <td>¡Feiiz Navidad!  Ya tienes tus primeros 5 mixes con por lo menos un tag navideño en cada uno.</td>
+                <td>Desactivado</td>
+              </tr>
+              <tr>
+                <td><img alt="Small_badge_xmas_musician" class="detail_img" src="http://mx.coca-cola.fm/images/small_badge_xmas_musician.jpg?1299796828" /></td>
+                <td>Xmas Musician</td>
+                <td>Ya hay 3 Mixes en tu colección que tienen algún tipo de tag navideño asignado.</td>
+                <td>Desactivado</td>
+              </tr>
+              <tr>
+                <td><img alt="Small_badge_santa_claus" class="detail_img" src="http://mx.coca-cola.fm/images/small_badge_santa_claus.jpg?1299796828" /></td>
+                <td>Santa Claus</td>
+                <td>Por haber creado 1 o más mixes con tags navideños, el 25 de diciembre.</td>
+                <td>Desactivado</td>
+              </tr>
+              <tr>
+                <td><img alt="Small_badge_rey_mago" class="detail_img" src="http://mx.coca-cola.fm/images/small_badge_rey_mago.jpg?1299796828" /></td>
+                <td>Wise Man</td>
+                <td>Por haber creado 1 ó más mixes con tags navideños, el 6 de enero.</td>
+                <td>Desactivado</td>
+              </tr>
+              <tr>
+                <td><img alt="Small_badge_bota" class="detail_img" src="http://mx.coca-cola.fm/images/small_badge_bota.jpg?1299796828" /></td>
+                <td>Bota Bota Booo!!!</td>
+                <td>Por haber creado 10 mixes con uno o más tags navideños</td>
+                <td>Desactivado</td>
+              </tr>
+              <tr>
+                <td><img alt="Small_badge_regalo" class="detail_img" src="http://mx.coca-cola.fm/images/small_badge_regalo.jpg?1299796828" /></td>
+                <td>Xmas Giver</td>
+                <td>Por haberle otorgado 4 o 5 bondadosas botellitas a la mayoría de entre 5 mixes calificados. ¡Se nota que te gusta regalar! :)</td>
+                <td>Desactivado</td>
+              </tr>
+            </tbody>
+          </table>	
+
+
+      </div>
+    </div>
+    
+    <!-- quitamos el pie actual
+    <div id="footer" class="mx ">
+      <div class="footer_left">
+        <span class="feedback_button">
+          <a target="_blank" href="http://polldaddy.com/s/158304F6B410FA6A" class="red_button">
+            <span><span>Sugerencias</span></span>
+          </a>
+          
+            <a href="http://mx.coca-cola.fm/support/terms_and_conditions" target="_blank">Términos y condiciones</a>
+    
+            <a href="http://mx.coca-cola.fm/support/privacy_policy" target="_blank">Política de privacidad</a>
+             
+          
+          <a href="http://mx.coca-cola.fm/badges-dj" target="_blank">Listado de Badges</a>
+          <a href="/index-bands/index.html" target="_blank">Índice de artistas</a>
+          <a href="http://mx.coca-cola.fm/index-music" target="_blank">Índice de música</a>
+        </span>
+      </div>
+      <div class="footer_right">
+        <a href="#"><img alt="Cyloop" class="cyloop_logo" src="http://mx.coca-cola.fm/images/cyloop.gif?1299796828" /></a>
+      </div>
+      <br class="clearer" />
+    </div>
+    -->
+
+    </div><!--/end container -->
+    
+  <!-- integracion -->
+  <?php include"i-pie.html"; ?>
+  <!-- fin integracion -->    
+    
+  </body>
+</html>
