@@ -36,12 +36,16 @@
               <input class="texto" type="text" />
 							<small class="txt_error">Nome do perfil est&aacute; reservado</small>
             </label>
-            <label class="fnacimiento <%= class_name %>">
-              <span><%= t('coke_messenger.layers.registration_form_view.dob') %></span>
-							<%= date_select :user,:born_on, :start_year => Time.now.year, :end_year => 1900, :use_month_numbers => true %>
-							<small class="txt_error">Voc&ecirc; deve ter no m&iacute;nimo 13 anos para utilizar este site</small>
-            </label>
             
+						<label class="fnacimiento" style="margin-bottom:-10px">
+              <span><%= t('coke_messenger.layers.registration_form_view.dob') %></span>
+						</label>
+            	<%= date_select :user,:born_on, :start_year => Time.now.year, :end_year => 1900, :use_month_numbers => true %>
+							<label class="<%= class_name %>">
+							<small class="txt_error">Voc&ecirc; deve ter no m&iacute;nimo 13 anos para utilizar este site</small>
+              </label> 
+						
+						
 						<label class="<% class_name %>">
               <input class="check" type="checkbox" />
               <small><%= t('coke_messenger.layers.registration_form_view.accept') %></small>
