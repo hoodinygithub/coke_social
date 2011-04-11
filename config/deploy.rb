@@ -156,6 +156,7 @@ namespace :unicorn do
   DESC
   task :start, :roles => [:app], :except => {:unicorn => false} do
     sudo "/usr/bin/monit start all -g #{monit_group}"
+    sudo "/usr/bin/monit start all -g #{monit_group}_ssl"
   end
 
   desc <<-DESC
@@ -165,6 +166,7 @@ namespace :unicorn do
   DESC
   task :restart, :roles => [:app], :except => {:unicorn => false} do
     sudo "/usr/bin/monit restart all -g #{monit_group}"
+    sudo "/usr/bin/monit restart all -g #{monit_group}_ssl"
   end
 
   desc <<-DESC
@@ -174,6 +176,7 @@ namespace :unicorn do
   DESC
   task :stop, :roles => [:app], :except => {:unicorn => false} do
     sudo "/usr/bin/monit stop all -g #{monit_group}"
+    sudo "/usr/bin/monit stop all -g #{monit_group}_ssl"
   end
 
   desc <<-DESC
