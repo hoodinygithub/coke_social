@@ -1,6 +1,10 @@
-<div class="right_side" style="margin:20px 0px 30px !important" >
-  <div class="right_side" style="width:170px">
+<div class="right_side" style="margin:5px 0px 30px !important" >
+  <% if current_site.code == 'cokemx' %>
+    <img src="/images/botonradio.gif" />
+  <% end %>
+  <div class="right_side" style="width:170px; margin-top: 10px; margin-left: 15px">
     <%= red_button(t('actions.create_a_playlist'), :href => logged_in? ? playlist_create_path : nil,
       :onclick => logged_in? ? nil : "Base.utils.showRegistrationLayer('#{playlist_create_path}', 'create_playlist')" ) %>
   </div>
 </div><!--/end create_playlist_form -->
+
