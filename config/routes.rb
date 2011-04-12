@@ -3,12 +3,13 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :valid_tags
   map.home "/home", :controller => "pages", :action => 'home'
   map.login  'login',  :controller => 'sessions', :action => 'new'
-  map.logout 'logout', :controller => 'sessions', :action => 'destroy'  
-  map.resource :session    
+  map.logout 'logout', :controller => 'sessions', :action => 'destroy'
+  map.resource :session
 
   # Ads - OpenX
   map.messenger_ads '/messenger_ads', :controller => 'ads', :action => 'show', :position => 'messenger', :iframe => 1, :no_padding_and_margin => 1
   map.cyloop_ads '/cyloop/ads', :controller => 'ads', :action => 'show'
+  map.liveradio '/liveradio', :controller => 'liveradio', :action => 'index'
 
   map.messenger_analytics 'messenger_analytics', :controller => 'messenger_radio', :action => 'analytics'
   map.radio_analytics 'radio_analytics', :controller => 'radio', :action => 'analytics'
@@ -100,7 +101,7 @@ ActionController::Routing::Routes.draw do |map|
   map.profile_not_found ':profile/profile_not_found', :controller => 'pages', :action => 'profile_not_found'
   map.profile_not_available ':profile/profile_not_available', :controller => 'pages', :action => 'profile_not_available'
   map.sample_flag_desc 'support/sample_flag_desc', :controller => 'pages', :action => 'sample_flag_desc'
-  map.playlist_not_found ':profile/playlist_not_found', :controller => 'pages', :action => 'playlist_not_found'  
+  map.playlist_not_found ':profile/playlist_not_found', :controller => 'pages', :action => 'playlist_not_found'
   map.downloads "downloads", :controller => "pages", :action => "downloads"
 
 #  unless RAILS_ENV =~ /production/
@@ -150,7 +151,7 @@ ActionController::Routing::Routes.draw do |map|
 
 
   map.resources :campaigns, :member => {:activate => :post, :deactivate => :post}
-  
+
   map.playlist_create '/playlist/create', :controller => 'playlists', :action => 'create'
   map.playlist_edit '/playlist/edit/:id', :controller => 'playlists', :action => 'edit'
   map.playlist_recommended_artists '/playlist/recommended_artists/:artist_id', :controller => 'playlists', :action => 'recommended_artists'
@@ -160,7 +161,7 @@ ActionController::Routing::Routes.draw do |map|
   map.playlist_avatar_update '/playlist/avatar_update/:id', :controller => 'playlists', :action => 'avatar_update'
   map.playlist_avatar_delete '/playlist/avatar_delete/:id', :controller => 'playlists', :action => 'avatar_delete'
   map.playlist_auto_fill '/playlist/autofill/:abstract_station_id.:format', :controller => 'playlists', :action => 'autofill'
-  
+
   map.playlist_reviews         '/playlist/:playlist_id/reviews/list', :controller => 'reviews', :action => 'list'
   map.playlist_reviews_items   '/playlist/:playlist_id/reviews/items', :controller => 'reviews', :action => 'items'
 
@@ -204,7 +205,7 @@ ActionController::Routing::Routes.draw do |map|
       charts.resources :albums, :only => :index
     end
   end
-  
+
   map.namespace :my do |me|
     me.with_options :namespace => '' do |my|
       my.root :controller => 'pages', :action => 'redirect_home'
@@ -223,7 +224,7 @@ ActionController::Routing::Routes.draw do |map|
       my.resource :customizations, :collection => { :restore_defaults => :get, :remove_background_image => :get }, :path_prefix => 'my/settings'
     end
   end
-  
+
   map.msn_refresh '/msn/refresh', :controller => 'msn/refresh', :action => 'index'
   map.msn_channel '/msn/refresh/channel', :controller => 'msn/refresh', :action => 'channel'
 
@@ -248,7 +249,7 @@ ActionController::Routing::Routes.draw do |map|
   # Widget
   map.widget 'widget/:station_id', :controller => 'popups'
   #map.resources :popups, :collection => {:widget => :any}
-  
+
   # Keep slug routes at the bottom
   map.user ':slug', :controller => 'accounts', :action => 'show'
   map.user_without_slug ':id', :controller => 'accounts', :action => 'show'
@@ -268,3 +269,4 @@ ActionController::Routing::Routes.draw do |map|
 
   map.connect ':controller/:action.:format'
 end
+

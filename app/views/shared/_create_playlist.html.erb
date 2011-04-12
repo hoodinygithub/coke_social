@@ -1,6 +1,6 @@
 <div class="right_side" style="margin:5px 0px 30px !important" >
   <% if current_site.code == 'cokemx' %>
-    <img src="/images/botonradio.gif" />
+    <a href="/liveradio" class="default_popup" data-width="570" data-height="226"><img src="/images/botonradio.gif" /></a>
   <% end %>
   <div class="right_side" style="width:170px; margin-top: 10px; margin-left: 15px">
     <%= red_button(t('actions.create_a_playlist'), :href => logged_in? ? playlist_create_path : nil,
