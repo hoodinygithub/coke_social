@@ -138,34 +138,6 @@ module ApplicationHelper
     link_to button, options[:href], options
   end
 
-  def messenger_special_button(type, button_label, options = {})
-    options.merge!({
-      :class => "#{options[:class]} #{type}",
-      :onclick => options[:onclick].nil? ? "return false;" : "#{options[:onclick]}; return false;" 
-    })
-
-    options[:class] << " full_width" if options[:full_width]
-
-    if options[:href]
-      options.delete(:onclick)
-    else
-      options[:href] = '#' unless options[:href]
-    end
-
-    if options[:onclick].nil?
-      options.delete(:onclick)
-    end
-
-    if options[:width]
-      span_label = content_tag(:span, button_label, :style => "width: #{options.delete(:width)}")
-    else
-      span_label = content_tag(:span, button_label)
-    end
-
-    button = content_tag(:span, span_label)
-    link_to button, options[:href], options
-  end
-
   def blue_button(button_label, options = {})
     special_button(:blue_button, button_label, options)
   end
@@ -192,14 +164,6 @@ module ApplicationHelper
   
   def orange_button(button_label, options = {})
     special_button(:orange_button, button_label, options)
-  end
-  
-  def messenger_green_button(button_label, options = {})
-    messenger_special_button(:green_button, button_label, options)
-  end
-  
-  def messenger_red_button(button_label, options = {})
-    messenger_special_button(:red_button, button_label, options)
   end
   
   def follow_button(attrs = {})
@@ -240,43 +204,6 @@ module ApplicationHelper
 
     onclick_cb = "Base.community.#{action}('#{account.slug}', this, #{remove_div}, '#{layer_path}')" if action
     attrs.merge!({:onclick => onclick_cb, :class => 'follower_btn'})
-    if account.is_a?(User) and (account.respond_to?(:blocks?) and !account.blocks?(current_user)) and account != current_user or account.is_a?(Artist)
-      send("#{button_color}_button", t(locale_key), attrs)
-    end
-  end
-
-  def messenger_follow_button(attrs = {})
-    account = attrs.delete(:account)
-    if current_user and current_user.follows?(account)
-      action       = 'unfollow'
-      key          = 'unfollow'
-      button_color = 'messenger_green'
-      class_name = "btn_seguir_green"
-    else
-      action       = 'follow'
-      key          = 'follow'
-      button_color = 'messenger_red'
-      class_name = "btn_seguir_red"
-    end
-
-    locale_key = "actions.#{key}"
-
-    return_to = request.request_uri
-    return_to = radio_path(:station_id => return_to.split('/')[3]) if return_to =~ /\/playlists\/info\/([0-9]+)/
-    return_to = attrs[:return_to_ajax] if attrs.has_key?(:return_to_ajax)
-
-    layer_path = send("follow_#{account.class.name.downcase}_registration_layers_path",
-                      :return_to => return_to,
-                      :account_id => account.id,
-                      :follow_profile => account.id)
-
-    remove_div = attrs.has_key?(:remove_div) ? attrs[:remove_div] : page_owner?
-
-    # remove_div override when on the radio page to prevent slide
-    remove_div = false if attrs[:radio] == true
-
-    onclick_cb = "Base.community.#{action}('#{account.slug}', this, #{remove_div}, '#{layer_path}')" if action
-    attrs.merge!({:onclick => onclick_cb, :class => "#{class_name}"})
     if account.is_a?(User) and (account.respond_to?(:blocks?) and !account.blocks?(current_user)) and account != current_user or account.is_a?(Artist)
       send("#{button_color}_button", t(locale_key), attrs)
     end

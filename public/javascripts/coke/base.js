@@ -701,7 +701,7 @@ Base.community.follow = function(user_slug, button, remove_div, layer_path) {
       });
       return;
     }
-
+  
     if (status == 'success') {
       $button_label.html("");
       $button.removeClass("btn_seguir_red");
@@ -734,6 +734,46 @@ Base.community.unfollow = function(user_slug, button, remove_div) {
         $button_label.html(Base.locale.t('actions.follow'));
         $button.unbind('click');
         $button.bind('click', function() { Base.community.follow(user_slug, this, remove_div); return false; });
+    }
+  });
+};
+
+
+Base.community.text_follow = function(user_slug, element, layer_path) {
+  var $element = jQuery(element);
+  var params = {'user_slug':user_slug}
+	$img = jQuery("<img></img>");
+  $img.attr('src', Base.currentSiteUrl() + '/images/loading.gif');
+	$img.css({'width':'12px','height':'12px','margin-left':'5px'});
+  $element.append($img);
+	
+  jQuery.post(Base.currentSiteUrl() + '/users/follow', params, function(response, status) {
+    if (Base.utils.handle_login_required(response, layer_path, null)) {
+      //JQuery($element).parent().parent().find('#not_following').hide();
+      //jQuery($element).parent().parent().find('#following').show();
+			$img.remove();
+      return false;
+    }
+    if (status == 'success') {
+      jQuery($element).parent().parent().find('#not_following').hide();
+      jQuery($element).parent().parent().find('#following').show();
+			$img.remove();
+    }
+  });
+};
+
+Base.community.text_unfollow = function(user_slug, element) {
+  var $element = jQuery(element);
+  var params = {'user_slug':user_slug}
+	$img = jQuery("<img></img>");
+  $img.attr('src', Base.currentSiteUrl() + '/images/loading.gif');
+	$img.css({'width':'12px','height':'12px','margin-left':'5px'});
+  $element.append($img);
+  jQuery.post(Base.currentSiteUrl() + '/users/unfollow', params, function(response, status) {
+    if (status == 'success') {
+      jQuery($element).parent().parent().find('#not_following').show();
+      jQuery($element).parent().parent().find('#following').hide();
+			$img.remove();
     }
   });
 };

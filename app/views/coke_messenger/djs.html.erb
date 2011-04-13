@@ -19,8 +19,22 @@
         </div>
         <div class="num_mixes"><strong><%= dj.total_playlists %></strong> <%= t('coke_messenger.mixes').downcase %></div>
         <%= link_to_function t('coke_messenger.play'), "Base.Station.request('/playlists/#{dj.playlists.latest(1).id}.xml', 'xml', Base.Station.stationCollection);Base.Player.random(false)", :class => 'btn_play' %>
-        <!--a class="btn_seguir" href="#" title="<%= t('coke_messenger.dj.follow_the_author') %>"><%= t('coke_messenger.dj.follow_the_author') %></a-->
-       <%= messenger_follow_button(:account => dj)   %>
+            <% layer_path = send("follow_user_registration_layers_path",
+                            :return_to => request.request_uri,
+                            :account_id => dj.id,
+                            :follow_profile => dj.id) %>
+					 <% if current_user %>
+             <div id="following" style="display:<%= current_user.follows?(dj) ? 'block' : 'none' %>" >
+                <%= link_to t('coke_messenger.unfollow_the_author'), "javascript:", :onclick => "Base.community.text_unfollow('#{dj.slug}', this)" ,:class => "btn_seguir_green"  %>
+              </div>
+            <div id="not_following" style="display:<%= current_user.follows?(dj) ? 'none' : 'block' %>" >
+                  <%= link_to t('coke_messenger.follow_the_author'), "javascript: ", :onclick => "Base.community.text_follow('#{dj.slug}', this, '#{layer_path}')" ,:class => "btn_seguir_red" %>
+              </div>
+            <% else %>
+            <div id="not_following" style="display: block" >
+                  <%= link_to t('coke_messenger.follow_the_author'), "javascript: ",:onclick => "Base.community.text_follow('#{dj.slug}', this, '#{layer_path}')",:class => "btn_seguir_red" %>
+              </div>
+            <% end %>
 
 		  <% end %>
 
