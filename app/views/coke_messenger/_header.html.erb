@@ -21,8 +21,10 @@
   </div><!-- .nav -->
 </div><!-- .cabecera -->
 <ul class="menu_principal">
-  <% %w(home mixes djs my_mixes friends).each do |channel| %>
-    <li <%= "class='inicio'" if channel == 'home' %>><%= link_to t("coke_messenger.#{channel}"), "/messenger_player/#{channel}" , :content_switch_enabled => true %></li>
+  <% %w(home mixes djs my_mixes my_friends).each do |channel| %>
+    <li <%= "class='inicio activo'" if channel == 'home' %>>
+    <%= link_to t("coke_messenger.#{channel}"), "#{(%w(my_mixes my_friends).include?(channel) and !logged_in?) ? '/messenger_player/alert_layer/' + channel : '/messenger_player/' + channel}", :content_switch_enabled => "#{(%w(my_mixes my_friends).include?(channel) and !logged_in?) ? false : true}", :rel => "#{(%w(my_mixes my_friends).include?(channel) and !logged_in?) ? 'layer' : nil}" %>
+    </li>
   <% end %>
   <li class="buscador">
   <%= render :partial => 'coke_messenger/search_form' %>

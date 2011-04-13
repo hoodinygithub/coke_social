@@ -28,6 +28,19 @@ $(document).ready(function() {
 
   $('a[content_switch_enabled=true]').livequery('click', function() {
     Base.Util.XHR($(this).attr('href'), 'text', Base.UI.contentswp);
+
+    // Class switch if main navigation was clicked.
+    // Note. May want to move this out into its own class.
+    if ($(this).parent().parent().hasClass('menu_principal'))
+    {
+      if (!$(this).parent().hasClass('activo'))
+      {
+        $(this).parent().parent().find('.activo').removeClass('activo');
+        $(this).parent().addClass('activo');
+      }
+    }
+    /**************************************************************/
+
     return false;
   });
 
