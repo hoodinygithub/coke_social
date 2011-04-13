@@ -13,8 +13,8 @@
           <form class="f_registro" action="#">
 						<div class="gender_div">
              <span class="gender_class" style="padding-right:30px"><%= t('coke_messenger.layers.registration_form_view.you') %></span>
-              <span class="gender_class"><%= radio_button_tag :user, :gender, :female, :checked => true %><%= t("user.female") %></span>&nbsp;
- 							<span class="gender_class"><%= radio_button_tag :user, :gender, :male %><%= t("user.male") %></span>
+              <span class="gender_class"><%= radio_button_tag "user['gender']", :female, :checked => true %><%= t("user.female") %></span>&nbsp;
+ 							<span class="gender_class"><%= radio_button_tag "user['gender']", :male %><%= t("user.male") %></span>
 					</div>
             <label class="<%= class_name %>">
               <span><%= t('coke_messenger.layers.registration_form_view.your_name') %></span>
