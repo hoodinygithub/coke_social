@@ -32,13 +32,15 @@
                             :return_to => request.request_uri,
                             :account_id => playlist.owner.id,
                             :follow_profile => playlist.owner.id) %>
-					 <% if current_user %>
-             <div id="following" style="display:<%= current_user.follows?(playlist.owner) ? 'block' : 'none' %>" >
-                <%= link_to t('coke_messenger.unfollow_the_author'), "javascript:", :onclick => "Base.community.text_unfollow('#{playlist.owner.slug}', this)" ,:class => "btn_seguir_green"  %>
-              </div>
-            <div id="not_following" style="display:<%= current_user.follows?(playlist.owner) ? 'none' : 'block' %>" >
+					 <% if current_user 
+              if current_user.id != playlist.owner.id  %>
+                <div id="following" style="display:<%= current_user.follows?(playlist.owner) ? 'block' : 'none' %>" >
+                  <%= link_to t('coke_messenger.unfollow_the_author'), "javascript:", :onclick => "Base.community.text_unfollow('#{playlist.owner.slug}', this)" ,:class => "btn_seguir_green"  %>
+                </div>
+                <div id="not_following" style="display:<%= current_user.follows?(playlist.owner) ? 'none' : 'block' %>" >
                   <%= link_to t('coke_messenger.follow_the_author'), "javascript: ", :onclick => "Base.community.text_follow('#{playlist.owner.slug}', this, '#{layer_path}')" ,:class => "btn_seguir_red" %>
-              </div>
+                </div>
+              <% end %>  
             <% else %>
             <div id="not_following" style="display: block" >
                   <%= link_to t('coke_messenger.follow_the_author'), "javascript: ",:onclick => "Base.community.text_follow('#{playlist.owner.slug}', this, '#{layer_path}')",:class => "btn_seguir_red" %>
