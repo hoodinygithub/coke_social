@@ -397,6 +397,8 @@ function StationBean(data)
 
   this.sid = _xmlRoot.attr('station_id');
 
+  this.pid = _xmlRoot.attr('playlist_id');
+
   this.getSongs = function(s)
   {
     $(s).each(function() {
