@@ -11,12 +11,11 @@
           <h2><%= t('coke_messenger.layers.registration_form_view.sign_up') %><strong><%= t('coke_messenger.layers.registration_form_view.coke_fm') %></strong></h2>
           <p><%= t('coke_messenger.layers.registration_form_view.way_coke') %></p>
           <form class="f_registro" action="#">
-            <label>
-              <span><%= t('coke_messenger.layers.registration_form_view.you') %></span>
-                <input type="radio" name="Genero" value="female" id="Genero_0" /><%= t('coke_messenger.layers.registration_form_view.female') %> 
-                <input type="radio" name="Genero" value="male" id="Genero_1" /><%= t('coke_messenger.layers.registration_form_view.male') %>
-            </label>
-
+						<div class="gender_div">
+             <span class="gender_class" style="padding-right:30px"><%= t('coke_messenger.layers.registration_form_view.you') %></span>
+              <span class="gender_class"><%= radio_button_tag :user, :gender, :female, :checked => true %><%= t("user.female") %></span>&nbsp;
+ 							<span class="gender_class"><%= radio_button_tag :user, :gender, :male %><%= t("user.male") %></span>
+					</div>
             <label class="<%= class_name %>">
               <span><%= t('coke_messenger.layers.registration_form_view.your_name') %></span>
               <input class="texto" type="text" />
@@ -38,7 +37,7 @@
             </label>
             
 						<label class="fnacimiento" style="margin-bottom:-10px">
-              <span><%= t('coke_messenger.layers.registration_form_view.dob') %></span>
+              <span><%= t('coke_messenger.layers.registration_form_view.dob') %>:</span>
 						</label>
             	<%= date_select :user,:born_on, :start_year => Time.now.year, :end_year => 1900, :use_month_numbers => true %>
 							<label class="<%= class_name %>">
@@ -56,7 +55,7 @@
           </form>
         </div><!-- .columna_izq -->
         <div class="columna_der">
-          <h2><%= t('coke_messenger.layers.registration_form_view.reasons') %><strong><%= t('coke_messenger.layers.registration_form_view.coke') %></strong></h2>
+          <h2><%= t('coke_messenger.layers.registration_form_view.reasons') %><strong><%= t('coke_messenger.layers.registration_form_view.coke_fm') %></strong></h2>
 
           <ul class="razones">
             <li>
