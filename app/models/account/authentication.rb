@@ -124,7 +124,7 @@ module Account::Authentication
   end
 
   def password_required?
-    (crypted_password.blank? || !password.blank? || !current_password.blank?) && (msn_live_id.nil? && sso_facebook.nil?)
+    (crypted_password.blank? || !password.blank? || !current_password.blank?) && (msn_live_id.nil? && sso_facebook.nil? && sso_windows.nil?)
   end
 
   def password_changed?
