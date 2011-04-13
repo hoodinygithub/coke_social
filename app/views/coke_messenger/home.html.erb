@@ -25,7 +25,7 @@
     <ul class="emociones">
       <% current_site.tag_counts_from_playlists.each do|em| %>
         <li>
-        <%= link_to em.name, messenger_search_emotions_path(:q => CGI::escape(em.name)), :class => 'link_rojo', :content_switch_enabled => true %>
+        <%= link_to em.name, messenger_search_emotions_path(:q => CGI::escape(em.name)), :class => 'link_rojo', :content_switch_enabled => true if em.taggings_count > 0%>
         </li>	
       <% end%> 
     </ul>

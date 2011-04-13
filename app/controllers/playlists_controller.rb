@@ -78,6 +78,18 @@ class PlaylistsController < ApplicationController
     render 'coke_messenger/dj_mix_details', :layout => layout_unless_xhr('messenger')
   end
   
+  def messenger_my_friends
+    @my_friends = current_user.followees.all
+    if request.xhr? and params[:page].to_i > 1
+      logger.debug" IN XHR if condition and params[:page]=#{params[:page]}"
+    # sleep 5
+      render :partial=> 'coke_messenger/my_friends'#, :collection=>@my_mixes
+    else
+      logger.debug" Not in  XHR if condition" 
+      render 'coke_messenger/my_friends', :layout => layout_unless_xhr('messenger')
+    end
+  end
+  
   def avatar_update
     @playlist = Playlist.find(params[:id])
     if @playlist
