@@ -15,7 +15,7 @@
     <% end %>
     <!--<wl:signin></wl:signin>-->
     <div class="destacados estirar">
-      <%= link_to t('coke_messenger.live_radio'), '#', :class => 'btn_envivo' %>
+      <%= link_to t('coke_messenger.live_radio'), '#', :class => 'btn_envivo' if %w(cokemx).include? current_site.code %>
       <%= link_to t('coke_messenger.create_mix'), playlist_create_path, :class => 'btn_nuevomix', :target => '_blank' %>
     </div><!-- .btn_destacados -->
   </div><!-- .nav -->
@@ -76,6 +76,7 @@
   </div>
   <!-- .player .player_mix -->
 
+  <% if %w(cokemx).include? current_site.code %>
   <div id="goom_ui" class="player player_radio">
     <div class="controles">
       <a class="r_play activo" href="#" onclick="Base.Player.playPause()" title="Play">Play</a>
@@ -101,12 +102,15 @@
     </div><!-- .volumen -->
   </div>
   <!-- .player .player_radio -->
+  <% end %>
 
 
   <div class="sound_engines">
     <div id="coke_player"></div>
+    <% if %w(cokemx).include? current_site.code %>
     <div id="goom_player"></div>
     <div id="goom_callbacks"></div>
+    <% end %>
 
     <script type="text/javascript">
     var pl = [<%= top_playlists.map { |p| "'/playlists/#{p.id}.xml'" }.join(',') %>];
@@ -127,6 +131,8 @@
       name:'coke_engine'
     };
     swfobject.embedSWF('/flash/sound_stub.swf', 'coke_player', '1', '1', '9.0.0', false, cFlashVars, cParams, cAttribs);
+
+    <% if %w(cokemx).include? current_site.code %>
     /*****************************/
     /* Goom player configuration */
     // Exposed goom engine callbacks
@@ -152,6 +158,7 @@
     };
     swfobject.embedSWF('http://www.goomradio.com/mini-audio/goom-miniAudioLib.swf', 'goom_player', '1', '1', '9.0.0', {}, gFlashVars, gParams, gAttribs);
     /*****************************/
+    <% end %>
     </script>
   </div>
 </div><!-- .reproductor -->
