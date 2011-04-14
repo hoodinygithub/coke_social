@@ -1,12 +1,7 @@
-<script type="text/javascript">
-  self.name = 'coke_fm';
-</script>
 <div class="right_side" style="width:405px;margin:8px 21px 17px 0px;">
   <% if current_site.code == 'cokemx' %>
-    <a style="margin-right:20px;" title="Live Radio" href="/liveradio" class="default_popup" data-width="555" data-height="216"><img src="/images/botonradio.gif" /></a>
+    <a style="margin-right:20px;" alt="Live Radio" href="/liveradio" class="default_popup" data-width="555" data-height="216"><img src="/images/botonradio.gif" /></a>
   <% end %>
-    <a href="<%= logged_in? ? playlist_create_path : nil %>"
-       onclick="<%= logged_in? ? nil : "Base.utils.showRegistrationLayer('#{playlist_create_path}', 'create_playlist')" %>"
-       title="Crear un Mix"><img src="/images/botoncrearmix.gif" alt="Crear un Mix" /></a>
+  <a onclick="<%= logged_in? ? nil : "Base.utils.showRegistrationLayer('#{playlist_create_path}', 'create_playlist')" %>" href="<%= logged_in? ? playlist_create_path : "#" %>" title="<%= t('actions.create_a_playlist') %>"><img src="/images/botoncrearmix.gif" alt="<%= t('actions.create_a_playlist') %>" /></a>
 </div><!--/end create_playlist_form -->
 
