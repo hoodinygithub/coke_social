@@ -33,11 +33,8 @@ $(document).ready(function() {
     // Note. May want to move this out into its own class.
     if ($(this).parent().parent().hasClass('menu_principal'))
     {
-      if (!$(this).parent().hasClass('activo'))
-      {
-        $(this).parent().parent().find('.activo').removeClass('activo');
-        $(this).parent().addClass('activo');
-      }
+      $(this).parent().parent().find('.activo').toggleClass('activo');
+      $(this).parent().toggleClass('activo');
     }
     /**************************************************************/
 
