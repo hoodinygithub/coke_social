@@ -1,6 +1,6 @@
 <div class="submenu">
   <div class="columna">
-    <h2><%= t('coke_messenger.my_friends.latest')%></h2>
+    <h2><%= t('coke_messenger.my_friends_tab.latest')%></h2>
 <%#= sortable_options_tag @my_friends, :name => "my_friend", :class => "ord_mixes", :i18n_base => "coke_messenger.order_filter" %>
   </div>
 </div><!-- .submenu -->
@@ -15,15 +15,15 @@
             <h3><%= link_to dj.name, djs_details_path(dj.id), :class => "link_rojo", :title => dj.name, :content_switch_enabled => true %></h3>
             <p>(<%= dj.country.name %>)</p>
           </div>
-          <a class="btn_play" href="#" title="<%= t('coke_messenger.my_friends.play')%>"><%= t('coke_messenger.my_friends.play')%></a>
+          <a class="btn_play" href="#" title="<%= t('coke_messenger.my_friends_tab.play')%>"><%= t('coke_messenger.my_friends_tab.play')%></a>
           <a class="btn_perfil" href="<%= user_path(dj) %>" target="_blank" title="<%= t('coke_messenger.my_mixes_view_profile') %>"><%= t('coke_messenger.my_mixes_view_profile') %></a>
         </li>
       <% end%>
     <% else %>
       <ul class="amigos">
         <li class="no_resultados">
-          <h3><%= t('coke_messenger.my_friends.dnt_hav_frnds')%></h3>
-          <p><%= t('coke_messenger.my_friends.easy')%> <a href="#" class="btn_seguir_red" alt="<%= t('coke_messenger.my_friends.follow_the_author') %>"><%= t('coke_messenger.my_friends.follow_the_author') %> </a><%= t('coke_messenger.my_friends.follow')%></p>
+          <h3><%= t('coke_messenger.my_friends_tab.dnt_hav_frnds')%></h3>
+          <p><%= t('coke_messenger.my_friends_tab.easy')%> <a href="#" class="btn_seguir_red" alt="<%= t('coke_messenger.my_friends_tab.follow_the_author') %>"><%= t('coke_messenger.my_friends_tab.follow_the_author') %> </a><%= t('coke_messenger.my_friends_tab.follow')%></p>
         </li>
       </ul>
     <% end %>
