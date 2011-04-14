@@ -22,7 +22,6 @@ class StationRequestMetal
       options[:site_id] = ENV['SITE']
 
       options.merge!({:station_id => $1, :player_id => $2, :song_count => $3, :source => request_uri})
-
       Resque.enqueue(RecordStationRequestJob, options)
       [200, {"Content-Type" => "text/html"}, ""]
     else
