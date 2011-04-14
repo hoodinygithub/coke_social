@@ -257,6 +257,10 @@ Base.Player = {
     var valid = this.service().stream({id: song.id, url: song.songfile}, 'mp3', Number(song.duration), Number(song.plId));
     if (valid) ++this.index;
     /***************************/
+
+    /*****************************************/
+    _gaq.push(['_trackPageview', cFlashVars.player]); // Virtual Pageview
+    /*****************************************/
   },
 
   _playlist: {},
@@ -375,6 +379,10 @@ Base.UI = {
       $('.btn_envivo').addClass('activo');
       $('.btn_envivo').unbind('click');
       Base.Player.service().playStream(4242705);
+
+      /*****************************************/
+      _gaq.push(['_trackPageview', 'goomradio']); // Virtual Pageview
+      /*****************************************/
     }
   }
 
