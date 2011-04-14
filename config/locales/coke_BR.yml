@@ -461,8 +461,8 @@ coke_BR:
     header: 
       customize_page: Personalizar Perfil
     navigation: 
-      artists: Artistas
       all: Tudo
+      artists: Artistas
       songs: "M\xC3\xBAsicas"
       stations: "R\xC3\xA1dios"
       subscriptions: !binary |
@@ -482,8 +482,8 @@ coke_BR:
       reviews: "Coment\xC3\xA1rios"
       age: Idade
       community: Comunidade
-      home: Home
       follow_requests: Pedidos de seguidores
+      home: Home
       mixes: Playlists
       biography: Biografia
       charts: Ranking
@@ -624,12 +624,12 @@ coke_BR:
   custom_profiles: 
     sony_disclaimer: "O s\xC3\xADmbolo e logo Walkman\xE2\x84\xA2 s\xC3\xA3o marcas registradas da Sony Corporation."
   coke_messenger: 
-    follow_the_author: Seguir a autor
+    follow_the_author: Seguir
     mix_page_blank_desc: test_Mix page blank desc_br
     order_filter: 
       rating: Top rated
-      popularity: Most popular
-      most_recent: Most recent
+      popularity: Mais populares
+      most_recent: Mais recentes
       date: by date
       most_followers: Most followers
       alpha: Alphabetically
@@ -639,7 +639,9 @@ coke_BR:
     logout: Logout
     messenger_home: 
       title: test_Home_br
-      emotions: test_EMOTIONS_br
+      emotions: !binary |
+        RU1Pw4fDlUVT
+
       recent_mixes: test_RECENT MIXES_br
     dj_mix_detail: 
       mixes_of_dj: test_MIXES OF {{dj_name}} DJ_br
@@ -648,14 +650,22 @@ coke_BR:
       title: "test_CokeFM Messenger : Emotions_br"
       no_results: test_Your search produced no results._br
       tab_title: test_NAME OF EMOTION_br
+    unfollow_the_author: Unfollow
     my_mixes_view_profile: test_View Profile_br
+    my_friends: 
+      follow_the_author: ""
+      play: ""
+      easy: ""
+      follow: ""
+      dnt_hav_frnds: ""
+      latest: ""
     layers: 
       opt_layer_view: 
         dj_create_mix: test_If you would like to become a DJ, create your own mixes here, adding the songs you want to share multiple radios online._br
-        comment: test_use the comments and scores to comment on the musical tastes of your friends and their mixes._br
         find_music: test_Find out in real time what they are hearing, and collect or listen to songs you like best for streaming._br
+        comment: test_use the comments and scores to comment on the musical tastes of your friends and their mixes._br
+        friends: Amigos
         terms_of_use: test_terms of use_br
-        friends: test_Friends_br
         and: test_and
         describe: test_which describe how your personal data will be used._br
         coke_fm: test_Coca-Cola.fm_br
@@ -665,14 +675,14 @@ coke_BR:
         roger: test_Roger_br
         text_info: test_which describe how your personal data will be used._br
         radio_stations: test_our recommendation system creates radio stations tailored specifically to your needs with all your favorite artists._br
-        create_mix: test_If you would like to become a DJ, create your own mixes here, adding the songs you want to share multiple radios online._br
+        create_mix: test_Create your mixes of songs_br
         badgets: test_Earn badgets_br
-        follow: test_Follow your friends_br
         cyloop: test_You are already part of the Cylopp network so all you need is accept the CCFM terms and conditions and we eill part over your profile information._br
+        follow: test_Follow your friends_br
         recommendations: test_Recos_br
         view: test_View_br
         cyloop_privacy: test_By checking the box, you confirm that you know Cyloop.com is a website operated by Hoodiny Entertainment Group in the U.S., and you consent to the transfer of your personal data to the U.S. , where your personal data will be subject to U.S. law and where the level of data protection is different compared to your country. You also agree to the Cyloop._br
-        privacy: test_privacy policy_br
+        privacy: "Pol\xC3\xADtica de privacidade"
         thats_it: test_That's it!_br
         create: test_Create Mix_br
         reasons: test_Reasons to join_br
@@ -691,10 +701,10 @@ coke_BR:
         email: "Your e-mail:"
       login_link_layer: 
         sign_up: REGISTER
-        pwd_title: test_Forgot your password?_br
+        pwd_title: "Voc\xC3\xAA esqueceu a sua senha?"
         accept: test_ACCEPT_br
-        close: test_Close_br
         login_msg: test_Almost done! Just enter your CCFM email and password and we will link Messenger Connect with your CCFM account._br
+        close: test_Close_br
         log_data_network: test_Or log in with your data network_br
         register: test_REGISTER_br
         login_using: test_Login using_br
@@ -716,17 +726,17 @@ coke_BR:
         max_skip_msg: test_Unfortunately, the licensing of music we use limit the amount of times you can skip a song every hour. to hear something different, try to create other radio stations using a different artist._br
       registration_form_view: 
         share: test_(your address to share with friends)_br
-        sign_up: test_Sign up to_br
         dj_create_mix: test_If you would like to become a DJ, create your own mixes here, adding the songs you want to share multiple radios online._br
-        comment: test_use the comments and scores to comment on the musical tastes of your friends and their mixes._br
+        sign_up: test_Sign up to_br
         find_music: test_Find out in real time what they are hearing, and collect or listen to songs you like best for streaming._br
+        comment: test_use the comments and scores to comment on the musical tastes of your friends and their mixes._br
         friends: test_Friends_br
-        dob: "Date of Birth:"
+        dob: Data de nascimento
         accept: test_Acepto lorem ipsum sit amet_br
         coke_fm: Coca-cola.fm/
         close: test_Close_br
         profile: Profile name
-        register: test_Register_br
+        register: Cadastre-se
         your_name: Your name
         female: Female
         put_work: test_Put your skills to work_br
@@ -757,7 +767,7 @@ coke_BR:
         new_mix_name: test_Name of the new Mix_br
     mixes_tab: 
       title: "test_CokeFM Messenger : Mixes_br"
-      tab_title: MIXES
+      tab_title: PLAYLISTS
     default_messenger_title: test_CokeFM Messenger :_br
     create_mix: Create new Mix
     mesenger_home: 
@@ -777,19 +787,19 @@ coke_BR:
     dj: 
       follow_the_author: Follow the author
       title: test_DJ's_br
-      tab_title: Follow the author
+      tab_title: DJs
       sort_by_popularity: test_Sort by popularity_br
     greeting: Hi
     mix_page_blank: test_No Mixes_br
     home: INICIO
     my_mixes_mixes_count: test_Songs_br
-    live_radio: Live radio
-    mixes: MIXES
+    live_radio: LIVE RADIO
+    mixes: Playlists
     search: 
-      results: test_results_br
+      results: Resultados
       title: "test_CokeFM Messenger : Search_br"
       no_results: test_Your search produced no results._br
-      tab_title: SEARCH RESULTS
+      tab_title: Resultados da busca
       users: USERS
   activity: 
     created_playlist: Criou a playlist
@@ -1328,11 +1338,11 @@ coke_BR:
     privacy_policy: "Pol\xC3\xADtica de privacidade"
     profile_not_found_sorry: "Lamentamos, mas o perfil de usu\xC3\xA1rio ou artista que voc\xC3\xAA tentou encontrar n\xC3\xA3o foi encontrado. Ele pode ter sido removido, ter tido o nome trocado ou estar temporariamente fora do ar.<br/> Obrigado pela paci\xC3\xAAncia.<br/><br/> Albumas alternativas:<ul><li> - Se voc\xC3\xAA digitou o endere\xC3\xA7o direto no seu navegador, por favor, confira novamente a veja se n\xC3\xA3o h\xC3\xA1 erros de digita\xC3\xA7\xC3\xA3o.</li><li> - Clique aqui <a href=\"http://br.msn.cyloop.com\">www.br.msn.cyloop.com</a>, volte para a home e procure l\xC3\xA1 um link para onde voc\xC3\xAA queria ir.</li><li> - Clique no bot\xC3\xA3o de \"Voltao\" (\"Back\") de seu navegador e revise o link clicado para chegar aqui.</li></ul>"
   basics: 
-    stations_created_by: "R\xC3\xA1dios criadas por"
-    album: Disco
     radio: !binary |
       UsOhZGlv
 
+    stations_created_by: "R\xC3\xA1dios criadas por"
+    album: Disco
     albums: Discos
     my: Meu
     created_at: "Criado {{when}} atr\xC3\xA1s"
@@ -1346,17 +1356,17 @@ coke_BR:
     charts: Ranking
     song: "M\xC3\xBAsica"
     message: Mensagem
-    tags: Tags
     unknown: Desconhecido
     message_sent: Sua mensagem foi enviada
+    tags: Tags
     artist_name: Nome do Artista
     artist: Artista
+    done: "Conclu\xC3\xADdo"
     more: Mais
     and_more: e mais...
     click_to_follow: Clique {{follow_link}} para seguir
     followers_of: Seguidores de
     last_modified_at: "Modificado pela \xC3\xBAltima vez: {{when}} atr\xC3\xA1s"
-    done: "Conclu\xC3\xADdo"
     created_on: Criado em
     plays: !binary |
       UmVwcm9kdcOnw7Vlcw==
@@ -1377,14 +1387,14 @@ coke_BR:
     contains: "Cont\xC3\xA9m"
     here: aqui
     stations: "R\xC3\xA1dios"
-    "yes": Sim
     album_name: "Nome do \xC3\x81lbum"
+    "yes": Sim
     my_plural: Meus
+    in: em
+    welcome: Bem-vindo
     country: !binary |
       UGHDrXM=
 
-    in: em
-    welcome: Bem-vindo
     click_to_unfollow: Clique {{follow_link}} para parar de seguir
     played_by: Reproduzido por
     service_unavailable: "Este servi\xC3\xA7o est\xC3\xA1 temporariamente inacess\xC3\xADvel. Por favor, volte mais tarde."
@@ -1400,10 +1410,10 @@ coke_BR:
     artists: Artistas
     users: "Usu\xC3\xA1rios"
     by: Por
-    charts_for: Ranking para
     last_modified: "Modificado pela \xC3\xBAltima vez"
     follow_requests_for: Pedidos de seguidores para
     previous: Anterior
+    charts_for: Ranking para
     mixes: Playlists
     ago: !binary |
       YXRyw6Fz
