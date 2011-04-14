@@ -1,10 +1,9 @@
-<div class="right_side" style="margin:5px 0px 30px !important" >
-  <% if current_site.code == 'cokemx' %>
-    <a href="/liveradio" class="default_popup" data-width="555" data-height="216"><img src="/images/botonradio.gif" /></a>
+<div class="right_side" style="width:405px;margin:8px 21px 17px 0px;">
+  <% if current_site.code == 'cokelatam' %>
+    <a style="margin-right:20px;" title="Live Radio" href="/liveradio" class="default_popup" data-width="555" data-height="216"><img src="/images/botonradio.gif" /></a>
   <% end %>
-  <div class="right_side" style="width:170px; margin-top: 10px; margin-left: 15px">
-    <%= red_button(t('actions.create_a_playlist'), :href => logged_in? ? playlist_create_path : nil,
-      :onclick => logged_in? ? nil : "Base.utils.showRegistrationLayer('#{playlist_create_path}', 'create_playlist')" ) %>
-  </div>
+    <a href="<%= logged_in? ? playlist_create_path : nil %>"
+       onclick="<%= logged_in? ? nil : "Base.utils.showRegistrationLayer('#{playlist_create_path}', 'create_playlist')" %>"
+       title="Crear un Mix"><img src="/images/botoncrearmix.gif" alt="Crear un Mix" /></a>
 </div><!--/end create_playlist_form -->
 
