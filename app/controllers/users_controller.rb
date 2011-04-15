@@ -65,12 +65,8 @@ class UsersController < ApplicationController
   # This is a temp fix for the flash player to handle registration.
   # Temp as of 8/17/09
   def new
-    if cyloop_login? || session[:msn_live_id]
-      # pre-populate user object with sso fields
-      @user = session[:sso_user].nil? ? User.new : session[:sso_user]
-    else
-      msn_registration_redirect
-    end
+    # pre-populate user object with sso fields
+    @user = session[:sso_user].nil? ? User.new : session[:sso_user]
   end
 
   # POST /users
