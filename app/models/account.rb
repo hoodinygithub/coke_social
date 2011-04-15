@@ -204,6 +204,10 @@ class Account < ActiveRecord::Base
     self.country = Country.find_by_name(country_name) if country_name && country_name.empty
   end
 
+  def last_playlist_played
+    Playlist.find last_playlist_played_id rescue nil
+  end
+
   def city_name
     city.try(:location)
   end
