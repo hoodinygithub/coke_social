@@ -33,11 +33,8 @@ $(document).ready(function() {
     // Note. May want to move this out into its own class.
     if ($(this).parent().parent().hasClass('menu_principal'))
     {
-      if (!$(this).parent().hasClass('activo'))
-      {
-        $(this).parent().parent().find('.activo').removeClass('activo');
-        $(this).parent().addClass('activo');
-      }
+      $(this).parent().parent().find('.activo').toggleClass('activo');
+      $(this).parent().toggleClass('activo');
     }
     /**************************************************************/
 
@@ -262,6 +259,10 @@ Base.Player = {
     var valid = this.service().stream({id: song.id, url: song.songfile}, 'mp3', Number(song.duration), Number(song.plId));
     if (valid) ++this.index;
     /***************************/
+
+    /*****************************************/
+    _gaq.push(['_trackPageview', cFlashVars.player]); // Virtual Pageview
+    /*****************************************/
   },
 
   _playlist: {},
@@ -380,6 +381,10 @@ Base.UI = {
       $('.btn_envivo').addClass('activo');
       $('.btn_envivo').unbind('click');
       Base.Player.service().playStream(4242705);
+
+      /*****************************************/
+      _gaq.push(['_trackPageview', 'goomradio']); // Virtual Pageview
+      /*****************************************/
     }
   }
 

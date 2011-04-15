@@ -20,7 +20,7 @@
         <div class="num_mixes"><strong><%= dj.total_playlists %></strong> <%= t('coke_messenger.mixes').downcase %></div>
 				<div style="margin-top:10px;">
 				<%= link_to_function t('coke_messenger.play'), "Base.Station.request('/playlists/#{dj.playlists.latest(1).id}.xml', 'xml', Base.Station.stationCollection);Base.Player.random(false)", :class => 'btn_play' %>
-            <% layer_path = send("follow_user_registration_layers_path",
+         <% layer_path = send("follow_user_registration_layers_path",
                             :return_to => request.request_uri,
                             :account_id => dj.id,
                             :follow_profile => dj.id) %>
