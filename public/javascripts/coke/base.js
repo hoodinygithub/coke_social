@@ -70,7 +70,9 @@ var Base = {
 	layout: {},
 	community: {},
 	playlists: {},
-	utils: {}
+	utils: {},
+	share: {},
+	locale: {}
 };
 
 // Helpers
@@ -791,4 +793,85 @@ Base.community.text_unfollow = function(user_slug, element) {
 			$img.remove();
     }
   });
+};
+
+
+Base.share.email_share_mix = function(form_elm, mix_id,user_email){
+		var name = $("#email_share_mix_form #name");
+		var email = $("#email_share_mix_form #email_address");
+		var msg = $("#email_share_mix_form #msg");
+		var reg = /^([A-Za-z0-9_\-\.\+])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
+		var name_fld = false;
+		var email_fld = false;
+		
+		if (name.val() == ''){
+			 $('#email_share_mix_form #name_label').addClass('error');
+			 $('#email_share_mix_form #name_error').text(Base.locale.t('coke_messenger.layers.share_mix_layer.name_blank'));
+			 name_fld = false;
+		}else{
+			$('#email_share_mix_form #name_label').removeClass('error');
+			$('#email_share_mix_form #name_error').text("");
+			name_fld = true;
+		}
+		
+		if (email.val() == ''){
+			$('#email_share_mix_form #email_label').addClass('error');
+			$('#email_share_mix_form #email_error').text(Base.locale.t('coke_messenger.layers.share_mix_layer.email_blank')); 
+			email_fld = false;
+		}else 
+      {
+			str = email.val().split(',');
+			for (var i=0;i < str.length ; i++ ){
+			 if(!reg.test(str[i])){
+					$('#email_share_mix_form #email_label').addClass('error');
+					$('#email_share_mix_form #email_error').text(Base.locale.t('coke_messenger.layers.share_mix_layer.invalid_email'));
+					email_fld = false;
+				}
+				else{
+					$('#email_share_mix_form #email_label').removeClass('error');
+					$('#email_share_mix_form #email_error').text("");
+					email_fld = true;
+				}
+			}
+		}		
+		
+		var params = {'user_email':user_email, 'email':email.val(),'name':name.val(),'msg':msg.val()}
+	 if (email_fld  &&	name_fld){
+		jQuery.post(Base.currentSiteUrl() + '/email_share_mix/'+mix_id, params, function(response, status) {
+		if (response.status == 'success') {
+			 $('#error').text("");
+       $.alert_layer.close();
+      }else if(response.status == 'failed'){
+				$('#error').text(Base.locale.t('coke_messenger.layers.share_mix_layer.time_out_error'));
+			}
+  	});
+	 }
+}
+
+/*
+ * Locales
+ */
+Base.locale.translate = function(key, params) {
+  var translation = Base.locale.content[Base.locale.current][key];
+
+  if (!translation) {
+    translation = key + " does not exist";
+  }
+
+  // if user pass params like {'count' => 1}
+  if (typeof(translation) == 'object') {
+    if (typeof(params) == 'object' && typeof(params.count) != 'undefined') {
+      if (params.count == 1) {
+        translation = translation.one;
+      } else {
+        translation = translation.other.split('{{count}}').join(params.count);
+      }
+    }
+  }
+
+  return translation;
+};
+
+Base.locale.t = function(key, params) {
+  return Base.locale.translate(key, params);
 };
