@@ -1,12 +1,18 @@
-body{font-family:Arial,Helvetica,sans-serif;text-align:center;background:url(../imgs/fondos/coke_bottom.jpg) no-repeat center bottom}
+body{font-family:Arial,Helvetica,sans-serif;text-align:center;background:url(../imgs/fondos/coke_bottom.jpg) no-repeat center bottom #fff;}
 body #portada{background:none}
+body #container{padding:36px 15px 15px;margin:0 auto;background:url(../imgs/bg_container.png) no-repeat 0 0;}
 .bloque{width:946px;margin:0 auto;position:relative;text-align:left;}
-body #container {padding:36px 15px 15px;margin:0 auto;background:url(../imgs/bg_container.png) no-repeat 0 0;}
 
 /* cabecera */
 .cabecera{background:#e10015;height:135px;}
 .logo{position:absolute;top:10px;left:13px;border:0;}
 .logo a{display:block;overflow:hidden;width:138px;height:104px;background:url(../imgs/cocacola_fm.png) no-repeat 0 0;text-indent:-999em;}
+.logo.ar a{background:url(../imgs/logo_cokear.png.png) no-repeat 0 0;}
+.logo.br a{background:url(../imgs/logo_cokebr.png.png) no-repeat 0 0;}
+.logo.en a{background:url(../imgs/logo_cokeen.png.png) no-repeat 0 0;}
+.logo.lc a{background:url(../imgs/logo_cokelc.png.png) no-repeat 0 0;}
+.logo.mx a{background:url(../imgs/logo_cokemx.png.png) no-repeat 0 0;}
+
 .claimanimado{position:absolute;top:70px;left:153px;}
 .acceso{position:absolute;top:8px;right:10px;}
 .acceso li{float:left;padding:5px 0 0 15px;font-size:1.2em;font-family:Tahoma,Arial,sans-serif;color:#fff;}
@@ -24,13 +30,13 @@ body #container {padding:36px 15px 15px;margin:0 auto;background:url(../imgs/bg_
 .ico.orkut:hover{background-position:0 -130px;}
 
 .botones{position:absolute;top:59px;right:10px;height:60px;}
-.btn_grande{background:url(../imgs/bg_elementos.png) no-repeat -1px -1px;position:relative;padding:20px 25px 13px 55px;text-decoration:none;display:block;float:left;}
+.btn_grande{background:url(../imgs/bg_elementos.png) no-repeat -1px -1px;position:relative;padding:17px 25px 16px 55px;text-decoration:none;display:block;float:left;}
 .btn_grande:hover{text-decoration:none;}
 .btn_grande .txt{font-size:20px;color:#000;}
 .btn_grande .bg_fin{background:url(../imgs/bg_elementos.png) no-repeat -294px -1px #e10015;display:block;height:53px;width:4px;position:absolute;right:0;top:0;}
 .btn_grande .ico{overflow:hidden;text-indent:-99em;position:absolute;left:15px;top:15px;}
 .btn_radio{margin-right:14px;}
-.btn_radio .ico{display:block;width:28px;height:27px;background:url(../imgs/iconografia.png) no-repeat 0 -232px;}
+.btn_radio .ico{display:block;width:28px;height:27px;background:url(../imgs/iconografia.png) no-repeat 0 -232px;top:12px;}
 .btn_mix .ico{display:block;width:25px;height:24px;background:url(../imgs/iconografia.png) no-repeat 0 -261px;}
 .btn_grande.activo{filter:alpha(opacity=50);-moz-opacity:0.5;-khtml-opacity:0.5;opacity:0.5;}
 .btn_grande.activo span{filter:alpha(opacity=10);}
@@ -154,3 +160,12 @@ body #container {padding:36px 15px 15px;margin:0 auto;background:url(../imgs/bg_
 .player_radio .r_random{margin-left:8px;}
 .player_radio .sonando .caratula{margin-left:5px;}
 .player .activo{filter:alpha(opacity=100);-moz-opacity:1;-khtml-opacity:1;opacity:1;}
+
+/* estilos cambiados para integracion */
+table.coke{border-color:black;width:700px;margin:0 16px;}
+table.coke thead tr{background-color:#2c2c2c;color:white;font-size:12px;font-weight:bold;}
+table.coke thead tr td{border:1px solid #2c2c2c;padding:5px 10px;text-align:center;}
+table.coke tbody tr td{border:1px solid #2c2c2c;padding:5px 10px;text-align:left;}
+.alplabetic_filter_list,
+.numeric_filter_list{width:700px;margin:0 16px;}
+.auth_area{padding-top:0;}

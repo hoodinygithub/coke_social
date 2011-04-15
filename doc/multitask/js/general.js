@@ -1,10 +1,11 @@
 $(document).ready(function(){
   
   //seleccionar el texto
+  /*
   $(".buscador .txt_form").focus(function(){
     $(this).select(); 
   });
-  
+  */
   //navegacion fija
   var msie6 = $.browser == 'msie' && $.browser.version < 7;
   if(!msie6){

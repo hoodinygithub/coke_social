@@ -1,0 +1,468 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:og='http://opengraphprotocol.org/schema/' xmlns='http://www.w3.org/1999/xhtml' lang='en-US' xmlns:fb='http://www.facebook.com/2008/fbml' xml:lang='en-US'>
+<head>
+    <meta content='text/html;charset=utf-8' http-equiv='Content-Type' />
+    <meta content='text/javascript' http-equiv='Content-Script-Type' />
+    <title>Coca-Cola.fm |  Destapa tus emociones</title>
+    <meta content='Descubrir música, descubrir música nueva, descubrir videos, escuchar música, escuchar música gratis, música gratis, videos gratis, artistas musicales, descubrir artistas, descubrir artistas musicales, descubrir músicos, descubrir bandas, escuchar bandas, biblioteca de música online, biblioteca de música en la red, la biblioteca de música online más grande, música online gratis, música gratis en la red, biblioteca de música gratis online, biblioteca de música gratis en la red, la biblioteca de música gratutita en línea más grande, seguir amigos, siguiendo amigos, seguidor de amigos, crear mixes de música, compartir mixes de música, estaciones de radio personalizadas, artistas favoritos, compartir música, compartir música gratis.' name='keywords' />
+    <meta content='Descubre música nueva y videos gratis de la biblioteca más grande y completa de música y videos en Internet. Sigue a tus amigos y lo que están escuchando. Crea y comparte mixes y estaciones de radio personalizadas de tus artistas favoritos.' name='description' />
+    <meta content='ALL' name='robots' />
+    <meta content='23' name='site' />
+    <meta content='Tue Apr 12 03:56:49 -0700 2011' name='created' />
+    <link href='https://secure.coca-cola.fm/mexico/favicon.ico' rel='shortcut icon' />
+    <link href='http://la.coca-cola.fm/users/new' rel='canonical' />
+    <meta content='0RSOfcTJHl30kTD7X1fttDqkINseBJ7L+zAlUnc6LpE=' name='authenticity_token' />
+    <script type="text/javascript" charset="utf-8">
+    var current_url_site = "https://secure.coca-cola.fm/mexico";
+    </script>
+    <script src="https://secure.coca-cola.fm/mexico/javascripts/jquery-1.4.1.min.js?1302203594" type="text/javascript"></script>
+    <script src="https://secure.coca-cola.fm/mexico/javascripts/jquery.cycle.all.min.js?1302203594" type="text/javascript"></script>
+    <script src="https://secure.coca-cola.fm/mexico/javascripts/supersleight.plugin.js?1302203594" type="text/javascript"></script>
+    <script src="https://secure.coca-cola.fm/mexico/javascripts/jquery.metadata.js?1302203594" type="text/javascript"></script>
+    <script src="https://secure.coca-cola.fm/mexico/javascripts/jquery.autocomplete.js?1302203594" type="text/javascript"></script>
+    <script src="https://secure.coca-cola.fm/mexico/javascripts/jquery.validate.min.js?1302203594" type="text/javascript"></script>
+    <script src="https://secure.coca-cola.fm/mexico/javascripts/jquery.hotkeys.min.js?1302203594" type="text/javascript"></script>
+    <script src="https://secure.coca-cola.fm/mexico/javascripts/jquery.facebox.js?1302203594" type="text/javascript"></script>
+    <script src="https://secure.coca-cola.fm/mexico/javascripts/base.js?1302203594" type="text/javascript"></script>
+    <script src="https://secure.coca-cola.fm/mexico/utils/locale.js?1302204702" type="text/javascript"></script>
+    <script src="https://secure.coca-cola.fm/mexico/javascripts/jquery.rating.js?1302203594" type="text/javascript"></script>
+    <script src="https://secure.coca-cola.fm/mexico/javascripts/growinput.js?1302203594" type="text/javascript"></script>
+    <script src="https://secure.coca-cola.fm/mexico/javascripts/jquery.textboxlist.js?1302203594" type="text/javascript"></script>
+    <script type="text/javascript">
+    //<![CDATA[
+    var AUTH_TOKEN = "0RSOfcTJHl30kTD7X1fttDqkINseBJ7L+zAlUnc6LpE=";
+    //]]>
+    </script>
+    <!-- integracion -->
+    <script type="text/javascript" src="js/AC_RunActiveContent.js"></script>
+    <script type="text/javascript" src="js/cufon-yui.js"></script>
+    <script type="text/javascript" src="js/PT_Sans.font.js"></script>
+    <script type="text/javascript" src="js/jquery.li-scroller.1.0.js"></script>
+    <script type="text/javascript" src="js/player.js"></script>
+    <script type="text/javascript" src="js/general.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/reset.css" />
+    <!-- fin integracion -->    
+    <link href="https://secure.coca-cola.fm/mexico/stylesheets/application.css?1302203594" media="screen" rel="stylesheet" type="text/css" />
+    <link href="https://secure.coca-cola.fm/mexico/stylesheets/facebox.css?1302203594" media="screen" rel="stylesheet" type="text/css" />
+    <link href="https://secure.coca-cola.fm/mexico/stylesheets/registration.css?1302203594" media="screen" rel="stylesheet" type="text/css" />
+    <!--[if lte IE 7]>
+    <link href="https://secure.coca-cola.fm/mexico/stylesheets/ie.css?1302203594" media="screen" rel="stylesheet" type="text/css" />
+    <![endif]-->
+    <link href="https://secure.coca-cola.fm/mexico/stylesheets/coke.css?1302203594" media="screen" rel="stylesheet" type="text/css" />
+    <link href="https://secure.coca-cola.fm/mexico/stylesheets/styles_radio.css?1302203594" media="screen" rel="stylesheet" type="text/css" />
+    <link href="https://secure.coca-cola.fm/mexico/stylesheets/jquery.rating.css?1302203594" media="screen" rel="stylesheet" type="text/css" />
+    <link href="https://secure.coca-cola.fm/mexico/stylesheets/jquery.textboxlist.css?1302203594" media="screen" rel="stylesheet" type="text/css" />
+    <link href="https://secure.coca-cola.fm/mexico/stylesheets/promos/cultural_relevance_sslmx.css?1302203594" media="screen" rel="stylesheet" type="text/css" />
+    <script src="https://secure.coca-cola.fm/mexico/javascripts/registration.js?1302203594" type="text/javascript"></script>
+    <!-- ASYNC GOOGLE TRACKING CODE -->
+    <!---->
+    <!-- integracion -->
+    <link rel="stylesheet" type="text/css" href="css/cab-pie-player.css" />
+    <!-- fin integracion -->
+</head>
+<body locale="coke_MX" market="cokemx" current_site_url="https://secure.coca-cola.fm/mexico">
+
+    <!-- integracion -->
+    <?php include"i-cabecera.html"; ?>
+    <!-- fin integracion -->
+    
+    <div id="container">
+    
+        <!--
+        <div id="header" class="users">
+            <a href="https://secure.coca-cola.fm/mexico/home"><img alt="Coca-Cola" class="png_fix" id="logo" src="https://secure.coca-cola.fm/mexico/images/logo_cokemx.png?1302203594" title="Coca-Cola" /></a>
+            <ul id="header_nav">
+                <li><a href="https://secure.coca-cola.fm/mexico/home" class="false">Inicio</a></li>
+                <li><a href="https://secure.coca-cola.fm/mexico/playlists" class="">Mixes</a></li>
+                <li><a href="https://secure.coca-cola.fm/mexico/search" class="">Buscar</a></li>
+            </ul>
+            <script>
+                var msg="Busca tus mixes y amigos favoritos";
+            </script>
+            <div id="search_form">
+                <form action="/mexico/search" class="line" id="header_search_form" method="get" onsubmit="return Base.header_search.buildSearchUrl();">
+                    <div>
+                        <input autocomplete="off" class="search_input" id="search_query" name="q" onblur="restoreInput(msg, this); setTimeout(function() {$('.search_results_box').hide();}, 300);" onfocus=" clearInput(msg, this);" type="text" value="Busca tus mixes y amigos favoritos" />
+                        <img alt="Search_icon" class="search_button" src="https://secure.coca-cola.fm/mexico/images/search_icon.gif?1302203594" />
+                        <div class="clearer"></div>
+                    </div>
+                </form>
+                <div class="search_results_ajax"><img alt="Ajax_activity_indicators_download_animated_icon_animated_busy" src="https://secure.coca-cola.fm/mexico/images/ajax_activity_indicators_download_animated_icon_animated_busy.gif?1302203594" /></div>
+            </div>
+            <div class="search_results_box"></div>
+            <div id="userdata_box" class="user_data_logged_out">
+                <div class="user">
+                    <img alt="Artist" class="avatar tiny" src="https://secure.coca-cola.fm/mexico/avatars/missing/artist.gif?1302203592" />
+                    <a href="https://secure.coca-cola.fm/mexico/my/dashboard" class="user_name">Anon</a>
+                </div>
+                <ul class="links">
+                    <li class=""><a href="https://secure.coca-cola.fm/mexico/my/dashboard" class="">Inicio</a></li>
+                    <li class=""><a href="https://secure.coca-cola.fm/mexico/my/playlists" class="">Mixes</a></li>
+                    <li class=""><a href="https://secure.coca-cola.fm/mexico/my/badges" class="">Badges</a></li>
+                    <li class=""><a href="https://secure.coca-cola.fm/mexico/my/reviews" class="">Comentarios</a></li>
+                    <li class=""><a href="https://secure.coca-cola.fm/mexico/my/activities" class="">Actividad</a></li>
+                    <li class=""><a href="https://secure.coca-cola.fm/mexico/my/followers" class="">Seguidores</a></li>
+                    <li class=""><a href="https://secure.coca-cola.fm/mexico/my/following" class="">Siguiendo</a></li>
+                    <li class=""><a href="https://secure.coca-cola.fm/mexico/my/settings" class="">Configuración de cuenta</a></li>
+                    <li class="last"><a href="https://secure.coca-cola.fm/mexico/logout" class="">Logout</a></li>
+                </ul>
+                <a href="#" id="userdata_arrow">
+                    <img alt="Userdata_arrow" class="png_fix" src="https://secure.coca-cola.fm/mexico/images/userdata_arrow.png?1302203594" />
+                    <img alt="Arrow_up" class="arrow_up" src="https://secure.coca-cola.fm/mexico/images/arrow_up.gif?1302203594" />
+                </a>
+            </div>
+            <div id="login_register_links">
+                <a href="https://secure.coca-cola.fm/mexico/login?return_to=%2Fmexico%2Fmy%2Fdashboard">Log In</a>
+                |
+                <a href="https://secure.coca-cola.fm/mexico/users/new?return_to=%2Fmexico%2Fmy%2Fdashboard">Regístrate</a>
+            </div>
+            <div class="clearer"></div>
+            <div id="flash_messages">
+            </div>
+            <div class="clearer"></div>
+        </div>
+        /end header -->
+        
+        <div id="main_content" class="users ">
+            <div class="auth_area">
+                
+                <!--
+                <div class="auth_title">
+                Regístrate y crea tus mixes
+                </div>
+                -->
+                
+                <!-- integracion -->
+                <h1 class="tit_bloque gris">
+                  <span class="txt">Regístrate y crea tus mixes</span>
+                  <span class="bg_fin">&nbsp;</span>
+                </h1><!-- .tit_bloque -->  
+                <!-- fin integracion -->
+                
+                <div class="auth_left">
+                    <div id="fb-root"></div>
+                    <script>
+                    window.fbAsyncInit = function() {
+                    FB.init({
+                    appId  : 160520280625515,
+                    status : true,
+                    cookie : true,
+                    xfbml  : true
+                    });
+                    // A user is already logged in to facebook, user is logged in
+                    FB.getLoginStatus(function(response) {
+                    if (response.session) {
+                    $('#fb_login a').click(function() {
+                    document.location = current_url_site + '/login?' + document.location.search
+                    + '&access_token=' + escape(response.session.access_token) + '&expires=' + escape(response.session.expires) + '&page=registration';
+                    });
+                    return false;
+                    }
+                    });
+                    FB.Event.subscribe('auth.sessionChange', function(response) {
+                    if (response.session) {
+                    // A user has logged in, and a new cookie has been saved
+                    document.location = current_url_site + '/login?' + document.location.search
+                    + '&access_token=' + escape(response.session.access_token) + '&expires=' + escape(response.session.expires) + '&page=registration';
+                    } else {
+                    // console.log("User has logged out.");
+                    // console.dir(response);
+                    // The user has logged out, and the cookie has been cleared
+                    }
+                    });
+                    };
+                    (function() {
+                    var e = document.createElement('script');
+                    e.src = document.location.protocol + '//connect.facebook.net/es_LA/all.js';
+                    e.async = true;
+                    document.getElementById('fb-root').appendChild(e);
+                    }());
+                    </script>
+                    <div id="social">
+                    <div class="container">
+                    <span class="title">Ingresa con tus datos de tu red social</span><br /><br />
+                    <fb:login-button id="fb_login" perms="user_birthday, email"></fb:login-button>
+                    </div>
+                    </div>
+                    <div class="form_content">
+                        <form action="/mexico/users" class="account_settings" enctype="multipart/form-data" id="new_user" method="post">
+                            <div style="margin:0;padding:0;display:inline">
+                                <input name="authenticity_token" type="hidden" value="0RSOfcTJHl30kTD7X1fttDqkINseBJ7L+zAlUnc6LpE=" />
+                            </div>
+                            <div class="form_content">
+                                <div class="form_row last">
+                                    <label for="user_gender"><b>Eres...</b></label>
+                                    <input checked="checked" id="user_gender_female" name="user[gender]" type="radio" value="Female" />Mujer&nbsp;
+                                    <input id="user_gender_male" name="user[gender]" type="radio" value="Male" />Hombre
+                                </div><!--/end form_row -->
+                                <div class="form_row last">
+                                    <label for="user_name"><b>¿Cómo te llamas?</b></label>
+                                    <div class="grey_round_box">
+                                        <input class="input full_width" id="user_name" name="user[name]" size="30" type="text" />
+                                    </div>
+                                </div><!--/end form_row -->
+                                <div class="form_row last">
+                                    <label for="user_email"><b>Tu dirección de mail</b> <small class="grey">(En la que prefieres recibir mensajes, etc.)</small></label>
+                                    <div class="grey_round_box">
+                                        <input class="input full_width" id="user_email" name="user[email]" size="30" type="text" />
+                                    </div>
+                                </div><!--/end form_row -->
+                                <div class="form_row last">
+                                    <label for="user_slug"><b>Escoge un nickname</b> <small class="grey">(Tu dirección para que puedas enviársela a tus amigos)</small></label>
+                                    <div class="grey_round_box">
+                                        <b>Coca-Cola.fm/</b><input class="input half_width2" id="user_slug" name="user[slug]" size="30" type="text" />
+                                    </div>
+                                </div><!--/end form_row -->
+                                <div class="form_row last left_side">
+                                    <label for="user_born_on"><b>Fecha de nacimiento</b></label>
+                                    <div class="grey_round_box">
+                                        <select id="user_born_on_2i" name="user[born_on(2i)]">
+                                            <option value="1">1</option>
+                                            <option value="2">2</option>
+                                            <option value="3">3</option>
+                                            <option selected="selected" value="4">4</option>
+                                            <option value="5">5</option>
+                                            <option value="6">6</option>
+                                            <option value="7">7</option>
+                                            <option value="8">8</option>
+                                            <option value="9">9</option>
+                                            <option value="10">10</option>
+                                            <option value="11">11</option>
+                                            <option value="12">12</option>
+                                        </select>
+                                        <select id="user_born_on_3i" name="user[born_on(3i)]">
+                                            <option value="1">1</option>
+                                            <option value="2">2</option>
+                                            <option value="3">3</option>
+                                            <option value="4">4</option>
+                                            <option value="5">5</option>
+                                            <option value="6">6</option>
+                                            <option value="7">7</option>
+                                            <option value="8">8</option>
+                                            <option value="9">9</option>
+                                            <option value="10">10</option>
+                                            <option value="11">11</option>
+                                            <option selected="selected" value="12">12</option>
+                                            <option value="13">13</option>
+                                            <option value="14">14</option>
+                                            <option value="15">15</option>
+                                            <option value="16">16</option>
+                                            <option value="17">17</option>
+                                            <option value="18">18</option>
+                                            <option value="19">19</option>
+                                            <option value="20">20</option>
+                                            <option value="21">21</option>
+                                            <option value="22">22</option>
+                                            <option value="23">23</option>
+                                            <option value="24">24</option>
+                                            <option value="25">25</option>
+                                            <option value="26">26</option>
+                                            <option value="27">27</option>
+                                            <option value="28">28</option>
+                                            <option value="29">29</option>
+                                            <option value="30">30</option>
+                                            <option value="31">31</option>
+                                        </select>
+                                        <select id="user_born_on_1i" name="user[born_on(1i)]">
+                                            <option selected="selected" value="2011">2011</option>
+                                            <option value="2010">2010</option>
+                                            <option value="2009">2009</option>
+                                            <option value="2008">2008</option>
+                                            <option value="2007">2007</option>
+                                            <option value="2006">2006</option>
+                                            <option value="2005">2005</option>
+                                            <option value="2004">2004</option>
+                                            <option value="2003">2003</option>
+                                            <option value="2002">2002</option>
+                                            <option value="2001">2001</option>
+                                            <option value="2000">2000</option>
+                                            <option value="1999">1999</option>
+                                            <option value="1998">1998</option>
+                                            <option value="1997">1997</option>
+                                            <option value="1996">1996</option>
+                                            <option value="1995">1995</option>
+                                            <option value="1994">1994</option>
+                                            <option value="1993">1993</option>
+                                            <option value="1992">1992</option>
+                                            <option value="1991">1991</option>
+                                            <option value="1990">1990</option>
+                                            <option value="1989">1989</option>
+                                            <option value="1988">1988</option>
+                                            <option value="1987">1987</option>
+                                            <option value="1986">1986</option>
+                                            <option value="1985">1985</option>
+                                            <option value="1984">1984</option>
+                                            <option value="1983">1983</option>
+                                            <option value="1982">1982</option>
+                                            <option value="1981">1981</option>
+                                            <option value="1980">1980</option>
+                                            <option value="1979">1979</option>
+                                            <option value="1978">1978</option>
+                                            <option value="1977">1977</option>
+                                            <option value="1976">1976</option>
+                                            <option value="1975">1975</option>
+                                            <option value="1974">1974</option>
+                                            <option value="1973">1973</option>
+                                            <option value="1972">1972</option>
+                                            <option value="1971">1971</option>
+                                            <option value="1970">1970</option>
+                                            <option value="1969">1969</option>
+                                            <option value="1968">1968</option>
+                                            <option value="1967">1967</option>
+                                            <option value="1966">1966</option>
+                                            <option value="1965">1965</option>
+                                            <option value="1964">1964</option>
+                                            <option value="1963">1963</option>
+                                            <option value="1962">1962</option>
+                                            <option value="1961">1961</option>
+                                            <option value="1960">1960</option>
+                                            <option value="1959">1959</option>
+                                            <option value="1958">1958</option>
+                                            <option value="1957">1957</option>
+                                            <option value="1956">1956</option>
+                                            <option value="1955">1955</option>
+                                            <option value="1954">1954</option>
+                                            <option value="1953">1953</option>
+                                            <option value="1952">1952</option>
+                                            <option value="1951">1951</option>
+                                            <option value="1950">1950</option>
+                                            <option value="1949">1949</option>
+                                            <option value="1948">1948</option>
+                                            <option value="1947">1947</option>
+                                            <option value="1946">1946</option>
+                                            <option value="1945">1945</option>
+                                            <option value="1944">1944</option>
+                                            <option value="1943">1943</option>
+                                            <option value="1942">1942</option>
+                                            <option value="1941">1941</option>
+                                            <option value="1940">1940</option>
+                                            <option value="1939">1939</option>
+                                            <option value="1938">1938</option>
+                                            <option value="1937">1937</option>
+                                            <option value="1936">1936</option>
+                                            <option value="1935">1935</option>
+                                            <option value="1934">1934</option>
+                                            <option value="1933">1933</option>
+                                            <option value="1932">1932</option>
+                                            <option value="1931">1931</option>
+                                            <option value="1930">1930</option>
+                                            <option value="1929">1929</option>
+                                            <option value="1928">1928</option>
+                                            <option value="1927">1927</option>
+                                            <option value="1926">1926</option>
+                                            <option value="1925">1925</option>
+                                            <option value="1924">1924</option>
+                                            <option value="1923">1923</option>
+                                            <option value="1922">1922</option>
+                                            <option value="1921">1921</option>
+                                            <option value="1920">1920</option>
+                                            <option value="1919">1919</option>
+                                            <option value="1918">1918</option>
+                                            <option value="1917">1917</option>
+                                            <option value="1916">1916</option>
+                                            <option value="1915">1915</option>
+                                            <option value="1914">1914</option>
+                                            <option value="1913">1913</option>
+                                            <option value="1912">1912</option>
+                                            <option value="1911">1911</option>
+                                            <option value="1910">1910</option>
+                                            <option value="1909">1909</option>
+                                            <option value="1908">1908</option>
+                                            <option value="1907">1907</option>
+                                            <option value="1906">1906</option>
+                                            <option value="1905">1905</option>
+                                            <option value="1904">1904</option>
+                                            <option value="1903">1903</option>
+                                            <option value="1902">1902</option>
+                                            <option value="1901">1901</option>
+                                            <option value="1900">1900</option>
+                                        </select>
+                                    </div>
+                                    <div class="clearer"></div>
+                                </div><!--/end form_row -->
+                                <div class="clearer"></div>
+                                <div class="form_row last">
+                                    <label for="user_password"><b>Tu contraseña</b></label>
+                                    <div class="grey_round_box">
+                                        <input autocomplete="off" class="input full_width" id="user_password" name="user[password]" size="30" type="password" />
+                                    </div>
+                                </div><!--/end form_row -->
+                                <div class="form_row last">
+                                    <label for="user_password_confirmation"><b>Confirma tu contraseña</b></label>
+                                    <div class="grey_round_box">
+                                        <input autocomplete="off" class="input full_width" id="user_password_confirmation" name="user[password_confirmation]" size="30" type="password" />
+                                    </div>
+                                </div><!--/end form_row -->
+                                <br/>
+                                <div class="form_row last">
+                                    <input name="user[terms_and_privacy]" type="hidden" value="0" /><input class="privacy_check" id="user_terms_and_privacy" name="user[terms_and_privacy]" type="checkbox" value="1" />
+                                    <div class="privacy_text checkbox">
+                                        Al hacer clic en este casillero, estás confirmando que sabes que Coca-Cola.fm es un sitio web operado por Hoodiny Entertainment Group en los Estados Unidos, y estás otorgando tu consentimiento de transferir todos tus datos personales a los Estados Unidos, donde tus datos personales estarán sujetos a las leyes de los Estados Unidos y donde el nivel de protección de datos es diferente en comparación con el de tu país. También confirmas estar de acuerdo con los Términos de uso y la Política de privacidad de Coca-Cola.fm, la cual describe cómo serán usados tus datos personales.
+                                    </div>
+                                </div>
+                                <div class="clearer"></div>
+                                <br/><br/>
+                                <div class="right_side">
+                                    <big class="grey">¡Listo!</big> &nbsp; <a class="red_button valign_middle" onclick="$(this).closest('form').submit();"><span><span>Completar</span></span></a>
+                                </div>
+                            </div><!--/end form_content -->
+                        </form><!--/end account_settings -->
+                    </div>
+                </div>
+                <div class="auth_right">
+                    <ul class="icons_list">
+                        <li class="loop">
+                            <big><b>descubre música con tus amigos</b></big><br />
+                            Entérate en tiempo real de lo que están oyendo, y colecciona o escucha las canciones que más te gusten por streaming.
+                        </li>
+                        <li class="badges">
+                            <big><b>Gánate badges</b></big><br />
+                            nuestro sistema de recomendaciones crea estaciones de radio hechas específicamente a tu medida con todos tus artistas favoritos.
+                        </li>
+                        <li class="friends">
+                            <big><b>Sigue a tus amigos</b></big><br />
+                            Con tan sólo un clic, comienza a seguir a tus amigos, para estar al tanto de sus actividades en Twitter y otras noticias.
+                        </li>
+                        <li class="create">
+                            <big><b>Crea tus mixes de canciones</b></big><br />
+                            Si te gustaría convertirte en un DJ, crea aquí tus propios mixes, agregando las canciones que quieras para compartir múltiples radios online
+                        </li>
+                        <li class="work">
+                            <big><b>Pon tus conocimientos a trabajar</b></big><br />
+                            utiliza los comentarios y los puntajes para opinar sobre los gustos musicales de tus amigos y sus mixes.
+                        </li>
+                    </ul>
+                </div><!--/end auth_right -->
+                <div class="clearer"></div>
+            </div><!--/end  auth_area -->
+        </div>
+        
+        <!--
+        <div id="footer" class="mx ">
+            <div class="footer_left">
+                <span class="feedback_button">
+                    <a target="_blank" href="http://polldaddy.com/s/158304F6B410FA6A" class="red_button">
+                    <span><span>Sugerencias</span></span>
+                    </a>
+                    <a href="https://secure.coca-cola.fm/mexico/support/terms_and_conditions" target="_blank">Términos y condiciones</a>
+                    <a href="https://secure.coca-cola.fm/mexico/support/privacy_policy" target="_blank">Política de privacidad</a>
+                    <a href="https://secure.coca-cola.fm/mexico/badges-dj" target="_blank">Listado de Badges</a>
+                    <a href="https://secure.coca-cola.fm/index-bands/index.html" target="_blank">Índice de artistas</a>
+                    <a href="https://secure.coca-cola.fm/mexico/index-music" target="_blank">Índice de música</a>
+                </span>
+            </div>
+            <div class="footer_right">
+                <a href="#"><img alt="Cyloop" class="cyloop_logo" src="https://secure.coca-cola.fm/mexico/images/cyloop.gif?1302203594" /></a>
+            </div>
+            <br class="clearer" />
+        </div>
+        -->
+    
+    </div><!--/end container -->
+
+    <!-- integracion -->
+    <?php include"i-pie.html"; ?>
+    <!-- fin integracion -->  
+      
+</body>
+</html>
