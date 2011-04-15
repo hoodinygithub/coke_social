@@ -12,6 +12,8 @@
     = render :partial =>"/messenger_player/layers/authentication_layer"
   - when 'registration_layer'
     = render :partial =>"/messenger_player/layers/registration_layer", :locals =>{:class_name => class_name}  
+  - when 'share_mix_layer'
+    = render :partial =>"/messenger_player/layers/share_mix_layer"
 - else
   %h1.destacado.estirar= @alert_text
   

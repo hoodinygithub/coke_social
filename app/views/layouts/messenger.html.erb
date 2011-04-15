@@ -23,6 +23,7 @@
     <%= javascript_include_tag 'supersleight.plugin' %>
     <%= javascript_include_tag 'coke/messenger' %>
     <%= javascript_include_tag 'coke/base' %>
+		<%= javascript_include_tag '/utils/locale.js' %>
 		
 		<script src="http://connect.facebook.net/en_US/all.js"></script>
     <!-- -------------------------------------------------------------------- -->
@@ -61,8 +62,9 @@
 		<a href="<%= alert_layer_path("opt_layer",:errors => "true") %>" rel="layer">opt_in_layer_errors</a> |
 	  <a href="<%= alert_layer_path("authentication_layer") %>" rel="layer">authentication_layer</a> |
 	  <a href="<%= alert_layer_path("registration_layer") %>" rel="layer">registration_layer</a> |
-	  <a href="<%= alert_layer_path("registration_layer",:errors => "true") %>" rel="layer">registration_layer_errors</a>
-	  <!-- END Testing Layers -->
+	  <a href="<%= alert_layer_path("registration_layer",:errors => "true") %>" rel="layer">registration_layer_errors</a> |
+	  <a href="<%= alert_layer_path("share_mix_layer") %>" rel="layer">share_mix_layer</a>
+		<!-- END Testing Layers -->
       
     </div>
     

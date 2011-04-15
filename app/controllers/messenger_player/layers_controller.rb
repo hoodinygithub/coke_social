@@ -54,6 +54,9 @@ class MessengerPlayer::LayersController < ApplicationController
     when "my_mixes"
       @orig_msg = true
       "/auth/mymixeslayer/"
+    when "share_mix_layer"
+      @orig_msg = false
+      @msg="share_mix_layer"
     end
     
     @alert_text = t('coke_messenger.registration.layers.' + alert_type) unless @alert_text

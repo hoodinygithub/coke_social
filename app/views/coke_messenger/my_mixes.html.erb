@@ -16,12 +16,12 @@
       <em class="mix_count"><%= playlist.songs.size %></label> <%= t('coke_messenger.my_mixes_mixes_count') %> </em>
       <div class="messenger_rating" style="margin-top: 10px;"><%= messenger_rating(playlist) %></div>
       <%= link_to_function t('coke_messenger.play'), "Base.Station.request('/playlists/#{playlist.id}.xml', 'xml', Base.Station.stationCollection);Base.Player.random(false)", :class => 'btn_play' %>
-    
-      <% if (playlist == @my_mixes.last) && (index < 2) %>
-		    <a class="btn_nuevomix" href="/playlist/create" target= "_blank" title="<%= t('coke_messenger.create_mix') %>"><%= t('coke_messenger.create_mix') %></a>
-      <% end%>
-		 
+
     <% end %>
+		
+		 <% if !@my_mixes.blank? && @my_mixes.size < 2 %>
+		    <a class="btn_nuevomix create_mix_btn" href="/playlist/create" target= "_blank" title="<%= t('coke_messenger.create_mix') %>" ><%= t('coke_messenger.create_mix') %></a>
+     <% end%>
 
   </div><!-- .columna -->
 </div><!-- .contenido -->

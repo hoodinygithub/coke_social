@@ -59,6 +59,14 @@ class UserNotification < BaseMailer
     content_type  "text/html"
   end
 
+  def send_email_share_mix(options)
+    subject options[:subject_line]
+    recipients options[:recipient_mail] 
+    from ActionMailer::Base.smtp_settings[:default_from]
+    body :recipient_name => options[:recipient_name], :user_name => options[:sender_name],:link => options[:link]
+    content_type  "text/html"
+  end
+
   def feedback_message(options)
     reply_to options[:address]
     if options[:cancellation]

@@ -172,7 +172,7 @@ en:
       share_mix_layer:
         share_mix: "Share Mix"
         close: "Close"
-        share: "Share on"
+        share: "Share by"
         social_net: "Social Network"
         share_fb: "Share on Facebook"
         facebook: "Facebook"
@@ -181,11 +181,21 @@ en:
         email: "email"
         seperate: "Enter details of the recipients separated by comma (,)"
         name: "Name:"
-        blank: "Email field cannot be blank"
+        name_blank: "Name field cannot be blank"
+        email_blank: "Email field cannot be blank"
         email_to: "Email:"
         invalid_email: "This is an invalid email format. please use ###@###.com"
         msg: "Message:"
-        send: "SEND"  
+        send: "SEND"
+        time_out_error: "Sorry! some thing went wrong. Our technical team is already working on it to resolve this issue"
+    email_share:
+      subject: "{{user}} to share with you their music at Coca-Cola.fm!"
+      body:
+        hello: "Hey,"
+        share_mix: "wants to share with you a mix of Coca-Cola.fm"
+        click_here: "Click here to listen:"
+        friends: "Your friends,"
+        coke_fm: "Coca-Cola.fm"        
     order_filter:
       popularity: Order by Popularity
       rating: Order by Rating

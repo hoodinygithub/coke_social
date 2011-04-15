@@ -120,4 +120,31 @@ class ShareController < ApplicationController
   def confirmation
   end
   
+  def email_share_mix
+    user_email = params[:user_email]
+    email_arr = params[:email].split(',')
+    begin
+      if logged_in?
+        sender_name = current_user.name
+        subject_line = t('coke_messenger.email_share.subject', :user => sender_name)
+        share_link = "http://#{global_url}/playlists?station_id=#{params[:id]}"
+        UserNotification.deliver_send_email_share_mix(
+            :locale => current_site.default_locale,
+            :subject_line => subject_line,
+            :sender => user_email,
+            :sender_name => sender_name,
+            :recipient_name => params[:name], 
+            :recipient_mail => email_arr,
+            :link => share_link,
+            :message => params[:msg])
+        status = {:status => 'success'}
+      else
+        status = {:status => 'failed'}
+      end 
+    rescue Timeout::Error
+      status = {:status => 'failed'}
+    end  
+    render :json => status
+  end
+
 end

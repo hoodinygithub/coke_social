@@ -47,6 +47,7 @@ ActionController::Routing::Routes.draw do |map|
   map.confirmation 'users/confirm/:code', :controller => 'users', :action => 'confirm'
   map.share_with_friend 'share/share_with_friend/:media.:format', :controller => 'share', :action => 'share_with_friend'
   map.share 'share/:media/:id.:format', :controller => 'share', :action => 'show'
+  map.share_mix 'email_share_mix/:id.:format', :controller => 'share', :action => 'email_share_mix'
 
   map.x45b 'x45b', :controller => 'application', :action => 'x45b'
   map.x46b 'x46b', :controller => 'pages', :action => 'x46b'
