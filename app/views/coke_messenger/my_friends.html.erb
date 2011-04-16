@@ -13,7 +13,7 @@
           <%= avatar_for(dj, :small, :class => 'avatar', :disable_default_css => true) %>
           <div class="datos">
             <h3><%= link_to dj.name, djs_details_path(dj.id), :class => "link_rojo", :title => dj.name, :content_switch_enabled => true %></h3>
-            <p>(<%= dj.last_playlist_played %>)</p>
+            <p><%= dj.last_playlist_played %></p>
           </div>
           <a class="btn_play" href="#" title="<%= t('coke_messenger.my_friends_tab.play')%>"><%= t('coke_messenger.my_friends_tab.play')%></a>
           <a class="btn_perfil" href="<%= user_path(dj) %>" target="_blank" title="<%= t('coke_messenger.my_mixes_view_profile') %>"><%= t('coke_messenger.my_mixes_view_profile') %></a>
