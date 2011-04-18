@@ -30,7 +30,7 @@
         <%= text_area_tag "msg", nil, :rows => "3", :cols => "20" %>
         <small id = "email_error" class="txt_error"></small>
       </label>
-      <input id="email_share_btn" class="boton" type="submit" value="<%= t('coke_messenger.layers.share_mix_layer.send')%>" onclick="Base.share.email_share_mix('email_share_mix_form',Base.Station._station.pid,'<%= current_user.email %>'); return false;"/>
+      <input id="email_share_btn" class="boton" type="submit" value="<%= t('coke_messenger.layers.share_mix_layer.send')%>" onclick="Base.share.email_share_mix('email_share_mix_form',Base.Station._station.sid,'<%= current_user.email %>'); return false;"/>
     <% end -%>
   </div>
 </div>
