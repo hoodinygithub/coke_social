@@ -18,7 +18,7 @@ class PagesController < ApplicationController
   def messenger_home
     @recent_playlists = Rails.cache.fetch("modules/#{current_site.code}/last_playlists_played",
                                          :expires_delta => EXPIRATION_TIMES['sites_latest_playlists_played']) do
-      current_site.playlists.all(:limit => 50, :order => 'last_played_at DESC').sortable(
+      current_site.playlists.all(:conditions => 'last_played_at IS NOT NULL', :limit => 50, :order => 'last_played_at DESC').sortable(
         :mixes,
         [:popularity, :total_plays],
         [:rating, :rating_cache],
