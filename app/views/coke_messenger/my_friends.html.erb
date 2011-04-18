@@ -15,7 +15,7 @@
             <h3><%= link_to dj.name, djs_details_path(dj.id), :class => "link_rojo", :title => dj.name, :content_switch_enabled => true %></h3>
             <p><%= dj.last_playlist_played.name unless dj.last_playlist_played.nil? %></p>
           </div>
-          <a class="btn_play" href="#" title="<%= t('coke_messenger.play_hover') %>"><%= t('coke_messenger.my_friends_tab.play')%></a>
+          <%= link_to_function t('coke_messenger.play'), "Base.Station.request('/playlists/#{dj.last_playlist_played.id}.xml', 'xml', Base.Station.stationCollection);Base.Player.random(false)", :class => 'btn_play',:title => t('coke_messenger.play_hover') unless dj.last_playlist_played.nil? %>
           <a class="btn_perfil" href="<%= user_path(dj) %>" target="_blank" title="<%= t('coke_messenger.my_mixes_view_profile') %>"><%= t('coke_messenger.my_mixes_view_profile') %></a>
         </li>
       <% end%>
