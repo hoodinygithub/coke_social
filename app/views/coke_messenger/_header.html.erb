@@ -58,7 +58,7 @@
       <span class="tip" id="tip_valorar"><%= t('coke_messenger.rating') %></span>
     </div><!-- .sonando -->
     <div class="info">
-      <%= link_to_function 'Compartir', "$.alert_layer('#{alert_layer_path('share_mix')}')", :class => 'tooltip r_compartir', :rel => 'tip_compartir', :title => 'Compartir Mix' %>
+      <%= link_to_function 'Compartir', "$.alert_layer('#{alert_layer_path('share_mix_layer')}')", :class => 'tooltip r_compartir', :rel => 'tip_compartir', :title => 'Compartir Mix' %>
       <span class="tip" id="tip_compartir"><%= t('coke_messenger.share_mix') %></span>
       <%= link_to_function 'Copiar', "$.alert_layer(String('/messenger_player/copy_mix_layer/' + Base.Station._station.pid))", :class => 'tooltip r_copiar', :rel => 'tip_copiar', :title => 'Copiar Mix' %>
       <span class="tip" id="tip_copiar"><%= t('coke_messenger.copy_mix') %></span>
