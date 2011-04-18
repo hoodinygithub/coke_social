@@ -37,6 +37,7 @@ defaults: &defaults
   radio_show: <%= 1.minutes %> # app/controllers/radio_controller.rb:3
   artist_recent_listeners_js: <%=  %>  # app/controllers/artists_controller.rb:2
   artist_similar_artists_js: <%= 30.minutes %> # app/controllers/artists_controller.rb:3
+  sites_latest_playlists_played: <%= 5.minutes %> # app/controllers/pages/pages_controller.rb:19
 
 development:
   <<: *defaults
