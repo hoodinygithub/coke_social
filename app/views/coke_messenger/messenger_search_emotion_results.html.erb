@@ -13,7 +13,7 @@
         <h3><%= playlist.name %></h3>
       </div>
       <div class="messenger_rating" style="margin-top: 10px;"><%= messenger_rating(playlist) %></div>
-  		<%= link_to_function t('coke_messenger.play'), "Base.Station.request('/playlists/#{playlist.id}.xml', 'xml', Base.Station.stationCollection);Base.Player.random(false)", :title =>t('coke_messenger.play'), :class => 'btn_play' %>
+  		<%= link_to_function t('coke_messenger.play'), "Base.Station.request('/playlists/#{playlist.id}.xml', 'xml', Base.Station.stationCollection);Base.Player.random(false)", :title => t('coke_messenger.play_hover'), :class => 'btn_play' %>
       
     <% end %>
   </div><!-- .columna -->

@@ -15,7 +15,7 @@
       </div>
       <em class="mix_count"><%= playlist.songs.size %></label> <%= t('coke_messenger.my_mixes_mixes_count') %> </em>
       <div class="messenger_rating" style="margin-top: 10px;"><%= messenger_rating(playlist) %></div>
-      <%= link_to_function t('coke_messenger.play'), "Base.Station.request('/playlists/#{playlist.id}.xml', 'xml', Base.Station.stationCollection);Base.Player.random(false)", :class => 'btn_play' %>
+      <%= link_to_function t('coke_messenger.play'), "Base.Station.request('/playlists/#{playlist.id}.xml', 'xml', Base.Station.stationCollection);Base.Player.random(false)", :class => 'btn_play',:title => t('coke_messenger.play_hover') %>
 
     <% end %>
 		 <% if @my_mixes.size > 2 and @my_mixes[2..-1].size < 3 %>

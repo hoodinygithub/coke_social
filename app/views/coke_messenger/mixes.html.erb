@@ -16,7 +16,7 @@
           <p><%= t("basics.by")%>: <%= link_to playlist.owner.name, djs_details_path(playlist.owner.id) ,:class => "link_gris" %></a></p>
         </div>
         <div class="messenger_rating" style="margin-top: 12px;"><%= messenger_rating(playlist) %></div>
-        <%= link_to_function t('coke_messenger.play'), "Base.Station.request('/playlists/#{playlist.id}.xml', 'xml', Base.Station.stationCollection);Base.Player.random(false)", :class => 'btn_play' %>
+        <%= link_to_function t('coke_messenger.play'), "Base.Station.request('/playlists/#{playlist.id}.xml', 'xml', Base.Station.stationCollection);Base.Player.random(false)", :class => 'btn_play',:title => t('coke_messenger.play_hover') %>
         <!-- a class="btn_seguir" href="#" title="<%= t('coke_messenger.follow_the_author') %>"><%= t('coke_messenger.follow_the_author') %></a -->
 
  					<% layer_path = send("follow_user_registration_layers_path",
