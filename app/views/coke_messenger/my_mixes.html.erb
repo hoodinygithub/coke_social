@@ -18,8 +18,7 @@
       <%= link_to_function t('coke_messenger.play'), "Base.Station.request('/playlists/#{playlist.id}.xml', 'xml', Base.Station.stationCollection);Base.Player.random(false)", :class => 'btn_play' %>
 
     <% end %>
-		
-		 <% if !@my_mixes.blank? && @my_mixes.size < 3 %>
+		 <% if @my_mixes.size > 2 and @my_mixes[2..-1].size < 3 %>
 		    <a class="btn_nuevomix create_mix_btn" href="/playlist/create" target= "_blank" title="<%= t('coke_messenger.create_mix') %>" ><%= t('coke_messenger.create_mix') %></a>
      <% end%>
 
