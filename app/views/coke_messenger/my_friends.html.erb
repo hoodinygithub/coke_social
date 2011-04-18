@@ -9,7 +9,7 @@
     <% unless @my_friends.nil? or @my_friends.blank?  %>
       <% @my_friends.each do| dj |%>
         <li class="estirar">
-          <%= avator_for(dj.last_playlist_played, :small, :class => 'avatar', :disable_default_css => true) unless dj.last_playlist_played.nil? %>
+          <%= avatar_for(dj.last_playlist_played, :small, :class => 'avatar', :disable_default_css => true) unless dj.last_playlist_played.nil? %>
           <%= avatar_for(dj, :small, :class => 'avatar', :disable_default_css => true) %>
           <div class="datos">
             <h3><%= link_to dj.name, djs_details_path(dj.id), :class => "link_rojo", :title => dj.name, :content_switch_enabled => true %></h3>
