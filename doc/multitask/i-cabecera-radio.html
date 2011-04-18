@@ -23,21 +23,21 @@ AC_FL_RunContent( 'codebase','http://download.macromedia.com/pub/shockwave/cabs/
       </li>
       <li class="sociales">
         <a class="ico facebook" href="#" title="Facebook">Facebook</a>
-        <a class="ico twitter" href="#" title="Twitter">Twitter</a>
         <a class="ico orkut" href="#" title="Orkut">Orkut</a>
+        <a class="ico twitter" href="#" title="Twitter">Twitter</a>
       </li>
     </ul><!-- .acceso -->
     <div class="botones">
-      <a class="btn_grande btn_radio activo" href="#" title="Radio en vivo">
-        <span class="ico">Radio</span>
-        <span class="txt">Radio en vivo</span>
-        <span class="bg_fin">&nbsp;</span>  
-      </a><!-- incluir clase .activo cuando este activa la radio -->
-      <a class="btn_grande btn_mix" href="#" title="Crear nuevo Mix">
-        <span class="ico">Mix</span>
-        <span class="txt">Crear nuevo Mix</span>
-        <span class="bg_fin">&nbsp;</span>  
-      </a>
+        <a class="btn_grande btn_radio activo" href="#" title="Radio en vivo">
+            <span class="ico">Radio</span>
+            <span class="txt">Live Radio</span>
+            <span class="bg_fin">&nbsp;</span>  
+        </a><!-- incluir clase .activo cuando este activa la radio -->
+        <a class="btn_grande btn_mix" href="#" title="Crear nuevo Mix">
+            <span class="ico">Mix</span>
+            <span class="txt">Crear un Mix</span>
+            <span class="bg_fin">&nbsp;</span>  
+        </a>
     </div><!-- .botones -->
   </div><!-- .bloque -->
 </div><!-- .cabecera -->
@@ -48,10 +48,80 @@ AC_FL_RunContent( 'codebase','http://download.macromedia.com/pub/shockwave/cabs/
       <li><a href="#" title="INICIO">INICIO</a></li><!-- .activo para el enlace activo -->
       <li><a href="#" title="MIXES">MIXES</a></li>
     </ul><!-- .menu -->
-    <form class="buscador" action="#">
-      <input class="txt_form" type="text" value="Busca amigos o mixes" />
-      <input class="btn_form" type="submit" value="Buscar" />
-    </form><!-- .buscador -->
+        <div class="busqueda"><!-- incluir clase "activo" para mostrar sugerencias -->
+            <form class="buscador" action="#">
+                <input class="txt_form" type="text" value="Busca amigos o mixes" />
+                <input class="btn_form" type="submit" value="Buscar" />
+            </form><!-- .buscador -->
+            <div class="search_results_box">
+                <div class="oveflow_list">
+                    <div class="search_results_header">
+                        <h1>Mixes <span>130 resultados</span></h1>
+                    </div>
+                    <ul class="search_list" id="playlists_list">
+                        <li>
+                            <a href="/playlists?station_id=1303617">
+                            <img title="From Manchester with Love." src="imgs/mixes/sim_portada1.jpg" class=" avatar small" alt="From Manchester with Love.">
+                            <strong> From Manchester with Love. </strong>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/playlists?station_id=1923126">
+                            <img title="brisa" src="imgs/mixes/sim_portada1.jpg" class=" avatar small" alt="brisa">
+                            <strong> brisa </strong>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/playlists?station_id=2261427">
+                            <img title="Para Romper la mañana!" src="imgs/mixes/sim_portada1.jpg" class=" avatar small" alt="Para Romper la mañana!">
+                            <strong> Para Romper la ma&ntilde;ana! </strong>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/playlists?station_id=2271782">
+                            <img title="Rock Nacional" src="imgs/mixes/sim_portada1.jpg" class=" avatar small" alt="Rock Nacional" />
+                            <strong> Rock Nacional </strong>
+                            </a>
+                        </li>
+                    </ul>  
+                    <a class="ico_mas" href="#" title="Ver mas">ver m&aacute;s <span class="bg_flecha">&nbsp;</span></a>
+                    <div class="search_results_header">
+                        <h1>Usuarios <span>15 resultados</span></h1>
+                    </div>
+                    <ul class="search_list" id="users_list">
+                        <li>
+                            <a href="/dj-pablo">
+                            <img title="Pablo Mansilla" src="imgs/mixes/sim_portada1.jpg" class=" avatar small" alt="Pablo Mansilla" />
+                            <strong> Pablo Mansilla </strong>
+                            <small>Argentina</small>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/manutelle">
+                            <img title="Manuela" src="imgs/mixes/sim_portada1.jpg" class=" avatar small" alt="Manuela" />
+                            <strong> Manuela </strong>
+                            <small>Argentina</small>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/mancusu_lu">
+                            <img title="luciana mancusu" src="imgs/mixes/sim_portada1.jpg" class=" avatar small" alt="luciana mancusu" />
+                            <strong> luciana mancusu </strong>
+                            <small>Argentina</small>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/mancuso-marcelo">
+                            <img title="marcelo mancuso" src="imgs/mixes/sim_portada1.jpg" class=" avatar small" alt="marcelo mancuso" />
+                            <strong> marcelo mancuso </strong>
+                            <small>Argentina</small>
+                            </a>
+                        </li> 
+                    </ul>
+                    <a class="ico_mas" href="#" title="Ver mas">ver m&aacute;s <span class="bg_flecha">&nbsp;</span></a>
+                </div><!--/end oveflow_list -->
+            </div><!-- .search_results_box -->
+        </div><!-- .busqueda -->
 
     <?php include("i-player-radio.html");?>
     

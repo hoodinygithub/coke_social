@@ -7,12 +7,13 @@
 <link rel="stylesheet" type="text/css" href="css/general.css" />
 <style type="text/css">
 .contenido{background:none #fff;}
-.columna{width:298px;margin:5px;float:left;}
+.columna{width:300px;margin:5px;float:left;}
+h1{font:bold 12px Arial,sans-serif;margin:10px;}
 </style>
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js"></script>
 <script type="text/javascript" src="js/AC_RunActiveContent.js"></script>
 <script type="text/javascript" src="js/cufon-yui.js"></script>
-<script type="text/javascript" src="js/PT_Sans.font.js"></script>
+<script type="text/javascript" src="js/Myriad_Pro.font.js"></script>
 <script type="text/javascript" src="js/general.js"></script>
 </head>
 <body>
@@ -23,17 +24,27 @@
     
     <div class="columna">
       <?php include"i-mod-tags.html"; ?>
+      <h1>USUARIO PERFIL PRIVADO</h1>
+      <?php include"i-mod-privado-topdjs.html"; ?>
+      <?php include"i-mod-privado-topmixes.html"; ?>
+    </div><!-- .columna -->
+    <div class="columna">
+      <h1>USUARIO PERFIL PÚBLICO</h1>    
       <?php include"i-mod-badges.html"; ?>
       <?php include"i-mod-siguiendo.html"; ?>
       <?php include"i-mod-topmixes.html"; ?>
+      <?php include"i-mod-topdjs.html"; ?>
       <?php include"i-mod-actividad.html"; ?>
     </div><!-- .columna -->
     <div class="columna">
+      <h1>SIN RESULTADOS</h1>
       <?php include"i-mod-tags-no.html"; ?>
       <?php include"i-mod-badges-no.html"; ?>
       <?php include"i-mod-siguiendo-no.html"; ?>
       <?php include"i-mod-topmixes-no.html"; ?>
       <?php include"i-mod-actividad-no.html"; ?>
+      <h1>MIXES</h1>
+      <?php include"i-mod-masmixes.html"; ?>
     </div><!-- .columna -->
    
     </div><!-- /bloque -->
