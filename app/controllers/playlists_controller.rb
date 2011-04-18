@@ -79,7 +79,7 @@ class PlaylistsController < ApplicationController
   end
   
   def messenger_my_friends
-    @my_friends = current_user.followees.all(:conditions => 'last_played_played_id IS NOT NULL')
+    @my_friends = current_user.followees.all(:conditions => 'last_playlist_played_id IS NOT NULL')
     if request.xhr? and params[:page].to_i > 1
       logger.debug" IN XHR if condition and params[:page]=#{params[:page]}"
     # sleep 5
