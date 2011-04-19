@@ -808,38 +808,49 @@ Base.share.email_share_mix = function(form_elm, mix_id,user_email){
 		var reg = /^([A-Za-z0-9_\-\.\+])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
 		var name_fld = false;
 		var email_fld = false;
+		var count = 0 ;
 		
 		if (name.val() == ''){
 			 $('#email_share_mix_form #name_label').addClass('error');
 			 $('#email_share_mix_form #name_error').text(Base.locale.t('coke_messenger.layers.share_mix_layer.name_blank'));
 			 name_fld = false;
+			 $('#error').text("");
 		}else{
 			$('#email_share_mix_form #name_label').removeClass('error');
 			$('#email_share_mix_form #name_error').text("");
 			name_fld = true;
+			$('#error').text("");
 		}
 		
 		if (email.val() == ''){
 			$('#email_share_mix_form #email_label').addClass('error');
 			$('#email_share_mix_form #email_error').text(Base.locale.t('coke_messenger.layers.share_mix_layer.email_blank')); 
 			email_fld = false;
+			$('#error').text("");
 		}else 
       {
 			str = email.val().split(',');
 			for (var i=0;i < str.length ; i++ ){
-			 if(!reg.test(str[i])){
-					$('#email_share_mix_form #email_label').addClass('error');
-					$('#email_share_mix_form #email_error').text(Base.locale.t('coke_messenger.layers.share_mix_layer.invalid_email'));
-					email_fld = false;
-				}
-				else{
-					$('#email_share_mix_form #email_label').removeClass('error');
-					$('#email_share_mix_form #email_error').text("");
-					email_fld = true;
+				 email_str = jQuery.trim(str[i]);
+			 if(!reg.test(email_str)){
+						count = count+1;
 				}
 			}
 		}		
 		
+		if (count > 0){
+			$('#email_share_mix_form #email_label').addClass('error');
+  		$('#email_share_mix_form #email_error').text(Base.locale.t('coke_messenger.layers.share_mix_layer.invalid_email'));
+			email_fld = false;
+			$('#error').text("");
+		}else{
+			$('#email_share_mix_form #email_label').removeClass('error');
+			$('#email_share_mix_form #email_error').text("");
+			email_fld = true;
+			$('#error').text("");
+		}
+			
+			
 		var params = {'user_email':user_email, 'email':email.val(),'name':name.val(),'msg':msg.val()}
 	 if (email_fld  &&	name_fld){
 		jQuery.post(Base.currentSiteUrl() + '/email_share_mix/'+mix_id, params, function(response, status) {

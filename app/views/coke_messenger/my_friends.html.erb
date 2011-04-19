@@ -25,7 +25,7 @@
           <a class="btn_perfil" href="<%= user_path(dj) %>" target="_blank" title="<%= t('coke_messenger.my_mixes_view_profile') %>"><%= t('coke_messenger.my_mixes_view_profile') %></a>
         </li>
       <% end%>
-			<li class="view_more_frs"><%= link_to t('coke_messenger.my_friends_tab.view_all'), "/my/following", :target=>"_blank" %></li>
+			<li class="view_more_frs"><%= link_to t('coke_messenger.my_friends_tab.view_more'), "/my/following", :target=>"_blank" %></li>
     <% else %>
       <ul class="amigos">
         <li class="no_resultados">
