@@ -564,32 +564,33 @@ coke_BR:
   coke_messenger: 
     play: Play
     follow_the_author: Seguir
-    mix_page_blank_desc: test_Mix page blank desc_br
+    mix_page_blank_desc: "Playlist  p\xC3\xA1gina em branco"
+    rating: Rating
     order_filter: 
-      rating: Top rated
+      rating: Melhor Classificadas
       popularity: Mais populares
       most_recent: Mais recentes
-      most_followers: Most followers
-      date: by date
-      alpha: Alphabetically
+      most_followers: Os mais populares
+      date: por dia
+      alpha: Alfabeticamente
     friends: AMIGOS
     my_mixes: MIS MIXES
     logout: Logout
     emotions: 
-      title: "test_CokeFM Messenger : Emotions_br"
-      no_results: test_Your search produced no results._br
+      title: "CokeFM Messenger :EMO\xC3\x87\xC3\x95ES"
+      no_results: "Sua busca n\xC3\xA3o tem resultados"
       tab_title: test_NAME OF EMOTION_br
     djs: DJs
     dj_mix_detail: 
       mixes_of_dj: test_MIXES OF {{dj_name}} DJ_br
     messenger_home: 
-      title: test_Home_br
       emotions: !binary |
         RU1Pw4fDlUVT
 
+      title: Home
       recent_mixes: test_RECENT MIXES_br
     unfollow_the_author: Unfollow
-    my_mixes_view_profile: test_View Profile_br
+    my_mixes_view_profile: Ver perfil
     my_friends_tab: 
       play: Play
       follow_the_author: Follow the author
@@ -600,31 +601,31 @@ coke_BR:
     my_friends: AMIGOS
     layers: 
       opt_layer_view: 
-        dj_create_mix: test_If you would like to become a DJ, create your own mixes here, adding the songs you want to share multiple radios online._br
-        comment: test_use the comments and scores to comment on the musical tastes of your friends and their mixes._br
+        dj_create_mix: "Se voc\xC3\xAA gostaria de se tornar um DJ, criar suas pr\xC3\xB3prias playlists, adicionando aqui as m\xC3\xBAsicas que voc\xC3\xAA deseja compartilhar"
+        comment: "use os coment\xC3\xA1rios e as pontua\xC3\xA7\xC3\xB5es para comentar sobre o gosto musical de seus amigos e suas misturas"
         find_music: test_Find out in real time what they are hearing, and collect or listen to songs you like best for streaming._br
         friends: Amigos
-        and: test_and_br
-        terms_of_use: test_terms of use_br
-        welcome: test_Welcome to CCFM_br
+        and: e
+        terms_of_use: "Termos e condi\xC3\xA7\xC3\xB5es"
+        welcome: Bem-vindo a Coca-Cola.fm
         describe: test_which describe how your personal data will be used._br
-        close: test_Close_br
-        coke_fm: test_Coca-Cola.fm_br
-        put_work: test_Put your skills to work_br
-        roger: test_Roger_br
+        coke_fm: Coca-Cola.fm
+        close: Fechar
+        put_work: Ponha suas habilidades para trabalhar
+        roger: Roger
         text_info: test_which describe how your personal data will be used._br
         create_mix: test_Create your mixes of songs_br
-        radio_stations: test_our recommendation system creates radio stations tailored specifically to your needs with all your favorite artists._br
+        radio_stations: "O sistema de recomenda\xC3\xA7\xC3\xA3o cria esta\xC3\xA7\xC3\xB5es de r\xC3\xA1dio feito especificamente para suas necessidades, com todos os seus artistas favoritos."
+        badgets: Ganhe bandges
         cyloop: test_You are already part of the Cylopp network so all you need is accept the CCFM terms and conditions and we eill part over your profile information._br
-        badgets: test_Earn badgets_br
-        recommendations: test_Recos_br
-        follow: test_Follow your friends_br
+        follow: Siga seus amigos
+        recommendations: "Recomenda\xC3\xA7\xC3\xB5es"
         cyloop_privacy: test_By checking the box, you confirm that you know Cyloop.com is a website operated by Hoodiny Entertainment Group in the U.S., and you consent to the transfer of your personal data to the U.S. , where your personal data will be subject to U.S. law and where the level of data protection is different compared to your country. You also agree to the Cyloop._br
-        view: test_View_br
+        view: Ver
         privacy: "Pol\xC3\xADtica de privacidade"
         create: test_Create Mix_br
-        reasons: test_Reasons to join_br
         thats_it: test_That's it!_br
+        reasons: test_Reasons to join_br
         discover: test_Discover music with friends_br
         terms: test_terms of use_br
         login: test_Login_br
@@ -701,22 +702,25 @@ coke_BR:
         click_follow: test_With just one click, begin to follow your friends to be aware of their activities on Twitter and other news._br
         email: Email address
       share_mix_layer: 
-        name: ""
-        share: ""
-        invalid_email: ""
-        msg: ""
-        close: ""
-        social_net: ""
+        name: test_Name:_br
+        name_blank: test_Name field cannot be blank_br
+        invalid_email: "test_This is an invalid email format. please use ###@###.com_br"
+        share: test_Share by_br
+        msg: test_Message:_br
+        close: test_Close_br
+        social_net: test_Social Network_br
         blank: ""
-        share_tw: ""
-        seperate: ""
-        send: ""
-        share_mix: ""
-        share_fb: ""
-        facebook: ""
-        email_to: ""
-        twitter: ""
-        email: ""
+        share_tw: test_Share on Twitter_br
+        seperate: test_Enter details of the recipients separated by comma (,)_br
+        time_out_error: test_Sorry! some thing went wrong. Our technical team is already working on it to resolve this issue_br
+        email_blank: test_Email field cannot be blank_br
+        send: test_SEND_br
+        share_mix: test_Share Mix_br
+        share_fb: test_Share on Facebook_br
+        facebook: test_Facebook_br
+        twitter: test_Twitter_br
+        email_to: test_Email:_br
+        email: test_email_br
       copy_mix_layer: 
         cancel: test_CANCEL_br
         info: test_Explanation of functionality, which is and which serves to copy a mix. and functionality, which is and which serves to copy a mix._br
@@ -727,12 +731,12 @@ coke_BR:
     create_mix: Create new Mix
     registration: 
       layers: 
-        my_mixes: test_To access your mixes, log in to Coca-Cola.fm._br
-        follow_user: test_To follow and find out what a user is listening to, log in to Coca-Cola.fm._br
-        generic: test_Please log in to Coca-Cola.fm._br
-        my_friends: test_To hear what your friends have been listening to, log in to Coca-Cola.fm._br
-        follow_user_details: test_To follow {{slug}} and find out what {{gender}} is listening to, log in to Coca-Cola.fm._br
-        copy_mix: test_To copy this mix, log in to Coca-Cola.fm._br
+        my_mixes: Para ter acesso as suas mix, acesse a Coca-Cola.fm
+        follow_user: To follow and find out what a user is listening to, log in to Coca-Cola.fm
+        generic: "Fa\xC3\xA7a login para Cola.fm Coca"
+        my_friends: "Para ouvir o que seus amigos est\xC3\xA3o ouvindo, acesse a Coca-Cola.fm"
+        follow_user_details: "Para acompanhar {username) e descobrir o que g\xC3\xAAnero est\xC3\xA1 ouvindo, acesse a Coca-Cola.fm"
+        copy_mix: "Para copiar essa playlist, fa\xC3\xA7a o login para a Coca-Cola.fm"
         share_mix: test_To share this mix, log in to Coca-Cola.fm._br
         max_plays: test_We hope you enjoyed the songs you've heard. To hear more songs, log in to Coca-Cola.fm._br
     default_messenger_title: test_CokeFM Messenger :_br
@@ -740,16 +744,28 @@ coke_BR:
       title: test_Home_BR
       emotions: test_Emotions_BR
       recent_mixes: test_RECENT MIXES_BR
+    info: Info
     dj: 
       follow_the_author: Follow the author
       title: test_DJ's_br
       tab_title: DJs
       sort_by_popularity: test_Sort by popularity_br
+    email_share: 
+      body: 
+        click_here: "Click here to listen:"
+        friends: Your friends,
+        coke_fm: Coca-Cola.fm
+        hello: Hey,
+        share_mix: wants to share with you a mix of Coca-Cola.fm
+      subject: "{{user}} to share with you their music at Coca-Cola.fm!"
     greeting: Hi
+    copy_mix: Copy Mix
+    share_mix: Share Mix
     home: INICIO
     mix_page_blank: test_No Mixes_br
-    my_mixes_mixes_count: test_Songs_br
+    my_mixes_mixes_count: "N\xC3\xBAmero de can\xC3\xA7\xC3\xB5es"
     live_radio: LIVE RADIO
+    play_hover: Reproducir
     mixes: Playlists
     search: 
       results: Resultados
