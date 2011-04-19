@@ -19,7 +19,7 @@ set :shared_base,         "/shared"
 set :user,                "hoodiny"
 set :password,            "Xh00d17ME71z"
 set :deploy_to,           "#{deploy_base}/#{application}"
-set :monit_group,         ENV['DEPLOY_SITE'] || ARGV[0]
+set :monit_group,         "unicorn_#{ENV['DEPLOY_SITE'] || ARGV[0]}"
 set :runner,              "hoodiny"
 set :repository,          "git@github.com:hoodinygithub/coke_social.git"
 set :cyqueue,             "/data/cyqueue/current"
