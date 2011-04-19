@@ -1,11 +1,17 @@
 <div class="submenu">
   <div class="columna">
     <h2><%= t('coke_messenger.my_friends_tab.latest')%></h2>
-<%#= sortable_options_tag @my_friends, :name => "my_friend", :class => "ord_mixes", :i18n_base => "coke_messenger.order_filter" %>
-  </div>
+<% #= sortable_options_tag @my_friends, :name => "my_friend", :class => "ord_mixes", :i18n_base => "coke_messenger.order_filter" %>
+  		<form class="ord_mixes" action="#" >
+			<select>
+				<option>Ordenar por popularidad</option>
+				<option>-</option>
+			</select>
+		</form>
+	</div>
 </div><!-- .submenu -->
 <div class="contenido">
-  <div class="columna">
+  <div class="amigos">
     <% unless @my_friends.nil? or @my_friends.blank?  %>
       <% @my_friends.each do| dj |%>
         <li class="estirar">
@@ -15,15 +21,16 @@
             <h3><%= link_to dj.name, djs_details_path(dj.id), :class => "link_rojo", :title => dj.name, :content_switch_enabled => true %></h3>
             <p><%= dj.last_playlist_played.name unless dj.last_playlist_played.nil? %></p>
           </div>
-          <%= link_to_function t('coke_messenger.play'), "Base.Station.request('/playlists/#{dj.last_playlist_played.id}.xml', 'xml', Base.Station.stationCollection);Base.Player.random(false)", :class => 'btn_play',:title => t('coke_messenger.play_hover') unless dj.last_playlist_played.nil? %>
+          <%= link_to_function t('coke_messenger.play'), "Base.Station.request('/playlists/#{dj.last_playlist_played.id}.xml', 'xml', Base.Station.stationCollection);Base.Player.random(false)", :class => 'btn_play play_btn_top',:title => t('coke_messenger.play_hover') unless dj.last_playlist_played.nil? %>
           <a class="btn_perfil" href="<%= user_path(dj) %>" target="_blank" title="<%= t('coke_messenger.my_mixes_view_profile') %>"><%= t('coke_messenger.my_mixes_view_profile') %></a>
         </li>
       <% end%>
+			<li class="view_more_frs"><%= link_to t('coke_messenger.my_friends_tab.view_all'), "/my/following", :target=>"_blank" %></li>
     <% else %>
       <ul class="amigos">
         <li class="no_resultados">
           <h3><%= t('coke_messenger.my_friends_tab.dnt_hav_frnds')%></h3>
-          <p><%= t('coke_messenger.my_friends_tab.easy')%> <a href="#" class="btn_seguir_red" alt="<%= t('coke_messenger.my_friends_tab.follow_the_author') %>"><%= t('coke_messenger.my_friends_tab.follow_the_author') %> </a><%= t('coke_messenger.my_friends_tab.follow')%></p>
+          <p><%= t('coke_messenger.my_friends_tab.easy')%> <img alt="Seguir al autor" src="/images/coke_messenger/btn_seguir.gif"><%= t('coke_messenger.my_friends_tab.follow')%></p>
         </li>
       </ul>
     <% end %>

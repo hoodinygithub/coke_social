@@ -16,7 +16,7 @@
         <h3><%= playlist.name %></h3>
         <p>Por: <%= link_to playlist.owner.name,djs_details_path(playlist.owner.id), :title => playlist.owner.name, :class=>"link_gris" %></p> 
       </div>
-      <%= link_to_function t('coke_messenger.play'), "Base.Station.request('/playlists/#{playlist.id}.xml', 'xml', Base.Station.stationCollection);Base.Player.random(false)", :class => 'btn_play',:title => t('coke_messenger.play_hover') %>
+      <%= link_to_function t('coke_messenger.play'), "Base.Station.request('/playlists/#{playlist.id}.xml', 'xml', Base.Station.stationCollection);Base.Player.random(false)", :class => 'btn_play home_play_btn_top',:title => t('coke_messenger.play_hover') %>
 
     <% end %>
   </div><!-- .columna_izq -->

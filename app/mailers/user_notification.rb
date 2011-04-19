@@ -63,7 +63,7 @@ class UserNotification < BaseMailer
     subject options[:subject_line]
     recipients options[:recipient_mail] 
     from ActionMailer::Base.smtp_settings[:default_from]
-    body :recipient_name => options[:recipient_name], :user_name => options[:sender_name],:link => options[:link]
+    body :recipient_name => options[:recipient_name], :user_name => options[:sender_name],:link => options[:link],:msg => options[:message]
     content_type  "text/html"
   end
 
