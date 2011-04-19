@@ -1,3 +1,12 @@
+<script type="text/javascript">
+  $(document).ready(function() {
+      if (Base.Station._station)
+      {
+        if ($('.ult_mixes li').hasClass('sonando')) $('.mixes li.sonando').toggleClass('sonando');
+        $('.mixes').find('#' + Base.Station._station.pid).parent().toggleClass('sonando');
+      }
+  });
+</script>
 <div class="submenu">
   <div class="columna">
     <h2><%= t('coke_messenger.mixes_tab.tab_title') %></h2>
@@ -11,7 +20,7 @@
 
         <span class="ord"><%= index + 1 %></span>
         <%= avatar_for(playlist, :small, :class => 'avatar', :disable_default_css => true) %>
-        <div class="datos">
+        <div class="datos" id="<%= playlist.id %>">
           <h3><%= playlist.name %></h3>
           <p><%= t("basics.by")%>: <%= link_to playlist.owner.name, djs_details_path(playlist.owner.id) ,:class => "link_gris" %></a></p>
         </div>

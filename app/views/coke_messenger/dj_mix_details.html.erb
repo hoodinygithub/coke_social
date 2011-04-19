@@ -1,3 +1,12 @@
+<script type="text/javascript">
+  $(document).ready(function() {
+      if (Base.Station._station)
+      {
+        if ($('.mis_mixes li').hasClass('sonando')) $('.ult_mixes li.sonando').toggleClass('sonando');
+        $('.mis_mixes').find('#' + Base.Station._station.pid).parent().toggleClass('sonando');
+      }
+  });
+</script>
 <div class="submenu">
   <div class="columna">
     <h2><%= t('coke_messenger.dj_mix_detail.mixes_of_dj',:dj_name => @dj_name).upcase %></h2>
@@ -10,7 +19,7 @@
     <% sortable_list(@dj_mixes, {:name => "mixes", :class => "mis_mixes", :li_class => "estirar"}) do |playlist, index| %>
     
       <%= avatar_for(playlist, :small, :class => 'avatar', :disable_default_css => true) %>
-      <div class="datos">
+      <div id="<%= playlist.id %>" class="datos">
         <h3><%= playlist.name %></h3>
       </div>
     

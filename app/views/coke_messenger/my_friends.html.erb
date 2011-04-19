@@ -1,3 +1,12 @@
+<script type="text/javascript">
+  $(document).ready(function() {
+      if (Base.Station._station)
+      {
+        if ($('ul.amigos li').hasClass('sonando')) $('.mixes li.sonando').toggleClass('sonando');
+        $('ul.amigos').find('#' + Base.Station._station.pid).parent().toggleClass('sonando');
+      }
+  });
+</script>
 <div class="submenu">
   <div class="columna">
     <h2><%= t('coke_messenger.my_friends_tab.latest')%></h2>
@@ -13,11 +22,12 @@
 <div class="contenido">
   <div class="amigos">
     <% unless @my_friends.nil? or @my_friends.blank?  %>
+      <ul class="amigos">
       <% @my_friends.each do| dj |%>
         <li class="estirar">
           <%= avatar_for(dj.last_playlist_played, :small, :class => 'avatar', :disable_default_css => true) unless dj.last_playlist_played.nil? %>
           <%= avatar_for(dj, :small, :class => 'avatar', :disable_default_css => true) %>
-          <div class="datos">
+          <div id="<%= dj.last_playlist_played.id %>" class="datos">
             <h3><%= link_to dj.name, djs_details_path(dj.id), :class => "link_rojo", :title => dj.name, :content_switch_enabled => true %></h3>
             <p><%= dj.last_playlist_played.name unless dj.last_playlist_played.nil? %></p>
           </div>
@@ -27,7 +37,6 @@
       <% end%>
 			<li class="view_more_frs"><%= link_to t('coke_messenger.my_friends_tab.view_more'), "/my/following", :target=>"_blank" %></li>
     <% else %>
-      <ul class="amigos">
         <li class="no_resultados">
           <h3><%= t('coke_messenger.my_friends_tab.dnt_hav_frnds')%></h3>
           <p><%= t('coke_messenger.my_friends_tab.easy')%> <img alt="Seguir al autor" src="/images/coke_messenger/btn_seguir.gif"><%= t('coke_messenger.my_friends_tab.follow')%></p>
