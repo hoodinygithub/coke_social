@@ -435,11 +435,7 @@ module ApplicationHelper
 
   def application_html_attrs
     attrs =
-      #if is_msn_messenger_enabled? && current_site.is_msn?
-      #  html_attrs.merge( 'xmlns:msgr' => 'http://messenger.live.com/2009/ui-tags', 'xml:lang' => current_site.default_locale.to_s.downcase.split('_').join('-') )
-      #else
-      html_attrs.merge( 'xmlns:og' => 'http://opengraphprotocol.org/schema/', 'xmlns:fb' => 'http://www.facebook.com/2008/fbml', 'xmlns:wl' => 'http://apis.live.net/js/2010' )
-      #end
+      html_attrs.merge( 'xmlns:og' => 'http://opengraphprotocol.org/schema/', 'xmlns:fb' => 'http://www.facebook.com/2008/fbml' )
     attrs.map{|k,v| "#{k}='#{v}'"}.join(" ")
   end
 

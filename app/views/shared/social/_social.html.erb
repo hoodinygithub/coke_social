@@ -1,5 +1,4 @@
 <%= render "/shared/social/fbconnect", { :page => page } %>
-<%= render "/shared/social/winconnect", { :page => page } %>
 <div id="social">
   <div class="container">
     <span class="title"><%= t('sessions.new.social') %></span>
@@ -8,41 +7,17 @@
       <fb:login-button id="fb_login" perms="user_birthday, email"></fb:login-button>
     </div>
     <div>
-      <wl:signin id="signInControl"
-        signedintext="Logout"
-        signedouttext="Login"
-        onsignin="onWinConnectLogin"></wl:signin>
+    <%= content_tag(:iframe, nil, :src=>"http://login.cyloop.com:8081/winconnect_button/coke?host=#{current_site_url}", :frameborder=>"0", :scrolling=>"no", :width=>"75", :height=>"30") %>
     </div>
   </div>
 </div>
 
-<% javascript_tag do %>
-function onWinConnectLogin(p_event) {
-  // console.log('win connect login event');
-  // debugAuth();
-  state = Microsoft.Live.App.get_auth().get_state();
-  switch (state) {
-    case Microsoft.Live.AuthState.authenticated:
-      // alert('Windows Connect login');
+<%- content_for :head do -%>
+  <%- javascript_tag do -%>
+    function onWinConnectLoginSuccess() {
       document.location = current_url_site + '/login?' + document.location.search
         + '&page=<%= page if defined? page %>';
-      break;
-    case Microsoft.Live.AuthState.failed:
-      alert('Windows Connect login fail');
-      break;
-    case Microsoft.Live.AuthState.canceled:
-      // alert('Windows Connect login canceled');
-      // SSL-page authentication drops to this auth state for some reason
-      document.location = current_url_site + '/login?' + document.location.search
-              + '&page=<%= page if defined? page %>';
-      break;
-    default:
-      alert('Windows Connect login state: ' + state);
-  }
+    };
+  <%- end -%>
+<%- end -%>
 
-  // debugProfile();
-}
-<% end %>
-
-<% # signedintext="<%= t('win_connect.login.in') % >" %>
-<% # signedouttext="<%= t('win_connect.login.out') % >" %>
