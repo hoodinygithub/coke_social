@@ -410,8 +410,8 @@ div.star-rating-readonly a{cursor:default;}
 div.star-rating{background:transparent;overflow:hidden;}
 div.star-rating-readonly a{cursor:default !important;}
 
-.albums_item{background:url(../imgs/bg_listado.png) repeat-x 0 bottom #fff;padding:10px 0 10px 10px;position:relative;overflow:hidden;_height:240px;}
-.albums_item .reviews{float:left;width:418px;padding:10px 20px 0 15px;font-size:11px;color:#636363;line-height:14px;position:relative;}
+.albums_item{background:url(../imgs/bg_listado.png) repeat-x 0 bottom #fff;padding:8px 0 15px 1px;position:relative;overflow:hidden;_height:240px;}
+.albums_item .reviews{float:left;width:418px;padding:8px 20px 0 15px;font-size:11px;color:#636363;line-height:14px;position:relative;}
 .albums_item .reviews .close_btn{position:absolute;top:12px;right:18px;width:8px;height:8px;background:url(../imgs/iconografia.png) 0 -410px;overflow:hidden;text-indent:-999em;}
 .albums_item .reviews .rating{position:absolute;top:12px;right:18px;}
 .albums_item .reviews .grey{display:block;color:#999;}
@@ -420,6 +420,8 @@ div.star-rating-readonly a{cursor:default !important;}
 .albums_item .review_item .avatar{float:left;margin-right:10px;}
 .albums_item .review_item .review_creator_large{float:left;}
 .albums_item .review_item .review_creator_large strong{}
+.albums_item .review_creator_large #not_following,
+.albums_item .review_creator_large #following{padding-top:3px;}
 .albums_item .reviews a{color:#E40015;text-decoration:underline;}
 .albums_item .reviews a:hover{text-decoration:none;}
 .albums_item .title{margin-bottom:20px;}
@@ -436,6 +438,27 @@ div.star-rating-readonly a{cursor:default !important;}
 /* comentarios usuario privado */
 .albums_item .review_edit .rating{top:24px;}
 .albums_item .review_edit .rev_text{padding:9px 0 1px;}
+
+/* BUSCADOR */
+#busqueda .contenido .bloque{background:url(../imgs/deg_lateral.png) no-repeat scroll 632px 100px transparent;overflow:hidden;}
+#busqueda .cont_columna.der{margin-top:0;}
+#busqueda .open_happiness_box{margin-bottom:20px;}
+
+#busqueda .mod_mixes h2{margin-bottom:0;}
+#busqueda .albums_item .title{padding-bottom:10px;margin-bottom:0;width:370px;}
+#busqueda .albums_item .title h3{margin-bottom:2px;line-height:18px;}
+#busqueda .albums_item .title .grey{margin-bottom:7px;}
+#busqueda .albums_item .title p{margin-bottom:6px;}
+#busqueda .albums_item .review_item{padding:0;}
+#busqueda .albums_item .reviews .rating{right:7px;top:16px;}
+
+.buscador_big{width:946px;height:53px;background:url(../imgs/bg_elementos.png) no-repeat 0 -638px;position:relative;left:-2px;margin:27px 0 12px;}
+.buscador_big .text_buscar{display:block;width:563px;height:18px;background:url(../imgs/bg_elementos.png) no-repeat 0 -695px;border:0;position:absolute;top:12px;left:11px;z-index:3;padding:5px 5px 5px 43px;}
+.buscador_big .lupa_buscar{display:block;width:24px;height:15px;background:url(../imgs/iconografia.png) no-repeat 2px -425px;text-indent:-999em;overflow:hidden;border-right:1px solid #333;position:absolute;left:20px;top:20px;z-index:6;}
+.buscador_big .btn_buscar{width:135px;height:28px;border:0;background:#fff;position:absolute;top:12px;background:url(../imgs/bg_elementos.png) no-repeat -750px -166px;font-weight:bold;color:#999;font-family:Arial,sans-serif;cursor:pointer;}
+.buscador_big .btn_buscar.activo{background-position:-598px -127px;color:#fff;}
+.buscador_big .btn_bususuarios{right:157px;}
+.buscador_big .btn_busmixes{right:13px;}
 
 /* MODULOS */
 /* botella de tags */
