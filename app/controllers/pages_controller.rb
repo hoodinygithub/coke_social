@@ -17,8 +17,15 @@ class PagesController < ApplicationController
 
   def messenger_home
     @recent_playlists = Rails.cache.fetch("modules/#{current_site.code}/last_playlists_played",
-                                         :expires_delta => EXPIRATION_TIMES['sites_latest_playlists_played']) do
-      current_site.playlists.all(:limit => 50, :order => 'last_played_at DESC').sortable(
+                                          :expires_delta => EXPIRATION_TIMES['sites_latest_playlists_played']) do
+      # This request is very heavy and needs to be aggressively cached.  The :include is a big part of the problem.
+      #
+      # The songs.albums relations are included to display playlist coverart.  This should be a cache column in playlists.  Remove when that's done.
+      # 
+      # The owner is for dj owner details.
+      #
+      # Sometimes this result is too big to fit in MemCached (1MB per key limit), which is bad.  Might need to reduce the limit.
+      current_site.playlists.all(:limit => 50, :order => 'last_played_at DESC', :include => [:owner, {:songs => :album}] ).sortable(
         :mixes,
         [:popularity, :total_plays],
         [:rating, :rating_cache],
