@@ -73,7 +73,7 @@ module MachineSort::SortableHelper
         html += content_tag :li, capture(&new_block), li_options.merge(sortable_options(item, ordered_fields))
       end
       ul = content_tag(:ul, html, ul_options)
-      concat(ul, block.binding)
+      concat(ul)
     else
       ul_options = {}
       ul_options[:class] = options[:ul_class] || options[:class] || ""
@@ -88,7 +88,7 @@ module MachineSort::SortableHelper
       end
       
       ul = content_tag(:ul, li, ul_options)
-      concat(ul, block.binding)
+      concat(ul)
     end
   end
   
