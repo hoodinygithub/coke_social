@@ -1,0 +1,12 @@
+<%= content_tag(:iframe, nil, :src=>"http://login.cyloop.com:8081/winconnect_button/coke?host=#{current_site_url}", :frameborder=>"0", :scrolling=>"no", :width=>"75", :height=>"30") %>
+
+
+<% # I wish content_for :head worked here, but it doesn't (in the messenger tab). %>
+<%- javascript_tag do -%>
+  function onWinConnectLoginSuccess() {
+    // TODO: Separate logic for site and messenger tab.  This is for the site.
+    document.location = current_url_site + '/login?' + document.location.search
+      + '&page=<%= page if defined? page %>';
+  };
+<%- end -%>
+

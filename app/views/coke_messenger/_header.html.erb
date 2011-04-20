@@ -11,7 +11,7 @@
         <li><%= "#{t('coke_messenger.greeting')} #{link_to current_user.name, '/my/dashboard', :target => 'blank', :class => 'link_usuario'}" %></li>
       </ul>
     <% else %>
-      <a class="btn_connect" href="#" title="Connect">Connect</a>
+      <%= render "shared/social/winconnect", { :page => :header } %>
     <% end %>
     <!--<wl:signin></wl:signin>-->
     <div class="destacados estirar">

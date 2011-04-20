@@ -7,17 +7,8 @@
       <fb:login-button id="fb_login" perms="user_birthday, email"></fb:login-button>
     </div>
     <div>
-    <%= content_tag(:iframe, nil, :src=>"http://login.cyloop.com:8081/winconnect_button/coke?host=#{current_site_url}", :frameborder=>"0", :scrolling=>"no", :width=>"75", :height=>"30") %>
+      <%= render "/shared/social/winconnect", { :page => page } %>
     </div>
   </div>
 </div>
-
-<%- content_for :head do -%>
-  <%- javascript_tag do -%>
-    function onWinConnectLoginSuccess() {
-      document.location = current_url_site + '/login?' + document.location.search
-        + '&page=<%= page if defined? page %>';
-    };
-  <%- end -%>
-<%- end -%>
 
