@@ -19,7 +19,7 @@ xml.player :autoStart => 'yes', :canRate => '', :owner => @playlist.owner.id, :n
         xml.subcategory
         xml.yearsong song.album.year
         xml.musiclabel song.music_label
-        xml.partner_label (song.album.label.nil?) ? "" : song.album.label.name 
+        xml.partner_label song.album.label.nil? ? "" : song.album.label.name 
         xml.lyrics
         xml.alreadyInCollection 0
         xml.rating_total 0
