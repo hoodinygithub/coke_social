@@ -830,7 +830,7 @@ Base.share.email_share_mix = function(form_elm, mix_id,user_email){
 			$('#email_share_mix_form #email_error').text(Base.locale.t('coke_messenger.layers.share_mix_layer.email_blank')); 
 			email_fld = false;
 			$('#error').text("");
-			count = 1;
+			return false;
 		}else 
       {
 			str = email.val().split(',');
