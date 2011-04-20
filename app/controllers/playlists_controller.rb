@@ -335,9 +335,8 @@ class PlaylistsController < ApplicationController
   def show
     if params[:id] != "0"
       begin
-
-        @playlist = Playlist.find(params[:id])
-
+        # This find is optimized for the XML.  Might want less for the HTML.
+        @playlist = Playlist.find(params[:id], :include => { :songs => [ {:album => :label}, {:artist => :genre} ] })
         if request.xhr?
           respond_to do |format|
             format.html { render :layout => false, :partial => "playlist_result", :object => @playlist }
