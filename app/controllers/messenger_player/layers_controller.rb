@@ -1,19 +1,17 @@
 class MessengerPlayer::LayersController < ApplicationController
-  before_filter :xhr_login_required, :only => [:messenger_copy]
+  before_filter :login_required, :only => [:messenger_copy]
   layout 'messenger/layer'
 
   def alert_layer
-    alert_type = (params[:alert_type] =~ /(max_plays|share_mix|copy_mix|follow_user|my_friends|my_mixes|max_skips|login_layer|license_message|opt_layer|authentication_layer|registration_layer)/i) ? params[:alert_type].to_s : "generic"
-    
+    alert_type = (params[:alert_type] =~ /(max_plays|share_mix|copy_mix|follow_user|my_friends|my_mixes|max_skips|login_layer|license_message|opt_layer|authentication_layer|registration_layer|error)/i) ? params[:alert_type].to_s : "generic"
+
+    @orig_msg = true
     @ga_tracking_id = case alert_type
-  when "max_plays"
-     @orig_msg = true
+    when "max_plays"
       "/auth/maxplays/"
     when "share_mix"
-      @orig_msg = true
       "/auth/sharemixlayer/"
     when "copy_mix"
-      @orig_msg = true
       "/auth/copymixlayer/"
     when "max_skips"
       @orig_msg = false
@@ -43,16 +41,13 @@ class MessengerPlayer::LayersController < ApplicationController
       @error_msgs = params[:errors].blank? ? nil : "show error msgs"
       "/auth/registration"
     when "follow_user"
-      @orig_msg = true
       if params[:slug] && params[:gender]
         @alert_text = t('coke_messenger.registration.layers.follow_user_details', :slug => params[:slug], :gender => t('gender.' + params[:gender]))
       end
       "/auth/followuserlayer/"
     when "my_friends"
-      @orig_msg = true
       "/auth/myfriendslayer/"
     when "my_mixes"
-      @orig_msg = true
       "/auth/mymixeslayer/"
     when "share_mix_layer"
       @orig_msg = false
@@ -66,13 +61,6 @@ class MessengerPlayer::LayersController < ApplicationController
     @orig_msg = false
     @playlist = Playlist.find(params[:id])
   end
-  
-  def xhr_login_required
-    # session[:return_to] = request.referer
-    session[:return_to] = request.referer.gsub("http://#{request.host}", '')
-    unless current_user
-       render :partial =>"/messenger_player/layers/login_layer",:locals=>{:class_name => nil}
-    end
-  end
+
 
 end

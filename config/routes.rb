@@ -3,7 +3,11 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :valid_tags
   map.home "/home", :controller => "pages", :action => 'home'
   map.login  'login',  :controller => 'sessions', :action => 'new'
-  map.logout 'logout', :controller => 'sessions', :action => 'destroy'  
+  map.logout 'logout', :controller => 'sessions', :action => 'destroy'
+  
+  map.mock_win_login  '/mock_win_login',  :controller => 'sessions', :action => 'mock_win_login'
+  map.win_login_redirect  '/win_login_redirect/:login_status',  :controller => 'sessions', :action => 'win_login_redirect'
+  
   map.resource :session    
 
   # Ads - OpenX

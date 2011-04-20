@@ -27,7 +27,8 @@ $(document).ready(function() {
     drag:slider.ondrag});
 
   $('a[content_switch_enabled=true]').livequery('click', function() {
-    Base.Util.XHR($(this).attr('href'), 'text', Base.UI.contentswp);
+
+    Base.Util.XHR($(this).attr('href'), 'text', Base.UI.contentswp, Base.UI.xhrerror);
 
     // Class switch if main navigation was clicked.
     // Note. May want to move this out into its own class.
@@ -37,6 +38,7 @@ $(document).ready(function() {
       $(this).parent().toggleClass('activo');
     }
     /**************************************************************/
+
     return false;
   });
 
@@ -73,12 +75,15 @@ var Base = {
 
 // Helpers
 Base.Util = {
-  XHR: function(req, type, func)
+  XHR: function(req, type, func, error_func)
   {
+    error_func = typeof(error_func) != 'undefined' ? error_func : Base.UI.xhrerror;
+    
     $.ajax({
       url: req,
       dataType: type,
-      complete: func
+      complete: func,
+      error: error_func
     });
   },
 
@@ -363,7 +368,17 @@ Base.UI = {
 
   contentswp: function(data)
   {
-    $('#content').empty().html(data.responseText);
+    if(data.status == "200")
+      $('#content').empty().html(data.responseText);
+  },
+  
+  xhrerror: function(data)
+  {
+    if(data.status == "500")
+      $.alert_layer('/messenger_player/alert_layer/error')
+    else {
+      $.alert_layer(data.responseText)
+    }  
   },
 
   switchui: function(ui)

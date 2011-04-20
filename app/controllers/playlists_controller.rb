@@ -55,14 +55,15 @@ class PlaylistsController < ApplicationController
           [:rating, :rating_cache],
           [:alpha, :name]
     )
-    if request.xhr? and params[:page].to_i > 1
-      logger.debug" IN XHR if condition and params[:page]=#{params[:page]}"
-	  # sleep 5
-      render :partial=> 'coke_messenger/my_mixes'#, :collection=>@my_mixes
-    else
-      logger.debug" Not in  XHR if condition" 
-      render 'coke_messenger/my_mixes', :layout => layout_unless_xhr('messenger')
-    end 
+    render 'coke_messenger/my_mixes', :layout => layout_unless_xhr('messenger')
+    #     if request.xhr? and params[:page].to_i > 1
+    #       logger.debug" IN XHR if condition and params[:page]=#{params[:page]}"
+    # # sleep 5
+    #       render :partial=> 'coke_messenger/my_mixes'#, :collection=>@my_mixes
+    #     else
+    #       logger.debug" Not in  XHR if condition" 
+    #       render 'coke_messenger/my_mixes', :layout => layout_unless_xhr('messenger')
+    #     end 
   end
 
   def messenger_dj_mix_details
@@ -119,7 +120,6 @@ class PlaylistsController < ApplicationController
 
 
   def create
-
     @page = params[:page] || 1
     #@per_page = (params[:term] and (params[:scope]=='artist' or params[:scope]=='album')) ? 7 : 12
     @per_page = 30
@@ -455,7 +455,7 @@ class PlaylistsController < ApplicationController
                                })
       end
     end
-
+    
     def get_seeded_results
       results = nil
       result_text = ""

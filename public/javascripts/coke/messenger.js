@@ -21,6 +21,14 @@
         </div>'
     },
     
+    showOverlay: function(showLoading) {
+      showOverlay();
+      if(showLoading) {
+        $('#alert_layer').children().hide().end().append('<div class="loading"><img src="'+$.alert_layer.settings.loadingImage+'"/></div>');
+        $('#alert_layer').show();
+      }
+    },
+    
     loading: function(data) {
       init();
       
@@ -155,4 +163,14 @@
 
 jQuery(document).ready(function() {
   jQuery('a[rel*=layer]').alert_layer();
+  
+  // Temporary to Mock Windows Login
+  jQuery('a.btn_connect').livequery(function() {
+    $(this).click(function() {
+      wlwindow = window.open ("/mock_win_login","wl_window","toolbar=0,location=0,menubar=0,resizable=0,width=478,height=355");
+      wlwindow.moveTo(23, 13);
+      return false;
+    })
+  });
+
 })
