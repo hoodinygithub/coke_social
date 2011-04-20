@@ -63,14 +63,14 @@ var SoundEngines = {
 }
 
 var Base = {
-	getCurrentSiteUrl: function() {},
-	account_settings: {},
-	layout: {},
-	community: {},
-	playlists: {},
-	utils: {},
-	share: {},
-	locale: {}
+  getCurrentSiteUrl: function() {},
+  account_settings: {},
+  layout: {},
+  community: {},
+  playlists: {},
+  utils: {},
+  share: {},
+  locale: {}
 };
 
 // Helpers
