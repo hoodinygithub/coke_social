@@ -51,14 +51,14 @@
             <a class="puntero" href="#">Puntero</a>
           </div>
         </div><!-- .barra -->
-        <span class="minuto">-05:35</span>
+        <span class="minuto">-00:00</span>
       </div><!-- .tiempo -->
       <a class="tooltip punt_botellas" href="#" target="_blank" rel="tip_valorar" onclick="Base.Player.pause()" title="Valorar Mix">
       </a><!-- .punt_botellas -->
       <span class="tip" id="tip_valorar"><%= t('coke_messenger.rating') %></span>
     </div><!-- .sonando -->
     <div class="info">
-      <%= link_to_function 'Compartir', "$.alert_layer('#{alert_layer_path('share_mix_layer')}')", :class => 'tooltip r_compartir', :rel => 'tip_compartir', :title => 'Compartir Mix' %>
+      <%= link_to_function 'Compartir', "$.alert_layer('#{logged_in? ? alert_layer_path('share_mix_layer'): alert_layer_path('login_layer')}')", :class => 'tooltip r_compartir', :rel => 'tip_compartir', :title => 'Compartir Mix' %>
       <span class="tip" id="tip_compartir"><%= t('coke_messenger.share_mix') %></span>
       <% if logged_in? %>
         <%= link_to_function 'Copiar', "$.alert_layer(String('/messenger_player/copy_mix_layer/' + Base.Station._station.pid))", :class => 'tooltip r_copiar', :rel => 'tip_copiar', :title => 'Copiar Mix' %>
@@ -66,7 +66,7 @@
         <%= link_to_function 'Copiar', "$.alert_layer('#{alert_layer_path('login_layer')}')", :class => 'tooltip r_copiar', :rel => 'tip_copiar', :title => 'Copiar Mix' %>
       <% end %>
       <span class="tip" id="tip_copiar"><%= t('coke_messenger.copy_mix') %></span>
-      <a class="tooltip r_info" href="#" target="_blank" onclick="Base.Player.pause()" rel="tip_info" title="Información">Info</a>
+      <a class="tooltip r_info" href="javascript:void(open('http://<%= current_site.domain %>/playlists?station_id=' + Base.Station._station.sid))" target="_blank" onclick="Base.Player.pause()" rel="tip_info" title="Información">Info</a>
       <span class="tip" id="tip_info"><%= t('coke_messenger.info') %></span>
     </div><!-- .info -->
     <div class="volumen">
