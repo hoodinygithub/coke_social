@@ -5,9 +5,9 @@
 <div class="columna_izq">
   <h2><%= t('coke_messenger.layers.share_mix_layer.share')%><strong><%= t('coke_messenger.layers.share_mix_layer.social_net')%></strong></h2>
   <ul class="iconos">
-  	<% url = 'http://'+ current_site.domain.to_s+djs_details_path(current_user.id)  %>
-    <li><a class="btn_facebook" href="javascript:void(0);" onclick ="window.open('http://www.facebook.com/sharer.php?u='+encodeURIComponent('<%= url %>'),  '','height=400,width=600,top=200,left=400')" title="<%= t('coke_messenger.layers.share_mix_layer.share_fb')%>"><span><%= t('coke_messenger.layers.share_mix_layer.facebook')%></span></a></li>
-    <li class="btn_twitter"><a href="http://twitter.com/share" class="twitter-share-button" data-url="<%= 'http://'+ current_site.domain.to_s+djs_details_path(current_user.id) %>" data-text="<%= t("tweet.message") %>" data-counturl="<%= host_with_port() %>" data-count="horizontal">Tweet</a><script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script></li>
+  	<% url = 'http://'+ current_site.domain.to_s+'/playlists?station_id='  %>
+    <li><a class="btn_facebook" href="javascript:void(0);" onclick ="window.open('http://www.facebook.com/sharer.php?u='+encodeURIComponent('<%= url %>Base.Station._station.sid'),  '','height=400,width=600,top=200,left=400')" title="<%= t('coke_messenger.layers.share_mix_layer.share_fb')%>"><span><%= t('coke_messenger.layers.share_mix_layer.facebook')%></span></a></li>
+    <li class="btn_twitter"><a href="http://twitter.com/share" class="twitter-share-button" data-url="<%= url+'Base.Station._station.sid' %>" data-text="<%= t("tweet.message") %>" data-counturl="<%= host_with_port() %>" data-count="horizontal">Tweet</a><script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script></li>
 	</ul>
 </div>
 <div class="columna_der">

@@ -127,8 +127,7 @@ class ShareController < ApplicationController
       if logged_in?
         sender_name = current_user.name
         subject_line = t('coke_messenger.email_share.subject', :user => sender_name)
-        mix_in_queue  = djs_details_path(current_user.id)
-        share_link = "http://#{global_url}"+mix_in_queue  
+        share_link = "http://#{current_site.domain}/playlists?station_id=#{params[:id]}"  
         UserNotification.deliver_send_email_share_mix(
             :locale => current_site.default_locale,
             :subject_line => subject_line,
