@@ -2,8 +2,12 @@
   $(document).ready(function() {
       if (Base.Station._station)
       {
-        if ($('.ult_mixes li').hasClass('sonando')) $('.ult_mixes li.sonando').toggleClass('sonando');
-        $('.ult_mixes').find('#' + Base.Station._station.pid).parent().toggleClass('sonando');
+        if ($('.ult_mixes li').hasClass('sonando'))
+        { 
+          $('.ult_mixes li.sonando').toggleClass('sonando');
+          $('.play').remove();
+        }
+        $('.ult_mixes').find('#' + Base.Station._station.pid).parent().toggleClass('sonando').prepend("<span class='play'>Sonando</span>");
       }
   });
 </script>
@@ -20,7 +24,6 @@
 <div class="contenido">
   <div class="columna_izq">
     <% sortable_list(@recent_playlists, {:name => "mixes", :class => "ult_mixes", :li_class => "estirar"}) do |playlist, index| %>
-
       <%= avatar_for(playlist, :small, :class => 'avatar', :disable_default_css => true) %>
       <div class="datos" id="<%= playlist.id %>">
         <h3><%= playlist.name %></h3>

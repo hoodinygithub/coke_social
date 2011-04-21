@@ -28,7 +28,7 @@
         </div>
         <div class="num_mixes"><strong><%= dj.total_playlists %></strong> <%= t('coke_messenger.mixes').downcase %></div>
 				<div class= "follow_unfollow_btns">
-				<%= link_to_function t('coke_messenger.play'), "Base.Station.request('/playlists/#{dj.playlists.latest(1).id}.xml', 'xml', Base.Station.stationCollection);Base.Player.random(false)", :class => 'btn_play',:title => t('coke_messenger.play_hover') %>
+				<%= link_to_function t('coke_messenger.play'), "Base.Station.request('/playlists/#{dj.playlists.latest(1)[0].id}.xml', 'xml', Base.Station.stationCollection);Base.Player.random(false)", :class => 'btn_play',:title => t('coke_messenger.play_hover') %>
          <% layer_path = send("follow_user_registration_layers_path",
                             :return_to => request.request_uri,
                             :account_id => dj.id,

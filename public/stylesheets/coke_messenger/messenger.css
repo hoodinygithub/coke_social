@@ -162,10 +162,13 @@ h3.busq_titulo{font-size:18px;color:#343434;width:48%;float:left;padding-left:5p
 /* sonando
 ---------------- */
 .mixes li.sonando{background-color:#e8e8e8;border-color:#fff;border-style:solid;border-width:1px 0 1px 10px;padding-left:0;padding-top:0;}
+li.sonando {background-color:#e8e8e8;}
 .sonando .btn_play{display:none;}
 .sonando .btn_seguir{float:none;position:absolute;right:83px;}
 .play{display:block;width:32px;height:32px;text-decoration:none;background:url(/images/coke_messenger/iconografia.png) no-repeat 0 -144px;z-index:2;text-indent:-99em;position:absolute;top:9px;left:34px;}
-.contenido,.columna,.mixes,.mixes li{position:relative;}
+.ult_mixes .play { top:10px;left:7px; }
+.mis_mixes .play {left: 17px}
+.contenido,.columna,.mixes,.mixes li, .ult_mixes li, .mis_mixes li{position:relative;}
 
 /* overlays
 ---------------- */

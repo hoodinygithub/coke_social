@@ -139,8 +139,9 @@ Base.Station = {
     Base.Player.playlist(Base.Station._station.songs);
 
     // NEED TO DRY THIS UP!!!
+    $('.play').remove();
     $('ul.ult_mixes li.sonando, ul.mis_mixes li.sonando, ul.mixes li.sonando, ul.djs li.sonando, ul.amigos li.sonando').toggleClass('sonando');
-    $('ul.ult_mixes, ul.mis_mixes, ul.mixes, ul.djs, ul.amigos').find('#' + Base.Station._station.pid).parent().toggleClass('sonando');
+    $('ul.ult_mixes, ul.mis_mixes, ul.mixes, ul.djs, ul.amigos').find('#' + Base.Station._station.pid).parent().toggleClass('sonando').prepend("<span class='play'>Sonando</span>");
   }
 
 };

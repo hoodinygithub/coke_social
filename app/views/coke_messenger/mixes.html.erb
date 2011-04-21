@@ -2,8 +2,12 @@
   $(document).ready(function() {
       if (Base.Station._station)
       {
-        if ($('.ult_mixes li').hasClass('sonando')) $('.mixes li.sonando').toggleClass('sonando');
-        $('.mixes').find('#' + Base.Station._station.pid).parent().toggleClass('sonando');
+        if ($('.mixes li').hasClass('sonando'))
+        {
+          $('.mixes li.sonando').toggleClass('sonando');
+          $('.play').remove();
+        }
+        $('.mixes').find('#' + Base.Station._station.pid).parent().toggleClass('sonando').prepend("<span class='play'>Sonando</span>");
       }
   });
 </script>
@@ -17,7 +21,6 @@
   <div class="columna">
 
     <% sortable_list(@mixes, {:name => "mixes", :class => "mixes", :li_class => "estirar"}) do |playlist, index| %>
-
         <span class="ord"><%= index + 1 %></span>
         <%= avatar_for(playlist, :small, :class => 'avatar', :disable_default_css => true) %>
         <div class="datos" id="<%= playlist.id %>">
