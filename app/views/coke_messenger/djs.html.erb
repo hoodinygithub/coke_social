@@ -4,7 +4,7 @@
       {
         if ($('ul.djs li').hasClass('sonando'))
         {
-          $('.mixes li.sonando').toggleClass('sonando');
+          $('.djs li.sonando').toggleClass('sonando');
           $('.play').remove();
         } 
         $('ul.djs').find('#' + Base.Station._station.pid).parent().toggleClass('sonando').prepend("<span class='play'>Sonando</span>");
