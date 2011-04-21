@@ -8,7 +8,8 @@ ActionController::Routing::Routes.draw do |map|
   map.mock_win_login  '/mock_win_login',  :controller => 'sessions', :action => 'mock_win_login'
   map.win_login_redirect  '/win_login_redirect/:login_status',  :controller => 'sessions', :action => 'win_login_redirect'
   
-  map.resource :session    
+  map.resource :session
+  map.status '/sessions/status', :controller => :sessions, :action => :status
 
   # Ads - OpenX
   map.messenger_ads '/messenger_ads', :controller => 'ads', :action => 'show', :position => 'messenger', :iframe => 1, :no_padding_and_margin => 1

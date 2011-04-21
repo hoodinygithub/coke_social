@@ -7,9 +7,20 @@
 <% # I wish content_for :head worked here, but it doesn't (in the messenger tab). %>
 <%- javascript_tag do -%>
   function onWinConnectLoginSuccess() {
-    // TODO: Separate logic for site and messenger tab.  This is for the site.
-    document.location = current_url_site + '/login?' + document.location.search
-      + '&page=<%= page if defined? page %>';
+    if (window['current_site_mode'] && window['current_site_mode'].toLowerCase() == "msn") {
+      alert("MSN WinConnect login");
+      $.ajax({
+        url: '<%= status_path(:format => :json) %>',
+        success: function(response) { 
+          // Scott, if the response is true, do your thang here.
+          alert(response.logged_in); 
+        },
+        error: function(error) { alert(error); }
+      });
+    } else {
+      document.location = current_url_site + '/login?' + document.location.search
+        + '&page=<%= page if defined? page %>';
+    }
   };
 <%- end -%>
 

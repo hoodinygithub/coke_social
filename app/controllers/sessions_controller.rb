@@ -1,7 +1,7 @@
 class SessionsController < ApplicationController
   before_filter :set_return_to, :only => :new
   skip_before_filter :login_required
-  before_filter :go_home_if_logged_in, :except => :destroy
+  before_filter :go_home_if_logged_in, :except => [:destroy, :status]
   ssl_required_with_diff_domain :edit, :update, :create
 
   # Show header links on login page.
@@ -127,6 +127,19 @@ class SessionsController < ApplicationController
       redirect_to params[:redirect_to]
     else
       redirect_back_or_default('/')
+    end
+  end
+
+  def status
+    result = nil
+    if logged_in?
+      result = { :logged_in => true, :id => current_user.id, :slug => current_user.slug, :name => current_user.name }
+    else
+      result = { :logged_in => false }
+    end
+    respond_to do |format|
+      format.xml { render :xml => result }
+      format.json { render :json => result }
     end
   end
 
