@@ -1091,5 +1091,9 @@ def cyloop_logo_path(sm=true)
       ""
     end  
   end
-  
+
+  def is_staging
+    ENV['RAILS_ENV'] =~ /staging/
+  end  
 end
+

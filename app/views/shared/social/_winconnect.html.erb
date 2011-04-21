@@ -1,5 +1,8 @@
-<%= content_tag(:iframe, nil, :src=>"http://login.cyloop.com:8081/winconnect_button/coke?host=#{current_site_url}", :frameborder=>"0", :scrolling=>"no", :width=>"75", :height=>"30") %>
-
+<% 
+  src = is_staging ? "http://staging.login.hoodiny.com:8081/" : "http://login.cyloop.com:8081/"
+  src += "winconnect_button/coke?host=#{current_site_url}"
+%>
+<%= content_tag(:iframe, nil, :frameborder=>"0", :scrolling=>"no", :width=>"75", :height=>"30", :src=>src) %>
 
 <% # I wish content_for :head worked here, but it doesn't (in the messenger tab). %>
 <%- javascript_tag do -%>
