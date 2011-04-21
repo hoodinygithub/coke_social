@@ -599,28 +599,19 @@ coke_ES:
       title: Home
       emotions: EMOCIONES
       recent_mixes: ULTIMOS MIXES
+    dj_mix_detail: 
+      mixes_of_dj: MIXES OF {{dj_name}} DJ
+    djs: DJs
     emotions: 
       title: "CokeFM Messenger : Emociones"
       no_results: Tu busqueda no ha producido resultados.
       tab_title: ""
-    djs: DJs
-    dj_mix_detail: 
-      mixes_of_dj: MIXES OF {{dj_name}} DJ
     my_mixes_view_profile: Ver perfil
     unfollow_the_author: Dejar de seguir
     mixes_tab: 
       title: "CokeFM Messenger : Mixes"
       tab_title: MIXES
     my_friends: AMIGOS
-    my_friends_tab: 
-      follow_the_author: Seguir el autor
-      play: Play
-      view_all: test_View All_lat
-      easy: ""
-      view_more: "Ver M\xC3\xA1s"
-      dnt_hav_frnds: ""
-      follow: ""
-      latest: ""
     layers: 
       opt_layer_view: 
         dj_create_mix: ""
@@ -742,23 +733,33 @@ coke_ES:
         email: Email
       copy_mix_layer: 
         cancel: Cancelar
-        info: Explicaci&oacute;n de la funcionalidad, Que es y para que sirve copiar un mix. e la funcionalidad, Que es y para que sirve copiar un mix.
+        info: ""
         new_mix_name: ""
+    my_friends_tab: 
+      follow_the_author: Seguir el autor
+      play: Play
+      view_all: test_View All_lat
+      easy: latam_Do not worry, it's easy. Mix in the listings click on the icon
+      view_more: "Ver M\xC3\xA1s"
+      dnt_hav_frnds: latam_Do not have any friends?
+      follow: latam_for to follow your favorite DJs
+      latest: latam_LATEST FROM MY FRIENDS HEARD MIXES
     registration: 
       layers: 
         follow_user: ""
         my_mixes: ""
         generic: ""
-        my_friends: ""
+        my_friends: latam_To hear what your friends have been listening to, log in to Coca-Cola.fm.
         follow_user_details: ""
         copy_mix: ""
-        max_plays: "Esperamos que te hayan gustado las canciones que escuchaste. Para escuchar m\xC3\xA1s es necesario estar registrado en Coca-Cola.fm"
         share_mix: Para compartir un mix con tus amigos es necesario estar registrado en Coca-Cola.fm
+        max_plays: "Esperamos que te hayan gustado las canciones que escuchaste. Para escuchar m\xC3\xA1s es necesario estar registrado en Coca-Cola.fm"
     info: Info
     create_mix: Crear Mix
     default_messenger_title: "CokeFM Messenger : "
     email_share: 
       body: 
+        friends: latam_Your friends
         share_mix: ""
     dj: 
       follow_the_author: Seguir al autor
@@ -773,13 +774,13 @@ coke_ES:
     home: INICIO
     mixes: MIXES
     play_hover: test_Reproducir_lat
-    live_radio: Live radio
     search: 
       results: resultados
       title: "CokeFM Messenger : B&uacute;squedas"
       no_results: Tu busqueda no ha producido resultados.
       tab_title: "RESULTADOS DE LA B\xC3\x9ASQUEDA"
       users: Usuarios
+    live_radio: Live radio
   music_index: 
     title: "\xC3\x8Dndice de m\xC3\xBAsica"
     table_header: "G\xC3\xA9neros musicales"
@@ -1881,8 +1882,8 @@ coke_ES:
     approval: "{{name}} comenzar\xC3\xA1 a recibir tus actualizaciones a partir de ahora"
     denial: "{{name}} no podr\xC3\xA1 recibir tus actualizaciones"
   search: 
-    messenger_search_hint: Busca amigos o mixes
     search_results: "Resultados de b\xC3\xBAsqueda"
+    messenger_search_hint: test_Busca amigos o mixes_lat
     search_hint: Busca tus mixes y amigos favoritos
     see_all_albums_with_term: "ver todos los \xC3\xA1lbumes con \"{{term}}\""
     content_search_hint: "Escribe el nombre de un artista, un \xC3\xA1lbum, o una canci\xC3\xB3n"

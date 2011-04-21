@@ -617,19 +617,27 @@ coke_BR:
         RU1Pw4fDlUVT
 
       recent_mixes: test_RECENT MIXES_br
-    dj_mix_detail: 
-      mixes_of_dj: test_MIXES OF {{dj_name}} DJ_br
-    djs: DJs
     emotions: 
       title: "CokeFM Messenger :EMO\xC3\x87\xC3\x95ES"
       no_results: "Sua busca n\xC3\xA3o tem resultados"
       tab_title: test_NAME OF EMOTION_br
+    djs: DJs
+    dj_mix_detail: 
+      mixes_of_dj: test_MIXES OF {{dj_name}} DJ_br
     my_mixes_view_profile: Ver perfil
     unfollow_the_author: Unfollow
     mixes_tab: 
       title: "test_CokeFM Messenger : Mixes_br"
       tab_title: PLAYLISTS
     my_friends: AMIGOS
+    my_friends_tab: 
+      follow_the_author: Follow the author
+      play: Play
+      easy: Do not worry, it's easy. Mix in the listings click on the icon
+      view_more: test_View More_br
+      dnt_hav_frnds: Do not have any friends?
+      follow: for to follow your favorite DJs
+      latest: LATEST FROM MY FRIENDS HEARD MIXES
     layers: 
       opt_layer_view: 
         dj_create_mix: "Se voc\xC3\xAA gostaria de se tornar um DJ, criar suas pr\xC3\xB3prias playlists, adicionando aqui as m\xC3\xBAsicas que voc\xC3\xAA deseja compartilhar"
@@ -756,14 +764,6 @@ coke_BR:
         cancel: test_CANCEL_br
         info: test_Explanation of functionality, which is and which serves to copy a mix. and functionality, which is and which serves to copy a mix._br
         new_mix_name: test_Name of the new Mix_br
-    my_friends_tab: 
-      follow_the_author: Follow the author
-      play: Play
-      easy: Do not worry, it's easy. Mix in the listings click on the icon
-      view_more: View More_br
-      dnt_hav_frnds: Do not have any friends?
-      follow: for to follow your favorite DJs
-      latest: LATEST FROM MY FRIENDS HEARD MIXES
     registration: 
       layers: 
         follow_user: To follow and find out what a user is listening to, log in to Coca-Cola.fm
@@ -776,11 +776,11 @@ coke_BR:
         max_plays: test_We hope you enjoyed the songs you've heard. To hear more songs, log in to Coca-Cola.fm._br
     info: Info
     create_mix: Create new Mix
+    default_messenger_title: test_CokeFM Messenger :_br
     mesenger_home: 
       title: test_Home_BR
       emotions: test_Emotions_BR
       recent_mixes: test_RECENT MIXES_BR
-    default_messenger_title: test_CokeFM Messenger :_br
     email_share: 
       body: 
         click_here: "Click here to listen:"
@@ -802,13 +802,13 @@ coke_BR:
     home: INICIO
     mixes: Playlists
     play_hover: Reproducir
+    live_radio: LIVE RADIO
     search: 
       results: Resultados
       title: "test_CokeFM Messenger : Search_br"
       no_results: test_Your search produced no results._br
       tab_title: Resultados da busca
       users: USERS
-    live_radio: LIVE RADIO
   music_index: 
     title: "M\xC3\xBAsica index"
     table_header: "G\xC3\xAAneros musicais"
@@ -1436,8 +1436,8 @@ coke_BR:
     stations: "R\xC3\xA1dios"
     contains: "Cont\xC3\xA9m"
     here: aqui
-    album_name: "Nome do \xC3\x81lbum"
     "yes": Sim
+    album_name: "Nome do \xC3\x81lbum"
     my_plural: Meus
     country: !binary |
       UGHDrXM=
@@ -1452,11 +1452,11 @@ coke_BR:
       RHVyYcOnw6Nv
 
     sorry: Desculpe!
-    artists: Artistas
     following: seguindo
     created_by: Criado por
     playlists_created_by: Playlists criadas por
     includes: Inclui
+    artists: Artistas
     users: "Usu\xC3\xA1rios"
     by: Por
     last_modified: "Modificado pela \xC3\xBAltima vez"
@@ -1929,8 +1929,8 @@ coke_BR:
     approval: "{{name}} vai receber suas novidades"
     denial: "{{name}} n\xC3\xA3o vai mais receber suas novidades"
   search: 
-    messenger_search_hint: Busco amigos o mixes_br
     search_results: Resultados da Busca
+    messenger_search_hint: test_Busco amigos o mixes_br
     search_hint: "Busque pelas suas m\xC3\xBAsicas e artistas favoritos"
     see_all_albums_with_term: "ver todos os \xC3\xA1lbuns com \"{{term}}\""
     content_search_hint: "Digite o nome de um artista, \xC3\xA1lbum ou m\xC3\xBAsica"
