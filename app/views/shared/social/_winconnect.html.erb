@@ -1,5 +1,5 @@
 <% 
-  src = is_staging ? "http://staging.login.hoodiny.com:8081/" : "http://login.cyloop.com:8081/"
+  src = is_staging? ? "http://staging.login.hoodiny.com:8081/" : "http://login.cyloop.com:8081/"
   src += "winconnect_button/coke?host=#{current_site_url}"
 %>
 <%= content_tag(:iframe, nil, :frameborder=>"0", :scrolling=>"no", :width=>"75", :height=>"30", :src=>src) %>

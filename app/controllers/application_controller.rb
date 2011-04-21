@@ -495,4 +495,6 @@ class ApplicationController < ActionController::Base
     params[:sort_by] = sort_by
   end
 
+  IS_STAGING = (ENV['RAILS_ENV'] =~ /staging/)
 end
+

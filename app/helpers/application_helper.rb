@@ -1092,8 +1092,8 @@ def cyloop_logo_path(sm=true)
     end  
   end
 
-  def is_staging
-    ENV['RAILS_ENV'] =~ /staging/
+  def is_staging?
+    ApplicationController::IS_STAGING
   end  
 end
 
