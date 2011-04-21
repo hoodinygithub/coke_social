@@ -63,14 +63,14 @@ var SoundEngines = {
 }
 
 var Base = {
-	getCurrentSiteUrl: function() {},
-	account_settings: {},
-	layout: {},
-	community: {},
-	playlists: {},
-	utils: {},
-	share: {},
-	locale: {}
+  getCurrentSiteUrl: function() {},
+  account_settings: {},
+  layout: {},
+  community: {},
+  playlists: {},
+  utils: {},
+  share: {},
+  locale: {}
 };
 
 // Helpers
@@ -280,7 +280,7 @@ Base.Player = {
     this._playlist = bean;
     this.service().setStation({sid: Base.Station._station.sid, owner: Base.Station._station.owner, songCount: Base.Station._station.songCount});
     this.stream(this._playlist[this.index]);
-  },
+  }
 
 };
 
@@ -820,67 +820,67 @@ Base.community.text_unfollow = function(user_slug, element) {
 
 
 Base.share.email_share_mix = function(form_elm, mix_id,user_email){
-		var name = $("#email_share_mix_form #name");
-		var email = $("#email_share_mix_form #email_address");
-		var msg = $("#email_share_mix_form #msg");
-		var reg = /^([A-Za-z0-9_\-\.\+])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
-		var name_fld = false;
-		var email_fld = false;
-		var count = 0 ;
-		
-		if (name.val() == ''){
-			 $('#email_share_mix_form #name_label').addClass('error');
-			 $('#email_share_mix_form #name_error').text(Base.locale.t('coke_messenger.layers.share_mix_layer.name_blank'));
-			 name_fld = false;
-			 $('#error').text("");
-		}else{
-			$('#email_share_mix_form #name_label').removeClass('error');
-			$('#email_share_mix_form #name_error').text("");
-			name_fld = true;
-			$('#error').text("");
-		}
-		
-		if (email.val() == ''){
-			$('#email_share_mix_form #email_label').addClass('error');
-			$('#email_share_mix_form #email_error').text(Base.locale.t('coke_messenger.layers.share_mix_layer.email_blank')); 
-			email_fld = false;
-			$('#error').text("");
-			return false;
-		}else 
-      {
-			str = email.val().split(',');
-			for (var i=0;i < str.length ; i++ ){
-				 email_str = jQuery.trim(str[i]);
-			 if(!reg.test(email_str)){
-						count = count+1;
-				}
-			}
-		}		
-		
-		if (count > 0){
-			$('#email_share_mix_form #email_label').addClass('error');
-  		$('#email_share_mix_form #email_error').text(Base.locale.t('coke_messenger.layers.share_mix_layer.invalid_email'));
-			email_fld = false;
-			$('#error').text("");
-		}else{
-			$('#email_share_mix_form #email_label').removeClass('error');
-			$('#email_share_mix_form #email_error').text("");
-			email_fld = true;
-			$('#error').text("");
-		}
-			
-			
-		var params = {'user_email':user_email, 'email':email.val(),'name':name.val(),'msg':msg.val()}
-	 if (email_fld  &&	name_fld){
-		jQuery.post(Base.currentSiteUrl() + '/email_share_mix/'+mix_id, params, function(response, status) {
-		if (response.status == 'success') {
-			 $('#error').text("");
-       $.alert_layer.close();
+  var name = $("#email_share_mix_form #name");
+  var email = $("#email_share_mix_form #email_address");
+  var msg = $("#email_share_mix_form #msg");
+  var reg = /^([A-Za-z0-9_\-\.\+])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
+  var name_fld = false;
+  var email_fld = false;
+  var count = 0 ;
+
+  if (name.val() == ''){
+    $('#email_share_mix_form #name_label').addClass('error');
+    $('#email_share_mix_form #name_error').text(Base.locale.t('coke_messenger.layers.share_mix_layer.name_blank'));
+    name_fld = false;
+    $('#error').text("");
+  }else{
+    $('#email_share_mix_form #name_label').removeClass('error');
+    $('#email_share_mix_form #name_error').text("");
+    name_fld = true;
+    $('#error').text("");
+  }
+
+  if (email.val() == ''){
+    $('#email_share_mix_form #email_label').addClass('error');
+    $('#email_share_mix_form #email_error').text(Base.locale.t('coke_messenger.layers.share_mix_layer.email_blank')); 
+    email_fld = false;
+    $('#error').text("");
+    return false;
+  }else 
+  {
+    str = email.val().split(',');
+    for (var i=0;i < str.length ; i++ ){
+      email_str = jQuery.trim(str[i]);
+      if(!reg.test(email_str)){
+        count = count+1;
+      }
+    }
+  }		
+
+  if (count > 0){
+    $('#email_share_mix_form #email_label').addClass('error');
+    $('#email_share_mix_form #email_error').text(Base.locale.t('coke_messenger.layers.share_mix_layer.invalid_email'));
+    email_fld = false;
+    $('#error').text("");
+  }else{
+    $('#email_share_mix_form #email_label').removeClass('error');
+    $('#email_share_mix_form #email_error').text("");
+    email_fld = true;
+    $('#error').text("");
+  }
+
+
+  var params = {'user_email':user_email, 'email':email.val(),'name':name.val(),'msg':msg.val()}
+  if (email_fld  &&	name_fld){
+    jQuery.post(Base.currentSiteUrl() + '/email_share_mix/'+mix_id, params, function(response, status) {
+      if (response.status == 'success') {
+        $('#error').text("");
+        $.alert_layer.close();
       }else if(response.status == 'failed'){
-				$('#error').text(Base.locale.t('coke_messenger.layers.share_mix_layer.time_out_error'));
-			}
-  	});
-	 }
+        $('#error').text(Base.locale.t('coke_messenger.layers.share_mix_layer.time_out_error'));
+      }
+    });
+  }
 }
 
 /*
