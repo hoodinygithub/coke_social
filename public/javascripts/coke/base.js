@@ -280,7 +280,7 @@ Base.Player = {
     this._playlist = bean;
     this.service().setStation({sid: Base.Station._station.sid, owner: Base.Station._station.owner, songCount: Base.Station._station.songCount});
     this.stream(this._playlist[this.index]);
-  },
+  }
 
 };
 
