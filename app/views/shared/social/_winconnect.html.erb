@@ -8,14 +8,19 @@
 <%- javascript_tag do -%>
   function onWinConnectLoginSuccess() {
     if (window['current_site_mode'] && window['current_site_mode'].toLowerCase() == "msn") {
-      alert("MSN WinConnect login");
+      alert("WinConnect login on MSN tab");
       $.ajax({
         url: '<%= status_path(:format => :json) %>',
         success: function(response) { 
-          // Scott, if the response is true, do your thang here.
-          alert(response.logged_in); 
+          alert('logged_in? ' + response.logged_in);
+          if (response.logged_in) {
+            window.location.reload(true);
+          } else {
+            // Scott, do your thang here.
+            alert("The Scott Spot");
+          }
         },
-        error: function(error) { alert(error); }
+        error: function(error) { alert('error getting session status.'); }
       });
     } else {
       document.location = current_url_site + '/login?' + document.location.search
