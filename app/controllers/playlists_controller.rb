@@ -80,7 +80,7 @@ class PlaylistsController < ApplicationController
   end
   
   def messenger_my_friends
-    @my_friends = current_user.followees.all(:conditions => "last_playlist_played_id IS NOT NULL", :joins => "LEFT JOIN playlists ON playlists.id = accounts.last_playlist_played_id", :order => "playlists.total_plays DESC", :limit => 10).sortable(
+    @my_friends = current_user.followees.all(:conditions => "last_playlist_played_id IS NOT NULL", :joins => "LEFT JOIN playlists ON playlists.id = accounts.last_playlist_played_id", :order => "playlists.last_played_at DESC", :limit => 10).sortable(
           :friends,
           [:popularity, :default],
           [:most_recent, :last_playlist_played, :updated_at],

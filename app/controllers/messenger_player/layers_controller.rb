@@ -50,6 +50,7 @@ class MessengerPlayer::LayersController < ApplicationController
     when "my_mixes"
       "/auth/mymixeslayer/"
     when "share_mix_layer"
+      @station_id = params[:station_id]  
       @orig_msg = false
       @msg="share_mix_layer"
     end

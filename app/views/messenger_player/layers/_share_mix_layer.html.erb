@@ -1,3 +1,5 @@
+<% url = 'http://'+ current_site.domain.to_s+'/playlists?station_id='+station_id  %>
+
 <div class="aviso_cab">
   <h1><%= t('coke_messenger.layers.share_mix_layer.share_mix')%></h1>
   <a class="btn_cerrar" href="#" onclick="$.alert_layer.close();" title="<%= t('coke_messenger.layers.share_mix_layer.close')%>"><strong>X</strong> <%= t('coke_messenger.layers.share_mix_layer.close')%></a>
@@ -5,9 +7,8 @@
 <div class="columna_izq">
   <h2><%= t('coke_messenger.layers.share_mix_layer.share')%><strong><%= t('coke_messenger.layers.share_mix_layer.social_net')%></strong></h2>
   <ul class="iconos">
-  	<% url = 'http://'+ current_site.domain.to_s+'/playlists?station_id='  %>
-    <li><a class="btn_facebook" href="javascript:void(0);" onclick ="window.open('http://www.facebook.com/sharer.php?u='+encodeURIComponent('<%= url %>Base.Station._station.sid'),  '','height=400,width=600,top=200,left=400')" title="<%= t('coke_messenger.layers.share_mix_layer.share_fb')%>"><span><%= t('coke_messenger.layers.share_mix_layer.facebook')%></span></a></li>
-    <li class="btn_twitter"><a href="http://twitter.com/share" class="twitter-share-button" data-url="<%= url+'Base.Station._station.sid' %>" data-text="<%= t("tweet.message") %>" data-counturl="<%= host_with_port() %>" data-count="horizontal">Tweet</a><script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script></li>
+  	<li><a class="btn_facebook" href="javascript:void(0);" onclick ="window.open('http://www.facebook.com/sharer.php?u=' + encodeURIComponent('<%= url %>'), '', 'height=400,width=600,top=200,left=400')" title="<%= t('coke_messenger.layers.share_mix_layer.share_fb')%>"><span><%= t('coke_messenger.layers.share_mix_layer.facebook')%></span></a></li>
+    <li class="btn_twitter"><a href="http://twitter.com/share" class="twitter-share-button" data-url="<%= url %>" data-text="<%= t("tweet.message") %>" data-counturl="<%= url %>" data-count="horizontal">Tweet</a><script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script></li>
 	</ul>
 </div>
 <div class="columna_der">
@@ -31,7 +32,7 @@
         <%= text_area_tag "msg", nil, :rows => "3", :cols => "20" %>
         <small id = "email_error" class="txt_error"></small>
       </label>
-      <input id="email_share_btn" class="boton" type="submit" value="<%= t('coke_messenger.layers.share_mix_layer.send')%>" onclick="Base.share.email_share_mix('email_share_mix_form',Base.Station._station.sid,'<%= current_user.email %>'); return false;"/>
+      <input id="email_share_btn" class="boton" type="submit" value="<%= t('coke_messenger.layers.share_mix_layer.send')%>" onclick="Base.share.email_share_mix('email_share_mix_form',<%= station_id %>,'<%= current_user.email %>'); return false;"/>
     <% end -%>
   </div>
 </div>
