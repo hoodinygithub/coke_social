@@ -133,7 +133,8 @@ class SessionsController < ApplicationController
   def status
     result = nil
     if logged_in?
-      result = { :logged_in => true, :id => current_user.id, :slug => current_user.slug, :name => current_user.name }
+      # Don't expose encrypted data fields here (email, name, gender, dob).
+      result = { :logged_in => true, :id => current_user.id, :slug => current_user.slug }
     else
       result = { :logged_in => false }
     end
