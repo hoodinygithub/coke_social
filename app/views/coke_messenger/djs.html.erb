@@ -1,16 +1,32 @@
 <script type="text/javascript">
   $(document).ready(function() {
+      /* Now playing state */
       if (Base.Station._station)
       {
         if ($('ul.djs li').hasClass('sonando'))
         {
           $('.djs li.sonando').toggleClass('sonando');
           $('.play').remove();
-        } 
+        }
         $('ul.djs').find('#' + Base.Station._station.pid).parent().toggleClass('sonando').prepend("<span class='play'>Sonando</span>");
       }
+      /*********************/
+
+      /* Infinite scroll */
+      $('.contenido').scrollLoad({
+        url: 'djs',
+        ScrollAfterHeight: 95,
+        getData: function() {
+        return {hello:"world",goodbye:"dolly"};
+        },
+        onload: function(data) {
+          $(this).append('blaaaaah');
+        }
+      });
+      /*******************/
   });
 </script>
+
   <div class="submenu">
     <div class="columna">
       <h2><%= t('coke_messenger.dj.tab_title') %></h2>
