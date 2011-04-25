@@ -39,14 +39,19 @@ class PagesController < ApplicationController
 
   def messenger_djs
     @title = t('messenger_player.dj.title')
-    #@djs = current_site.top_djs.all(:limit => 50).sortable(
-    @djs = current_site.top_djs.paginate(:page => params[:page], :per_page => 10).sortable(
-          :djs,
-          [:popularity, :default], # Can use :default if this is the default sort order
-          [:most_followers, :follower_count],
-          [:alpha, :name]
-    )
-    render 'coke_messenger/djs', :layout => layout_unless_xhr('messenger')
+    @djs = current_site.top_djs.paginate(:page => params[:page], :per_page => 5)
+    @total_pages = @djs.total_pages
+    if params.has_key? :page
+      render :partial => 'coke_messenger/djs_list_item', :collection => @djs
+    else
+      @djs.sortable(
+            :djs,
+            [:popularity, :default], # Can use :default if this is the default sort order
+            [:most_followers, :follower_count],
+            [:alpha, :name]
+      )
+      render 'coke_messenger/djs', :layout => layout_unless_xhr('messenger')
+    end
   end
 
   def flash_callback

@@ -13,11 +13,17 @@
       /*********************/
 
       /* Infinite scroll */
+      var page = 1;
+      var pages = <%= @total_pages %>;
       $('.contenido').scrollLoad({
         url: 'djs',
         ScrollAfterHeight: 95,
         getData: function() {
-        return {hello:"world",goodbye:"dolly"};
+          return {page:++page};
+        },
+        continueWhile: function()
+        {
+          page <= pages ? true : false;
         },
         onload: function(data) {
           $(this).append('blaaaaah');
