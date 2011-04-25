@@ -27,10 +27,10 @@
         <%= text_field_tag  "email_address", nil, :class => "texto input" %>
         <small id = "email_error" class="txt_error"></small>
       </label>
-      <label>
+      <label id= "msg_label">
         <span><%= t('coke_messenger.layers.share_mix_layer.msg')%></span>
         <%= text_area_tag "msg", nil, :rows => "3", :cols => "20" %>
-        <small id = "email_error" class="txt_error"></small>
+        <small id = "msg_error" class="txt_error"></small>
       </label>
       <input id="email_share_btn" class="boton" type="submit" value="<%= t('coke_messenger.layers.share_mix_layer.send')%>" onclick="Base.share.email_share_mix('email_share_mix_form',<%= station_id %>,'<%= current_user.email %>'); return false;"/>
     <% end -%>

@@ -825,6 +825,7 @@ Base.share.email_share_mix = function(form_elm, mix_id,user_email){
   var email = $("#email_share_mix_form #email_address");
   var msg = $("#email_share_mix_form #msg");
   var reg = /^([A-Za-z0-9_\-\.\+])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
+	var embed_code_regex = /(<([\/@!?#]?[^\W_]+)(?:\s|(?:\s(?:[^'">\s]|'[^']*'|"[^"]*")*))*>)|(<\!--[^-]*-->)|(<\%)/;
   var name_fld = false;
   var email_fld = false;
   var count = 0 ;
@@ -870,6 +871,18 @@ Base.share.email_share_mix = function(form_elm, mix_id,user_email){
     $('#error').text("");
   }
 
+  if (msg.val() != ''){
+		if (embed_code_regex.test(msg.val())) {
+			 $('#email_share_mix_form #msg_label').addClass('error');
+			 $('#email_share_mix_form #msg_error').text(Base.locale.t('coke_messenger.layers.share_mix_layer.invalid_msg'));
+			 $('#error').text("");
+			return false;
+		}else{
+			$('#email_share_mix_form #msg_label').removeClass('error');
+    	$('#email_share_mix_form #msg_error').text("");
+    	$('#error').text("");
+		}
+	}
 
   var params = {'user_email':user_email, 'email':email.val(),'name':name.val(),'msg':msg.val()}
   if (email_fld  &&	name_fld){
