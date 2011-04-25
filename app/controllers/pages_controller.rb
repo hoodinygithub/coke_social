@@ -39,7 +39,7 @@ class PagesController < ApplicationController
 
   def messenger_djs
     @title = t('messenger_player.dj.title')
-    @djs = current_site.top_djs.paginate(:page => params[:page], :per_page => 5)
+    @djs = current_site.top_djs.all.paginate(:page => params[:page], :per_page => 5)
     @total_pages = @djs.total_pages
     if params.has_key? :page
       render :partial => 'coke_messenger/djs_list_item', :collection => @djs
