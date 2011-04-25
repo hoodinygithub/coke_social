@@ -16,7 +16,7 @@
       var page = 1;
       var pages = <%= @total_pages %>;
       $('.contenido').scrollLoad({
-        url: '/messenger_radio/djs',
+        url: '/messenger_player/djs',
         ScrollAfterHeight: 95,
         getData: function() {
           return {page:++page};
