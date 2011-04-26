@@ -18,6 +18,8 @@
         onload: function(data) {
           var playlists = $(data).find('#li_playlists').children();
           var users = $(data).find('#li_users').children();
+          console.log(playlists);
+          console.log(users);
           $(this).find('#ul_playlists').append(playlists);
           $(this).find('#ul_users').append(users);
         }
