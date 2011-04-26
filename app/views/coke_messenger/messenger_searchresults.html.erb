@@ -16,8 +16,9 @@
           return page < pages ? true : false;
         },
         onload: function(data) {
-          var playlists = $(data).find('#li_playlists');
-          var users = $(data).find('#li_users').children();
+          var d = $(data).html();
+          var playlists = $(d).find('#li_playlists');
+          var users = $(d).find('#li_users').children();
           console.log(playlists);
           console.log(users);
           $(this).find('#ul_playlists').append(playlists);
