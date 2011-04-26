@@ -23,7 +23,7 @@
         },
         continueWhile: function()
         {
-          page <= pages ? true : false;
+          return page <= pages ? true : false;
         },
         onload: function(data) {
           $(this).find(domAppend).append(data);
