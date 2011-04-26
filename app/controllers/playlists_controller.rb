@@ -84,19 +84,18 @@ class PlaylistsController < ApplicationController
   end
   
   def messenger_my_friends
-    @my_friends = current_user.followees.all(:conditions => "last_playlist_played_id IS NOT NULL", :joins => "LEFT JOIN playlists ON playlists.id = accounts.last_playlist_played_id", :order => "playlists.last_played_at DESC", :limit => 10).sortable(
-          :friends,
-          [:popularity, :default],
-          [:most_recent, :last_playlist_played, :updated_at],
-          [:rating, :last_playlist_played, :rating_cache],
-          [:alpha, :last_playlist_played, :name]
-    )
-    if request.xhr? and params[:page].to_i > 1
-      logger.debug" IN XHR if condition and params[:page]=#{params[:page]}"
-    # sleep 5
-      render :partial=> 'coke_messenger/my_friends'#, :collection=>@my_mixes
+    @my_friends = current_user.followees.paginate(:page => params[:page], :per_page => 10, :conditions => 'last_playlist_played_id IS NOT NULL', :joins => 'LEFT JOIN playlists ON playlists.id = accounts.last_playlist_played_id', :order => 'playlists.last_played_at DESC')
+    @total_pages = @my_friends.total_pages
+    if params.has_key? :page
+      render :partial => 'coke_messenger/friend', :collection => @my_friends
     else
-      logger.debug" Not in  XHR if condition" 
+      @my_friends = @my_friends.sortable(
+        :friends,
+        [:popularity, :default],
+        [:most_recent, :last_playlist_played, :updated_at],
+        [:rating, :last_playlist_played, :rating_cache],
+        [:alpha, :last_playlist_played, :name]
+      )
       render 'coke_messenger/my_friends', :layout => layout_unless_xhr('messenger')
     end
   end
