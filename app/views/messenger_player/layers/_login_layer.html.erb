@@ -44,7 +44,8 @@
           <h2><%= t('coke_messenger.layers.login_link_layer.reg_free') %><strong><%= t('coke_messenger.layers.login_link_layer.register_free')%></strong></h2>
           <p><%= t('coke_messenger.layers.login_link_layer.follow') %></p>
           <form>
-		  <p><a class="boton" href="#" onclick="$.alert_layer('<%= alert_layer_path("registration_layer") %>')" rel="layer" title="<%= t('coke_messenger.layers.login_link_layer.sign_up')%>" style="text-decoration:none;"><span style="position:relative;top:7px"><%= t('coke_messenger.layers.login_link_layer.sign_up')%></span></a></p>
+		  <p><a class="boton register_btn" href="#" onclick="$.alert_layer('<%= alert_layer_path("registration_layer") %>')" rel="layer" title="<%= t('coke_messenger.layers.login_link_layer.sign_up')%>">
+		  	<span style="float:left;margin-top:7px;margin-left:30px;"><%= t('coke_messenger.layers.login_link_layer.sign_up')%></span></a></p>
     	</form>    
 		</div><!-- .columna_der -->
       </div><!-- .scroll -->
