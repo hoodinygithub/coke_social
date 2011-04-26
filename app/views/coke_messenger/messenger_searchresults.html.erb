@@ -1,4 +1,5 @@
 <script type="text/javascript">
+  var checkDOM;
   $(document).ready(function() {
       /* Infinite scroll */
       var page = 1;
@@ -16,13 +17,9 @@
           return page < pages ? true : false;
         },
         onload: function(data) {
-          var d = $(data).html();
-          var playlists = $(d).find('#li_playlists');
-          var users = $(d).find('#li_users').children();
-          console.log(playlists);
-          console.log(users);
-          $(this).find('#ul_playlists').append(playlists);
-          $(this).find('#ul_users').append(users);
+          checkDOM = data;
+          //$(this).find('#ul_playlists').append(playlists);
+          //$(this).find('#ul_users').append(users);
         }
       });
       /*******************/
