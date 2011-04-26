@@ -109,22 +109,26 @@ class SearchesController < ApplicationController
     @title = t('coke_messenger.default_messenger_title')+CGI::unescape(params[:q])
     msg = "msgr"
     if !@query.blank?
-        search_results(msg,@search_types)
+        search_results(msg,@search_types, 5)
     else
       @search_types.each do |t|
         @results.store(t, [])
         @counts.store(t, 0)
       end
     end
-    
-    @results[:playlists] = @results[:playlists].sortable(
-          :results,
-          [:popularity, :total_plays],
-          [:most_recent, :updated_at],
-          [:rating, :rating_cache],
-          [:alpha, :name]
-    )
-    render 'coke_messenger/messenger_search_emotion_results', :layout => layout_unless_xhr('messenger')
+    @total_pages = @results[:playlists].total_pages
+    if params.has_key? :page
+      render :partial => 'coke_messenger/search_emotion_result', :collection => @results[:playlists]
+    else
+      @results[:playlists] = @results[:playlists].sortable(
+            :results,
+            [:popularity, :total_plays],
+            [:most_recent, :updated_at],
+            [:rating, :rating_cache],
+            [:alpha, :name]
+      )
+      render 'coke_messenger/messenger_search_emotion_results', :layout => layout_unless_xhr('messenger')
+    end
   end
 
   private

@@ -1,0 +1,8 @@
+<li class="estirar" alpha="<%= search_emotion_result.name %>" most_recent="<%= search_emotion_result.updated_at %>" popularity="" rating="<%= search_emotion_result.rating_cache %>">
+  <%= avatar_for(search_emotion_result, :small, :alt => search_emotion_result.name) %>
+  <div class="datos">
+    <h3><%= search_emotion_result.name %></h3>
+  </div>
+  <div class="messenger_rating" style="margin-top: 10px;"><%= messenger_rating(search_emotion_result) %></div>
+  <%= link_to_function t('coke_messenger.play'), "Base.Station.request('/playlists/#{search_emotion_result.id}.xml', 'xml', Base.Station.stationCollection);Base.Player.random(false)", :title => t('coke_messenger.play_hover'), :class => 'btn_play' %>
+</li>
