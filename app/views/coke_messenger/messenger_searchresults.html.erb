@@ -1,29 +1,30 @@
 <script type="text/javascript">
-  var checkDOM;
   $(document).ready(function() {
-      /* Infinite scroll */
-      var page = 1;
-      var pages = <%= @total_pages %>;
-      var domContainer = ".contenido";
-      var reqURL = "<%= request.path %>";
-      $(domContainer).scrollLoad({
-        url: reqURL,
-        ScrollAfterHeight: 95,
-        getData: function() {
-          return {page:++page, q:'<%= params[:q] %>'};
-        },
-        continueWhile: function()
-        {
-          return page < pages ? true : false;
-        },
-        onload: function(data) {
-          var playlists = $(data).find('#li_playlists').children()
-          var users = $(data).find('#li_users').children()
-          $(this).find('#ul_playlists').append(playlists);
-          $(this).find('#ul_users').append(users);
-        }
-      });
-      /*******************/
+      <% if @total_pages > 1 %>
+        /* Infinite scroll */
+        var page = 1;
+        var pages = <%= @total_pages %>;
+        var domContainer = ".contenido";
+        var reqURL = "<%= request.path %>";
+        $(domContainer).scrollLoad({
+          url: reqURL,
+          ScrollAfterHeight: 95,
+          getData: function() {
+            return {page:++page, q:'<%= params[:q] %>'};
+          },
+          continueWhile: function()
+          {
+            return page < pages ? true : false;
+          },
+          onload: function(data) {
+            var playlists = $(data).find('#li_playlists').children()
+            var users = $(data).find('#li_users').children()
+            $(this).find('#ul_playlists').append(playlists);
+            $(this).find('#ul_users').append(users);
+          }
+        });
+        /*******************/
+      <% end %>
   });
 </script>
 <div class="submenu">

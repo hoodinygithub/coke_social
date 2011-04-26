@@ -6,27 +6,29 @@
         $('.mis_mixes').find('#' + Base.Station._station.pid).parent().toggleClass('sonando');
       }
 
-      /* Infinite scroll */
-      var page = 1;
-      var pages = <%= @total_pages %>;
-      var domContainer = ".contenido";
-      var reqURL = "<%= request.path %>";
-      var domAppend = "#sortable_options_ul_mixes";
-      $(domContainer).scrollLoad({
-        url: reqURL,
-        ScrollAfterHeight: 95,
-        getData: function() {
-          return {page:++page};
-        },
-        continueWhile: function()
-        {
-          return page < pages ? true : false;
-        },
-        onload: function(data) {
-          $(this).find(domAppend).append(data);
-        }
-      });
-      /*******************/
+      <% if @total_pages > 1 %>
+        /* Infinite scroll */
+        var page = 1;
+        var pages = <%= @total_pages %>;
+        var domContainer = ".contenido";
+        var reqURL = "<%= request.path %>";
+        var domAppend = "#sortable_options_ul_mixes";
+        $(domContainer).scrollLoad({
+          url: reqURL,
+          ScrollAfterHeight: 95,
+          getData: function() {
+            return {page:++page};
+          },
+          continueWhile: function()
+          {
+            return page < pages ? true : false;
+          },
+          onload: function(data) {
+            $(this).find(domAppend).append(data);
+          }
+        });
+        /*******************/
+      <% end %>
   });
 </script>
 
