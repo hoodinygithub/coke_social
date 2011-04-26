@@ -1,3 +1,30 @@
+<script type="text/javascript">
+  $(document).ready(function() {
+      /* Infinite scroll */
+      var page = 1;
+      var pages = <%= @total_pages %>;
+      var domContainer = ".contenido";
+      var reqURL = "<%= request.path %>";
+      $(domContainer).scrollLoad({
+        url: reqURL,
+        ScrollAfterHeight: 95,
+        getData: function() {
+          return {page:++page};
+        },
+        continueWhile: function()
+        {
+          return page < pages ? true : false;
+        },
+        onload: function(data) {
+          var playlists = $(data).find('#li_playlists').children();
+          var users = $(data).find('#li_users').children();
+          $(this).find('#ul_playlists').append(playlists);
+          $(this).find('#ul_users').append(users);
+        }
+      });
+      /*******************/
+  });
+</script>
 <div class="submenu">
   <div class="columna">
     <!--h2>RESULTADOS DE LA B&Uacute;SQUEDA</h2-->
@@ -8,7 +35,7 @@
   <div class="columna_busq">
     <h3 class="busq_titulo"><%=  t('coke_messenger.mixes').capitalize %></h3>
     <p class="busq_resultados"><span><%= @counts[:playlists] %></span> <%=  t('coke_messenger.search.results') %></p>
-    <ul class="busquedas">
+    <ul class="busquedas" id="ul_playlists">
       <% if !@results[:playlists].blank? and @results[:playlists].size > 0 %>
         <% @results[:playlists].each do|playlist| %>
           <li class="estirar">
@@ -29,7 +56,7 @@
   <div class="columna_busq">
     <h3 class="busq_titulo"><%=  t('coke_messenger.search.users') %></h3>
     <p class="busq_resultados"><span><%= @counts[:users]%></span> <%=  t('coke_messenger.search.results') %></p>
-    <ul class="busquedas">
+    <ul class="busquedas" id="ul_users">
       <% if !@results[:users].blank? and @results[:users].size > 0 %>
         <% @results[:users].each do|user|%>
           <li class="estirar">
