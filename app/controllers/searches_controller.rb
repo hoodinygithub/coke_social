@@ -89,7 +89,12 @@ class SearchesController < ApplicationController
         @counts.store(t, 0)
       end
     end
-    render 'coke_messenger/messenger_searchresults', :layout => layout_unless_xhr('messenger')
+
+    if params.has_key? :page
+      render :partial => 'coke_messenger/search_result', :locals => {:results => @results}
+    else
+      render 'coke_messenger/messenger_searchresults', :layout => layout_unless_xhr('messenger')
+    end
   end
 
   def messenger_search_emotion_results
