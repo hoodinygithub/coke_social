@@ -49,7 +49,7 @@ class PlaylistsController < ApplicationController
 
   def messenger_my_mixes
     @my_mixes = current_user.playlists.paginate(:page => params[:page], :per_page => 10, :order => 'total_plays DESC')
-    @total_plays = @my_mixes.total_pages
+    @total_pages = @my_mixes.total_pages
     if params.has_key? :page
       render :partial => 'coke_messenger/my_mix', :collection => @my_mixes
     else
