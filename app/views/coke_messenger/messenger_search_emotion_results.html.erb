@@ -10,7 +10,7 @@
         url: reqURL,
         ScrollAfterHeight: 95,
         getData: function() {
-          return {page:++page};
+        return {page:++page, q:'<%= params[:q] %>'};
         },
         continueWhile: function()
         {
