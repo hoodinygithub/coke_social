@@ -48,26 +48,23 @@ class PlaylistsController < ApplicationController
   end
 
   def messenger_my_mixes
-    @my_mixes = current_user.playlists.all(:order => 'total_plays desc').sortable(
-          :mixes,
-          [:popularity, :total_plays],
-          [:most_recent, :updated_at],
-          [:rating, :rating_cache],
-          [:alpha, :name]
-    )
-    render 'coke_messenger/my_mixes', :layout => layout_unless_xhr('messenger')
-    #     if request.xhr? and params[:page].to_i > 1
-    #       logger.debug" IN XHR if condition and params[:page]=#{params[:page]}"
-    # # sleep 5
-    #       render :partial=> 'coke_messenger/my_mixes'#, :collection=>@my_mixes
-    #     else
-    #       logger.debug" Not in  XHR if condition" 
-    #       render 'coke_messenger/my_mixes', :layout => layout_unless_xhr('messenger')
-    #     end 
+    @my_mixes = current_user.playlists.paginate(:page => params[:page], :per_page => 10, :order => 'total_plays DESC')
+    @total_plays = @my_mixes.total_pages
+    if params.has_key? :page
+      render :partial => 'coke_messenger/my_mix', :collection => @my_mixes
+    else
+      @my_mixes = @my_mixes.sortable(
+        :mixes, 
+        [:popularity, :total_plays],
+        [:most_recent, :updated_at],
+        [:rating, :rating_cache],
+        [:alpha, :name]
+      )
+      render 'coke_messenger/my_mixes', :layout => layout_unless_xhr('messenger')
+    end
   end
 
   def messenger_dj_mix_details
-    # @dj_mixes = User.find_by_id(params[:id]).playlists.all(:limit => 50, :order => "total_plays DESC").sortable(
     @dj_mixes = User.find_by_id(params[:id]).playlists.paginate(:page => params[:page], :per_page => 10, :order => 'total_plays DESC')
     @total_pages = @dj_mixes.total_pages
     if params.has_key? :page
