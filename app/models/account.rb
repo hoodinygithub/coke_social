@@ -104,7 +104,7 @@ class Account < ActiveRecord::Base
 
   after_create :add_slug_to_accounts_slugs
 
-  has_and_belongs_to_many :sites, :join_table => 'accounts_excluded_sites'
+  has_and_belongs_to_many :excluded_sites, :class_name => 'Site', :join_table => 'accounts_excluded_sites', :readonly=>true
 
   # Paperclip Plugin http://dev.thoughtbot.com/paperclip/
   has_attached_file :avatar, :styles => { :original => '600x600>', :album => "300x300#", :medium => "86x86#", :small => "60x60#", :tiny => "30x30#"}
@@ -140,7 +140,6 @@ class Account < ActiveRecord::Base
 
   has_many :account_slugs, :dependent => :destroy
   belongs_to :site, :foreign_key => :entry_point_id
-  delegate :networks, :to => :site
 
   def follow_requests
     followings_as_followee.pending
@@ -169,7 +168,7 @@ class Account < ActiveRecord::Base
 
   
   def available_at_current_site?( current_site_id = ApplicationController.current_site.id )
-    !(self.sites.count( :conditions => { :id => current_site_id } ) > 0)
+    (self.excluded_sites.count( :conditions => { :id => current_site_id } ) == 0)
   end
 
   def first_name

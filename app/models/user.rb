@@ -160,7 +160,9 @@ class User < Account
   has_many :messages
 
   belongs_to :entry_point, :class_name => 'Site', :foreign_key => 'entry_point_id'
-  belongs_to :network
+  #belongs_to :network
+  has_many :accounts_networks, :foreign_key => :account_id
+  has_many :networks, :through=>:accounts_networks, :readonly=>true
   
   validates_presence_of :entry_point_id
   validates_presence_of :born_on_string
@@ -286,13 +288,16 @@ class User < Account
 
   # User is part of the current site's network
   def part_of_network?
-    ApplicationController.current_site.networks.include? self.network
+    my_networks = self.networks
+    ApplicationController.current_site.networks.each { |n|
+      return true if my_networks.include? n
+    }
+    false
   end
 
   # User is part of a secure network with encrypted demographics
   def secure_network?
-    # TODO: add boolean column network.is_secure
-    self.network_id == 2
+    (self.networks.count(:conditions => { :is_secure => true }) > 0)
   end
 
   def private?
