@@ -82,7 +82,7 @@ class SearchesController < ApplicationController
     @title = t('coke_messenger.search.title')
     msg = "msgr"
     if !@query.blank?
-        search_results(msg,@search_types)
+        search_results(msg,@search_types,10)
     else
       @search_types.each do |t|
         @results.store(t, [])
