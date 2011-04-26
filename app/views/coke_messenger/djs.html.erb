@@ -15,9 +15,10 @@
       /* Infinite scroll */
       var page = 1;
       var pages = <%= @total_pages %>;
-      var reqURL = <%= request.path %>
+      var reqURL = "<%= request.path %>";
+      var dom = "#sortable_options_ul_djs";
       $('.contenido').scrollLoad({
-        url: '/messenger_player/djs',
+        url: reqURL,
         ScrollAfterHeight: 95,
         getData: function() {
           return {page:++page};
@@ -27,7 +28,7 @@
           page <= pages ? true : false;
         },
         onload: function(data) {
-          $(this).find('#sortable_options_ul_djs').append(data);
+          $(this).find(dom).append(data);
         }
       });
       /*******************/
