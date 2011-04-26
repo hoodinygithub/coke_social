@@ -107,7 +107,7 @@ class SearchesController < ApplicationController
     @counts = {}
     @results = {}
     @title = t('coke_messenger.default_messenger_title')+CGI::unescape(params[:q])
-    msg = "msgr"
+    msg = "!msgr"
     if !@query.blank?
         search_results(msg,@search_types, 10)
     else
@@ -145,11 +145,11 @@ class SearchesController < ApplicationController
     end
 
     def search_results (msg,types=[], per_page = 12)
-      # unless msg == "msgr"
+       unless msg == "msgr"
         opts = { :page => @page, :per_page => per_page, :star => true, :retry_stale => true }
-      #else
-        #opts = { :star => true, :retry_stale => true }
-      #end  
+      else
+        opts = { :star => true, :retry_stale => true }
+      end  
       @search_types.each do |scope|
         dataset = []
         obj_scope = scope == :stations ? :abstract_stations : scope
