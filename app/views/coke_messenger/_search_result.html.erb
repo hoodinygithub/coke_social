@@ -1,5 +1,5 @@
 <% if !@results[:playlists].blank? and @results[:playlists].size > 0 %>
-  <div id="li_playlists">
+  <div class="li_playlists">
   <% @results[:playlists].each do|playlist| %>
     <li class="estirar">
     <%= link_to_function avatar_for(playlist, :small), "Base.Station.request('/playlists/#{playlist.id}.xml', 'xml', Base.Station.stationCollection);Base.Player.random(false)", :alt => playlist.name %>
@@ -13,7 +13,7 @@
 <% end %>
 
 <% if !@results[:users].blank? and @results[:users].size > 0 %>
-  <div id="li_users">
+  <div class="li_users">
     <% @results[:users].each do|user|%>
       <li class="estirar">
       <%= avatar_for(user, :small, :class => 'avatar',:alt=>user.name) %>
