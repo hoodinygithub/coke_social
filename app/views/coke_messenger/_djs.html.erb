@@ -1,0 +1,26 @@
+<li class="estirar" alpha="<%= dj.name %>" most_followers="<%= dj.follower_count %>" popularity="">
+<span class="ord">indx</span>
+<%= avatar_for(dj, :small, :class => 'avatar', :disable_default_css => true) %>
+<div id="<%= dj.playlists.latest(1)[0].id %>" class="datos">
+  <h3><%= link_to dj.name, djs_details_path(dj.id), :class => "link_rojo", :title => dj.name, :content_switch_enabled => true %></h3>
+  <p>(<%= dj.country.name %>)</p>
+</div>
+<div class="num_mixes"><strong><%= dj.total_playlists %></strong> <%= t('coke_messenger.mixes').downcase %></div>
+<div class= "follow_unfollow_btns">
+  <%= link_to_function t('coke_messenger.play'), "Base.Station.request('/playlists/#{dj.playlists.latest(1)[0].id}.xml', 'xml', Base.Station.stationCollection);Base.Player.random(false)", :class => 'btn_play',:title => t('coke_messenger.play_hover') %>
+  <% layer_path = send("follow_user_registration_layers_path", :return_to => request.request_uri, :account_id => dj.id, :follow_profile => dj.id) %>
+
+  <% if current_user and current_user.id != dj.id  %>
+    <div id="following" style="display:<%= current_user.follows?(dj) ? 'block' : 'none' %>" >
+      <%= link_to t('coke_messenger.unfollow_the_author'), "javascript:", :onclick => "Base.community.text_unfollow('#{dj.slug}', this)" ,:class => "btn_seguir_green"  %>
+    </div>
+    <div id="not_following" style="display:<%= current_user.follows?(dj) ? 'none' : 'block' %>" >
+      <%= link_to t('coke_messenger.follow_the_author'), "javascript: ", :onclick => "Base.community.text_follow('#{dj.slug}', this, '#{layer_path}')" ,:class => "btn_seguir_red" %>
+    </div>
+  <% else %>
+    <div id="not_following" style="display: block" >
+      <%= link_to t('coke_messenger.follow_the_author'), "javascript: ",:onclick => "Base.community.text_follow('#{dj.slug}', this, '#{layer_path}')",:class => "btn_seguir_red" %>
+    </div>
+  <% end %>
+</div>
+</li>
