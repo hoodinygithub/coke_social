@@ -42,7 +42,7 @@ class PagesController < ApplicationController
     @djs = current_site.top_djs.paginate(:page => params[:page], :per_page => 5)
     @total_pages = @djs.total_pages
     if params.has_key? :page
-      render :partial => 'coke_messenger/djs', :collection => @djs
+      render :partial => 'coke_messenger/djs', :collection => @djs, :locals => {:hello => "world"}
     else
       @djs = @djs.sortable(
             :djs,
