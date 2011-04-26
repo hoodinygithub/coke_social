@@ -90,6 +90,7 @@ class SearchesController < ApplicationController
       end
     end
 
+    @total_pages = @results.total_pages
     if params.has_key? :page
       render :partial => 'coke_messenger/search_result', :locals => {:results => @results}
     else
