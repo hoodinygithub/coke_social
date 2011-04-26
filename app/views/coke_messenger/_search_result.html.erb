@@ -1,30 +1,30 @@
 <div id="wrapper">
-<% if !@results[:playlists].blank? and @results[:playlists].size > 0 %>
-  <div class="li_playlists">
-  <% @results[:playlists].each do|playlist| %>
-    <li class="estirar">
-    <%= link_to_function avatar_for(playlist, :small), "Base.Station.request('/playlists/#{playlist.id}.xml', 'xml', Base.Station.stationCollection);Base.Player.random(false)", :alt => playlist.name %>
-    <div class="datos">
-    <h3><%= link_to_function playlist.name, "Base.Station.request('/playlists/#{playlist.id}.xml', 'xml', Base.Station.stationCollection);Base.Player.random(false)", :class => 'link_rojo' %></h3>
-    </div>
-    <div class="messenger_rating" style="margin-top: 10px;"><%= messenger_rating(playlist) %></div>
-    </li>
-  <% end %>
-  </div>
-<% end %>
-
-<% if !@results[:users].blank? and @results[:users].size > 0 %>
-  <div class="li_users">
-    <% @results[:users].each do|user|%>
+  <% if !@results[:playlists].blank? and @results[:playlists].size > 0 %>
+    <div id="li_playlists">
+    <% @results[:playlists].each do|playlist| %>
       <li class="estirar">
-      <%= avatar_for(user, :small, :class => 'avatar',:alt=>user.name) %>
+      <%= link_to_function avatar_for(playlist, :small), "Base.Station.request('/playlists/#{playlist.id}.xml', 'xml', Base.Station.stationCollection);Base.Player.random(false)", :alt => playlist.name %>
       <div class="datos">
-      <h3><%= link_to user.name, djs_details_path(user.id),  :class => "link_rojo" %></h3>
-      <p><%= user.country.name %></p>
+      <h3><%= link_to_function playlist.name, "Base.Station.request('/playlists/#{playlist.id}.xml', 'xml', Base.Station.stationCollection);Base.Player.random(false)", :class => 'link_rojo' %></h3>
       </div>
-      <div class="num_mixes"><strong><%= number_with_delimiter(user.total_playlists) %></strong> <%= t('coke_messenger.mixes').downcase %></div>
+      <div class="messenger_rating" style="margin-top: 10px;"><%= messenger_rating(playlist) %></div>
       </li>
     <% end %>
-  </div>
-<% end %>
+    </div>
+  <% end %>
+
+  <% if !@results[:users].blank? and @results[:users].size > 0 %>
+    <div id="li_users">
+      <% @results[:users].each do|user|%>
+        <li class="estirar">
+        <%= avatar_for(user, :small, :class => 'avatar',:alt=>user.name) %>
+        <div class="datos">
+        <h3><%= link_to user.name, djs_details_path(user.id),  :class => "link_rojo" %></h3>
+        <p><%= user.country.name %></p>
+        </div>
+        <div class="num_mixes"><strong><%= number_with_delimiter(user.total_playlists) %></strong> <%= t('coke_messenger.mixes').downcase %></div>
+        </li>
+      <% end %>
+    </div>
+  <% end %>
 </div>
