@@ -1,4 +1,4 @@
-<li class="estirar" alpha="<%= dj.name %>" most_followers="<%= dj.follower_count %>" popularity="">
+<li class="estirar" alpha="<%= @dj.name %>" most_followers="<%= @dj.follower_count %>" popularity="">
 <span class="ord">indx</span>
 <%= avatar_for(dj, :small, :class => 'avatar', :disable_default_css => true) %>
 <div id="<%= dj.playlists.latest(1)[0].id %>" class="datos">
