@@ -15,6 +15,7 @@
       /* Infinite scroll */
       var page = 1;
       var pages = <%= @total_pages %>;
+      var reqURL = <%= request.path %>
       $('.contenido').scrollLoad({
         url: '/messenger_player/djs',
         ScrollAfterHeight: 95,
