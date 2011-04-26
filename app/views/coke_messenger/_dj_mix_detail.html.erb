@@ -1,0 +1,9 @@
+<li class="estirar" alpha="<%= dj_mix_detail.name %>" most_recent="<%= dj_mix_detail.updated_at %>" popularity="" rating="<%= dj_mix_detail.rating_cache %>">
+  <%= avatar_for(dj_mix_detail, :small, :class => 'avatar', :disable_default_css => true) %>
+  <div id="<%= dj_mix_detail.id %>" class="datos">
+    <h3><%= dj_mix_detail.name %></h3>
+  </div>
+
+  <div class="messenger_rating"><%= messenger_rating(dj_mix_detail) %></div>
+  <%= link_to_function t('coke_messenger.play'), "Base.Station.request('/playlists/#{dj_mix_detail.id}.xml', 'xml', Base.Station.stationCollection);Base.Player.random(false)", :class => 'btn_play',:title => t('coke_messenger.play_hover') %>
+</li>

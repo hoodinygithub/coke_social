@@ -11,27 +11,6 @@
         $('ul.djs').find('#' + Base.Station._station.pid).parent().toggleClass('sonando').prepend("<span class='play'>Sonando</span>");
       }
       /*********************/
-
-      /* Infinite scroll */
-      var page = 1;
-      var pages = <%= @total_pages %>;
-      var reqURL = "<%= request.path %>";
-      var dom = "#sortable_options_ul_djs";
-      $('.contenido').scrollLoad({
-        url: reqURL,
-        ScrollAfterHeight: 95,
-        getData: function() {
-          return {page:++page};
-        },
-        continueWhile: function()
-        {
-          page <= pages ? true : false;
-        },
-        onload: function(data) {
-          $(this).find(dom).append(data);
-        }
-      });
-      /*******************/
   });
 </script>
 
