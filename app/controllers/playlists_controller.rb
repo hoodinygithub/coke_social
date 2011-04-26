@@ -69,6 +69,7 @@ class PlaylistsController < ApplicationController
   def messenger_dj_mix_details
     # @dj_mixes = User.find_by_id(params[:id]).playlists.all(:limit => 50, :order => "total_plays DESC").sortable(
     @dj_mixes = User.find_by_id(params[:id]).playlists.paginate(:page => params[:page], :per_page => 10, :order => 'total_plays DESC')
+    @total_pages = @dj_mixes.total_pages
     if params.has_key? :page
       render :partial => 'coke_messenger/dj_mix_detail', :collection => @dj_mixes
     else
@@ -79,7 +80,6 @@ class PlaylistsController < ApplicationController
         [:rating, :rating_cache],
         [:alpha, :name]
       )
-      @total_pages = @dj_mixes.total_pages
       @dj_name = User.find_by_id(params[:id]) rescue nil
       @title = t('coke_messenger.default_messenger_title')+@dj_name.to_s
       render 'coke_messenger/dj_mix_details', :layout => layout_unless_xhr('messenger')
