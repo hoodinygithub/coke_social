@@ -128,7 +128,7 @@
       serviceHost:'cdn.cyloop.com/cfx/st',
       player:'messengerradio_<%= current_site.code %>',
       key:<%= Player.find_by_player_key("messengerradio_#{current_site.code}").id %>,
-      autoPlay:0
+      autostart:0
     };
     var cParams = {
       allowScriptAccess: 'sameDomain'
@@ -152,10 +152,10 @@
 
     var gFlashVars = {
       urlApi:'http://api.goomradio.com',
-      eStatUrl: 'http://www.goomradio.com/mini-audio/eStatNativeFlashTag.swf',
-      defaultVolume: '50',
-      uiid: 'goom_callbacks',
-      autoPlay: '0'
+      eStatUrl:'http://www.goomradio.com/mini-audio/eStatNativeFlashTag.swf',
+      defaultVolume:'50',
+      uiid:'goom_callbacks',
+      autoPlay:'0'
     };
     var gParams = {
       allowscriptaccess:'always'
