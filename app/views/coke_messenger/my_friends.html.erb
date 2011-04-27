@@ -2,8 +2,12 @@
   $(document).ready(function() {
       if (Base.Station._station)
       {
-        if ($('ul.amigos li').hasClass('sonando')) $('.mixes li.sonando').toggleClass('sonando');
-        $('ul.amigos').find('#' + Base.Station._station.pid).parent().toggleClass('sonando');
+        if ($('ul.amigos li').hasClass('sonando')) 
+        {
+          $('.mixes li.sonando').toggleClass('sonando');
+          $('.play').remove();
+        }
+        $('ul.amigos').find('#' + Base.Station._station.pid).parent().toggleClass('sonando').prepend("<span class='play'>Sonando</span>");
       }
 
       <% if @total_pages > 1 %>
