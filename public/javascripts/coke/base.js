@@ -108,6 +108,16 @@ Base.Util = {
   }
 }
 
+// Ajaxification of search request
+Base.Search = {
+  query: function(e)
+  {
+    var form = $(e);
+    var data = form.serialize();
+    Base.Util.XHR((form.attr('action') + "?" + data), 'text', Base.UI.contentswp, Base.UI.xhrerror)
+  }
+};
+
 Base.Station = {
 
   request: function(req, type, func)
