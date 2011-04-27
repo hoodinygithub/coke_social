@@ -43,7 +43,7 @@
   <div class="columna">
     <% sortable_list(@my_mixes, {:name => "mixes", :class => "mis_mixes", :li_class => "estirar", :no_results_class => "no_resultados", :no_results_partial => "coke_messenger/my_mixes_no_result"}) do |playlist, index| %>
     
-      <%= avatar_for(playlist, :small, :class => 'avatar', :disable_default_css => true) %>
+       <%= avatar_for(playlist, :small, :class => 'avatar', :disable_default_css => true, :alt => playlist.name) %>
       <div id="<%= playlist.id %>" class="datos">
         <h3><%= playlist.name %></h3>
       </div>

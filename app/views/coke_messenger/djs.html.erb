@@ -27,7 +27,7 @@
       <% sortable_list(@djs, {:name => "djs", :class => "djs", :li_class => "estirar"}) do |dj, index| %>
 
         <span class="ord"><%=index+1%></span>
-        <%= avatar_for(dj, :small, :class => 'avatar', :disable_default_css => true) %>
+	<%= avatar_for(dj, :small, :class => 'avatar', :disable_default_css => true, :alt => dj.name) %>
         <div id="<%= dj.playlists.latest(1)[0].id %>" class="datos">
           <h3><%= link_to dj.name, djs_details_path(dj.id), :class => "link_rojo", :title => dj.name, :content_switch_enabled => true %></h3>
 		

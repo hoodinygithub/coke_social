@@ -22,7 +22,7 @@
 
     <% sortable_list(@mixes, {:name => "mixes", :class => "mixes", :li_class => "estirar"}) do |playlist, index| %>
         <span class="ord"><%= index + 1 %></span>
-        <%= avatar_for(playlist, :small, :class => 'avatar', :disable_default_css => true) %>
+        <%= avatar_for(playlist, :small, :class => 'avatar', :disable_default_css => true, :alt => playlist.name)%>
         <div class="datos" id="<%= playlist.id %>">
           <h3><%= playlist.name %></h3>
           <p><%= t("basics.by")%>: <%= link_to playlist.owner.name, djs_details_path(playlist.owner.id) ,:class => "link_gris" %></a></p>

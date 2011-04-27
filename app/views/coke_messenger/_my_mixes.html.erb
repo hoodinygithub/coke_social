@@ -1,6 +1,6 @@
 <% @my_mixes.each do |playlist| %>
 	<li class="estirar">
-	<%= avatar_for(playlist, :small, :class => 'avatar', :disable_default_css => true) %>
+	<%= avatar_for(playlist, :small, :class => 'avatar', :disable_default_css => true, :alt => playlist.name) %>
 	<div class="datos">
 	<h3><div class="link_rojo"><%= playlist.name %></div></h3>
 	</div>

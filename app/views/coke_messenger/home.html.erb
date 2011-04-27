@@ -25,7 +25,7 @@
 <div class="contenido">
   <div class="columna_izq">
     <% sortable_list(@recent_playlists, {:name => "mixes", :class => "ult_mixes", :li_class => "estirar"}) do |playlist, index| %>
-      <%= avatar_for(playlist, :small, :class => 'avatar', :disable_default_css => true) %>
+    <%= avatar_for(playlist, :small, :class => 'avatar', :disable_default_css => true, :alt => playlist.name) %>
       <div class="datos" id="<%= playlist.id %>">
         <h3><%= playlist.name %></h3>
         <p>Por: <%= link_to playlist.owner.name,djs_details_path(playlist.owner.id), :title => playlist.owner.name, :class=>"link_gris" %></p> 
