@@ -1,5 +1,16 @@
 <script type="text/javascript">
   $(document).ready(function() {
+
+      if (Base.Station._station)
+      {
+        if ($('.mis_mixes li').hasClass('sonando'))
+        { 
+          $('.mis_mixes li.sonando').toggleClass('sonando');
+          $('.play').remove();
+        }
+        $('.mis_mixes').find('#' + Base.Station._station.pid).parent().toggleClass('sonando').prepend("<span class='play'>Sonando</span>");
+      }
+
       <% if @total_pages > 1 %>
         /* Infinite scroll */
         var page = 1;
@@ -35,7 +46,7 @@
   <div class="columna">
     <% sortable_list(@results[:playlists], {:name => "results", :class => "mis_mixes", :li_class => "estirar", :no_results_class => "no_resultados", :no_results_text => t('coke_messenger.emotions.no_results')}) do |playlist, index| %>
       <%= avatar_for(playlist, :small, :alt => playlist.name) %>
-      <div class="datos">
+      <div class="datos" id="<%= playlist.id %>">
         <h3><%= playlist.name %></h3>
       </div>
       <div class="messenger_rating" style="margin-top: 10px;"><%= messenger_rating(playlist) %></div>
