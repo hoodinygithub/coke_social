@@ -1,5 +1,15 @@
 <script type="text/javascript">
   $(document).ready(function() {
+      if (Base.Station._station)
+      {
+        if ($('.busquedas li').hasClass('sonando'))
+        { 
+          $('.busquedas li.sonando').toggleClass('sonando');
+          $('.play').remove();
+        }
+        $('.busquedas').find('#' + Base.Station._station.pid).parent().toggleClass('sonando').prepend("<span class='play'>Sonando</span>");
+      }
+
       <% if @total_pages > 1 %>
         /* Infinite scroll */
         var page = 1;
@@ -42,7 +52,7 @@
         <% @results[:playlists].each do|playlist| %>
           <li class="estirar">
           <%= link_to_function avatar_for(playlist, :small), "Base.Station.request('/playlists/#{playlist.id}.xml', 'xml', Base.Station.stationCollection);Base.Player.random(false)", :alt => playlist.name %>
-          <div class="datos">
+          <div id="<%= playlist.id %>" class="datos">
             <h3><%= link_to_function playlist.name, "Base.Station.request('/playlists/#{playlist.id}.xml', 'xml', Base.Station.stationCollection);Base.Player.random(false)", :class => 'link_rojo' %></h3>
           </div>
           <div class="messenger_rating" style="margin-top: 10px;"><%= messenger_rating(playlist) %></div>
