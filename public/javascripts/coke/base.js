@@ -60,7 +60,7 @@ var SoundEngines = {
       isstreaming:'isRadioPaused'
     }
   }
-}
+};
 
 var Base = {
   getCurrentSiteUrl: function() {},
@@ -330,7 +330,7 @@ Base.UI = {
     this.reset();
     var s = arguments.length > 0 ? arguments[0] : Base.Player._playlist[Base.Player.index];
     if ($('div').hasClass('tickercontainer')) $('.tickercontainer').remove();
-    var tickr  = "<ul>";
+    var tickr = "<ul>";
     if (Base.Player._player == 'coke')
     {
       this.controlUI().find('.caratula img').attr('src', s.albumAvatar);
