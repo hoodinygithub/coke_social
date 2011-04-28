@@ -1,65 +1,64 @@
+<div class="overlay">
+  <div class="aviso login registro">
+    <div class="aviso_cab">
+	    <h1><%= t('coke_messenger.layers.opt_layer_view.login') %></h1>
+      <% unless @locked %>
+        <a class="btn_cerrar" href="#" onclick="$.alert_layer.close();" title="<%= t('actions.close') %>"><strong>X</strong> <%= t('actions.close') %></a>
+      <% end %>
+    </div><!-- .aviso_cab -->
+    <div class="scroll">
 
-       <div class="overlay">
-    <div class="aviso login registro">
-       <div class="aviso_cab">
- 	<h1><%= t('coke_messenger.layers.opt_layer_view.login') %></h1>
-  <% unless @locked %>
-    <a class="btn_cerrar" href="#" onclick="$.alert_layer.close();" title="<%= t('actions.close') %>"><strong>X</strong> <%= t('actions.close') %></a>
-  <% end %>
-  </div><!-- .aviso_cab -->
-      <div class="scroll">
+      <div class="columna_izq">
+        <h2><strong><%= t('coke_messenger.layers.opt_layer_view.welcome') %></strong></h2>
+        <p class="usuario"><span class="link_rojob"><%= t('coke_messenger.layers.opt_layer_view.user_name', :user_name => (current_user.name rescue "")) %></span></p>
+        <p><%= t('coke_messenger.layers.opt_layer_view.cyloop') %></p>
+        <form class="f_condiciones" action="#">
+        <label class="<%= class_name %>">
+            <input class="check" type="checkbox" name="sso_opt_in" />
 
-        <div class="columna_izq">
-          <h2><strong><%= t('coke_messenger.layers.opt_layer_view.welcome') %></strong></h2>
-          <p class="usuario"><a class="link_rojob" href="#" title="<%= t('coke_messenger.layers.opt_layer_view.roger') %>"><%= t('coke_messenger.layers.opt_layer_view.roger') %></a></p>
-          <p><%= t('coke_messenger.layers.opt_layer_view.cyloop') %></p>
-          <form class="f_condiciones" action="#">
-          <label class="<%= class_name %>">
-              <input class="check" type="checkbox" name="sso_opt_in" />
+            <small><%= t('coke_messenger.layers.opt_layer_view.cyloop_privacy') %> <a class="link_rojo" href="#" title="<%= t('coke_messenger.layers.opt_layer_view.terms_of_use') %>"><%= t('coke_messenger.layers.opt_layer_view.terms_of_use') %></a> and <a class="link_rojo" href="#" title="<%= t('coke_messenger.layers.opt_layer_view.privacy_policy') %>"><%= t('coke_messenger.layers.opt_layer_view.privacy_policy') %></a> <%= t('coke_messenger.layers.opt_layer_view.text_info') %></small>
+          <small class="txt_error">Termos e Condi&ccedil;&otilde;es e a Pol&iacute;tica de Privacidade precisam ser aceitos</small>
+					</label>
+          <div class="alerta"><%= t('coke_messenger.layers.opt_layer_view.thats_it') %></div>
+          <input class="boton" type="submit" value="COMPLETE" />
+        </form>
 
-              <small><%= t('coke_messenger.layers.opt_layer_view.cyloop_privacy') %> <a class="link_rojo" href="#" title="<%= t('coke_messenger.layers.opt_layer_view.terms_of_use') %>"><%= t('coke_messenger.layers.opt_layer_view.terms_of_use') %></a> and <a class="link_rojo" href="#" title="<%= t('coke_messenger.layers.opt_layer_view.privacy_policy') %>"><%= t('coke_messenger.layers.opt_layer_view.privacy_policy') %></a> <%= t('coke_messenger.layers.opt_layer_view.text_info') %></small>
-            <small class="txt_error">Termos e Condi&ccedil;&otilde;es e a Pol&iacute;tica de Privacidade precisam ser aceitos</small>
-						</label>
-            <div class="alerta"><%= t('coke_messenger.layers.opt_layer_view.thats_it') %></div>
-            <input class="boton" type="submit" value="COMPLETE" />
-          </form>
+      </div><!-- .columna_izq -->
+      <div class="columna_der">
+        <h2><%= t('coke_messenger.layers.opt_layer_view.reasons') %><strong><%= t('coke_messenger.layers.opt_layer_view.coke_fm') %></strong></h2>
+        <ul class="razones">
+          <li>
+            <span class="ico_lupa"><%= t('coke_messenger.layers.opt_layer_view.view') %></span>
+            <h3><%= t('coke_messenger.layers.opt_layer_view.discover') %></h3>
 
-        </div><!-- .columna_izq -->
-        <div class="columna_der">
-          <h2><%= t('coke_messenger.layers.opt_layer_view.reasons') %><strong><%= t('coke_messenger.layers.opt_layer_view.coke_fm') %></strong></h2>
-          <ul class="razones">
-            <li>
-              <span class="ico_lupa"><%= t('coke_messenger.layers.opt_layer_view.view') %></span>
-              <h3><%= t('coke_messenger.layers.opt_layer_view.discover') %></h3>
+            <p><%= t('coke_messenger.layers.opt_layer_view.find_music') %></p>
+          </li>
+          <li>
+            <span class="ico_premio"><%= t('coke_messenger.layers.opt_layer_view.recommendations') %></span>
+            <h3><%= t('coke_messenger.layers.opt_layer_view.badgets') %></h3>
 
-              <p><%= t('coke_messenger.layers.opt_layer_view.find_music') %></p>
-            </li>
-            <li>
-              <span class="ico_premio"><%= t('coke_messenger.layers.opt_layer_view.recommendations') %></span>
-              <h3><%= t('coke_messenger.layers.opt_layer_view.badgets') %></h3>
+            <p><%= t('coke_messenger.layers.opt_layer_view.radio_stations') %></p>
+          </li>
+          <li>
+            <span class="ico_seguir"><%= t('coke_messenger.layers.opt_layer_view.friends') %></span>
+            <h3><%= t('coke_messenger.layers.opt_layer_view.follow') %></h3>
+            <p><%= t('coke_messenger.layers.opt_layer_view.click_follow') %></p>
 
-              <p><%= t('coke_messenger.layers.opt_layer_view.radio_stations') %></p>
-            </li>
-            <li>
-              <span class="ico_seguir"><%= t('coke_messenger.layers.opt_layer_view.friends') %></span>
-              <h3><%= t('coke_messenger.layers.opt_layer_view.follow') %></h3>
-              <p><%= t('coke_messenger.layers.opt_layer_view.click_follow') %></p>
+          </li>
+          <li>
+            <span class="ico_mixes"><%= t('coke_messenger.layers.opt_layer_view.create') %></span>
+            <h3><%= t('coke_messenger.layers.opt_layer_view.create_mix') %></h3>
+            <p><%= t('coke_messenger.layers.opt_layer_view.dj_create_mix') %></p>
 
-            </li>
-            <li>
-              <span class="ico_mixes"><%= t('coke_messenger.layers.opt_layer_view.create') %></span>
-              <h3><%= t('coke_messenger.layers.opt_layer_view.create_mix') %></h3>
-              <p><%= t('coke_messenger.layers.opt_layer_view.dj_create_mix') %></p>
+          </li>
+          <li>
+            <span class="ico_opinar"><%= t('coke_messenger.layers.opt_layer_view.view') %></span>
+            <h3><%= t('coke_messenger.layers.opt_layer_view.put_work') %></h3>
+            <p><%= t('coke_messenger.layers.opt_layer_view.comment') %></p>
+          </li>
+        </ul>
 
-            </li>
-            <li>
-              <span class="ico_opinar"><%= t('coke_messenger.layers.opt_layer_view.view') %></span>
-              <h3><%= t('coke_messenger.layers.opt_layer_view.put_work') %></h3>
-              <p><%= t('coke_messenger.layers.opt_layer_view.comment') %></p>
-            </li>
-          </ul>
-
-        </div><!-- .columna_der -->
-      </div><!-- .scroll -->
-    </div><!-- .aviso login registro -->
-  </div><!-- .overlay -->
+      </div><!-- .columna_der -->
+    </div><!-- .scroll -->
+  </div><!-- .aviso login registro -->
+</div><!-- .overlay -->

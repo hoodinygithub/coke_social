@@ -44,20 +44,12 @@
         <%= render :partial => 'coke_messenger/footer' %>
       </div>
       
-      
-      <!-- Testing Layers -->
-      <!--
-      Alert Layers: 
-      <a href="<%= alert_layer_path("login_layer") %>" rel="layer">login_layer</a> |
-  	  <a href="<%= alert_layer_path("opt_layer") %>" rel="layer">opt_in_layer</a> |
-  		<a href="<%= alert_layer_path("authentication_layer") %>" rel="layer">authentication_layer</a> |
-  	  <a href="<%= alert_layer_path("registration_layer") %>" rel="layer">registration_layer</a> |
-  		<a href="<%= alert_layer_path("registration_layer",:errors => "true") %>" rel="layer">registration_layer_errors</a> |
-      <a href="<%= alert_layer_path("opt_layer_locked") %>" rel="locked_layer">locked opt_in layer</a>
-      -->
-  		<!-- END Testing Layers -->
+      <% if current_user && !current_user.part_of_network? %>
+        <script language="javascript">
+          $.alert_layer('/messenger_player/alert_layer/opt_layer_locked', true)
+        </script>
+      <% end %>
       
     </div>
-    
   </body>
 </html>

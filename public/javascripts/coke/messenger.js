@@ -1,11 +1,13 @@
 (function($) {
   $.alert_layer = function(data, locked) {
-    setDisplayType(data);
     
-    $.alert_layer.loading(data,locked);
-    
-    if (data.ajax) fillLayer_Ajax(data.ajax)
-    else fillLayer_Html(data)
+    if (locked || !$.alert_layer.settings.locked){
+      setDisplayType(data);
+      $.alert_layer.loading(data,locked);
+      if (data.ajax) { fillLayer_Ajax(data.ajax) }
+      else { fillLayer_Html(data) }
+    }
+
   }
   
   $.extend($.alert_layer, {
