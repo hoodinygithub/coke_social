@@ -182,7 +182,7 @@ private
 
         if p_render
           if request.xhr?
-            render :js => "window.location.reload()"
+            render :js => "$.alert_layer.showOverlay(true); window.location.reload()"
           else
             redirect_back_or_default(home_path(:host => corrected_registration_host))
           end

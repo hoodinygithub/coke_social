@@ -117,14 +117,25 @@ class UsersController < ApplicationController
         :user_id => @user.id, :twitter_username => @user.twitter_username
       }) if @user.twitter_username_changed?
 
-      respond_to do |format|
-        format.html { redirect_back_or_default(my_dashboard_path) }
-        format.xml  { render :xml => Player::Message.new( :message => t('messenger_player.registration.success') ) }
+      if request.xhr?
+        render :js => "$.alert_layer.showOverlay(true); window.location.reload()"
+      else
+        respond_to do |format|
+          format.html { redirect_back_or_default(my_dashboard_path) }
+          format.xml  { render :xml => Player::Message.new( :message => t('messenger_player.registration.success') ) }
+        end
       end
     else
-      respond_to do |format|
-        format.html { render :action => :new }
-        format.xml  { render_xml_errors( @user.errors ) }
+      if request.xhr?
+        @msg = "registration_layer"
+        @error_msgs = "show error msgs"
+        layer_html = render_to_string '/messenger_player/layers/alert_layer'
+        render(:json => {:status => 'redirect', :html => layer_html}, :layout => false)
+      else
+        respond_to do |format|
+          format.html { render :action => :new }
+          format.xml  { render_xml_errors( @user.errors ) }
+        end
       end
     end
   end

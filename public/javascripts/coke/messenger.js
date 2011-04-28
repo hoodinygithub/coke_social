@@ -145,7 +145,7 @@
   function showOverlay() {
     if ($.alert_layer.settings.skipOverlay) return
 
-    if ($('layer_overlay').length == 0) 
+    if ($('#layer_overlay').length == 0) 
       $("body").append('<div id="layer_overlay" class="layer_hide"></div>')
 
     $('#layer_overlay').hide().addClass("layer_overlayBG")

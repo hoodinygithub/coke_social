@@ -44,6 +44,9 @@ class MessengerPlayer::LayersController < ApplicationController
       @msg="authentication_layer"
       "/layer/forgotpwd"
     when "registration_layer"
+      @user = @user || User.new
+      ActionView::Base.field_error_proc = proc { |input, instance| input } 
+      
       @orig_msg = false
       @msg="registration_layer"
       @error_msgs = params[:errors].blank? ? nil : "show error msgs"
