@@ -34,30 +34,6 @@ class SessionsController < ApplicationController
 
   # GET /session/new
   def new
-    #if wlid_web_login?
-    #  token = params[:stoken] || nil
-    #  wll.setDebug(true) if Rails.env.development?
-
-    #  if(token)
-    #    msn_live_id = wll.processLogin(params) || nil
-
-    #    if msn_live_id
-    #      session[:msn_live_id] = msn_live_id
-    #      account = User.find_by_msn_live_id_and_deleted_at(msn_live_id, nil)
-    #      if account
-    #        do_login(account, 1, false)
-    #      elsif session[:return_to] == '/messenger_player'
-    #        redirect_to( session.delete(:return_to) )
-    #      else
-    #        redirect_to(new_user_path)
-    #      end
-    #    else
-    #      flash[:error] = t("registration.msn_login_error")
-    #      redirect_to "/"
-    #    end
-    #  else
-    #    redirect_to msn_login_url
-    #  end
     if params[:code]
       # Faceboook Connect through full page login
       # FacebookConnect.parse_facebook_code(params[:code], current_site.domain)
@@ -176,7 +152,7 @@ private
       flash[:error] = t("registration.artist_login_denied")
       render :new
       false
-    elsif account.part_of_network?
+    else
       self.current_user = account
       AccountLogin.create!( :account_id => account.id, :site_id => current_site.id )
       
@@ -186,7 +162,7 @@ private
                                  :expires => self.current_user.remember_token_expires_at,
                                  :domain  => ".#{request.domain}" }
       end
-      
+
       # Attach current FB session to upcoming user session.
       sso_facebook_id = (session[:sso_user] and session[:sso_user]['sso_facebook']) ? session[:sso_user]['sso_facebook'] : nil
       account.update_attribute(:sso_facebook, sso_facebook_id) if sso_facebook_id
@@ -194,37 +170,41 @@ private
       # Attach current WindowsConnect session to upcoming user session.
       sso_windows_id = (session[:sso_user] and session[:sso_user]['sso_windows']) ? session[:sso_user]['sso_windows'] : nil
       account.update_attribute(:sso_windows, sso_windows_id) if sso_windows_id
-      
+
       session[:sso_user] = nil
       session[:sso_type] = nil
-      
+
       session[:registered_from] = nil
       flash[:google_code] = 'loginOK'
-      flash.discard(:error)
 
-      if p_render
-        if request.xhr?
-          render :js => "window.location.reload()"
-        else
-          redirect_back_or_default(home_path(:host => corrected_registration_host))
+      if account.part_of_network?
+        flash.discard(:error)
+
+        if p_render
+          if request.xhr?
+            render :js => "window.location.reload()"
+          else
+            redirect_back_or_default(home_path(:host => corrected_registration_host))
+          end
+        end
+      else
+        # cross-network login
+        unless account.secure_network?
+          account.encrypt_demographics
+          account.save!
+        end
+        if p_render
+          if request.xhr?
+            @msg = "login_layer"
+            @error_msgs = "show error msgs"
+            login_layer = render_to_string '/messenger_player/layers/alert_layer'
+            render(:json => {:status => 'redirect', :html => login_layer}, :layout => false)
+          else
+            redirect_to({:controller=>:users, :action=>:cross_network}) 
+          end
         end
       end
-      nil
-    else
-      # TODO: cross-network login
-      flash[:error] = t("registration.cross_network_failed")
-      #render :new, :layout => false if p_render
-      if p_render
-        if request.xhr?
-          @msg = "login_layer"
-          @error_msgs = "show error msgs"
-          login_layer = render_to_string '/messenger_player/layers/alert_layer'
-          render(:json => {:status => 'redirect', :html => login_layer}, :layout => false)
-        else
-          render :new
-        end
-      end
-      false
+      true
     end
   end
 
@@ -243,12 +223,12 @@ private
 
     # AccountUni search
     ## Rails validation enforces global email uniqueness
-    same_email_user = User.find_by_email_with_exclusive_scope(p_user.email, :first, :select => "slug, gender, encrypted_gender, email, encrypted_email, name, encrypted_name, born_on, encrypted_born_on_string, network_id")
+    same_email_user = User.find_by_email_with_exclusive_scope(p_user.email, :first, :select => "id, slug, gender, encrypted_gender, email, encrypted_email, name, encrypted_name, born_on, encrypted_born_on_string, network_id")
     unless same_email_user.nil?
       # logger.info "Found same email user."
       same_email_user.sso_facebook = p_user.sso_facebook
       unless same_email_user.part_of_network?
-        same_email_user.transfer_encrypted_demographics
+        same_email_user.encrypt_demographics
       end
       session[:sso_user] = same_email_user
       session[:sso_type] = "Facebook"
@@ -289,12 +269,12 @@ private
 
     # AccountUni search
     ## Rails validation enforces global email uniqueness
-    same_email_user = User.find_by_email_with_exclusive_scope(p_user.email, :first, :select => "slug, gender, encrypted_gender, email, encrypted_email, name, encrypted_name, born_on, encrypted_born_on_string")
+    same_email_user = User.find_by_email_with_exclusive_scope(p_user.email, :first, :select => "id, slug, gender, encrypted_gender, email, encrypted_email, name, encrypted_name, born_on, encrypted_born_on_string")
     unless same_email_user.nil?
       # logger.info "Found same email user."
       same_email_user.sso_windows = p_user.sso_windows
       unless same_email_user.part_of_network?
-        same_email_user.transfer_encrypted_demographics
+        same_email_user.encrypt_demographics
       end
       session[:sso_user] = same_email_user
       session[:sso_type] = "Windows"

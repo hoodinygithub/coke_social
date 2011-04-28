@@ -8,7 +8,6 @@ class ApplicationController < ActionController::Base
   include SslRequirementWithDiffDomain
   ssl_required_object :current_site
   
-  
   extend ActiveSupport::Memoizable
 
   sanitize_params
@@ -16,6 +15,7 @@ class ApplicationController < ActionController::Base
   # before_filter :do_basic_http_authentication
   before_filter :confirm_registration_code
   #before_filter :login_required  
+  before_filter :network_terms_required
 
   filter_parameter_logging :password, :password_confirmation
 
@@ -496,5 +496,14 @@ class ApplicationController < ActionController::Base
   end
 
   IS_STAGING = (ENV['RAILS_ENV'] =~ /staging/)
+
+  # We logged you in, but you haven't accepted the terms of the current network.
+  # Until you do, anywhere you go, you'll be redirected.
+  def network_terms_required
+    # Exclude login, logout, and cross_network page itself
+    if current_user and !(controller_name == "users" and action_name == "cross_network") and !(controller_name == "sessions" and ["destroy", "new"].include? action_name) and !current_user.part_of_network?
+      redirect_to({:controller=>:users, :action=>:cross_network})
+    end
+  end
 end
 

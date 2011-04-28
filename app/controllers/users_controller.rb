@@ -69,6 +69,21 @@ class UsersController < ApplicationController
     @user = session[:sso_user].nil? ? User.new : session[:sso_user]
   end
 
+  # Cached on startup
+  COKE_NETWORK = Network.find(2)
+
+  # Cross-network opt-in action
+  def cross_network
+    if params[:opt_in] and params[:opt_in] == "1"
+      u = current_user
+      u.encrypt_demographics
+      u.networks << COKE_NETWORK
+      redirect_back_or_default(home_path)
+    else 
+      @user = current_user
+    end
+  end
+
   # POST /users
   def create
     params[:user] = trim_attributes_for_paperclip(params[:user], :avatar)

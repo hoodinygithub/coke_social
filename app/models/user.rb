@@ -91,7 +91,7 @@ class User < Account
 
   after_update :update_followings_with_partial_name
 
-  default_scope :conditions => { :network_id => 2 }  
+  # default_scope :conditions => { :network_id => 2 }  
   has_one :bio, :autosave => true, :foreign_key => :account_id
   validates_associated :bio
 
@@ -162,7 +162,7 @@ class User < Account
   belongs_to :entry_point, :class_name => 'Site', :foreign_key => 'entry_point_id'
   #belongs_to :network
   has_many :accounts_networks, :foreign_key => :account_id
-  has_many :networks, :through=>:accounts_networks, :readonly=>true
+  has_many :networks, :through=>:accounts_networks, :readonly=>true, :uniq => true
   
   validates_presence_of :entry_point_id
   validates_presence_of :born_on_string
@@ -288,9 +288,9 @@ class User < Account
 
   # User is part of the current site's network
   def part_of_network?
-    my_networks = self.networks
+    my_network_ids = self.networks.map(&:id)
     ApplicationController.current_site.networks.each { |n|
-      return true if my_networks.include? n
+      return true if my_network_ids.include? n.id
     }
     false
   end
@@ -359,11 +359,15 @@ class User < Account
   end
 
   # AccountUni - set encrypted demographics from unencrypted
-  def transfer_encrypted_demographics
+  def encrypt_demographics
     self.name = self['name'] if self.name.nil?
+    self['name'] = nil
     self.email = self['email'] if self.email.nil?
+    self['email'] = nil
     self.gender = self['gender'] if self.gender.nil?
+    self['gender'] = nil
     self.born_on_string = self['born_on'].to_s if self.born_on_string.nil?
+    self['born_on'] = nil
   end
 
   protected

@@ -1,0 +1,41 @@
+<div class="auth_area">
+
+  <div class="auth_title">
+    <%= "Hello #{@user.name}" %>
+  </div>
+
+  <div class="auth_left">
+
+    <div>
+      Untranslated - We see you are already part of the Cyloop Network.  All you have to do is accept the Coca-Cola.fm Terms and Conditions and your profile information will already be populated.
+    </div>
+
+    <div class="form_content">
+      <% form_tag nil, { :class => "account_settings" } do %>
+        <div class="form_row last">
+          <%= check_box_tag :opt_in, 1, false, { :class => "privacy_check" } %>
+
+          <div class="privacy_text checkbox">
+            <%= t("registration.terms_and_privacy", :terms_link => link_to(t("registration.terms_of_use"), terms_and_conditions_url), :privacy_link => link_to(t("registration.privacy_policy"), privacy_policy_url)) %>
+          </div>
+        </div>
+
+        <div class="clearer"></div>
+
+        <br/><br/>
+
+        <div class="right_side">
+          <big class="grey"><%= t("registration.thats_it") %></big> &nbsp; <a class="red_button valign_middle" onclick="$(this).closest('form').submit();"><span><span><%= t("registration.complete") %></span></span></a>
+        </div>
+
+      <% end %>
+    </div>
+  </div>
+
+  <div class="auth_right">
+    <%= render '/users/registration_sidebox' %>
+  </div><!--/end auth_right -->
+
+  <div class="clearer"></div>
+
+</div><!--/end  auth_area -->

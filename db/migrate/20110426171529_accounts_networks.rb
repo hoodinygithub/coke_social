@@ -18,8 +18,7 @@ class AccountsNetworks < ActiveRecord::Migration
       ALTER TABLE accounts_networks ADD FOREIGN KEY (network_id) REFERENCES networks(id)
     SQL
 
-    add_index :accounts_networks, :account_id
-    add_index :accounts_networks, :network_id
+    add_index :accounts_networks, [:account_id, :network_id], :unique => true
 
     add_column :networks, :is_secure, :boolean
     execute <<-SQL
