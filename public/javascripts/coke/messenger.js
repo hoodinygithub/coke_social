@@ -200,7 +200,6 @@ jQuery(document).ready(function() {
     })
   });
   
-  // Temporary to Mock Windows Login
   jQuery('#alert_layer form').livequery(function() {
     $(this).submit(function() {
       $.post($(this).attr('action'), $(this).serialize(), function(data) { 

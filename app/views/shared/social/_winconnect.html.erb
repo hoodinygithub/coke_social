@@ -19,7 +19,7 @@
           } else {
             if (response.sso_user) {
               //alert('Loggin in - found sso_user')
-              $.alert_layer("#{add_ssl_to('/messenger_player/alert_layer/login_layer')}")
+              $.alert_layer('/messenger_player/alert_layer/login_layer')
             }
             else {
               //alert('Registering - no sso_user found')
