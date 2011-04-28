@@ -109,7 +109,7 @@ class SessionsController < ApplicationController
     result = nil
     if logged_in?
       # Don't expose encrypted data fields here (email, name, gender, dob).
-      result = { :logged_in => true, :id => current_user.id, :slug => current_user.slug }
+      result = { :logged_in => true, :id => current_user.id, :slug => current_user.slug, :opted_in => current_user.part_of_network? }
     else
       result = { :logged_in => false }
     end
@@ -182,7 +182,10 @@ private
 
         if p_render
           if request.xhr?
-            render :js => "$.alert_layer.showOverlay(true); window.location.reload()"
+            js = "_gaq.push(['_trackPageview', '/auth/login/confirm']);"
+            js << "$.alert_layer.showOverlay(true);"
+            js << "window.location.reload();"
+            render :js => js
           else
             redirect_back_or_default(home_path(:host => corrected_registration_host))
           end

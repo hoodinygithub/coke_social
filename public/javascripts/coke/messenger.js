@@ -176,6 +176,8 @@
       $('#alert_layer .loading').remove();
     })
     
+    $.alert_layer.settings.locked = false;
+    
     if($.alert_layer.settings.dom){
       $($.alert_layer.settings.dom).append($.alert_layer.settings.dom_data);
       $.alert_layer.settings.dom = null;  

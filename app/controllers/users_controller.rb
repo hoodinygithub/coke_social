@@ -79,9 +79,24 @@ class UsersController < ApplicationController
       u.encrypt_demographics
       u.networks << COKE_NETWORK
       u.save!
-      redirect_back_or_default(home_path)
+      
+      if request.xhr?
+        js = "_gaq.push(['_trackPageview', '/auth/optin/confirm']);"
+        js << "$.alert_layer.showOverlay(true);"
+        js << "window.location.reload();"
+        render :js => js
+      else
+        redirect_back_or_default(home_path)
+      end
     else 
       @user = current_user
+      if request.xhr?
+        @msg = "opt_layer"
+        @error_msgs = "show error msgs"
+        @locked = true
+        layer_html = render_to_string '/messenger_player/layers/alert_layer'
+        render(:json => {:status => 'redirect', :html => layer_html}, :layout => false)
+      end
     end
   end
 
@@ -118,7 +133,10 @@ class UsersController < ApplicationController
       }) if @user.twitter_username_changed?
 
       if request.xhr?
-        render :js => "$.alert_layer.showOverlay(true); window.location.reload()"
+        js = "_gaq.push(['_trackPageview', '/auth/registration/confirm']);"
+        js << "$.alert_layer.showOverlay(true);"
+        js << "window.location.reload();"
+        render :js => js
       else
         respond_to do |format|
           format.html { redirect_back_or_default(my_dashboard_path) }

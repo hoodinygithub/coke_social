@@ -8,17 +8,23 @@
 <%- javascript_tag do -%>
   function onWinConnectLoginSuccess() {
     if (window['current_site_mode'] && window['current_site_mode'].toLowerCase() == "msn") {
-      //alert("WinConnect login on MSN tab");
       $.ajax({
         url: '<%= status_path(:format => :json) %>',
         success: function(response) { 
           if (response.logged_in) {
-            window.location.reload(true);
-          } else {
-            if (response.sso_user)
-              $.alert_layer('/messenger_player/alert_layer/login_layer')
+            if (response.opted_in)
+              window.location.reload(true);
             else
+              $.alert_layer('/messenger_player/alert_layer/opt_layer_locked', true)
+          } else {
+            if (response.sso_user) {
+              //alert('Loggin in - found sso_user')
+              $.alert_layer('/messenger_player/alert_layer/login_layer')
+            }
+            else {
+              //alert('Registering - no sso_user found')
               $.alert_layer('/messenger_player/alert_layer/registration_layer')
+            }
           }
         },
         error: function(error) { alert('error getting session status.'); }

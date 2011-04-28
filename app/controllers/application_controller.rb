@@ -501,8 +501,8 @@ class ApplicationController < ActionController::Base
   # Until you do, anywhere you go, you'll be redirected.
   def network_terms_required
     # Exclude login, logout, and cross_network page itself
-    if current_user and !(controller_name == "users" and action_name == "cross_network") and !(controller_name == "sessions" and ["destroy", "new"].include? action_name) and !current_user.part_of_network?
-      redirect_to({:controller=>:users, :action=>:cross_network})
+    if current_user and !(controller_name == "users" and action_name == "cross_network") and !(request.path =~ /messenger_player/i) and !(controller_name == "sessions" and ["destroy", "new", "status"].include? action_name) and !current_user.part_of_network?
+      redirect_to({:controller=>:users, :action=>:cross_network}) unless request.xhr?
     end
   end
 end
