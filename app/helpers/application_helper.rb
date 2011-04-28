@@ -33,7 +33,7 @@ module ApplicationHelper
   def ssl_login_path
     if request.ssl?
       session_path
-    elsif request.host =~ /localhost/
+    elsif request.host =~ /localhost/ or request.port == 3000
       "http://#{request.host}:#{request.port}#{session_path}"
     else
       "https://#{current_site.ssl_domain}#{session_path}"
