@@ -78,6 +78,7 @@ class UsersController < ApplicationController
       u = current_user
       u.encrypt_demographics
       u.networks << COKE_NETWORK
+      u.save!
       redirect_back_or_default(home_path)
     else 
       @user = current_user
