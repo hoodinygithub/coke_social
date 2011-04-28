@@ -61,13 +61,13 @@
 		  <% if logged_in? %>
       <%= link_to_function 'Compartir', "$.alert_layer(String('/messenger_player/alert_layer/share_mix_layer?station_id='+Base.Station._station.sid))", :class => 'tooltip r_compartir', :rel => 'tip_compartir', :title => 'Compartir Mix' %>
 			<% else %>
-			<%= link_to_function 'Compartir', "$.alert_layer('#{alert_layer_path('login_layer')}')", :class => 'tooltip r_compartir', :rel => 'tip_compartir', :title => 'Compartir Mix' %>
+			<%= link_to_function 'Compartir', "$.alert_layer('#{add_ssl_to('/messenger_player/alert_layer/login_layer')}')", :class => 'tooltip r_compartir', :rel => 'tip_compartir', :title => 'Compartir Mix' %>
 			<% end%>
 			<span class="tip" id="tip_compartir"><%= t('coke_messenger.share_mix') %></span>
       <% if logged_in? %>
         <%= link_to_function 'Copiar', "$.alert_layer(String('/messenger_player/copy_mix_layer/' + Base.Station._station.pid))", :class => 'tooltip r_copiar', :rel => 'tip_copiar', :title => 'Copiar Mix' %>
       <% else %>
-        <%= link_to_function 'Copiar', "$.alert_layer('#{alert_layer_path('login_layer')}')", :class => 'tooltip r_copiar', :rel => 'tip_copiar', :title => 'Copiar Mix' %>
+        <%= link_to_function 'Copiar', "$.alert_layer('#{add_ssl_to('/messenger_player/alert_layer/login_layer')}')", :class => 'tooltip r_copiar', :rel => 'tip_copiar', :title => 'Copiar Mix' %>
       <% end %>
       <span class="tip" id="tip_copiar"><%= t('coke_messenger.copy_mix') %></span>
       <a class="tooltip r_info" href="javascript:void(open('http://<%= current_site.domain %>/playlists?station_id=' + Base.Station._station.sid))" target="_blank" onclick="Base.Player.pause()" rel="tip_info" title="Información">Info</a>

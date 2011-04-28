@@ -39,6 +39,16 @@ module ApplicationHelper
       "https://#{current_site.ssl_domain}#{session_path}"
     end
   end
+  
+  def add_ssl_to(path)
+    if request.ssl?
+      path
+    elsif request.host =~ /localhost/ or request.port == 3000
+      File.join("http://#{request.host}:#{request.port}", path)
+    else
+      File.join("https://#{current_site.ssl_domain}", path)
+    end
+  end
 
   def host_with_port(uri=nil, options={})
     protocol = "#{request.ssl? ? 'https://' : 'http://'}"

@@ -494,6 +494,16 @@ class ApplicationController < ActionController::Base
     end
     params[:sort_by] = sort_by
   end
+  
+  def add_ssl_to(path)
+    if request.ssl?
+      path
+    elsif request.host =~ /localhost/ or request.port == 3000
+      File.join("http://#{request.host}:#{request.port}", path)
+    else
+      File.join("https://#{current_site.ssl_domain}", path)
+    end
+  end
 
   IS_STAGING = (ENV['RAILS_ENV'] =~ /staging/)
 
