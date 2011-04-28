@@ -1,5 +1,5 @@
 <li class="estirar" alpha="<%= my_mix.name %>" most_recent="<%= my_mix.updated_at %>" popularity="<%= my_mix.total_plays %>" rating="<%= my_mix.rating_cache %>">
-  <%= avatar_for(my_mix, :small, :class => 'avatar', :disable_default_css => true) %>
+  <%= avatar_for(my_mix, :small, :class => 'avatar', :disable_default_css => true,:alt => my_mix.name) %>
   <div id="<%= my_mix.id %>" class="datos">
     <h3><%= my_mix.name %></h3>
   </div>

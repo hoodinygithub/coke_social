@@ -1,6 +1,6 @@
 <li class="estirar" alpha="<%= djs.name %>" most_followers="<%= djs.follower_count %>" popularity="">
 <span class="ord"><%= list_offset + (djs_counter + 1) %></span>
-<%= avatar_for(djs, :small, :class => 'avatar', :disable_default_css => true) %>
+<%= avatar_for(djs, :small, :class => 'avatar', :disable_default_css => true,:alt => djs.name) %>
 <div id="<%= djs.playlists.latest(1)[0].id %>" class="datos">
   <h3><%= link_to djs.name, djs_details_path(djs.id), :class => "link_rojo", :title => djs.name, :content_switch_enabled => true %></h3>
   <p>(<%= djs.country.name %>)</p>

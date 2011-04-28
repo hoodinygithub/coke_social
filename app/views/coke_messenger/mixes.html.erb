@@ -25,7 +25,7 @@
         <%= avatar_for(playlist, :small, :class => 'avatar', :disable_default_css => true, :alt => playlist.name)%>
         <div class="datos" id="<%= playlist.id %>">
           <h3><%= playlist.name %></h3>
-          <p><%= t("basics.by")%>: <%= link_to playlist.owner.name, djs_details_path(playlist.owner.id) ,:class => "link_gris" %></a></p>
+          <p><%= t("basics.by")%>: <%= link_to playlist.owner.name, djs_details_path(playlist.owner.id) ,:class => "link_gris",:title => playlist.owner.name %></a></p>
         </div>
         <div class="messenger_rating" style="margin-top: 12px;"><%= messenger_rating(playlist) %></div>
         <%= link_to_function t('coke_messenger.play'), "Base.Station.request('/playlists/#{playlist.id}.xml', 'xml', Base.Station.stationCollection);Base.Player.random(false)", :class => 'btn_play',:title => t('coke_messenger.play_hover') %>
