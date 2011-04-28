@@ -1,7 +1,9 @@
 	  <div class="aviso copiar"> 
 	    <div class="aviso_cab">
 	    <h1><%= t('playlists.copy') %></h1>	
-	    <a class="btn_cerrar" href="#" onclick="$.alert_layer.close();" title="<%= t('actions.close') %>"><strong>X</strong> <%= t('actions.close') %></a>
+	    <% unless @locked %>
+        <a class="btn_cerrar" href="#" onclick="$.alert_layer.close();" title="<%= t('actions.close') %>"><strong>X</strong> <%= t('actions.close') %></a>
+      <% end %>
 	  </div>
 		<div class="mix_portada">
          <%= avatar_for(@playlist, :large)%>

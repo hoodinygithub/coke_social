@@ -2,7 +2,9 @@
     <div class="aviso login">
    <div class="aviso_cab">
    	<h1>Login</h1>
-    <a class="btn_cerrar" href="#" onclick="$.alert_layer.close();" title="<%= t('coke_messenger.layers.login_link_layer.close') %>"><strong>X</strong> <<%= t('coke_messenger.layers.login_link_layer.close') %>><%= t('coke_messenger.layers.login_link_layer.close') %></a>
+    <% unless @locked %>
+      <a class="btn_cerrar" href="#" onclick="$.alert_layer.close();" title="<%= t('coke_messenger.layers.login_link_layer.close') %>"><strong>X</strong> <<%= t('coke_messenger.layers.login_link_layer.close') %>><%= t('coke_messenger.layers.login_link_layer.close') %></a>
+    <% end %>
   </div><!-- .aviso_cab -->
       <div class="scroll">
         <div class="columna_izq">

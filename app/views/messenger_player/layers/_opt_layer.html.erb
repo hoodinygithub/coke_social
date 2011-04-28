@@ -3,7 +3,9 @@
     <div class="aviso login registro">
        <div class="aviso_cab">
  	<h1><%= t('coke_messenger.layers.opt_layer_view.login') %></h1>
-    <a class="btn_cerrar" href="#" onclick="$.alert_layer.close();" title="<%= t('actions.close') %>"><strong>X</strong> <Cerrar><%= t('actions.close') %></a>
+  <% unless @locked %>
+    <a class="btn_cerrar" href="#" onclick="$.alert_layer.close();" title="<%= t('actions.close') %>"><strong>X</strong> <%= t('actions.close') %></a>
+  <% end %>
   </div><!-- .aviso_cab -->
       <div class="scroll">
 

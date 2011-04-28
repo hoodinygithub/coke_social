@@ -1,6 +1,8 @@
  <div class="aviso_cab">
  	<h1><%= t('coke_messenger.layers.authentication_layer.forgot_pwd') %></h1>
-    <a class="btn_cerrar" href="#" onclick="$.alert_layer.close();" title="<%= t('actions.close') %>"><strong>X</strong> <Cerrar><%= t('actions.close') %></a>
+    <% unless @locked %>
+      <a class="btn_cerrar" href="#" onclick="$.alert_layer.close();" title="<%= t('actions.close') %>"><strong>X</strong> <%= t('actions.close') %></a>
+    <% end %>
   </div>
 <p><%= t('coke_messenger.layers.authentication_layer.not_left') %></p>
 <p><%= t('coke_messenger.layers.authentication_layer.instructions') %></p>

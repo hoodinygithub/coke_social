@@ -2,7 +2,9 @@
 
 <div class="aviso_cab">
   <h1><%= t('coke_messenger.layers.share_mix_layer.share_mix')%></h1>
-  <a class="btn_cerrar" href="#" onclick="$.alert_layer.close();" title="<%= t('coke_messenger.layers.share_mix_layer.close')%>"><strong>X</strong> <%= t('coke_messenger.layers.share_mix_layer.close')%></a>
+  <% unless @locked %>
+    <a class="btn_cerrar" href="#" onclick="$.alert_layer.close();" title="<%= t('coke_messenger.layers.share_mix_layer.close')%>"><strong>X</strong> <%= t('coke_messenger.layers.share_mix_layer.close')%></a>
+  <% end %>  
 </div>
 <div class="columna_izq">
   <h2><%= t('coke_messenger.layers.share_mix_layer.share')%><strong><%= t('coke_messenger.layers.share_mix_layer.social_net')%></strong></h2>

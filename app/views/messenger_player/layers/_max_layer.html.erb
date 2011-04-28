@@ -1,5 +1,7 @@
  <div class="aviso_cab">
  	<h1><%= t('coke_messenger.layers.max_skip_layer.sorry') %></h1>
-    <a class="btn_cerrar" href="#" onclick="$.alert_layer.close();" title="<%= t('actions.close') %>"><strong>X</strong> <%= t('actions.close') %></a>
+    <% unless @locked %>
+      <a class="btn_cerrar" href="#" onclick="$.alert_layer.close();" title="<%= t('actions.close') %>"><strong>X</strong> <%= t('actions.close') %></a>
+    <% end %>
   </div>
 <p><%= t('coke_messenger.layers.max_skip_layer.max_skip_msg') %></p>

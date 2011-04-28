@@ -3,7 +3,7 @@ class MessengerPlayer::LayersController < ApplicationController
   layout 'messenger/layer'
 
   def alert_layer
-    alert_type = (params[:alert_type] =~ /(max_plays|share_mix|copy_mix|follow_user|my_friends|my_mixes|max_skips|login_layer|license_message|opt_layer|authentication_layer|registration_layer|error)/i) ? params[:alert_type].to_s : "generic"
+    alert_type = (params[:alert_type] =~ /(max_plays|share_mix|copy_mix|follow_user|my_friends|my_mixes|max_skips|login_layer|license_message|opt_layer|authentication_layer|registration_layer|error|opt_layer_locked)/i) ? params[:alert_type].to_s : "generic"
 
     @orig_msg = true
     @ga_tracking_id = case alert_type
@@ -31,6 +31,14 @@ class MessengerPlayer::LayersController < ApplicationController
       @msg="opt_layer"
       @error_msgs = params[:errors].blank? ? nil : "show error msgs"
       "/auth/option"
+    when "opt_layer_locked"
+      @orig_msg = false
+      @msg="opt_layer"
+      @error_msgs = params[:errors].blank? ? nil : "show error msgs"
+      "/auth/option"
+      
+      alert_type = "opt_layer"
+      @locked = true
     when "authentication_layer"
       @orig_msg = false
       @msg="authentication_layer"

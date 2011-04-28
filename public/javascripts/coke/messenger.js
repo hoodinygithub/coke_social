@@ -1,7 +1,8 @@
 (function($) {
-  $.alert_layer = function(data) {
+  $.alert_layer = function(data, locked) {
     setDisplayType(data);
-    $.alert_layer.loading(data);
+    
+    $.alert_layer.loading(data,locked);
     
     if (data.ajax) fillLayer_Ajax(data.ajax)
     else fillLayer_Html(data)
@@ -10,6 +11,7 @@
   $.extend($.alert_layer, {
     settings: {
       inited       : false,
+      locked       : false,
       displayType  : "ajax",
       opacity      : 0.8,
       dom_data     : null,  
@@ -31,8 +33,10 @@
       }
     },
     
-    loading: function(data) {
+    loading: function(data,locked) {
       init();
+      
+      $.alert_layer.settings.locked = (locked);
       
       if ($('#alert_layer .loading').length == 1) return true;
       showOverlay();
@@ -45,10 +49,14 @@
           append('<div class="loading"><img src="'+$.alert_layer.settings.loadingImage+'"/></div>');
 
       $('#alert_layer').show();
-      $(document).bind('keydown.alert_layer', function(e) {
-        if (e.keyCode == 27) $.alert_layer.close()
-        return true
-      })
+      
+      if( !$.alert_layer.settings.locked ) {
+        $(document).bind('keydown.alert_layer', function(e) {
+          if (e.keyCode == 27) $.alert_layer.close()
+          return true
+        })
+      }
+      
     },
 
     reveal: function(data) {
@@ -66,9 +74,9 @@
   /*
    * Public, $.fn methods
    */
-  $.fn.alert_layer = function() {
+  $.fn.alert_layer = function(locked) {
     function clickHandler() {
-      $.alert_layer(this.href)
+      $.alert_layer(this.href, locked)
       return false
     }
     
@@ -176,7 +184,8 @@
 })(jQuery);
 
 jQuery(document).ready(function() {
-  jQuery('a[rel*=layer]').alert_layer();
+  jQuery('a[rel=layer]').alert_layer();
+  jQuery('a[rel=locked_layer]').alert_layer(true);
   
   // Temporary to Mock Windows Login
   jQuery('a.btn_connect').livequery(function() {

@@ -47,27 +47,12 @@
       
       <!-- Testing Layers -->
       Alert Layers: 
-      <a href="<%= alert_layer_path("max_plays") %>" rel="layer">max_plays</a> | 
-      <a href="<%= alert_layer_path("share_mix") %>" rel="layer">share_mix</a> | 
-      <a href="<%= alert_layer_path("copy_mix") %>" rel="layer">copy_mix</a> | 
-      <a href="<%= alert_layer_path("follow_user") %>" rel="layer">follow_user</a> | 
-      <a href="<%= alert_layer_path("follow_user", :slug => "bigbadmachine", :gender => "male") %>" rel="layer">follow_user with details</a> | 
-      <a href="<%= alert_layer_path("my_friends") %>" rel="layer">my_friends</a> | 
-      <a href="<%= alert_layer_path("my_mixes") %>" rel="layer">my_mixes</a>
-      
-  	  <br/>
-  	  
-  	  <a href="<%= alert_layer_path("max_skips") %>" rel="layer">max_skips</a> |
-  	  <a href="<%= alert_layer_path("login_layer") %>" rel="layer">login_layer</a> |
-  		<a href="<%= alert_layer_path("login_layer",:errors => "true") %>" rel="layer">login_layer_errors</a> |
-  	  <a href="<%= alert_layer_path("license_message") %>" rel="layer">license_message</a> |
+      <a href="<%= alert_layer_path("login_layer") %>" rel="layer">login_layer</a> |
   	  <a href="<%= alert_layer_path("opt_layer") %>" rel="layer">opt_in_layer</a> |
-  		<a href="<%= alert_layer_path("opt_layer",:errors => "true") %>" rel="layer">opt_in_layer_errors</a> |
-  	  <a href="<%= alert_layer_path("authentication_layer") %>" rel="layer">authentication_layer</a> |
+  		<a href="<%= alert_layer_path("authentication_layer") %>" rel="layer">authentication_layer</a> |
   	  <a href="<%= alert_layer_path("registration_layer") %>" rel="layer">registration_layer</a> |
-  	  <a href="<%= alert_layer_path("registration_layer",:errors => "true") %>" rel="layer">registration_layer_errors</a> |
-  	  <a href="<%= alert_layer_path("share_mix_layer") %>" rel="layer">share_mix_layer</a> | 
-  	  <a href="/messenger_player/copy_mix_layer/3" content_switch_enabled="true">xhr_login_redirect</a>
+  		<a href="<%= alert_layer_path("registration_layer",:errors => "true") %>" rel="layer">registration_layer_errors</a> |
+      <a href="<%= alert_layer_path("opt_layer_locked") %>" rel="locked_layer">locked opt_in layer</a>
   		<!-- END Testing Layers -->
       
     </div>
