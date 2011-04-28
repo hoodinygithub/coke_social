@@ -35,7 +35,7 @@
   </div><!-- .columna_izq -->
   <div class="columna_der">
     <ul class="emociones">
-      <% current_site.tag_counts_from_playlists.each do|em| %>
+      <% current_site.tag_counts_from_playlists(10).each do|em| %>
         <li>
         <%= link_to em.name, messenger_search_emotions_path(:q => CGI::escape(em.name)), :class => 'link_rojo', :content_switch_enabled => true if em.taggings_count > 0%>
         </li>	
