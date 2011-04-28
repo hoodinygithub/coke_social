@@ -74,7 +74,7 @@
           <li class="estirar">
           <%= avatar_for(user, :small, :class => 'avatar',:alt=>user.name) %>
           <div class="datos">
-            <h3><%= link_to user.name, djs_details_path(user.id),  :class => "link_rojo" %></h3>
+            <h3><%= link_to user.name, djs_details_path(user.id),  :class => "link_rojo", :content_switch_enabled => true %></h3>
             <p><%= user.country.name %></p>
           </div>
           <div class="num_mixes"><strong><%= number_with_delimiter(user.total_playlists) %></strong> <%= t('coke_messenger.mixes').downcase %></div>
