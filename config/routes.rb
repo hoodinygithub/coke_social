@@ -167,6 +167,7 @@ ActionController::Routing::Routes.draw do |map|
     player.alert_layer '/alert_layer/:alert_type', :controller => 'messenger_player/layers', :action => 'alert_layer'
     player.copy_mix_layer '/copy_mix_layer/:id', :controller => 'messenger_player/layers', :action => 'messenger_copy'
     player.friends '/my_friends', :controller => 'playlists', :action => 'messenger_my_friends'
+    player.popup '/popup', :controller => 'pages', :action => 'messenger_popup'
   end
 
   map.resources :campaigns, :member => {:activate => :post, :deactivate => :post}

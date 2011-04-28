@@ -37,6 +37,10 @@ class PagesController < ApplicationController
     render 'coke_messenger/home', :layout => layout_unless_xhr('messenger')
   end
 
+  def messenger_popup
+    render 'coke_messenger/popup', :layout => false
+  end
+
   def messenger_djs
     @title = t('messenger_player.dj.title')
     @djs = current_site.top_djs.all(:limit => 50).sortable(
