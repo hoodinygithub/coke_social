@@ -111,7 +111,6 @@ class SessionsController < ApplicationController
     # unless wlid_web_login?
     email = params[:email].downcase if params[:email]
     account = User.authenticate(email, params[:password], current_site)
-    
     do_login(account, params[:remember_me])
     # end
   end
@@ -162,7 +161,16 @@ private
   def do_login(account, remember_me, p_render=true)
     if account.nil?
       flash[:error] = t("registration.login_failed")
-      redirect_to login_path
+      
+      if request.xhr?
+        @msg = "login_layer"
+        @error_msgs = "show error msgs"
+        login_layer = render_to_string '/messenger_player/layers/alert_layer'
+        render(:json => {:status => 'redirect', :html => login_layer}, :layout => false)
+      else
+        redirect_to login_path
+      end
+      
       false
     elsif account.kind_of?(Artist)
       flash[:error] = t("registration.artist_login_denied")
@@ -194,13 +202,28 @@ private
       flash[:google_code] = 'loginOK'
       flash.discard(:error)
 
-      redirect_back_or_default(home_path(:host => corrected_registration_host)) if p_render
+      if p_render
+        if request.xhr?
+          render :js => "window.location.reload()"
+        else
+          redirect_back_or_default(home_path(:host => corrected_registration_host))
+        end
+      end
       nil
     else
       # TODO: cross-network login
       flash[:error] = t("registration.cross_network_failed")
       #render :new, :layout => false if p_render
-      render :new if p_render
+      if p_render
+        if request.xhr?
+          @msg = "login_layer"
+          @error_msgs = "show error msgs"
+          login_layer = render_to_string '/messenger_player/layers/alert_layer'
+          render(:json => {:status => 'redirect', :html => login_layer}, :layout => false)
+        else
+          render :new
+        end
+      end
       false
     end
   end

@@ -8,21 +8,22 @@
         <div class="columna_izq">
           <h2><%= t('coke_messenger.layers.login_link_layer.login_using') %> <strong><%= t('coke_messenger.layers.login_link_layer.cokefm_account') %></strong></h2>
           <p><%= t('coke_messenger.layers.login_link_layer.login_msg') %></p>
-          <form class="f_acceso" action="#">
+          <% form_tag ssl_login_path, :class=> "f_acceso" do %>
             <label>
               <span><%= t('coke_messenger.layers.login_link_layer.email') %></span>
-              <input class="texto" type="text" />
+              <input class="texto" type="text" name="email" />
             </label>
             <label>
               <span><%= t('coke_messenger.layers.login_link_layer.password') %></span>
-              <input class="texto" type="text" />
+              <input class="texto" type="password" name="password" />
             </label>
 			      <label class="<%= class_name%>">
               <small class="txt_error">E-mail e/ou senha inv&aacute;lidos</small>
             </label>
+            
             <p><a class="link_rojob" href="#" title="<%= t('coke_messenger.layers.login_link_layer.forgot_pwd') %>"><%= t('coke_messenger.layers.login_link_layer.pwd_title') %></a></p>
             <input class="boton" type="submit" value="<%= t('coke_messenger.layers.login_link_layer.accept')%>" />
-          </form>
+          <% end %>
           <div class="fb_acceso">
             <p><%= t('coke_messenger.layers.login_link_layer.log_data_network') %></p>
             <div class="fb_api_boton">

@@ -12,6 +12,8 @@
       inited       : false,
       displayType  : "ajax",
       opacity      : 0.8,
+      dom_data     : null,  
+      dom          : null,
       skipOverlay  : false,
       loadingImage : '/images/loading_large.gif',
       imageTypesRegexp : new RegExp('\.' + [ 'png', 'jpg', 'jpeg', 'gif' ].join('|') + '$', 'i'),
@@ -100,8 +102,13 @@
     if ($.alert_layer.settings.displayType == "div") {
       var url    = window.location.href.split('#')[0]
       var target = href.replace(url,'')
+      
+      $.alert_layer.settings.dom = target;
+      $.alert_layer.settings.dom_data = $(target).children();
       $.alert_layer.settings.showLoader = false;
-      $.alert_layer.reveal($(target).clone().show())
+      
+      //$.alert_layer.reveal($(target).clone().show())
+      $.alert_layer.reveal($(target).children().show())
 
     // image
     } else if ($.alert_layer.settings.displayType == "image") {
@@ -158,7 +165,14 @@
       hideOverlay();
       $('#alert_layer .loading').remove();
     })
+    
+    if($.alert_layer.settings.dom){
+      $($.alert_layer.settings.dom).append($.alert_layer.settings.dom_data);
+      $.alert_layer.settings.dom = null;  
+      $.alert_layer.settings.dom_data = null;
+    }
   })
+  
 })(jQuery);
 
 jQuery(document).ready(function() {
@@ -169,6 +183,17 @@ jQuery(document).ready(function() {
     $(this).click(function() {
       wlwindow = window.open ("/mock_win_login","wl_window","toolbar=0,location=0,menubar=0,resizable=0,width=478,height=355");
       wlwindow.moveTo(23, 13);
+      return false;
+    })
+  });
+  
+  // Temporary to Mock Windows Login
+  jQuery('#alert_layer form').livequery(function() {
+    $(this).submit(function() {
+      $.post($(this).attr('action'), $(this).serialize(), function(data) { 
+        $('#alert_layer .aviso').empty();
+        $('#alert_layer .aviso').html(data.html);
+      });
       return false;
     })
   });
