@@ -16,7 +16,7 @@ class CampaignsController < ApplicationController
   end
   
   def show
-    return render :text => 'Campaign not active', :status => 405 unless @campaign.campaign_status.value == 'active'
+    return render(:text => 'Campaign not active', :status => 405) unless (@campaign.campaign_status.value == 'active')
     respond_to do |format|
       format.html { @campaign }
       format.xml  { render :xml => @campaign.attributes.merge!({"header-logo-file-path" => @campaign.header_logo_path}).to_xml(:root => "campaign") }
