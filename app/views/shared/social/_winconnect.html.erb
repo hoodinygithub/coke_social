@@ -2,7 +2,7 @@
   src = is_staging? ? "http://staging.login.hoodiny.com:8081/" : "http://login.cyloop.com:8081/"
   src += "winconnect_button/coke?host=#{current_site_url}"
 %>
-<%= content_tag(:iframe, nil, :frameborder=>"no", :framespacing => '0', :scrolling=>"no", :width=>"69", :height=>"22", :border => '0', :src=>src) %>
+<%= content_tag(:iframe, nil, :frameborder=>"no", :framespacing => '0', :scrolling=>"no", :width=>"63", :height=>"22", :border => '0', :src=>src) %>
 
 <% # I wish content_for :head worked here, but it doesn't (in the messenger tab). %>
 <%- javascript_tag do -%>
