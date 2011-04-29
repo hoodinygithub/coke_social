@@ -10,7 +10,8 @@
         <div class="columna_izq">
           <h2><%= t('coke_messenger.layers.login_link_layer.login_using') %> <strong><%= t('coke_messenger.layers.login_link_layer.cokefm_account') %></strong></h2>
           <p><%= t('coke_messenger.layers.login_link_layer.login_msg') %></p>
-          <% form_tag ssl_login_path, :class=> "f_acceso" do %>
+          <% #form_tag ssl_login_path, :class=> "f_acceso" do %>
+          <% form_tag session_path, :class=> "f_acceso" do %>
             <label>
               <span><%= t('coke_messenger.layers.login_link_layer.email') %></span>
               <input class="texto" type="text" name="email" />
