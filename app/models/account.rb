@@ -128,7 +128,7 @@ class Account < ActiveRecord::Base
   end
 
   has_many :followings_as_followee, :class_name => 'Following', :foreign_key => 'followee_id'
-  has_many :followers, :through => :followings_as_followee, :conditions => "accounts.type = 'User' AND accounts.network_id = 2 AND followings.approved_at IS NOT NULL", :source => :follower do
+  has_many :followers, :through => :followings_as_followee, :include => :networks, :conditions => "accounts.type = 'User' AND networks.id = 2 AND followings.approved_at IS NOT NULL", :source => :follower do
     def with_limit(limit=10)
       find(:all, :limit => limit)
     end
@@ -340,6 +340,12 @@ class Account < ActiveRecord::Base
     self.next_chat = profile_chats.find(:first, :order => "chat_date asc", :conditions => "status <> 'disabled'")
     !next_chat.nil? && next_chat.markets.include?(current_site.id.to_s)
   end
+
+  has_many :accounts_networks
+  has_many :networks, :through=>:accounts_networks, :readonly=>true, :uniq => true
+  # TODO: validate :networks :check_for_duplicate_network
+  #   because validates_uniqueness_of doesn't work with has_many_through models
+  #   without the validation, you get a MySQL error on the unique index if you attempt to add a duplicate
 
   class << self
 

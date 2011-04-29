@@ -91,7 +91,6 @@ class User < Account
 
   after_update :update_followings_with_partial_name
 
-  # default_scope :conditions => { :network_id => 2 }  
   has_one :bio, :autosave => true, :foreign_key => :account_id
   validates_associated :bio
 
@@ -135,7 +134,7 @@ class User < Account
     :conditions => (ApplicationController.current_site.id == 22 ? { :promo_id => nil } : nil)
 
   has_many :followings, :foreign_key => 'follower_id'
-  has_many :followees, :through => :followings, :conditions => "accounts.type = 'User' AND accounts.network_id = 2 AND followings.approved_at IS NOT NULL", :source => :followee do
+  has_many :followees, :through => :followings, :include => :networks, :conditions => "accounts.type = 'User' AND networks.id = 2 AND followings.approved_at IS NOT NULL", :source => :followee do
     def with_badge(badge, limit=9)
       badge = if badge.is_a?(BadgeAward)
         badge.badge_id
@@ -160,9 +159,6 @@ class User < Account
   has_many :messages
 
   belongs_to :entry_point, :class_name => 'Site', :foreign_key => 'entry_point_id'
-  #belongs_to :network
-  has_many :accounts_networks, :foreign_key => :account_id
-  has_many :networks, :through=>:accounts_networks, :readonly=>true, :uniq => true
   
   validates_presence_of :entry_point_id
   validates_presence_of :born_on_string
@@ -185,11 +181,10 @@ class User < Account
 
     if user.slug.to_s.blank?
       user.errors.add(:slug, I18n.t("activerecord.errors.messages.blank"))
-    end    
-    
+    end
+
     if user.errors.empty?
-      network_ids = current_site.networks.collect(&:id)
-      user = User.find_by_email_and_slug_and_deleted_at_and_network_id( attributes[:email], attributes[:slug], nil, network_ids )
+      user = User.find_by_email_and_slug_and_deleted_at( attributes[:email], attributes[:slug], nil )
     end
     user
   end
@@ -383,20 +378,6 @@ class User < Account
     if name_changed? or encrypted_name_changed?
       followings.update_all(:follower_name => self.name[0..2]) 
       followings_as_followee.update_all(:followee_name => self.name[0..2]) 
-    end
-  end
-
-
-  # deprecated.  Use find_by_email_with_exclusive_scope.  It supports additional find conditions.
-  def self.find_by_email_on_all_networks(email)
-    unless email.nil?
-      with_exclusive_scope do
-        encrypted_email = User.encrypt_email(email)
-        users = User.find_by_sql ["SELECT * FROM accounts WHERE type = 'User' AND (email = ? or encrypted_email = ?) AND deleted_at IS NULL", 
-          email, 
-          encrypted_email]
-        users.first
-      end
     end
   end
 

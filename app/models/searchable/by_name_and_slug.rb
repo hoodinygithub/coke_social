@@ -18,7 +18,7 @@ module Searchable::ByNameAndSlug
       named_scope :starts_with, lambda { |prefix| { :conditions => ["name LIKE ?", "#{prefix}%"] } }
 
       define_index do
-        where "deleted_at IS NULL and network_id = 2"
+        where "deleted_at IS NULL and networks.id = 2"
         indexes "UPPER(CAST(aes_decrypt(unhex(encrypted_name), '1710d78515ea0f308ed10f5edc0888ee2b893d4def678849b073b703cc678ac4') AS CHAR))", :as => :normalized_name, :sortable => true
         indexes :slug
         indexes :cached_tag_list
@@ -26,6 +26,7 @@ module Searchable::ByNameAndSlug
         set_property :enable_star => 1
         set_property :allow_star => 1
         has created_at
+        has networks(:id)
       end
     end
     base.extend ClassMethods

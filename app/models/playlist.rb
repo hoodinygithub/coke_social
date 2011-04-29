@@ -40,17 +40,17 @@ class Playlist < ActiveRecord::Base
   before_create :increment_owner_total_playlists
 
   belongs_to :site
-  belongs_to :owner, :class_name => 'User', :conditions => { :network_id => 2 }
-  delegate :network, :to => :owner
-    
+  belongs_to :owner, :class_name => 'User'
+  delegate :networks, :to => :owner
+
   has_many :items, :class_name => 'PlaylistItem', :conditions => "songs.deleted_at IS NULL AND accounts.deleted_at IS NULL", :order => "playlist_items.position ASC", :include => { :song => :artist }
   has_many :songs, :through => :items, :order => "playlist_items.position ASC", :include => :artist, :conditions => { :deleted_at => nil }
   has_one :editorial_station, :foreign_key => 'mix_id'
-  
+
   has_attached_file :avatar, :styles => { :album => "300x300#", :medium => "86x86#", :small => "60x60#", :large => "150x150#" }, :url => "/system/playlists/:sharded_id/:style/:basename.:extension", :path => ':rails_root/public/system/playlists/:sharded_id/:style/:basename.:extension'
   validates_attachment_content_type :avatar,
     :content_type => ["image/jpeg", "image/png", "image/gif", "image/pjpeg", "image/x-png"]
-      
+
   validates_presence_of :name
 
   has_many :playlist_copyings, :foreign_key => 'original_playlist_id'
@@ -59,18 +59,19 @@ class Playlist < ActiveRecord::Base
   has_one :copied_from, :through => :playlist_copying, :source => :original_playlist
 
   has_many :badge_awards
-  
+
   default_scope :conditions => { :deleted_at => nil }  
 
   define_index do
-    where "playlists.deleted_at IS NULL AND accounts.deleted_at IS NULL AND accounts.network_id = 2"
+    where "playlists.deleted_at IS NULL AND accounts.deleted_at IS NULL AND networks.id = 1"
     indexes :cached_tag_list
     indexes "UPPER(playlists.name)", :as => :normalized_name, :sortable => true
     indexes :cached_artist_list
     set_property :min_prefix_len => 1
     set_property :enable_star => 1
     set_property :allow_star => 1
-    has :created_at, :updated_at, owner(:network_id)
+    has :created_at, :updated_at, owner(:id)
+    has owner.networks(:id)
     has :total_plays, :as => :playlist_total_plays
     has :rating_cache, :as => :rating_cache
   end

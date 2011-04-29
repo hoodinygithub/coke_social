@@ -166,7 +166,7 @@ module Account::Authentication
   end
 
   def uniqueness_of_email
-    user_with_email = User.find_by_email_on_all_networks(email)
+    user_with_email = User.find_by_email_with_exclusive_scope(email, :first)
     if !user_with_email.nil? && user_with_email.id != id
       self.errors.add(:email, I18n.t("activerecord.errors.messages.taken"))
     end
@@ -210,9 +210,7 @@ module Account::Authentication
   module ClassMethods
 
     def authenticate(email, password, site)
-      # network_ids = site.networks.collect(&:id)
-      # u = find_by_email_and_deleted_at_and_network_id(email, nil, network_ids) 
-
+      # Find by email across all networks, ignoring default scopes.
       u = User.find_by_email_with_exclusive_scope(email, :first)
       u && u.authenticated?(password) ? u : nil
     end
