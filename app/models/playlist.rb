@@ -128,7 +128,7 @@ class Playlist < ActiveRecord::Base
     if self.avatar.path.nil?
       source_image = songs.first.album
       self.avatar = source_image.avatar
-      self.avatar.instance_write(:file_name, source_image.avatar_file_name)
+      self.avatar.instance_write(:file_name, source_image.avatar_file_name.split('fileName=')[1])
     end
     # self.avatar = songs.first.album.avatar if self.avatar.path.nil? 
   end
