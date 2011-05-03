@@ -124,6 +124,7 @@ class Playlist < ActiveRecord::Base
     unless songs.empty?
       self.cached_artist_list = all_artists.collect(&:name).join(', ')
     end
+    add_default_avatar_if_none_defined
   end
 
   def increment_owner_total_playlists
@@ -237,6 +238,15 @@ class Playlist < ActiveRecord::Base
 
   def promo_playlist?(p_promo_id = 1)
     promo_tags(p_promo_id).size > 0
+  end
+
+  # Add default avatar if non added
+  def add_default_avatar_if_none_defined
+    # SET DEFAULT IF NONE DEFINED
+    if avatar.path.nil?
+      logger.info "############################ SETTING DEFAULT #########################"
+      avatar = self.songs.first.album.avatar
+    end
   end
 
   # Default scopes with where conditions are evil.
