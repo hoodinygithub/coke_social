@@ -35,7 +35,7 @@ class Playlist < ActiveRecord::Base
   acts_as_commentable
   acts_as_rateable(:class => 'Comment', :as => 'commentable')
 
-  before_save :update_cached_artist_list
+  before_save :before_save_tasks
   # after_save :award_xmas_badges_playlist
   before_create :increment_owner_total_playlists
 
@@ -120,11 +120,12 @@ class Playlist < ActiveRecord::Base
     "/playlists/#{id}.xml"
   end  
 
-  def update_cached_artist_list
+  def before_save_tasks
     unless songs.empty?
       self.cached_artist_list = all_artists.collect(&:name).join(', ')
     end
-    add_default_avatar_if_none_defined
+
+    self.avatar = songs.first.album.avatar if self.avatar.path.nil? 
   end
 
   def increment_owner_total_playlists
@@ -243,7 +244,9 @@ class Playlist < ActiveRecord::Base
   # Add default avatar if non added
   def add_default_avatar_if_none_defined
     # SET DEFAULT IF NONE DEFINED
+    logger.info "############################ HIT #########################"
     if avatar.path.nil?
+      #raise "error" rescue logger.error $!.backtrace
       logger.info "############################ SETTING DEFAULT #########################"
       avatar = self.songs.first.album.avatar
       self.save
