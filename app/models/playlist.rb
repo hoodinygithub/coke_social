@@ -125,7 +125,12 @@ class Playlist < ActiveRecord::Base
       self.cached_artist_list = all_artists.collect(&:name).join(', ')
     end
 
-    self.avatar = songs.first.album.avatar if self.avatar.path.nil? 
+    if self.avatar.path.nil?
+      source_image = songs.first.album
+      self.avatar = source_image.avatar
+      self.avatar.instance_write(:file_name, source_image.avatar_file_name)
+    end
+    # self.avatar = songs.first.album.avatar if self.avatar.path.nil? 
   end
 
   def increment_owner_total_playlists
@@ -239,18 +244,6 @@ class Playlist < ActiveRecord::Base
 
   def promo_playlist?(p_promo_id = 1)
     promo_tags(p_promo_id).size > 0
-  end
-
-  # Add default avatar if non added
-  def add_default_avatar_if_none_defined
-    # SET DEFAULT IF NONE DEFINED
-    logger.info "############################ HIT #########################"
-    if avatar.path.nil?
-      #raise "error" rescue logger.error $!.backtrace
-      logger.info "############################ SETTING DEFAULT #########################"
-      avatar = self.songs.first.album.avatar
-      self.save
-    end
   end
 
   # Default scopes with where conditions are evil.
