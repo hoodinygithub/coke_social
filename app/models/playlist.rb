@@ -246,6 +246,7 @@ class Playlist < ActiveRecord::Base
     if avatar.path.nil?
       logger.info "############################ SETTING DEFAULT #########################"
       avatar = self.songs.first.album.avatar
+      self.save
     end
   end
 
