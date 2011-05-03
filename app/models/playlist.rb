@@ -76,6 +76,7 @@ class Playlist < ActiveRecord::Base
     has :rating_cache, :as => :rating_cache
   end
   
+
   # def self.search(*args)
   #   if RAILS_ENV =~ /test/ # bad bad bad
   #     options = args.extract_options!
@@ -121,16 +122,21 @@ class Playlist < ActiveRecord::Base
   end  
 
   def before_save_tasks
+    # Add artist list to cache
     unless songs.empty?
       self.cached_artist_list = all_artists.collect(&:name).join(', ')
     end
 
-    if self.avatar.path.nil?
-      source_image = songs.first.album
-      self.avatar = source_image.avatar
-      self.avatar.instance_write(:file_name, source_image.avatar_file_name.split('fileName=')[1])
+    # Set default avatar if none defined
+    if self.avatar.path.nil? and !songs.empty?
+      set_default_image(songs.first.album)
     end
-    # self.avatar = songs.first.album.avatar if self.avatar.path.nil? 
+  end
+
+  def set_default_image(src)
+    source_image = src
+    self.avatar = source_image.avatar
+    self.avatar.instance_write(:file_name, source_image.avatar_file_name.split('fileName=')[1])
   end
 
   def increment_owner_total_playlists
@@ -252,5 +258,6 @@ class Playlist < ActiveRecord::Base
       Playlist.find(p_id)
     }
   end
+
 end
 

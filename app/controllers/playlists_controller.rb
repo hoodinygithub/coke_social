@@ -151,6 +151,10 @@ class PlaylistsController < ApplicationController
                 song = @playlist_item_ids.select{ |s| s && s.id.equal?(item.to_i) }.first rescue nil
                 @playlist.items.create(:song => song, :artist_id => song.artist_id, :position => index + 1) if song
               end
+              
+              # If no avatar is defined set the default avatar
+              @playlist.set_default_image(@playlist.items[0].song.album) unless params[:avatar] 
+
               @playlist.update_tags(params[:tags].downcase.split(','))
               @playlist.create_station
               current_user.increment!(:total_playlists);
