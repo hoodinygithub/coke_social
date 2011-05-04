@@ -158,6 +158,7 @@ Base.Station = {
 
 Base.Player = {
 
+  _init:true,
   ready: function()
   {
     if (pl.length > 0) Base.Station.request(pl[Math.round(Math.random() * (pl.length - 1))], 'xml', Base.Station.stationCollection);
@@ -218,7 +219,16 @@ Base.Player = {
   {
     if (this._player == 'coke')
     {
-      this.service().pauseStream(this.isPlaying());
+    // if (pl.length > 0) 
+      if (this._init)
+      {
+        this.stream(this._playlist[this.index]);
+        this._init = false;
+      }
+      else
+      {
+        this.service().pauseStream(this.isPlaying());
+      }
     }
     else if (this._player == 'goom')
     {
@@ -290,7 +300,10 @@ Base.Player = {
     this.index = 0;
     this._playlist = bean;
     this.service().setStation({sid: Base.Station._station.sid, owner: Base.Station._station.owner, songCount: Base.Station._station.songCount});
-    this.stream(this._playlist[this.index]);
+    if (this._init) 
+      Base.UI.render(this._playlist[this.index])
+    else
+      this.stream(this._playlist[this.index]);
   }
 
 };
