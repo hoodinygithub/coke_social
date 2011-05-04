@@ -135,8 +135,9 @@ class Playlist < ActiveRecord::Base
 
   def set_default_image(src)
     source_image = src
+    source_filename = source_image.avatar_file_name.split('fileName=')[1]
     self.avatar = source_image.avatar
-    self.avatar.instance_write(:file_name, source_image.avatar_file_name.split('fileName=')[1])
+    self.avatar.instance_write(:file_name, source_filename)
   end
 
   def increment_owner_total_playlists
