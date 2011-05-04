@@ -160,7 +160,7 @@ Base.Player = {
 
   ready: function()
   {
-    Base.Station.request(pl[Math.round(Math.random() * (pl.length - 1))], 'xml', Base.Station.stationCollection);
+    if (pl.length > 0) Base.Station.request(pl[Math.round(Math.random() * (pl.length - 1))], 'xml', Base.Station.stationCollection);
   },
 
   _player: "",
@@ -409,7 +409,7 @@ Base.UI = {
     {
       $('.btn_envivo').addClass('activo');
       $('.btn_envivo').unbind('click');
-      Base.Player.service().playStream(4242705);
+      Base.Player.service().playRadio(4242705);
 
       /*****************************************/
       _gaq.push(['_trackPageview', 'goomradio']); // Virtual Pageview
