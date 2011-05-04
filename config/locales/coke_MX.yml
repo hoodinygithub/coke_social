@@ -333,7 +333,7 @@ coke_MX:
     save: Guardar
     forgot_password: "\xC2\xBFOlvidaste la contrase\xC3\xB1a?"
     unfollow: Siguiendo
-    play: Reproducir
+    play: Play
     share_station: "Compartir esta estaci\xC3\xB3n de radio con un amigo"
     pending: Pendientes
     disaprove: Rechazar
@@ -419,7 +419,7 @@ coke_MX:
       title: Enviar a un amigo
       message: Mensaje
       friend: El mail de tu amigo
-      email: Tu mail
+      email: Tu Email
     edit_station: "Para editar esta estaci\xC3\xB3n,"
     station: 
       name: "Nombre de la estaci\xC3\xB3n de radio"
@@ -436,7 +436,7 @@ coke_MX:
     take_a_moment: "T\xC3\xB3mate unos segundos para activar tu cuenta de Coca-Cola.fm"
     msn_stations: Estaciones de radio de Coca-Cola.fm
     registration: 
-      success: "\xC2\xA1Felicidades! Ya est\xC3\xA1s registrado."
+      success: "\xC2\xA1Felicidades! Ya est\xC3\xA1s registrado"
       email: "Tu direcci\xC3\xB3n de mail"
     to_login: para ingresar
     activate_your_account: Activa tu cuenta de Coca-Cola.fm
@@ -448,7 +448,7 @@ coke_MX:
     station_edit_success: "El nombre de la estaci\xC3\xB3n de radio ha sido actualizado"
     recengineerror_NO_PLAYLIST: No se pudo encontrar un mix
     now_playing: Tocando ahora
-    msn_music_is_free: Coca-Cola.fm es gratis.
+    msn_music_is_free: Coca-Cola.fm es gratis
     view_your_stations: "Para ver tus estaciones de radio, "
     continue: Continuar
     still_dont_have: "\xC2\xBFA\xC3\xBAn no tienes una cuenta de Coca-Cola.fm?"
@@ -1339,7 +1339,7 @@ coke_MX:
     albums: "\xC3\x81lbumes"
     my: Mi
     created_at: Creada hace {{when}}
-    play: Reproducir
+    play: Play
     followers: Seguidores
     people: Gente
     playlists: Mixes
@@ -1465,10 +1465,10 @@ coke_MX:
     start_date_gt_end_date: "La fecha de inicio debe ser anterior a la fecha de t\xC3\xA9rmino"
     updated_success: "Campa\xC3\xB1a actualizada con \xC3\xA9xito"
   coke_messenger: 
-    play: Reproducir
+    play: Play
     follow_the_author: Follow
+    rating: "Calificaci\xC3\xB3n"
     mix_page_blank_desc: ""
-    rating: votados
     order_filter: 
       rating: "Los m\xC3\xA1s votados"
       popularity: "Los m\xC3\xA1s populares "
@@ -1480,51 +1480,51 @@ coke_MX:
     my_mixes: MIS MIXES
     messenger_home: 
       emotions: "EMOCIONES "
-      title: ""
-      recent_mixes: Recientes Mixes
+      title: Home
+      recent_mixes: ULTIMOS MIXES
+    dj_mix_detail: 
+      mixes_of_dj: Mixes de {{dj_name}} DJ
     emotions: 
       title: "CokeFM Messenger : Emociones"
       no_results: "Tu b\xC3\xBAsqueda no ha producido resultados"
       tab_title: ""
-    dj_mix_detail: 
-      mixes_of_dj: Mixes de {{dj_name}} DJ
     djs: DJs
     unfollow_the_author: Unfollow
     my_mixes_view_profile: "Ver perfil "
     my_friends: AMIGOS
     layers: 
       opt_layer_view: 
-        dj_create_mix: ""
-        comment: ""
-        find_music: ""
+        dj_create_mix: If you would like to become a DJ, create your own mixes here, adding the songs you want to share multiple radios online.
+        comment: use the comments and scores to comment on the musical tastes of your friends and their mixes.
+        find_music: Find out in real time what they are hearing, and collect or listen to songs you like best for streaming.
         friends: Amigos
         terms_of_use: "T\xC3\xA9rminos y condiciones "
         and: y
+        describe: which describe how your personal data will be used.
         welcome: "Bienvenido a Coca-Cola.fm "
-        describe: ""
-        close: ""
         coke_fm: Coca-Cola.fm
+        close: cerrar
+        put_work: Put your skills to work
         roger: ""
-        put_work: ""
-        text_info: ""
-        radio_stations: ""
+        text_info: which describe how your personal data will be used.
+        radio_stations: our recommendation system creates radio stations tailored specifically to your needs with all your favorite artists.
         create_mix: Crear un Mix
-        recommendations: ""
-        follow: ""
+        recommendations: Recommendations
+        follow: Follow your friends
         cyloop: "Ya formas parte de la red de Cyloop. Lo \xC3\xBAnico que necesitas es aceptar los t\xC3\xA9rminos y condiciones de Coca-Cola FM para que importemos la informaci\xC3\xB3n de tu perfil"
-        badgets: ""
+        badgets: Earn badges
         cyloop_privacy: "Al hacer clic en este casillero est\xC3\xA1s confirmando que sabes que Coca-Cola.fm es un sitio web operado por Hoodiny Entertainment Group en los Estados Unidos, y est\xC3\xA1s otorgando tu consentimiento de transferir todos tus datos personales a los Estados Unidos, donde tus datos personales estar\xC3\xA1n sujetos a las leyes de los Estados Unidos y donde el nivel de protecci\xC3\xB3n de datos es diferente en comparaci\xC3\xB3n con el de tu pa\xC3\xADs. Tambi\xC3\xA9n confirmas estar de acuerdo con los T\xC3\xA9rminos de uso y la Pol\xC3\xADtica de privacidad de Coca-Cola.fm, la cual describe c\xC3\xB3mo ser\xC3\xA1n usados tus datos personales."
-        user_name: Hola {{user_name}}
         view: Ver
+        user_name: Hola {{user_name}}
         privacy: "Pol\xC3\xADtica de privacidad"
-        thats_it: ""
+        thats_it: That's it!
         reasons: "Razones para unirte a Coca-Cola.fm "
-        create: crear
+        create: Crear
         privacy_policy: "Pol\xC3\xADtica de privacidad"
         terms: "T\xC3\xA9rminos y condiciones "
         login: Login
-        discover: ""
-        click_follow: ""
+        discover: Discover music with friends
+        click_follow: With just one click, begin to follow your friends to be aware of their activities on Twitter and other news.
       authentication_layer: 
         close: cerrar
         coke_fm: coca-cola.fm/
@@ -1542,13 +1542,13 @@ coke_MX:
         login_msg: "\xC2\xA1Casi has terminado! Escribe tu e-mail de Coca-Cola Fm y tu contrase\xC3\xB1a y enlazaremos Messenger Connect con tu cuenta de Coca-Cola FM"
         register: "REG\xC3\x8DSTRATE"
         login_using: Login utilizando
-        forgot_pwd: "\xC2\xBFHas olvidado tu contrase\xC3\xB1a? "
         reg_free: "Si no tienes cuenta "
+        forgot_pwd: "\xC2\xBFHas olvidado tu contrase\xC3\xB1a? "
         follow: "Sigue a tus artistas favoritos y descubre m\xC3\xBAsica a trav\xC3\xA9s de amigos de manera gratuita y online."
         cokefm_account: cuenta de Coca-Cola.fm
         password: "Contrase\xC3\xB1a"
-        login: login
         login_fm: "Iniciar sesi\xC3\xB3n"
+        login: login
         register_free: "Reg\xC3\xADstrate gratis"
         email: "Email:"
       max_skip_layer: 
@@ -1559,90 +1559,90 @@ coke_MX:
         close: Cerrar
         license_msg: "Lo sentimos\xE2\x80\xA6 Nuestras licencias requieren que los mixes creados por ti contengan por lo menos 60 canciones, para que t\xC3\xBA puedas escucharlos tambi\xC3\xA9n. Si tu mix contiene menos de 60 canciones, tus amigos podr\xC3\xA1n escuchar las canciones completas, pero t\xC3\xBA solamente podr\xC3\xA1s oir 30 segundos de cada canci\xC3\xB3n. Por supuesto, t\xC3\xBA puedes escuchar los mixes y canciones de tus amigos en forma completa, tengan el n\xC3\xBAmero de canciones que tengan."
       registration_form_view: 
-        sign_up: ""
-        dj_create_mix: ""
+        sign_up: Sign up to
+        dj_create_mix: If you would like to become a DJ, create your own mixes here, adding the songs you want to share multiple radios online.
         share: "(Tu direcci\xC3\xB3n para que puedas envi\xC3\xA1rsela a tus amigos)"
-        comment: ""
-        find_music: ""
+        comment: use the comments and scores to comment on the musical tastes of your friends and their mixes.
+        find_music: Find out in real time what they are hearing, and collect or listen to songs you like best for streaming.
         friends: Amigos
         dob: "Fecha de nacimiento "
         accept: ""
-        close: ""
+        close: cerrar
         coke_fm: Coca-Cola.fm
-        profile: ""
+        profile: Profile name
         register: "Reg\xC3\xADstrate "
-        your_name: ""
+        your_name: "Tu nombre:"
         female: Mujer
-        put_work: ""
-        way_coke: "Casi has terminado. Escribe tu e-mail de Coca-Cola Fm y tu contrase\xC3\xB1a y enlazaremos Messenger Connect con tu cuenta de Coca-Cola FM"
+        put_work: Put your skills to work
+        way_coke: Casi has terminado. Completa tu registro y disfruta de Coca-Cola.fm
         email_error: E-mail is unauthorized
-        radio_stations: ""
+        radio_stations: our recommendation system creates radio stations tailored specifically to your needs with all your favorite artists.
         create_mix: "Crear Mix "
         coke: coca-cola.fm/
-        recommendations: ""
+        recommendations: Recommendations
         follow: Sigue a tus amigos
         male: "Hombre "
-        badgets: ""
-        profile_reserve: ""
+        badgets: Earn badges
+        profile_reserve: Profile name is reserved
         terms_privacy: Accept Terms and Conditions and Privacy Policy
-        age_limit: ""
+        age_limit: You must be at least 13 years to use this site
         view: Ver
-        thats_it: ""
-        reasons: Razones para unirte
-        create: crea
-        name_error: ""
-        you: ""
-        discover: ""
-        click_follow: ""
+        thats_it: That's it!
+        reasons: Razones para unirte a Coca-Cola.fm
+        create: Registrarme
+        name_error: Name can not be left blank
+        you: "You are:"
+        discover: Discover music with friends
+        click_follow: With just one click, begin to follow your friends to be aware of their activities on Twitter and other news.
         email: "Direcci\xC3\xB3n de email"
       share_mix_layer: 
         name: "Nombre:"
         share: Compartir Por
-        name_blank: ""
+        name_blank: Name field cannot be blank
         invalid_email: "Este \xC3\xA9 um formato de e-mail inv\xC3\xA1lido. Por favor use ###@###.com "
         msg: "Mensaje:"
-        close: ""
-        social_net: redes sociales
+        close: Cerrar
+        social_net: Red Social
         share_tw: Compartir en Twitter
-        time_out_error: ""
+        time_out_error: Sorry! some thing went wrong. Our technical team is already working on it to resolve this issue
         invalid_msg: "No se permite incorporar el c\xC3\xB3digo como embed en la caja de texto "
-        seperate: ""
+        seperate: Enter details of the recipients separated by comma (,)
         share_mix: Compartir Mix
         share_fb: Compartir en Facebook
         send: "ENVIAR "
         facebook: Facebook
-        email_blank: ""
+        email_blank: Email field cannot be blank
         twitter: Twitter
         email_to: "Email:"
-        email: email
+        email: Email
       copy_mix_layer: 
         cancel: Cancelar
         info: ""
         new_mix_name: Nombre del nuevo mix
     mixes_tab: 
-      title: "CokeFM Messenger : MIXES"
+      title: "CokeFM Messenger : Mixes"
       tab_title: MIXES
     my_friends_tab: 
-      play: Reproducir
-      follow_the_author: seguir autor
-      view_more: "Ver M\xC3\xA1s"
-      easy: ""
-      follow: ""
-      dnt_hav_frnds: ""
-      latest: ""
+      play: Play
+      follow_the_author: Follow
+      view_more: "Ver m\xC3\xA1s"
+      easy: Do not worry, it's easy. Mix in the listings click on the icon
+      follow: to follow your favorite DJs
+      dnt_hav_frnds: Do not have any friends?
+      latest: Ultimos Mixes de mis amigos
     info: Info
-    default_messenger_title: "CokeFM Messenger :"
     registration: 
       layers: 
-        follow_user: ""
-        my_mixes: ""
-        generic: Por favor ingresa para Coca-Cola.fm.
-        my_friends: ""
-        follow_user_details: ""
-        copy_mix: ""
+        follow_user: To follow and find out what a user is listening to, log in to Coca-Cola.fm.
+        my_mixes: To access your mixes, log in to Coca-Cola.fm
+        generic: Por favor ingresa a Coca-Cola.fm.
+        my_friends: To hear what your friends have been listening to, log in to Coca-Cola.fm.
+        follow_user_details: To follow {{slug}} and find out what {{gender}} is listening to, log in to Coca-Cola.fm.
+        copy_mix: To copy this mix, log in to Coca-Cola.fm.
         share_mix: Para compartir un mix con tus amigos es necesario estar registrado en Coca-Cola.fm
         max_plays: "Esperamos que te hayan gustado las canciones que escuchaste. Para escuchar m\xC3\xA1s es necesario estar registrado en Coca-Cola.fm"
-        error: ""
+        error: An error has occured, please try again.
+    default_messenger_title: "CokeFM Messenger :"
     create_mix: Crear Mix
     dj: 
       follow_the_author: Follow
@@ -1662,19 +1662,19 @@ coke_MX:
     share_mix: Share Mix
     mix_page_blank: No Mixes
     home: INICIO
-    my_mixes_mixes_count: ""
-    play_hover: Reproducir
+    my_mixes_mixes_count: Canciones
+    play_hover: Play
     live_radio: Live radio
     mixes: MIXES
     search: 
       results: Resultados
-      title: "CokeFM Messenger: b\xC3\xBAsqueda "
+      title: "CokeFM Messenger: B\xC3\xBAsqueda "
       no_results: "Tu b\xC3\xBAsqueda no ha producido resultados"
       tab_title: "Resultados de la b\xC3\xBAsqueda "
       users: Usuarios
   search: 
-    search_results: "Resultados de b\xC3\xBAsqueda"
     messenger_search_hint: Busca amigos o mixes
+    search_results: "Resultados de b\xC3\xBAsqueda"
     search_hint: Busca tus mixes y amigos favoritos
     see_all_albums_with_term: "ver todos los \xC3\xA1lbumes con \"{{term}}\""
     content_search_hint: "Escribe el nombre de un artista, un \xC3\xA1lbum, o una canci\xC3\xB3n"
