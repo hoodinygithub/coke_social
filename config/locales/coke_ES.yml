@@ -84,8 +84,8 @@ coke_ES:
     cancel: Cancelar
     alphabetical: "ALFAB\xC3\x89TICO"
     delete: Borrar
-    listen: escuchar
     unfollow_account: Dejar de seguir a {{name}}
+    listen: escuchar
     select_store: Seleccionar Tienda
     add_more: "Agregar m\xC3\xA1s"
     add_into_a_new_playlist: Agregar en un nuevo mix
@@ -578,7 +578,7 @@ coke_ES:
       no_results: Tu busqueda no ha producido resultados.
       tab_title: ""
     dj_mix_detail: 
-      mixes_of_dj: MIXES OF {{dj_name}} DJ
+      mixes_of_dj: Mixes de {{dj_name}} DJ
     djs: DJs
     unfollow_the_author: Unfollow
     my_mixes_view_profile: Ver perfil
@@ -617,13 +617,13 @@ coke_ES:
         discover: ""
         click_follow: ""
       authentication_layer: 
-        close: ""
         coke_fm: coca-cola.fm/
-        nickname: ""
-        forgot_pwd: ""
-        not_left: ""
+        close: cerrar
+        nickname: "Tu apodo:"
+        forgot_pwd: "\xC2\xBFHas olvidado tu contrase\xC3\xB1a?"
+        not_left: Do not be left out! Fill out this form and coca-cola.fm send you instructions to mail registered to your account.
         instructions: ""
-        email: ""
+        email: "Direcci\xC3\xB3n de e-mail"
       login_link_layer: 
         sign_up: "Reg\xC3\xADstrate"
         pwd_title: "\xC2\xBFHas olvidado tu contrase\xC3\xB1a?"
@@ -633,13 +633,13 @@ coke_ES:
         login_msg: "Casi has terminado. Escribe tu e-mail de Coca-Cola Fm y tu contrase\xC3\xB1a y enlazaremos Messenger Connect con tu cuenta de Coca-Cola FM"
         register: "REG\xC3\x8DSTRATE"
         login_using: Login utilizando
-        forgot_pwd: "\xC2\xBFHas olvidado tu contrase\xC3\xB1a?"
         reg_free: "Si no tienes cuenta "
+        forgot_pwd: "\xC2\xBFHas olvidado tu contrase\xC3\xB1a?"
         follow: "Sigue a tus artistas favoritos y descubre m\xC3\xBAsica a trav\xC3\xA9s de amigos de manera gratuita y online."
         cokefm_account: cuenta de Coca-Cola.fm
         password: "Contrase\xC3\xB1a:"
-        login: Ingresa
         login_fm: "Iniciar sesi\xC3\xB3n"
+        login: login
         register_free: "Reg\xC3\xADstrate gratis"
         email: "Email:"
       max_skip_layer: 
@@ -647,7 +647,7 @@ coke_ES:
         max_skip_msg: Desafortunadamente las licencias de musica que utilizamos limitan la cantidad de veces que puedes saltear una cancion cada hora. para escuchar algo diferente, intenta crear otras estaciones de radio usando un artista distinto.
       license_layer: 
         sorry: "Lo sentimos\xE2\x80\xA6"
-        close: ""
+        close: Cerrar
         license_msg: "Lo sentimos\xE2\x80\xA6 Nuestras licencias requieren que los mixes creados por ti contengan por lo menos 60 canciones, para que t\xC3\xBA puedas escucharlos tambi\xC3\xA9n. Si tu mix contiene menos de 60 canciones, tus amigos podr\xC3\xA1n escuchar las canciones completas, pero t\xC3\xBA solamente podr\xC3\xA1s oir 30 segundos de cada canci\xC3\xB3n. Por supuesto, t\xC3\xBA puedes escuchar los mixes y canciones de tus amigos en forma completa, tengan el n\xC3\xBAmero de canciones que tengan."
       registration_form_view: 
         sign_up: ""
@@ -710,7 +710,7 @@ coke_ES:
       copy_mix_layer: 
         cancel: Cancelar
         info: ""
-        new_mix_name: ""
+        new_mix_name: Nombre del nuevo mix
     mixes_tab: 
       title: "CokeFM Messenger : Mixes"
       tab_title: MIXES
@@ -739,24 +739,24 @@ coke_ES:
     create_mix: Crear Mix
     dj: 
       follow_the_author: Follow
-      title: coke_messenger.dj.title
+      title: "CokeFM Messenger : DJs"
       tab_title: DJ's
       sort_by_popularity: "Los m\xC3\xA1s populares"
     email_share: 
       body: 
-        click_here: ""
-        friends: latam_Your friends
+        click_here: "Pulsa aqu\xC3\xAD para escucharlo"
+        friends: Tus amigos de,
         coke_fm: Coca-Cola.fm
-        hello: ""
-        share_mix: ""
-      subject: ""
+        hello: Hola,
+        share_mix: quiere compartir contigo un mix en Coca-Cola.fm
+      subject: "{{user}} quiere compartir contigo su m\xC3\xBAsica en Coca-Cola.fm"
     copy_mix: Copiar Mix
     greeting: Hola
     share_mix: Compartir Mix
     mix_page_blank: " No Mixes"
     home: INICIO
     my_mixes_mixes_count: Canciones
-    play_hover: Reproducir
+    play_hover: Play
     live_radio: Live radio
     mixes: MIXES
     search: 
@@ -1571,13 +1571,12 @@ coke_ES:
     charts: Tablas
     song: "Canci\xC3\xB3n"
     message: Mensaje
-    artist_name: Nombre del artista
+    tags: Etiquetas
     unknown: Desconocido
     message_sent: Tu mensaje se ha enviado.
-    tags: Etiquetas
+    artist_name: Nombre del artista
     artist: Artista
     plays: Reproducciones
-    done: Listo
     click_to_follow: Clic {{follow_link}} para seguir a
     more: !binary |
       TcOhcw==
@@ -1585,6 +1584,7 @@ coke_ES:
     and_more: "y m\xC3\xA1s..."
     followers_of: Seguidores de
     last_modified_at: "\xC3\x9Altima modificaci\xC3\xB3n hace {{when}}"
+    done: Listo
     created_on: Creada el
     chart: Tabla
     follow_requests: Peticiones de seguir
@@ -1639,10 +1639,10 @@ coke_ES:
     me: mi
     person: Persona
     albums_by: "\xC3\x81lbumes por"
+    "no": "No"
     followees: Personas con seguidores
     comments: Comentarios
     songs: Canciones
-    "no": "No"
   users: 
     new: 
       step_1_vignette_get_music_recommendations: "Recibe recomendaciones de m\xC3\xBAsica elegida especialmente para ti"
