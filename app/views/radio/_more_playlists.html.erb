@@ -1,4 +1,4 @@
-<% playlists = current_playlist.kind_of? (Array) ? current_playlist : current_playlist.playable.owner.playlists.latest(20) %>
+<% playlists = current_playlist.kind_of?(Array) ? current_playlist : current_playlist.playable.owner.playlists.latest(20) %>
 <% playlists.each do |playlist| %>
   <div class="radio_station_row">
     <%= link_to avatar_for(playlist, :small, 
