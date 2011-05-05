@@ -25,7 +25,7 @@ class PagesController < ApplicationController
       # The owner is for dj owner details.
       #
       # Sometimes this result is too big to fit in MemCached (1MB per key limit), which is bad.  Might need to reduce the limit.
-      current_site.playlists.all(:limit => 50, :order => 'last_played_at DESC', :include => [:owner, {:songs => :album}] ).sortable(
+      current_site.playlists.all(:limit => 50, :order => 'last_played_at DESC', :include => :owner).sortable(
         :mixes,
         [:popularity, :total_plays],
         [:rating, :rating_cache],
