@@ -55,7 +55,7 @@
                   proxyFrame.style.visibility = "hidden";
                   proxyFrame.style.position = "absolute";
                   proxyFrame.style.top = proxyFrame.style.left = proxyFrame.style.width = proxyFrame.style.height = "0";
-                  proxyFrame.src = "<%= ssl_host %>proxyframe_alertlayer.html?layer=<%= alert_layer_path('registration_layer') %>";
+                  proxyFrame.src = "<%= ssl_host %>/proxyframe_alertlayer.html?layer=<%= alert_layer_path('registration_layer') %>";
                   document.body.appendChild(proxyFrame);
                 } else {
                   alert("Register layer should be in a secure IFRAME.");

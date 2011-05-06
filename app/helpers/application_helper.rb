@@ -42,7 +42,7 @@ module ApplicationHelper
 
   def ssl_host
     if env_dev?
-      "http://coca-cola.fm:3000/"
+      "http://coca-cola.fm:3000"
     else
       "https://#{current_site.ssl_domain}"
     end
