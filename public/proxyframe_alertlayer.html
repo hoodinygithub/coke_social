@@ -1,0 +1,24 @@
+<html>
+	<head>
+		<script type="text/javascript">
+			function onLoad() {
+				var layer = "/";
+				var a = location.search.substring(1).split('&');
+				for (i = 0; i < a.length; i++) {
+					p = a[i].split('=');
+					if (p.length === 2 && p[0] === "layer") {
+						layer = p[1];
+					}
+				}
+				layer = layer + "?iframe=true";
+
+				if (parent && parent.parent) {
+					parent.parent.$.alert_layer(layer)
+				}
+			};
+		</script>
+	</head>
+	<body onload="onLoad();">
+	</body>
+</html>
+
