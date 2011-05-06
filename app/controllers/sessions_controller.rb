@@ -52,7 +52,7 @@ class SessionsController < ApplicationController
       #  If the WindowsConnect button was on the SSL domain, need to specify that URL as the callback.
       #callback = (flash[:redirected_from] and flash[:redirected_from]["https"]) ? "https://#{current_site.ssl_domain}" : current_site_url
       #flash.discard(:eedirected_from)
-      callback = IS_STAGING ? 'http://staging.login.hoodiny.com:8081/coke' : 'http://login.cyloop.com:8081/coke'
+      callback = ENV_STAGING ? 'http://staging.login.hoodiny.com:8081/coke' : 'http://login.cyloop.com:8081/coke'
       callback += new_session_path
       user = WindowsConnect.parse_verification_code(params[:wrap_verification_code], callback, cookies, params[:wrap_client_state], params[:exp])
       
@@ -114,7 +114,7 @@ class SessionsController < ApplicationController
       result = { :logged_in => false }
     end
     
-    result[:sso_user] = session.has_key? :sso_user
+    result[:sso_user] = (session.has_key?(:sso_user) and !session[:sso_user].new_record?)
     result[:sso_opt_in] = session.has_key? :sso_opt_in
     
     respond_to do |format|

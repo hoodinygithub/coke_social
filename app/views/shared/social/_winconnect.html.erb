@@ -1,5 +1,5 @@
 <%
-  src = is_staging? ? "http://staging.login.hoodiny.com:8081/" : "http://login.cyloop.com:8081/"
+  src = env_staging? ? "http://staging.login.hoodiny.com:8081/" : "http://login.cyloop.com:8081/"
   src += "winconnect_button/coke?host=#{current_site_url}"
 %>
 <%= content_tag(:iframe, nil, :frameborder=>"no", :framespacing => '0', :scrolling=>"no", :width=>"67", :height=>"20", :border => '0', :src=>src) %>
@@ -19,11 +19,11 @@
           } else {
             if (response.sso_user) {
               //alert('Loggin in - found sso_user')
-              $.alert_layer('/messenger_player/alert_layer/login_layer')
+              $.alert_layer('/messenger_player/alert_layer/login_layer?iframe=true')
             }
             else {
               //alert('Registering - no sso_user found')
-              $.alert_layer('/messenger_player/alert_layer/registration_layer')
+              $.alert_layer('/messenger_player/alert_layer/registration_layer?iframe=true')
             }
           }
         },

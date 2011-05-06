@@ -5,6 +5,10 @@ class MessengerPlayer::LayersController < ApplicationController
   def alert_layer
     alert_type = (params[:alert_type] =~ /(max_plays|share_mix|copy_mix|follow_user|my_friends|my_mixes|max_skips|login_layer|license_message|opt_layer|authentication_layer|registration_layer|error|opt_layer_locked)/i) ? params[:alert_type].to_s : "generic"
 
+    layout = params[:layout]
+    # The value doesn't matter.  Just care if it's set.
+    iframe = !params[:iframe].nil?
+
     @orig_msg = true
     @ga_tracking_id = case alert_type
     when "max_plays"
@@ -67,6 +71,13 @@ class MessengerPlayer::LayersController < ApplicationController
     end
     
     @alert_text = t('coke_messenger.registration.layers.' + alert_type) unless @alert_text
+
+    if iframe
+      @iframe_src = request.path
+      render :iframe_layer
+    elsif layout
+      render :layout => layout
+    end
   end
   
   def messenger_copy
@@ -74,5 +85,5 @@ class MessengerPlayer::LayersController < ApplicationController
     @playlist = Playlist.find(params[:id])
   end
 
-
 end
+

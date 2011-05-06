@@ -505,7 +505,8 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  IS_STAGING = (ENV['RAILS_ENV'] =~ /staging/)
+  ENV_STAGING = (ENV['RAILS_ENV'] =~ /staging/i)
+  ENV_DEV = (ENV['RAILS_ENV'] =~ /development/i)
 
   # We logged you in, but you haven't accepted the terms of the current network.
   # Until you do, anywhere you go, you'll be redirected.

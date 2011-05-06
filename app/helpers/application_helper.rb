@@ -36,7 +36,15 @@ module ApplicationHelper
     elsif request.host =~ /localhost/ or request.port == 3000
       "http://#{request.host}:#{request.port}#{session_path}"
     else
-      "https://#{current_site.ssl_domain}#{session_path}"
+      "#{ssl_host}#{session_path}"
+    end
+  end
+
+  def ssl_host
+    if env_dev?
+      "http://coca-cola.fm:3000/"
+    else
+      "https://#{current_site.ssl_domain}"
     end
   end
   
@@ -1102,8 +1110,11 @@ def cyloop_logo_path(sm=true)
     end  
   end
 
-  def is_staging?
-    ApplicationController::IS_STAGING
-  end  
+  def env_staging?
+    ApplicationController::ENV_STAGING
+  end
+  def env_dev?
+    ApplicationController::ENV_DEV
+  end
 end
 
