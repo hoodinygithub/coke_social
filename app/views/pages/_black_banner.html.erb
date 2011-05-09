@@ -1,27 +1,30 @@
-<div class="black_banner">
+<div class="bloque rotatore">
+ <div class="black_banner">
+
   <div class="banner_flash_box">
-
     <% if @drupal_feed %>
-      <div id="slider">
+    
+      <div id="slider" class="nivoSlider">
         <% @drupal_feed.each_with_index do |item, index| %>
-          <%= link_to image_tag(item.image("616x250", site_code), {:title => "#htmlcaption#{index}"}), item.link, {:target => "#{item.link_action == 'New' ? '_blank' : '_self'}"} %>
+          <%= link_to image_tag(item.image("624x269", site_code), {:title => "#htmlcaption#{index+1}", :width => 624, :height => 269}), item.link, {:target => "#{item.link_action == 'New' ? '_blank' : '_self'}"} %>
         <% end %>
-      </div>
-
+      </div><!-- .nivoSlider -->
       <% @drupal_feed.each_with_index do |item, index| %>
-        <div id="htmlcaption<%= index %>" class="nivo-html-caption">
-          <span class="title"><%= item.artist %></span><br />
+        <div id="htmlcaption<%= index+1 %>" class="nivo-html-caption">
+          <strong class="title-caption"><%= item.artist %></strong>
           <%= item.text %>
         </div>
-      <% end %>
+      <% end %><!-- .nivo-html-caption -->
+      
     <% else %>
+    
       <script type="text/javascript" charset="utf-8">
         var flashvars = "MARKET=<%= current_site.code %>&TITLE=<%= t('modules.todays_top_artists.title') %>";
         AC_FL_RunContent(
           "src", "/flash/top_artist",
           "wmode", "opaque",
-          "width", "616",
-          "height", "251",
+          "width", "624",
+          "height", "269",
           "align", "middle",
           "id", "top_artist",
           "quality", "high",
@@ -33,14 +36,28 @@
           "flashVars", flashvars
         );
       </script>
+      
     <% end %>
-
-  </div>
-    
+  </div><!-- .banner_flash_box -->
+  
   <div class="open_happiness_box">
     <%= banner_ad("square_banner") %>
-    <!-- img src="/images/bucket-Coca-Fm.jpg" alt="Coca-Cola.fm" / --> 
-  </div>
-    
-  <div class="clearer"></div>
-</div><!--/end black_banner -->
+    <!-- <img src="/images/multitask/sim_roba.jpg" alt="Coca-Cola.fm" />  -->
+  </div><!-- .open_happiness_box -->
+ 
+ </div><!-- .black_banner -->   
+</div><!-- .bloque.rotatore -->
+
+<script type="text/javascript">
+  // $(window).load(function() {
+    if (typeof $("#slider").nivoSlider != "undefined")
+    {
+      // MULTITASK Update
+      $('#slider').nivoSlider();
+      // $('#slider').nivoSlider({
+      //   effect:    'fade',
+      //   pauseTime: 5000
+      // });
+    }
+  // });
+</script>

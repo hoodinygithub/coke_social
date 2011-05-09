@@ -13,7 +13,12 @@ module RegistrationLayersHelper
   end
 
   def registered_link_to(text, params)
-    link_to text, new_user_path(params)
+    options = {}
+    [:class, :title].each do |i|
+      options[i] = params.delete(i)
+    end
+    
+    link_to text, new_user_path(params), options
   end
 
 end

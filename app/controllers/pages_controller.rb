@@ -8,9 +8,9 @@ class PagesController < ApplicationController
 
   def home
     @latest_badges = BadgeAward.latest(5)
-    @top_djs_limit = 5
+    @top_djs_limit = 10
     @top_djs = current_site.top_djs.all(:limit => @top_djs_limit)
-    @top_playlists_limit = 5
+    @top_playlists_limit = 10
     @top_playlists = current_site.top_playlists.all(:limit => @top_playlists_limit)
     @drupal_feed = drupal_feed("http://cm-#{site_code}.cyloop.com/feeds/#{site_code}/coke_home_featured.xml", 6, true) if ["cokemx"].include? site_code
   end

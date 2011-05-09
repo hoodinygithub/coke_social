@@ -335,39 +335,3 @@ li.sonando {background-color:#e8e8e8;}
 
 #coke_ui, #goom_ui { display:none; }
 
-
-/* layers */
-#alert_layer {
-  position: absolute;
-  top: 40px;
-  left: 40px;
-  z-index: 100;
-  text-align: center;
-  height: 355px;
-  width: 478px;
-/*  overflow: hidden;*/
-}
-#alert_layer .aviso{ margin:0 auto; }
-#alert_layer .loading { margin-top: 130px; }
-#layer_overlay {
-  position: fixed;
-  top: 0px;
-  left: 0px;
-  height:452px;
-  width:557px;
-}
-* html #layer_overlay { /* ie6 hack */
-  position: absolute;
-  height: expression(document.body.scrollHeight > document.body.offsetHeight ? document.body.scrollHeight : document.body.offsetHeight + 'px');
-}
-.layer_hide { z-index:-100; }
-.layer_overlayBG { background-color: #000; z-index: 99; }
-.copy_mix_layer_save_btn { color:#ffffff; position:relative; top:8px; }
-.gender_class{ color: #979797; font-size: 12px; padding-bottom: 10px; }
-.gender_div{ padding-bottom: 10px; }
-.create_mix_btn{ float: right;  margin: 10px 15px 10px 28px;}
-.follow_unfollow_btns{ margin-top:12px;}
-.play_btn_top{ margin-top:13px;}
-.home_play_btn_top{ margin-top: 8px;}
-li.view_more_frs{ float:right;padding:10px 20px; border-bottom:none;}
-a.register_btn { text-decoration:none;margin-right:7px;}

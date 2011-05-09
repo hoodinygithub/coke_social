@@ -7,27 +7,27 @@
     <%= yield :head %>
     <%= render 'shared/google_analytics' %>
   </head>
-  <body locale="<%= current_site.default_locale %>" market="<%= current_site.code %>" current_site_url="<%= current_site_url %>">
-    <div id="container">
-      <div id="header" class="<%= @section.nil? ? controller_name : @section %>">
-          <%= market_logo %>
-          <%= render 'shared/header_nav' %>
-          <%= render 'shared/search_form' %>
-          <%= render :partial => 'shared/user_data', :locals => {:logged_out => false} %>
-          <div class="clearer"></div>
-          <div id="flash_messages">
-            <%= render_flash_messages %>
-          </div>
-          <div class="clearer"></div>
-      </div><!--/end header -->
-      <%= user_navigation %>
-      <%= yield :header_space_content %> 
-      <div id="main_content" class="<%= @section.nil? ? controller_name : @section %> <%= market_class if @section == 'player_page'  %>">
-		  <% if !market_class.blank? and market_class != 'es' and @section == 'player_page' and false %>
-		  <div class="santa" onclick="window.open('http://www.coca-cola.com.<%= market_class %>/');" style="cursor: pointer;"></div>	
-		  <% end %>      
-		<%= yield %></div>
-      <%= render 'shared/footer' %>
-    </div><!--/end container -->
+  <body id="<%= action_name %>" locale="<%= current_site.default_locale %>" market="<%= current_site.code %>" current_site_url="<%= current_site_url %>">
+    <div class="cabecera">
+      <%= render 'shared/multitask/header' %>
+    </div>
+    <div class="navegacion">
+      <%= render 'shared/multitask/header_nav' %>
+    </div>
+    
+    <div class="contenido"><%= yield %></div>
+    
+    <% if %w[pages].include?(controller_name) && %w[home].include?(action_name) %>
+      <div class="badges" style="opacity: 0;">
+        <%= render 'shared/multitask/badges' %>
+      </div>
+    <% end %>
+    
+    <div class="pie">
+      <%= render 'shared/multitask/footer' %>
+    </div>
+    <script language="text/javascript">
+      Cufon.now();
+    </script>
   </body>
 </html>

@@ -191,15 +191,6 @@ jQuery(document).ready(function() {
   jQuery('a[rel=layer]').alert_layer();
   jQuery('a[rel=locked_layer]').alert_layer(true);
   
-  // Temporary to Mock Windows Login
-  jQuery('a.btn_connect').livequery(function() {
-    $(this).click(function() {
-      wlwindow = window.open ("/mock_win_login","wl_window","toolbar=0,location=0,menubar=0,resizable=0,width=478,height=355");
-      wlwindow.moveTo(23, 13);
-      return false;
-    })
-  });
-  
   jQuery('#alert_layer form').livequery(function() {
     $(this).submit(function() {
       $.post($(this).attr('action'), $(this).serialize(), function(data) { 

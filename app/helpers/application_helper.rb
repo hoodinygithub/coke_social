@@ -1029,6 +1029,33 @@ def cyloop_logo_path(sm=true)
   end
 
 
+  def multitask_tag_bottle(tags, max_tags=60)
+    # <div class="tags_botella">
+    #   <a class="tag_tam2" href="#" title="Romantico">Romantico</a>
+    # </div><!-- .tags_botella -->
+    # <div class="tags_botella_trans">&nbsp;</div><!-- .tags_botella_trans -->
+    # <div class="tags_botella outer">
+    #   <a class="tag_tam2" href="#" title="Romantico">Romantico</a>
+    # </div><!-- .tags_botella -->
+    
+    
+    tag_links = []
+    tag_cloud tags, %w(tag_tam1 tag_tam2 tag_tam3 tag_tam4, tag_tam5) do |tag, css_class, index| 
+      if tag_links.count <= max_tags && tag.taggings_count > 0
+        tag_links << link_to(tag.nickname, main_search_path(:scope => 'playlists', :q => CGI::escape(tag.name)), :title => tag.nickname, :class => "#{css_class}") rescue nil
+      end
+    end
+    <<-EOF
+    <div class="tags_botella">
+      #{tag_links.compact.join(' ')}
+    </div>
+    <div class="tags_botella_trans">&nbsp;</div>
+    <div class="tags_botella outer">
+      #{tag_links.compact.join(' ')}
+    </div>
+    EOF
+  end
+  
   def tag_bottle(tags)
     outer_tag_links = []
     inner_tag_links = []

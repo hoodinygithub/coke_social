@@ -1,7 +1,13 @@
-<div class="tags_column">
-  <h1><%= t("modules.popular_tags").upcase %></h1>
+<% 
+  # HACK - TEMPORARY 
+  tags = current_site.tags if tags.empty?
+%>
 
-  <div class="side_tags">
-    <%= tag_bottle(tags) %>
-  </div>
-</div><!--/end tags_column -->
+<h2 class="tit_bloque">
+  <span class="txt"><%= t("modules.popular_tags") %></span>
+
+  <span class="bg_fin">&nbsp;</span>
+</h2>
+<div class="mod_tags">
+<%= multitask_tag_bottle(tags, 60) %>
+</div><!-- .mod_tags -->
