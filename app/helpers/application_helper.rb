@@ -36,25 +36,7 @@ module ApplicationHelper
     elsif request.host =~ /localhost/ or request.port == 3000
       "http://#{request.host}:#{request.port}#{session_path}"
     else
-      "#{ssl_host}#{session_path}"
-    end
-  end
-
-  def ssl_host
-    if env_dev?
-      "http://coca-cola.fm:3000"
-    else
-      "https://#{current_site.ssl_domain}"
-    end
-  end
-  
-  def add_ssl_to(path)
-    if request.ssl?
-      path
-    elsif request.host =~ /localhost/ or request.port == 3000
-      File.join("http://#{request.host}:#{request.port}", path)
-    else
-      File.join("https://#{current_site.ssl_domain}", path)
+      "#{ssl_site_url}#{session_path}"
     end
   end
 

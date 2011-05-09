@@ -55,16 +55,23 @@ class ApplicationController < ActionController::Base
   
   def current_site_url
     if request.ssl?
-      "https://#{current_site.ssl_domain}"
-    elsif request.host =~ /localhost/
+      ssl_site_url
+    elsif request.host =~ /localhost/ or request.port == 3000
       "http://#{request.host}:#{request.port}"
-    elsif RAILS_ENV =~ /development/
-      'http://coca-cola.fm:3000'
     else
       "http://#{current_site.domain}"
     end
   end
   helper_method :current_site_url
+
+  def ssl_site_url
+    if ENV_DEV?
+      "http://coca-cola.fm:3000"
+    else
+      "https://#{current_site.ssl_domain}"
+    end
+  end
+  helper_method :ssl_site_url
 
   def rescue_action_in_public(exception)
     if params[:format] == 'xml' || request.path.ends_with?( '.xml' )
@@ -124,51 +131,27 @@ class ApplicationController < ActionController::Base
   end
     
   def site_login_url(*args)
-    if wlid_web_login?
-      msn_login_redirect_users_url(*args)
-    else
-      login_url(*args)
-    end
+    #if wlid_web_login?
+    #  msn_login_redirect_users_url(*args)
+    #else
+    login_url(*args)
+    #end
   end
-    
+
   def site_register_url(*args)
-    if wlid_web_login?
-      msn_registration_redirect_users_url(*args)
-    else
-      new_user_url(*args)
-    end
+    #if wlid_web_login?
+    #  msn_registration_redirect_users_url(*args)
+    #else
+    new_user_url(*args)
+    #end
   end
-    
+
   def site_logout_url
     logout_url
   end
     
   helper_method :site_login_url, :site_register_url, :site_logout_url
-    
-  #################################
-  # MSN Live ID Integration Methods
-  def wll
-    @wll ||= WindowsLiveLogin.init()
-  end
-    
-  def msn_app_id
-    @msn_app_id ||= wll.appid
-  end
-    
-  def msn_login_url
-    @msn_login_url ||= wll.getLoginUrl(host_port)
-  end
-  
-  def msn_register_url
-    @msn_register_url ||= wll.getLoginUrl(host_port)
-  end
-    
-  def msn_logout_url
-    @msn_logout_url ||= wll.getLogoutUrl(host_port)
-  end
-  helper_method :wll, :msn_login_url, :msn_register_url, :msn_logout_url, :msn_app_id
-  #################################
-         
+
   def set_return_to
     if session[:display_layer]
       session[:layer_to]  = params[:return_to] if params[:return_to]
@@ -501,10 +484,12 @@ class ApplicationController < ActionController::Base
     elsif request.host =~ /localhost/ or request.port == 3000
       File.join("http://#{request.host}:#{request.port}", path)
     else
-      File.join("https://#{current_site.ssl_domain}", path)
+      File.join(ssl_site_url, path)
     end
   end
+  helper_method :add_ssl_to
 
+  # Cache these on startup.  Used in app helper (since I can't define "helper variables").
   ENV_STAGING = (ENV['RAILS_ENV'] =~ /staging/i)
   ENV_DEV = (ENV['RAILS_ENV'] =~ /development/i)
 
