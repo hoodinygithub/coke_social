@@ -65,7 +65,7 @@ class ApplicationController < ActionController::Base
   helper_method :current_site_url
 
   def ssl_site_url
-    if ENV_DEV?
+    if ENV_DEV
       "http://coca-cola.fm:3000"
     else
       "https://#{current_site.ssl_domain}"
