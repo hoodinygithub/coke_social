@@ -4,7 +4,7 @@ class PagesController < ApplicationController
   # before_filter :login_required, :only => [:home]
   skip_before_filter :login_required, :except => [:home]
 
-  layout "logged_out"
+  layout_except_xhr('logged_out')
 
   def home
     @latest_badges = BadgeAward.latest(5)
