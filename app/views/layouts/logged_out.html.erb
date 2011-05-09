@@ -14,15 +14,9 @@
     <div class="navegacion">
       <%= render 'shared/multitask/header_nav' %>
     </div>
-    
-    <div class="contenido"><%= yield %></div>
-    
-    <% if %w[pages].include?(controller_name) && %w[home].include?(action_name) %>
-      <div class="badges" style="opacity: 0;">
-        <%= render 'shared/multitask/badges' %>
-      </div>
-    <% end %>
-    
+
+    <div id="content"><%= yield %></div>
+
     <div class="pie">
       <%= render 'shared/multitask/footer' %>
     </div>

@@ -28,20 +28,26 @@ $(document).ready(function() {
     //fuente Myriad
     Cufon.replace('.txt');
 
-    //efecto badges  
-    if($(".badges").length) { 
-      var elem = $(".badges");
-      elem.animate({"opacity":0});
-      $(window).scroll(function (event) {
-        var top = elem.offset().top;
-        var scrollY = $(this).scrollTop();
-     	  var visible = $(window).height();
-        var y = scrollY+visible;
-        if (y >= top) {
-          elem.animate({"opacity":1},1000);
-        }
-      });
-    }
+    //efecto badges
+    // NOTE: Commented block below
+    // Why add more javascript complexity if it doesn't improve the
+    // performance of the page.  Go back to product and suggest against
+    // this fluff!
+    /*
+       if($(".badges").length) {
+       var elem = $(".badges");
+       elem.animate({"opacity":0});
+       $(window).scroll(function (event) {
+       var top = elem.offset().top;
+       var scrollY = $(this).scrollTop();
+       var visible = $(window).height();
+       var y = scrollY+visible;
+       if (y >= top) {
+       elem.animate({"opacity":1},1000);
+       }
+       });
+       }
+    */
 
     //plegar desplegar ficha de usuario
     if($(".usuario_ficha .mas_info").length) {

@@ -1041,7 +1041,7 @@ def cyloop_logo_path(sm=true)
     
     tag_links = []
     tag_cloud tags, %w(tag_tam1 tag_tam2 tag_tam3 tag_tam4, tag_tam5) do |tag, css_class, index| 
-      if tag_links.count <= max_tags && tag.taggings_count > 0
+      if tag_links.length <= max_tags && tag.taggings_count > 0
         tag_links << link_to(tag.nickname, main_search_path(:scope => 'playlists', :q => CGI::escape(tag.name)), :title => tag.nickname, :class => "#{css_class}") rescue nil
       end
     end

@@ -5,21 +5,26 @@
   <!-- %= render :partial => 'shared/logged_in_callback' % -->
 <% end %>
 
-<%= render :partial => 'black_banner' %>
+<div class="contenido">
+  <%= render :partial => 'black_banner' %>
 
-<div class="bloque">
-  <div class="cont_columna izq">
-    <% cache("#{site_cache_key}/modules/tag_cloud", :expires_in => EXPIRATION_TIMES["home_tag_cloud"]) do %>
-      <%= render :partial => "shared/tag_cloud", :locals => { :tags => current_site.tag_counts_from_playlists } %>
-    <% end %>
-  </div><!-- .cont_columna izq -->
-  
-  <div class="cont_columna cen">
-    <%= render :partial => 'shared/today_top_playlists' %>
-  </div><!-- .cont_columna cen -->
-  
-  <div class="cont_columna der">
-    <%= render :partial => 'shared/today_top_djs' %>
-  </div><!-- .cont_columna der -->
-</div><!-- .bloque -->
+  <div class="bloque">
+    <div class="cont_columna izq">
+      <% cache("#{site_cache_key}/modules/tag_cloud", :expires_in => EXPIRATION_TIMES["home_tag_cloud"]) do %>
+        <%= render :partial => "shared/tag_cloud", :locals => { :tags => current_site.tag_counts_from_playlists } %>
+      <% end %>
+    </div><!-- .cont_columna izq -->
 
+    <div class="cont_columna cen">
+      <%= render :partial => 'shared/today_top_playlists' %>
+    </div><!-- .cont_columna cen -->
+
+    <div class="cont_columna der">
+      <%= render :partial => 'shared/today_top_djs' %>
+    </div><!-- .cont_columna der -->
+  </div><!-- .bloque -->
+</div>
+
+<div class="badges">
+  <%= render 'shared/multitask/badges' %>
+</div>
