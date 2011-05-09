@@ -3,7 +3,6 @@
 </script>
 
 <% if true # MULTITASK Updates%>
-
   <%= javascript_include_tag 'jquery-1.5.1.min' %>
   <%= javascript_include_tag 'jquery.ui' %>
   <%= javascript_include_tag 'jquery.facebox' %>
@@ -17,15 +16,13 @@
   <%#= javascript_include_tag 'jquery.validate.min' %>
   <%#= javascript_include_tag 'jquery.hotkeys.min' %>
   <%= javascript_include_tag 'coke/base', 'coke/alert_layer' %>
-	<%= javascript_include_tag '/utils/locale.js' %>
-	<%= javascript_include_tag 'jquery.rating.js' %>
+  <%= javascript_include_tag '/utils/locale.js' %>
+  <%= javascript_include_tag 'jquery.rating.js' %>
   <%= javascript_include_tag 'growinput.js' %>
   <%= javascript_include_tag 'jquery.textboxlist.js' %>
-  
+  <%= javascript_include_tag 'nivoslider.pack2_.4/jquery.nivo.slider.pack' %>
   <%= javascript_include_tag 'cufon-yui.js', 'Myriad_Pro.font.js' %>
-
 <% else %>
-
   <%= javascript_include_tag 'jquery-1.4.1.min' %>
   <%= javascript_include_tag 'jquery.cycle.all.min' %>
   <%= javascript_include_tag 'supersleight.plugin' %>
@@ -39,9 +36,7 @@
   <%= javascript_include_tag 'jquery.rating.js' %>
   <%= javascript_include_tag 'growinput.js' %>
   <%= javascript_include_tag 'jquery.textboxlist.js' %>
-
 <% end %>
-
 
 <%= javascript_tag "var AUTH_TOKEN = #{form_authenticity_token.to_json};" if protect_against_forgery? %>
 
