@@ -17,9 +17,6 @@
 
 </style>
 
-<%
-  host = ENV['RAILS_ENV'] =~ /development/i ? "http://localhost:3000" : "https://#{current_site.ssl_domain}"
-%>
-<%= content_tag(:iframe, nil, :frameborder=>"no", :framespacing => '0', :scrolling=>"no", :width=>"478", :height=>"355", :border => '0', :src=>"#{host}#{@iframe_src}?layout=messenger_iframe") %>
+<%= content_tag(:iframe, nil, :frameborder=>"no", :framespacing => '0', :scrolling=>"no", :width=>"478", :height=>"355", :border => '0', :src=>"#{ssl_site_url}#{@iframe_src}?layout=messenger_iframe") %>
 
 
