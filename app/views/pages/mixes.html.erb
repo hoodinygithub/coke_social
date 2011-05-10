@@ -63,10 +63,10 @@
           <ul class="lista_tops">
             <% @top_djs.each_with_index do |dj, idx| %>
               <li class="estirar">
-              <span class="ord">1</span>
+              <span class="ord"><%= idx + 1 %></span>
               <%= avatar_for dj %>
               <div class="datos">
-                <h3><a href="#" title="" class="link_rojo">DJ Claudia</a></h3>
+                <h3><a href="#" title="" class="link_rojo"><%= dj.name %></a></h3>
                 <p>(<%= dj.country.name %>)</p>
               </div>
               </li>
