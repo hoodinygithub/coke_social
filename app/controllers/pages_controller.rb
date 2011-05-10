@@ -17,6 +17,8 @@ class PagesController < ApplicationController
 
   def mixes
     @top_mixes = current_site.top_playlists.all(:limit => 9)
+    @top_artists = current_site.top_artists.all(:limit => 5)
+    @top_djs = current_site.top_djs.all(:limit => 5)
   end
 
   def messenger_home

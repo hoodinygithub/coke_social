@@ -41,42 +41,17 @@
         <h2 class="tit_bloque">
           <span class="txt">Top Artistas<em>Los más escuchados</em></span>
           <span class="bg_fin">&nbsp;</span>
+        </h2>
           <ul class="lista_tops">
-            <li class="estirar">
-            <span class="ord">1</span>
-            <img alt="portada CD" src="imgs/mixes/sim_portada1.jpg" class="avatar" />
-            <div class="datos">
-              <h3><a href="#" title="" class="link_rojo">M&uacute;sica para despertar&hellip;</a></h3>
-            </div>
-            </li>
-            <li class="estirar">
-            <span class="ord">2</span>
-            <img alt="portada CD" src="imgs/mixes/sim_portada2.jpg" class="avatar" />
-            <div class="datos">
-              <h3><a href="#" title="" class="link_rojo">De todo un poco</a></h3>
-            </div>
-            </li>
-            <li class="estirar">
-            <span class="ord">3</span>
-            <img alt="portada CD" src="imgs/mixes/sim_portada3.jpg" class="avatar" />
-            <div class="datos">
-              <h3><a href="#" title="" class="link_rojo">La oreja de Van Gogh</a></h3>
-            </div>
-            </li>
-            <li class="estirar">
-            <span class="ord">4</span>
-            <img alt="portada CD" src="imgs/mixes/sim_portada4.jpg" class="avatar" />
-            <div class="datos">
-              <h3><a href="#" title="" class="link_rojo">M&uacute;sica para despertar&hellip;</a></h3>
-            </div>
-            </li>
-            <li class="estirar">
-            <span class="ord">5</span>
-            <img alt="portada CD" src="imgs/mixes/sim_portada1.jpg" class="avatar" />
-            <div class="datos">
-              <h3><a href="#" title="" class="link_rojo">M&uacute;sica para despertar&hellip;</a></h3>
-            </div>
-            </li>
+            <% @top_artists.each_with_index do |artist, idx| %>
+              <li class="estirar">
+              <span class="ord"><%= idx + 1 %></span>
+              <%= avatar_for artist %>
+              <div class="datos">
+                <h3><a href="#" title="" class="link_rojo"><%= artist.name %></a></h3>
+              </div>
+              </li>
+            <% end %>
           </ul>
         </div><!-- .mod_topartistas -->
 
@@ -86,46 +61,16 @@
             <span class="bg_fin">&nbsp;</span>
           </h2>
           <ul class="lista_tops">
-            <li class="estirar">
-            <span class="ord">1</span>
-            <img alt="foto del autor" src="imgs/djs/sim_autor1.jpg" class="avatar" />
-            <div class="datos">
-              <h3><a href="#" title="" class="link_rojo">DJ Claudia</a></h3>
-              <p>(Spain)</p>
-            </div>
-            </li>
-            <li class="estirar">
-            <span class="ord">2</span>
-            <img alt="foto del autor" src="imgs/djs/sim_autor2.jpg" class="avatar" />
-            <div class="datos">
-              <h3><a href="#" title="" class="link_rojo">Loquita 31</a></h3>
-              <p>(Spain)</p>
-            </div>
-            </li>
-            <li class="estirar">
-            <span class="ord">3</span>
-            <img alt="foto del autor" src="imgs/djs/sim_autor3.jpg" class="avatar" />
-            <div class="datos">
-              <h3><a href="#" title="" class="link_rojo">M. Marga L&oacute;pez Alegr&hellip;</a></h3>
-              <p>(Spain)</p>
-            </div>
-            </li>
-            <li class="estirar">
-            <span class="ord">4</span>
-            <img alt="foto del autor" src="imgs/djs/sim_autor4.jpg" class="avatar" />
-            <div class="datos">
-              <h3><a href="#" title="" class="link_rojo">DJ Claudia</a></h3>
-              <p>(Spain)</p>
-            </div>
-            </li>
-            <li class="estirar">
-            <span class="ord">5</span>
-            <img alt="foto del autor" src="imgs/djs/sim_autor1.jpg" class="avatar" />
-            <div class="datos">
-              <h3><a href="#" title="" class="link_rojo">DJ Claudia</a></h3>
-              <p>(Spain)</p>
-            </div>
-            </li>
+            <% @top_djs.each_with_index do |dj, idx| %>
+              <li class="estirar">
+              <span class="ord">1</span>
+              <%= avatar_for dj %>
+              <div class="datos">
+                <h3><a href="#" title="" class="link_rojo">DJ Claudia</a></h3>
+                <p>(<%= dj.country.name %>)</p>
+              </div>
+              </li>
+            <% end %>
           </ul>
         </div><!-- .mod_topdjs -->
 
