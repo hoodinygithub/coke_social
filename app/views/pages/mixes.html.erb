@@ -1,0 +1,228 @@
+<div class="contenido">
+  <div class="bloque">
+    <div class="cont_columna doble">
+
+      <div class="mod_topmixes">
+        <h2 class="tit_bloque">
+          <span class="txt">Top Mixes<em>Los más escuchados</em></span>
+          <span class="bg_fin">&nbsp;</span>
+        </h2>
+
+        <% @top_mixes.each_with_index do |mix, idx| %> 
+          <div class="clasif_mixes">
+            <span class="num_mixes"><%= idx + 1 %></span>
+            <div class="artist_box png_fix">
+              <a href="#" title="<%= mix.name %>"><%= avatar_for mix, :large %></a>
+              <div class="overlay">
+                <div class="hidden fh" style="display:none;">
+                  <a href="#" title=""><strong><%= mix.name %></strong></a>
+                  <%= multitask_rating mix %>
+                  <div class="tag_links">
+                    <%= tag_links mix %>
+                  </div>
+                  <div class="align_right box_buttons">
+
+                    <a href="#" title="Reproducir"><img src="images/play_button.png" class="png_fix" alt="Play_button" /></a>
+                  </div>
+                </div><!-- .hidden -->
+                <div class="visible fh" style="display:block;">
+                  <a href="#" title=""><img alt="" class="play_button png_fix" src="images/play_button.png"  /></a>
+                  <a href="#" title=""><%= mix.name %></a>
+                  <%= multitask_rating mix %>
+                </div><!-- .visible -->
+              </div><!-- .overlay -->
+            </div><!-- .artist_box -->
+          </div><!-- .clasif_mixes -->
+      <% end %>
+
+      </div><!-- .mod_topmixes -->
+
+      <div class="mod_topartistas">
+        <h2 class="tit_bloque">
+          <span class="txt">Top Artistas<em>Los más escuchados</em></span>
+          <span class="bg_fin">&nbsp;</span>
+          <ul class="lista_tops">
+            <li class="estirar">
+            <span class="ord">1</span>
+            <img alt="portada CD" src="imgs/mixes/sim_portada1.jpg" class="avatar" />
+            <div class="datos">
+              <h3><a href="#" title="" class="link_rojo">M&uacute;sica para despertar&hellip;</a></h3>
+            </div>
+            </li>
+            <li class="estirar">
+            <span class="ord">2</span>
+            <img alt="portada CD" src="imgs/mixes/sim_portada2.jpg" class="avatar" />
+            <div class="datos">
+              <h3><a href="#" title="" class="link_rojo">De todo un poco</a></h3>
+            </div>
+            </li>
+            <li class="estirar">
+            <span class="ord">3</span>
+            <img alt="portada CD" src="imgs/mixes/sim_portada3.jpg" class="avatar" />
+            <div class="datos">
+              <h3><a href="#" title="" class="link_rojo">La oreja de Van Gogh</a></h3>
+            </div>
+            </li>
+            <li class="estirar">
+            <span class="ord">4</span>
+            <img alt="portada CD" src="imgs/mixes/sim_portada4.jpg" class="avatar" />
+            <div class="datos">
+              <h3><a href="#" title="" class="link_rojo">M&uacute;sica para despertar&hellip;</a></h3>
+            </div>
+            </li>
+            <li class="estirar">
+            <span class="ord">5</span>
+            <img alt="portada CD" src="imgs/mixes/sim_portada1.jpg" class="avatar" />
+            <div class="datos">
+              <h3><a href="#" title="" class="link_rojo">M&uacute;sica para despertar&hellip;</a></h3>
+            </div>
+            </li>
+          </ul>
+        </div><!-- .mod_topartistas -->
+
+        <div class="mod_topdjs">
+          <h2 class="tit_bloque">
+            <span class="txt">Top DJS<em>Los más populares</em></span>
+            <span class="bg_fin">&nbsp;</span>
+          </h2>
+          <ul class="lista_tops">
+            <li class="estirar">
+            <span class="ord">1</span>
+            <img alt="foto del autor" src="imgs/djs/sim_autor1.jpg" class="avatar" />
+            <div class="datos">
+              <h3><a href="#" title="" class="link_rojo">DJ Claudia</a></h3>
+              <p>(Spain)</p>
+            </div>
+            </li>
+            <li class="estirar">
+            <span class="ord">2</span>
+            <img alt="foto del autor" src="imgs/djs/sim_autor2.jpg" class="avatar" />
+            <div class="datos">
+              <h3><a href="#" title="" class="link_rojo">Loquita 31</a></h3>
+              <p>(Spain)</p>
+            </div>
+            </li>
+            <li class="estirar">
+            <span class="ord">3</span>
+            <img alt="foto del autor" src="imgs/djs/sim_autor3.jpg" class="avatar" />
+            <div class="datos">
+              <h3><a href="#" title="" class="link_rojo">M. Marga L&oacute;pez Alegr&hellip;</a></h3>
+              <p>(Spain)</p>
+            </div>
+            </li>
+            <li class="estirar">
+            <span class="ord">4</span>
+            <img alt="foto del autor" src="imgs/djs/sim_autor4.jpg" class="avatar" />
+            <div class="datos">
+              <h3><a href="#" title="" class="link_rojo">DJ Claudia</a></h3>
+              <p>(Spain)</p>
+            </div>
+            </li>
+            <li class="estirar">
+            <span class="ord">5</span>
+            <img alt="foto del autor" src="imgs/djs/sim_autor1.jpg" class="avatar" />
+            <div class="datos">
+              <h3><a href="#" title="" class="link_rojo">DJ Claudia</a></h3>
+              <p>(Spain)</p>
+            </div>
+            </li>
+          </ul>
+        </div><!-- .mod_topdjs -->
+
+      </div><!-- .cont_columna doble -->
+      <div class="cont_columna der">
+        <div class="open_happiness_box">
+          <img src="imgs/sim_roba.jpg" alt="Coca-Cola.fm" /> 
+        </div><!-- .open_happiness_box -->
+        <div class="mod_emociones">
+          <h2 class="tit_bloque">
+            <span class="txt">Emociones + destapadas</span>
+            <span class="bg_fin">&nbsp;</span>
+          </h2><!-- .tit_bloque -->
+          <div class="mod_tags">
+            <div class="tags_botella">
+              <a class="tag_tam1" href="#" title="Fresas">Fresas</a>
+              <a class="tag_tam2" href="#" title="Rap">Rap</a>
+              <a class="tag_tam1" href="#" title="Bailar">Bailar</a>
+              <a class="tag_tam4" href="#" title="Cool">Cool</a>
+              <a class="tag_tam1" href="#" title="Covers">Covers</a>
+              <a class="tag_tam1" href="#" title="Verano">Verano</a>
+              <a class="tag_tam1" href="#" title="Te la dedico">Te la dedico</a>
+              <a class="tag_tam1" href="#" title="De bodas">De bodas</a>
+              <a class="tag_tam2" href="#" title="House">House</a>
+              <a class="tag_tam2" href="#" title="Indie">Indie</a>
+              <a class="tag_tam4" href="#" title="Pop">Pop</a>
+              <a class="tag_tam1" href="#" title="Ma%25C3%25B1aneras">Ma&ntilde;aneras</a>
+              <a class="tag_tam2" href="#" title="Lounge">Lounge</a>
+              <a class="tag_tam4" href="#" title="Energia">Energia</a>
+              <a class="tag_tam1" href="#" title="De carretera">De carretera</a>
+              <a class="tag_tam2" href="#" title="Para motivarse">Para motivarse</a>
+              <a class="tag_tam3" href="#" title="A mil">A mil</a>
+              <a class="tag_tam4" href="#" title="Alegre">Alegre</a>
+              <a class="tag_tam2" href="#" title="Sexy">Sexy</a>
+              <a class="tag_tam1" href="#" title="Rom%25C3%25A0nticas">Romànticas</a>
+              <a class="tag_tam4" href="#" title="Dance">Dance</a>
+              <a class="tag_tam1" href="#" title="Graduaci%25C3%25B3n">Graduaci&oacute;n</a>
+              <a class="tag_tam1" href="#" title="Alternativas">Alternativas</a>
+              <a class="tag_tam1" href="#" title="Cute">Cute</a>
+              <a class="tag_tam1" href="#" title="Tranquilas">Tranquilas</a>
+              <a class="tag_tam1" href="#" title="De buenas">De buenas</a>
+              <a class="tag_tam1" href="#" title="Vivir de noche">Vivir de noche</a>
+              <a class="tag_tam3" href="#" title="Super">Super</a>
+              <a class="tag_tam1" href="#" title="Buena vibra">Buena vibra</a>
+              <a class="tag_tam2" href="#" title="De karaoke">De karaoke</a>
+              <a class="tag_tam1" href="#" title="Ligue">Ligue</a>
+              <a class="tag_tam1" href="#" title="Playeras">Playeras</a>
+              <a class="tag_tam5" href="#" title="Amor">Amor</a>
+              <a class="tag_tam1" href="#" title="Bling bling">Bling bling</a>
+              <a class="tag_tam1" href="#" title="Serenatas">Serenatas</a>
+              <a class="tag_tam3" href="#" title="Feliz">Feliz</a>
+              <a class="tag_tam1" href="#" title="Sorpresa">Sorpresa</a>
+              <a class="tag_tam2" href="#" title="Relax">Relax</a>
+            </div><!-- .tags_botella -->
+            <div class="tags_botella_trans">&nbsp;</div><!-- .tags_botella_trans -->
+            <div class="tags_botella outer">
+              <a class="tag_tam1" href="#" title="Fresas">Fresas</a>
+              <a class="tag_tam2" href="#" title="Rap">Rap</a>
+              <a class="tag_tam1" href="#" title="Bailar">Bailar</a>
+              <a class="tag_tam4" href="#" title="Cool">Cool</a>
+              <a class="tag_tam1" href="#" title="Covers">Covers</a>
+              <a class="tag_tam1" href="#" title="Verano">Verano</a>
+              <a class="tag_tam1" href="#" title="Te la dedico">Te la dedico</a>
+              <a class="tag_tam1" href="#" title="De bodas">De bodas</a>
+              <a class="tag_tam2" href="#" title="House">House</a>
+              <a class="tag_tam2" href="#" title="Indie">Indie</a>
+              <a class="tag_tam4" href="#" title="Pop">Pop</a>
+              <a class="tag_tam1" href="#" title="Ma%25C3%25B1aneras">Ma&ntilde;aneras</a>
+              <a class="tag_tam2" href="#" title="Lounge">Lounge</a>
+              <a class="tag_tam4" href="#" title="Energia">Energia</a>
+              <a class="tag_tam1" href="#" title="De carretera">De carretera</a>
+              <a class="tag_tam2" href="#" title="Para motivarse">Para motivarse</a>
+              <a class="tag_tam3" href="#" title="A mil">A mil</a>
+              <a class="tag_tam4" href="#" title="Alegre">Alegre</a>
+              <a class="tag_tam2" href="#" title="Sexy">Sexy</a>
+              <a class="tag_tam1" href="#" title="Rom%25C3%25A0nticas">Romànticas</a>
+              <a class="tag_tam4" href="#" title="Dance">Dance</a>
+              <a class="tag_tam1" href="#" title="Graduaci%25C3%25B3n">Graduaci&oacute;n</a>
+              <a class="tag_tam1" href="#" title="Alternativas">Alternativas</a>
+              <a class="tag_tam1" href="#" title="Cute">Cute</a>
+              <a class="tag_tam1" href="#" title="Tranquilas">Tranquilas</a>
+              <a class="tag_tam1" href="#" title="De buenas">De buenas</a>
+              <a class="tag_tam1" href="#" title="Vivir de noche">Vivir de noche</a>
+              <a class="tag_tam3" href="#" title="Super">Super</a>
+              <a class="tag_tam1" href="#" title="Buena vibra">Buena vibra</a>
+              <a class="tag_tam2" href="#" title="De karaoke">De karaoke</a>
+              <a class="tag_tam1" href="#" title="Ligue">Ligue</a>
+              <a class="tag_tam1" href="#" title="Playeras">Playeras</a>
+              <a class="tag_tam5" href="#" title="Amor">Amor</a>
+              <a class="tag_tam1" href="#" title="Bling bling">Bling bling</a>
+              <a class="tag_tam1" href="#" title="Serenatas">Serenatas</a>
+              <a class="tag_tam3" href="#" title="Feliz">Feliz</a>
+              <a class="tag_tam1" href="#" title="Sorpresa">Sorpresa</a>
+              <a class="tag_tam2" href="#" title="Relax">Relax</a>
+            </div><!-- .tags_botella -->
+          </div><!-- .mod_tags -->
+      </div><!-- .mod_emociones -->
+    </div><!-- .cont_columna der -->
+  </div><!-- /bloque -->
+</div><!-- .contenido -->

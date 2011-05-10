@@ -1013,6 +1013,15 @@ def cyloop_logo_path(sm=true)
     rating
   end
 
+  def multitask_rating(rateable, bottles=5)
+    rating = "<span class='rating'><span class='star-rating-control'>"
+    (1..bottles).each_with_index do |b, idx|
+      rating << "<div class=\"star-rating star-rating-readonly #{ 'star-rating-on' if rateable.rating_cache.to_i.floor >= b }\"><a>#{idx}</a></div>"
+    end
+    rating << "</span></span>"
+    rating
+  end
+
   def ajax_pagination_for(url, collection, per_page)
     total_pages = collection.paginate(:per_page => 5, :page => 1).total_pages
     if total_pages > 1

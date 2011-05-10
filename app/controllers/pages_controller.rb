@@ -15,6 +15,10 @@ class PagesController < ApplicationController
     @drupal_feed = drupal_feed("http://cm-#{site_code}.cyloop.com/feeds/#{site_code}/coke_home_featured.xml", 6, true) if ["cokemx"].include? site_code
   end
 
+  def mixes
+    @top_mixes = current_site.top_playlists.all(:limit => 9)
+  end
+
   def messenger_home
     @recent_playlists = Rails.cache.fetch("modules/#{current_site.code}/last_playlists_played",
                                           :expires_delta => EXPIRATION_TIMES['sites_latest_playlists_played']) do

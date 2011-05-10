@@ -33,9 +33,6 @@ $(document).ready(function() {
     drag:slider.ondrag});
 
   $('a[content_switch_enabled=true]').livequery('click', function() {
-
-    Base.Util.XHR($(this).attr('href'), 'text', Base.UI.contentswp, Base.UI.xhrerror);
-
     // Class switch if main navigation was clicked.
     // Note. May want to move this out into its own class.
     if ($(this).parent().parent().hasClass('menu_principal'))
@@ -45,7 +42,30 @@ $(document).ready(function() {
     }
     /**************************************************************/
 
+    var options = {};
+    if ($(this).parent().parent().hasClass('menu'))
+    {
+      var ref = $(this);
+      options.afterComplete = function()
+      {
+        $('body').attr('id', String(ref.attr('href')).slice(1));
+      }
+    }
+
+    Base.Util.XHR($(this).attr('href'), 'text', Base.UI.contentswp, Base.UI.xhrerror, options);
+
     return false;
+  });
+
+  $('.artist_box').livequery(function() {
+    $(this).hover(function() {
+      $(this).find('.hidden').show();
+      $(this).find('.visible').hide();
+    },
+    function() {
+      $(this).find('.hidden').hide();
+      $(this).find('.visible').show();
+    });
   });
 
   Base.Player.player('coke');
@@ -85,11 +105,15 @@ Base.Util = {
   XHR: function(req, type, func, error_func)
   {
     error_func = typeof(error_func) != 'undefined' ? error_func : Base.UI.xhrerror;
-    
+    var options = arguments[4];
+
     $.ajax({
       url: req,
       dataType: type,
-      complete: func,
+      complete: function(data) {
+        if (options.afterComplete) options.afterComplete();
+        func(data);
+      },
       error: error_func
     });
   },

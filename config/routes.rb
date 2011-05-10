@@ -1,5 +1,9 @@
 ActionController::Routing::Routes.draw do |map|
-  map.root  :controller => 'pages', :action => 'home'
+  map.with_options(:controller => 'pages') do |ch|
+    ch.root :action => 'home'
+    ch.channel_mixes '/mixes', :action => 'mixes'
+  end
+  # map.root  :controller => 'pages', :action => 'home'
   map.resources :valid_tags
   map.home "/home", :controller => "pages", :action => 'home'
   map.login  'login',  :controller => 'sessions', :action => 'new'
