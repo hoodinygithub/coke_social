@@ -1,0 +1,17 @@
+<html>
+	<head>
+		<script type="text/javascript">
+			function onLoad() {
+				if (parent && parent.parent) {
+					var grandparent = parent.parent;
+					grandparent._gaq.push(['_trackPageview', '/auth/registration/confirm']);
+					grandparent.$.alert_layer.showOverlay(true);
+					grandparent.window.location.reload();
+				};
+			};
+</script>
+	</head>
+	<body onload="onLoad();">
+	</body>
+</html>
+

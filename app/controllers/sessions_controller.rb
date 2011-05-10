@@ -273,9 +273,7 @@ private
     unless same_email_user.nil?
       # logger.info "Found same email user."
       same_email_user.sso_windows = p_user.sso_windows
-      unless same_email_user.part_of_network?
-        same_email_user.encrypt_demographics
-      end
+      same_email_user.encrypt_demographics unless same_email_user.part_of_network?
       session[:sso_user] = same_email_user
       session[:sso_type] = "Windows"
       return

@@ -12,14 +12,14 @@
         <h2><%= t('coke_messenger.layers.registration_form_view.sign_up') %><strong><%= t('coke_messenger.layers.registration_form_view.coke_fm') %></strong></h2>
         <p><%= t('coke_messenger.layers.registration_form_view.way_coke') %></p>
 
-        <% form_for @user, :url => users_path, :html => { :class => "f_registro" } do |f| %>
+        <% form_for @user, :url => "#{users_path}?iframe=true", :html => { :method => :post, :class => "f_registro" } do |f| %>
           <%= f.hidden_field :sso_facebook unless @user['sso_facebook'].nil? %>
           <%= f.hidden_field :sso_windows unless @user['sso_windows'].nil? %>
 
           <div class="gender_div">
             <span class="gender_class" style="padding-right:30px"><%= t('coke_messenger.layers.registration_form_view.you') %></span>
-            <span class="gender_class"><%= radio_button_tag "user[gender]", :female, :checked => true %><%= t("user.female") %></span>
-            <span class="gender_class"><%= radio_button_tag "user[gender]", :male %><%= t("user.male") %></span>
+            <span class="gender_class"><%= radio_button_tag "user[gender]", "Female", :checked => (@user.gender == "Female") %><%= t("user.female") %></span>
+            <span class="gender_class"><%= radio_button_tag "user[gender]", "Male", :checked => (@user.gender == "Male") %><%= t("user.male") %></span>
           </div>
           <label class="<%= @user.errors[:name] ? "error" : "" %>">
             <span><%= t('coke_messenger.layers.registration_form_view.your_name') %></span>

@@ -113,6 +113,7 @@ class UsersController < ApplicationController
     @user.ip_address  = remote_ip
     @user.msn_live_id = session[:msn_live_id] if wlid_web_login?
     @user.born_on_string = "#{born_on_year}-#{born_on_month}-#{born_on_day}"
+    @user.networks << COKE_NETWORK
 
     @user.email = email.downcase if email
 
@@ -132,11 +133,11 @@ class UsersController < ApplicationController
         :user_id => @user.id, :twitter_username => @user.twitter_username
       }) if @user.twitter_username_changed?
 
-      if request.xhr?
-        js = "_gaq.push(['_trackPageview', '/auth/registration/confirm']);"
-        js << "$.alert_layer.showOverlay(true);"
-        js << "window.location.reload();"
-        render :js => js
+      if params[:iframe]
+        #js = "_gaq.push(['_trackPageview', '/auth/registration/confirm']);"
+        #js << "$.alert_layer.showOverlay(true);"
+        #js << "window.location.reload();"
+        render :user_create_success_iframe, :layout => false
       else
         respond_to do |format|
           format.html { redirect_back_or_default(my_dashboard_path) }
@@ -144,11 +145,12 @@ class UsersController < ApplicationController
         end
       end
     else
-      if request.xhr?
+      if params[:iframe]
         @msg = "registration_layer"
         @error_msgs = "show error msgs"
-        layer_html = render_to_string '/messenger_player/layers/alert_layer'
-        render(:json => {:status => 'redirect', :html => layer_html}, :layout => false)
+        #layer_html = render_to_string '/messenger_player/layers/alert_layer'
+        #render(:json => {:status => 'redirect', :html => layer_html}, :layout => false)
+        render '/messenger_player/layers/alert_layer', :layout => "messenger_iframe"
       else
         respond_to do |format|
           format.html { render :action => :new }

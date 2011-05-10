@@ -48,7 +48,7 @@ class MessengerPlayer::LayersController < ApplicationController
       @msg="authentication_layer"
       "/layer/forgotpwd"
     when "registration_layer"
-      @user = @user || User.new
+      @user = session[:sso_user].nil? ? User.new : session[:sso_user]
       ActionView::Base.field_error_proc = proc { |input, instance| input } 
       
       @orig_msg = false
