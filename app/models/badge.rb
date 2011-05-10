@@ -28,6 +28,6 @@ class Badge < ActiveRecord::Base
   end
 
   def image(type = :small)
-    "#{type.to_s}_#{image_path}"
+    "#{type.to_s}_#{image_path}".gsub("\.jpg",".png")
   end
 end
