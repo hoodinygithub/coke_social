@@ -116,7 +116,7 @@ module AdsHelper
       "home"
     elsif controller_name == "searches"
       "search"
-    elsif controller_name == "radio"
+    elsif controller_name == "radio" || action_name == "mixes"
       "playlist"
     elsif !profile.empty?
       "user_profile"
