@@ -1,13 +1,17 @@
 <div class="oveflow_list">
   <% @search_types.each_with_index do |type, index| %>
-  <div class="search_results_header"><h1><%= t("basics.#{type}")%> (<%= @counts[type] %>) </h1></div>
-  <div class="clearer"></div>
-  <ul id="<%= "#{type.to_s}_list" %>" class="search_list">
-    <%= render :partial => "searches/list_#{type.to_s.singularize}", :collection => @results[type] unless @results[type].empty? %> 
-  </ul>  
-  <div class="<%= "grey_" if (index + 1) < @search_types.size %>spacer"></div>
+    <div class="search_results_header">
+        <h1><%= t("basics.#{type}")%> <span><%= @counts[type] %> <%= t("basics.results")%></span></h1>
+    </div>
+    <ul class="search_list" id="<%= "#{type.to_s}_list" %>">
+        <% if @results[type].empty? %>
+          <p class="no_resultados"><%= t("basics.no_results")%></p>
+        <% else %>
+          <%= render :partial => "searches/list_#{type.to_s.singularize}", :collection => @results[type] %>
+        <% end %> 
+    </ul>  
+    <% if @counts[type] > 0 %>
+      <a class="ico_mas" href="<%= main_search_path(:scope => type.to_s,:q => @query) %>" onclick="Base.header_search.close()" title="<%= t('actions.view_more')%>"><%= t('actions.view_more')%> <span class="bg_flecha">&nbsp;</span></a>
+    <% end %>
   <% end %>
 </div><!--/end oveflow_list -->
-<div class="search_term">
-  <%= link_to("search for #{@query}", "#", :onclick => "javascript: return Base.header_search.buildSearchUrl();") %>
-</div>

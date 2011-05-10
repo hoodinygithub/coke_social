@@ -1,75 +1,5 @@
-// MULTITASK
-// Temporary placeholder for header Live Radio button
-function loadGoomPlayer(t) {
-  $(t).addClass("activo")
-  alert("Need to load Goom Player.  You can find this in /public/javascripts/coke/base.js#line 5")
-}
-
 $(document).ready(function() {
 
-  // MULTITASK Additions Start
-    //navegacion fija
-    var msie6 = $.browser == 'msie' && $.browser.version < 7;
-    if(!msie6){
-  	  var top = $('.navegacion').offset().top;
-      $(window).scroll(function (event) {
-        var y = $(this).scrollTop();
-  	    var alto = $(".navegacion").height();
-        if (y >= top) {
-          $('.navegacion').addClass('fixed');
-  		    $(".cabecera").css("marginBottom",alto+"px");
-        } else {
-          $('.navegacion').removeClass('fixed');
-  		    $(".cabecera").css("marginBottom",0);
-        }
-      });
-    } 
-
-    //fuente Myriad
-    Cufon.replace('.txt');
-
-    //efecto badges
-    // NOTE: Commented block below
-    // Why add more javascript complexity if it doesn't improve the
-    // performance of the page.  Go back to product and suggest against
-    // this fluff!
-    /*
-       if($(".badges").length) {
-       var elem = $(".badges");
-       elem.animate({"opacity":0});
-       $(window).scroll(function (event) {
-       var top = elem.offset().top;
-       var scrollY = $(this).scrollTop();
-       var visible = $(window).height();
-       var y = scrollY+visible;
-       if (y >= top) {
-       elem.animate({"opacity":1},1000);
-       }
-       });
-       }
-    */
-
-    //plegar desplegar ficha de usuario
-    if($(".usuario_ficha .mas_info").length) {
-      $(".usuario_ficha .mas_info").click(function(e){
-    		e.preventDefault();
-    		var padreplegado = $(this).parent().parent(".ficha_plegada");
-    		var padre = $(this).parent().parent();
-        if(padreplegado.length){
-  	      padreplegado.removeClass("ficha_plegada");
-  	      $(this).addClass("menos_info").html('Ocultar<span class="bg_flecha">&nbsp;</span>');
-  	      $(this).attr('title','Ocultar');
-  	    }else{
-  	      padre.addClass("ficha_plegada");
-  	      $(this).removeClass("menos_info").html('Mostrar<span class="bg_flecha">&nbsp;</span>');
-  	      $(this).attr('title','Mostrar');
-  	    }
-    	}); 
-    }
-  // MULTITASK Addition End
-  
-  
-  
   // global tool tip helper
   $('a.tooltip').mouseover(function() {
     $(this).attr('title', '');
@@ -146,7 +76,8 @@ var Base = {
   playlists: {},
   utils: {},
   share: {},
-  locale: {}
+  locale: {},
+  header_search: {}
 };
 
 // Helpers
@@ -732,12 +663,6 @@ Base.account_settings.send_feedback = function() {
   var form = $('#feedback_form').closest('form').submit();
 }
 
-/*
- * header search
- */
-
-
-
 Base.currentSiteUrl = function() {
   return $("body").attr("current_site_url") || "";
 }
@@ -1022,4 +947,73 @@ Base.locale.translate = function(key, params) {
 
 Base.locale.t = function(key, params) {
   return Base.locale.translate(key, params);
+};
+
+
+/*
+ * header search
+ */
+
+Base.header_search.getFieldValue =  function(arr, fieldName) {
+  for(i=0; i<arr.length; i++) {
+    if (arr[i].name == fieldName) {
+      return arr[i].value;
+    }
+  }
+};
+
+Base.header_search.buildSearchUrl = function () {
+  var form_values = jQuery("#header_search_form").serializeArray();
+  var q     = Base.header_search.getFieldValue(form_values,'q');
+  var url   = Base.currentSiteUrl() + "/search/all/" + ( q == msg ? "" : q) ;
+  location.href = url;
+  return false;
+};
+
+Base.header_search.dropdown = function() {
+  jQuery("#search_query").keyup(function(e) {
+      //jQuery('.search_results_ajax').show();
+      var keyCode = e.keyCode || window.event.keyCode;
+      var form_values = jQuery("#header_search_form").serializeArray();
+      var q = Base.header_search.getFieldValue(form_values,'q');
+      if(keyCode == 37 || keyCode == 38 || keyCode == 39 || keyCode == 40){
+        return;
+	    }
+      if(keyCode == 13 || keyCode == 27 || q.length <= 1){
+        //jQuery('.search_results_ajax').show();
+        jQuery('.search_results_ajax').hide();
+        jQuery('.search_results_box').hide();
+        return;
+  	  }
+      //jQuery('.search_results_box').show();
+      setTimeout(function () {Base.header_search.autocomplete(q)}, 500);
+      return true;
+    });
+};
+
+
+Base.header_search.autocomplete = function(last_value) {
+  jQuery('.search_results_ajax').show();
+  var form_values = jQuery("#header_search_form").serializeArray();
+  var q = Base.header_search.getFieldValue(form_values,'q');
+  if( last_value != q || q == ''){
+    jQuery('.search_results_ajax').hide();
+    return;
+  }
+  jQuery.get(Base.currentSiteUrl() + '/search/all/' + q, function(data) {
+      jQuery('.search_results_box').html(data);
+      jQuery('.search_results_box').show();
+      jQuery('#header_search_form').parent().addClass('activo');
+      jQuery('.search_results_ajax').hide();
+  });
+};
+
+Base.header_search.close = function(msg) {
+  jQuery("#search_query").val(msg);
+  setTimeout(function() {
+    $('.search_results_box').hide();
+    $('.search_results_box').html('');
+    jQuery('#header_search_form').parent().removeClass('activo');
+    jQuery('.search_results_ajax').hide();
+  }, 300);
 };
