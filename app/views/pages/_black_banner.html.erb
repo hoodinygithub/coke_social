@@ -19,7 +19,7 @@
       <script type="text/javascript" charset="utf-8">
         var fFlashVars = {
           MARKET:'<%= current_site.code %>',
-          TITLE:'<%= t("modules.todays_top_artists.title") %>'
+          TITLE:'<%= escape_javascript( t("modules.todays_top_artists.title") ) %>'
         };
         var fParams = {
           allowScriptAccess: 'sameDomain',
