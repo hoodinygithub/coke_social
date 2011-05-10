@@ -2,17 +2,28 @@
 
 <div class="bloque">
 
-  <h1 class="logo"><%= link_to("Coca Cola FM", home_path) %></h1>
+  <h1 class="logo"><%= link_to "Coca Cola FM", home_path, :content_switch_enabled => true %></h1>
   <div class="claimanimado">
-    <script type="text/javascript">
-      AC_FL_RunContent( 'codebase','http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=9,0,28,0','width','310','height','35','src','/images/multitask/swfs/bocadillo','quality','high','wmode','transparent','pluginspage','http://www.adobe.com/shockwave/download/download.cgi?P1_Prod_Version=ShockwaveFlash','movie','/images/multitask/swfs/bocadillo' ); //end AC code
+    <div id="bocadillo_claim"></div>
+    <script type="text/javascript" charset="utf-8">
+      var fFlashVars = {
+
+      };
+      var fParams = {
+        quality: 'high',
+        wmode: 'transparent'
+      };
+      var fAttribs = {
+
+      };
+      swfobject.embedSWF('/images/multitask/swfs/bocadillo_<%= site_code %>.swf', 'bocadillo_claim', '310', '35', '9.0.0', false, fFlashVars, fParams, fAttribs);
     </script>
     <noscript>
       <object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=9,0,28,0" width="310" height="35">
-        <param name="movie" value="/images/multitask/swfs/bocadillo.swf" />
+        <param name="movie" value="/images/multitask/swfs/bocadillo_<%= site_code %>.swf" />
         <param name="quality" value="high" />
         <param name="wmode" value="transparent" />
-        <embed src="/images/multitask/swfs/bocadillo.swf" quality="high" pluginspage="http://www.adobe.com/shockwave/download/download.cgi?P1_Prod_Version=ShockwaveFlash" type="application/x-shockwave-flash" width="310" height="35"></embed>
+        <embed src="/images/multitask/swfs/bocadillo_<%= site_code %>.swf" quality="high" pluginspage="http://www.adobe.com/shockwave/download/download.cgi?P1_Prod_Version=ShockwaveFlash" type="application/x-shockwave-flash" width="310" height="35"></embed>
       </object>
     </noscript>
   </div>
@@ -21,16 +32,16 @@
   </ul><!-- .acceso -->
   <div class="botones">
       <a class="btn_grande btn_radio" href="#" onclick="loadGoomPlayer(this); return false;" title="<%= t('coke_messenger.live_radio')%>">
-          <span class="ico">Radio</span>
+          <span class="ico"><%= t('coke_messenger.live_radio')%></span>
           <span class="txt"><%= t('coke_messenger.live_radio')%></span>
           <span class="bg_fin">&nbsp;</span>  
       </a><!-- incluir clase .activo cuando este activa la radio -->
       <% if logged_in? %>
-        <a class="btn_grande btn_mix" href="#{playlist_create_path}" title="<%= t('actions.create_a_playlist') %>">
+        <a class="btn_grande btn_mix" href="#{playlist_create_path}" title="<%= t('actions.create_a_playlist') %>" content_switch_enabled="true">
       <% else %>
         <a class="btn_grande btn_mix" href="#" onclick="$.alert_layer('/registration_layers/create_playlist?return_to=<%= playlist_create_path %>')" title="<%= t('actions.create_a_playlist') %>">
       <% end %>
-          <span class="ico">Mix</span>
+          <span class="ico"><%= t('actions.create_a_mix') %></span>
           <span class="txt"><%= t('actions.create_a_mix') %></span>
           <span class="bg_fin">&nbsp;</span>  
       </a>

@@ -1,0 +1,11 @@
+<script>
+ var msg="<%= t('search.search_hint', :default => 'Search for friends or mixes') %>";
+</script>
+<div id="header_search_form" class="busqueda">
+  <% form_for :search, :url => search_path, :html => { :onsubmit => 'return Base.header_search.buildSearchUrl();', :method => :get, :id => :header_search_form, :class => "buscador" } do |f| %>
+    <%= text_field_tag :q, t('search.search_hint', :default => 'Search for friends or mixes'),  {:id => :search_query, :class => "txt_form", :onfocus => " clearInput(msg, this);", :onblur => "restoreInput(msg, this); setTimeout(function() {$('.search_results_box').hide();}, 300);", :autocomplete => :off } %>
+    <%= f.submit("Buscar", :class => "btn_form") %>
+  <% end %>
+  <div class="search_results_ajax"><%= image_tag "/images/multitask/loading.gif" %></div>
+  <div class="search_results_box"></div>
+</div><!--/end search_form -->
