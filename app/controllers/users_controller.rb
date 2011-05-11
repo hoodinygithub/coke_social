@@ -161,16 +161,41 @@ class UsersController < ApplicationController
   def forgot
     if request.post?
       @user = User.forgot?( params[:user], current_site )
+      
+      # HACK!
+      # User.forgot is returning a nil User object
+      @user = nil if @user && @user.id.nil?
+      
       if @user && @user.msn_live_id && wlid_web_login?
         flash.now[:error] = t('reset.msn_account')
-      elsif @user && @user.errors.empty? && params[:safe_question].empty? # && verify_recaptcha(:model => @user, :message => I18n.t("forgot.captcha_invalid"))
+        if request.xhr?
+          @msg = "forgot_password"
+          @error_msgs = "show error msgs"
+          @error_msg = t('reset.msn_account')
+          layer = render_to_string '/messenger_player/layers/alert_layer'
+          render(:json => {:status => 'redirect', :html => layer}, :layout => false)
+        end
+      elsif @user && params[:safe_question].empty? # && verify_recaptcha(:model => @user, :message => I18n.t("forgot.captcha_invalid"))
         UserNotification.send_reset_notification(
           :user_id => @user.id,
           :password => @user.reset_password,
-          :site_id => request.host)
+          :site_id => request.host) unless Rails.env.development?
         flash[:success] = t('forgot.reset_message_sent')
+        if request.xhr?
+          @msg = "forgot_password"
+          @success = true
+          layer = render_to_string '/messenger_player/layers/alert_layer'
+          render(:json => {:status => 'redirect', :html => layer}, :layout => false)
+        end
       elsif @user.nil?
-        flash[:success] = t('forgot.reset_message_sent')        
+        flash[:success] = t('forgot.reset_message_sent')
+        if request.xhr?
+          @msg = "forgot_password"
+          @error_msgs = "show error msgs"
+          @error_msg = t('coke_messenger.layers.forgot_password_layer.error_msg')
+          layer = render_to_string '/messenger_player/layers/alert_layer'
+          render(:json => {:status => 'redirect', :html => layer}, :layout => false)
+        end     
       end
     elsif !request.referer.blank? && request.referer !=~ /forgot|session/
       session[:return_to] = request.referer

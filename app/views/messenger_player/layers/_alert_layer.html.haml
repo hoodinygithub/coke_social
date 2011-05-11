@@ -4,6 +4,8 @@
     = render :partial =>"/messenger_player/layers/max_layer"
   - when 'login_layer'
     = render :partial =>"/messenger_player/layers/login_layer", :locals =>{:class_name => class_name}  
+  - when 'forgot_password'
+    = render :partial =>"/messenger_player/layers/forgot_password", :locals =>{:class_name => class_name}
   - when 'license_message'
     = render :partial =>"/messenger_player/layers/license_message"
   - when 'opt_layer'

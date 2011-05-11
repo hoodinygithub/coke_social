@@ -3,7 +3,7 @@ class MessengerPlayer::LayersController < ApplicationController
   layout 'messenger/layer'
 
   def alert_layer
-    alert_type = (params[:alert_type] =~ /(max_plays|share_mix|copy_mix|follow_user|my_friends|my_mixes|max_skips|login_layer|license_message|opt_layer|authentication_layer|registration_layer|error|opt_layer_locked)/i) ? params[:alert_type].to_s : "generic"
+    alert_type = (params[:alert_type] =~ /(max_plays|share_mix|copy_mix|follow_user|my_friends|my_mixes|max_skips|login_layer|license_message|opt_layer|authentication_layer|registration_layer|error|opt_layer_locked|forgot_password)/i) ? params[:alert_type].to_s : "generic"
 
     layout = params[:layout]
     # The value doesn't matter.  Just care if it's set.
@@ -68,6 +68,11 @@ class MessengerPlayer::LayersController < ApplicationController
       @station_id = params[:station_id]  
       @orig_msg = false
       @msg="share_mix_layer"
+    when "forgot_password"
+      @orig_msg = false
+      @msg="forgot_password"
+      @error_msgs = params[:errors].blank? ? nil : "show error msgs"
+      "/auth/forgotpassword"
     end
     
     @alert_text = t('coke_messenger.registration.layers.' + alert_type) unless @alert_text
