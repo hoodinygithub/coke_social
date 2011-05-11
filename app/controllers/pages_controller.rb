@@ -16,6 +16,7 @@ class PagesController < ApplicationController
   end
 
   def mixes
+    @latest_badges = BadgeAward.latest(5)
     @top_mixes = current_site.top_playlists.all(:limit => 9)
     @top_artists = current_site.top_artists.all(:limit => 5)
     @top_djs = current_site.top_djs.all(:limit => 5)
