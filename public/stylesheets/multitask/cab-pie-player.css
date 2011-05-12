@@ -35,8 +35,8 @@ body #container{padding:36px 15px 15px;margin:0 auto;background:url(/images/mult
 .btn_grande .txt{font-size:20px;color:#000;}
 .btn_grande .bg_fin{background:url(/images/multitask/bg_elementos.png) no-repeat -294px -1px #e10015;display:block;height:53px;width:4px;position:absolute;right:0;top:0;}
 .btn_grande .ico{overflow:hidden;text-indent:-99em;position:absolute;left:15px;top:15px;}
-.btn_radio{margin-right:14px;}
-.btn_radio .ico{display:block;width:28px;height:27px;background:url(/images/multitask/iconografia.png) no-repeat 0 -232px;top:12px;}
+.btn_envivo{margin-right:14px;}
+.btn_envivo .ico{display:block;width:28px;height:27px;background:url(/images/multitask/iconografia.png) no-repeat 0 -232px;top:12px;}
 .btn_mix .ico{display:block;width:25px;height:24px;background:url(/images/multitask/iconografia.png) no-repeat 0 -261px;}
 .btn_grande.activo{filter:alpha(opacity=50);-moz-opacity:0.5;-khtml-opacity:0.5;opacity:0.5;}
 .btn_grande.activo span{filter:alpha(opacity=10);}
@@ -149,8 +149,9 @@ body #container{padding:36px 15px 15px;margin:0 auto;background:url(/images/mult
 .player .r_popup{display:block;width:22px;height:20px;text-indent:-999em;overflow:hidden;background:url(/images/multitask/player/player_iconos.png) no-repeat 0 -404px;float:left;margin:8px 0 0 3px;filter:alpha(opacity=50);-moz-opacity:0.5;-khtml-opacity:0.5;opacity:0.5;}
 
 /* player radio */
+.player_radio {display:none};
 .player_radio .controles{width:76px;background:url(/images/multitask/player/bg_controles_radio.png) no-repeat 0 8px;}
-.player_radio .sonando{width:515px;border-right:0;}
+.player_radio .sonando{width:507px;border-right:0;}
 .player_radio .sonando .mascara{width:400px;}
 .player_radio .sonando p{font-size:11px;color:#fff;text-align:left;margin:0 0 5px;width:400px;}
 .player_radio .cancion{height:30px;}

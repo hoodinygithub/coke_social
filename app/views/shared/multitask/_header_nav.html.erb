@@ -71,8 +71,46 @@
     </div><!-- .volumen -->
   </div><!-- .player -->    
 
+  <div id="goom_ui" class="player player_radio">
+  <div class="controles">
+    <a class="r_play activo" onclick="Base.Player.playPause()" href="#" title="Play">Play</a>
+    <a class="r_random" href="#" onclick="Base.Station.random();" title="Random">Random</a>
+  </div><!-- .controles -->
+  <div class="sonando">
+    <div class="caratula">
+      <img src="images/coke_messenger/cds/sim_caratula1.jpg" alt="Radio" width="35" height="35" />
+    </div><!-- .caratula -->
+    <div class="cancion">
+      <p>Live Radio M&eacute;xico</p>
+      <div class="mascara"></div>
+      <ul>
+      </ul>
+    </div>
+  </div><!-- .sonando -->
+  <div class="botones_like">
+    <!-- boton like facebook, modificar con la url correcta -->
+    <iframe src="http://www.facebook.com/plugins/like.php?href=http%3A%2F%2Fcoca-cola.fm&amp;layout=button_count&amp;show_faces=false&amp;width=80&amp;action=like&amp;font&amp;colorscheme=light&amp;height=21" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:100px; height:21px;" allowTransparency="true"></iframe>
+    <!-- fin boton like facebook -->
+    <!-- boton compartir twitter -->
+    <a href="http://twitter.com/share" class="twitter-share-button" data-count="horizontal">Tweet</a>
+	<script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>
+    <!-- fin compartir twitter -->
+  </div><!-- .botones_like -->
+  <div class="volumen">
+    <a class="vol_menos" href="#" title="Bajar volumen">Menos</a>
+    <div class="barra">
+      <div class="relleno" style="width:64px;left:-9px;"><!-- relleno de la barra de volumen -->
+        <a class="puntero" href="#">Puntero</a>
+      </div>
+    </div><!-- .barra -->
+    <a class="vol_mas" href="#" title="Subir volumen">Mas</a>
+  </div><!-- .volumen -->
+</div><!-- .player .player_radio -->    
+
   <div class="sound_engines">
     <div id="coke_player"></div>
+    <div id="goom_player"></div>
+    <div id="goom_callbacks"></div>
     <script type="text/javascript">
       var pl = [<%= top_playlists.map { |p| "'/playlists/#{p.id}.xml'" }.join(',') %>];
       /* Coke player configuration */
@@ -92,6 +130,33 @@
         name:'coke_engine'
       };
       swfobject.embedSWF('/flash/sound_stub.swf', 'coke_player', '1', '1', '9.0.0', false, cFlashVars, cParams, cAttribs);
+      /*****************************/
+      /* Goom player configuration */
+      // Exposed goom engine callbacks
+      var goomui = document.getElementById('goom_callbacks');
+      goomui.currentMediaChanged = function(eobj)
+      {
+        var song = $.parseJSON(eobj);
+        if (song.title) Base.UI.render(song);
+      };
+
+      var gFlashVars = {
+        urlApi:'http://api.goomradio.com',
+        eStatUrl:'http://www.goomradio.com/mini-audio/eStatNativeFlashTag.swf',
+        defaultVolume:'50',
+        uiid:'goom_callbacks',
+        defaultRadioId:'4242705',
+        autoPlay:'0'
+      };
+      var gParams = {
+        allowscriptaccess:'always'
+      };
+      var gAttribs = {
+        id:'goom_engine',
+        name:'goom_engine'
+      };
+      swfobject.embedSWF('http://www.goomradio.com/mini-audio/goom-miniAudioLib.swf', 'goom_player', '1', '1', '9.0.0', {}, gFlashVars, gParams, gAttribs);
+      /*****************************/
     </script>
   </div>
 </div><!-- .bloque -->

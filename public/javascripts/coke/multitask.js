@@ -1,9 +1,3 @@
-// Temporary placeholder for header Live Radio button
-function loadGoomPlayer(t) {
-  $(t).addClass("activo")
-  alert("Need to load Goom Player.  You can find this in /public/javascripts/coke/base.js#line 5")
-}
-
 $(document).ready(function() {
   
   //navegacion fija
