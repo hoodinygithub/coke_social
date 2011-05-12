@@ -399,7 +399,7 @@ Base.UI = {
     }
     tickr += "</ul>";
     this.controlUI().find('.mascara').after(tickr);
-    this.controlUI().find('.cancion ul').liScroll({travelocity: 3000});
+    this.controlUI().find('.cancion ul').liScroll({travelocity: 0.05});
 
     if (Base.Player._player == 'coke')
     {
