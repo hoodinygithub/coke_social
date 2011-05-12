@@ -208,10 +208,10 @@ li.sonando {background-color:#e8e8e8;}
 .aviso form .boton,
 .aviso .boton{display:block;width:135px;height:30px;background:url(/images/coke_messenger/botones.png) no-repeat -1px -114px;text-align:center;color:#fff;font-size:15px;font-weight:bold;float:right;cursor:pointer;margin-bottom:0;border:0;}
 .aviso form .boton_gris{display:block;width:137px;height:30px;background:url(/images/coke_messenger/botones.png) no-repeat -1px -146px;text-align:center;color:#fff;font-size:15px;font-weight:bold;float:right;cursor:pointer;margin-bottom:0;border:0;}
-.aviso label .txt_error{display:none;}
+.aviso label .txt_error, .aviso p.txt_error{display:none;}
 .aviso label.error{padding:1px;}
 .aviso label.error input{border:1px solid #FF0014;}
-.aviso label.error .txt_error{display:block;clear:both;color:#FF0014;font-size:10px;padding-top:2px;}
+.aviso label.error .txt_error, .aviso p.txt_error.error{display:block;clear:both;color:#FF0014;font-size:10px;padding-top:2px;}
 
 /* compartir */
 .compartir .columna_izq,
