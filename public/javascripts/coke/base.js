@@ -19,7 +19,10 @@ $(document).ready(function() {
     $(this).removeClass('active');
   });
 
-  $('.volumen .puntero').css('left', 19);
+  if (app == "multitask")
+    $('.volumen .puntero').css('left', 24);
+  else
+    $('.volumen .puntero').css('left', 19);
 
   var slider = {};
   slider.ondrag = function(event, ui)
@@ -111,7 +114,7 @@ Base.Util = {
       url: req,
       dataType: type,
       complete: function(data) {
-        if (options.afterComplete) options.afterComplete();
+        if (typeof options != "undefined") options.afterComplete();
         func(data);
       },
       error: error_func
@@ -361,6 +364,7 @@ Base.UI = {
     if (Base.Player._player == 'coke')
     {
       this.controlUI().find('a.punt_botellas').empty();
+      if (app == "multitask") this.controlUI().find('.titulo_mix').empty();
     }
   },
 
@@ -377,6 +381,12 @@ Base.UI = {
     var tickr = "<ul>";
     if (Base.Player._player == 'coke')
     {
+      if (app == "multitask")
+      {
+        var tm = "<p><a class='link_decor' href='#' title=''>" + s.playlistName + "</a></p>";
+        tm += "<p>por: " + Base.Station._station.ownerName + "</p>";
+        this.controlUI().find('.titulo_mix').append(tm);
+      }
       this.controlUI().find('.caratula img').attr('src', s.albumAvatar);
       tickr += "<li class='nombre_mix'>" + s.playlistName + "</li>";
       tickr += "<li>" + s.title + "</li>";
@@ -411,11 +421,11 @@ Base.UI = {
   {
     if (b)
     {
-      this.controlUI().find('.controles .r_random').addClass('active').css('cursor', 'default').unbind('click');
+      this.controlUI().find('.controles .r_random').addClass('activo').css('cursor', 'default').unbind('click');
     }
     else
     {
-      this.controlUI().find('.controles .r_random').removeClass('active').css('cursor', 'pointer').bind('click', function() {
+      this.controlUI().find('.controles .r_random').removeClass('activo').css('cursor', 'pointer').bind('click', function() {
         Base.Station.random();
       });
     }
@@ -470,6 +480,8 @@ function StationBean(data)
   var _songs = [];
 
   this.owner = _xmlRoot.attr('owner');
+
+  this.ownerName = _xmlRoot.attr('ownerName');
 
   this.songCount = _xmlRoot.attr('numResults');
 

@@ -14,10 +14,8 @@
       <span class="r_random active" href="#" title="Random">Random</a>
     </div><!-- .controles -->
     
-    <!-- <div class="titulo_mix">
-      <p><a class="link_decor" href="#" title="">M&uacute;sica para salir de marcha</a></p>
-      <p>Por: <a class="link_decor" href="#" title="Martinez DJ">Martinez DJ</a></p>
-    </div> -->
+    <div class="titulo_mix">
+    </div>
     
     <div class="sonando">
       <div class="caratula">
@@ -40,12 +38,6 @@
       </div><!-- .tiempo -->
 
       <a class="tooltip punt_botellas" href="#" target="_blank" rel="tip_valorar" onclick="Base.Player.pause()" title="Valorar Mix">
-        <!-- <span class="llena"></span>
-        <span class="llena"></span>
-
-        <span class="llena"></span>
-        <span class="vacia"></span>
-        <span class="vacia"></span> -->
       </a><!-- .punt_botellas -->
       <span class="tip" id="tip_valorar"><%= t('coke_messenger.rating') %></span>
     </div><!-- .sonando -->
@@ -71,11 +63,35 @@
     <div class="volumen">
       <a class="vol_menos" href="#" title="Bajar volumen">Menos</a>
       <div class="barra">
-        <div class="relleno" style="width:40%;"> <!-- relleno barra del volumen -->
+        <div class="relleno" style="width:64px;left:-9px;"> <!-- relleno barra del volumen -->
           <a class="puntero" href="#">Puntero</a>
         </div>
       </div><!-- .barra -->
       <a class="vol_mas" href="#" title="Subir volumen">Mas</a>
     </div><!-- .volumen -->
   </div><!-- .player -->    
+
+  <div class="sound_engines">
+    <div id="coke_player"></div>
+    <script type="text/javascript">
+      var pl = [<%= top_playlists.map { |p| "'/playlists/#{p.id}.xml'" }.join(',') %>];
+      /* Coke player configuration */
+      var cFlashVars = {
+        debug:1,
+        protocol:'rtmp',
+        serviceHost:'cdn.cyloop.com/cfx/st',
+        player:'messengerradio_<%= current_site.code %>',
+        key:<%= Player.find_by_player_key("messengerradio_#{current_site.code}").id %>,
+        autostart:1
+      };
+      var cParams = {
+        allowScriptAccess: 'sameDomain'
+      };
+      var cAttribs = {
+        id:'coke_engine',
+        name:'coke_engine'
+      };
+      swfobject.embedSWF('/flash/sound_stub.swf', 'coke_player', '1', '1', '9.0.0', false, cFlashVars, cParams, cAttribs);
+    </script>
+  </div>
 </div><!-- .bloque -->
