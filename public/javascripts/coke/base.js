@@ -109,12 +109,13 @@ Base.Util = {
   {
     error_func = typeof(error_func) != 'undefined' ? error_func : Base.UI.xhrerror;
     var options = arguments[4];
+    console.log(options);
 
     $.ajax({
       url: req,
       dataType: type,
       complete: function(data) {
-        if (typeof options != "undefined") options.afterComplete();
+        if (typeof options != "undefined" && typeof options.afterComplete != "undefined") options.afterComplete();
         func(data);
       },
       error: error_func
@@ -383,8 +384,8 @@ Base.UI = {
     {
       if (app == "multitask")
       {
-        var tm = "<p><a class='link_decor' href='#' title=''>" + s.playlistName + "</a></p>";
-        tm += "<p>por: " + Base.Station._station.ownerName + "</p>";
+        var tm = "<p><a class='link_decor' href='/playlists/" + s.plId + "' title='" + s.playlistName + "' content_switch_enabled='true'>" + s.playlistName + "</a></p>";
+        tm += "<p>por: <a class='link_decor' href='" + Base.Station._station.ownerProfile + "' content_switch_enabled='true'>" + Base.Station._station.ownerName + "</a></p>";
         this.controlUI().find('.titulo_mix').append(tm);
       }
       this.controlUI().find('.caratula img').attr('src', s.albumAvatar);
@@ -482,6 +483,8 @@ function StationBean(data)
   this.owner = _xmlRoot.attr('owner');
 
   this.ownerName = _xmlRoot.attr('ownerName');
+
+  this.ownerProfile = _xmlRoot.attr('ownerProfile');
 
   this.songCount = _xmlRoot.attr('numResults');
 
