@@ -15,18 +15,18 @@
               <a href="#" title="<%= mix.name %>"><%= avatar_for mix, :large %></a>
               <div class="overlay">
                 <div class="hidden fh" style="display:none;">
-                  <a href="#" title=""><strong><%= mix.name %></strong></a>
+                  <a href="#" title="" onclick="Base.Station.request('/playlists/<%= mix.id %>.xml', 'xml', Base.Station.stationCollection);Base.Player.random(false);"><strong><%= mix.name %></strong></a>
                   <%= multitask_rating mix %>
                   <div class="tag_links">
                     <%= tag_links mix %>
                   </div>
                   <div class="align_right box_buttons">
 
-                    <a href="#" title="Reproducir"><img src="images/play_button.png" class="png_fix" alt="Play_button" /></a>
+                    <a href="#" onclick="Base.Station.request('/playlists/<%= mix.id %>.xml', 'xml', Base.Station.stationCollection);Base.Player.random(false);" title="Reproducir"><img src="images/play_button.png" class="png_fix" alt="Play_button" /></a>
                   </div>
                 </div><!-- .hidden -->
                 <div class="visible fh" style="display:block;">
-                  <a href="#" title=""><img alt="" class="play_button png_fix" src="images/play_button.png"  /></a>
+                  <a href="#" title="" onclick="Base.Station.request('/playlists/<%= mix.id %>.xml', 'xml', Base.Station.stationCollection);Base.Player.random(false);"><img alt="" class="play_button png_fix" src="images/play_button.png"  /></a>
                   <a href="#" title=""><%= mix.name %></a>
                   <%= multitask_rating mix %>
                 </div><!-- .visible -->
