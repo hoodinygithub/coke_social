@@ -109,7 +109,6 @@ Base.Util = {
   {
     error_func = typeof(error_func) != 'undefined' ? error_func : Base.UI.xhrerror;
     var options = arguments[4];
-    console.log(options);
 
     $.ajax({
       url: req,
