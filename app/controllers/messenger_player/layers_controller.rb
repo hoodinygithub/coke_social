@@ -39,10 +39,9 @@ class MessengerPlayer::LayersController < ApplicationController
       @orig_msg = false
       @msg="opt_layer"
       @error_msgs = params[:errors].blank? ? nil : "show error msgs"
-      "/auth/option"
-      
       alert_type = "opt_layer"
       @locked = true
+      "/auth/option"
     when "authentication_layer"
       @orig_msg = false
       @msg="authentication_layer"
