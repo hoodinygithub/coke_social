@@ -52,9 +52,6 @@
           <%= banner_ad("square_banner") %>
         </div><!-- .open_happiness_box -->      
         <div class="mod_emociones">
-          <h2 class="tit_bloque">
-            <span class="bg_fin">&nbsp;</span>
-          </h2><!-- .tit_bloque -->
           <div class="mod_tags">
             <% cache("#{site_cache_key}/modules/tag_cloud", :expires_in => EXPIRATION_TIMES["home_tag_cloud"]) do %>
               <%= render :partial => "shared/tag_cloud", :locals => { :tags => current_site.tag_counts_from_playlists } %>
