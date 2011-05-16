@@ -1,42 +1,66 @@
-<script type="text/javascript">
-   $(document).ready(function() {
-      Base.main_search.initialize_scope_toggle();
-    });
-</script>
-<% content_for :header_space_content do %>
-  <div class="search_box">
-    <%= render :partial =>'search_form' %>
-  </div><!--/end search_box -->
-<% end %>
+<div class="contenido">
+  <div class="bloque">
 
-<div class="two_columns">
-  <% unless true %>
-    <div class="search_term">
-        <%= "#{t('search.search_results_for')} \"#{@query.nil? ? '' : @query}\"" %>
-    </div>
-  <% end %>
+    <form class="buscador_big">
+      <label class="lupa_buscar">Lupa</label>
+      <input type="text" class="text_buscar" value="Amaral" /><!-- value de ejemplo -->
+      <input type="submit" value="USUARIOS" class="btn_buscar btn_bususuarios" />
+      <input type="submit" value="MIXES" class="btn_buscar btn_busmixes activo" />
+    </form>
 
-  <div id="left_column">
-    <%= render 'scope_toggle' %>
-  </div><!--/end left_column -->
-  <div id="center_column" class="search_results">
-    <% @search_types.each do |type| %>
-    <div id="<%= type.to_s %>_result" class="scope_result<%= @active_scope == type ? '' : ' hide' %>" result_count="<%= @counts[type] %>">
-      <h1><%= t("basics.#{type.to_s}")%></h1>
-      <%= render :partial => "#{type.to_s}_sorting" %>
-      <div id="<%= type.to_s %>_result_details">
-        <%= render type.to_s unless @results[type].empty? %>
-      </div>
-    </div>
-    <% end %>
-  </div><!--/end center_column -->
-</div><!--/end two_columns -->
+    <div class="cont_columna doble">
 
-<div id="right_column">
-  <div class="ad_box">
-    <%= banner_ad("square_banner") %>
-    <!-- img alt="Coca-Cola.FM" src="/images/bucket-Coca-Fm.jpg" -->
-  </div>
-</div><!--/end right_column -->
+      <div class="mod_mixes">
+        <h2 class="tit_bloque">
+          <span class="txt">Mixes<em>20 resultados</em></span>
+          <span class="bg_fin">&nbsp;</span>
+        </h2><!-- .tit_bloque -->
+        <form class="f_ordenar" action="#">
+          <select>
+            <option>Relevencia</option>
+            <option>Top</option>
+            <option>Los mejor calificados</option>
+            <option>Alfabético</option>
+            <option>Más recientes</option>
+          </select>
+        </form><!-- .f_ordenar -->
 
-<div class="clearer"></div>
+        <% @search_types.each do |type| %>
+          <%= render type.to_s unless @results[type].empty? %>
+        <% end %>
+
+        <ul class="paginacion">
+          <li class="ant"><a href="#" title="Anterior">&lt;</a></li>
+          <li class="activo">1</li>
+          <li><a href="#" title="2">2</a></li>
+          <li><a href="#" title="3">3</a></li>
+          <li><a href="#" title="4">4</a></li>
+          <li><a href="#" title="5">5</a></li>
+          <li><a href="#" title="6">6</a></li>
+          <li><a href="#" title="7">7</a></li>
+          <li class="res">&hellip;</li>
+          <li><a href="#" title="99">99</a></li>
+          <li class="sig"><a href="#" title="Sigueinte">&gt;</a></li>
+          </ul><!-- .paginacion -->
+
+        </div><!-- .mod_seguidores -->
+
+      </div><!-- .cont_columna doble -->
+
+      <div class="cont_columna der">
+        <div class="open_happiness_box">
+          <%= banner_ad("square_banner") %>
+        </div><!-- .open_happiness_box -->      
+        <div class="mod_emociones">
+          <h2 class="tit_bloque">
+            <span class="bg_fin">&nbsp;</span>
+          </h2><!-- .tit_bloque -->
+          <div class="mod_tags">
+            <% cache("#{site_cache_key}/modules/tag_cloud", :expires_in => EXPIRATION_TIMES["home_tag_cloud"]) do %>
+              <%= render :partial => "shared/tag_cloud", :locals => { :tags => current_site.tag_counts_from_playlists } %>
+            <% end %>
+          </div><!-- .mod_tags -->
+        </div><!-- .mod_emociones -->
+      </div><!-- .cont_columna der -->
+    </div><!-- /bloque -->
+  </div><!-- .contenido -->

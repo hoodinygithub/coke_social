@@ -7,39 +7,88 @@
   <% @results[:playlists].each do |playlist| %>
     <% if playlist.station %>
       <% is_self = (current_user and current_user == playlist.owner) %>
-      <li>
-        <%= link_to avatar_for(playlist, :large), radio_path(:station_id => playlist.station.id) %>
-
-        <div class="transparency_thumbanils png_fix">
-            <% if false %><a href="#"><img src="images/listen_button.png" alt="" /></a><% end %>
-            <%= link_to image_tag('duplicate_button.png', :class=> "png_fix"), '#', :title=> t('actions.copy'),
-              :onclick => "Base.playlists.copy('#{playlist.owner.slug}', #{playlist.id}); return false;" %>
-            <%= link_to image_tag('play_button.png'), radio_path(:station_id => playlist.station.id), :title=> t('actions.play') %>
-        </div>
-
-        <div class="susbcription_text">
-            <span class="susbcription_stars right_side"><%= rating(playlist) %></span>
-            <big><%= link_to playlist.name, radio_path(:station_id => playlist.station.id) %></big>
-            <br/>
-            <span class="grey"><%= l(playlist.updated_at.to_date) %></span>
-            <div class="tags_contains">
-              <% unless playlist.cached_tag_list.blank? %>
-              <div><%= tag_links(playlist, @active_scope) %></div>
-              <% end %>
-              <% if playlist.songs_count > 0 %>
-              <div><%= station_contains(playlist) %></div>
-              <% end %>
-            </div>
-            <div class="susbcription_creator">
-                <%= link_to(avatar_for(playlist.owner, :small, {:alt => "", :class =>"follower_image"}), playlist.owner) %>
-                <div class="creator_text">
-                  <b><%= "#{t('basics.created_by')}: #{link_to(playlist.owner.name, user_path(playlist.owner))}" %></b><br/>
-                  <%= render :partial =>'shared/user_following', :locals => {:current_user => current_user, :user => playlist.owner} if current_user != playlist.owner %>
+        <div class="albums_item reviews_list">
+          <div class="artist_box png_fix">
+            <a href="#" title=""><img title="musica" src="imgs/mixes/sim_album1.jpg" class="avatar large" alt="musica" /></a>
+            <div class="overlay">
+              <div class="hidden fh">
+                <a href="#" title=""><strong>musica</strong></a>
+                <span class="rating">
+                  <span class="star-rating-control">
+                    <div class="star-rating star-rating-on star-rating-readonly"><a href="#" title="1">1</a></div>
+                    <div class="star-rating star-rating-on star-rating-readonly"><a href="#" title="2">2</a></div>
+                    <div class="star-rating star-rating-on star-rating-readonly"><a href="#" title="3">3</a></div>
+                    <div class="star-rating star-rating-readonly"><a href="#" title="4">4</a></div>
+                    <div class="star-rating star-rating-readonly"><a href="#" title="5">5</a></div>
+                  </span>
+                  <input type="radio" class="star star-rating-applied star-rating-readonly" style="display: none;" />
+                  <input type="radio" class="star star-rating-applied star-rating-readonly" style="display: none;" />
+                  <input type="radio" class="star star-rating-applied star-rating-readonly" style="display: none;" />
+                  <input type="radio" class="star star-rating-applied star-rating-readonly" style="display: none;" />
+                  <input type="radio" class="star star-rating-applied star-rating-readonly" style="display: none;" />
+                </span><!-- .rating -->
+                <div class="tag_links">
+                  Etiquetas: <a href="#" title="">Divertido</a>, <a href="#" title="">Pop</a>
                 </div>
-            </div>
-        </div>
-        <br class="clearer" />     
-      </li>
+                <div class="align_right box_buttons">
+                  <a href="#" title="Reproducir"><img src="imgs/play_button.png" class="png_fix" alt="Play_button" /></a>
+                </div>
+              </div><!-- .hidden -->
+              <div class="visible fh">
+                <a href="#" title=""><img alt="" class="play_button png_fix" src="imgs/play_button.png"  /></a>
+                <a href="#" title="">musica</a>
+                <span class="rating">
+                  <span class="star-rating-control">
+                    <div class="star-rating star-rating-on star-rating-readonly"><a href="#" title="1">1</a></div>
+                    <div class="star-rating star-rating-on star-rating-readonly"><a href="#" title="2">2</a></div>
+                    <div class="star-rating star-rating-on star-rating-readonly"><a href="#" title="3">3</a></div>
+                    <div class="star-rating star-rating-readonly"><a href="#" title="4">4</a></div>
+                    <div class="star-rating star-rating-readonly"><a href="#" title="5">5</a></div>
+                  </span>
+                  <input type="radio" class="star star-rating-applied star-rating-readonly" style="display: none;" />
+                  <input type="radio" class="star star-rating-applied star-rating-readonly" style="display: none;" />
+                  <input type="radio" class="star star-rating-applied star-rating-readonly" style="display: none;" />
+                  <input type="radio" class="star star-rating-applied star-rating-readonly" style="display: none;" />
+                  <input type="radio" class="star star-rating-applied star-rating-readonly" style="display: none;" />
+                </span><!-- .rating -->
+              </div><!-- .visible -->
+            </div><!-- .overlay -->
+          </div><!-- .artist_box -->
+          <div class="reviews">
+            <div class="title">
+              <h3><%= playlist.name %></h3>
+              <span class="grey"><%= playlist.updated_at %></span>
+              <p><strong>Incluye:</strong> <a href="#" title="Blur">Blur</a>, <a href="#" title="Garbage">Garbage</a>, <a href="#" title="Green Day">Green Day</a>,...</p>
+              <p><strong>Emociones destapadas:</strong> <a href="#" title="Sexy">Sexy</a>, <a href="#" title="Feliz">Feliz</a>, <a href="#" title="Bailar">Bailar</a>,...</p>
+            </div><!-- .title -->
+            <span class="rating">
+              <span class="star-rating-control">
+                <div class="star-rating star-rating-on star-rating-readonly"><a href="#" title="1">1</a></div>
+                <div class="star-rating star-rating-on star-rating-readonly"><a href="#" title="2">2</a></div>
+                <div class="star-rating star-rating-on star-rating-readonly"><a href="#" title="3">3</a></div>
+                <div class="star-rating star-rating-readonly"><a href="#" title="4">4</a></div>
+                <div class="star-rating star-rating-readonly"><a href="#" title="5">5</a></div>
+              </span>
+              <input type="radio" class="star star-rating-applied star-rating-readonly" style="display: none;" />
+              <input type="radio" class="star star-rating-applied star-rating-readonly" style="display: none;" />
+              <input type="radio" class="star star-rating-applied star-rating-readonly" style="display: none;" />
+              <input type="radio" class="star star-rating-applied star-rating-readonly" style="display: none;" />
+              <input type="radio" class="star star-rating-applied star-rating-readonly" style="display: none;" />
+            </span><!-- .rating -->
+            <div class="review_item">
+              <a href="/mark33"><img src="imgs/djs/sim_autor2.jpg" class="review_icon avatar small" alt="Male_small"></a>
+              <div class="review_creator_large">
+                <strong>Creada por: <a href="#" title="">marcos</a></strong>
+                <div style="display:none;" id="not_following">
+                  Clic <a href="#" title="">aquí</a> para seguir a marcos.
+                </div>
+                <div style="display:block;" id="following">
+                  Estás <span class="green_highlight">siguiendo</span> a marcos. Clic <a href="#" title="">aquí</a> para dejar de seguirlo.
+                </div>
+              </div>
+            </div><!-- .review_item -->
+          </div><!-- .reviews -->
+        </div><!-- .albums_item -->
     <% end %>
   <% end %>
 </ul><!--/end followers_list -->
