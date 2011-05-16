@@ -17,9 +17,18 @@ class PagesController < ApplicationController
 
   def mixes
     @latest_badges = BadgeAward.latest(5)
-    @top_mixes = current_site.top_playlists.all(:limit => 9)
-    @top_artists = current_site.top_artists.all(:limit => 5)
-    @top_djs = current_site.top_djs.all(:limit => 5)
+    @top_mixes = Rails.cache.fetch("#{site_cache_key}/modules/shared/top_playlists/9",
+                                  :expires_delta => EXPIRATION_TIMES['top_modules_playlists']) do
+      current_site.top_playlists.all(:limit => 9)
+    end
+    @top_artists = Rails.cache.fetch("#{site_cache_key}/modules/shared/top_artists/5",
+                                     :expires_delta => EXPIRATION_TIMES['top_modules_artists']) do
+      current_site.top_artists.all(:limit => 5)
+    end
+    @top_djs = Rails.cache.fetch("#{site_cache_key}/modules/shared/top_djs/5",
+                                :expires_delta => EXPIRATION_TIMES['top_modules_djs']) do
+      current_site.top_djs.all(:limit => 5)
+    end
   end
 
   def messenger_home

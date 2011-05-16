@@ -4,7 +4,7 @@
 
       <div class="mod_topmixes">
         <h2 class="tit_bloque">
-          <span class="txt">Top Mixes<em>Los más escuchados</em></span>
+          <span class="txt"><%= t("modules.top_playlists.title") %><em><%= t("modules.top_playlists.description") %></em></span>
           <span class="bg_fin">&nbsp;</span>
         </h2>
 
@@ -39,7 +39,7 @@
 
       <div class="mod_topartistas">
         <h2 class="tit_bloque">
-          <span class="txt">Top Artistas<em>Los más escuchados</em></span>
+          <span class="txt"><%= t("modules.top_artists.title") %><em><%= t("modules.top_artists.description") %></em></span>
           <span class="bg_fin">&nbsp;</span>
         </h2>
           <ul class="lista_tops">
@@ -48,7 +48,7 @@
               <span class="ord"><%= idx + 1 %></span>
               <%= avatar_for artist %>
               <div class="datos">
-                <h3><a href="#" title="" class="link_rojo"><%= artist.name %></a></h3>
+                <h3><a href="<%= main_search_path :playlists, CGI::escape(artist.name) %>" title="<%= artist.name %>" class="link_rojo" content_switch_enabled='true'><%= artist.name %></a></h3>
               </div>
               </li>
             <% end %>
@@ -57,7 +57,7 @@
 
         <div class="mod_topdjs">
           <h2 class="tit_bloque">
-            <span class="txt">Top DJS<em>Los más populares</em></span>
+            <span class="txt"><%= t("modules.top_djs.title") %><em><%= t("modules.top_djs.description") %></em></span>
             <span class="bg_fin">&nbsp;</span>
           </h2>
           <ul class="lista_tops">
