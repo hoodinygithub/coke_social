@@ -66,7 +66,7 @@
               <span class="ord"><%= idx + 1 %></span>
               <%= avatar_for dj %>
               <div class="datos">
-                <h3><a href="#" title="" class="link_rojo"><%= dj.name %></a></h3>
+                <h3><a href="<%= user_path dj.slug %>" title="<%= dj.name %>" content_switch_enabled="true" class="link_rojo"><%= dj.name %></a></h3>
                 <p>(<%= dj.country.name %>)</p>
               </div>
               </li>
