@@ -48,7 +48,7 @@
               <span class="ord"><%= idx + 1 %></span>
               <%= avatar_for artist %>
               <div class="datos">
-                <h3><a href="<%= main_search_path :playlists, CGI::escape(artist.name) %>" title="<%= artist.name %>" class="link_rojo" content_switch_enabled='true'><%= artist.name %></a></h3>
+                <h3><a href="<%= main_search_path :playlists, CGI::escape(artist.name), :result_only => 1 %>" title="<%= artist.name %>" class="link_rojo" content_switch_enabled='true'><%= artist.name %></a></h3>
               </div>
               </li>
             <% end %>
