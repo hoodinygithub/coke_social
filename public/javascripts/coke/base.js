@@ -46,12 +46,23 @@ $(document).ready(function() {
     /**************************************************************/
 
     var options = {};
+    
+    // In case the dispatch comes from the main navigation
     if ($(this).parent().parent().hasClass('menu'))
     {
       var ref = $(this);
       options.afterComplete = function()
       {
         $('body').attr('id', String(ref.attr('href')).slice(1));
+      }
+    }
+
+    // In case the dispatch comes from search link
+    if (String($(this).attr('href')).match(/search/))
+    {
+      options.afterComplete = function()
+      {
+        $('body').attr('id', 'busqueda');
       }
     }
 
