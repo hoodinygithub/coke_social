@@ -3,7 +3,21 @@
     <div class="aviso_cab">
       <h1><%= t('coke_messenger.layers.registration_form_view.register') %></h1>
       <% unless @locked %>
-        <a class="btn_cerrar" href="#" onclick="$.alert_layer.close();" title="<%= t('actions.close') %>"><strong>X</strong> <%= t('actions.close') %></a>
+        <% javascript_tag do %>
+          function closeOnClick(p_event) {
+            if (parent) {
+              proxyFrame = document.createElement("iframe");
+              proxyFrame.style.visibility = "hidden";
+              proxyFrame.style.position = "absolute";
+              proxyFrame.style.top = proxyFrame.style.left = proxyFrame.style.width = proxyFrame.style.height = "0";
+              proxyFrame.src = "<%= current_site_url %>/proxyframe_alertlayer_close.html";
+              document.body.appendChild(proxyFrame);
+            } else {
+              alert("register layer should be in a secure IFRAME.");
+            }
+          }
+        <% end %>
+        <a class="btn_cerrar" href="#" onclick="closeOnClick(event);" title="<%= t('actions.close') %>"><strong>X</strong> <%= t('actions.close') %></a>
       <% end %>
     </div><!-- .aviso_cab -->
     <div class="scroll">
