@@ -40,12 +40,13 @@
               <a href="/mark33"><%= avatar_for playlist.owner, :small %></a>
               <div class="review_creator_large">
                 <strong>Creada por: <a href="#" title=""><%= playlist.owner.name %></a></strong>
-                <div style="display:none;" id="not_following">
+                <%= render :partial => 'shared/user_following', :locals => {:current_user => current_user, :user => playlist.owner} if current_user != playlist.owner %>
+                <!--div style="display:none;" id="not_following">
                   Clic <a href="#" title="">aquí</a> para seguir a marcos.
                 </div>
                 <div style="display:block;" id="following">
                   Estás <span class="green_highlight">siguiendo</span> a marcos. Clic <a href="#" title="">aquí</a> para dejar de seguirlo.
-                </div>
+                </div-->
               </div>
             </div><!-- .review_item -->
           </div><!-- .reviews -->
