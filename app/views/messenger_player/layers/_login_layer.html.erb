@@ -48,7 +48,7 @@
           <h2><%= t('coke_messenger.layers.login_link_layer.reg_free') %><strong><%= t('coke_messenger.layers.login_link_layer.register_free')%></strong></h2>
           <p><%= t('coke_messenger.layers.login_link_layer.follow') %></p>
           <form>
-            <script type="text/javascript">
+            <% javascript_tag do %>
               function registerOnClick(p_event) {
                 if (parent) {
                   proxyFrame = document.createElement("iframe");
@@ -58,14 +58,14 @@
                   proxyFrame.src = "<%= current_site_url %>/proxyframe_alertlayer.html?layer=<%= alert_layer_path('registration_layer') %>";
                   document.body.appendChild(proxyFrame);
                 } else {
-                  alert("Register layer should be in a secure IFRAME.");
+                  alert("login layer layer should be in a secure IFRAME.");
                 }
               }
-            </script>
+            <% end %>
             <p><a class="boton register_btn" href="#" onclick="registerOnClick(event);" rel="layer" title="<%= t('coke_messenger.layers.login_link_layer.sign_up')%>">
               <span style="float:left;margin-top:7px;margin-left:30px;"><%= t('coke_messenger.layers.login_link_layer.sign_up')%></span></a></p>
           </form>    
-		</div><!-- .columna_der -->
+        </div><!-- .columna_der -->
       </div><!-- .scroll -->
     </div><!-- .aviso login -->
   </div><!-- .overlay -->
