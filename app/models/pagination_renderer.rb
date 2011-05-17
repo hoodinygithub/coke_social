@@ -6,12 +6,12 @@ class PaginationRenderer < WillPaginate::LinkRenderer
 
     links = [
       page_link_or_span(@collection.previous_page, 'previous', @options[:previous_label], true),
-      @template.content_tag( :span, links.join(@options[:separator]), :class => 'windowed_links' ),
+      @template.content_tag( :li, links.join(@options[:separator]), :class => 'windowed_links' ),
       page_link_or_span(@collection.next_page, 'next', @options[:next_label], true)
       ]
 
     html = links.join(@options[:separator])
-    @options[:container] ? @template.content_tag(:div, html, html_attributes) : html
+    @options[:container] ? @template.content_tag(:ul, html, html_attributes) : html
   end
 
   protected
