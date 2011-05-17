@@ -3,12 +3,11 @@ class MultitaskPaginationRenderer < WillPaginate::LinkRenderer
 
   def to_html
     links = @options[:page_links] ? windowed_links : []
-
     links = [
       page_link_or_span(@collection.previous_page, 'previous', @options[:previous_label], true),
-      @template.content_tag( :ul, links.join(@options[:separator]), :class => 'windowed_links' ),
+      links.join(@options[:separator]),
       page_link_or_span(@collection.next_page, 'next', @options[:next_label], true)
-      ]
+    ]
 
     html = links.join(@options[:separator])
     @options[:container] ? @template.content_tag(:ul, html, html_attributes) : html
