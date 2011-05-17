@@ -9,26 +9,13 @@
       <% is_self = (current_user and current_user == playlist.owner) %>
         <div class="albums_item reviews_list">
           <div class="artist_box png_fix">
-            <a href="#" title=""><img title="musica" src="imgs/mixes/sim_album1.jpg" class="avatar large" alt="musica" /></a>
+            <a href="#" title=""><%= avatar_for playlist, :large %></a>
             <div class="overlay">
               <div class="hidden fh">
-                <a href="#" title=""><strong>musica</strong></a>
-                <span class="rating">
-                  <span class="star-rating-control">
-                    <div class="star-rating star-rating-on star-rating-readonly"><a href="#" title="1">1</a></div>
-                    <div class="star-rating star-rating-on star-rating-readonly"><a href="#" title="2">2</a></div>
-                    <div class="star-rating star-rating-on star-rating-readonly"><a href="#" title="3">3</a></div>
-                    <div class="star-rating star-rating-readonly"><a href="#" title="4">4</a></div>
-                    <div class="star-rating star-rating-readonly"><a href="#" title="5">5</a></div>
-                  </span>
-                  <input type="radio" class="star star-rating-applied star-rating-readonly" style="display: none;" />
-                  <input type="radio" class="star star-rating-applied star-rating-readonly" style="display: none;" />
-                  <input type="radio" class="star star-rating-applied star-rating-readonly" style="display: none;" />
-                  <input type="radio" class="star star-rating-applied star-rating-readonly" style="display: none;" />
-                  <input type="radio" class="star star-rating-applied star-rating-readonly" style="display: none;" />
-                </span><!-- .rating -->
+                <a href="#" title=""><strong><%= playlist.name %></strong></a>
+                <%= multitask_rating playlist %>
                 <div class="tag_links">
-                  Etiquetas: <a href="#" title="">Divertido</a>, <a href="#" title="">Pop</a>
+                  <%= tag_links playlist %>
                 </div>
                 <div class="align_right box_buttons">
                   <a href="#" title="Reproducir"><img src="imgs/play_button.png" class="png_fix" alt="Play_button" /></a>
@@ -36,21 +23,8 @@
               </div><!-- .hidden -->
               <div class="visible fh">
                 <a href="#" title=""><img alt="" class="play_button png_fix" src="imgs/play_button.png"  /></a>
-                <a href="#" title="">musica</a>
-                <span class="rating">
-                  <span class="star-rating-control">
-                    <div class="star-rating star-rating-on star-rating-readonly"><a href="#" title="1">1</a></div>
-                    <div class="star-rating star-rating-on star-rating-readonly"><a href="#" title="2">2</a></div>
-                    <div class="star-rating star-rating-on star-rating-readonly"><a href="#" title="3">3</a></div>
-                    <div class="star-rating star-rating-readonly"><a href="#" title="4">4</a></div>
-                    <div class="star-rating star-rating-readonly"><a href="#" title="5">5</a></div>
-                  </span>
-                  <input type="radio" class="star star-rating-applied star-rating-readonly" style="display: none;" />
-                  <input type="radio" class="star star-rating-applied star-rating-readonly" style="display: none;" />
-                  <input type="radio" class="star star-rating-applied star-rating-readonly" style="display: none;" />
-                  <input type="radio" class="star star-rating-applied star-rating-readonly" style="display: none;" />
-                  <input type="radio" class="star star-rating-applied star-rating-readonly" style="display: none;" />
-                </span><!-- .rating -->
+                <a href="#" title=""><%= playlist.name %></a>
+                <%= multitask_rating playlist %>
               </div><!-- .visible -->
             </div><!-- .overlay -->
           </div><!-- .artist_box -->
@@ -61,24 +35,11 @@
               <p><strong>Incluye:</strong> <a href="#" title="Blur">Blur</a>, <a href="#" title="Garbage">Garbage</a>, <a href="#" title="Green Day">Green Day</a>,...</p>
               <p><strong>Emociones destapadas:</strong> <a href="#" title="Sexy">Sexy</a>, <a href="#" title="Feliz">Feliz</a>, <a href="#" title="Bailar">Bailar</a>,...</p>
             </div><!-- .title -->
-            <span class="rating">
-              <span class="star-rating-control">
-                <div class="star-rating star-rating-on star-rating-readonly"><a href="#" title="1">1</a></div>
-                <div class="star-rating star-rating-on star-rating-readonly"><a href="#" title="2">2</a></div>
-                <div class="star-rating star-rating-on star-rating-readonly"><a href="#" title="3">3</a></div>
-                <div class="star-rating star-rating-readonly"><a href="#" title="4">4</a></div>
-                <div class="star-rating star-rating-readonly"><a href="#" title="5">5</a></div>
-              </span>
-              <input type="radio" class="star star-rating-applied star-rating-readonly" style="display: none;" />
-              <input type="radio" class="star star-rating-applied star-rating-readonly" style="display: none;" />
-              <input type="radio" class="star star-rating-applied star-rating-readonly" style="display: none;" />
-              <input type="radio" class="star star-rating-applied star-rating-readonly" style="display: none;" />
-              <input type="radio" class="star star-rating-applied star-rating-readonly" style="display: none;" />
-            </span><!-- .rating -->
+            <%= multitask_rating playlist %>
             <div class="review_item">
-              <a href="/mark33"><img src="imgs/djs/sim_autor2.jpg" class="review_icon avatar small" alt="Male_small"></a>
+              <a href="/mark33"><%= avatar_for playlist.owner, :small %></a>
               <div class="review_creator_large">
-                <strong>Creada por: <a href="#" title="">marcos</a></strong>
+                <strong>Creada por: <a href="#" title=""><%= playlist.owner.name %></a></strong>
                 <div style="display:none;" id="not_following">
                   Clic <a href="#" title="">aquí</a> para seguir a marcos.
                 </div>
