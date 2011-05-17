@@ -41,9 +41,9 @@
             </div><!-- .title -->
             <%= multitask_rating playlist %>
             <div class="review_item">
-              <a href="/mark33"><%= avatar_for playlist.owner, :small %></a>
+              <%= link_to avatar_for(playlist.owner, :small), user_path(playlist.owner.slug), :content_switch_enabled => true %>
               <div class="review_creator_large">
-                <strong>Creada por: <a href="#" title=""><%= playlist.owner.name %></a></strong>
+                <strong><%= "#{t('basics.created_by')}: #{link_to playlist.owner.name, user_path(playlist.owner), :content_switch_enabled => true}" %></strong>
                 <%= render :partial => 'shared/user_following', :locals => {:current_user => current_user, :user => playlist.owner} if current_user != playlist.owner %>
               </div>
             </div><!-- .review_item -->
