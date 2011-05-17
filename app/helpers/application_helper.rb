@@ -766,7 +766,7 @@ module ApplicationHelper
       :class => "paginacion",
       :previous_label => "«",
       :next_label => "»",
-      :renderer => PaginationRenderer
+      :renderer => MultitaskPaginationRenderer
     }
   end
 

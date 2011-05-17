@@ -1,4 +1,4 @@
-class PaginationRenderer < WillPaginate::LinkRenderer
+class MultitaskPaginationRenderer < WillPaginate::LinkRenderer
   include ButtonHelper
 
   def to_html
@@ -6,12 +6,12 @@ class PaginationRenderer < WillPaginate::LinkRenderer
 
     links = [
       page_link_or_span(@collection.previous_page, 'previous', @options[:previous_label], true),
-      @template.content_tag( :span, links.join(@options[:separator]), :class => 'windowed_links' ),
+      @template.content_tag( :ul, links.join(@options[:separator]), :class => 'windowed_links' ),
       page_link_or_span(@collection.next_page, 'next', @options[:next_label], true)
       ]
 
     html = links.join(@options[:separator])
-    @options[:container] ? @template.content_tag(:div, html, html_attributes) : html
+    @options[:container] ? @template.content_tag(:ul, html, html_attributes) : html
   end
 
   protected
@@ -52,15 +52,15 @@ class PaginationRenderer < WillPaginate::LinkRenderer
   end
 
   def page_link(page, text, attributes = {})
-    @template.link_to(text, url_for(page))
+    @template.content_tag(:li, @template.link_to(text, url_for(page)))
   end
 
   def button_active(page, text, attributes = {})
-    @template.link_to text, url_for(page), :class=>'next_page'
+    @template.content_tag(:li, @template.link_to(text, url_for(page), :class=>'next_page'))
   end
 
   def button_disabled(page, text, attributes = {})
-    @template.link_to text, url_for(page), :class=>'disabled', :disabled => :true, :onclick => "return false;"
+    @template.content_tag(:li, @template.link_to(text, url_for(page), :class=>'disabled', :disabled => :true, :onclick => "return false;"))
   end
 
   def page_span(page, text, attributes = {})
