@@ -110,10 +110,17 @@ class SessionsController < ApplicationController
     else
       result = { :logged_in => false }
     end
-    
-    result[:sso_user] = (session.has_key?(:sso_user) and !session[:sso_user].new_record?)
-    result[:sso_opt_in] = session.has_key? :sso_opt_in
-    
+
+    # sso_user
+    #  => true means the user exists
+    #  => false means the user exists, but it's just to prefill reg fields.  It's not a saved user record.
+    #  => nil means the user doesn't exist
+    result[:sso_user] = if session.has_key?(:sso_user)
+                          !session[:sso_user].new_record?
+                        else
+                          nil
+                        end
+
     respond_to do |format|
       format.xml { render :xml => result }
       format.json { render :json => result }
