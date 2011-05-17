@@ -4,9 +4,9 @@ class MultitaskPaginationRenderer < WillPaginate::LinkRenderer
   def to_html
     links = @options[:page_links] ? windowed_links : []
     links = [
-      page_link_or_span(@collection.previous_page, 'previous', @options[:previous_label], true),
+      page_link_or_span(@collection.previous_page, 'ant', @options[:previous_label], true),
       links.join(@options[:separator]),
-      page_link_or_span(@collection.next_page, 'next', @options[:next_label], true)
+      page_link_or_span(@collection.next_page, 'sig', @options[:next_label], true)
     ]
 
     html = links.join(@options[:separator])
@@ -20,9 +20,9 @@ class MultitaskPaginationRenderer < WillPaginate::LinkRenderer
     links=[]
     visible_page_numbers.each do |n|
       if (n-1)== prior_n
-        links.push(page_link_or_span(n, (n == current_page ? 'current' : nil)))
+        links.push(page_link_or_span(n, (n == current_page ? 'activo' : nil)))
       else
-        links.push(page_link_or_span(n, (n == current_page ? 'current' : nil),nil,nil,true))
+        links.push(page_link_or_span(n, (n == current_page ? 'activo' : nil),nil,nil,true))
       end
       prior_n=n
     end
@@ -63,7 +63,7 @@ class MultitaskPaginationRenderer < WillPaginate::LinkRenderer
   end
 
   def page_span(page, text, attributes = {})
-    @template.content_tag(:span, text, attributes)
+    @template.content_tag(:li, text, attributes)
   end
 
 end
