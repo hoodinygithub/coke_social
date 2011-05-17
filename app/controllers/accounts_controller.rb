@@ -15,6 +15,7 @@ class AccountsController < ApplicationController
     @reviews = profile_account.comments.valid({:limit => 5, :order => "comments.updated_at DESC"})
     
     @followers = profile_account.followers.all(:limit => 4)
+    @activity = activity_for_page
 
     respond_to do |format|
       format.html

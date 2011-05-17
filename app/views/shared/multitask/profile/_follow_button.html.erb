@@ -1,0 +1,15 @@
+<% if current_user %>
+  <% if current_user.follows?(user) %>    
+    <a id="following" class="btn_rojo btn_rojo_grande activo" href="#" onclick="Base.community.multitask_unfollow('#{user.slug}', this, '')">
+      SIGUIENDO<span class="bg_fin">&nbsp;</span>
+    </a>
+  <% else %>
+    <a id="not_following" class="btn_rojo btn_rojo_grande" href="#"  onclick="Base.community.multitask_follow('#{user.slug}', this, '')">
+      SEGUIR<span class="bg_fin">&nbsp;</span>
+    </a>
+  <% end %>
+<% else %>
+  <a id="not_following" class="btn_rojo btn_rojo_grande" href="#"  onclick="Base.community.multitask_follow('#{user.slug}', this, '')">
+    SEGUIR<span class="bg_fin">&nbsp;</span>
+  </a>
+<% end %>

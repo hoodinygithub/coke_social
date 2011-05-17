@@ -2,12 +2,13 @@
 <html xmlns="http://www.w3.org/1999/xhtml" <%= application_html_attrs %>>
   <head>
     <%= render 'shared/meta' %>
+    <script>var app = 'multitask';</script>
     <%= render 'shared/javascripts' %>
     <%= render 'shared/stylesheets' %>
     <%= yield :head %>
     <%= render 'shared/google_analytics' %>
   </head>
-  <body id="<%= action_name %>" locale="<%= current_site.default_locale %>" market="<%= current_site.code %>" current_site_url="<%= current_site_url %>">
+  <body locale="<%= current_site.default_locale %>" market="<%= current_site.code %>" current_site_url="<%= current_site_url %>">
     <div class="cabecera">
       <%= render 'shared/multitask/header' %>
     </div>

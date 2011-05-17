@@ -111,7 +111,8 @@ var Base = {
   utils: {},
   share: {},
   locale: {},
-  header_search: {}
+  header_search: {},
+  account: {}
 };
 
 // Helpers
@@ -888,6 +889,65 @@ Base.community.text_unfollow = function(user_slug, element) {
       jQuery($element).parent().parent().find('#not_following').show();
       jQuery($element).parent().parent().find('#following').hide();
 			$img.remove();
+    }
+  });
+};
+
+Base.community.multitask_follow = function(user_slug, button) {
+  var params = {'user_slug':user_slug}
+  var $button = jQuery(button);
+
+	$img = jQuery("<img></img>");
+  $img.attr('src', Base.currentSiteUrl() + '/images/grey_loading.gif');
+  $button_label = $button;//.children().children();
+  $button_label.append($img);
+
+  $button.attr('onclick', "");
+  $button.bind('click', function() { return false; });
+
+  jQuery.post(Base.currentSiteUrl() + '/users/follow', params, function(response, status) {
+    // if (Base.utils.handle_login_required(response, layer_path, $button_label)) {
+    //   $button.unbind('click');
+    //   $button.bind('click', function() {
+    //     Base.community.multitask_follow(user_slug, button, remove_div, layer_path);
+    //     return false;
+    //   });
+    //   return;
+    // }
+
+    if (status == 'success') {
+      $button.html("");
+      if (response.status == 'following') {
+        $button.html(Base.locale.t('actions.unfollow') + '<span class="bg_fin">&nbsp;</span>');
+        $button.addClass("activo");
+      } 
+
+      $button.unbind('click');
+      $button.bind('click', function() { Base.community.multitask_unfollow(user_slug, this); return false; });
+    }
+  });
+};
+
+Base.community.multitask_unfollow = function(user_slug, button) {
+  var params = {'user_slug':user_slug}
+  var $button = jQuery(button);
+
+	$img = jQuery("<img></img>");
+  $img.attr('src', Base.currentSiteUrl() + '/images/grey_loading.gif');
+  $button_label = $button;//.children().children();
+  $button_label.append($img);
+
+  $button.attr('onclick', "");
+  $button.bind('click', function() { return false; });
+
+  jQuery.post(Base.currentSiteUrl() + '/users/unfollow', params, function(response, status) {
+    if (status == 'success') {
+      $button.html("");
+      $button.removeClass("activo");
+      $button.html(Base.locale.t('actions.follow') + '<span class="bg_fin">&nbsp;</span>');
+
+      $button.unbind('click');
+      $button.bind('click', function() { Base.community.multitask_follow(user_slug, this); return false; });
     }
   });
 };

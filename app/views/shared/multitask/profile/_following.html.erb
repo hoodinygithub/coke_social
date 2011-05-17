@@ -1,0 +1,19 @@
+<div class="mod_siguiendo">
+  <h2 class="tit_bloque gris">
+      <span class="txt"><%= t('modules.following') %><em><%= user.name %></em></span>
+      <span class="bg_fin">&nbsp;</span>
+  </h2><!-- .tit_bloque -->
+  
+  <% if user.followee_count < 1 %>
+    <p class="no_resultados"><%= possessive :is_not_following %></p>
+  <% else %>
+    <% followings = profile_user.followees.with_limit(5) %>
+    <% followings.each_with_index do |follow, index| %>
+      <div class="thumb_small">
+          <%= link_to avatar_for(follow, :small), follow, :content_switch_enabled => true %>
+          <%= link_to truncate(follow.name,:length => 18), follow, :content_switch_enabled => true %>
+      </div><!-- .thumb_small -->
+    <% end %>
+    <a class="ico_mas" href="<%= user_following_index_path(user) %>" title="<%= t('actions.view_more') %>" content_switch_enabled="true"><%= t('actions.view_more') %><span class="bg_flecha">&nbsp;</span></a>
+  <% end %>
+</div><!-- .mod_siguiendo -->

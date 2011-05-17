@@ -1,0 +1,25 @@
+<div class="mod_top columna">
+  <h2 class="tit_bloque gris">
+    <span class="txt"><%= t('modules.top_mixes') %><em><%= user.name %></em></span>
+    <span class="bg_fin">&nbsp;</span>
+  </h2>
+  
+  <% if user.playlists.size < 1 %>
+    <p class="no_resultados"><%= possessive :has_not_playlists %></p>
+  <% else %>
+    <ul class="mixes">
+      <% user.playlists.top(5).each do |p| %>
+        <li class="estirar">
+            <%= avatar_for(p, :small) %>
+            <div class="datos">
+                <h3><%= link_to truncate(p.name, :length=>15, :omission=> '...'), 
+                            radio_path(:station_id => p.station.id),
+                            :alt => p.name, :content_switch_enabled => true, :onclick => "Base.Station.request('/playlists/#{p.station.id}.xml', 'xml', Base.Station.stationCollection);Base.Player.random(false)" %></h3>
+                <%= station_contains(p) %>
+            </div>
+        </li>
+      <% end %>
+    </ul>
+    <a class="ico_mas" href="<%= user_playlists_path(user) %>" title="<%= t('actions.view_more') %>" content_switch_enabled="true"><%= t('actions.view_more') %><span class="bg_flecha">&nbsp;</span></a>
+  <% end %>
+</div><!-- .mod_top -->

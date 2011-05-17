@@ -287,6 +287,8 @@ en:
     or: or
     buy_song: Purchase Song
     show_more: SHOW MORE
+    show: Show
+    hide: Hide
     deny: Deny
     view_more: View More
     view_all: view all
@@ -331,6 +333,17 @@ en:
     saving: Saving
     copy: Copy
   modules:
+    following: "Gente que est&aacute; siguiendo"
+    top_mixes: "Top Mixes of"
+    latest_mixes:
+      title: "Latest Mixes"
+      description: "of {{user_name}}"
+    latest_badges:
+      title: "Latest Badges"
+      description: "of {{user_name}}"
+    latest_comments:
+      title: "Latest Comments"
+      description: "of {{user_name}}"
     badge_notifications: 
       title_singular: "Congratulations, you've unlocked a new badge!"
       title_plural: "Congratulations, you've unlocked {{badge_count}} new badges!"
@@ -402,7 +415,7 @@ en:
     my_stations: 
       includes: Includes
       station_name: Station Name
-    recent_activity: 
+    recent_activity:
       title: RECENT ACTIVITY
     biography: 
       title: Biography
@@ -504,8 +517,8 @@ en:
       follow_requests: "{{subject}}'s Follow Requests"
       charts: "{{subject}}'s Charts"
       reviews: "{{subject}}'s Reviews"
-      has_not_playlists: "{{subject}} has no playlist."
-      has_not_activities: "{{subject}} has no activities."
+      has_not_playlists: "{{subject}} has no playlists."
+      has_not_activities: "{{subject}} has no activity."
       friends_dont_have_badge: "None of {{subject}}'s friends have this badge."
       others_dont_have_badge: "No one else has this badge. {{subject}} is the first winner!"
       has_not_badges: "{{subject}} has not won any badges."
@@ -696,6 +709,7 @@ en:
       mixes: Mixes
       charts: Charts
       following: Following
+      comments: Comments
   stations: 
     edit: 
       edit_your_station: Edit Your Station

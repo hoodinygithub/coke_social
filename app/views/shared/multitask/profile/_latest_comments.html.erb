@@ -1,0 +1,14 @@
+<div class="mod_comentarios">
+  <h2 class="tit_bloque">
+      <span class="txt"><%= t('modules.latest_comments.title') %><em><%= t('modules.latest_comments.description', :user_name => user.name) %></em></span>
+      <span class="bg_fin">&nbsp;</span>
+  </h2><!-- .tit_bloque -->
+  <% if reviews.empty? %>
+    <p class="no_resultados"><%= possessive :has_not_reviews %></p>
+  <% else %>
+    <div class="mod_contenedor">
+      <%= render :partial => 'reviews/item', :collection => reviews[0..3] %>
+    </div>
+    <a class="ico_mas" href="<%= user_comments_path(user) %>" title="<%= t('actions.view_more') %>" content_switch_enabled="true"><%= t('actions.view_more') %><span class="bg_flecha">&nbsp;</span></a>
+  <% end %>
+</div><!-- .mod_comentarios -->

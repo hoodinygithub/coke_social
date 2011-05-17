@@ -1,0 +1,26 @@
+<div class="usuario_ficha">
+    <div class="ficha_top">&nbsp;</div>
+
+    <div class="ficha_cont">
+        <a class="mas_info menos_info" href="#" title="<%= t('actions.hide') %>"><%= t('actions.hide') %><span class="bg_flecha">&nbsp;</span></a>
+        <%= avatar_for(user, :album, :class => "avatar", :width => "229", :height => "229", :disable_default_css => true) %>
+        <div class="datos">
+          <h2><%= user.name %></h2>
+          <p class="p_edad"><%= user.age %> a&ntilde;os</p>
+
+          <p class="p_pais"><%= user.country.name unless user.country.nil? %></p>
+          <ul class="totales">
+              <li><span><%= t('profile.navigation.mixes') %></span><%= link_to user.playlists.count, user_playlists_path(user), :title => user.playlists.count, :content_switch_enabled => true %></li>
+              
+              <li><span><%= t('profile.navigation.badges') %></span><%= link_to user.badges.count, user_badges_path(user), :title => user.badges.count, :content_switch_enabled => true %></li>
+              
+              <li><span><%= t('profile.navigation.followers') %></span><%= link_to user.followers.count, user_followers_path(user), :title => user.followers.count, :content_switch_enabled => true %></li>
+
+              <li><span><%= t('profile.navigation.following') %></span><%= link_to user.followees.count, user_following_index_path(user), :title => user.followees.count, :content_switch_enabled => true %></li>
+          </ul>
+          
+          <%= render :partial => 'shared/multitask/profile/follow_button', :locals => {:user => user} %>
+        </div>
+    </div>
+    <div class="ficha_pie">&nbsp;</div>
+</div><!-- .usuario_ficha -->

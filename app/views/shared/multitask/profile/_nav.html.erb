@@ -1,0 +1,20 @@
+<ul class="usuario_menu">
+  <li class="pri <%= controller_name=="accounts" ? "activo" : "" %>">
+    <%= link_to t('profile.navigation.home').upcase, user_path(user), :class => "txt", :title => t('profile.navigation.home').upcase, :content_switch_enabled => true %>
+  </li>
+  <li class="<%= controller_name=="playlists" ? "activo" : "" %>">
+    <%= link_to t('profile.navigation.mixes').upcase, user_playlists_path(user), :class => "txt", :title => t('profile.navigation.mixes').upcase, :content_switch_enabled => true %></li>
+  <li class="<%= controller_name=="badges" ? "activo" : "" %>">
+    <%= link_to t('profile.navigation.badges').upcase, user_badges_path(user), :class => "txt", :title => t('profile.navigation.badges').upcase, :content_switch_enabled => true %></li>
+  <li class="<%= controller_name=="comments" ? "activo" : "" %>">
+    <%= link_to t('profile.navigation.comments').upcase, user_comments_path(user), :class => "txt", :title => t('profile.navigation.comments').upcase, :content_switch_enabled => true %></li>
+  <li class="<%= controller_name=="activities" ? "activo" : "" %>">
+    <%= link_to t('profile.navigation.activity').upcase, user_activities_path(user), :class => "txt", :title => t('profile.navigation.activity').upcase, :content_switch_enabled => true %></li>
+  <li class="<%= controller_name=="followers" ? "activo" : "" %>">
+    <%= link_to t('profile.navigation.followers').upcase, user_followers_path(user), :class => "txt", :title => t('profile.navigation.followers').upcase, :content_switch_enabled => true %></li>
+  <li class="<%= controller_name=="followees" ? "activo" : "" %>">
+    <%= link_to t('profile.navigation.following').upcase, user_following_index_path(user), :class => "txt", :title => t('profile.navigation.following').upcase, :content_switch_enabled => true %></li>
+  <li class="ultimo">
+    <%= render :partial => 'shared/multitask/profile/follow_button', :locals => {:user => user} %>
+  </li>
+</ul><!-- .usuario_menu -->

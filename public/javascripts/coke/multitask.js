@@ -49,16 +49,16 @@ $(document).ready(function() {
   		var padre = $(this).parent().parent();
       if(padreplegado.length){
         padreplegado.removeClass("ficha_plegada");
-        $(this).addClass("menos_info").html('Ocultar<span class="bg_flecha">&nbsp;</span>');
-        $(this).attr('title','Ocultar');
+        $(this).addClass("menos_info").html(Base.locale.t('actions.hide') + '<span class="bg_flecha hide">&nbsp;</span>');
+        $(this).attr('title',Base.locale.t('actions.hide'));
       }else{
         padre.addClass("ficha_plegada");
-        $(this).removeClass("menos_info").html('Mostrar<span class="bg_flecha">&nbsp;</span>');
-        $(this).attr('title','Mostrar');
+        $(this).removeClass("menos_info").html(Base.locale.t('actions.show') + '<span class="bg_flecha show">&nbsp;</span>');
+        $(this).attr('title',Base.locale.t('actions.show'));
       }
   	});
   }
   
   Base.header_search.dropdown();
-
+  
 });
