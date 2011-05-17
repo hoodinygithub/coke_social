@@ -763,6 +763,7 @@ module ApplicationHelper
 
   def pagination_args
     {
+      :class => "paginacion",
       :previous_label => "«",
       :next_label => "»",
       :renderer => PaginationRenderer

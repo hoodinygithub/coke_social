@@ -38,8 +38,6 @@
               <% unless playlist.cached_tag_list.blank? %>
                 <%= tag_links(playlist, @active_scope) %>
               <% end %>
-              <!--p><strong>Incluye:</strong> <a href="#" title="Blur">Blur</a>, <a href="#" title="Garbage">Garbage</a>, <a href="#" title="Green Day">Green Day</a>,...</p-->
-              <!--p><strong>Emociones destapadas:</strong> <a href="#" title="Sexy">Sexy</a>, <a href="#" title="Feliz">Feliz</a>, <a href="#" title="Bailar">Bailar</a>,...</p-->
             </div><!-- .title -->
             <%= multitask_rating playlist %>
             <div class="review_item">
@@ -58,3 +56,16 @@
   <%= will_paginate @results[:playlists], pagination_args %>
 </div>
 
+        <!--ul class="paginacion">
+          <li class="ant"><a href="#" title="Anterior">&lt;</a></li>
+          <li class="activo">1</li>
+          <li><a href="#" title="2">2</a></li>
+          <li><a href="#" title="3">3</a></li>
+          <li><a href="#" title="4">4</a></li>
+          <li><a href="#" title="5">5</a></li>
+          <li><a href="#" title="6">6</a></li>
+          <li><a href="#" title="7">7</a></li>
+          <li class="res">&hellip;</li>
+          <li><a href="#" title="99">99</a></li>
+          <li class="sig"><a href="#" title="Sigueinte">&gt;</a></li>
+          </ul--><!-- .paginacion -->
