@@ -52,20 +52,5 @@
     <% end %>
   <% end %>
 </ul><!--/end followers_list -->
-<div class="pagination">
-  <%= will_paginate @results[:playlists], pagination_args %>
-</div>
 
-        <!--ul class="paginacion">
-          <li class="ant"><a href="#" title="Anterior">&lt;</a></li>
-          <li class="activo">1</li>
-          <li><a href="#" title="2">2</a></li>
-          <li><a href="#" title="3">3</a></li>
-          <li><a href="#" title="4">4</a></li>
-          <li><a href="#" title="5">5</a></li>
-          <li><a href="#" title="6">6</a></li>
-          <li><a href="#" title="7">7</a></li>
-          <li class="res">&hellip;</li>
-          <li><a href="#" title="99">99</a></li>
-          <li class="sig"><a href="#" title="Sigueinte">&gt;</a></li>
-          </ul--><!-- .paginacion -->
+<%= will_paginate @results[:playlists], pagination_args %>

@@ -51,15 +51,15 @@ class MultitaskPaginationRenderer < WillPaginate::LinkRenderer
   end
 
   def page_link(page, text, attributes = {})
-    @template.content_tag(:li, @template.link_to(text, url_for(page)))
+    @template.content_tag(:li, @template.link_to(text, url_for(page), :content_switch_enabled => true))
   end
 
   def button_active(page, text, attributes = {})
-    @template.content_tag(:li, @template.link_to(text, url_for(page), :class => 'next_page'), attributes)
+    @template.content_tag(:li, @template.link_to(text, url_for(page), :class => 'next_page', :content_switch_enabled => true), attributes)
   end
 
   def button_disabled(page, text, attributes = {})
-    @template.content_tag(:li, @template.link_to(text, url_for(page), :class=>'disabled', :disabled => :true, :onclick => "return false;"))
+    @template.content_tag(:li, @template.link_to(text, url_for(page), :class=>'disabled', :disabled => :true, :onclick => "return false;"), attributes)
   end
 
   def page_span(page, text, attributes = {})
