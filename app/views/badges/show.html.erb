@@ -1,64 +1,73 @@
-<% content_for :header_space_content do %>
-  <%= render 'users/stats' %>
-<% end %>
-
-<%= render 'shared/ajax_modules' %>
-
-<div class="two_columns">
+<% content_for :main_content do %>
+  
+  <div class="mod_badges_ampliado">  
+    <h2 class="tit_bloque">
+        <span class="txt"><%= t('modules.badge_detail.title') %><em><%= t('modules.badge_detail.description', :user_name => profile_user.name) %></em></span>
+        <span class="bg_fin">&nbsp;</span>
+    </h2>
     <div class="badge_detail">
         <%= image_tag @badge_award.image(:mega), :class => "detail_img" %>
-        
         <div class="detail_text">
-            <div class="title"><%= t("badges.#{@badge_award.badge_key}.name") %></div>
-            <big><b class="grey"><%= t("badges.#{@badge_award.badge_key}.qualification", :playlist_name => @badge_award.deleted_playlist_name) %></b></big>
-        
-            <br/><br/><br/>
-            
-            <%= avatar_for(profile_user, :small) %>
+            <% playlist_link = link_to @badge_award.deleted_playlist_name, 
+                        radio_path(:station_id => @badge_award.playlist_id),
+                        :alt => @badge_award.deleted_playlist_name, :content_switch_enabled => true, :onclick => "Base.Station.request('/playlists/#{@badge_award.playlist_id}.xml', 'xml', Base.Station.stationCollection);Base.Player.random(false)" rescue nil %>
+            <h3><%= t("badges.#{@badge_award.badge_key}.name") %></h3>
+            <h4><%= t("badges.#{@badge_award.badge_key}.qualification", :playlist_name => playlist_link) %></h4>
+            <%= avatar_for(profile_user, :small, :width => 50, :height => 50) %>
             <div class="small_text">
-                <%= t('badges.unlocked_by_user_on', :user => "<b>#{link_to(@badge_award.winner.name, @badge_award.winner)}</b>", :date_won => l(@badge_award.created_at)) %>
+                <%= t('badges.unlocked_by_user_on', :user => "#{link_to(@badge_award.winner.name, @badge_award.winner, :content_switch_enabled => true)}", :date_won => l(@badge_award.created_at)) %>
             </div>
         </div>
-        
-        <div class="clearer"></div>
-    </div>
-    
-    <h1><%= possessive :friends_that_have_this_badge %></h1>    
-    <% if @friends_with_badge.size > 0 %>
-      <div>
-      <% @friends_with_badge.each do |friend| %>
+    </div><!-- .badge_detail -->
+    </div><!-- .mod_badges_ampliado -->
+
+    <div class="mod_badges">
+      <div class="mod_contenedor">
+        <% profile_user.badge_awards.all(:limit => 18, :order => 'badge_awards.created_at DESC').each do |badge_award| %>
+          <%= link_to( image_tag(badge_award.image, :title => t("badges.#{badge_award.badge_key}.name"), :class => "medalla"), badge_path(badge_award), :content_switch_enabled => true) %>
+        <% end %>
+        <a class="ico_mas" href="<%= user_badges_path(profile_user) %>" title="<%= t('actions.view_more') %>" content_switch_enabled="true"><%= t('actions.view_more') %><span class="bg_flecha">&nbsp;</span></a>
+      </div>
+    </div><!-- .mod_badges -->
+
+    <div class="mod_badges_ganadores">
+      <h2 class="tit_bloque">
+          <span class="txt"><%= t('modules.badge_detail.friends_title') %><em><%= t('modules.badge_detail.friends_description', :user_name => profile_user.name) %></em></span>
+          <span class="bg_fin">&nbsp;</span>
+      </h2><!-- .tit_bloque -->
+      <% if @friends_with_badge.empty? %>
+        <p class="no_resultados"><%= possessive :friends_dont_have_badge %></p>
+      <% else %>
+        <% @friends_with_badge.each do |friend| %>
+      
           <div class="small_thumb">
-              <%= link_to avatar_for(friend, :small, :class => "spaced_img"), user_path(friend) %>
-              <%= link_to friend.name, user_path(friend) %>
-          </div>
-      <% end%>  
-      <div class="clearer"></div>
-      </div>
-    <% else %>
-    <div class="medium_text">
-      <%= possessive :friends_dont_have_badge %>
-    </div>
-    <% end %>
-    <br />
-    <h1><%= t('badges.others_that_have_this_badge') %></h1>    
+              <%= link_to avatar_for(friend, :small), user_path(friend), :content_switch_enabled => true %>
+              <%= link_to friend.name, user_path(friend), :content_switch_enabled => true %>
+          </div><!-- .small_thumb -->
     
-    <% if @others_with_badge.size > 0 %>
-      <div>
-      <% @others_with_badge.each do |friend| %>
-        <div class="small_thumb">
-          <%= link_to avatar_for(friend, :small, :class => "spaced_img"), user_path(friend) %>
-          <%= link_to friend.name, user_path(friend) %>
-        </div>        
-      <% end %>  
-      <div class="clearer"></div>
-      </div>
-    <% else %>
-      <div class="medium_text">
-        <%= possessive :others_dont_have_badge %>
-      </div>
-    <% end %>
-</div><!--/end two_columns -->
+        <% end %>
+      <% end %>
+    </div><!-- mod_badges_ganadores -->
 
-<%= render on_dashboard? ? 'dashboards/right_column' : 'accounts/right_column' %>
+    <div class="mod_badges_ganadores">
+      <h2 class="tit_bloque">
+          <span class="txt"><%= t('modules.badge_detail.other_title') %></span>
+          <span class="bg_fin">&nbsp;</span>
+      </h2><!-- .tit_bloque -->
+      <% if @others_with_badge.empty? %>
+        <p class="no_resultados"><%= possessive :others_dont_have_badge %></p>
+      <% else %>
+        <% @others_with_badge.each do |friend| %>
+      
+          <div class="small_thumb">
+              <%= link_to avatar_for(friend, :small), user_path(friend), :content_switch_enabled => true %>
+              <%= link_to friend.name, user_path(friend), :content_switch_enabled => true %>
+          </div><!-- .small_thumb -->
+    
+        <% end %>
+      <% end %>
+    </div><!-- mod_badges_ganadores -->
+  </div>
+<% end %>
 
-<div class="clearer"></div>
+<%= render :partial => 'shared/multitask/profile/layout', :locals => {:user => profile_user, :id => "usuario"} %>

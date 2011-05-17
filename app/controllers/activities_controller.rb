@@ -14,7 +14,7 @@ class ActivitiesController < ApplicationController
   def index
     @collection = @collection[0..ACTIVITIES_MAX-1]
     @dashboard_menu = :activity
-    if request.xhr?
+    if request.xhr? && !params[:ajax]
       render :partial => 'ajax_list'
     end
   end

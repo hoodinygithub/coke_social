@@ -2,19 +2,19 @@
 
 <div class="reviews">
   <div class="title">
-    <div class="align_right"><%= t('modules.reviews.title').upcase %> (<%= comments.size %>)</div>
-  </div>
+      <h3><%= playlist.name %></h3>
+      <ul class="incluye">
+          <li><%= t('basics.contains') %>:</li>
+          <li class="lista_mixes"><%= station_contains(playlist, 5, false, {:content_switch_enabled => true}) %></li>
+      </ul>
+  </div><!-- .title -->
+
   <% if comments.empty? %>
-    <br/><br/>
-    <div class="medium_text">
-      <%= t('playlist.doesnt_have_any_reviews') %>
-    </div>
+    <p class="no_resultados"><%= t('playlist.doesnt_have_any_reviews') %></p>
   <% else %>
     <%= render :partial => 'reviews/playlist_review_line', :collection => comments[0..1] %>
   <% end %>
   <% if comments.size > 2 %>
-  <div class="view_all">
-    <b><%= link_to t('actions.view_all'), radio_path(:station_id => playlist.station.id) %></b>
-  </div>
+    <a title="<%= t('actions.view_all') %>" href="<%= radio_path(:station_id => playlist.station.id) %>" class="ico_mas" content_switch_enabled="true"><%= t('actions.view_all') %><span class="bg_flecha">&nbsp;</span></a>
   <% end %>
 </div>

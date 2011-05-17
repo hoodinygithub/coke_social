@@ -7,7 +7,7 @@
   <li class="<%= controller_name=="badges" ? "activo" : "" %>">
     <%= link_to t('profile.navigation.badges').upcase, user_badges_path(user), :class => "txt", :title => t('profile.navigation.badges').upcase, :content_switch_enabled => true %></li>
   <li class="<%= controller_name=="comments" ? "activo" : "" %>">
-    <%= link_to t('profile.navigation.comments').upcase, user_comments_path(user), :class => "txt", :title => t('profile.navigation.comments').upcase, :content_switch_enabled => true %></li>
+    <%= link_to t('profile.navigation.comments').upcase, user_reviews_path(user), :class => "txt", :title => t('profile.navigation.comments').upcase, :content_switch_enabled => true %></li>
   <li class="<%= controller_name=="activities" ? "activo" : "" %>">
     <%= link_to t('profile.navigation.activity').upcase, user_activities_path(user), :class => "txt", :title => t('profile.navigation.activity').upcase, :content_switch_enabled => true %></li>
   <li class="<%= controller_name=="followers" ? "activo" : "" %>">

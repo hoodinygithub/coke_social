@@ -1,20 +1,52 @@
-<form name='station_form' action="">
-  <input type="hidden" id="station_to_delete" value="" />
-</form>
+<% content_for :main_content do %>
 
-<% content_for :title do %>
-  <%= possessive :playlists %>
+  <div class="mod_mixes_comentarios">  
+    <h2 class="tit_bloque">
+        <span class="txt"><%= t('profile.navigation.mixes') %><em><%= t('modules.latest_mixes.description', :user_name => profile_user.name) %></em></span>
+        <span class="bg_fin">&nbsp;</span>
+    </h2>
+    <form class="f_ordenar" action="#">
+        <select>
+          <option>M&aacute;s recientes</option>
+          <option>Top</option>
+          <option>Los mejor calificados</option>
+          <option>Alfab&eacute;tico</option>
+        </select>
+    </form><!-- .f_ordenar -->
+
+    <% if @collection.empty? %>
+      <p class="no_resultados"><%= possessive :has_not_playlists %></p>
+    <% else %>
+      <% @collection.each_with_index do |p, i| %>
+      
+        <div class="albums_item">
+          <%= render :partial => 'playlists/box', :locals => {:p => p, :i => i} %>
+          <%= render :partial => 'reviews/playlist_reviews_box', :locals => { :playlist => p } %>
+        </div><!-- .albums_item -->
+    
+      <% end %>
+    <% end %>         
+  
+
+    <%= will_paginate @collection, pagination_args %>
+    <!-- <ul class="paginacion">
+        <li class="ant"><a href="#" title="Anterior">&lt;</a></li>
+        <li class="activo">1</li>
+
+        <li><a href="#" title="2">2</a></li>
+        <li><a href="#" title="3">3</a></li>
+        <li><a href="#" title="4">4</a></li>
+        <li><a href="#" title="5">5</a></li>
+        <li><a href="#" title="6">6</a></li>
+        <li><a href="#" title="7">7</a></li>
+
+        <li class="res">&hellip;</li>
+        <li><a href="#" title="99">99</a></li>
+        <li class="sig"><a href="#" title="Sigueinte">&gt;</a></li>
+    </ul> -->
+  </div><!-- .mod_mixes_comentarios -->
+
 <% end %>
 
-<% content_for :sorting do %>
-  <%= sort_link_to :latest %> /
-  <%= sort_link_to :top %> /
-  <%= sort_link_to :highest_rated %> /
-  <%= sort_link_to :alphabetical %>
-<% end %>
+<%= render :partial => 'shared/multitask/profile/layout', :locals => {:user => profile_user, :id => "usuario"} %>
 
-<% content_for :list do %>
-  <%= render 'list' %>
-<% end %>
-
-<%= render 'shared/list' %>

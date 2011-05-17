@@ -25,7 +25,7 @@ class PlaylistsController < ApplicationController
 
     @collection = profile_account.playlists.all(opts).paginate :page => params[:page], :per_page => 6
 
-    if request.xhr?
+    if request.xhr? && ! params[:ajax]
       render :partial => 'ajax_list'
     else
       respond_to do |format|

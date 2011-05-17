@@ -1,8 +1,9 @@
-<div class="usuario_ficha">
+<% hide_info = (controller_name=="accounts" && action_name=="show") ? false : true %>
+<div class="usuario_ficha <%= "ficha_plegada" if hide_info %>">
     <div class="ficha_top">&nbsp;</div>
 
     <div class="ficha_cont">
-        <a class="mas_info menos_info" href="#" title="<%= t('actions.hide') %>"><%= t('actions.hide') %><span class="bg_flecha">&nbsp;</span></a>
+        <a class="mas_info menos_info" href="#" title="<%= hide_info ? t('actions.show') : t('actions.hide') %>"><%= hide_info ? t('actions.show') : t('actions.hide') %><span class="bg_flecha">&nbsp;</span></a>
         <%= avatar_for(user, :album, :class => "avatar", :width => "229", :height => "229", :disable_default_css => true) %>
         <div class="datos">
           <h2><%= user.name %></h2>

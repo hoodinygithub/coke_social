@@ -1,9 +1,10 @@
+<% playlist_link = link_to badge_award.deleted_playlist_name, 
+            radio_path(:station_id => badge_award.playlist_id),
+            :alt => badge_award.deleted_playlist_name, :content_switch_enabled => true, :onclick => "Base.Station.request('/playlists/#{badge_award.playlist_id}.xml', 'xml', Base.Station.stationCollection);Base.Player.random(false)" rescue nil %>
 <li>
-  <%= link_to image_tag("#{badge_award.image}"), badge_path(badge_award) %>
-  <div class="text">
-    <big><b><%= t("badges.#{badge_award.badge_key}.name")%></b></big><br/>
-    <span class="grey_text"><%= t("badges.#{badge_award.badge_key}.qualification", :playlist_name => badge_award.deleted_playlist_name) %></span><br/>
-  </div>
-  <div class="clearer"></div>
+    <%= link_to image_tag("#{badge_award.image}"), badge_path(badge_award), :class => "avatar", :content_switch_enabled => true %>
+    <div class="text">
+        <h3><%= t("badges.#{badge_award.badge_key}.name")%></h3>
+        <span class="grey_text"><%= t("badges.#{badge_award.badge_key}.qualification", :playlist_name => playlist_link) %></span>
+    </div>
 </li>
-

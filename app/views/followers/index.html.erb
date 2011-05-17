@@ -1,14 +1,28 @@
-<% content_for :title do %>
-  <%= possessive :followers %>
+<% content_for :main_content do %>
+
+  <div class="mod_seguidores">
+    <h2 class="tit_bloque">
+        <span class="txt"><%= t('modules.following') %><em><%= profile_user.name %></em></span>
+        <span class="bg_fin">&nbsp;</span>
+    </h2><!-- .tit_bloque -->
+    <form class="f_ordenar" action="#">
+        <select>
+            <option>Más recientes</option>
+            <option>Alfabético</option>
+        </select>
+    </form><!-- .f_ordenar -->
+
+    <% if @collection.empty? %>
+      <p class="no_resultados"><%= possessive :has_not_followers %></p>
+    <% else %>
+      <ul class="followers_list">
+        <%= render :partial => 'followings/item', :collection => @collection %>
+      </ul><!-- .followers_list -->
+    <% end %>
+    
+    <%= will_paginate @collection, pagination_args %>
+</div><!-- .mod_seguidores -->
+
 <% end %>
 
-<% content_for :sorting do %>
-  <%= sort_link_to :latest %> /
-  <%= sort_link_to :alphabetical %>
-<% end %>
-
-<% content_for :list do %>
-  <%= render 'followings/list'%>
-<% end %>
-
-<%= render 'shared/list' %>
+<%= render :partial => 'shared/multitask/profile/layout', :locals => {:user => profile_user, :id => "usuario"} %>

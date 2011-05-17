@@ -1,39 +1,13 @@
-<div class="contenido" id="usuario">
-  <div class="bloque">
+<% content_for :main_content do %>
+  <%= render :partial => 'shared/multitask/profile/latest_mixes', :locals => {:user => profile_user} %>
+  <%= render :partial => 'shared/multitask/profile/latest_badges', :locals => {:user => profile_user} %>
+  <%= render :partial => 'shared/multitask/profile/latest_comments', :locals => {:user => profile_user, :reviews => @reviews} %>
+<% end %>
 
-    <%= render :partial => 'shared/multitask/profile/nav', :locals => {:user => profile_user} %>
-    
-    <div class="cont_columna doble">
-    
-      <%= render :partial => 'shared/multitask/profile/user_data', :locals => {:user => profile_user} %>
-      
-      <%= render :partial => 'shared/multitask/profile/latest_mixes', :locals => {:user => profile_user} %>
-    
-      <%= render :partial => 'shared/multitask/profile/latest_badges', :locals => {:user => profile_user} %>
-        
-      <%= render :partial => 'shared/multitask/profile/latest_comments', :locals => {:user => profile_user, :reviews => @reviews} %>  
-      
-    </div><!-- .cont_columna doble -->
-    
-    <div class="cont_columna der">
-        
-      <div class="open_happiness_box">
-        <%= banner_ad("square_banner") %>
-      </div><!-- .open_happiness_box -->
-      
-      <div class="mod_emociones">
-        <% cache("#{site_cache_key}/#{profile_user.slug_cache_key}/profiles/tag_cloud", :expires_in => EXPIRATION_TIMES['profile_tag_cloud']) do %>
-          <%= render :partial => 'shared/tag_cloud', :locals => { :tags => profile_user.tag_counts_from_playlists(current_site) } %>
-        <% end %>
-      </div><!-- .mod_emociones -->                
+<% content_for :right_side_content do %>
+  <%= render :partial => 'shared/multitask/profile/following', :locals => {:user => profile_user} %>
+  <%= render :partial => 'shared/multitask/profile/top_mixes', :locals => {:user => profile_user} %>
+  <%= render :partial => 'shared/multitask/profile/recent_activity', :locals => {:user => profile_user, :activity => @activity} %>
+<% end %>
 
-      <%= render :partial => 'shared/multitask/profile/following', :locals => {:user => profile_user} %>
-      
-      <%= render :partial => 'shared/multitask/profile/top_mixes', :locals => {:user => profile_user} %>
-
-      <%= render :partial => 'shared/multitask/profile/recent_activity', :locals => {:user => profile_user, :activity => @activity} %>
-
-    </div><!-- .cont_columna der -->
-
-  </div><!-- /bloque -->
-</div><!-- .contenido -->
+<%= render :partial => 'shared/multitask/profile/layout', :locals => {:user => profile_user, :id => "usuario"} %>

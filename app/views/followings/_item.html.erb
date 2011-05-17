@@ -1,28 +1,13 @@
-<li>
-  <%= link_to(avatar_for(item, :small, :class => "follower_image" ), item) %>
+<li class="follow_user">
+  <%= link_to(avatar_for(item, :small, :class => "follower_image" ), item, :content_switch_enabled => true) %>
   <div class="follower_text">
-    <b><%= link_to item.name, item %></b><br/>
-    <span><%= item.country %></span><br/>
-    <%= link_to item.total_playlists, user_playlists_path(item) %> <%= t('profile.navigation.playlists') %> /
-    <%= link_to item.total_badges, user_badges_path(item) %> <%= t('profile.navigation.badges') %> /
-    <%= link_to item.follower_count, user_followers_path(item) %> <%= t('profile.navigation.followers') %>
+      <%= link_to item.name, item, :content_switch_enabled => true %>
+      <span>(<%= item.country %>)</span>
   </div>
-  <div class="follower_actions w_settings">
-    <%= follow_button(:account => item, :remove_div => (params[:controller] != 'followers' && page_owner?) ) %>
-    <% if item != current_user && current_user %>
-      <a href="#" class="black_button settings_button">
-        <span><span>
-          <img src="/images/settings_button.png" class="png_fix" alt="" />
-        </span></span>
-      </a>
-      <br/>
-      <%= render :partial => 'followings/action', :locals => { :item => item } %>
-      <div class="blocked">
-        <% if current_user.blocks?(item) %>
-        <%= image_tag('blocked.gif') %> <%= t('blocks.blocked') %>
-        <% end %>
-      </div>
-    <% end %>
-  </div>
-  <br class="clearer" />
-</li>
+  <ul class="follower_data">
+      <li><a href="#" title="<%= t('profile.navigation.mixes') %>"><%= link_to item.total_playlists, user_playlists_path(item), :content_switch_enabled => true %></a> <%= t('profile.navigation.mixes') %></li>
+      <li><a href="#" title="<%= t('profile.navigation.badges') %>"><%= link_to item.total_badges, user_badges_path(item), :content_switch_enabled => true %></a> <%= t('profile.navigation.badges') %></li>
+      <li><a href="#" title="<%= t('profile.navigation.followers') %>"><%= link_to item.follower_count, user_followers_path(item), :content_switch_enabled => true %></a> <%= t('profile.navigation.followers') %></li>
+  </ul>
+  <%= render :partial => 'shared/multitask/profile/follow_button', :locals => {:user => item} %>
+</li><!-- .follow_user -->

@@ -108,6 +108,7 @@ var Base = {
   layout: {},
   community: {},
   playlists: {},
+  reviews: {},
   utils: {},
   share: {},
   locale: {},
@@ -122,8 +123,11 @@ Base.Util = {
     error_func = typeof(error_func) != 'undefined' ? error_func : Base.UI.xhrerror;
     var options = arguments[4];
 
+    // Allows actions that respond to XHR differently to be overridden
+    new_req = req + (req.indexOf('?') != -1 ? "&ajax=1" : "?ajax=1")
+    
     $.ajax({
-      url: req,
+      url: new_req,
       dataType: type,
       complete: function(data) {
         if (typeof options != "undefined" && typeof options.afterComplete != "undefined") options.afterComplete();
@@ -1125,4 +1129,13 @@ Base.header_search.close = function(msg) {
     jQuery('#header_search_form').parent().removeClass('activo');
     jQuery('.search_results_ajax').hide();
   }, 300);
+};
+
+// Reviews
+Base.reviews.show = function(review) {
+  var url = Base.currentSiteUrl() + "/reviews/" + review + "/show";
+  $.get(url, function(response) {
+    $.popup(response);
+    $('input[type=radio].star').rating();
+  });
 };

@@ -333,17 +333,25 @@ en:
     saving: Saving
     copy: Copy
   modules:
+    badge_detail:
+      title: "Badges unlocked"
+      description: "by {{user_name}}"
+      friends_title: "Users who won this badge"
+      friends_description: "friends of {{user_name}}"
+      other_title: "Other users who won this badge"
     following: "Gente que est&aacute; siguiendo"
+    followees: "Gente a la que está siguiendo"
     top_mixes: "Top Mixes of"
     latest_mixes:
       title: "Latest Mixes"
-      description: "of {{user_name}}"
+      description: "by {{user_name}}"
     latest_badges:
       title: "Latest Badges"
-      description: "of {{user_name}}"
+      description: "by {{user_name}}"
     latest_comments:
       title: "Latest Comments"
-      description: "of {{user_name}}"
+      description: "by {{user_name}}"
+      by: "Comments by {{user_name}}"
     badge_notifications: 
       title_singular: "Congratulations, you've unlocked a new badge!"
       title_plural: "Congratulations, you've unlocked {{badge_count}} new badges!"
@@ -358,6 +366,7 @@ en:
       description: "m&aacute;s recientes"
     network_activity: 
       title: Network Activity
+      description: "of {{user_name}}"
     photos: 
       title: Photos
     user_info: 
@@ -1490,7 +1499,7 @@ Note: This badge is earned only one time, for the max ranking by 3 people."
       search: Search
   playlist: 
     edit_your_playlist: Edit your playlist
-    doesnt_have_any_reviews: This playlist does not<br/> have any reviews
+    doesnt_have_any_reviews: This playlist does not have any reviews
     review: REVIEW THIS PLAYLIST
   reviews:
     post_your_review: POST YOUR REVIEW

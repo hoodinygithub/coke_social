@@ -1,14 +1,73 @@
-<% content_for :title do %>
-  <%= possessive :reviews %>
+<% content_for :main_content do %>
+
+  <div class="mod_comentarios">  
+    <h2 class="tit_bloque">
+        <span class="txt"><%= t('profile.navigation.comments') %><em><%= t('modules.latest_mixes.description', :user_name => profile_user.name) %></em></span>
+        <span class="bg_fin">&nbsp;</span>
+    </h2>
+    <form class="f_ordenar" action="#">
+        <select>
+          <option>M&aacute;s recientes</option>
+          <option>Top</option>
+          <option>Los mejor calificados</option>
+          <option>Alfab&eacute;tico</option>
+        </select>
+    </form><!-- .f_ordenar -->
+
+    <% if @collection.empty? %>
+      <p class="no_resultados"><%= possessive :has_not_reviews %></p>
+    <% else %>
+      <% @collection.each_with_index do |item, i| %>
+      
+        <div class="albums_item reviews_list">
+          <%= render :partial => 'playlists/box', :locals => {:p => item.commentable, :i => i} %>
+          <% user = User.find(item.user_id) %>
+          <div class="reviews">
+              <strong><%= t('modules.latest_comments.by', :user_name => link_to(user.name, user_path(user), :content_switch_enabled => true)) %></strong>
+              <span class="grey"><%= nice_elapsed_time(item.updated_at) %> <%= t('basics.ago') %></span>
+              <%= multitask_rating(item.commentable, 5) %>
+              <div class="rev_text">
+                  <p>
+                    <%= truncate(item.comment, 90, "...") %>
+                    <%= reviews_actions_for(item) rescue nil %></p>
+              </div>
+              
+              <% user = item.commentable.owner %>
+                                    
+              <div class="review_item">
+                  <%= link_to avatar_for(user, :small, :class => "review_icon"), user, :content_switch_enabled => true %>
+                  <div class="review_creator_large">
+                      <strong><%= t('basics.created_by') %>: <%= link_to user, user_path(user), :content_switch_enabled => true %></strong>
+                      <%= render :partial => 'shared/multitask/profile/follow_text', :locals => {:user => user} %>
+                  </div>
+              </div><!-- .review_item -->
+          </div><!-- .reviews -->
+        </div><!-- .albums_item -->
+    
+      <% end %>
+    <% end %>         
+  
+
+    <%= will_paginate @collection, pagination_args %>
+    <!-- <ul class="paginacion">
+        <li class="ant"><a href="#" title="Anterior">&lt;</a></li>
+        <li class="activo">1</li>
+
+        <li><a href="#" title="2">2</a></li>
+        <li><a href="#" title="3">3</a></li>
+        <li><a href="#" title="4">4</a></li>
+        <li><a href="#" title="5">5</a></li>
+        <li><a href="#" title="6">6</a></li>
+        <li><a href="#" title="7">7</a></li>
+
+        <li class="res">&hellip;</li>
+        <li><a href="#" title="99">99</a></li>
+        <li class="sig"><a href="#" title="Sigueinte">&gt;</a></li>
+    </ul> -->
+  </div><!-- .mod_mixes_comentarios -->
+
 <% end %>
 
-<% content_for :sorting do %>
-  <%= sort_link_to(:latest) %> / 
-  <%= sort_link_to(:highest_rated) %> 
-<% end %>
+<%= render :partial => 'shared/multitask/profile/layout', :locals => {:user => profile_user, :id => "usuario"} %>
 
-<% content_for :list do %>
-  <%= render 'list' %>
-<% end %>
 
-<%= render 'shared/list' %>

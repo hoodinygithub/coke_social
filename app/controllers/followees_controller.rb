@@ -10,7 +10,7 @@ class FolloweesController < ApplicationController
     @sort_type = get_sort_by_param(sort_types.keys, :latest) #params.fetch(:sort_by, nil).to_sym rescue :latest
 
     @collection = profile_user.followees.paginate :page => params[:page], :per_page => 15, :order => sort_types[@sort_type]
-    if request.xhr?
+    if request.xhr? && !params[:ajax]
       render :partial => 'followings/ajax_list'
     end
   end

@@ -18,7 +18,9 @@ $(document).ready(function() {
   } 
 
   //fuente Myriad
-  Cufon.replace('.txt');
+  $('.txt').livequery(function() {
+    Cufon.replace('.txt');
+  })
 
   //efecto badges
   // NOTE: Commented block below
@@ -42,8 +44,8 @@ $(document).ready(function() {
   */
 
   //plegar desplegar ficha de usuario
-  if($(".usuario_ficha .mas_info").length) {
-    $(".usuario_ficha .mas_info").click(function(e){
+  //if($(".usuario_ficha .mas_info").length) {
+    $(".usuario_ficha .mas_info").livequery('click', function(e){
   		e.preventDefault();
   		var padreplegado = $(this).parent().parent(".ficha_plegada");
   		var padre = $(this).parent().parent();
@@ -57,7 +59,7 @@ $(document).ready(function() {
         $(this).attr('title',Base.locale.t('actions.show'));
       }
   	});
-  }
+  //}
   
   Base.header_search.dropdown();
   

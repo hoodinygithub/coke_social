@@ -8,7 +8,7 @@
   <% else %>
     <div class="mod_contenedor">
       <% user.badge_awards.all(:limit => 18, :order => 'badge_awards.created_at DESC').each do |badge_award| %>
-        <%= link_to( image_tag(badge_award.image, :title => t("badges.#{badge_award.badge_key}.name"), :class => "medalla"), badge_path(badge_award)) %>
+        <%= link_to( image_tag(badge_award.image, :title => t("badges.#{badge_award.badge_key}.name"), :class => "medalla"), badge_path(badge_award), :content_switch_enabled => true) %>
       <% end %>
     </div>
     <a class="ico_mas" href="<%= user_badges_path(user) %>" title="<%= t('actions.view_more') %>" content_switch_enabled="true"><%= t('actions.view_more') %><span class="bg_flecha">&nbsp;</span></a>
