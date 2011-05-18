@@ -136,6 +136,11 @@ Base.Util = {
       error: error_func
     });
   },
+  
+  xhr_call: function(href)
+  {
+    Base.Util.XHR(href, 'text', Base.UI.contentswp, Base.UI.xhrerror, {});
+  },
 
   poller: function(func, interval)
   {

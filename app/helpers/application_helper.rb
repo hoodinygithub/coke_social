@@ -82,6 +82,20 @@ module ApplicationHelper
 
     link_to t("sort.#{type}").mb_chars.upcase.to_s, url, options
   end
+  
+  def sort_form(klass, *types)
+    options = ""
+    types.each do |type|
+      options << "<option value='#{current_url(:sort_by => type.to_s)}' #{"selected" if (params[:sort_by].to_s == type.to_s)}>#{t("sort.#{type}").mb_chars.titleize}</option>"
+    end
+    "<form class='#{klass}' action='return false;'>
+       <select onchange='Base.Util.xhr_call(this.value)'>#{options}</select>
+     </form>"
+  end
+  
+  def current_url(overwrite={})
+    url_for :only_path => true, :params => params.merge(overwrite)
+  end
 
   def short_date(date)
   end

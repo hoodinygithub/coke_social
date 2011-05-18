@@ -5,12 +5,8 @@
         <span class="txt"><%= t('profile.navigation.badges') %><em><%= t('modules.latest_badges.description', :user_name => profile_user.name) %></em></span>
         <span class="bg_fin">&nbsp;</span>
     </h2>
-    <form class="f_ordenar" action="#">
-        <select>
-            <option>M&aacute;s recientes</option>
-            <option>Alfab&eacute;tico</option>
-        </select>
-    </form><!-- .f_ordenar -->
+    
+    <%= sort_form("f_ordenar", :latest, :alphabetical) %>
     
     <% if @collection.empty? %>
       <p class="no_resultados"><%= possessive :has_not_badges %></p>

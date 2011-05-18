@@ -18,16 +18,16 @@
 
           <p class="p_pais"><%= user.country.name unless user.country.nil? %></p>
           <ul class="totales">
-              <li><span><%= t('profile.navigation.mixes') %></span><%= link_to user.playlists.count, (profile_owner? && logged_in? ? my_playlists_path : user_playlists_path(user)), :title => user.playlists.count, :content_switch_enabled => true %></li>
+              <li><span><%= t('profile.navigation.mixes') %></span><%= link_to user.playlists.count, (profile_owner? ? my_playlists_path : user_playlists_path(user)), :title => user.playlists.count, :content_switch_enabled => true %></li>
               
-              <li><span><%= t('profile.navigation.badges') %></span><%= link_to user.badges.count, (profile_owner? && logged_in? ? my_badges_path : user_badges_path(user)), :title => user.badges.count, :content_switch_enabled => true %></li>
+              <li><span><%= t('profile.navigation.badges') %></span><%= link_to user.badges.count, (profile_owner? ? my_badges_path : user_badges_path(user)), :title => user.badges.count, :content_switch_enabled => true %></li>
               
-              <li><span><%= t('profile.navigation.followers') %></span><%= link_to user.followers.count, (profile_owner? && logged_in? ? my_followers_path : user_followers_path(user)), :title => user.followers.count, :content_switch_enabled => true %></li>
+              <li><span><%= t('profile.navigation.followers') %></span><%= link_to user.followers.count, (profile_owner? ? my_followers_path : user_followers_path(user)), :title => user.followers.count, :content_switch_enabled => true %></li>
 
-              <li><span><%= t('profile.navigation.following') %></span><%= link_to user.followees.count, (profile_owner? && logged_in? ? my_following_index_path : user_following_index_path(user)), :title => user.followees.count, :content_switch_enabled => true %></li>
+              <li><span><%= t('profile.navigation.following') %></span><%= link_to user.followees.count, (profile_owner? ? my_following_index_path : user_following_index_path(user)), :title => user.followees.count, :content_switch_enabled => true %></li>
           </ul>
           
-          <% if profile_owner? && logged_in? %>
+          <% if profile_owner? %>
             <a class="btn_rojo" href="<%= my_settings_path %>" content_switch_enabled="true" title="<%= t('contact_us.form.category_account') %>" content_switch_enabled="true">
               <%= t('contact_us.form.category_account').upcase %><span class="bg_fin">&nbsp;</span>
             </a>

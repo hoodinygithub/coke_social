@@ -5,12 +5,8 @@
         <span class="txt"><%= t('modules.followees') %><em><%= profile_user.name %></em></span>
         <span class="bg_fin">&nbsp;</span>
     </h2><!-- .tit_bloque -->
-    <form class="f_ordenar" action="#">
-        <select>
-            <option>Más recientes</option>
-            <option>Alfabético</option>
-        </select>
-    </form><!-- .f_ordenar -->
+
+    <%= sort_form("f_ordenar", :latest, :alphabetical) %>
 
     <% if @collection.empty? %>
       <p class="no_resultados"><%= possessive :has_not_followees %></p>

@@ -1,21 +1,21 @@
 <ul class="usuario_menu">
   <li class="pri <%= (controller_name=~/accounts|dashboards/i ? "activo" : "") %>">
-    <%= link_to t('profile.navigation.home').upcase, (profile_owner? && logged_in? ? my_dashboard_path : user_path(user)), :class => "txt", :title => t('profile.navigation.home').upcase, :content_switch_enabled => true %>
+    <%= link_to t('profile.navigation.home').upcase, (profile_owner? ? my_dashboard_path : user_path(user)), :class => "txt", :title => t('profile.navigation.home').upcase, :content_switch_enabled => true %>
   </li>
   <li class="<%= controller_name=="playlists" ? "activo" : "" %>">
-    <%= link_to t('profile.navigation.mixes').upcase, (profile_owner? && logged_in? ? my_playlists_path : user_playlists_path(user)), :class => "txt", :title => t('profile.navigation.mixes').upcase, :content_switch_enabled => true %></li>
+    <%= link_to t('profile.navigation.mixes').upcase, (profile_owner? ? my_playlists_path : user_playlists_path(user)), :class => "txt", :title => t('profile.navigation.mixes').upcase, :content_switch_enabled => true %></li>
   <li class="<%= controller_name=="badges" ? "activo" : "" %>">
-    <%= link_to t('profile.navigation.badges').upcase, (profile_owner? && logged_in? ? my_badges_path : user_badges_path(user)), :class => "txt", :title => t('profile.navigation.badges').upcase, :content_switch_enabled => true %></li>
+    <%= link_to t('profile.navigation.badges').upcase, (profile_owner? ? my_badges_path : user_badges_path(user)), :class => "txt", :title => t('profile.navigation.badges').upcase, :content_switch_enabled => true %></li>
   <li class="<%= controller_name=="comments" ? "activo" : "" %>">
-    <%= link_to t('profile.navigation.comments').upcase, (profile_owner? && logged_in? ? my_reviews_path : user_reviews_path(user)), :class => "txt", :title => t('profile.navigation.comments').upcase, :content_switch_enabled => true %></li>
+    <%= link_to t('profile.navigation.comments').upcase, (profile_owner? ? my_reviews_path : user_reviews_path(user)), :class => "txt", :title => t('profile.navigation.comments').upcase, :content_switch_enabled => true %></li>
   <li class="<%= controller_name=="activities" ? "activo" : "" %>">
-    <%= link_to t('profile.navigation.activity').upcase, (profile_owner? && logged_in? ? my_activities_path : user_activities_path(user)), :class => "txt", :title => t('profile.navigation.activity').upcase, :content_switch_enabled => true %></li>
+    <%= link_to t('profile.navigation.activity').upcase, (profile_owner? ? my_activities_path : user_activities_path(user)), :class => "txt", :title => t('profile.navigation.activity').upcase, :content_switch_enabled => true %></li>
   <li class="<%= controller_name=="followers" ? "activo" : "" %>">
-    <%= link_to t('profile.navigation.followers').upcase, (profile_owner? && logged_in? ? my_followers_path : user_followers_path(user)), :class => "txt", :title => t('profile.navigation.followers').upcase, :content_switch_enabled => true %></li>
+    <%= link_to t('profile.navigation.followers').upcase, (profile_owner? ? my_followers_path : user_followers_path(user)), :class => "txt", :title => t('profile.navigation.followers').upcase, :content_switch_enabled => true %></li>
   <li class="<%= controller_name=="followees" ? "activo" : "" %>">
-    <%= link_to t('profile.navigation.following').upcase, (profile_owner? && logged_in? ? my_following_index_path : user_following_index_path(user)), :class => "txt", :title => t('profile.navigation.following').upcase, :content_switch_enabled => true %></li>
+    <%= link_to t('profile.navigation.following').upcase, (profile_owner? ? my_following_index_path : user_following_index_path(user)), :class => "txt", :title => t('profile.navigation.following').upcase, :content_switch_enabled => true %></li>
   <li class="ultimo">
-    <% if profile_owner? && logged_in? %>
+    <% if profile_owner? %>
       <a class="btn_rojo" href="<%= playlist_create_path %>" content_switch_enabled="true" title="<%= t('actions.create_a_playlist') %>" content_switch_enabled="true">
         <%= t('actions.create_a_playlist').upcase %><span class="bg_fin">&nbsp;</span>
       </a>
