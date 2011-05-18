@@ -165,11 +165,25 @@ Base.Util = {
 
 // Ajaxification of search request
 Base.Search = {
+  toggleScope: function(e)
+  {
+    var btn = $(e);
+    var frm = btn.parent();
+    if (!btn.hasClass('activo'))
+    {
+      frm.find('.activo').toggleClass('activo');
+      btn.toggleClass('activo');
+
+      frm.find('#scope').attr('value', btn.attr('scope'));
+      if (frm.find('#q').attr('value') != "") this.query(frm);
+    }
+  },
+
   query: function(e)
   {
     var form = $(e);
     var data = form.serialize();
-    Base.Util.XHR((form.attr('action') + "?" + data), 'text', Base.UI.contentswp, Base.UI.xhrerror)
+    Base.Util.XHR((form.attr('action') + "?" + data), 'text', Base.UI.contentswp, Base.UI.xhrerror);
   }
 };
 

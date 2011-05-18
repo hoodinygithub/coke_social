@@ -1,19 +1,20 @@
 <div class="contenido">
   <div class="bloque">
 
-    <% form_tag '/search', :class => 'buscador_big' do %>
+    <% form_tag '/search', :method => :get, :class => 'buscador_big', :onsubmit => 'Base.Search.query(this); return false;' do %>
       <%= label_tag 'lupa', 'lupa', :class => 'lupa_buscar' %>
       <%= hidden_field_tag 'scope', params[:scope] %>
+      <%= hidden_field_tag 'result_only', '1' %>
       <%= text_field_tag 'q', params[:q], :class => 'text_buscar' %>
-      <%= tag 'input', :type => 'button', :value => 'USUARIOS', :class => "btn_buscar btn_bususuarios #{params[:scope] == 'users'}" %>
-      <%= tag 'input', :type => 'button', :value => 'MIXES', :class => "btn_buscar btn_busmixes #{params[:scope] == 'playlists'}" %>
+      <%= tag 'input', :type => 'button', :value => 'USUARIOS', :scope => 'users', :class => "btn_buscar btn_bususuarios #{"activo" if params[:scope] == 'users'}", :onclick => 'Base.Search.toggleScope(this, event);' %>
+      <%= tag 'input', :type => 'button', :value => 'MIXES', :scope => 'playlists', :class => "btn_buscar btn_busmixes #{"activo" if params[:scope] == 'playlists'}", :onclick => 'Base.Search.toggleScope(this);' %>
     <% end %>
 
     <div class="cont_columna doble">
 
       <div class="mod_mixes">
         <h2 class="tit_bloque">
-          <span class="txt">Mixes<em>20 resultados</em></span>
+          <span class="txt">Mixes<em><%= "#{params[:scope] == 'playlists' ? @results[:playlists].count : @results[:users].count} #{t('basics.results')}" %> </em></span>
           <span class="bg_fin">&nbsp;</span>
         </h2><!-- .tit_bloque -->
 
