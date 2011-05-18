@@ -32,7 +32,7 @@
           <h3><%= playlist.name %></h3>
           <span class="grey"><%= playlist.updated_at %></span>
           <% if playlist.songs_count > 0 %>
-            <%= station_contains(playlist) %>
+            <%= station_contains(playlist, nil, nil, :content_switch_enabled => true) %>
           <% end %>
           <% unless playlist.cached_tag_list.blank? %>
             <%= tag_links(playlist, @active_scope) %>
