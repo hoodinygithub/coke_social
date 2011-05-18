@@ -35,7 +35,7 @@
             <%= station_contains(playlist, 3, true, :content_switch_enabled => true) %>
           <% end %>
           <% unless playlist.cached_tag_list.blank? %>
-            <%= tag_links(playlist, @active_scope) %>
+            <%= tag_links(playlist, @active_scope, 3, true, :content_switch_enabled => true) %>
           <% end %>
         </div><!-- .title -->
         <%= multitask_rating playlist %>
