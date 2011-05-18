@@ -187,7 +187,7 @@ private
             js << "window.location.reload();"
             render :js => js
           else
-            redirect_back_or_default(home_path(:host => corrected_registration_host))
+            redirect_back_or_default(dashboard_path(:host => corrected_registration_host))
           end
         end
       else

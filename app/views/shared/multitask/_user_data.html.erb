@@ -17,7 +17,7 @@
 <% else %>
 
   <li>
-    <%= t('demographics.email.welcome', :user => link_to(current_user.name, my_dashboard_path, :class => "acceso_usuario link_decor", :title => current_user.name))%>
+    <%= t('demographics.email.welcome', :user => link_to(current_user.name, my_dashboard_path, :class => "acceso_usuario link_decor", :title => current_user.name, :content_switch_enabled => true))%>
   </li>
 
 <% end %>

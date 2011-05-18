@@ -1,4 +1,11 @@
-<% hide_info = (controller_name=="accounts" && action_name=="show") ? false : true %>
+<% 
+  if action_name=="show" and ["accounts", "dashboards"].include?controller_name
+    hide_info = false
+  else
+    hide_info = true
+  end
+%>
+
 <div class="usuario_ficha <%= "ficha_plegada" if hide_info %>">
     <div class="ficha_top">&nbsp;</div>
 
@@ -11,16 +18,22 @@
 
           <p class="p_pais"><%= user.country.name unless user.country.nil? %></p>
           <ul class="totales">
-              <li><span><%= t('profile.navigation.mixes') %></span><%= link_to user.playlists.count, user_playlists_path(user), :title => user.playlists.count, :content_switch_enabled => true %></li>
+              <li><span><%= t('profile.navigation.mixes') %></span><%= link_to user.playlists.count, (profile_owner? && logged_in? ? my_playlists_path : user_playlists_path(user)), :title => user.playlists.count, :content_switch_enabled => true %></li>
               
-              <li><span><%= t('profile.navigation.badges') %></span><%= link_to user.badges.count, user_badges_path(user), :title => user.badges.count, :content_switch_enabled => true %></li>
+              <li><span><%= t('profile.navigation.badges') %></span><%= link_to user.badges.count, (profile_owner? && logged_in? ? my_badges_path : user_badges_path(user)), :title => user.badges.count, :content_switch_enabled => true %></li>
               
-              <li><span><%= t('profile.navigation.followers') %></span><%= link_to user.followers.count, user_followers_path(user), :title => user.followers.count, :content_switch_enabled => true %></li>
+              <li><span><%= t('profile.navigation.followers') %></span><%= link_to user.followers.count, (profile_owner? && logged_in? ? my_followers_path : user_followers_path(user)), :title => user.followers.count, :content_switch_enabled => true %></li>
 
-              <li><span><%= t('profile.navigation.following') %></span><%= link_to user.followees.count, user_following_index_path(user), :title => user.followees.count, :content_switch_enabled => true %></li>
+              <li><span><%= t('profile.navigation.following') %></span><%= link_to user.followees.count, (profile_owner? && logged_in? ? my_following_index_path : user_following_index_path(user)), :title => user.followees.count, :content_switch_enabled => true %></li>
           </ul>
           
-          <%= render :partial => 'shared/multitask/profile/follow_button', :locals => {:user => user} %>
+          <% if profile_owner? && logged_in? %>
+            <a class="btn_rojo" href="<%= my_settings_path %>" content_switch_enabled="true" title="<%= t('contact_us.form.category_account') %>" content_switch_enabled="true">
+              <%= t('contact_us.form.category_account').upcase %><span class="bg_fin">&nbsp;</span>
+            </a>
+          <% else %>
+            <%= render :partial => 'shared/multitask/profile/follow_button', :locals => {:user => user} %>
+          <% end %>
         </div>
     </div>
     <div class="ficha_pie">&nbsp;</div>

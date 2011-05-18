@@ -5,7 +5,7 @@
   </h2>
   
   
-  <% if activity.size < 1 %>
+  <% if activity.nil? || activity.size < 1 %>
     <p class="no_resultados"><%= t("user.has_no_activity", :user_name => user.first_name) %></p>
   <% else %>
     <ul class="recent_activity_list">
