@@ -15,15 +15,20 @@
           <span class="txt">Mixes<em>20 resultados</em></span>
           <span class="bg_fin">&nbsp;</span>
         </h2><!-- .tit_bloque -->
-        <form class="f_ordenar" action="#">
-          <select>
-            <option>Relevencia</option>
-            <option>Top</option>
-            <option>Los mejor calificados</option>
-            <option>Alfabético</option>
-            <option>Más recientes</option>
-          </select>
-        </form><!-- .f_ordenar -->
+
+        <% form_tag "/search/#{params[:scope]}/#{params[:q]}", :method => :get, :class => 'f_ordenar' do %>
+          <%= hidden_field_tag 'result_only', '1' %>
+          <%
+            options = [
+              [t('sort.relevance'), 'relevance'],
+              [t('sort.top'), 'top'],
+              [t('sort.highest_rated'), 'highest_rated'],
+              [t('sort.alphabetical'), 'alphabetical'],
+              [t('sort.latest'), 'latest']
+            ]
+          %>
+          <%= select_tag 'sort_by', options_for_select(options), :onchange => 'Base.Search.query(this.form);' %>
+        <% end %>
 
         <% @search_types.each do |type| %>
           <%= render type.to_s unless @results[type].empty? %>
