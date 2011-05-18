@@ -27,7 +27,7 @@
               [t('sort.latest'), 'latest']
             ]
           %>
-          <%= select_tag 'sort_by', options_for_select(options), :onchange => 'Base.Search.query(this.form);' %>
+          <%= select_tag 'sort_by', options_for_select(options, params[:sort_by]), :onchange => 'Base.Search.query(this.form);' %>
         <% end %>
 
         <% @search_types.each do |type| %>
