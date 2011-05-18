@@ -1,12 +1,13 @@
 <div class="contenido">
   <div class="bloque">
 
-    <form class="buscador_big">
-      <label class="lupa_buscar">Lupa</label>
-      <input type="text" class="text_buscar" value="Amaral" /><!-- value de ejemplo -->
-      <input type="submit" value="USUARIOS" class="btn_buscar btn_bususuarios" />
-      <input type="submit" value="MIXES" class="btn_buscar btn_busmixes activo" />
-    </form>
+    <% form_tag '/search', :class => 'buscador_big' do %>
+      <%= label_tag 'lupa', 'lupa', :class => 'lupa_buscar' %>
+      <%= hidden_field_tag 'scope', params[:scope] %>
+      <%= text_field_tag 'q', params[:q], :class => 'text_buscar' %>
+      <%= tag 'input', :type => 'button', :value => 'USUARIOS', :class => "btn_buscar btn_bususuarios #{params[:scope] == 'users'}" %>
+      <%= tag 'input', :type => 'button', :value => 'MIXES', :class => "btn_buscar btn_busmixes #{params[:scope] == 'playlists'}" %>
+    <% end %>
 
     <div class="cont_columna doble">
 
