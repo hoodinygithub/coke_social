@@ -1,5 +1,6 @@
 <ul class="followers_list">
   <% @results[:users].each do |user| %>
+    <% is_self = (current_user and current_user == user) %>
     <li class="follow_user">
     <%= link_to avatar_for(user, :small, :class => 'follower_image'), '#' %>
     <div class="follower_text">
@@ -11,8 +12,7 @@
       <li><a href="#" title="Badges"><%= number_with_delimiter(user.total_badges) %></a> <%= t('basics.badges') %></li>
       <li><a href="#" title="Seguidores"><%= number_with_delimiter(user.follower_count) %></a> <%= t('users.stats.followers')  %></li>
     </ul>
-    <%= follow_button(:account => user, :remove_div => false) %>
-    <!--a class="btn_rojo btn_rojo_grande" href="#" title="SEGUIR">SEGUIR<span class="bg_fin">&nbsp;</span></a-->
+    <%= render :partial => 'shared/multitask/profile/follow_button', :locals => {:user => user} unless is_self %>
     </li><!-- .follow_user -->
 
   <% end %>
