@@ -446,9 +446,9 @@ Base.UI = {
       for(var r = 0; r < 5; r++)
       {
         if (r < rating)
-          rate += "<span class='llena'></span>"
+          rate += "<span class='llena'></span>";
         else
-          rate += "<span class='vacia'></span>"
+          rate += "<span class='vacia'></span>";
       }
       this.controlUI().find('a.punt_botellas, a.r_info').attr('href', ('/playlists?station_id=' + Base.Station._station.sid));
       this.controlUI().find('a.punt_botellas').append(rate);
@@ -478,10 +478,10 @@ Base.UI = {
   xhrerror: function(data)
   {
     if(data.status == "500")
-      $.alert_layer('/messenger_player/alert_layer/error')
+      $.alert_layer('/messenger_player/alert_layer/error');
     else {
-      $.alert_layer(data.responseText)
-    }  
+      $.alert_layer(data.responseText);
+    }
   },
 
   switchui: function(ui)
