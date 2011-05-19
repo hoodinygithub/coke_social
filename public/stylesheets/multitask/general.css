@@ -505,9 +505,39 @@ div.star-rating-readonly a{cursor:default !important;}
 .mod_top.columna .datos{width:230px;}
 
 .search_results_ajax  { display:none; float:none; left: 202px; position: relative; top: -22px;}
-
 /* new override styles */
 img.follower_image {
   width: 50px;
   height: 50px;
 }
+
+/* from application.css, for login page */
+#main_content {margin: 0px 24px 14px 20px;}
+#container {margin: 21px auto 0 auto; min-height: 100%; height: auto !important; height: 100%; width: 988px; background: #fff; text-align: left; overflow: hidden;}
+span.title {font-size: 18px; font-weight: bold;}
+
+#social {border-bottom: 1px solid #CCC; width: 100%;}
+#social .container {margin: 20px 24px 14px 20px; overflow: hidden;}
+#social .container div {float: left; padding-right: 5px;}
+
+.account_settings {position: relative; zoom: 1;}
+.account_settings .form_row {padding: 8px 0px; border-bottom: solid 1px #e1e1e1; zoom: 1;}
+.account_settings .form_row.last {padding-top: 15px; border-bottom: none;}
+.account_settings .form_row label {font-size: 14px; display: block; margin-bottom: 4px;}
+
+.grey_round_box {background: #e1e1e1; padding: 5px; font-size: 14px; -moz-border-radius: 5px; -webkit-border-radius: 5px;}
+.left_side {float: left;}
+.left_side .grey_round_box {height: 20px; padding: 11px 10px; margin-right: 10px; float: left;}
+
+.account_settings .form_row .input {background: #fff; padding: 5px 9px; border: solid 1px #999; color: #333333; font-size: 16px; font-family: Helvetica; height: 20px; vertical-align: middle;}
+.account_settings .form_row .input.full_width {width: 430px;}
+.account_settings .form_row .input.half_width {width: 250px; margin-left: 10px;}
+
+.red_button, .green_button, .orange_button, .black_button, .grey_button, .grey_button_big {text-transform: uppercase;}
+.red_button, .green_button, .orange_button, .black_button {display: inline-block; height: 28px; line-height: 28px; overflow: hidden; color: #fff; padding-left: 5px; font-size: 12px; font-weight: bold; text-align: center; text-decoration: none; vertical-align: middle;}
+.red_button {background: url("../../images/red_button_left.gif") no-repeat left top;}
+.red_button span, .green_button span, .orange_button span, .black_button span {display: inline-block; height: 28px; color: #fff; cursor: pointer; padding-right: 5px;}
+.red_button span {background: url("../../images/red_button_right.gif") no-repeat right top;}
+.red_button span span, .green_button span span, .orange_button span span, .black_button span span {padding: 0px 10px;}
+.red_button span span {background: #ff0014;}
+/* end login page css additions */

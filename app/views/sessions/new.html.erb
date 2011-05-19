@@ -1,25 +1,36 @@
 <% content_for :head do %>
   <%= stylesheet_link_tag 'registration_form' %>
+  <% # general.css imports cab-pie-player, then overrides it.  This page then overrides the overrides.  Blame the dumb slices. %>
+  <%= stylesheet_link_tag 'multitask/cab-pie-player.css' %>
 <% end %>
 
-<h2 class="page_title"><%= t('sessions.new.title') %></h2>
+<div id="container">
+  <div id="main_content" class="sessions">
 
-<div id="content">
-  <% if session.has_key? :sso_user %>
-    <div id="social">
-      <div class="container">
-        <span class="title"><%= t('sessions.new.almost_done') %></span><br /><br />
-        <b><%= t('sessions.new.link_acct', :provider => session[:sso_type].to_s) %></b><br /><br />
-        <%= "<b>#{t('sessions.new.account')} #{link_to t('sessions.new.join'), new_user_path(:return_to => my_dashboard_path)}</b>" %>
+    <h1 class="tit_bloque gris">
+      <span class="txt"><%= t('sessions.new.title') %></span>
+      <span class="bg_fin">&nbsp;</span>
+    </h1>
+
+    <div id="content">
+      <% if false #if session.has_key? :sso_user %>
+        <div id="social">
+          <div class="container">
+            <span class="title"><%= t('sessions.new.almost_done') %></span><br /><br />
+            <b><%= t('sessions.new.link_acct', :provider => session[:sso_type].to_s) %></b><br /><br />
+            <%= "<b>#{t('sessions.new.account')} #{link_to t('sessions.new.join'), new_user_path(:return_to => my_dashboard_path)}</b>" %>
+          </div>
+        </div>
+      <% else %>
+        <%= render "shared/social/social", { :page => :login } %>
+      <% end %>
+      <div id="main_content" class="registration">
+        <%= render 'form' %>
       </div>
     </div>
-  <% else %>
-    <%= render "shared/social/social", { :page => :login } %>
-  <% end %>
-  <div id="main_content" class="registration">
-    <%= render 'form' %>
-  </div>
-</div>
 
-<%= render 'sidebox' %>
-<br class="clearer" />
+    <%= render 'sidebox' %>
+    <br class="clearer" />
+
+  </div>
+</div><!--/end container -->
