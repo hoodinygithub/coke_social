@@ -13,7 +13,7 @@
     </h1>
 
     <div id="content">
-      <% if false #if session.has_key? :sso_user %>
+      <% if session.has_key? :sso_user %>
         <div id="social">
           <div class="container">
             <span class="title"><%= t('sessions.new.almost_done') %></span><br /><br />
