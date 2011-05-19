@@ -1,14 +1,14 @@
 <div class="mod_mixes">
   <h2 class="tit_bloque">
-      <span class="txt"><%= t('modules.latest_mixes.title') %><em><%= t('modules.latest_mixes.description', :user_name => user.name) %></em></span>
+      <span class="txt"><%= profile_owner? ? t('modules.top_playlists.title') : t('modules.latest_mixes.title') %><em><%= profile_owner? ? t('modules.top_playlists.description') : t('modules.latest_mixes.description', :user_name => user.name) %></em></span>
       <span class="bg_fin">&nbsp;</span>
   </h2><!-- .tit_bloque -->
   <% if user.playlists.latest.empty? %>
     <p class="no_resultados"><%= possessive :has_not_playlists %></p>
   <% else %>
-    <% user.playlists.latest.each_with_index do |p, i| %>
+    <% user.playlists.latest(8).each_with_index do |p, i| %>
       <%= render :partial => 'playlists/box', :locals => { :p => p, :i => i } %>
     <% end %>
-    <a class="ico_mas" href="<%= user_playlists_path(user) %>" title="<%= t('actions.view_more') %>" content_switch_enabled="true"><%= t('actions.view_more') %><span class="bg_flecha">&nbsp;</span></a>
+    <a class="ico_mas" href="<%= profile_owner? ? my_playlists_path : user_playlists_path(user) %>" title="<%= t('actions.view_more') %>" content_switch_enabled="true"><%= t('actions.view_more') %><span class="bg_flecha">&nbsp;</span></a>
   <% end %>
 </div><!-- .mod_mixes -->

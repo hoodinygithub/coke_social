@@ -1,6 +1,6 @@
 <div class="mod_badges">
   <h2 class="tit_bloque">
-      <span class="txt"><%= t('modules.latest_badges.title') %><em><%= t('modules.latest_badges.description', :user_name => user.name) %></em></span>
+      <span class="txt"><%= profile_owner? ? t('possessives.first_person.badges') : t('modules.latest_badges.title') %><em><%= t('modules.latest_badges.description', :user_name => user.name) unless profile_owner? %></em></span>
       <span class="bg_fin">&nbsp;</span>
   </h2><!-- .tit_bloque -->
   <% if user.total_badges < 1 %>
@@ -11,6 +11,6 @@
         <%= link_to( image_tag(badge_award.image, :title => t("badges.#{badge_award.badge_key}.name"), :class => "medalla"), badge_path(badge_award), :content_switch_enabled => true) %>
       <% end %>
     </div>
-    <a class="ico_mas" href="<%= user_badges_path(user) %>" title="<%= t('actions.view_more') %>" content_switch_enabled="true"><%= t('actions.view_more') %><span class="bg_flecha">&nbsp;</span></a>
+    <a class="ico_mas" href="<%= profile_owner? ? my_badges_path : user_badges_path(user) %>" title="<%= t('actions.view_more') %>" content_switch_enabled="true"><%= t('actions.view_more') %><span class="bg_flecha">&nbsp;</span></a>
   <% end %>
 </div><!-- .mod_badges -->
