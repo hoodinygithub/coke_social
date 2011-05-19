@@ -193,7 +193,7 @@ Base.Station = {
   request: function(req, type, func)
   {
     if (!this._initial) Base.Player._init = false;
-    if (Base.Player._player == 'goom') 
+    if (Base.Player._player == 'goom')
     {
       Base.Player.player('coke');
       Base.UI.setControlUI(Base.Player._player);
@@ -215,7 +215,7 @@ Base.Station = {
 
   // Callback
   _station: null,
-  stationCollection: function(data) 
+  stationCollection: function(data)
   {
     Base.Station._station = new StationBean(data.responseXML);
     Base.Player.playlist(Base.Station._station.songs);
@@ -372,8 +372,8 @@ Base.Player = {
     this.index = 0;
     this._playlist = bean;
     this.service().setStation({sid: Base.Station._station.sid, owner: Base.Station._station.owner, songCount: Base.Station._station.songCount});
-    if (this._init) 
-      Base.UI.render(this._playlist[this.index])
+    if (this._init)
+      Base.UI.render(this._playlist[this.index]);
     else
       this.stream(this._playlist[this.index]);
   }
