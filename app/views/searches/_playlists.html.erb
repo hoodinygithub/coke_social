@@ -1,8 +1,3 @@
-<script type="text/javascript">
-  $(document).ready(function(){
-    //Base.main_search.init_pagination();
-  });
-</script>
 <% @results[:playlists].each do |playlist| %>
   <% if playlist.station %>
     <% is_self = (current_user and current_user == playlist.owner) %>

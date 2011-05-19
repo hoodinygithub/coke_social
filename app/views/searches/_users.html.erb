@@ -1,31 +1,21 @@
-<script type="text/javascript">
-  $(document).ready(function(){
-    Base.main_search.init_pagination();
-  });
-</script>
 <ul class="followers_list">
   <% @results[:users].each do |user| %>
-  <% is_self = (current_user and current_user == user) %>
-    <li>
-      <%= link_to(avatar_for(user, :small, :class => "follower_image"), user) %>
-      <div class="follower_text">
-          <b><%= link_to user.name, user %></b><br/>
-          <span><%= user.country.name %></span><br/>
-          <%= link_to number_with_delimiter(user.total_playlists), is_self ? my_playlists_path : user_playlists_path(user) %> <%= t('basics.playlists') %> / <%= link_to number_with_delimiter(user.follower_count), is_self ? my_followers_path : user_followers_path(user) %> <%= t('users.stats.followers') %> / <%= link_to number_with_delimiter(user.total_badges), is_self ? my_badges_path : user_badges_path(user) %> <%= t('basics.badges') %>
-      </div>
-      <div class="follower_actions">
-        <%= follow_button(:account => user, :remove_div => false) unless is_self %>
-        <div class="blocked">
-          <% if current_user && current_user.blocks?(user) %>
-          <%= image_tag('blocked.gif') %> <%= t('blocks.blocked') %>
-          <% end %>
-        </div>
-      </div>
-      <br class="clearer" />
-    </li>
-  <% end %>
-</ul><!--/end followers_list -->
-<div class="pagination">
-  <%= will_paginate @results[:users], pagination_args %>
-</div>
+    <li class="follow_user">
+    <%= link_to avatar_for(user, :small, :class => 'follower_image'), '#' %>
+    <div class="follower_text">
+      <%= link_to user.name, user_path(user) %>
+      <span>(<%= user.country.name %>)</span>
+    </div>
+    <ul class="follower_data">
+      <li><a href="#" title="Mixes"><%= number_with_delimiter(user.total_playlists) %></a> <%= t('basics.playlists') %></li>
+      <li><a href="#" title="Badges"><%= number_with_delimiter(user.total_badges) %></a> <%= t('basics.badges') %></li>
+      <li><a href="#" title="Seguidores"><%= number_with_delimiter(user.follower_count) %></a> <%= t('users.stats.followers')  %></li>
+    </ul>
+    <%= follow_button(:account => user, :remove_div => false) %>
+    <!--a class="btn_rojo btn_rojo_grande" href="#" title="SEGUIR">SEGUIR<span class="bg_fin">&nbsp;</span></a-->
+    </li><!-- .follow_user -->
 
+  <% end %>
+</ul>
+
+<%= will_paginate @results[:users], pagination_args %>
