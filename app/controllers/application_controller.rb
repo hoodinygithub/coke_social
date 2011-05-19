@@ -494,10 +494,12 @@ class ApplicationController < ActionController::Base
   ENV_DEV = (ENV['RAILS_ENV'] =~ /development/i)
 
   # We logged you in, but you haven't accepted the terms of the current network.
-  # Until you do, anywhere you go, you'll be redirected.
+  # Until you do, anywhere you go, with some exceptions, you'll be redirected to the opt-in page
+  CROSS_NETWORK_VALID_SESSIONS_ACTIONS = %w[destroy new status]
+  CROSS_NETWORK_VALID_PAGES_ACTIONS = %w[about about_coke faq bases_del_concurso feedback privacy_policy safety_tips terms_and_conditions contact_us error_pages]
   def network_terms_required
     # Exclude certain actions
-    if !(controller_name == "users" and action_name == "cross_network") and !(controller_name == "sessions" and ["destroy", "new", "status"].include? action_name) and (request.path !=~ /messenger_player/i) and !request.xhr? and current_user and !current_user.part_of_network?
+    if !(controller_name == "users" and action_name == "cross_network") and !(controller_name == "sessions" and CROSS_NETWORK_VALID_SESSIONS_ACTIONS.include? action_name) and !(controller_name == "pages" and CROSS_NETWORK_VALID_PAGES_ACTIONS.include? action_name) and (request.path !=~ /messenger_player/i) and !request.xhr? and current_user and !current_user.part_of_network?
       redirect_to({:controller=>:users, :action=>:cross_network})
     end
   end
