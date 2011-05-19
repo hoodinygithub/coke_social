@@ -14,20 +14,28 @@
 
       <div class="mod_mixes">
         <h2 class="tit_bloque">
-          <span class="txt">Mixes<em><%= "#{params[:scope] == 'playlists' ? @results[:playlists].length : @results[:users].length} #{t('basics.results')}" %> </em></span>
+          <span class="txt"><%= params[:scope] == 'playlists' ? t('basics.playlists') : t('basics.users') %><em><%= "#{params[:scope] == 'playlists' ? @results[:playlists].length : @results[:users].length} #{t('basics.results')}" %> </em></span>
           <span class="bg_fin">&nbsp;</span>
         </h2><!-- .tit_bloque -->
 
         <% form_tag "/search/#{params[:scope]}/#{params[:q]}", :method => :get, :class => 'f_ordenar' do %>
           <%= hidden_field_tag 'result_only', '1' %>
           <%
-            options = [
-              [t('sort.relevance'), 'relevance'],
-              [t('sort.top'), 'top'],
-              [t('sort.highest_rated'), 'highest_rated'],
-              [t('sort.alphabetical'), 'alphabetical'],
-              [t('sort.latest'), 'latest']
-            ]
+            options = if params[:scope] == 'playlists'
+                        [
+                          [t('sort.relevance'), 'relevance'],
+                          [t('sort.top'), 'top'],
+                          [t('sort.highest_rated'), 'highest_rated'],
+                          [t('sort.alphabetical'), 'alphabetical'],
+                          [t('sort.latest'), 'latest']
+                        ]
+                      else
+                        [
+                          [t('sort.relevance'), 'relevance'],
+                          [t('sort.alphabetical'), 'alphabetical'],
+                          [t('sort.latest'), 'latest']
+                        ]
+                      end
           %>
           <%= select_tag 'sort_by', options_for_select(options, params[:sort_by].to_s), :onchange => 'Base.Search.query(this.form);' %>
         <% end %>
