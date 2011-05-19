@@ -189,14 +189,17 @@ Base.Search = {
 
 Base.Station = {
 
+  _initial: true,
   request: function(req, type, func)
   {
+    if (!this._initial) Base.Player._init = false;
     if (Base.Player._player == 'goom') 
     {
       Base.Player.player('coke');
       Base.UI.setControlUI(Base.Player._player);
     }
     Base.Util.XHR(req, type, func);
+    this._initial = false;
   },
 
   random: function()
