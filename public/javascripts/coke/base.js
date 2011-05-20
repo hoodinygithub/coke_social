@@ -236,7 +236,7 @@ Base.Player = {
   _init:true,
   ready: function()
   {
-    if (pl.length > 0) Base.Station.request(pl[Math.round(Math.random() * (pl.length - 1))], 'xml', Base.Station.stationCollection);
+    if (pl.length > 0 && this._player == "coke") Base.Station.request(pl[Math.round(Math.random() * (pl.length - 1))], 'xml', Base.Station.stationCollection);
   },
 
   _player: "",
