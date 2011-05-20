@@ -512,11 +512,7 @@ Base.UI = {
       else
       {
         this._goomint = setInterval(function() {
-          if (Base.Player.service() == undefined)
-          { 
-            console.log('undefined');
-          }
-          else
+          if (!(Base.Player.service() == undefined))
           {
             try 
             {
@@ -525,7 +521,7 @@ Base.UI = {
             }
             catch(e)
             {
-              console.log('not ready');
+              // console.log('not ready');
             }
           }
         
