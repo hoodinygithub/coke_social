@@ -163,6 +163,7 @@ module AdsHelper
       })
       styles = options[:no_padding_and_margin] && "<style>*{margin:0;padding:0}</style>" || ""
       "#{styles}#{iframe}"
+      styles = 'OVERRIDE'
     # else
     #   html = <<-ADS
     #   <!--/* OpenX Javascript Tag v2.8.2 */-->
