@@ -1,5 +1,26 @@
 <% logged_out = false unless local_assigns[:logged_out] %>
 
+<script type="text/javascript">
+  window.fbAsyncInit = function() {
+    FB.init({
+      appId  : <%= FacebookConnect::APP_ID %>,
+      status : true,
+      cookie : true,
+      xfbml  : true
+    });
+  };
+  (function() {
+    var body = document.getElementsByTagName('body')[0];
+    var fbroot = document.createElement('div');
+    fbroot.id = "fb-root";
+    body.insertBefore(fbroot, body.firstChild);
+    var scr = document.createElement('script');
+    scr.src = document.location.protocol + '//connect.facebook.net/<%= current_site.fb_locale %>/all.js';
+    scr.async = true;
+    document.getElementById('fb-root').appendChild(scr);
+   }());
+</script>
+
 <div class="bloque">
 
   <h1 class="logo <%= site_code %>"><%= link_to "Coca Cola FM", home_path, :content_switch_enabled => true %></h1>
