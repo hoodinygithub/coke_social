@@ -22,7 +22,7 @@ class SearchesController < ApplicationController
         search_results(msg,@search_types)
         default_active_scope
       else
-        search_results(msg,@active_scope.to_a)
+        search_results(msg,Array(@active_scope))
       end
     else
       @search_types.each do |t|
