@@ -2,7 +2,7 @@
 
   <div class="mod_comentarios">  
     <h2 class="tit_bloque">
-        <span class="txt"><%= t('profile.navigation.comments') %><em><%= t('modules.latest_mixes.description', :user_name => profile_user.name) %></em></span>
+        <span class="txt"><%= profile_owner? ? t('possessives.first_person.comments') : t('profile.navigation.comments') %><em><%= t('modules.latest_mixes.description', :user_name => profile_user.name) unless profile_owner? %></em></span>
         <span class="bg_fin">&nbsp;</span>
     </h2>
     
@@ -11,34 +11,7 @@
     <% if @collection.empty? %>
       <p class="no_resultados"><%= possessive :has_not_reviews %></p>
     <% else %>
-      <% @collection.each_with_index do |item, i| %>
-      
-        <div class="albums_item reviews_list">
-          <%= render :partial => 'playlists/box', :locals => {:p => item.commentable, :i => i} %>
-          <% user = User.find(item.user_id) %>
-          <div class="reviews">
-              <strong><%= t('modules.latest_comments.by', :user_name => link_to(user.name, user_path(user), :content_switch_enabled => true)) %></strong>
-              <span class="grey"><%= nice_elapsed_time(item.updated_at) %> <%= t('basics.ago') %></span>
-              <%= multitask_rating(item.commentable, 5) %>
-              <div class="rev_text">
-                  <p>
-                    <%= truncate(item.comment, 90, "...") %>
-                    <%= reviews_actions_for(item) rescue nil %></p>
-              </div>
-              
-              <% user = item.commentable.owner %>
-                                    
-              <div class="review_item">
-                  <%= link_to avatar_for(user, :small, :class => "review_icon"), user, :content_switch_enabled => true %>
-                  <div class="review_creator_large">
-                      <strong><%= t('basics.created_by') %>: <%= link_to user, user_path(user), :content_switch_enabled => true %></strong>
-                      <%= render :partial => 'shared/multitask/profile/follow_text', :locals => {:user => user} %>
-                  </div>
-              </div><!-- .review_item -->
-          </div><!-- .reviews -->
-        </div><!-- .albums_item -->
-    
-      <% end %>
+      <%= render :partial => 'reviews/item', :collection => @collection %>
     <% end %>         
   
 

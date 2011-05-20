@@ -12,7 +12,7 @@
         <h2><strong><%= t('coke_messenger.layers.opt_layer_view.welcome') %></strong></h2>
         <p class="usuario"><span class="link_rojob"><%= t('coke_messenger.layers.opt_layer_view.user_name', :user_name => (current_user.name rescue "")) %></span></p>
         <p><%= t('coke_messenger.layers.opt_layer_view.cyloop') %></p>
-        <p class="txt_error <%= class_name %>">Termos e Condi&ccedil;&otilde;es e a Pol&iacute;tica de Privacidade precisam ser aceitos</p>
+        <p class="txt_error <%= class_name %>"><%= t('coke_messenger.registration.errors.terms') %></p>
         
         <% form_tag '/users/cross_network', { :class => "f_condiciones" } do %>
           <label>

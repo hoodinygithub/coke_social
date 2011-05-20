@@ -1,8 +1,29 @@
 <% logged_out = false unless local_assigns[:logged_out] %>
 
+<script type="text/javascript">
+  window.fbAsyncInit = function() {
+    FB.init({
+      appId  : <%= FacebookConnect::APP_ID %>,
+      status : true,
+      cookie : true,
+      xfbml  : true
+    });
+  };
+  (function() {
+    var body = document.getElementsByTagName('body')[0];
+    var fbroot = document.createElement('div');
+    fbroot.id = "fb-root";
+    body.insertBefore(fbroot, body.firstChild);
+    var scr = document.createElement('script');
+    scr.src = document.location.protocol + '//connect.facebook.net/<%= current_site.fb_locale %>/all.js';
+    scr.async = true;
+    document.getElementById('fb-root').appendChild(scr);
+   }());
+</script>
+
 <div class="bloque">
 
-  <h1 class="logo"><%= link_to "Coca Cola FM", home_path, :content_switch_enabled => true %></h1>
+  <h1 class="logo <%= site_code %>"><%= link_to "Coca Cola FM", home_path, :content_switch_enabled => true %></h1>
   <div class="claimanimado">
     <div id="bocadillo_claim"></div>
     <script type="text/javascript" charset="utf-8">
@@ -31,18 +52,20 @@
     <%= render :partial => 'shared/multitask/user_data', :locals => {:logged_out => logged_out} %>
   </ul><!-- .acceso -->
   <div class="botones">
-      <a class="btn_grande btn_envivo" href="#" title="<%= t('coke_messenger.live_radio')%>">
-          <span class="ico"><%= t('coke_messenger.live_radio')%></span>
-          <span class="txt"><%= t('coke_messenger.live_radio')%></span>
-          <span class="bg_fin">&nbsp;</span>  
-      </a><!-- incluir clase .activo cuando este activa la radio -->
+      <% if site_code == "cokemx" %>
+        <a class="btn_grande btn_envivo" href="#" title="<%= t('coke_messenger.live_radio')%>">
+            <span class="ico"><%= t('coke_messenger.live_radio')%></span>
+            <span class="txt"><%= t('coke_messenger.live_radio')%></span>
+            <span class="bg_fin">&nbsp;</span>  
+        </a><!-- incluir clase .activo cuando este activa la radio -->
+      <% end %>
       <% if logged_in? %>
         <a class="btn_grande btn_mix" href="<%= playlist_create_path %>" content_switch_enabled="true" title="<%= t('actions.create_a_playlist') %>" content_switch_enabled="true">
       <% else %>
         <a class="btn_grande btn_mix" href="#" onclick="$.alert_layer('/registration_layers/create_playlist?return_to=<%= playlist_create_path %>')" title="<%= t('actions.create_a_playlist') %>">
       <% end %>
-          <span class="ico"><%= t('actions.create_a_mix') %></span>
-          <span class="txt"><%= t('actions.create_a_mix') %></span>
+          <span class="ico"><%= t('playlists.create_new') %></span>
+          <span class="txt"><%= t('playlists.create_new') %></span>
           <span class="bg_fin">&nbsp;</span>  
       </a>
   </div><!-- .botones -->

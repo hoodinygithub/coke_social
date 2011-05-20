@@ -1,55 +1,26 @@
-<div class="albums_item reviews_list" id="review_<%= item.id %>">
-    <div class="artist_box png_fix">
-        <%= link_to avatar_for(item.commentable, :large), radio_path(:station_id => item.commentable.station.id), :content_switch_enabled => true %>
-        <div class="overlay">
-            <div class="hidden fh">
-                <a href="<%= radio_path(:station_id => item.commentable.station.id) %>" title=""><strong><%= truncate(item.commentable.name,:length=>10,:omission=>"...") %></strong></a>
-                <%= multitask_rating(item.commentable, 5) %>
-                <div class="tag_links">
-                  <%= tag_links(item.commentable) %>
-                </div>
-                <div class="align_right box_buttons">
-                  <%= link_to_function image_tag('play_button.png', :class => 'png_fix'), "Base.Station.request('/playlists/#{item.commentable.id}.xml', 'xml', Base.Station.stationCollection);Base.Player.random(false)", :title => t('coke_messenger.play_hover') %>
-                </div>
-            </div><!-- .hidden -->
-            <div class="visible fh">
-                <%= link_to_function image_tag('play_button.png', :class => 'play_button png_fix'), "Base.Station.request('/playlists/#{item.commentable.id}.xml', 'xml', Base.Station.stationCollection);Base.Player.random(false)", :title => t('coke_messenger.play_hover') %>
-                <%= link_to truncate(item.commentable.name, :length=>15, :omission=> '...'), 
-                            radio_path(:station_id => item.commentable.station.id),
-                            :alt => item.commentable.name, :content_switch_enabled => true, :onclick => "Base.Station.request('/playlists/#{item.commentable.id}.xml', 'xml', Base.Station.stationCollection);Base.Player.random(false)" %>
-
-                <%= multitask_rating(item.commentable, 5) %>
-            </div><!-- .visible -->
-        </div><!-- .overlay -->
-
-    </div><!-- .artist_box -->
-    <div class="reviews">
-        <% reviewer = User.find(item.user_id) %>
-        <% if (reviewer == current_user) or item.commentable.owner == current_user %>
-          <a href="#" 
-            onclick="Base.reviews.confirm_remove(<%= item.id %>);return false;" class="close_btn">
-            <%= t('action.close') %>
-          </a>
-        <% end %>
-        
-        <strong><%= t('reviews.reviewed_by')%>: <%= link_to reviewer.name, user_path(reviewer), :content_switch_enabled => true %></strong>
-        <span class="grey"><%= nice_elapsed_time(item.updated_at) %> <%= t('basics.ago') %></span>
-        <%= multitask_rating(item.commentable, 5) %>
-        <div class="rev_text">
-            <p>
-              <%= truncate(item.comment, 90, "...") %>
-              <%= reviews_actions_for(item) rescue nil %>
-            </p>
-        </div>
-        
-        <% user = item.commentable.owner %>
-        
-        <div class="review_item">
-            <%= link_to avatar_for(user, :small, :class => "review_icon"), user, :content_switch_enabled => true %>
-            <div class="review_creator_large">
-                <strong><%= t('basics.created_by') %>: <%= link_to item.commentable.owner, user_path(item.commentable.owner), :content_switch_enabled => true %></strong>
-                <%= render :partial => 'shared/multitask/profile/follow_text', :locals => {:user => user} %>
-            </div>
-        </div><!-- .review_item -->
-    </div><!-- .reviews -->
+<div id="review_<%= item.id %>" class="albums_item reviews_list">
+  <%= render :partial => 'playlists/box', :locals => {:p => item.commentable} %>
+  <% user = User.find(item.user_id) %>
+  <div class="reviews <%= "review_edit" if profile_owner? %>">
+      <%= link_to_function( t('actions.delete'), "Base.reviews.confirm_remove(#{item.id})", :title => t('actions.delete'), :class => "close_btn" ) if profile_owner? %>
+      <strong><%= t('modules.latest_comments.by', :user_name => link_to(user.name, user_path(user), :content_switch_enabled => true)) %></strong>
+      <span class="grey">
+        <%= nice_elapsed_time(item.updated_at) %> <%= t('basics.ago') %>
+        <%= (reviews_actions_for(item) rescue nil) if profile_owner? %>
+      </span>
+      <%= multitask_rating(item.commentable, 5) %>
+      <div class="rev_text">
+          <p><%= truncate(item.comment, 90, "...") %></p>
+      </div>
+      
+      <% user = item.commentable.owner %>
+                            
+      <div class="review_item">
+          <%= link_to avatar_for(user, :small, :class => "review_icon"), user, :content_switch_enabled => true %>
+          <div class="review_creator_large">
+              <strong><%= t('basics.created_by') %>: <%= link_to user, user_path(user), :content_switch_enabled => true %></strong>
+              <%= render :partial => 'shared/multitask/profile/follow_text', :locals => {:user => user} %>
+          </div>
+      </div><!-- .review_item -->
+  </div><!-- .reviews -->
 </div><!-- .albums_item -->

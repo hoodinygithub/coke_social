@@ -1161,3 +1161,260 @@ Base.reviews.show = function(review) {
     $('input[type=radio].star').rating();
   });
 };
+
+Base.reviews.load_playlist_reviews_list = function(container, playlist) {
+  var url = Base.currentSiteUrl() + '/playlist/' + playlist + '/reviews/list';
+
+  $.get(url, function(response) {
+    container.html(response);
+    $('input[type=radio].star').rating();
+    Base.reviews.bind_textarea();
+    $('.ajax_sorting').click(Base.reviews.remote_sort);
+    $('.ajax_pagination a.page').click(Base.reviews.paginate);
+  });
+};
+
+Base.reviews.getParams = function(review) {
+  var params = {};
+  if (review) {
+    params['comment'] = $.trim($("#comment_update").val());
+    params['rating']  = $('input[name=rating_' + review + ']:checked').last().val();
+  } else {
+    params['comment'] = $.trim($("#network_comment").val());
+    params['rating']  = $('input[name=rating]:checked').val();
+  }
+  return params;
+};
+
+Base.reviews.count_chars = function(textarea) {
+  var textarea = $(textarea);
+  var chars_counter = $('#' + textarea.attr('chars_counter'));
+
+  if (textarea.val().length < 140) {
+    chars_counter.css({'color':'#cccccc'});
+    chars_counter.html(140 - textarea.val().length);
+  } else {
+    chars_counter.css({'color':'red'});
+    chars_counter.html("0");
+    textarea.val( textarea.val().substr(0, 140) );
+  }
+};
+
+Base.reviews.resetForm = function() {
+  $("#network_comment").val('');
+  $('input[name=rating]:checked').rating('select', '');
+  $('input[type=radio].star').rating();
+  $('#' + $("#network_comment").attr('chars_counter')).html(140);
+  $('div.network_red_msg').remove();
+  $('#network_comment').removeClass('network_red_msg');
+  $('#network_comment').next('img').attr("src", Base.currentSiteUrl() + "/images/network_arrow.gif");
+  $('.rating_bottles').removeClass('red_round_box2');
+};
+
+Base.reviews.showErrors = function(errors, form) {
+
+  var error_class = 'network_red_msg';
+  var input_id = '#network_comment';
+  var arrow = '.network_arrow';
+
+  if (form.attr('id') != 'post_review') {
+    error_class = 'edit_review_red_msg';
+    input_id = '#comment_update';
+    arrow    = '#comment_update_arrow';
+  };
+
+  $('div.' + error_class).remove();
+  $(input_id).removeClass(error_class);
+  $(input_id).next('img').attr("src", "/images/network_arrow.gif");
+
+
+  var message_div = $('<div class="'+ error_class + '"></div>');
+
+  $.each(errors, function() {
+    if (this[0] == 'comment') {
+      message_div.append(this[1] + "<br />");
+      $(input_id).parents(".album_textarea").append(message_div);
+      $(input_id).addClass(error_class);
+      $(arrow).attr("src", Base.currentSiteUrl() + "/images/network_arrow_red.gif");
+    } else {
+      form.find('.rating_bottles').addClass('red_round_box2');
+    }
+  });
+
+};
+
+Base.reviews.bind_textarea = function() {
+  $("#comment_update,#network_comment").each(function (){
+    $(this).focus(function() {
+        if ( $("#network_comment").hasClass("requires_auth") )
+          Base.utils.showRegistrationLayer( document.location, 'review_playlist' );
+      $(this).addClass("network_update_red");
+      $(this).next('img').attr("src", Base.currentSiteUrl() + "/images/network_arrow_red.gif");
+    });
+  });
+
+  $("#comment_update,#network_comment").each(function (){
+    $(this).blur(function() {
+      $("div.rating_input").removeClass("red_round_box2");
+      $(this).removeClass("network_update_red");
+      if (!($(this).hasClass('network_red_msg') || $(this).hasClass('edit_review_red_msg'))) {
+        $(this).next('img').attr("src", Base.currentSiteUrl() + "/images/network_arrow.gif");
+      }
+    });
+  });
+}
+
+Base.reviews.post = function(playlist) {
+  $.post(Base.currentSiteUrl() + '/playlists/' + playlist + '/reviews', Base.reviews.getParams(), Base.reviews.postCallback);
+};
+
+Base.reviews.postCallback = function(response) {
+  if (response.success) {
+    $(response.html).prependTo('.playlist_reviews');
+    Base.reviews.resetForm();
+  } else {
+    if (response.errors) {
+      Base.reviews.showErrors($.parseJSON(response.errors), $('#post_review'));
+    } else {
+      Base.utils.showPopup(response.redirect_to);
+    }
+  }
+};
+
+Base.reviews.confirm_remove = function(review) {
+  var url = Base.currentSiteUrl() + "/reviews/" + review + "/confirm_remove";
+  Base.utils.showPopup(url);
+};
+
+Base.reviews.remove = function(review) {
+  var params = {};
+  params['id'] = review;
+
+  $.ajax({
+    type : "DELETE",
+    url  : Base.currentSiteUrl() + "/reviews/" + review,
+    success: Base.reviews.removeCallback
+  });
+};
+
+Base.reviews.removeCallback = function(response) {
+  $(document).trigger("close.facebox");
+  $('#review_'+ response.id).fadeOut();
+  $('.reviews_count').html(response.count);
+};
+
+Base.reviews.edit = function(review, full) {
+  var url = Base.currentSiteUrl() + "/reviews/" + review + "/edit";
+  if (full) {
+    url = url + "?full=true";
+  }
+  $.get(url, function(response) {
+    $.popup(response);
+    $('input[type=radio].star').rating();
+    Base.reviews.bind_textarea();
+  });
+};
+
+Base.reviews.update = function(review, full) {
+  var params = Base.reviews.getParams(review);
+  params['id'] = review;
+  if (full) {
+    params['full'] = "true";
+  };
+  $.ajax({
+    type : "PUT",
+    url  : Base.currentSiteUrl() + "/reviews/" + review,
+    data : params,
+    success: Base.reviews.updateCallback
+  });
+};
+
+Base.reviews.updateCallback = function(response) {
+  if (response.success) {
+    $(document).trigger("close.facebox");
+    $('#review_'+ response.id).replaceWith(response.html);
+    $('input[type=radio].star').rating();
+    //observe .artist_box mouse over
+    $('.artist_box').hover(function() {
+      $(this).addClass('hover');
+    }, function() {
+      $(this).removeClass('hover');
+    });
+  } else {
+    Base.reviews.showErrors($.parseJSON(response.errors), $("#update_review"));
+  }
+};
+
+Base.reviews.overwrite = function(review) {
+  var params = Base.reviews.getParams();
+  params['id'] = review;
+
+  $.ajax({
+    type : "PUT",
+    url  : Base.currentSiteUrl() + "/reviews/" + review,
+    data : params,
+    success: Base.reviews.overwriteCallback
+  });
+};
+
+Base.reviews.overwriteCallback = function(response) {
+  if (response.success) {
+    $(document).trigger("close.facebox");
+    $('#review_'+ response.id).replaceWith(response.html);
+    $('input[type=radio].star').rating();
+    Base.reviews.resetForm();
+  } else {
+    Base.reviews.showErrors(response.errors);
+  }
+};
+
+Base.reviews.remote_sort = function() {
+  var sort_link = $(this);
+  sort_link.siblings('.active').removeClass('active');
+  sort_link.addClass('active');
+  sort_link.parents('.sorting').after('<div class="small_loading at_sorting">');
+
+  var sort_data    = sort_link.metadata();
+  var ajax_list    = sort_link.parent().siblings('.ajax_list');;
+  var current_page = ajax_list.next('.ajax_pagination').children('span.current');
+
+  var params = {}
+  params['page']    = current_page.text();
+  params['sort_by'] = sort_data.sort_by;
+
+  $.get(sort_data.url, params, function(response) {
+    Base.reviews.paginateCallback(response, ajax_list);
+  });
+
+  return false;
+}
+
+Base.reviews.paginateCallback = function(response, ajax_list, page_link) {
+  if (page_link) {
+    var current_page = page_link.siblings('span.current');
+    current_page.replaceWith('<a href="#" class="page">' + current_page.text()+ '</a>');
+    page_link.replaceWith('<span class="page current">' + page_link.text() + '</span>');
+  }
+  ajax_list.html(response);
+  $("div.small_loading").remove();
+  $('.ajax_pagination a.page').click(Base.reviews.paginate);
+  $('input[type=radio].star').rating();
+}
+
+Base.reviews.paginate = function() {
+  var page_link = $(this);
+  page_link.parents('.ajax_pagination').after('<div class="small_loading">');
+  var ajax_list = page_link.parent().prev('.ajax_list');
+
+  var list_data = $(this).parent().metadata();
+  var sort_data = ajax_list.siblings('.sorting').children('.active').metadata();
+
+  params = {}
+  params['page']    = page_link.text();
+  params['sort_by'] = sort_data.sort_by;
+
+  $.get(list_data.url, params, function(response) {
+    Base.reviews.paginateCallback(response, ajax_list, page_link);
+  });
+  return false;
+}

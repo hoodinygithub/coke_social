@@ -21,7 +21,7 @@
               <input class="texto" type="password" name="password" />
             </label>
 			      <label class="<%= class_name%>">
-              <small class="txt_error">E-mail e/ou senha inv&aacute;lidos</small>
+              <small class="txt_error"><%= t('coke_messenger.registration.errors.login') %></small>
             </label>
             
             <p><%= link_to_function t('coke_messenger.layers.login_link_layer.pwd_title'), "$.alert_layer('/messenger_player/alert_layer/forgot_password')", :class => "link_rojob", :title => t('coke_messenger.layers.login_link_layer.pwd_title') %></p>

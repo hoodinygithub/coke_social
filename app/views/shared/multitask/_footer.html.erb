@@ -2,15 +2,15 @@
   <ul class="submenu">
     <li class="activo"><a class="link_gris" target="_blank" href="<%= poll_link %>" title="Sugerencias"><%= t('footer.feedback') %></a></li>
     
-    <% unless site_code == "cokebr" %>
-      <li><a class="link_gris" href="<%= terms_and_conditions_url %>" target="_blank" title="<%= t('footer.terms_and_conditions') %>"><%= t('footer.terms_and_conditions') %></a></li>
-      <li><a class="link_gris" href="<%= privacy_policy_url %>" target="_blank" title="<%= t('footer.privacy_policy') %>"><%= t('footer.privacy_policy') %></a></li>
+    <% unless site_code == "cokebre" %>
+      <li><a class="link_gris" href="<%= terms_and_conditions_url %>" content_switch_enabled="true" title="<%= t('footer.terms_and_conditions') %>"><%= t('footer.terms_and_conditions') %></a></li>
+      <li><a class="link_gris" href="<%= privacy_policy_url %>" content_switch_enabled="true" title="<%= t('footer.privacy_policy') %>"><%= t('footer.privacy_policy') %></a></li>
     <% end %>
     
-    <li><a class="link_gris" href="<%= list_badges_url %>" target="_blank" title="<%= t('footer.badges_listing') %>"><%= t('footer.badges_listing') %></a></li>
+    <li><a class="link_gris" href="<%= list_badges_url %>" content_switch_enabled="true" title="<%= t('footer.badges_listing') %>"><%= t('footer.badges_listing') %></a></li>
 
-    <li><a class="link_gris" href="/index-bands/index.html" target="_blank" title="<%= t('footer.index_of_bands') %>"><%= t('footer.index_of_bands') %></a></li>
-    <li><a class="link_gris" href="<%= index_of_music_url %>" target="_blank" title="<%= t('footer.index_of_music') %>"><%= t('footer.index_of_music') %></a></li>
+    <li><a class="link_gris" href="/index-bands/index.html" content_switch_enabled="true" title="<%= t('footer.index_of_bands') %>"><%= t('footer.index_of_bands') %></a></li>
+    <li><a class="link_gris" href="<%= index_of_music_url %>" content_switch_enabled="true" title="<%= t('footer.index_of_music') %>"><%= t('footer.index_of_music') %></a></li>
   </ul><!-- .submenu -->
   <img class="powered" src="/images/multitask/logo_cyloop.png" alt="CyLoop" />
   <div class="info">

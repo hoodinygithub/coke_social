@@ -104,7 +104,7 @@ class PagesController < ApplicationController
 
   def privacy_policy
     @title = t 'site.privacy_policy'
-    render "pages/#{site_code}/privacy_policy", :layout => "support_page"
+    render "pages/#{site_code}/privacy_policy", :layout => params[:ajax] ? false : "support_page"
   end
 
   def safety_tips
@@ -114,7 +114,7 @@ class PagesController < ApplicationController
 
   def terms_and_conditions
     @title = t 'site.terms_and_conditions'
-    render "pages/#{site_code}/terms_and_conditions", :layout => "support_page"
+    render "pages/#{site_code}/terms_and_conditions", :layout => params[:ajax] ? false : "support_page"
   end
 
   def block_alert
