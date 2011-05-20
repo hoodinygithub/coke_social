@@ -1,6 +1,7 @@
 ActionController::Routing::Routes.draw do |map|
   map.with_options(:controller => 'pages') do |ch|
     ch.root :action => 'home'
+    ch.home_goom '/gradio/:goom_id', :action => 'home'
     ch.channel_mixes '/mixes', :action => 'mixes'
   end
   # map.root  :controller => 'pages', :action => 'home'

@@ -82,9 +82,12 @@ $(document).ready(function() {
     });
   });
 
-  Base.Player.player('coke');
+  Base.Player.player(typeof set_player != "undefined" ? set_player : 'coke');
   Base.UI.setControlUI(Base.Player._player);
-  Base.Player.random(true);
+  if (typeof set_player != "undefined" && set_player == "goom")
+    Base.Player.random(false);
+  else
+    Base.Player.random(true);
 });
 
 var SoundEngines = {
@@ -484,6 +487,7 @@ Base.UI = {
     }
   },
 
+  _goomint: null,
   switchui: function(ui)
   {
     $('#' + ui + '_ui').show();
@@ -501,7 +505,32 @@ Base.UI = {
     {
       $('.btn_envivo').addClass('activo');
       $('.btn_envivo').unbind('click');
-      Base.Player.service().playRadio(4242705);
+      if (typeof Base.Player.service() != "undefined")
+      {
+        Base.Player.service().playRadio(4242705);
+      }
+      else
+      {
+        this._goomint = setInterval(function() {
+          if (Base.Player.service() == undefined)
+          { 
+            console.log('undefined');
+          }
+          else
+          {
+            try 
+            {
+              Base.Player.service().playRadio(4242705);
+              clearInterval(Base.UI._goomint);
+            }
+            catch(e)
+            {
+              console.log('not ready');
+            }
+          }
+        
+        }, 500);
+      }
 
       /*****************************************/
       _gaq.push(['_trackPageview', 'goomradio']); // Virtual Pageview

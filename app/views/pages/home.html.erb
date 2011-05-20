@@ -4,6 +4,9 @@
 <% end %>
 
 <div class="contenido" id="home">
+  <% if params.has_key? :goom_id %>
+    <script type="text/javascript">var set_player = "goom";</script>
+  <% end %>
   <%= render :partial => 'black_banner' %>
 
   <div class="bloque">
