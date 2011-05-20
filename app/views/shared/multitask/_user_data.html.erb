@@ -19,6 +19,10 @@
   <li>
     <%= t('demographics.email.welcome', :user => link_to(current_user.name, my_dashboard_path, :class => "acceso_usuario link_decor", :title => current_user.name, :content_switch_enabled => true))%>
   </li>
+  <li>
+    <a class="acceso_sesion link_decor" href="<%= logout_url %>" title="<%= t("coke_messenger.logout") %>">
+    <span class="bg_icono">&nbsp;</span><%= t("coke_messenger.logout") %></a>
+  </li>
 
 <% end %>
 
