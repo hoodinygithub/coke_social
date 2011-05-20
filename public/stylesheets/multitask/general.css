@@ -530,7 +530,7 @@ span.title {font-size: 18px; font-weight: bold;}
 .left_side .grey_round_box {height: 20px; padding: 11px 10px; margin-right: 10px; float: left;}
 
 .account_settings .form_row .input {background: #fff; padding: 5px 9px; border: solid 1px #999; color: #333333; font-size: 16px; font-family: Helvetica; height: 20px; vertical-align: middle;}
-.account_settings .form_row .input.full_width {width: 430px;}
+.account_settings .form_row .input.full_width {width: 404px;}
 .account_settings .form_row .input.half_width {width: 250px; margin-left: 10px;}
 
 .red_button, .green_button, .orange_button, .black_button, .grey_button, .grey_button_big {text-transform: uppercase;}
@@ -545,3 +545,31 @@ span.title {font-size: 18px; font-weight: bold;}
 .fb_edge_widget_with_comment {
   padding-right: 10px;
 }
+
+/* from application.css, for the reg page */
+.auth_area {color: #000; padding: 30px 0px 20px;}
+.auth_left {width: 434px; float: left; border-right: solid 1px #ccc; /*padding: 25px 35px 0px 0px;*/}
+.auth_right {width: 440px; float: right; padding-top: 35px;}
+
+.icons_list { list-style-type: none;}
+.icons_list li {padding: 5px 0px 35px 80px; width: 320px; line-height: 16px;}
+.icons_list li big {font-size: 18px; line-height: 20px;}
+.icons_list li.loop {background: url("../../images/icon_loop.gif") no-repeat left top;}
+.icons_list li.badges {background: url("../../images/icon_badges.gif") no-repeat left top;
+  height: auto; /* there's another badges style cascading here, undo it */
+}
+.icons_list li.friends {background: url("../../images/icon_friends.gif") no-repeat left top;}
+.icons_list li.create {background: url("../../images/icon_create.gif") no-repeat left 8px;}
+.icons_list li.work {background: url("../../images/icon_work.gif") no-repeat left top;}
+
+.account_settings .form_row label small { font-size: 12px;}
+.account_settings .form_row .input.half_width2 {margin-left:10px; width:300px;}
+
+.grey {color: #999;}
+.right_side {float: right;}
+.clearer {clear: both;}
+
+.privacy_text {float: right; width: 390px; color: #666; font-size: 11px; /*margin-top:4px;*/}
+.privacy_check {float: left; margin-left: 20px;}
+
+/* end reg page css additions */
