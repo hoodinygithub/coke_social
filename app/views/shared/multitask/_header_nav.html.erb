@@ -9,9 +9,9 @@
   
   <div id="coke_ui" class="player">
     <div class="controles">
-      <a class="r_play" href="#" onclick="Base.Player.playPause();" title="Play">Play</a>
-      <a class="r_forward" href="#" onclick="Base.Player.next();" title="Forward">Forward</a>
-      <span class="r_random active" href="#" title="Random">Random</a>
+      <%= link_to_function t('actions.play'), "Base.Player.playPause();", :class => "r_play", :title => t('actions.play') %>
+      <%= link_to_function t('actions.next'), "Base.Player.next();", :class => "r_forward", :title => t('actions.next') %>
+      <a class="r_random active" href="javascript:void(0)" title="Random">Random</a>
     </div><!-- .controles -->
     
     <div class="titulo_mix">
@@ -52,7 +52,7 @@
       <span class="tip tip_ancho" id="tip_compartir">Enviar por correo</span>
       <a class="tooltip r_copiar" href="#" rel="tip_copiar" title="Copiar Mix">Copiar</a>
       <span class="tip" id="tip_copiar">Copiar Mix</span>
-      <a class="tooltip r_info" href="#" rel="tip_info" title="Información">Info</a>
+      <a class="tooltip r_info" href="#" rel="tip_info" title="Información" content_switch_enabled="true">Info</a>
       <span class="tip" id="tip_info">Información</span>
 
     </div><!-- .info -->
