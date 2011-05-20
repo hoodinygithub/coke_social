@@ -39,13 +39,13 @@
           <label class="<%= @user.errors[:name] ? "error" : "" %>">
             <span><%= t('coke_messenger.layers.registration_form_view.your_name') %></span>
             <%= f.text_field :name, :class => 'texto' %>
-            <small class="txt_error">Nome n&atilde;o pode ser deixado em branco</small>
+            <small class="txt_error"><%= t('coke_messenger.registration.errors.name') %></small>
           </label>
 
           <label class="<%= @user.errors[:email] ? "error" : "" %>">
             <span><%= t('coke_messenger.layers.registration_form_view.email') %></span>
             <%= f.text_field :email, :class => 'texto' %>
-            <small class="txt_error">Endere&ccedil;o de e-mail Endere&ccedil;o de e-mail n&atilde;o est&aacute; autorizado</small>
+            <small class="txt_error"><%= t('coke_messenger.registration.errors.email') %></small>
           </label>
 
           <p><%= t('coke_messenger.layers.registration_form_view.profile') %> <small><%= t('coke_messenger.layers.registration_form_view.share') %></small>:</p>
@@ -53,7 +53,7 @@
           <label class="urlname <%= @user.errors[:slug] ? "error" : "" %>">
             <span><%= t('coke_messenger.layers.registration_form_view.coke') %></span>
             <%= f.text_field :slug, :class => 'texto' %>
-            <small class="txt_error">Nome do perfil est&aacute; reservado</small>
+            <small class="txt_error"><%= t('coke_messenger.registration.errors.slug') %></small>
           </label>
 
           <label class="fnacimiento" style="margin-bottom:-10px">
@@ -61,14 +61,14 @@
           </label>
           <%= date_select :user,:born_on, :start_year => Time.now.year, :end_year => 1900, :use_month_numbers => true %>
           <label class="<%= @user.errors[:born_on] ? "error" : "" %>">
-            <small class="txt_error">Voc&ecirc; deve ter no m&iacute;nimo 13 anos para utilizar este site</small>
+            <small class="txt_error"><%= t('coke_messenger.registration.errors.age') %></small>
           </label> 
 
 
           <label class="<%= @user.errors[:terms_and_privacy] ? "error" : "" %>">
             <%= f.check_box :terms_and_privacy, :class => "check" %>
             <small><%= t('coke_messenger.layers.registration_form_view.accept') %></small>
-            <small class="txt_error">Termos e Condi&ccedil;&otilde;es e a Pol&iacute;tica de Privacidade precisam ser aceitos</small>
+            <small class="txt_error"><%= t('coke_messenger.registration.errors.terms') %></small>
           </label>
           <div class="alerta"><%= t('coke_messenger.layers.registration_form_view.thats_it') %></div>
           <input class="boton" type="submit" value="COMPLETE" />
