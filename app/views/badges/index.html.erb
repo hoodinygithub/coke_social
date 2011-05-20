@@ -2,7 +2,7 @@
 
   <div class="mod_badges_lista">  
     <h2 class="tit_bloque">
-        <span class="txt"><%= t('profile.navigation.badges') %><em><%= t('modules.latest_badges.description', :user_name => profile_user.name) %></em></span>
+        <span class="txt"><%= profile_owner? ? t('possessives.first_person.badges') : t('profile.navigation.badges') %><em><%= t('modules.latest_badges.description', :user_name => profile_user.name) unless profile_owner? %></em></span>
         <span class="bg_fin">&nbsp;</span>
     </h2>
     

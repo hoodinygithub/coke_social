@@ -1,6 +1,6 @@
 <div class="mod_siguiendo">
   <h2 class="tit_bloque gris">
-      <span class="txt"><%= t('modules.following') %><em><%= user.name %></em></span>
+      <span class="txt"><%= profile_owner? ? t('possessives.first_person.followees') : t('modules.following') %><em><%= user.name unless profile_owner? %></em></span>
       <span class="bg_fin">&nbsp;</span>
   </h2><!-- .tit_bloque -->
   
@@ -14,6 +14,6 @@
           <%= link_to truncate(follow.name,:length => 18), follow, :content_switch_enabled => true %>
       </div><!-- .thumb_small -->
     <% end %>
-    <a class="ico_mas" href="<%= user_following_index_path(user) %>" title="<%= t('actions.view_more') %>" content_switch_enabled="true"><%= t('actions.view_more') %><span class="bg_flecha">&nbsp;</span></a>
+    <a class="ico_mas" href="<%= profile_owner? ? my_following_index_path : user_following_index_path(user) %>" title="<%= t('actions.view_more') %>" content_switch_enabled="true"><%= t('actions.view_more') %><span class="bg_flecha">&nbsp;</span></a>
   <% end %>
 </div><!-- .mod_siguiendo -->

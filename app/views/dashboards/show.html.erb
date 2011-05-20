@@ -6,7 +6,7 @@
 
 <% content_for :right_side_content do %>
   <%= render :partial => 'shared/multitask/profile/following', :locals => {:user => current_user} %>
-  <%#= render :partial => 'shared/multitask/profile/top_djs', :locals => {:user => current_user} %>
+  <%= render :partial => 'shared/multitask/profile/top_djs', :locals => {:user => current_user} %>
   <%= render :partial => 'shared/multitask/profile/top_mixes', :locals => {:user => current_user} %>
 <% end %>
 

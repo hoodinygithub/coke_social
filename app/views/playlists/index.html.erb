@@ -2,7 +2,7 @@
 
   <div class="mod_mixes_comentarios">  
     <h2 class="tit_bloque">
-        <span class="txt"><%= t('profile.navigation.mixes') %><em><%= t('modules.latest_mixes.description', :user_name => profile_user.name) %></em></span>
+        <span class="txt"><%= profile_owner? ? t('possessives.first_person.mixes') : t('profile.navigation.mixes') %><em><%= t('modules.latest_mixes.description', :user_name => profile_user.name) unless profile_owner? %></em></span>
         <span class="bg_fin">&nbsp;</span>
     </h2>
     
