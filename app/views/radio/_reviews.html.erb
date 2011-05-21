@@ -1,8 +1,193 @@
-<% content_for :javascript do %>
-  $(document).ready(function(){
-    Base.reviews.load_playlist_reviews_list($("#playlist_reviews"), '<%= @station_obj.playable.id %>');
-  });
-<% end %>
+<div class="mod_comentarios">
 
-<div class="reviews_box" id="playlist_reviews">
-</div>
+  <h2 class="tit_bloque">
+      <span class="txt">Opiniones<em>de &eacute;ste Mix</em></span>
+      <span class="bg_fin">&nbsp;</span>
+  </h2><!-- .tit_bloque -->
+  <div class="network_update">
+      <h3>Comenta el mix</h3>
+      <div class="botones_like">
+
+          
+      </div><!-- .botones_like -->
+      <form class="f_comentarios" id="network_update_form">
+          <p class="caracteres"><strong>140</strong> caracteres restantes</p>
+
+          <img src="imgs/djs/sim_autor.jpg" class="network_icon avatar small" alt="Female_small" />
+          <textarea cols="20" rows="2" name="comment" id="network_comment" class="bocadillo"></textarea>
+          <span class="share_button_container">
+            <a href="#" class="compartir_button post_button red_button">PUBLICA TU COMENTARIO</a>
+          </span>
+          <span class="rating">
+              <strong>Ponle tu calificación</strong>
+
+              <span class="star-rating-control">
+                  <div class="star-rating star-rating-on star-rating-readonly"><a href="#" title="1">1</a></div>
+                  <div class="star-rating star-rating-on star-rating-readonly"><a href="#" title="2">2</a></div>
+                  <div class="star-rating star-rating-on star-rating-readonly"><a href="#" title="3">3</a></div>
+                  <div class="star-rating star-rating-readonly"><a href="#" title="4">4</a></div>
+                  <div class="star-rating star-rating-readonly"><a href="#" title="5">5</a></div>
+
+              </span>
+              <input type="radio" class="star star-rating-applied star-rating-readonly" style="display: none;" />
+              <input type="radio" class="star star-rating-applied star-rating-readonly" style="display: none;" />
+              <input type="radio" class="star star-rating-applied star-rating-readonly" style="display: none;" />
+              <input type="radio" class="star star-rating-applied star-rating-readonly" style="display: none;" />
+              <input type="radio" class="star star-rating-applied star-rating-readonly" style="display: none;" />
+          </span><!-- .rating -->
+      </form>
+  </div>                    
+  <form class="f_ordenar" action="#">
+
+      <p class="n_comentarios"><strong>10</strong> Comentarios</p>
+      <select>
+          <option>Más recientes</option>
+          <option>Los mejor calificados</option>
+      </select>
+  </form><!-- .f_ordenar -->
+
+  <ul class="comments_list">
+      <li>
+          <a href="#" title="Nombre"><img src="imgs/djs/sim_autor1.jpg" class="avatar small" alt="Nombre" /></a>
+          <div class="comment_text">
+              <p class="data">Comentario hecho por: <a class="nombre" href="#" title="Martinez DJ">Martinez DJ</a>
+              <span class="grey">17 días atrás</span></p>
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris non sem sed sem molestie vestibulum non eu purus. Fusce lorem tellus, ultric</p>
+
+              <span class="rating">
+                  <span class="star-rating-control">
+                      <div class="star-rating star-rating-on star-rating-readonly"><a href="#" title="1">1</a></div>
+                      <div class="star-rating star-rating-on star-rating-readonly"><a href="#" title="2">2</a></div>
+                      <div class="star-rating star-rating-on star-rating-readonly"><a href="#" title="3">3</a></div>
+                      <div class="star-rating star-rating-readonly"><a href="#" title="4">4</a></div>
+                      <div class="star-rating star-rating-readonly"><a href="#" title="5">5</a></div>
+
+                  </span>
+                  <input type="radio" class="star star-rating-applied star-rating-readonly" style="display: none;" />
+                  <input type="radio" class="star star-rating-applied star-rating-readonly" style="display: none;" />
+                  <input type="radio" class="star star-rating-applied star-rating-readonly" style="display: none;" />
+                  <input type="radio" class="star star-rating-applied star-rating-readonly" style="display: none;" />
+                  <input type="radio" class="star star-rating-applied star-rating-readonly" style="display: none;" />
+              </span><!-- .rating -->
+          </div><!-- .comment_text -->
+      </li>
+
+      <li>
+          <a href="#" title="Nombre"><img src="imgs/djs/sim_autor2.jpg" class="avatar small" alt="Nombre" /></a>
+          <div class="comment_text">
+              <p class="data">Comentario hecho por: <a class="nombre" href="#" title="Lupita">Lupita</a>
+              <span class="grey">17 días atrás</span></p>
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris non sem sed sem molestie vestibulum non eu purus. Fusce lorem tellus, ultric</p>
+              <span class="rating">
+
+                  <span class="star-rating-control">
+                      <div class="star-rating star-rating-on star-rating-readonly"><a href="#" title="1">1</a></div>
+                      <div class="star-rating star-rating-on star-rating-readonly"><a href="#" title="2">2</a></div>
+                      <div class="star-rating star-rating-on star-rating-readonly"><a href="#" title="3">3</a></div>
+                      <div class="star-rating star-rating-readonly"><a href="#" title="4">4</a></div>
+                      <div class="star-rating star-rating-readonly"><a href="#" title="5">5</a></div>
+
+                  </span>
+                  <input type="radio" class="star star-rating-applied star-rating-readonly" style="display: none;" />
+                  <input type="radio" class="star star-rating-applied star-rating-readonly" style="display: none;" />
+                  <input type="radio" class="star star-rating-applied star-rating-readonly" style="display: none;" />
+                  <input type="radio" class="star star-rating-applied star-rating-readonly" style="display: none;" />
+                  <input type="radio" class="star star-rating-applied star-rating-readonly" style="display: none;" />
+              </span><!-- .rating -->
+          </div><!-- .comment_text -->
+      </li>
+
+      <li>
+          <a href="#" title="Nombre"><img src="imgs/djs/sim_autor3.jpg" class="avatar small" alt="Nombre" /></a>
+          <div class="comment_text">
+              <p class="data">Comentario hecho por: <a class="nombre" href="#" title="Martinez DJ">Martinez DJ</a>
+              <span class="grey">17 días atrás</span></p>
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris non sem sed sem molestie vestibulum non eu purus. Fusce lorem tellus, ultric</p>
+              <span class="rating">
+
+                  <span class="star-rating-control">
+                      <div class="star-rating star-rating-on star-rating-readonly"><a href="#" title="1">1</a></div>
+                      <div class="star-rating star-rating-on star-rating-readonly"><a href="#" title="2">2</a></div>
+                      <div class="star-rating star-rating-on star-rating-readonly"><a href="#" title="3">3</a></div>
+                      <div class="star-rating star-rating-readonly"><a href="#" title="4">4</a></div>
+                      <div class="star-rating star-rating-readonly"><a href="#" title="5">5</a></div>
+
+                  </span>
+                  <input type="radio" class="star star-rating-applied star-rating-readonly" style="display: none;" />
+                  <input type="radio" class="star star-rating-applied star-rating-readonly" style="display: none;" />
+                  <input type="radio" class="star star-rating-applied star-rating-readonly" style="display: none;" />
+                  <input type="radio" class="star star-rating-applied star-rating-readonly" style="display: none;" />
+                  <input type="radio" class="star star-rating-applied star-rating-readonly" style="display: none;" />
+              </span><!-- .rating -->
+          </div><!-- .comment_text -->
+      </li>
+
+      <li>
+          <a href="#" title="Nombre"><img src="imgs/djs/sim_autor4.jpg" class="avatar small" alt="Nombre" /></a>
+          <div class="comment_text">
+              <p class="data">Comentario hecho por: <a class="nombre" href="#" title="Lupita">Lupita</a>
+              <span class="grey">17 días atrás</span></p>
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris non sem sed sem molestie vestibulum non eu purus. Fusce lorem tellus, ultric</p>
+              <span class="rating">
+
+                  <span class="star-rating-control">
+                      <div class="star-rating star-rating-on star-rating-readonly"><a href="#" title="1">1</a></div>
+                      <div class="star-rating star-rating-on star-rating-readonly"><a href="#" title="2">2</a></div>
+                      <div class="star-rating star-rating-on star-rating-readonly"><a href="#" title="3">3</a></div>
+                      <div class="star-rating star-rating-readonly"><a href="#" title="4">4</a></div>
+                      <div class="star-rating star-rating-readonly"><a href="#" title="5">5</a></div>
+
+                  </span>
+                  <input type="radio" class="star star-rating-applied star-rating-readonly" style="display: none;" />
+                  <input type="radio" class="star star-rating-applied star-rating-readonly" style="display: none;" />
+                  <input type="radio" class="star star-rating-applied star-rating-readonly" style="display: none;" />
+                  <input type="radio" class="star star-rating-applied star-rating-readonly" style="display: none;" />
+                  <input type="radio" class="star star-rating-applied star-rating-readonly" style="display: none;" />
+              </span><!-- .rating -->
+          </div><!-- .comment_text -->
+      </li>
+
+      <li>
+          <a href="#" title="Nombre"><img src="imgs/djs/sim_autor1.jpg" class="avatar small" alt="Nombre" /></a>
+          <div class="comment_text">
+              <p class="data">Comentario hecho por: <a class="nombre" href="#" title="Martinez DJ">Martinez DJ</a>
+              <span class="grey">17 días atrás</span></p>
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris non sem sed sem molestie vestibulum non eu purus. Fusce lorem tellus, ultric</p>
+              <span class="rating">
+
+                  <span class="star-rating-control">
+                      <div class="star-rating star-rating-on star-rating-readonly"><a href="#" title="1">1</a></div>
+                      <div class="star-rating star-rating-on star-rating-readonly"><a href="#" title="2">2</a></div>
+                      <div class="star-rating star-rating-on star-rating-readonly"><a href="#" title="3">3</a></div>
+                      <div class="star-rating star-rating-readonly"><a href="#" title="4">4</a></div>
+                      <div class="star-rating star-rating-readonly"><a href="#" title="5">5</a></div>
+
+                  </span>
+                  <input type="radio" class="star star-rating-applied star-rating-readonly" style="display: none;" />
+                  <input type="radio" class="star star-rating-applied star-rating-readonly" style="display: none;" />
+                  <input type="radio" class="star star-rating-applied star-rating-readonly" style="display: none;" />
+                  <input type="radio" class="star star-rating-applied star-rating-readonly" style="display: none;" />
+                  <input type="radio" class="star star-rating-applied star-rating-readonly" style="display: none;" />
+              </span><!-- .rating -->
+          </div><!-- .comment_text -->
+      </li>
+
+  </ul>
+  
+  <ul class="paginacion">
+      <li class="ant"><a href="#" title="Anterior">&lt;</a></li>
+      <li class="activo">1</li>
+      <li><a href="#" title="2">2</a></li>
+      <li><a href="#" title="3">3</a></li>
+      <li><a href="#" title="4">4</a></li>
+
+      <li><a href="#" title="5">5</a></li>
+      <li><a href="#" title="6">6</a></li>
+      <li><a href="#" title="7">7</a></li>
+      <li class="res">&hellip;</li>
+      <li><a href="#" title="99">99</a></li>
+      <li class="sig"><a href="#" title="Sigueinte">&gt;</a></li>
+  </ul><!-- .paginacion -->
+
+  
+</div><!-- .mod_comentarios -->

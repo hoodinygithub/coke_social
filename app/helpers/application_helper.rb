@@ -98,6 +98,7 @@ module ApplicationHelper
   end
 
   def short_date(date)
+    I18n.localize(date, :format => :long) rescue ""
   end
   
   def profile_owner?
@@ -323,7 +324,7 @@ module ApplicationHelper
     end
   end
 
-  def station_contains(item, limit=3, include_text=true, link_options={})
+  def station_contains(item, limit=3, include_text=true, link_options={}, options={})
     links = []
     name_concat = []
     station_artists = item.includes(limit)
@@ -334,10 +335,10 @@ module ApplicationHelper
       links << link_to(station_artist.artist.name, main_search_path(:scope => 'playlists', :q => CGI::escape(station_artist.artist.name)), link_options) unless station_artist.artist.nil?
     end
 
-    if include_text
-      "#{t('basics.contains')}: #{links.join(", ")}..."
+    if options.has_key?(:make_list)
+      "<li>#{links.join("</li><li>")}</li>"
     else
-      "#{links.join(", ")}..."
+      "#{(t('basics.contains') + ": ") if include_text}#{links.join(", ")}..."
     end
   end
 
@@ -1010,8 +1011,8 @@ def cyloop_logo_path(sm=true)
     rating
   end
 
-  def multitask_rating(rateable, bottles=5)
-    rating = "<span class='rating'><span class='star-rating-control'>"
+  def multitask_rating(rateable, bottles=5, klass='rating')
+    rating = "<span class='#{klass}'><span class='star-rating-control'>"
     (1..bottles).each_with_index do |b, idx|
       rating << "<div class=\"star-rating star-rating-readonly #{ 'star-rating-on' if rateable.rating_cache.to_i.floor >= b }\"><a>#{idx}</a></div>"
     end

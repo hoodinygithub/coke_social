@@ -1,0 +1,27 @@
+<% collection.each_with_index do |p, i| %>
+  <% if i%2==0 %>
+    <% content_for :top_mixes_left do %>
+      <%= render :partial => 'radio/top_mix', :locals => {:p => p} %>
+    <% end %>
+  <% else %>
+    <% content_for :top_mixes_right do %>
+      <%= render :partial => 'radio/top_mix', :locals => {:p => p} %>
+    <% end %>
+  <% end%>
+<% end %>
+
+
+<div class="mod_top">
+  <h2 class="tit_bloque">
+      <span class="txt"><%= t("modules.top_djs.title") %><em><%= t("modules.top_djs.description") %></em></span>
+      <span class="bg_fin">&nbsp;</span>
+  </h2><!-- .tit_bloque -->
+  <% cache("#{site_cache_key}/modules/shared/top_djs/mix_details", :expires_in => EXPIRATION_TIMES["top_modules_djs"]) do %>
+    <ul class="mixes columna_izq">
+      <%= yield :top_mixes_left %>
+    </ul>
+    <ul class="mixes columna_der">
+      <%= yield :top_mixes_right %>
+    </ul>
+  <% end %>
+</div><!-- .mod_topmixes -->

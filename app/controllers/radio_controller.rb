@@ -10,10 +10,15 @@ class RadioController < ApplicationController
     @station_obj = station if station and station.playable and station.playable.owner and station.playable.owner.active?
     
     if @station_obj
+      @profile_account = @station_obj.playable.owner
       @section = "player_page" #used for css styling
       @station_queue = @station_obj.playable.station_queue(:ip_address => remote_ip)
       @station_obj.playable.track_a_play_for(current_user) if @station_obj.playable
       set_origin
+      
+      @top_playlists_limit = 10
+      @top_playlists = current_site.top_playlists.all(:limit => @top_playlists_limit)
+      
     else
       @top_djs_limit = 5
       @top_djs = current_site.top_djs.all(:limit => @top_djs_limit)
