@@ -1,3 +1,6 @@
+<%
+  avatar = avatar_for(p, :large, :class => "portada", :height => 98, :width => 98)
+%>
 <div class="mix_bloque">
     <div class="mix_visible">
     
@@ -14,7 +17,7 @@
                     </div><!-- .rating_bottles -->
                 </div><!-- .mix_valorar -->
                 <div class="mix_iframe">
-                    <%= avatar_for(p, :large, :class => "portada", :height => 98, :width => 98) %>
+                    <%= avatar %>
                     <div class="mix_incluidos">
                         <p><%= t('basics.contains') %>:</p>
                         <ul>
@@ -26,9 +29,9 @@
                 </div><!-- .mix_iframe -->
             </div><!-- .mix_contenido -->
             <div class="mix_lateral">
-                <a class="btn_rojo btn_slide" href="#" title="<%= t('coke_messenger.copy_mix').upcase %>" content_switch_enabled="true">
-                  <%= t('coke_messenger.copy_mix').upcase %><span class="bg_fin">&nbsp;</span></a>
-                <a class="btn_rojo btn_slide" href="#" title="<%= t('coke_messenger.share_mix').upcase %>" content_switch_enabled="true">
+                <a class="btn_rojo btn_slide" rel="sub_copiar" href="javascript:$.alert_layer('/messenger_player/alert_layer/copy_mix');" title="<%= t('coke_messenger.copy_mix').upcase %>">
+                <%= t('coke_messenger.copy_mix').upcase %><span class="bg_fin">&nbsp;</span></a>
+                <a class="btn_rojo btn_slide" rel="sub_compartir" href="javascript:$.alert_layer('/messenger_player/alert_layer/share_mix');" title="<%= t('coke_messenger.share_mix').upcase %>">
                   <%= t('coke_messenger.share_mix').upcase %><span class="bg_fin">&nbsp;</span></a>
                 
                 <% if profile_owner? %>
@@ -44,27 +47,28 @@
             </div><!-- .mix_lateral -->
         </div><!-- #sub_home -->
         
+        
         <div class="mix_sub" id="sub_copiar">
             <div class="mix_lateral">
-                <a class="btn_rojo btn_slide" href="sub_home" title="VOLVER">VOLVER<span class="bg_fin">&nbsp;</span></a>
+                <a class="btn_rojo btn_slide" rel="sub_home" href="#" title="<%= t('basics.back') %>"><%= t('basics.back').upcase %><span class="bg_fin">&nbsp;</span></a>
             </div><!-- .mix_lateral -->
 
             <div class="mix_contenido">
-                <p class="accion">Copiar</p>
-                <h2>Mix</h2>
-                <img class="portada" alt="CD del mix" src="imgs/mixes/sim_cd1.jpg" />
+                <p class="accion"><%= t('actions.copy') %></p>
+                <h2><%= t('basics.mix') %></h2>
+                <%= avatar %>
                 <div class="mix_incluidos">
-                    <h3><a title="M&uacute;sica para despertar" href="#" class="link_rojo">M&uacute;sica para despertar</a></h3>
-                    <p>Por: <a title="Martinez DJ" href="#" class="link_gris">Martinez DJ</a></p>
+                    <h3><%= p.name %></h3>
+                    <p><%= t('basics.by') %>: <%= link_to p.owner.name, p.owner, :class=>"link_gris", :title => p.owner.name %></p>
 
-                    <p>Incluye:</p>
-                    <p><a href="#" title="">The Strokes</a>, <a href="#" title="">The black eye Peas</a>, <a href="#" title="">Ben Harper</a>, <a href="#" title="">The Killers</a>, <a href="#" title="">Coldplay</a>, <a href="#" title="">Kings of Leon</a>, <a href="#" title="">The black eye Peas</a>, <a href="#" title="">Ben Harper</a>, <a href="#" title="">The Killers</a>, <a href="#" title="">Coldplay</a>, <a href="#" title="">Kings of Leon</a>.</p>
+                    <p><%= t('basics.contains') %>:</p>
+                    <p><%= station_contains(p, 11, false, {:content_switch_enabled => true}) %></p>
 
                 </div><!-- .mix_datos -->
                 <form action="#" class="f_copiar">
-                    <label class="estirar"><span>Nombre del nuevo Mix:</span> <input type="text" class="texto" /></label>
-                    <input type="submit" value="GUARDAR" class="btn_rojo" />
-                    <input type="reset" value="CANCELAR" class="btn_gris" />
+                    <label class="estirar"><span><%= t('coke_messenger.layers.copy_mix_layer.new_mix_name') %>:</span> <input type="text" class="texto" /></label>
+                    <input type="submit" value="<%= t('actions.submit').upcase %>" class="btn_rojo" />
+                    <input type="reset" value="<%= t('actions.cancel').upcase %>" class="btn_gris" />
                 </form><!-- .f_copiar -->
             </div><!-- .mix_contenido -->
         </div><!-- #sub_copiar -->
@@ -72,29 +76,29 @@
         
         <div class="mix_sub" id="sub_compartir">
             <div class="mix_lateral">
-                <a class="btn_rojo btn_slide" href="sub_home" title="VOLVER">VOLVER<span class="bg_fin">&nbsp;</span></a>
+                <a class="btn_rojo btn_slide" rel="sub_home" href="#" title="<%= t('basics.back') %>"><%= t('basics.back').upcase %><span class="bg_fin">&nbsp;</span></a>
             </div><!-- .mix_lateral -->
             <div class="mix_contenido">
                 <div class="mix_izq">
-                    <p class="accion">Compartir en</p>
-                    <h2>redes sociales</h2>
+                    <p class="accion"><%= t('coke_messenger.layers.share_mix_layer.share') %></p>
+                    <h2><%= t('coke_messenger.layers.share_mix_layer.social_net') %></h2>
 
                     <ul class="iconos">
-                        <li><a title="Compartir en Facebook" href="#" class="btn_facebook"><span class="link_decor">Facebook</span></a></li>
-                        <li><a title="Compartir en Orkut" href="#" class="btn_orkut"><span class="link_decor">Orkut</span></a></li>
-                        <li><a title="Compartir en Twitter" href="#" class="btn_twitter"><span class="link_decor">Twitter</span></a></li>
+                        <li><a title="<%= t('coke_messenger.layers.share_mix_layer.share_fb') %>" href="#" class="btn_facebook"><span class="link_decor">Facebook</span></a></li>
+                        <li><a title="<%= t('coke_messenger.layers.share_mix_layer.share_or') %>" href="#" class="btn_orkut"><span class="link_decor">Orkut</span></a></li>
+                        <li><a title="<%= t('coke_messenger.layers.share_mix_layer.share_tw') %>" href="#" class="btn_twitter"><span class="link_decor">Twitter</span></a></li>
                     </ul>
                 </div><!-- .mix_izq -->
                 <div class="mix_der">
 
-                    <p class="accion">Compartir por</p>
-                    <h2>correo electr&oacute;nico</h2>
-                    <p>Introduce los datos del destinatario</p>
+                    <p class="accion"><%= t('coke_messenger.layers.share_mix_layer.share') %></p>
+                    <h2><%= t('coke_messenger.layers.share_mix_layer.email') %> <span>(<%= t('coke_messenger.layers.share_mix_layer.enter_below') %>)</span></h2>
                     <form action="#" class="f_compartir">
-                        <label class="estirar"><span>Email:</span> <input type="text" class="texto" /></label>
-                        <label class="estirar"><span>Mensaje:</span> <textarea rows="4" cols="15"></textarea></label>
+                        <label class="estirar"><span><%= t('coke_messenger.layers.share_mix_layer.name') %></span> <input name="name" type="text" class="texto" /></label>
+                        <label class="estirar"><span><%= t('coke_messenger.layers.share_mix_layer.email_to') %></span> <input name="email" type="text" class="texto" /></label>
+                        <label class="estirar"><span><%= t('coke_messenger.layers.share_mix_layer.msg') %></span> <textarea name="message" rows="4" cols="15"></textarea></label>
 
-                        <input type="submit" value="ENVIAR" class="btn_rojo" />
+                        <input type="submit" value="<%= t('actions.send').upcase %>" class="btn_rojo" />
                     </form><!-- .f_compartir -->
                 </div><!-- .mix_der -->
             </div><!-- .mix_contenido -->

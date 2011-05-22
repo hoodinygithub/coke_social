@@ -338,7 +338,7 @@ module ApplicationHelper
     if options.has_key?(:make_list)
       "<li>#{links.join("</li><li>")}</li>"
     else
-      "#{(t('basics.contains') + ": ") if include_text}#{links.join(", ")}..."
+      "#{(t('basics.contains') + ": ") if include_text}#{links.join(", ")}#{station_artists.size > links.size ? "..." : "."}"
     end
   end
 
