@@ -7,7 +7,7 @@ class PagesController < ApplicationController
   layout_except_xhr('logged_out')
 
   def home
-    @latest_badges = BadgeAward.latest(5)
+    @latest_badges = BadgeAward.latest(6)
     @top_djs_limit = 10
     @top_djs = current_site.top_djs.all(:limit => @top_djs_limit)
     @top_playlists_limit = 10

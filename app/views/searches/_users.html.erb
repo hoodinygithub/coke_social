@@ -8,7 +8,7 @@
       <span>(<%= user.country.name %>)</span>
     </div>
     <ul class="follower_data">
-      <li><%= "#{link_to number_with_delimiter(user.total_playlists), is_self ? my_playlist_path : user_playlists_path(user), :content_switch_enabled => true} #{t('basics.playlists')}" %></li>
+      <li><%= "#{link_to number_with_delimiter(user.total_playlists), is_self ? my_playlists_path : user_playlists_path(user), :content_switch_enabled => true} #{t('basics.playlists')}" %></li>
       <li><%= "#{link_to number_with_delimiter(user.total_badges), is_self ? my_badges_path : user_badges_path(user), :content_switch_enabled => true} #{t('basics.badges')}" %></li>
       <li><%= "#{link_to number_with_delimiter(user.follower_count), is_self ? my_followers_path : user_followers_path(user), :content_switch_enabled => true} #{t('users.stats.followers')}" %></li>
     </ul>
