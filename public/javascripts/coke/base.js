@@ -457,6 +457,11 @@ Base.UI = {
           rate += "<span class='vacia'></span>";
       }
       this.controlUI().find('a.punt_botellas, a.r_info').attr('href', ('/playlists?station_id=' + Base.Station._station.sid));
+      if (app == "multitask")
+      {
+        this.controlUI().find('a.punt_botellas, a.r_copiar').attr('href', ('/playlists?station_id=' + Base.Station._station.sid + '&cmd=copy'));
+        this.controlUI().find('a.punt_botellas, a.r_compartir').attr('href', ('/playlists?station_id=' + Base.Station._station.sid + '&cmd=share'));
+      }
       this.controlUI().find('a.punt_botellas').append(rate);
     }
   },
