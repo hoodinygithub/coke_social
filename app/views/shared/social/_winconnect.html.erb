@@ -18,11 +18,9 @@
               $.alert_layer('/messenger_player/alert_layer/opt_layer_locked', true)
           } else {
             if (response.sso_user) {
-              //alert('Loggin in - found sso_user')
-              $.alert_layer('/messenger_player/alert_layer/login_layer?iframe=true')
+              $.alert_layer('/messenger_player/alert_layer/login_layer')
             }
             else if (response.sso_user == false) {
-              //alert('Registering - no sso_user found')
               $.alert_layer('/messenger_player/alert_layer/registration_layer?iframe=true')
             } else {
               // sso_user == nil means canceled, do nothing
