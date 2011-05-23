@@ -1,6 +1,6 @@
 <div class="mod_siguiendo">
   <h2 class="tit_bloque gris">
-      <span class="txt"><%= profile_owner? ? t('possessives.first_person.followees') : t('modules.following') %><em><%= user.name unless profile_owner? %></em></span>
+      <span class="txt"><%= profile_owner? ? t('possessives.first_person.followees') : t('modules.following.title') %><em><%= t('modules.following.description', :user_name => user.name) unless profile_owner? %></em></span>
       <span class="bg_fin">&nbsp;</span>
   </h2><!-- .tit_bloque -->
   

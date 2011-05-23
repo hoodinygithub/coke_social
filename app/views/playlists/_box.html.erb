@@ -3,7 +3,7 @@
 
   <div class="overlay">
     <div class="hidden fh">
-      <a href="<%= radio_path(:station_id => p.station.id) %>" title=""><strong><%= truncate(p.name,:length=>10,:omission=>"...") %></strong></a>
+      <a href="<%= radio_path(:station_id => p.station.id) %>" onclick="Base.Station.request('/playlists/<%=p.id%>.xml', 'xml', Base.Station.stationCollection);Base.Player.random(false)" content_switch_enabled="true" title="<%=p.name%>"><strong><%= truncate(p.name,:length=>10,:omission=>"...") %></strong></a>
       <%= multitask_rating(p, 5) %>
 
       <div class="tag_links">

@@ -20,15 +20,16 @@ class RadioController < ApplicationController
       @top_playlists = current_site.top_playlists.all(:limit => @top_playlists_limit)
       
     else
-      @top_djs_limit = 5
-      @top_djs = current_site.top_djs.all(:limit => @top_djs_limit)
-      @top_playlists_limit = 6
-      @top_playlists = current_site.top_playlists.all(:limit => @top_playlists_limit)
-
-      @latest_badges = BadgeAward.latest(6)
-      
-      @top_artists_limit = 5    
-      @top_artists = current_site.top_artists.all(:limit => @top_artists_limit)
+      redirect_to channel_mixes_path
+      # @top_djs_limit = 5
+      # @top_djs = current_site.top_djs.all(:limit => @top_djs_limit)
+      # @top_playlists_limit = 6
+      # @top_playlists = current_site.top_playlists.all(:limit => @top_playlists_limit)
+      # 
+      # @latest_badges = BadgeAward.latest(6)
+      # 
+      # @top_artists_limit = 5    
+      # @top_artists = current_site.top_artists.all(:limit => @top_artists_limit)
     end
   end
 

@@ -297,6 +297,8 @@ input.btn_gris{width:130px;height:28px;background:url(/images/multitask/bg_eleme
 #sub_compartir .mix_contenido{width:600px;padding-left:37px;padding-right:0;background:url(/images/multitask/bg_lateralmix.png) repeat-y 0 0;}
 #sub_copiar .mix_lateral,
 #sub_compartir .mix_lateral{width:240px;padding-right:23px;padding-left:0;background:none;}
+#sub_copiar .mix_lateral ul,
+#sub_compartir .mix_lateral ul{color:#E61124; margin-top:10px; font-size:14px;, margin:20px 0 0 10px; text-transform:capitalize;}
 #sub_copiar .portada{margin-top:19px;}
 #sub_copiar .mix_incluidos{min-height:92px;width:452px;padding-left:16px;border-left:1px solid #cacaca;margin-left:12px;float:left;margin-top:19px;padding-top:10px;}
 #sub_copiar .mix_incluidos p,
@@ -307,6 +309,7 @@ input.btn_gris{width:130px;height:28px;background:url(/images/multitask/bg_eleme
 .mix_sub .f_copiar{clear:both;padding-top:10px;}
 .mix_sub .f_copiar label{display:block;margin-bottom:6px;}
 .mix_sub .f_copiar label span{font-size:13px;padding-top:5px;display:block;width:145px;float:left;}
+.mix_sub .f_copiar label span.error{color:#E61124;}
 .mix_sub .f_copiar label input{width:448px;height:21px;float:right;background:#fff;border:1px solid #ccc;}
 .mix_sub .f_copiar .btn_gris{margin-right:10px;}
 .mix_sub .f_copiar .btn_gris,

@@ -11,27 +11,7 @@
         <% @top_mixes.each_with_index do |mix, idx| %> 
           <div class="clasif_mixes">
             <span class="num_mixes"><%= idx + 1 %></span>
-            <div class="artist_box png_fix">
-              <a href="#" title="<%= mix.name %>"><%= avatar_for mix, :large %></a>
-              <div class="overlay">
-                <div class="hidden fh" style="display:none;">
-                  <a href="#" title="" onclick="Base.Station.request('/playlists/<%= mix.id %>.xml', 'xml', Base.Station.stationCollection);Base.Player.random(false);"><strong><%= mix.name %></strong></a>
-                  <%= multitask_rating mix %>
-                  <div class="tag_links">
-                    <%= tag_links mix %>
-                  </div>
-                  <div class="align_right box_buttons">
-
-                    <a href="#" onclick="Base.Station.request('/playlists/<%= mix.id %>.xml', 'xml', Base.Station.stationCollection);Base.Player.random(false);" title="Reproducir"><img src="/images/play_button.png" class="png_fix" alt="Play_button" /></a>
-                  </div>
-                </div><!-- .hidden -->
-                <div class="visible fh" style="display:block;">
-                  <a href="#" title="" onclick="Base.Station.request('/playlists/<%= mix.id %>.xml', 'xml', Base.Station.stationCollection);Base.Player.random(false);"><img alt="" class="play_button png_fix" src="/images/play_button.png"  /></a>
-                  <a href="#" title=""><%= mix.name %></a>
-                  <%= multitask_rating mix %>
-                </div><!-- .visible -->
-              </div><!-- .overlay -->
-            </div><!-- .artist_box -->
+            <%= render :partial => 'playlists/box', :locals => {:p => mix, :i => idx} %>
           </div><!-- .clasif_mixes -->
       <% end %>
 

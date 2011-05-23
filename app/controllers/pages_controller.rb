@@ -16,7 +16,7 @@ class PagesController < ApplicationController
   end
 
   def mixes
-    @latest_badges = BadgeAward.latest(5)
+    @latest_badges = BadgeAward.latest(6)
     @top_mixes = Rails.cache.fetch("#{site_cache_key}/modules/shared/top_playlists/9",
                                   :expires_delta => EXPIRATION_TIMES['top_modules_playlists']) do
       current_site.top_playlists.all(:limit => 9)

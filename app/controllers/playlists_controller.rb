@@ -433,7 +433,7 @@ class PlaylistsController < ApplicationController
     
     new_playlist = Playlist.new(attributes)
  
-    new_playlist.name  = params[:playlist][:name].blank? ? nil : params[:playlist][:name]
+    new_playlist.name  = params[:copy][:name].blank? ? nil : params[:copy][:name]
     new_playlist.owner = current_user
     
     if new_playlist.save
