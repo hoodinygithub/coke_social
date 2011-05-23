@@ -860,6 +860,9 @@ Base.playlists.multitask_duplicateCallback = function(response) {
     var ancho = $("#sub_home").width();
     $("#sub_copiar").animate({"left":"+="+ancho+"px"});
 		$("#sub_home").animate({"left":"+="+ancho+"px"});
+		
+		$("#sub_copiar #copy_errors").html("");
+		$("#sub_copiar form label span.error").removeClass("error");
     return false;
   }
   //$("#duplicate_button span  span img").remove();
