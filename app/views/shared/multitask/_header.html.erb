@@ -1,4 +1,56 @@
 <% logged_out = false unless local_assigns[:logged_out] %>
+<div class="sound_engines">
+  <div id="coke_player"></div>
+  <div id="goom_player"></div>
+  <div id="goom_callbacks"></div>
+  <script type="text/javascript">
+    var pl = [<%= top_playlists.map { |p| "'/playlists/#{p.id}.xml'" }.join(',') %>];
+    /* Coke player configuration */
+    var cFlashVars = {
+debug:1,
+      protocol:'rtmp',
+      serviceHost:'cdn.cyloop.com/cfx/st',
+      player:'messengerradio_<%= current_site.code %>',
+      key:<%= Player.find_by_player_key("messengerradio_#{current_site.code}").id %>,
+      autostart:1
+    };
+    var cParams = {
+    allowScriptAccess: 'sameDomain'
+    };
+    var cAttribs = {
+    id:'coke_engine',
+       name:'coke_engine'
+    };
+    swfobject.embedSWF('/flash/sound_stub.swf', 'coke_player', '1', '1', '9.0.0', false, cFlashVars, cParams, cAttribs);
+    /*****************************/
+    /* Goom player configuration */
+    // Exposed goom engine callbacks
+    var goomui = document.getElementById('goom_callbacks');
+    goomui.currentMediaChanged = function(eobj)
+    {
+      var song = $.parseJSON(eobj);
+      if (song.title) Base.UI.render(song);
+    };
+
+    var gFlashVars = {
+    urlApi:'http://api.goomradio.com',
+           eStatUrl:'http://www.goomradio.com/mini-audio/eStatNativeFlashTag.swf',
+           defaultVolume:'50',
+           uiid:'goom_callbacks',
+           defaultRadioId:'4242705',
+           autoPlay:'0'
+    };
+    var gParams = {
+    allowscriptaccess:'always'
+    };
+    var gAttribs = {
+    id:'goom_engine',
+       name:'goom_engine'
+    };
+    swfobject.embedSWF('http://www.goomradio.com/mini-audio/goom-miniAudioLib.swf', 'goom_player', '1', '1', '9.0.0', {}, gFlashVars, gParams, gAttribs);
+    /*****************************/
+    </script>
+</div>
 
 <script type="text/javascript">
   window.fbAsyncInit = function() {
