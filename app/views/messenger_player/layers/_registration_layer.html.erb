@@ -25,7 +25,7 @@
       <div class="columna_izq">
         <h2><%= t('coke_messenger.layers.registration_form_view.sign_up') %><strong><%= t('coke_messenger.layers.registration_form_view.coke_fm') %></strong></h2>
         <p><%= t('coke_messenger.layers.registration_form_view.way_coke') %></p>
-        <p><%= "<b>#{t('sessions.new.already_own')} #{link_to_function t('sessions.new.sign_in'), "$.alert_layer('/messenger_player/alert_layer/login_layer', true)" }</b>" %></p>
+        <p><%= "<b>#{t('sessions.new.already_own')} #{link_to_function t('sessions.new.sign_in'), "$.alert_layer('/messenger_player/alert_layer/login_layer', <%= @locked==true %>)" }</b>" %></p>
         
         <% form_for @user, :url => "#{users_path}?iframe=true", :html => { :method => :post, :class => "f_registro" } do |f| %>
           <%= f.hidden_field :sso_facebook unless @user['sso_facebook'].nil? %>
