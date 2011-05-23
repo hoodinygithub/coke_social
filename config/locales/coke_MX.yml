@@ -370,15 +370,15 @@ coke_MX:
     search_text: "Buscar m\xC3\xBAsica en Coca-Cola.fm"
     block: Bloquear
     view_all: ver todos
+    block_this_person: Bloquear a esta persona
     create_station: "Crear una estaci\xC3\xB3n"
     reset: Restablecer
-    block_this_person: Bloquear a esta persona
     select_playlist: Seleccionar mix
+    or: o
     read_more: "leer m\xC3\xA1s"
     follow_account: Seguir a {{name}}
     connect: Connect
     show_more: "VER M\xC3\x81S"
-    or: o
     close: Cerrar
     submit: Enviar
     share: Compartir
@@ -507,6 +507,7 @@ coke_MX:
       lower_center: Centro inferior
     background: Imagen de fondo
     cyloop_email: Email de Coca-Cola.fm
+    background: Imagen de fondo
     female: Mujer
     color_bg: Color del fondo
     password_confirmation: "Confirmar contrase\xC3\xB1a"
@@ -561,6 +562,7 @@ coke_MX:
       has_not_subscribed: "{{subject}} no se ha suscrito a alg\xC3\xBAn mix."
       latest_playlists: "\xC3\x9Altimos mixes de {{subject}}"
       network_activity: Actividad de {{subject}} en la red
+      latest_playlists: "\xC3\x9Altimos mixes de {{subject}}"
       subscriptions: Suscripciones de {{subject}}
       friends_that_have_this_badge: Amigos de {{subject}} que se han ganado este badge
       stations: Estaciones de radio de {{subject}}
@@ -586,6 +588,7 @@ coke_MX:
       has_not_subscribed: "No tienes suscripciones a ning\xC3\xBAn mix"
       latest_playlists: "Mis \xC3\x9Altimas Reviews"
       network_activity: Mi actividad de red
+      latest_playlists: "Mis \xC3\x9Altimas Reviews"
       subscriptions: Mis suscripciones
       friends_that_have_this_badge: "Amigos m\xC3\xADos que tienen este badge"
       stations: Mis estaciones de radio
@@ -878,6 +881,9 @@ coke_MX:
     xmas_xpert: 
       name: Xmas xpert
       qualification: "\xC2\xA1El esp\xC3\xADritu navide\xC3\xB1o se ha adue\xC3\xB1ado de ti! Ya has dejado comentarios o calificaciones en por lo menos 10 Mixes de otros usuarios, que tienen alg\xC3\xBAn tipo de tag navide\xC3\xB1o asignado.\r\n"
+    record_gold: 
+      name: Disco Gold
+      qualification: Tu mix {{playlist_name}} ha sido escuchado por 20 personas.
     mixmaster_brown: 
       name: "Mixmaster: Brown Belt"
       qualification: Has creado 25 mixes. Ya eres parte de las ligas mayores.
@@ -893,9 +899,6 @@ coke_MX:
     networker_gold: 
       name: "Networker: Gold"
       qualification: "Est\xC3\xA1s siguiendo a 100 personas. Tienes un toque de oro para seguir gente."
-    master: 
-      name: Master
-      qualification: "25 personas te est\xC3\xA1n siguiendo. \xC2\xA1Algo debes estar haciendo bien!"
     bota: 
       name: Bota Bota Booo!!!
       qualification: "Por haber creado 10 mixes con uno o m\xC3\xA1s tags navide\xC3\xB1os"
@@ -963,6 +966,9 @@ coke_MX:
     opinion_leader: 
       name: "L\xC3\xADder de Opini\xC3\xB3n"
       qualification: "Por haber rese\xC3\xB1ado 15 mixes distintos. \xC2\xA1No todos se animan a opinar tanto como t\xC3\xBA!"
+    recalentado: 
+      name: Recalentado
+      qualification: "\xC2\xA1\xC2\xBFOtra vez lo mismo?! Haz recibido una misma calificaci\xC3\xB3n repetida en uno de tus mixes, que contiene alg\xC3\xBAn tag navide\xC3\xB1o.\r\n"
     record_diamond: 
       name: Disco Diamond
       qualification: Tu mix {{playlist_name}} ha sido escuchado por 500 personas.
@@ -1095,12 +1101,19 @@ coke_MX:
       description: Los m&aacute;s escuchados
     information: 
       title: "Informaci\xC3\xB3n"
+    top_playlists: 
+      title: Top mixes
+      description: Los m&aacute;s escuchados
     top_activity: 
       title: Actividad principal
     recommended_stations: 
       title: Estaciones de radio recomendadas
     recent_listeners: 
       title: Escuchas recientes
+    recommended_stations: 
+      title: Estaciones de radio recomendadas
+    similar_artists: 
+      title: Artistas similares
     delete_playlist: 
       title: Borrar este mix
       confirmation_text: "El borrado de este mix es una acci\xC3\xB3n permanente. \xC2\xBFEst\xC3\xA1s seguro de que deseas eliminar este mix?"
@@ -1131,6 +1144,8 @@ coke_MX:
       station_name: "Nombre de la estaci\xC3\xB3n de radio"
     todays_top_artists: 
       title: Artistas top de hoy
+    recent_activity: 
+      title: ACTIVIDAD RECIENTE
     biography: 
       title: Bio
     recent_activity: 
@@ -1708,13 +1723,13 @@ coke_MX:
     home: INICIO
     mixes: MIXES
     play_hover: Play
-    live_radio: Live radio
     search: 
       results: resultados
       title: "CokeFM Messenger : Buscar"
       no_results: "Tu b\xC3\xBAsqueda no produjo resultados"
       tab_title: "RESULTADOS DE LA B\xC3\x9ASQUEDA"
       users: Usuarios
+    live_radio: Live radio
   search: 
     messenger_search_hint: Busca amigos o mixes
     search_results: "Resultados de la busq\xC3\xBAeda"
