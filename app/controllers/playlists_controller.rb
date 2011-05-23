@@ -133,7 +133,7 @@ class PlaylistsController < ApplicationController
     #@per_page = (params[:term] and (params[:scope]=='artist' or params[:scope]=='album')) ? 7 : 12
     @per_page = 30
     @results,@scope,@result_text = get_seeded_results
-    unless request.xhr?
+    unless request.xhr? && !params[:ajax]
       if request.post?
         session[:playlist_ids] = nil
         @playlist_item_ids = []

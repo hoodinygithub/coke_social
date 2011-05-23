@@ -207,6 +207,7 @@ en:
         name: "Name:"
         name_blank: "Name field cannot be blank"
         email_blank: "Email field cannot be blank"
+        msg_blank: "Message field cannot be blank"
         email_to: "Email:"
         invalid_email: "This is an invalid email format. please use ###@###.com"
         invalid_msg: "You are not allow to post embedded code on the text box"
@@ -214,12 +215,12 @@ en:
         send: "SEND"
         time_out_error: "Sorry! some thing went wrong. Our technical team is already working on it to resolve this issue"
     email_share:
-      subject: "{{user}} to share with you their music at Coca-Cola.fm!"
+      subject: "{{user}} wants to share their music with you at Coca-Cola.fm!"
       body:
         hello: "Hey,"
-        share_mix: "wants to share with you a mix of Coca-Cola.fm"
+        share_mix: "wants to share a mix with you at Coca-Cola.fm"
         click_here: "Click here to listen:"
-        friends: "Your friends,"
+        friends: "Your friends from,"
         coke_fm: "Coca-Cola.fm"        
     order_filter:
       popularity: Order by Popularity
@@ -240,7 +241,7 @@ en:
   share: 
     name: Your Name
     station: 
-      subject: "{{user}} would like you to share this station with you."
+      subject: "{{user}} would like you to share their music with you at Coca-Cola.fm!"
     errors: 
       message: 
         user_email_invalid: Email is invalid

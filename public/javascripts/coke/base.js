@@ -604,15 +604,18 @@ var restoreInput = function(value, input) {
 /*
  * Account settings page
  */
-Base.account_settings.highlight_field_with_errors = function(multitask, field_object) {
+Base.account_settings.highlight_field_with_errors = function(multitask, id, field_object) {
   if (typeof(field_with_errors) != 'undefined') {
+    // Clear current error list
+    $("#" + id + " ul.error_list").html("");
+    
     for(i=0; i < field_with_errors.length; i++) {
       var field_name = field_object ? field_object + '[' + field_with_errors[i][0] + ']' : field_with_errors[i][0];
       var error = field_with_errors[i][1];
-      var field = $(":input[name*='" + field_name + "']:not(input[type='hidden'])").first();
+      var field = $("#"+id+" :input[name*='" + field_name + "']:not(input[type='hidden'])").first();
       if(multitask) {
-        if (error.indexOf(field_with_errors[i][0]) < 0) { error = (field_with_errors[i][0] + " " + error) }
-        Base.account_settings.add_multitask_message_on(field, error, 'error');
+        if ( !error.match(  new RegExp(field_with_errors[i][0],'i')  ) ) { error = (field_with_errors[i][0] + " " + error) }
+        Base.account_settings.add_multitask_message_on(field, id, error, 'error');
       }
       else
         Base.account_settings.add_message_on(field, error, 'error');
@@ -651,15 +654,14 @@ Base.account_settings.add_message_on = function(field, message, type) {
   }
 }
 
-Base.account_settings.add_multitask_message_on = function(field, message, type) {
+Base.account_settings.add_multitask_message_on = function(field, id, message, type) {
   if (field.attr('type') != 'checkbox') {
     field.parent().children().first().addClass("error");
-    ul_type = (field.attr("name").indexOf("[") > -1) ? field.attr("name").split("[")[0] : field.attr("name")
-    ul = $("#" + ul_type + "_errors")
-    ul.append("<li>"+ message +"</li>")
   } else {
     field.parent().children().first().addClass("error");
   }
+  ul = $("#" + id + " ul.error_list")
+  ul.append("<li>"+ message +"</li>")
 }
 
 Base.account_settings.show_validations = function(errorMap, errorList) {
@@ -850,27 +852,43 @@ Base.playlists.duplicateCallback = function(response) {
   $("#duplicate_button span  span img").remove();
 };
 
-Base.playlists.multitask_duplicate = function(slug, playlist_id) {
-  var url = Base.currentSiteUrl() + '/' + slug + '/playlists/' + playlist_id + '/duplicate';
-  var params = {};
-  params['copy[name]'] = $("#playlist_name").val();
-
-  //$("#duplicate_button").children().children().append(Base.layout.spin_image());
-
-  $.post(url, params, Base.playlists.multitask_duplicateCallback);
+Base.playlists.multitask_layer_submit = function(id, callback) {
+  var form = $('#'+id+' form');
+  $.post($(form).attr('action'), $(form).serialize(), callback); 
 };
+
+Base.playlists.multitask_layer_clear = function(id) {
+  $("#" + id + " ul.error_list").html("");
+	$("#" + id + " form label span.error").removeClass("error");
+}
 
 Base.playlists.multitask_duplicateCallback = function(response) {
   if (!response.success) {
     field_with_errors = $.parseJSON(response.errors);
-    Base.account_settings.highlight_field_with_errors(true, 'copy');
+    Base.account_settings.highlight_field_with_errors(true, 'sub_copiar', 'copy');
   } else {
     var ancho = $("#sub_home").width();
     $("#sub_copiar").animate({"left":"+="+ancho+"px"});
 		$("#sub_home").animate({"left":"+="+ancho+"px"});
 		
-		$("#sub_copiar #copy_errors").html("");
-		$("#sub_copiar form label span.error").removeClass("error");
+		Base.playlists.multitask_layer_clear('sub_copiar');
+		
+    return false;
+  }
+  //$("#duplicate_button span  span img").remove();
+};
+
+Base.playlists.multitask_shareCallback = function(response) {
+  if (!response.success) {
+    field_with_errors = $.parseJSON(response.errors);
+    Base.account_settings.highlight_field_with_errors(true, 'sub_compartir');
+  } else {
+    var ancho = $("#sub_home").width();
+    $("#sub_compartir").animate({"left":"+="+ancho+"px"});
+    $("#sub_home").animate({"left":"+="+ancho+"px"});
+   
+    Base.playlists.multitask_layer_clear('sub_compartir');
+   
     return false;
   }
   //$("#duplicate_button span  span img").remove();

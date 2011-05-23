@@ -2,9 +2,7 @@
   <div class="header_spacer"></div>
 <% end %>
 <%= javascript_include_tag 'playlist' %>
-<%= javascript_include_tag 'jquery.ui' %>
 <%= javascript_include_tag 'playlist_create' %>
-<%= javascript_include_tag 'AC_OETags' %>
 
 <div class="two_columns">
   <h1><%= t('playlists.create_new') %></h1>
@@ -28,7 +26,7 @@
 <div class="clearer"></div>
 
 <div id="stream_connector">
-  <script type="text/javascript" charset="utf-8">
+  <!-- <script type="text/javascript" charset="utf-8">
   var flashvars = "playerId=<%= @player_id %>";
   AC_FL_RunContent(
     "src", "/flash/stream_connect",
@@ -45,5 +43,5 @@
     "pluginspage", "http://www.adobe.com/go/getflashplayer",
     "flashVars", flashvars
   );
-  </script>
+  </script> -->
 </div>
