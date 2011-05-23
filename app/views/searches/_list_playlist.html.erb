@@ -1,6 +1,6 @@
 <% if list_playlist.station %>
 <li>
-    <a href="<%= radio_path(:station_id => list_playlist.station.id) %>">
+  <a href="<%= radio_path(:station_id => list_playlist.station.id) %>" onclick="Base.Station.request('/playlists/<%= list_playlist.id %>.xml', 'xml', Base.Station.stationCollection);Base.Player.random(false);" content_switch_enabled="true">
       <%= avatar_for(list_playlist, :small, {:alt => "#{list_playlist.name}"}) %>
       <strong> <%= list_playlist.name %> </strong>
     </a>

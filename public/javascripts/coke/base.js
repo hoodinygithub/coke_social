@@ -38,6 +38,9 @@ $(document).ready(function() {
   $('a[content_switch_enabled=true]').livequery('click', function() {
     // Class switch if main navigation was clicked.
     // Note. May want to move this out into its own class.
+
+    //console.log($(this).attr('onclick'));
+
     if ($(this).parent().parent().hasClass('menu_principal'))
     {
       $(this).parent().parent().find('.activo').toggleClass('activo');
@@ -1166,7 +1169,7 @@ Base.header_search.getFieldValue =  function(arr, fieldName) {
 Base.header_search.buildSearchUrl = function () {
   var form_values = jQuery("#header_search_form").serializeArray();
   var q     = Base.header_search.getFieldValue(form_values,'q');
-  var url   = Base.currentSiteUrl() + "/search/all/" + ( q == msg ? "" : q) ;
+  var url   = Base.currentSiteUrl() + "/search/all/" + ( q == msg ? "" : q) + "?results_only=1";
   location.href = url;
   return false;
 };
@@ -1201,7 +1204,7 @@ Base.header_search.autocomplete = function(last_value) {
     jQuery('.search_results_ajax').hide();
     return;
   }
-  jQuery.get(Base.currentSiteUrl() + '/search/all/' + q, function(data) {
+  jQuery.get(Base.currentSiteUrl() + '/search/all/' + q + '?results_only=1', function(data) {
       jQuery('.search_results_box').html(data);
       jQuery('.search_results_box').show();
       jQuery('#header_search_form').parent().addClass('activo');

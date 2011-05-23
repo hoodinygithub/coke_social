@@ -11,7 +11,7 @@
         <% end %> 
     </ul>  
     <% if @counts[type] > 0 %>
-      <a class="ico_mas" href="<%= main_search_path(:scope => type.to_s,:q => @query) %>" onclick="Base.header_search.close()" title="<%= t('actions.view_more')%>"><%= t('actions.view_more')%> <span class="bg_flecha">&nbsp;</span></a>
+      <a class="ico_mas" href="<%= main_search_path(:scope => type.to_s,:q => @query) %>" onclick="Base.header_search.close()" content_switch_enabled="true" title="<%= t('actions.view_more')%>"><%= t('actions.view_more')%> <span class="bg_flecha">&nbsp;</span></a>
     <% end %>
   <% end %>
 </div><!--/end oveflow_list -->
