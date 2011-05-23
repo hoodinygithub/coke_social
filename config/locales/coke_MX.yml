@@ -181,7 +181,7 @@ coke_MX:
       all: Todo
       songs: Canciones
       artists: Artistas
-      comments: ""
+      comments: Comentarios
       subscriptions: Suscripciones
       dashboard: Dashboard
       stations: Estaciones de radio
@@ -191,8 +191,8 @@ coke_MX:
       albums: "\xC3\x81lbumes"
       account_settings: "Configuraci\xC3\xB3n de cuenta"
       settings: "Configuraci\xC3\xB3n"
-      music: "M\xC3\xBAsica"
       reviews: Comentarios
+      music: "M\xC3\xBAsica"
       badges: Badges
       community: Comunidad
       follow_requests: Peticiones de seguir
@@ -1036,15 +1036,15 @@ coke_MX:
   modules: 
     popular_tags: Etiquetas populares
     latest_mixes: 
-      title: ""
-      description: ""
+      title: "\xC3\x9Altimos mixes"
+      description: de {{user_name}}
     edit_station: 
       new_name: Nuevo nombre
       title: "Modificar estaci\xC3\xB3n de radio"
       no_edit_rights: "No tienes privilegios suficientes para modificar esta estaci\xC3\xB3n de radio"
       blank_station_name_message: "Debes ingresar un nombre para esta estaci\xC3\xB3n de radio"
     latest_badge_awards: 
-      title: "Badges m\xC3\xA1s recientes"
+      title: Badges
       description: "m\xC3\xA1s recientes"
     badge_notifications: 
       title_plural: "\xC2\xA1Felicidades! \xC2\xA1Has conseguido {{badge_count}} bagdes nuevos!"
@@ -1109,7 +1109,7 @@ coke_MX:
     followees: ""
     top_djs: 
       title: Top DJs
-      description: Los mas populares
+      description: "Los m\xC3\xA1s populares"
     reviews: 
       title: Comentarios
     members: 
@@ -1135,7 +1135,7 @@ coke_MX:
       title: Bio
     recommended_artists: 
       title: Artistas recomendados
-    following: ""
+    following: "Gente que est\xC3\xA1 siguiendo"
     search: 
       title: Buscar
   number: 
@@ -1499,6 +1499,7 @@ coke_MX:
   coke_messenger: 
     follow_the_author: Follow
     mix_page_blank_desc: ""
+    play: Play
     order_filter: 
       rating: "Lo m\xC3\xA1s destacado"
       popularity: "M\xC3\xA1s popular"
@@ -1506,7 +1507,6 @@ coke_MX:
       date: Por fecha
       most_followers: "M\xC3\xA1s seguidores"
       alpha: "Alfab\xC3\xA9ticamente"
-    play: Play
     rating: "Calificaci\xC3\xB3n"
     logout: Logout
     my_mixes: MIS MIXES
@@ -1669,7 +1669,6 @@ coke_MX:
       follow: to follow your favorite DJs
       latest: Ultimos Mixes de mis amigos
     my_friends: AMIGOS
-    default_messenger_title: "CokeFM Messenger :"
     registration: 
       layers: 
         follow_user: "Para dar seguimiento a un usuario y averiguar qu\xC3\xA9 est\xC3\xA1 escuchando, ingresa a Coca-Cola.fm"
@@ -1681,6 +1680,9 @@ coke_MX:
         max_plays: "Esperamos que hayas disfrutado de las canciones que o\xC3\xADste. Para o\xC3\xADr m\xC3\xA1s canciones, ingresa a Coca-Cola.fm"
         share_mix: Para compartir este mix, ingresa a Coca-Cola.fm
         error: An error has occured, please try again
+      errors: 
+        terms: "Es necesario que aceptes los T\xC3\xA9rminos y Condiciones y Pol\xC3\xADtica de Privacidad"
+    default_messenger_title: "CokeFM Messenger :"
     info: Info
     create_mix: Crear Mix
     dj: 
@@ -1704,13 +1706,13 @@ coke_MX:
     home: INICIO
     mixes: MIXES
     play_hover: Play
+    live_radio: Live radio
     search: 
       results: resultados
       title: "CokeFM Messenger : Buscar"
       no_results: "Tu b\xC3\xBAsqueda no produjo resultados"
       tab_title: "RESULTADOS DE LA B\xC3\x9ASQUEDA"
       users: Usuarios
-    live_radio: Live radio
   search: 
     messenger_search_hint: Busca amigos o mixes
     search_results: "Resultados de la busq\xC3\xBAeda"
