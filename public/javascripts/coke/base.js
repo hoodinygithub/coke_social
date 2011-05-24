@@ -49,7 +49,7 @@ $(document).ready(function() {
     /**************************************************************/
 
     var options = {};
-    
+
     // In case the dispatch comes from the main navigation
     if ($(this).parent().parent().hasClass('menu'))
     {
@@ -66,6 +66,14 @@ $(document).ready(function() {
       options.afterComplete = function()
       {
         $('body').attr('id', 'busqueda');
+      }
+    }
+
+    if (String($(this).attr('href')).match(/playlists/))
+    {
+      options.afterComplete = function()
+      {
+        $('body').attr('id', '');
       }
     }
 
