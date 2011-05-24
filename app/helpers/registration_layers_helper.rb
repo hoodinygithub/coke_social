@@ -12,13 +12,13 @@ module RegistrationLayersHelper
     "#{current_site.code.to_s}/1.jpg"
   end
 
-  def registered_link_to(text, params)
-    options = {}
-    [:class, :title].each do |i|
-      options[i] = params.delete(i)
-    end
-    
-    link_to text, new_user_path(params), options
+  def registered_link_to(text, params=nil, options=nil)
+    url = if params.has_key? :host
+            new_user_url(params)
+          else
+            new_user_path(params)
+          end
+    link_to text, url, options
   end
 
 end
