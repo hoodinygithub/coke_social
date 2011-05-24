@@ -31,34 +31,7 @@ class SearchesController < ApplicationController
       end
     end
 
-    # if request.xhr?
-    #   if @active_scope == :all
-    #     search_results(msg,@search_types, 4)
-    #     default_active_scope
-    #   else
-    #     search_results(msg,@active_scope.to_a)
-    #   end
-
-    #   if params.has_key? :result_only
-    #     render :partial => "searches/#{@active_scope.to_s}"
-    #   else
-    #     render :partial => 'searches/list'
-    #   end
-    # else
-    #   unless @query.nil?
-    #     if @active_scope == :all
-    #       search_results(msg,@search_types)
-    #       default_active_scope
-    #     else
-    #       search_results(msg,@active_scope.to_a)
-    #     end
-    #   else
-    #     @search_types.each do |t|
-    #       @results.store(t, [])
-    #       @counts.store(t, 0)
-    #     end
-    #   end
-    # end
+    render :partial => 'searches/list' if params.has_key? :results_only
   end
 
   def content

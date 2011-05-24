@@ -3,20 +3,20 @@
     <li><a href="<%= home_path %>" title="<%= t('main.navigation.home') %>" content_switch_enabled="true"><%= t('main.navigation.home') %></a></li><!-- .activo para el enlace activo -->
     <li><a href="<%= channel_mixes_path %>" title="<%= t('main.navigation.mixes') %>" content_switch_enabled="true"><%= t('main.navigation.mixes') %></a></li>
   </ul><!-- .menu -->
-  
-  
+
+
   <%= render 'shared/multitask/search_form' %>
-  
+
   <div id="coke_ui" class="player">
     <div class="controles">
       <%= link_to_function t('actions.play'), "Base.Player.playPause();", :class => "r_play", :title => t('actions.play') %>
       <%= link_to_function t('actions.next'), "Base.Player.next();", :class => "r_forward", :title => t('actions.next') %>
       <a class="r_random active" href="javascript:void(0)" title="Random">Random</a>
     </div><!-- .controles -->
-    
+
     <div class="titulo_mix">
     </div>
-    
+
     <div class="sonando">
       <div class="caratula">
         <img src="/images/coke_messenger/cds/sim_caratula1.jpg" alt="CD" width="35" height="35" />
@@ -48,9 +48,9 @@
     </div><!-- .compartir -->
     <div class="info">
 
-      <a class="tooltip r_compartir" href="#" rel="tip_compartir" title="Enviar por correo">Enviar por correo</a>
+      <a class="tooltip r_compartir" href="#" rel="tip_compartir" title="Enviar por correo" content_switch_enabled="true">Enviar por correo</a>
       <span class="tip tip_ancho" id="tip_compartir">Enviar por correo</span>
-      <a class="tooltip r_copiar" href="#" rel="tip_copiar" title="Copiar Mix">Copiar</a>
+      <a class="tooltip r_copiar" href="#" rel="tip_copiar" title="Copiar Mix" content_switch_enabled="true">Copiar</a>
       <span class="tip" id="tip_copiar">Copiar Mix</span>
       <a class="tooltip r_info" href="#" rel="tip_info" title="Información" content_switch_enabled="true">Info</a>
       <span class="tip" id="tip_info">Información</span>
@@ -68,90 +68,38 @@
   </div><!-- .player -->    
 
   <div id="goom_ui" class="player player_radio">
-  <div class="controles">
-    <a class="r_play activo" onclick="Base.Player.playPause()" href="#" title="Play">Play</a>
-    <a class="r_random" href="#" onclick="Base.Station.random();" title="Random">Random</a>
-  </div><!-- .controles -->
-  <div class="sonando">
-    <div class="caratula">
-      <img src="/images/coke_messenger/cds/sim_caratula1.jpg" alt="Radio" width="35" height="35" />
-    </div><!-- .caratula -->
-    <div class="cancion">
-      <p>Live Radio M&eacute;xico</p>
-      <div class="mascara"></div>
-      <ul>
-      </ul>
-    </div>
-  </div><!-- .sonando -->
-  <div class="botones_like">
-    <!-- boton like facebook, modificar con la url correcta -->
-    <fb:like href="<%= current_site_url %>/gradio/4242705" width="104" colorscheme="light" layout="button_count" show_faces="false"></fb:like>
-    <!-- fin boton like facebook -->
-    <!-- boton compartir twitter -->
-    <a href="http://twitter.com/share" class="twitter-share-button" data-url="<%= current_site_url %>/gradio/4242705" data-text="<%= t("tweet.message") %>" data-counturl="<%= current_site_url %>/gradio/4242705" data-count="horizontal">Tweet</a><script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>
-    <!-- fin compartir twitter -->
-  </div><!-- .botones_like -->
-  <div class="volumen">
-    <a class="vol_menos" href="#" title="Bajar volumen">Menos</a>
-    <div class="barra">
-      <div class="relleno" style="width:64px;left:-9px;"><!-- relleno de la barra de volumen -->
-        <a class="puntero" href="#">Puntero</a>
+    <div class="controles">
+      <a class="r_play activo" onclick="Base.Player.playPause()" href="#" title="Play">Play</a>
+      <a class="r_random" href="#" onclick="Base.Station.random();" title="Random">Random</a>
+    </div><!-- .controles -->
+    <div class="sonando">
+      <div class="caratula">
+        <img src="/images/coke_messenger/cds/sim_caratula1.jpg" alt="Radio" width="35" height="35" />
+      </div><!-- .caratula -->
+      <div class="cancion">
+        <p>Live Radio M&eacute;xico</p>
+        <div class="mascara"></div>
+        <ul>
+        </ul>
       </div>
-    </div><!-- .barra -->
-    <a class="vol_mas" href="#" title="Subir volumen">Mas</a>
-  </div><!-- .volumen -->
-</div><!-- .player .player_radio -->    
+    </div><!-- .sonando -->
+    <div class="botones_like">
+      <!-- boton like facebook, modificar con la url correcta -->
+      <fb:like href="<%= current_site_url %>/gradio/4242705" width="104" colorscheme="light" layout="button_count" show_faces="false" style="float:left"></fb:like>
+      <!-- fin boton like facebook -->
+      <!-- boton compartir twitter -->
+      <a href="http://twitter.com/share" class="twitter-share-button" data-url="<%= current_site_url %>/gradio/4242705" data-text="<%= t("tweet.message") %>" style="float:left" data-counturl="<%= current_site_url %>/gradio/4242705" data-count="horizontal">Tweet</a><script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>
+      <!-- fin compartir twitter -->
+    </div><!-- .botones_like -->
+    <div class="volumen">
+      <a class="vol_menos" href="#" title="Bajar volumen">Menos</a>
+      <div class="barra">
+        <div class="relleno" style="width:64px;left:-9px;"><!-- relleno de la barra de volumen -->
+          <a class="puntero" href="#">Puntero</a>
+        </div>
+      </div><!-- .barra -->
+      <a class="vol_mas" href="#" title="Subir volumen">Mas</a>
+    </div><!-- .volumen -->
+  </div><!-- .player .player_radio -->    
 
-  <div class="sound_engines">
-    <div id="coke_player"></div>
-    <div id="goom_player"></div>
-    <div id="goom_callbacks"></div>
-    <script type="text/javascript">
-      var pl = [<%= top_playlists.map { |p| "'/playlists/#{p.id}.xml'" }.join(',') %>];
-      /* Coke player configuration */
-      var cFlashVars = {
-        debug:1,
-        protocol:'rtmp',
-        serviceHost:'cdn.cyloop.com/cfx/st',
-        player:'messengerradio_<%= current_site.code %>',
-        key:<%= Player.find_by_player_key("messengerradio_#{current_site.code}").id %>,
-        autostart:1
-      };
-      var cParams = {
-        allowScriptAccess: 'sameDomain'
-      };
-      var cAttribs = {
-        id:'coke_engine',
-        name:'coke_engine'
-      };
-      swfobject.embedSWF('/flash/sound_stub.swf', 'coke_player', '1', '1', '9.0.0', false, cFlashVars, cParams, cAttribs);
-      /*****************************/
-      /* Goom player configuration */
-      // Exposed goom engine callbacks
-      var goomui = document.getElementById('goom_callbacks');
-      goomui.currentMediaChanged = function(eobj)
-      {
-        var song = $.parseJSON(eobj);
-        if (song.title) Base.UI.render(song);
-      };
-
-      var gFlashVars = {
-        urlApi:'http://api.goomradio.com',
-        eStatUrl:'http://www.goomradio.com/mini-audio/eStatNativeFlashTag.swf',
-        defaultVolume:'50',
-        uiid:'goom_callbacks',
-        defaultRadioId:'4242705',
-        autoPlay:'0'
-      };
-      var gParams = {
-        allowscriptaccess:'always'
-      };
-      var gAttribs = {
-        id:'goom_engine',
-        name:'goom_engine'
-      };
-      swfobject.embedSWF('http://www.goomradio.com/mini-audio/goom-miniAudioLib.swf', 'goom_player', '1', '1', '9.0.0', {}, gFlashVars, gParams, gAttribs);
-      /*****************************/
-    </script>
-  </div>
 </div><!-- .bloque -->

@@ -7,11 +7,11 @@
         <% if @results[type].empty? %>
           <p class="no_resultados"><%= t("basics.no_results")%></p>
         <% else %>
-          <%= render :partial => "searches/list_#{type.to_s.singularize}", :collection => @results[type] %>
+          <%= render :partial => "searches/list_#{type.to_s.singularize}", :collection => @results[type][0..3] %>
         <% end %> 
     </ul>  
     <% if @counts[type] > 0 %>
-      <a class="ico_mas" href="<%= main_search_path(:scope => type.to_s,:q => @query) %>" onclick="Base.header_search.close()" title="<%= t('actions.view_more')%>"><%= t('actions.view_more')%> <span class="bg_flecha">&nbsp;</span></a>
+      <a class="ico_mas" href="<%= main_search_path(:scope => type.to_s,:q => @query) %>" onclick="Base.header_search.close()" content_switch_enabled="true" title="<%= t('actions.view_more')%>"><%= t('actions.view_more')%> <span class="bg_flecha">&nbsp;</span></a>
     <% end %>
   <% end %>
 </div><!--/end oveflow_list -->

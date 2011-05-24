@@ -38,6 +38,9 @@ $(document).ready(function() {
   $('a[content_switch_enabled=true]').livequery('click', function() {
     // Class switch if main navigation was clicked.
     // Note. May want to move this out into its own class.
+
+    //console.log($(this).attr('onclick'));
+
     if ($(this).parent().parent().hasClass('menu_principal'))
     {
       $(this).parent().parent().find('.activo').toggleClass('activo');
@@ -46,7 +49,7 @@ $(document).ready(function() {
     /**************************************************************/
 
     var options = {};
-    
+
     // In case the dispatch comes from the main navigation
     if ($(this).parent().parent().hasClass('menu'))
     {
@@ -63,6 +66,14 @@ $(document).ready(function() {
       options.afterComplete = function()
       {
         $('body').attr('id', 'busqueda');
+      }
+    }
+
+    if (String($(this).attr('href')).match(/playlists/))
+    {
+      options.afterComplete = function()
+      {
+        $('body').attr('id', '');
       }
     }
 
@@ -116,7 +127,8 @@ var Base = {
   share: {},
   locale: {},
   header_search: {},
-  account: {}
+  account: {},
+  playlist_search: {}
 };
 
 // Helpers
@@ -424,7 +436,7 @@ Base.UI = {
     {
       if (app == "multitask")
       {
-        var tm = "<p><a class='link_decor' href='/playlists/" + s.plId + "' title='" + s.playlistName + "' content_switch_enabled='true'>" + s.playlistName + "</a></p>";
+        var tm = "<p><a class='link_decor' href='/playlists?station_id=" + Base.Station._station.sid + "' title='" + s.playlistName + "' content_switch_enabled='true'>" + s.playlistName + "</a></p>";
         tm += "<p>por: <a class='link_decor' href='" + Base.Station._station.ownerProfile + "' content_switch_enabled='true'>" + Base.Station._station.ownerName + "</a></p>";
         this.controlUI().find('.titulo_mix').append(tm);
       }
@@ -454,6 +466,11 @@ Base.UI = {
           rate += "<span class='vacia'></span>";
       }
       this.controlUI().find('a.punt_botellas, a.r_info').attr('href', ('/playlists?station_id=' + Base.Station._station.sid));
+      if (app == "multitask")
+      {
+        this.controlUI().find('a.punt_botellas, a.r_copiar').attr('href', ('/playlists?station_id=' + Base.Station._station.sid + '&cmd=copy'));
+        this.controlUI().find('a.punt_botellas, a.r_compartir').attr('href', ('/playlists?station_id=' + Base.Station._station.sid + '&cmd=share'));
+      }
       this.controlUI().find('a.punt_botellas').append(rate);
     }
   },
@@ -596,15 +613,18 @@ var restoreInput = function(value, input) {
 /*
  * Account settings page
  */
-Base.account_settings.highlight_field_with_errors = function(multitask, field_object) {
+Base.account_settings.highlight_field_with_errors = function(multitask, id, field_object) {
   if (typeof(field_with_errors) != 'undefined') {
+    // Clear current error list
+    $("#" + id + " ul.error_list").html("");
+    
     for(i=0; i < field_with_errors.length; i++) {
       var field_name = field_object ? field_object + '[' + field_with_errors[i][0] + ']' : field_with_errors[i][0];
       var error = field_with_errors[i][1];
-      var field = $(":input[name*='" + field_name + "']:not(input[type='hidden'])").first();
+      var field = $("#"+id+" :input[name*='" + field_name + "']:not(input[type='hidden'])").first();
       if(multitask) {
-        if (error.indexOf(field_with_errors[i][0]) < 0) { error = (field_with_errors[i][0] + " " + error) }
-        Base.account_settings.add_multitask_message_on(field, error, 'error');
+        if ( !error.match(  new RegExp(field_with_errors[i][0],'i')  ) ) { error = (field_with_errors[i][0] + " " + error) }
+        Base.account_settings.add_multitask_message_on(field, id, error, 'error');
       }
       else
         Base.account_settings.add_message_on(field, error, 'error');
@@ -643,15 +663,14 @@ Base.account_settings.add_message_on = function(field, message, type) {
   }
 }
 
-Base.account_settings.add_multitask_message_on = function(field, message, type) {
+Base.account_settings.add_multitask_message_on = function(field, id, message, type) {
   if (field.attr('type') != 'checkbox') {
     field.parent().children().first().addClass("error");
-    ul_type = (field.attr("name").indexOf("[") > -1) ? field.attr("name").split("[")[0] : field.attr("name")
-    ul = $("#" + ul_type + "_errors")
-    ul.append("<li>"+ message +"</li>")
   } else {
     field.parent().children().first().addClass("error");
   }
+  ul = $("#" + id + " ul.error_list")
+  ul.append("<li>"+ message +"</li>")
 }
 
 Base.account_settings.show_validations = function(errorMap, errorList) {
@@ -842,24 +861,43 @@ Base.playlists.duplicateCallback = function(response) {
   $("#duplicate_button span  span img").remove();
 };
 
-Base.playlists.multitask_duplicate = function(slug, playlist_id) {
-  var url = Base.currentSiteUrl() + '/' + slug + '/playlists/' + playlist_id + '/duplicate';
-  var params = {};
-  params['copy[name]'] = $("#playlist_name").val();
-
-  //$("#duplicate_button").children().children().append(Base.layout.spin_image());
-
-  $.post(url, params, Base.playlists.multitask_duplicateCallback);
+Base.playlists.multitask_layer_submit = function(id, callback) {
+  var form = $('#'+id+' form');
+  $.post($(form).attr('action'), $(form).serialize(), callback); 
 };
+
+Base.playlists.multitask_layer_clear = function(id) {
+  $("#" + id + " ul.error_list").html("");
+	$("#" + id + " form label span.error").removeClass("error");
+}
 
 Base.playlists.multitask_duplicateCallback = function(response) {
   if (!response.success) {
     field_with_errors = $.parseJSON(response.errors);
-    Base.account_settings.highlight_field_with_errors(true, 'copy');
+    Base.account_settings.highlight_field_with_errors(true, 'sub_copiar', 'copy');
   } else {
     var ancho = $("#sub_home").width();
     $("#sub_copiar").animate({"left":"+="+ancho+"px"});
 		$("#sub_home").animate({"left":"+="+ancho+"px"});
+		
+		Base.playlists.multitask_layer_clear('sub_copiar');
+		
+    return false;
+  }
+  //$("#duplicate_button span  span img").remove();
+};
+
+Base.playlists.multitask_shareCallback = function(response) {
+  if (!response.success) {
+    field_with_errors = $.parseJSON(response.errors);
+    Base.account_settings.highlight_field_with_errors(true, 'sub_compartir');
+  } else {
+    var ancho = $("#sub_home").width();
+    $("#sub_compartir").animate({"left":"+="+ancho+"px"});
+    $("#sub_home").animate({"left":"+="+ancho+"px"});
+   
+    Base.playlists.multitask_layer_clear('sub_compartir');
+   
     return false;
   }
   //$("#duplicate_button span  span img").remove();
@@ -1163,7 +1201,7 @@ Base.header_search.getFieldValue =  function(arr, fieldName) {
 Base.header_search.buildSearchUrl = function () {
   var form_values = jQuery("#header_search_form").serializeArray();
   var q     = Base.header_search.getFieldValue(form_values,'q');
-  var url   = Base.currentSiteUrl() + "/search/all/" + ( q == msg ? "" : q) ;
+  var url   = Base.currentSiteUrl() + "/search/all/" + ( q == msg ? "" : q) + "?results_only=1";
   location.href = url;
   return false;
 };
@@ -1189,6 +1227,26 @@ Base.header_search.dropdown = function() {
     });
 };
 
+Base.playlist_search.autocomplete = function(last_value) {
+  jQuery('.content_search_results_ajax').css('top', $('.search_playlist_form').position().top + 10).show();
+  //var form_values = jQuery("#playlist_search_form").serializeArray();
+  //var q = Base.header_search.getFieldValue(form_values,'q');
+  var q = jQuery('#playlist_search_query').val();
+  if( last_value != q || q == ''){
+    jQuery('.content_search_results_ajax').hide();
+    return;
+  }
+  jQuery.get(Base.currentSiteUrl() + '/search/content_local/all/' + q, function(data) {
+      jQuery('.create_box').html(data);
+
+      if($.browser.version == '7.0'){
+        jQuery('.create_box').css('z-index', 10000).css('position', 'relative').css('top', -10);
+      }
+
+      jQuery('.create_box').show();
+      jQuery('.content_search_results_ajax').hide();
+  });
+};
 
 Base.header_search.autocomplete = function(last_value) {
   jQuery('.search_results_ajax').show();
@@ -1198,7 +1256,7 @@ Base.header_search.autocomplete = function(last_value) {
     jQuery('.search_results_ajax').hide();
     return;
   }
-  jQuery.get(Base.currentSiteUrl() + '/search/all/' + q, function(data) {
+  jQuery.get(Base.currentSiteUrl() + '/search/all/' + q + '?results_only=1', function(data) {
       jQuery('.search_results_box').html(data);
       jQuery('.search_results_box').show();
       jQuery('#header_search_form').parent().addClass('activo');
@@ -1481,3 +1539,97 @@ Base.reviews.paginate = function() {
   });
   return false;
 }
+
+Base.playlists.create = function() {
+};
+
+Base.playlists.close_button_event_binder = function() {
+  jQuery(".artist_box .close_btn").bind('click', function() { Base.playlists.close_button_handler(this); });
+};
+
+Base.playlists.close_button_handler = function(object) {
+    $button = jQuery(object);
+    
+    $parent_div = $button.parent();
+    $parent_div.html("<img style='margin-top:50px' src='"+Base.currentSiteUrl()+"/images/loading.gif'></img>");
+    $parent_div.css({'background':'#cccccc', 'text-align':'center'});
+
+    var new_playlist_id = recommended_playlists_queue.shift();
+
+    if (typeof(new_playlist_id) == 'undefined') {
+      $parent_div.html("");
+      $parent_div.css({'background':'white', 'text-align':'left'});
+      return;
+    }
+
+    var params = {'last_box':$parent_div.hasClass('last_box'), 'id':new_playlist_id};
+    jQuery.get(Base.currentSiteUrl() + '/playlists/widget', params, function(data) {
+      $parent_div.html(data);
+      $parent_div.css({'background':'white', 'text-align':'left'});
+      Base.playlists.close_button_event_binder();
+    });
+};
+
+var _activeStream;
+var _playing = false;
+var _songId;
+Base.playlists.playStream = function(obj, media, songId)
+{
+  var elem = $(obj);
+  if(!_playing)
+  {
+    _activeStream = elem.parent().parent().addClass('selected_row');
+    Base.playlists.onStreamStart(_activeStream);
+    elem.find('img').attr('src', Base.currentSiteUrl() + '/images/icon_stop_button.png');
+    swf('stream_connect').playSample(media, songId);
+    _playing = true;
+  }
+  else if(songId != _songId)
+  {
+    //_activeStream.attr('class', 'draggable_item ui-draggable');
+    _activeStream.removeClass('selected_row');
+    _activeStream.find('div.song_name img').attr('src', Base.currentSiteUrl() + '/images/icon_play_button.png');
+    Base.playlists.onStreamEnd(_activeStream);
+    _activeStream = elem.parent().parent().addClass('selected_row');
+    Base.playlists.onStreamStart(_activeStream);
+    elem.find('img').attr('src', Base.currentSiteUrl() + '/images/icon_stop_button.png');
+    swf('stream_connect').playSample(media, songId);
+  }
+  else if(_playing && songId == _songId)
+  {
+    //_activeStream.attr('class', 'draggable_item ui-draggable');
+    _activeStream.removeClass('selected_row');
+    _activeStream.find('div.song_name img').attr('src', Base.currentSiteUrl() + '/images/icon_play_button.png');
+    Base.playlists.onStreamEnd(_activeStream);
+    _activeStream = null;
+    _playing = false;
+    swf('stream_connect').killSample();
+  }
+  _songId = songId;
+}
+
+Base.playlists.streamComplete = function()
+{
+  Base.playlists.onStreamEnd(_activeStream);
+  //_activeStream.attr('class', 'draggable_item ui-draggable');
+  _activeStream.removeClass('selected_row');
+  _activeStream.find('div.song_name img').attr('src', Base.currentSiteUrl() + '/images/icon_play_button.png');
+  _activeStream = null;
+  _playing = false;
+}
+
+Base.playlists.onStreamStart = function(obj)
+{
+  // Override this as needed
+}
+Base.playlists.onStreamEnd = function(obj)
+{
+  // Override this as needed
+}
+var swf = function(objname)
+{
+  if(navigator.appName.indexOf("Microsoft") != -1)
+    return window[objname];
+  else
+    return document[objname];
+};

@@ -18,11 +18,11 @@
 #mix.contenido .mix_bloque img.portada{background:url(/images/multitask/bg_jewel_case.jpg) no-repeat; padding:2px 2px 2px 14px; width:98px; height:98px;}
 
 /* titulos */
-.tit_bloque{display:block;height:43px;background:url(/images/multitask/bg_elementos.png) no-repeat -2px -59px;font-size:1.8em;color:#fff;padding:9px 13px 0;position:relative;clear:both;}
+/*.tit_bloque{display:block;height:43px;background:url(/images/multitask/bg_elementos.png) no-repeat -2px -59px;font-size:1.8em;color:#fff;padding:9px 13px 0;position:relative;clear:both;}*/
 .tit_bloque em{font-size:15px;font-weight:normal;color:#888;display:block;margin-top:1px;}
 .tit_bloque .bg_fin{width:10px;height:52px;background:url(/images/multitask/bg_elementos.png) no-repeat -938px -59px;position:absolute;right:-3px;top:0;}
 .contenido .tit_bloque .bg_fin{background-color:#ededed;right:0;}
-.tit_bloque.gris{color:#2c2c2c;background-position:-165px -212px;margin-bottom:2px;}
+/*.tit_bloque.gris{color:#2c2c2c;background-position:-165px -212px;margin-bottom:2px;}*/
 .tit_bloque.gris .bg_fin{background-position:-452px -212px;}
 #home .cont_columna.cen h2.tit_bloque,#home .cont_columna.der h2.tit_bloque{margin-bottom:5px;}
 
@@ -297,8 +297,10 @@ input.btn_gris{width:130px;height:28px;background:url(/images/multitask/bg_eleme
 #sub_compartir .mix_contenido{width:600px;padding-left:37px;padding-right:0;background:url(/images/multitask/bg_lateralmix.png) repeat-y 0 0;}
 #sub_copiar .mix_lateral,
 #sub_compartir .mix_lateral{width:240px;padding-right:23px;padding-left:0;background:none;}
-#sub_copiar .mix_lateral ul,
-#sub_compartir .mix_lateral ul{color:#E61124; margin-top:10px; font-size:14px;, margin:20px 0 0 10px; text-transform:capitalize;}
+#sub_copiar .mix_lateral ul.error_list,
+#sub_compartir .mix_lateral ul.error_list{color:#E61124; margin-top:10px; font-size:13px;, margin:20px 0 0 10px; text-transform:capitalize;}
+#sub_copiar .mix_lateral ul.error_list li,
+#sub_compartir .mix_lateral ul.error_list li{margin-bottom:10px;}
 #sub_copiar .portada{margin-top:19px;}
 #sub_copiar .mix_incluidos{min-height:92px;width:452px;padding-left:16px;border-left:1px solid #cacaca;margin-left:12px;float:left;margin-top:19px;padding-top:10px;}
 #sub_copiar .mix_incluidos p,
@@ -331,8 +333,10 @@ input.btn_gris{width:130px;height:28px;background:url(/images/multitask/bg_eleme
 .mix_sub .f_compartir{color:#979797;padding-top:5px;}
 .mix_sub .f_compartir label{display:block;margin-bottom:6px;}
 .mix_sub .f_compartir label span{font-size:12px;padding-top:5px;display:block;width:52px;float:left;}
+.mix_sub .f_compartir label span.error{color:#E61124;}
 .mix_sub .f_compartir label input{width:265px;height:18px;float:right;background:#fff;border:1px solid #ccc;}
 .mix_sub .f_compartir label textarea{width:265px;height:80px;float:right;background:#fff;border:1px solid #ccc;}
+.mix_sub .f_compartir .btn_gris,
 .mix_sub .f_compartir .btn_rojo{font-size:13px;font-family:Arial,sans-serif;}
 
 /* modulo perfil */
@@ -578,3 +582,30 @@ span.title {font-size: 18px; font-weight: bold;}
 .privacy_check {float: left; margin-left: 20px;}
 
 /* end reg page css additions */
+img.avatar.small {
+  width: 50px;
+  height: 50px;
+}
+
+b {
+  font-weight: bolder;
+}
+
+big {
+  font-size: larger;
+}
+
+.added_items li {
+  border: solid 3px white;
+  padding: 2px 1px;
+  background: white;
+  position: relative;
+  margin-bottom: 1px;
+  zoom: 1;
+}
+
+.added_items .text {
+  float: left;
+  width: 200px;
+  padding-left: 5px;
+}
