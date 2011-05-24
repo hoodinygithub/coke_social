@@ -1,8 +1,54 @@
-<% content_for :header_space_content do %>
-  <div class="header_spacer"></div>
-<% end %>
+<script>
+  $(document).ready(function() {
+    //observe .rule_tooltip mouse over
+    $('.rule.info_text, .rule.info_default_text, .rule.info_success_text').live('mouseenter mouseout', function(event) {
+        $t= $('.rule_tooltip', this);
+        if (event.type == 'mouseenter') {
+          $t.css('top', -($t.height()/2));
+          $t.stop();
+          $t.fadeTo(400, 1);
+        } else {
+          $t.fadeOut(400);
+        }
+    });
+
+    $('.rule_tooltip').live('hover', function() {
+      $(this).stop();
+      $(this).fadeTo(100,1);
+    });
+  });
+
+  jQuery("#playlist_search_query").keyup(function(e) {
+      //jQuery('.search_results_ajax').show();
+      var keyCode = e.keyCode || window.event.keyCode;
+      //var form_values = jQuery("#playlist_search_form").serializeArray();
+      //var q = Base.header_search.getFieldValue(form_values,'q');
+      var q = jQuery('#playlist_search_query').val();
+      
+      if(keyCode == 37 || keyCode == 38 || keyCode == 39 || keyCode == 40){
+        return;
+	  }
+      if(keyCode == 13 || keyCode == 27 || q.length <= 1){
+        //jQuery('.search_results_ajax').show();
+        jQuery('.content_search_results_ajax').hide();
+        jQuery('.create_box').hide();
+        return;
+  	  }
+      //jQuery('.search_results_box').show();
+      setTimeout(function () {Base.playlist_search.autocomplete(q)}, 500);
+      return true;
+    });
+</script>
+
+<div id="container">
+  <div id="main_content" class="playlists">
 <%= javascript_include_tag 'playlist' %>
 <%= javascript_include_tag 'playlist_create' %>
+
+<h1 class="tit_bloque gris">
+  <span class="txt">Crear nuevo mix</span>
+  <span class="bg_fin">&nbsp;</span>
+</h1><!-- .tit_bloque -->
 
 <div class="two_columns">
   <h1><%= t('playlists.create_new') %></h1>
@@ -44,4 +90,6 @@
     "flashVars", flashvars
   );
   </script> -->
+</div>
+</div>
 </div>

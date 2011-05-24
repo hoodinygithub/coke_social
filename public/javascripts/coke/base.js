@@ -119,7 +119,8 @@ var Base = {
   share: {},
   locale: {},
   header_search: {},
-  account: {}
+  account: {},
+  playlist_search: {}
 };
 
 // Helpers
@@ -1218,6 +1219,26 @@ Base.header_search.dropdown = function() {
     });
 };
 
+Base.playlist_search.autocomplete = function(last_value) {
+  jQuery('.content_search_results_ajax').css('top', $('.search_playlist_form').position().top + 10).show();
+  //var form_values = jQuery("#playlist_search_form").serializeArray();
+  //var q = Base.header_search.getFieldValue(form_values,'q');
+  var q = jQuery('#playlist_search_query').val();
+  if( last_value != q || q == ''){
+    jQuery('.content_search_results_ajax').hide();
+    return;
+  }
+  jQuery.get(Base.currentSiteUrl() + '/search/content_local/all/' + q, function(data) {
+      jQuery('.create_box').html(data);
+
+      if($.browser.version == '7.0'){
+        jQuery('.create_box').css('z-index', 10000).css('position', 'relative').css('top', -10);
+      }
+
+      jQuery('.create_box').show();
+      jQuery('.content_search_results_ajax').hide();
+  });
+};
 
 Base.header_search.autocomplete = function(last_value) {
   jQuery('.search_results_ajax').show();
