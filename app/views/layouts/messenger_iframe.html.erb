@@ -30,6 +30,36 @@
     <%= javascript_include_tag 'supersleight.plugin' %>
     <%= javascript_include_tag 'coke/base' %>
     <%= javascript_include_tag '/utils/locale.js' %>
+    <% javascript_tag do %>
+      // TODO: put this in a seprate iframe.js file
+      function closeFrameOnClick(p_event) {
+        if (parent) {
+          proxyFrame = document.createElement("iframe");
+          proxyFrame.style.visibility = "hidden";
+          proxyFrame.style.position = "absolute";
+          proxyFrame.style.top = proxyFrame.style.left = proxyFrame.style.width = proxyFrame.style.height = "0";
+          proxyFrame.src = "<%= current_site_url %>/proxyframe_alertlayer_close.html";
+          document.body.appendChild(proxyFrame);
+        } else {
+          alert("layer should be in a secure IFRAME.");
+        }
+      }
+
+      function alertLayerFrameOnClick(p_event, p_layer, p_locked) {
+        if (parent) {
+          proxyFrame = document.createElement("iframe");
+          proxyFrame.style.visibility = "hidden";
+          proxyFrame.style.position = "absolute";
+          proxyFrame.style.top = proxyFrame.style.left = proxyFrame.style.width = proxyFrame.style.height = "0";
+          <% # /messenger_player/alert_layer/$layer = alert_layer_path($layer).  Keep these in sync. %>
+          proxyFrame.src = "<%= current_site_url %>/proxyframe_alertlayer.html?layer=/messenger_player/alert_layer/" + p_layer + "&locked=" + p_locked;
+          document.body.appendChild(proxyFrame);
+        } else {
+          alert("layer should be in a secure IFRAME.");
+        }
+      }
+
+    <% end %>
 
     <script src="http://connect.facebook.net/en_US/all.js"></script>
     <!-- -------------------------------------------------------------------- -->

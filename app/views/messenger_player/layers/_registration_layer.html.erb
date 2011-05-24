@@ -3,21 +3,7 @@
     <div class="aviso_cab">
       <h1><%= t('coke_messenger.layers.registration_form_view.register') %></h1>
       <% unless @locked %>
-        <% javascript_tag do %>
-          function closeOnClick(p_event) {
-            if (parent) {
-              proxyFrame = document.createElement("iframe");
-              proxyFrame.style.visibility = "hidden";
-              proxyFrame.style.position = "absolute";
-              proxyFrame.style.top = proxyFrame.style.left = proxyFrame.style.width = proxyFrame.style.height = "0";
-              proxyFrame.src = "<%= current_site_url %>/proxyframe_alertlayer_close.html";
-              document.body.appendChild(proxyFrame);
-            } else {
-              alert("register layer should be in a secure IFRAME.");
-            }
-          }
-        <% end %>
-        <a class="btn_cerrar" href="#" onclick="closeOnClick(event);" title="<%= t('actions.close') %>"><strong>X</strong> <%= t('actions.close') %></a>
+        <a class="btn_cerrar" href="#" onclick="closeFrameOnClick(event);" title="<%= t('actions.close') %>"><strong>X</strong> <%= t('actions.close') %></a>
       <% end %>
     </div><!-- .aviso_cab -->
     <div class="scroll">
@@ -25,7 +11,7 @@
       <div class="columna_izq">
         <h2><%= t('coke_messenger.layers.registration_form_view.sign_up') %><strong><%= t('coke_messenger.layers.registration_form_view.coke_fm') %></strong></h2>
         <p><%= t('coke_messenger.layers.registration_form_view.way_coke') %></p>
-        <p><%= "<b>#{t('sessions.new.already_own')} #{link_to_function t('sessions.new.sign_in'), "$.alert_layer('/messenger_player/alert_layer/login_layer', #{@locked==true})" }</b>" %></p>
+        <p><%= "<b>#{t('sessions.new.already_own')} #{link_to_function t('sessions.new.sign_in'), "alertLayerFrameOnClick(event, 'login_layer', #{@locked == true})" }</b>" %></p>
         
         <% form_for @user, :url => "#{users_path}?iframe=true", :html => { :method => :post, :class => "f_registro" } do |f| %>
           <%= f.hidden_field :sso_facebook unless @user['sso_facebook'].nil? %>

@@ -3,7 +3,7 @@
    <div class="aviso_cab">
    	<h1><%= t('coke_messenger.layers.login_link_layer.login_fm') %></h1>
     <% unless @locked %>
-      <a class="btn_cerrar" href="#" onclick="$.alert_layer.close();" title="<%= t('coke_messenger.layers.login_link_layer.close') %>"><strong>X</strong> <<%= t('coke_messenger.layers.login_link_layer.close') %>><%= t('coke_messenger.layers.login_link_layer.close') %></a>
+      <a class="btn_cerrar" href="#" onclick="closeFrameOnClick(event);" title="<%= t('coke_messenger.layers.login_link_layer.close') %>"><strong>X</strong> <<%= t('coke_messenger.layers.login_link_layer.close') %>><%= t('coke_messenger.layers.login_link_layer.close') %></a>
     <% end %>
   </div><!-- .aviso_cab -->
       <div class="scroll">
@@ -24,7 +24,7 @@
               <small class="txt_error"><%= t('coke_messenger.registration.errors.login') %></small>
             </label>
             
-            <p><%= link_to_function t('coke_messenger.layers.login_link_layer.pwd_title'), "$.alert_layer('/messenger_player/alert_layer/forgot_password', #{@locked==true})", :class => "link_rojob", :title => t('coke_messenger.layers.login_link_layer.pwd_title') %></p>
+            <p><%= link_to_function t('coke_messenger.layers.login_link_layer.pwd_title'), "alertLayerFrameOnClick(event, 'forgot_password', #{@locked == true})", :class => "link_rojob", :title => t('coke_messenger.layers.login_link_layer.pwd_title') %></p>
             <input class="boton" type="submit" value="<%= t('coke_messenger.layers.login_link_layer.accept')%>" />
           <% end %>
           <div class="fb_acceso">
@@ -48,21 +48,7 @@
           <h2><%= t('coke_messenger.layers.login_link_layer.reg_free') %><strong><%= t('coke_messenger.layers.login_link_layer.register_free')%></strong></h2>
           <p><%= t('coke_messenger.layers.login_link_layer.follow') %></p>
           <form>
-            <% javascript_tag do %>
-              function registerOnClick(p_event) {
-                if (parent) {
-                  proxyFrame = document.createElement("iframe");
-                  proxyFrame.style.visibility = "hidden";
-                  proxyFrame.style.position = "absolute";
-                  proxyFrame.style.top = proxyFrame.style.left = proxyFrame.style.width = proxyFrame.style.height = "0";
-                  proxyFrame.src = "<%= current_site_url %>/proxyframe_alertlayer.html?layer=<%= alert_layer_path('registration_layer') %>";
-                  document.body.appendChild(proxyFrame);
-                } else {
-                  alert("login layer layer should be in a secure IFRAME.");
-                }
-              }
-            <% end %>
-            <p><a class="boton register_btn" href="#" onclick="registerOnClick(event);" rel="layer" title="<%= t('coke_messenger.layers.login_link_layer.sign_up')%>">
+            <p><a class="boton register_btn" href="#" onclick="alertLayerFrameOnClick(event, 'registration_layer')" rel="layer" title="<%= t('coke_messenger.layers.login_link_layer.sign_up')%>">
               <span style="float:left;margin-top:7px;margin-left:30px;"><%= t('coke_messenger.layers.login_link_layer.sign_up')%></span></a></p>
           </form>    
         </div><!-- .columna_der -->
