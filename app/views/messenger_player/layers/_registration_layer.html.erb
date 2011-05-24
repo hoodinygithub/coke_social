@@ -64,7 +64,6 @@
             <small class="txt_error"><%= t('coke_messenger.registration.errors.age') %></small>
           </label> 
 
-
           <label class="<%= @user.errors[:terms_and_privacy] ? "error" : "" %>">
             <%= f.check_box :terms_and_privacy, :class => "check" %>
             <small><%= t('coke_messenger.layers.registration_form_view.accept') %></small>
