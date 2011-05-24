@@ -588,7 +588,7 @@ class PlaylistsController < ApplicationController
               if scope == :song
                 results = obj_item.songs.paginate(search_opts)
               else
-                puts search_opts.inspect
+                #puts search_opts.inspect
                 results = Song.search(search_opts)
               end
             end
