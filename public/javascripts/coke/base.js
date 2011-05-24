@@ -1531,3 +1531,97 @@ Base.reviews.paginate = function() {
   });
   return false;
 }
+
+Base.playlists.create = function() {
+};
+
+Base.playlists.close_button_event_binder = function() {
+  jQuery(".artist_box .close_btn").bind('click', function() { Base.playlists.close_button_handler(this); });
+};
+
+Base.playlists.close_button_handler = function(object) {
+    $button = jQuery(object);
+    
+    $parent_div = $button.parent();
+    $parent_div.html("<img style='margin-top:50px' src='"+Base.currentSiteUrl()+"/images/loading.gif'></img>");
+    $parent_div.css({'background':'#cccccc', 'text-align':'center'});
+
+    var new_playlist_id = recommended_playlists_queue.shift();
+
+    if (typeof(new_playlist_id) == 'undefined') {
+      $parent_div.html("");
+      $parent_div.css({'background':'white', 'text-align':'left'});
+      return;
+    }
+
+    var params = {'last_box':$parent_div.hasClass('last_box'), 'id':new_playlist_id};
+    jQuery.get(Base.currentSiteUrl() + '/playlists/widget', params, function(data) {
+      $parent_div.html(data);
+      $parent_div.css({'background':'white', 'text-align':'left'});
+      Base.playlists.close_button_event_binder();
+    });
+};
+
+var _activeStream;
+var _playing = false;
+var _songId;
+Base.playlists.playStream = function(obj, media, songId)
+{
+  var elem = $(obj);
+  if(!_playing)
+  {
+    _activeStream = elem.parent().parent().addClass('selected_row');
+    Base.playlists.onStreamStart(_activeStream);
+    elem.find('img').attr('src', Base.currentSiteUrl() + '/images/icon_stop_button.png');
+    swf('stream_connect').playSample(media, songId);
+    _playing = true;
+  }
+  else if(songId != _songId)
+  {
+    //_activeStream.attr('class', 'draggable_item ui-draggable');
+    _activeStream.removeClass('selected_row');
+    _activeStream.find('div.song_name img').attr('src', Base.currentSiteUrl() + '/images/icon_play_button.png');
+    Base.playlists.onStreamEnd(_activeStream);
+    _activeStream = elem.parent().parent().addClass('selected_row');
+    Base.playlists.onStreamStart(_activeStream);
+    elem.find('img').attr('src', Base.currentSiteUrl() + '/images/icon_stop_button.png');
+    swf('stream_connect').playSample(media, songId);
+  }
+  else if(_playing && songId == _songId)
+  {
+    //_activeStream.attr('class', 'draggable_item ui-draggable');
+    _activeStream.removeClass('selected_row');
+    _activeStream.find('div.song_name img').attr('src', Base.currentSiteUrl() + '/images/icon_play_button.png');
+    Base.playlists.onStreamEnd(_activeStream);
+    _activeStream = null;
+    _playing = false;
+    swf('stream_connect').killSample();
+  }
+  _songId = songId;
+}
+
+Base.playlists.streamComplete = function()
+{
+  Base.playlists.onStreamEnd(_activeStream);
+  //_activeStream.attr('class', 'draggable_item ui-draggable');
+  _activeStream.removeClass('selected_row');
+  _activeStream.find('div.song_name img').attr('src', Base.currentSiteUrl() + '/images/icon_play_button.png');
+  _activeStream = null;
+  _playing = false;
+}
+
+Base.playlists.onStreamStart = function(obj)
+{
+  // Override this as needed
+}
+Base.playlists.onStreamEnd = function(obj)
+{
+  // Override this as needed
+}
+var swf = function(objname)
+{
+  if(navigator.appName.indexOf("Microsoft") != -1)
+    return window[objname];
+  else
+    return document[objname];
+};

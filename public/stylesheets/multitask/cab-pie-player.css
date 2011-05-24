@@ -73,10 +73,10 @@ body #container{padding:36px 15px 15px;margin:0 auto;background:url(/images/mult
 .search_results_box{display:none;position:relative;top:5px;left:0;width:225px;margin:0 0 6px;}
 .search_list{}
 div.navegacion .search_list a{overflow:hidden;clear:both;height:50px;display:block;background:url(/images/multitask/bg_busquedas.png) repeat-x 0 0;text-decoration:none;padding:5px 6px;}
-.search_list a:hover{background:url(/images/multitask/bg_busquedas_h.png) repeat-x 0 0 #393939;text-decoration:none;}
-.search_list a:hover strong,.search_list a:hover small{color:#fff;}
-.search_list strong{font-size:12px;font-weight:bold;color:#e10015;padding:10px 20px 0;display:block;width:120px;line-height:14px;}
-.search_list small{font-size:11px;color:#636363;padding:3px 20px;display:block;width:120px;float:right;line-height:14px;}
+div.navegacion .search_list a:hover{background:url(/images/multitask/bg_busquedas_h.png) repeat-x 0 0 #393939;text-decoration:none;}
+div.navegacion .search_list a:hover strong,.search_list a:hover small{color:#fff;}
+div.navegacion .search_list strong{font-size:12px;font-weight:bold;color:#e10015;padding:10px 20px 0;display:block;width:120px;line-height:14px;float:right;}
+.busqueda .search_list small{font-size:11px;color:#636363;padding:3px 20px;display:block;width:120px;float:right;line-height:14px;}
 .search_list img{width:50px;height:50px;float:left;}
 .busqueda .no_resultados{background:#fff;padding:20px 15px;font-size:1.4em;}
 

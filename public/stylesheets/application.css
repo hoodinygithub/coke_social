@@ -281,7 +281,7 @@ h2 {
     line-height:22px;
 }
 
-.search_results_box {
+#main_content .search_results_box {
     background: #fff;
     position: absolute;
     top: 100%;
@@ -293,13 +293,13 @@ h2 {
     z-index: 70;
 }
 
-.search_results_box h1 {
+#main_content .search_results_box h1 {
     margin-left: 5px;
     margin-bottom:10px;
     border: none;
 }
 
-.search_list {
+#main_content .search_list {
     list-style-type: none;
     margin: 0px 1px;
 }
@@ -337,11 +337,11 @@ h2 {
     color: #fff;
 }
 
-.search_results_box .oveflow_list {
+/*.search_results_box .oveflow_list {
     height: 450px;
     overflow: auto;
     border-bottom: solid 1px #999;
-}
+}*/
 
 .grey_spacer {
     height: 35px;
