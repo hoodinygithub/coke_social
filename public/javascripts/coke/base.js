@@ -428,7 +428,7 @@ Base.UI = {
     {
       if (app == "multitask")
       {
-        var tm = "<p><a class='link_decor' href='/playlists/" + s.plId + "' title='" + s.playlistName + "' content_switch_enabled='true'>" + s.playlistName + "</a></p>";
+        var tm = "<p><a class='link_decor' href='/playlists?station_id=" + Base.Station._station.sid + "' title='" + s.playlistName + "' content_switch_enabled='true'>" + s.playlistName + "</a></p>";
         tm += "<p>por: <a class='link_decor' href='" + Base.Station._station.ownerProfile + "' content_switch_enabled='true'>" + Base.Station._station.ownerName + "</a></p>";
         this.controlUI().find('.titulo_mix').append(tm);
       }

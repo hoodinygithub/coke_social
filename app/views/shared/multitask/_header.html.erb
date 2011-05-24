@@ -7,7 +7,7 @@
     var pl = [<%= top_playlists.map { |p| "'/playlists/#{p.id}.xml'" }.join(',') %>];
     /* Coke player configuration */
     var cFlashVars = {
-debug:1,
+      debug:1,
       protocol:'rtmp',
       serviceHost:'cdn.cyloop.com/cfx/st',
       player:'messengerradio_<%= current_site.code %>',
