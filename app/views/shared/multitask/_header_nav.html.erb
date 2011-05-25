@@ -1,3 +1,19 @@
+<script>
+  function fb_like()
+  {
+    FB.api('/me/likes', 'post', {url: window.location.origin, message: 'test like'}, function(response) {
+      if (!response || response.error)
+        //alert('ERROR: ' + response.error);
+        for (var e in response.error)
+        {
+          console.log('ERROR: ' + response.error[e]);
+        }
+      else
+        alert('Post ID: ' + response.id);
+    });
+  }
+</script>
+
 <div class="bloque">
   <ul class="menu">
     <li><a href="<%= home_path %>" title="<%= t('main.navigation.home') %>" content_switch_enabled="true"><%= t('main.navigation.home') %></a></li><!-- .activo para el enlace activo -->
@@ -38,8 +54,7 @@
       <span class="tip" id="tip_valorar"><%= t('coke_messenger.rating') %></span>
     </div><!-- .sonando -->
     <div class="compartir">
-      <a class="tooltip r_facebook" href="#" rel="tip_facebook" title="Compartir en Facebook">Facebook</a>
-
+      <a class="tooltip r_facebook" href="#" onclick="fb_like();" rel="tip_facebook" title="Compartir en Facebook">Facebook</a>
       <span class="tip tip_ancho" id="tip_facebook">Compartir en Facebook</span>
       <a class="tooltip r_orkut" href="#" rel="tip_orkut" title="Compartir en Orkut">Orkut</a>
       <span class="tip tip_ancho" id="tip_orkut">Compartir en Orkut</span>    
