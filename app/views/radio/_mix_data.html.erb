@@ -10,7 +10,7 @@
               <div class="mix_valorar">
                   <% comments = p.comments.valid(:order => 'comments.updated_at DESC')%>
                   <%= link_to pluralize(comments.size, t('basics.comment')), "#comments_top", :class => "n_comentarios", :title => pluralize(comments.size, t('basics.comment')) %>
-                  <div class="rating_bottles grey_round_box2 rating_input">
+                  <div class="rating_bottles rating_input">
                     <%= multitask_rating(p, 5, "rating_inputs") %>
                     <strong><%= t('actions.rate_mix') %>:</strong>
                   </div><!-- .rating_bottles -->

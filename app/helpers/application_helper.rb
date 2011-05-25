@@ -98,7 +98,12 @@ module ApplicationHelper
   end
 
   def short_date(date)
-    I18n.localize(date, :format => :long) rescue ""
+    #I18n.localize(date, :format => :long) rescue ""
+    if current_site.default_locale.to_s == "en"
+      date.strftime("%m/%d/%Y")
+    else
+      date.strftime("%d/%m/%Y")
+    end
   end
   
   def profile_owner?

@@ -623,7 +623,7 @@ Base.account_settings.highlight_field_with_errors = function(multitask, id, fiel
       var error = field_with_errors[i][1];
       var field = $("#"+id+" :input[name*='" + field_name + "']:not(input[type='hidden'])").first();
       if(multitask) {
-        if ( !error.match(  new RegExp(field_with_errors[i][0],'i')  ) ) { error = (field_with_errors[i][0] + " " + error) }
+        if ( !error.match(  new RegExp(field_with_errors[i][0],'i')  ) ) { error = (Base.locale.t('basics.' + field_with_errors[i][0]) + " " + error) }
         Base.account_settings.add_multitask_message_on(field, id, error, 'error');
       }
       else
@@ -1045,12 +1045,12 @@ Base.community.multitask_follow = function(user_slug, button) {
     if (status == 'success') {
       $button.html("");
       if (response.status == 'following') {
-        $button.html(Base.locale.t('actions.unfollow') + '<span class="bg_fin">&nbsp;</span>');
-        $button.addClass("activo");
+        $('.follow_button').html(Base.locale.t('actions.unfollow') + '<span class="bg_fin">&nbsp;</span>');
+        $('.follow_button').addClass("activo");
       } 
 
-      $button.unbind('click');
-      $button.bind('click', function() { Base.community.multitask_unfollow(user_slug, this); return false; });
+      $('.follow_button').unbind('click');
+      $('.follow_button').bind('click', function() { Base.community.multitask_unfollow(user_slug, this); return false; });
     }
   });
 };
@@ -1069,12 +1069,12 @@ Base.community.multitask_unfollow = function(user_slug, button) {
 
   jQuery.post(Base.currentSiteUrl() + '/users/unfollow', params, function(response, status) {
     if (status == 'success') {
-      $button.html("");
-      $button.removeClass("activo");
-      $button.html(Base.locale.t('actions.follow') + '<span class="bg_fin">&nbsp;</span>');
+      $('.follow_button').html("");
+      $('.follow_button').removeClass("activo");
+      $('.follow_button').html(Base.locale.t('actions.follow') + '<span class="bg_fin">&nbsp;</span>');
 
-      $button.unbind('click');
-      $button.bind('click', function() { Base.community.multitask_follow(user_slug, this); return false; });
+      $('.follow_button').unbind('click');
+      $('.follow_button').bind('click', function() { Base.community.multitask_follow(user_slug, this); return false; });
     }
   });
 };
@@ -1201,8 +1201,9 @@ Base.header_search.getFieldValue =  function(arr, fieldName) {
 Base.header_search.buildSearchUrl = function () {
   var form_values = jQuery("#header_search_form").serializeArray();
   var q     = Base.header_search.getFieldValue(form_values,'q');
-  var url   = Base.currentSiteUrl() + "/search/all/" + ( q == msg ? "" : q) + "?results_only=1";
-  location.href = url;
+  var url   = Base.currentSiteUrl() + "/search/all/" + ( q == msg ? "" : q);
+  //location.href = url;
+  Base.Util.XHR(url, 'text', Base.UI.contentswp, Base.UI.xhrerror, {});
   return false;
 };
 

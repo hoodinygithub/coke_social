@@ -18,11 +18,13 @@
 #mix.contenido .mix_bloque img.portada{background:url(/images/multitask/bg_jewel_case.jpg) no-repeat; padding:2px 2px 2px 14px; width:98px; height:98px;}
 
 /* titulos */
-/*.tit_bloque{display:block;height:43px;background:url(/images/multitask/bg_elementos.png) no-repeat -2px -59px;font-size:1.8em;color:#fff;padding:9px 13px 0;position:relative;clear:both;}*/
+/* DO NOT REMOVE */
+/* create overriding styles for the specific page you are working on, these affect the entire site */
+.tit_bloque{display:block;height:43px;background:url(/images/multitask/bg_elementos.png) no-repeat -2px -59px;font-size:1.8em;color:#fff;padding:9px 13px 0;position:relative;clear:both;line-height:18px !important;}
 .tit_bloque em{font-size:15px;font-weight:normal;color:#888;display:block;margin-top:1px;}
 .tit_bloque .bg_fin{width:10px;height:52px;background:url(/images/multitask/bg_elementos.png) no-repeat -938px -59px;position:absolute;right:-3px;top:0;}
 .contenido .tit_bloque .bg_fin{background-color:#ededed;right:0;}
-/*.tit_bloque.gris{color:#2c2c2c;background-position:-165px -212px;margin-bottom:2px;}*/
+.tit_bloque.gris{color:#2c2c2c;background-position:-165px -212px;margin-bottom:2px;}
 .tit_bloque.gris .bg_fin{background-position:-452px -212px;}
 #home .cont_columna.cen h2.tit_bloque,#home .cont_columna.der h2.tit_bloque{margin-bottom:5px;}
 
@@ -271,7 +273,7 @@ input.btn_gris{width:130px;height:28px;background:url(/images/multitask/bg_eleme
 /* capa informacion */
 .mix_sub .mix_contenido{width:599px;height:221px;float:left;position:relative;padding-right:23px;}
 .mix_sub .accion{font-size:12px;}
-.mix_sub h2{font-size:18px;}
+.mix_sub h2{font-size:18px;line-height:16px;}
 #sub_home .accion{width:300px;}
 #sub_home h2{width:300px;}
 .mix_sub .mix_valorar{width:270px;position:absolute;top:0;right:23px;}
@@ -298,7 +300,7 @@ input.btn_gris{width:130px;height:28px;background:url(/images/multitask/bg_eleme
 #sub_copiar .mix_lateral,
 #sub_compartir .mix_lateral{width:240px;padding-right:23px;padding-left:0;background:none;}
 #sub_copiar .mix_lateral ul.error_list,
-#sub_compartir .mix_lateral ul.error_list{color:#E61124; margin-top:10px; font-size:13px;, margin:20px 0 0 10px; text-transform:capitalize;}
+#sub_compartir .mix_lateral ul.error_list{color:#E61124; margin-top:10px; font-size:13px;, margin:20px 0 0 10px;}
 #sub_copiar .mix_lateral ul.error_list li,
 #sub_compartir .mix_lateral ul.error_list li{margin-bottom:10px;}
 #sub_copiar .portada{margin-top:19px;}
