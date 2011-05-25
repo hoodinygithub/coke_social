@@ -10,6 +10,11 @@
         <%= tag_links(p) %>
       </div>
       <div class="align_right box_buttons">
+        <% if current_user && p.owner == current_user %>
+          <%= link_to image_tag('edit_button.png', :class => 'png_fix'), playlist_edit_path(p), :content_switch_enabled => true, :title => t('actions.edit') %>
+          <%= link_to_function image_tag('close_button.png', :class => 'png_fix'), "Base.stations.remove_from_layer(#{p.station.id}, this); return false;", :title => t('actions.delete') %>
+        <% end %>
+        
         <%= link_to image_tag('play_button.png', :class=> 'play_button png_fix'), radio_path(:station_id => p.station.id), :onclick => "Base.Station.request('/playlists/#{p.id}.xml', 'xml', Base.Station.stationCollection);Base.Player.random(false);", :content_switch_enabled => true %>
       </div>
     </div><!-- .hidden -->

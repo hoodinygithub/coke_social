@@ -122,6 +122,7 @@ var Base = {
   layout: {},
   community: {},
   playlists: {},
+  stations: {},
   reviews: {},
   utils: {},
   share: {},
@@ -627,7 +628,7 @@ Base.account_settings.highlight_field_with_errors = function(multitask, id, fiel
       var error = field_with_errors[i][1];
       var field = $("#"+id+" :input[name*='" + field_name + "']:not(input[type='hidden'])").first();
       if(multitask) {
-        if ( !error.match(  new RegExp(field_with_errors[i][0],'i')  ) ) { error = (Base.locale.t('basics.' + field_with_errors[i][0]) + " " + error) }
+        //if ( !error.match(  new RegExp(field_with_errors[i][0],'i')  ) ) { error = (Base.locale.t('basics.' + field_with_errors[i][0]) + " " + error) }
         Base.account_settings.add_multitask_message_on(field, id, error, 'error');
       }
       else
@@ -1049,12 +1050,12 @@ Base.community.multitask_follow = function(user_slug, button) {
     if (status == 'success') {
       $button.html("");
       if (response.status == 'following') {
-        $('.follow_button').html(Base.locale.t('actions.unfollow') + '<span class="bg_fin">&nbsp;</span>');
-        $('.follow_button').addClass("activo");
+        $('.follow_button[slug="'+user_slug+'"]').html(Base.locale.t('actions.unfollow').toUpperCase() + '<span class="bg_fin">&nbsp;</span>');
+        $('.follow_button[slug="'+user_slug+'"]').addClass("activo");
       } 
 
-      $('.follow_button').unbind('click');
-      $('.follow_button').bind('click', function() { Base.community.multitask_unfollow(user_slug, this); return false; });
+      $('.follow_button[slug="'+user_slug+'"]').unbind('click');
+      $('.follow_button[slug="'+user_slug+'"]').bind('click', function() { Base.community.multitask_unfollow(user_slug, this); return false; });
     }
   });
 };
@@ -1073,12 +1074,12 @@ Base.community.multitask_unfollow = function(user_slug, button) {
 
   jQuery.post(Base.currentSiteUrl() + '/users/unfollow', params, function(response, status) {
     if (status == 'success') {
-      $('.follow_button').html("");
-      $('.follow_button').removeClass("activo");
-      $('.follow_button').html(Base.locale.t('actions.follow') + '<span class="bg_fin">&nbsp;</span>');
+      $('.follow_button[slug="'+user_slug+'"]').html("");
+      $('.follow_button[slug="'+user_slug+'"]').removeClass("activo");
+      $('.follow_button[slug="'+user_slug+'"]').html(Base.locale.t('actions.follow').toUpperCase() + '<span class="bg_fin">&nbsp;</span>');
 
-      $('.follow_button').unbind('click');
-      $('.follow_button').bind('click', function() { Base.community.multitask_follow(user_slug, this); return false; });
+      $('.follow_button[slug="'+user_slug+'"]').unbind('click');
+      $('.follow_button[slug="'+user_slug+'"]').bind('click', function() { Base.community.multitask_follow(user_slug, this); return false; });
     }
   });
 };
@@ -1645,4 +1646,25 @@ Base.playlist_search.buildSearchUrl = function () {
   //var url   = "/playlists/create/?term=" + ( q == msg ? "" : q) ;
   //location.href = url;
   return false;
+};
+
+// Stations
+Base.stations.remove_from_layer = function(station_id, button) {
+  $(button).parent().append("<div id='station_to_delete' style='display:none'></div>")
+  url = Base.currentSiteUrl() + '/stations/' + station_id + '/delete_confirmation';
+  $.get(url, function(data) {
+    $.popup(data);
+  });
+};
+
+Base.stations.remove = function(station_id) {
+  $('#delete_loading').show();
+  $li = $("#station_to_delete").parent().parent().parent().parent().parent();
+  
+  $.post(Base.currentSiteUrl() + '/stations/' + station_id + '/delete', {'_method':'delete'}, function(response) {
+    $(document).trigger('close.facebox');
+    if (response == 'destroyed') {
+      $li.slideUp();
+    }
+  });
 };

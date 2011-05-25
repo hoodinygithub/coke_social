@@ -84,7 +84,7 @@ private
   def load_user_activities
     group = :just_me
     
-    activity      = profile_account.activity_feed(:group => group)
+    activity      = Rails.env.development? ? [] : profile_account.activity_feed(:group => group)
     @activity     = activity.sort_by {|a| a['timestamp'].to_i}.reverse
     
     @has_more = (activity.size > ACTIVITIES_MAX) rescue true

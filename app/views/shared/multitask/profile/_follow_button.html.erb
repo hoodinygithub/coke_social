@@ -1,15 +1,17 @@
 <% if current_user %>
-  <% if current_user.follows?(user) %>    
-    <a id="following" class="follow_button btn_rojo btn_rojo_grande activo" href="#" onclick="Base.community.multitask_unfollow('<%= user.slug %>', this, ''); return false;">
-      <%= t('actions.unfollow').upcase %><span class="bg_fin">&nbsp;</span>
-    </a>
-  <% else %>
-    <a id="not_following" class="follow_button btn_rojo btn_rojo_grande" href="#"  onclick="Base.community.multitask_follow('<%= user.slug %>', this, ''); return false;">
-      <%= t('actions.follow').upcase %><span class="bg_fin">&nbsp;</span>
-    </a>
+  <% unless current_user.id == user.id %>
+    <% if current_user.follows?(user) %>    
+      <a slug="<%=user.slug%>" id="following" class="follow_button btn_rojo btn_rojo_grande activo" href="#" onclick="Base.community.multitask_unfollow('<%= user.slug %>', this, ''); return false;">
+        <%= t('actions.unfollow').upcase %><span class="bg_fin">&nbsp;</span>
+      </a>
+    <% else %>
+      <a slug="<%=user.slug%>" id="not_following" class="follow_button btn_rojo btn_rojo_grande" href="#"  onclick="Base.community.multitask_follow('<%= user.slug %>', this, ''); return false;">
+        <%= t('actions.follow').upcase %><span class="bg_fin">&nbsp;</span>
+      </a>
+    <% end %>
   <% end %>
 <% else %>
-  <a id="not_following" class="follow_button btn_rojo btn_rojo_grande" href="#"  onclick="$.alert_layer('/registration_layers/follow_user?account_id=<%= user.id %>'); return false;">
+  <a slug="<%=user.slug%>" id="not_following" class="follow_button btn_rojo btn_rojo_grande" href="#"  onclick="$.alert_layer('/registration_layers/follow_user?account_id=<%= user.id %>'); return false;">
     <%= t('actions.follow').upcase %><span class="bg_fin">&nbsp;</span>
   </a>
 <% end %>
