@@ -6,12 +6,12 @@
     <li>
     <%= link_to "<span class='bg_icono'>&nbsp;</span>#{t("sessions.new.sign_in")}", site_login_url(:return_to => nav_aux_login_url, :follow_profile => @follow_profile), :class => "acceso_sesion link_decor", :title => t("sessions.new.sign_in") %></li>
     <li>
-    <%= registered_link_to t("registration.sign_up"), {:return_to => my_dashboard_path, :follow_profile => @follow_profile, :host => current_site.ssl_domain, :protocol => "https"}, {:class => "acceso_registro link_decor", :title => t("registration.sign_up")} %></li>
+    <%= link_to t("registration.sign_up"), new_user_path(:return_to => my_dashboard_path, :follow_profile => @follow_profile), {:class => "acceso_registro link_decor", :title => t("registration.sign_up")} %></li>
   <% else %>
     <li>
     <%= link_to "<span class='bg_icono'>&nbsp;</span>#{t("sessions.new.sign_in")}", site_login_url(:return_to => nav_aux_login_url), :class => "acceso_sesion link_decor", :title => t("sessions.new.sign_in") %></li>
     <li>
-    <%= registered_link_to t("registration.sign_up"), {:return_to => my_dashboard_path, :host => current_site.ssl_domain, :protocol => "https"}, {:class => "acceso_registro link_decor", :title => t("registration.sign_up")}%></li>
+    <%= link_to t("registration.sign_up"), new_user_path(:return_to => my_dashboard_path), {:class => "acceso_registro link_decor", :title => t("registration.sign_up")}%></li>
   <% end %>
 
 <% else %>
