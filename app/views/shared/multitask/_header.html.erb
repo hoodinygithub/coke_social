@@ -21,7 +21,7 @@
     id:'coke_engine',
        name:'coke_engine'
     };
-    swfobject.embedSWF('/flash/sound_stub.swf', 'coke_player', '1', '1', '9.0.0', false, cFlashVars, cParams, cAttribs);
+    swfobject.embedSWF('<%= current_site_url %>/flash/sound_stub.swf', 'coke_player', '1', '1', '9.0.0', false, cFlashVars, cParams, cAttribs);
     /*****************************/
     /* Goom player configuration */
     // Exposed goom engine callbacks
@@ -89,7 +89,7 @@
       var fAttribs = {
 
       };
-      swfobject.embedSWF('/images/multitask/swfs/bocadillo_<%= site_code %>.swf', 'bocadillo_claim', '310', '35', '9.0.0', false, fFlashVars, fParams, fAttribs);
+      swfobject.embedSWF('<%= current_site_url %>/images/multitask/swfs/bocadillo_<%= site_code %>.swf', 'bocadillo_claim', '310', '35', '9.0.0', false, fFlashVars, fParams, fAttribs);
     </script>
     <noscript>
       <object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=9,0,28,0" width="310" height="35">
