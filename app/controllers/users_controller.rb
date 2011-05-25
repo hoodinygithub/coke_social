@@ -23,13 +23,20 @@ class UsersController < ApplicationController
   
   # GET /users/id
   def show
-    redirect_to :action => :edit
+    @user = current_user
+    if params[:ajax]
+    #   render :text => my_settings_path(:iframe => true), :layout => 'iframe'
+    # elsif params[:iframe]
+      render :action => :edit, :layout => false
+    else
+      redirect_to :action => :edit
+    end
   end
 
   # GET /users/id/edit
   def edit
-    @user = User.find(current_user.id)
-    # puts request.host
+    @user = current_user
+    render :layout => false if params[:ajax]
   end
 
   # POST /users/id

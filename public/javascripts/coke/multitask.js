@@ -21,6 +21,15 @@ $(document).ready(function() {
   $('.txt').livequery(function() {
     Cufon.replace('.txt');
   })
+  
+  
+  //observe accordion tabs
+  $('.accordion_title').livequery('click', function() {
+      $(this).toggleClass('expanded');
+      $(this).next().slideToggle(200);
+
+      return false;
+  });
 
   //efecto badges
   // NOTE: Commented block below
