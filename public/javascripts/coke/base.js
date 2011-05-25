@@ -1634,3 +1634,11 @@ var swf = function(objname)
   else
     return document[objname];
 };
+
+Base.playlist_search.buildSearchUrl = function () {
+  //var form_values = jQuery("#playlist_search_form").serializeArray();
+  //var q     = Base.header_search.getFieldValue(form_values,'q');
+  //var url   = "/playlists/create/?term=" + ( q == msg ? "" : q) ;
+  //location.href = url;
+  return false;
+};
