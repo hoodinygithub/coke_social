@@ -49,7 +49,7 @@
               <p class="accion"><%= t('coke_messenger.layers.share_mix_layer.share') %></p>
               <h2><%= t('coke_messenger.layers.share_mix_layer.email').downcase %> <span>(<%= t('coke_messenger.layers.share_mix_layer.enter_below') %>)</span></h2>
               <form action="<%= share_with_friend_path(:media => "station", :multitask => true) %>" class="f_compartir" onsubmit="Base.playlists.multitask_layer_submit('sub_compartir', Base.playlists.multitask_shareCallback); return false;">
-                  <%= hidden_field_tag "item_id", p.id %>
+                  <%= hidden_field_tag "item_id", p.station.id %>
                   <%= hidden_field_tag "user_name", current_user.name %>
                   <%= hidden_field_tag "user_email", current_user.email %>
                   <label class="estirar"><span><%= t('coke_messenger.layers.share_mix_layer.email_to') %></span> <input name="email" type="text" class="texto" /></label>

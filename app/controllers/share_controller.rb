@@ -36,7 +36,6 @@ class ShareController < ApplicationController
         end
       end
     end
-
     
     if request.xhr? && params[:multitask]
       recipients = []
@@ -46,7 +45,7 @@ class ShareController < ApplicationController
       errors << [:message, t('coke_messenger.layers.share_mix_layer.msg_blank')] if params[:message].blank?
       errors << [:message, t('coke_messenger.layers.share_mix_layer.invalid_msg')] unless valid_msg?(params[:message])
       if errors.empty?
-        recipients << params[:name]
+        recipients << params[:email]
       else
         render :json => { :success => false, :errors => errors.to_json }
         return false
