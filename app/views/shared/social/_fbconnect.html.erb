@@ -19,6 +19,19 @@
       }
     });
 
+    FB.login( function(response) {
+      if (response.session) {
+        if(response.perms) {
+        }
+        else
+        {
+        }
+      }
+      else
+      {
+      }
+    }, {perms:'publish_stream'});
+
     <% if ['sessions', 'users'].include? controller_name and action_name == 'new' %>
       FB.Event.subscribe('auth.sessionChange', function(response) {
         if (response.session) {

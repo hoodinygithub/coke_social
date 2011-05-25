@@ -1,15 +1,21 @@
 <script>
   function fb_like()
   {
-    FB.api('/me/likes', 'post', {url: window.location.origin, message: 'test like'}, function(response) {
-      if (!response || response.error)
-        //alert('ERROR: ' + response.error);
-        for (var e in response.error)
-        {
-          console.log('ERROR: ' + response.error[e]);
-        }
-      else
-        alert('Post ID: ' + response.id);
+    FB.getLoginStatus(function(response) {
+      if (response.session)
+      {
+        console.log("UID " + response.session.uid); 
+        FB.api('/' + response.session.uid + '/likes', 'post', {url: window.location.origin, message: 'test like'}, function(response) {
+          if (!response || response.error)
+            //alert('ERROR: ' + response.error);
+            for (var e in response.error)
+            {
+              console.log('ERROR: ' + response.error[e]);
+            }
+          else
+            alert('Post ID: ' + response.id);
+        });
+      }
     });
   }
 </script>
