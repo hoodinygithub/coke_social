@@ -120,6 +120,7 @@ class UsersController < ApplicationController
     @user.ip_address  = remote_ip
     @user.msn_live_id = session[:msn_live_id] if wlid_web_login?
     @user.born_on_string = "#{born_on_year}-#{born_on_month}-#{born_on_day}"
+    @user.networks << COKE_NETWORK
 
     @user.email = email.downcase if email
 
