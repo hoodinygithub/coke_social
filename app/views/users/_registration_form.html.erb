@@ -16,7 +16,7 @@
   <%= f.hidden_field :sso_windows unless @user['sso_windows'].nil? %>
   <div class="form_content">
     <div class="form_row last">
-      <%= f.label :gender, "#{t("registration.you_are")>" %>
+      <%= f.label :gender, "#{t("registration.you_are")}" %>
       <%= f.radio_button :gender, "Female", :checked => true %><%= t("user.female") %>&nbsp;
       <%= f.radio_button :gender, "Male" %><%= t("user.male") %>
     </div><!--/end form_row -->
