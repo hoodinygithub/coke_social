@@ -1,6 +1,6 @@
 <% playlist_link = link_to badge_award.deleted_playlist_name, 
             radio_path(:station_id => badge_award.playlist_id),
-            :alt => badge_award.deleted_playlist_name, :content_switch_enabled => true, :onclick => "Base.Station.request('/playlists/#{badge_award.playlist_id}.xml', 'xml', Base.Station.stationCollection);Base.Player.random(false)" rescue nil %>
+            :alt => badge_award.deleted_playlist_name, :content_switch_enabled => true rescue nil %>
 <li>
     <%= link_to image_tag("#{badge_award.image}"), badge_path(badge_award), :class => "avatar", :content_switch_enabled => true %>
     <div class="text">

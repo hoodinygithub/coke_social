@@ -18,7 +18,7 @@
             <div class="datos">
                 <h3><%= link_to truncate(p.name, :length=>15, :omission=> '...'), 
                             radio_path(:station_id => p.station.id),
-                            :alt => p.name, :content_switch_enabled => true, :onclick => "Base.Station.request('/playlists/#{p.id}.xml', 'xml', Base.Station.stationCollection);Base.Player.random(false)", :class => "link_rojo" %></h3>
+                            :alt => p.name, :content_switch_enabled => true, :class => "link_rojo" %></h3>
                 <%= station_contains(p, 3, true, {:class => "link_rojo"}) %>
             </div>
         </li>

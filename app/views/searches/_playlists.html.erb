@@ -12,11 +12,11 @@
               <%= tag_links playlist %>
             </div>
             <div class="align_right box_buttons">
-              <a href="#" onclick="Base.Station.request('/playlists/<%= playlist.id %>.xml', 'xml', Base.Station.stationCollection);Base.Player.random(false);" title="Reproducir"><img src="/images/play_button.png" class="png_fix" alt="Play_button" /></a>
+              <a href="#" onclick="Base.Station.request('/playlists/<%= playlist.id %>.xml', 'xml', Base.Station.stationCollection);Base.Player.random(false); return false;" title="Reproducir"><img src="/images/play_button.png" class="png_fix" alt="Play_button" /></a>
             </div>
           </div><!-- .hidden -->
           <div class="visible fh">
-            <a href="#" onclick="Base.Station.request('/playlists/<%= playlist.id %>.xml', 'xml', Base.Station.stationCollection);Base.Player.random(false);" title=""><img alt="" class="play_button png_fix" src="/images/play_button.png"  /></a>
+            <a href="#" onclick="Base.Station.request('/playlists/<%= playlist.id %>.xml', 'xml', Base.Station.stationCollection);Base.Player.random(false); return false;" title=""><img alt="" class="play_button png_fix" src="/images/play_button.png"  /></a>
             <a href="#" title=""><%= playlist.name %></a>
             <%= multitask_rating playlist %>
           </div><!-- .visible -->

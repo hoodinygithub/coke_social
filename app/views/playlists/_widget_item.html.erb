@@ -31,7 +31,7 @@
             </div>
         </div>
         <div class="visible">
-            <%= link_to image_tag('play_button.png', :class => 'play_button png_fix'), radio_path(:station_id => p.station.id) ,:title=> t('actions.play')%>
+            <%= link_to image_tag('play_button.png', :class => 'play_button png_fix'), radio_path(:station_id => p.station.id, :load_mix => true) ,:title=> t('actions.play')%>
   	        <%= link_to truncate(p.name, 15, '...'), 
 	                  radio_path(:station_id => p.station.id),
 	                  :alt => p.name %>

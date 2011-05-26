@@ -18,12 +18,12 @@
             edit_playlist_path(item) if item.owner == current_user %>
           <%= link_to image_tag('close_button.png', :class=> "png_fix"), '#', :title=> t('actions.delete'),
             :onclick => "Base.stations.remove_from_layer(#{item.station.id}); return false;" if on_dashboard? %>
-          <%= link_to image_tag('play_button.png', :class=> "png_fix"), radio_path(:station_id => item.station.id) , :title=> t('actions.play')%>
+          <%= link_to image_tag('play_button.png', :class=> "png_fix"), radio_path(:station_id => item.station.id, :load_mix => true) , :title=> t('actions.play')%>
         </div>
       </div>
 
       <div class="visible fh">
-        <%= link_to image_tag('play_button.png', :class=> "play_button png_fix"), radio_path(:station_id => item.station.id) %>
+        <%= link_to image_tag('play_button.png', :class=> "play_button png_fix"), radio_path(:station_id => item.station.id, :load_mix => true) %>
 
         <%= link_to truncate(item.name, 15, '...'), 
             radio_path(:station_id => item.station.id),

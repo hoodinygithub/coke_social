@@ -22,7 +22,7 @@
       <% end %>
       <br />
       <span class="big_btn_box hoverable_item">
-        <%= link_to "Play", radio_path(:station_id => playlist.station.id), :class => "big_btn play_btn" ,:title=> t('actions.play') %>
+        <%= link_to "Play", radio_path(:station_id => playlist.station.id, :load_mix => true), :class => "big_btn play_btn" ,:title=> t('actions.play') %>
       </span>
       <!--img src="images/play_button.png" /></a!--> 
      </div>

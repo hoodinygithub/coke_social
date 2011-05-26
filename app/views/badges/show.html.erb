@@ -10,7 +10,7 @@
         <div class="detail_text">
             <% playlist_link = link_to @badge_award.deleted_playlist_name, 
                         radio_path(:station_id => @badge_award.playlist_id),
-                        :alt => @badge_award.deleted_playlist_name, :content_switch_enabled => true, :onclick => "Base.Station.request('/playlists/#{@badge_award.playlist_id}.xml', 'xml', Base.Station.stationCollection);Base.Player.random(false)" rescue nil %>
+                        :alt => @badge_award.deleted_playlist_name, :content_switch_enabled => true rescue nil %>
             <h3><%= t("badges.#{@badge_award.badge_key}.name") %></h3>
             <h4><%= t("badges.#{@badge_award.badge_key}.qualification", :playlist_name => playlist_link) %></h4>
             <%= avatar_for(profile_user, :small, :width => 50, :height => 50) %>

@@ -1,6 +1,14 @@
 <%
   avatar = avatar_for(p, :large, :class => "portada", :height => 98, :width => 98)
 %>
+<% if params[:load_mix] %>
+  <script type="text/javascript">
+    $(document).ready(function() {
+      Base.Station.request('/playlists/<%= p.id %>.xml', 'xml', Base.Station.stationCollection);
+      Base.Player.random(false)
+    });
+  </script>
+<% end %>
 
 <div class="mix_bloque">
     <div class="mix_visible">
