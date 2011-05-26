@@ -1668,3 +1668,58 @@ Base.stations.remove = function(station_id) {
     }
   });
 };
+
+Base.playlists.showTagsLayer = function() {
+  $('ul.selected_tags li').remove();
+  pre_selected_tags = $('#facebox .real_tags,input.edit_tags').val();
+  $("ul.available_tags li").show();
+  if ( pre_selected_tags != "") {
+    $('#selected_tags').val(pre_selected_tags);
+    $.each(pre_selected_tags.split(','), function() {
+      $('ul.selected_tags').append('<li><a href="#">' + this + '</a></li>');
+      $("ul.available_tags li a:contains('" + this + "')").first().parent().hide();        
+      $('ul.selected_tags li a').click(Base.playlists.removeTag);
+    });
+  }
+  $('ul.available_tags li a').click(Base.playlists.selectTag);
+  var left = $(window).width() / 2;
+  var top  = getPageScroll()[1] + (getPageHeight() / 10)
+  if (!top) {
+    top = 60;
+  }
+  $('#tags_popup').css('z-index', 1000).css('left', left).css('top', top).show();
+  $(document).bind('close.facebox', function() { $('#tags_popup').hide(); });
+  Base.playlists.updateSelectedTagCount();
+}
+
+function getPageScroll() {
+  var xScroll, yScroll;
+  if (self.pageYOffset) {
+   yScroll = self.pageYOffset;
+   xScroll = self.pageXOffset;
+  } else if (document.documentElement && document.documentElement.scrollTop) {	 // Explorer 6 Strict
+    yScroll = document.documentElement.scrollTop;
+    xScroll = document.documentElement.scrollLeft;
+  } else if (document.content) {// all other Explorers
+    yScroll = document.content.scrollTop;
+    xScroll = document.content.scrollLeft;
+  }
+  return new Array(xScroll,yScroll)
+}
+
+function getPageHeight() {
+var windowHeight
+  if (self.innerHeight) {	// all except Explorer
+    windowHeight = self.innerHeight;
+  } else if (document.documentElement && document.documentElement.clientHeight) { // Explorer 6 Strict Mode
+    windowHeight = document.documentElement.clientHeight;
+  } else if (document.content) { // other Explorers
+    windowHeight = document.content.clientHeight;
+  }
+  return windowHeight
+}
+
+Base.playlists.updateSelectedTagCount = function() {
+  $('#selected_tags_count').text('(' + $('ul.selected_tags li a').length + ')');  
+  $('#available_tags_count').text('(' + $('ul.available_tags li:visible a').length + ')');
+}
