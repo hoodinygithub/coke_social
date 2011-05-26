@@ -1,66 +1,104 @@
-<% content_for :header_space_content do %>
-<div class="header_spacer"></div>
-<% end %>
-<%= javascript_include_tag 'playlist' %>
-<%= javascript_include_tag 'jquery.ui' %>
-<%= javascript_include_tag 'playlist_create' %>
-<%= javascript_include_tag 'AC_OETags' %>
-<script type="text/javascript">
-  has_custom_avatar = <%= @playlist.avatar_file_name.nil? ? 0 : 1 %>;
+<script>
+  $(document).ready(function() {
+    //observe .rule_tooltip mouse over
+    $('.rule.info_text, .rule.info_default_text, .rule.info_success_text').live('mouseenter mouseout', function(event) {
+      $t= $('.rule_tooltip', this);
+      if (event.type == 'mouseenter') {
+        $t.css('top', -($t.height()/2));
+        $t.stop();
+        $t.fadeTo(400, 1);
+        } else {
+        $t.fadeOut(400);
+      }
+    });
+
+    $('.rule_tooltip').live('hover', function() {
+      $(this).stop();
+      $(this).fadeTo(100,1);
+    });
+  });
+
+  jQuery("#playlist_search_query").keyup(function(e) {
+    //jQuery('.search_results_ajax').show();
+    var keyCode = e.keyCode || window.event.keyCode;
+    //var form_values = jQuery("#playlist_search_form").serializeArray();
+    //var q = Base.header_search.getFieldValue(form_values,'q');
+    var q = jQuery('#playlist_search_query').val();
+
+    if(keyCode == 37 || keyCode == 38 || keyCode == 39 || keyCode == 40){
+      return false;
+    }
+    if(keyCode == 13 || keyCode == 27 || q.length <= 1){
+      //jQuery('.search_results_ajax').show();
+      jQuery('.content_search_results_ajax').hide();
+      jQuery('.create_box').hide();
+      return false;
+    }
+    //jQuery('.search_results_box').show();
+    setTimeout(function () {Base.playlist_search.autocomplete(q)}, 500);
+    return true;
+  });
 </script>
-<%= form_tag playlist_edit_path(@playlist), :class => "account_settings search_music", :id => "update_playlist_form", :method => :post, :multipart => true %>
-<input type="hidden" name="item_ids" value="">
+<div id="container">
+  <div id="main_content" class="playlists">
+    <%= javascript_include_tag 'playlist' %>
+    <%= javascript_include_tag 'playlist_create' %>
+    <script type="text/javascript">
+      has_custom_avatar = <%= @playlist.avatar_file_name.nil? ? 0 : 1 %>;
+    </script>
+    <%= form_tag playlist_edit_path(@playlist), :class => "account_settings search_music", :id => "update_playlist_form", :method => :post, :multipart => true %>
+    <input type="hidden" name="item_ids" value="">
 
-<div class="two_columns">
-  <h1><%= t('playlists.edit') %></h1>
-  <div class="form_row last">
-    <h2><%= t('playlists.name_your_playlist') %></h2>
+    <div class="two_columns">
+      <h1><%= t('playlists.edit') %></h1>
+      <div class="form_row last">
+        <h2><%= t('playlists.name_your_playlist') %></h2>
 
-    <div class="grey_round_box align_center">
-      <input type="text" class="input full_width3" name="playlist[name]" value="<%= @playlist.name %>"/>
-    </div>
-  </div><!--/end form_row -->
+        <div class="grey_round_box align_center">
+          <input type="text" class="input full_width3" name="playlist[name]" value="<%= @playlist.name %>"/>
+        </div>
+      </div><!--/end form_row -->
 
-  <div class="form_row last">
-    <h2><%= t('playlists.tag_your_playlist') %>&nbsp;
-      <a href="#" onclick ="Base.playlists.showTagsLayer();return false;"class="red">
-        <%= t('playlists.click_here_to_add_tags') %>
-      </a>
-    </h2>
+      <div class="form_row last">
+        <h2><%= t('playlists.tag_your_playlist') %>&nbsp;
+          <a href="#" onclick ="Base.playlists.showTagsLayer();return false;"class="red">
+            <%= t('playlists.click_here_to_add_tags') %>
+          </a>
+        </h2>
 
-    <div class="grey_round_box align_center">
-      <input type="text" class="input full_width3 edit_tags" value="<%= @playlist.valid_tags.join(',') %>" name="playlist[tags]" />
-    </div>
-  </div><!--/end form_row -->
+        <div class="grey_round_box align_center">
+          <input type="text" class="input full_width3 edit_tags" value="<%= @playlist.valid_tags.join(',') %>" name="playlist[tags]" />
+        </div>
+      </div><!--/end form_row -->
 
-  <h2><%= t('playlists.search_for_music') %></h2>
-  <%= render :partial => 'playlists/create/search_box' %>
-  <div id="search_results_container">
-    <%= render :partial => 'playlists/create/search_results' %>
-  </div>
-  <div id="playlist_recommended_artists_container">
-    <%= render :partial => 'playlists/create/recommendations' %>
-  </div>
-</div><!--/end two_columns -->
-</form>
+      <h2><%= t('playlists.search_for_music') %></h2>
+      <%= render :partial => 'playlists/create/search_box' %>
+      <div id="search_results_container">
+        <%= render :partial => 'playlists/create/search_results' %>
+      </div>
+      <div id="playlist_recommended_artists_container">
+        <%= render :partial => 'playlists/create/recommendations' %>
+      </div>
+    </div><!--/end two_columns -->
+  </form>
 
-<div id="right_column">
-  <h2><%= t('playlists.picture') %></h2>
-  <div class="playlist_image_container">
-    <div id="update_layer_avatar_container">
-      <div id="update_layer_loading"><%= image_tag 'loading.gif' %></div>
-      <%= avatar_for @playlist, :album, :class => "icon playlist valign_middle float_left", :id => "update_layer_avatar" %>
-    </div>
-    &nbsp;
-    <%= form_tag playlist_avatar_update_path(:format => 'js'), :multipart => true, :target => 'upload_frame', :method => :post, :id => :update_avatar_form %>
+  <div id="right_column">
+    <h2><%= t('playlists.picture') %></h2>
+    <div class="playlist_image_container">
+      <div id="update_layer_avatar_container">
+        <div id="update_layer_loading"><%= image_tag 'loading.gif' %></div>
+        <%= avatar_for @playlist, :album, :class => "icon playlist valign_middle float_left", :id => "update_layer_avatar" %>
+      </div>
+      &nbsp;
+      <%= form_tag playlist_avatar_update_path(:format => 'js'), :multipart => true, :target => 'upload_frame', :method => :post, :id => :update_avatar_form %>
       <label class='label_holder'>
         <a href="#" id="avatar_upload_button" class="red_button valign_middle"><span><span><%= t('account_settings.update') %></span></span></a>
         <input id="playlist_avatar" type="file" class="file" name="playlist[avatar]" size="25" onchange="playlist_image_preview();"/>
         <iframe id='upload_frame' name="upload_frame" style="width:1px;height:1px;border:0px" src="about:blank"></iframe>
       </label>
-        <div id="remove_playlist_avatar" <%= 'style="display:none;"' unless @playlist.avatar_file_name %>
-          <b><%= link_to("[ #{t('account_settings.delete')} ]", playlist_avatar_delete_path(@playlist), :onclick => "Base.playlists.avatarDelete(); return false;") %></b>
-        </div>
+      <div id="remove_playlist_avatar" <%= 'style="display:none;"' unless @playlist.avatar_file_name %>
+        <b><%= link_to("[ #{t('account_settings.delete')} ]", playlist_avatar_delete_path(@playlist), :onclick => "Base.playlists.avatarDelete(); return false;") %></b>
+      </div>
 
     </form>
     <div id="uploaded_image_name">filename</div>
@@ -72,31 +110,19 @@
 
 
 <div class="clearer"></div>
-
-<div id="stream_connector">
-  <script type="text/javascript" charset="utf-8">
-  <% if @edited %>
-    $.popup({ div: '#edit_conf_popup' });
-  <% end %>
-
-  $tag_box = new $.TextboxList('input.edit_tags', {  });
-
-
-  var flashvars = "playerId=<%= @player_id %>";
-  AC_FL_RunContent(
-    "src", "/flash/stream_connect",
-    "wmode", "opaque",
-    "width", "1",
-    "height", "1",
-    "align", "middle",
-    "id", "stream_connect",
-    "quality", "high",
-    "bgcolor", "#FFFFFF",
-    "name", "stream_connect",
-    "allowScriptAccess", "sameDomain",
-    "type", "application/x-shockwave-flash",
-    "pluginspage", "http://www.adobe.com/go/getflashplayer",
-    "flashVars", flashvars
-  );
-  </script>
+<div id="stream_connector"></div>
+<script type="text/javascript">
+  var sFlashVars = {
+playerId:<%= @player_id %>
+  };
+var sParams = {
+allowScriptAccess: 'sameDomain'
+};
+var sAttribs = {
+id:'stream_connect',
+   name:'stream_connect'
+};
+swfobject.embedSWF('/flash/stream_connect.swf', 'stream_connector', '1', '1', '9.0.0', false, sFlashVars, sParams, sAttribs);
+</script>
+</div>
 </div>
