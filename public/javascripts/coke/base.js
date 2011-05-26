@@ -93,6 +93,14 @@ $(document).ready(function() {
     });
   });
 
+ $(document).bind('reveal.facebox', function() {     
+    $('#facebox .real_tags').val('');
+    $('#selected_tags').val('');
+    if ($('#facebox .real_tags').length != 0) {
+      $tag_box = new $.TextboxList('#facebox .real_tags', {  });
+    }
+ });
+
   Base.Player.player(typeof set_player != "undefined" ? set_player : 'coke');
   Base.UI.setControlUI(Base.Player._player);
   if (typeof set_player != "undefined" && set_player == "goom")
