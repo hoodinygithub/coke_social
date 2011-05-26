@@ -1723,3 +1723,22 @@ Base.playlists.updateSelectedTagCount = function() {
   $('#selected_tags_count').text('(' + $('ul.selected_tags li a').length + ')');  
   $('#available_tags_count').text('(' + $('ul.available_tags li:visible a').length + ')');
 }
+
+Base.playlists.removeTag = function() {
+  var tag = $(this).text();
+  $(this).parent().remove();
+  $("ul.available_tags li a:contains('" + tag + "')").parent().show();
+  $("#selected_tags").val( $("#selected_tags").val().replace(new RegExp('(,)?' + tag),"") );   
+  Base.playlists.updateSelectedTagCount();
+  return false;
+}
+
+Base.playlists.selectTag = function() {
+  var tag = $(this).text();
+  $('ul.selected_tags').append('<li><a href="#">' + tag + '</a></li>');
+  $('ul.selected_tags li a').click(Base.playlists.removeTag);
+  $(this).parent().hide();
+  Base.playlists.updateSelectedTagCount();
+  $('#selected_tags').val( $('#selected_tags').val() + ',' + tag );
+  return false;
+}
