@@ -1742,3 +1742,15 @@ Base.playlists.selectTag = function() {
   $('#selected_tags').val( $('#selected_tags').val() + ',' + tag );
   return false;
 }
+
+Base.playlists.saveTags = function() { 
+  $('.textboxlist-bit-box-deletable').remove();
+  $('#facebox .real_tags, input.edit_tags').val(''); 
+  $.each($("#selected_tags").val().replace(/^,/,"").split(','), function() {
+    if (this.cleanupURL() != "") {
+      $tag_box.add(this.cleanupURL());     
+    }
+  });
+  $('#selected_tags').val('');
+  $('#tags_popup').hide();
+}
