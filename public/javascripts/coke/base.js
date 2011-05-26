@@ -1755,6 +1755,13 @@ Base.playlists.saveTags = function() {
   $('#tags_popup').hide();
 }
 
+Base.playlists.removeAllTags = function() {
+  $('ul.selected_tags li').remove();   
+  $('ul.available_tags li').show();
+  Base.playlists.updateSelectedTagCount();
+  $('#selected_tags').val('');
+}
+
 String.prototype.cleanupURL = function(regex, sub) {
   var cleanup = this.replace(regex, sub);
   cleanup = cleanup.replace(/&&/g, "&");
