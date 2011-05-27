@@ -664,11 +664,15 @@ Base.account_settings.add_message_on = function(field, message, type) {
 
   if (field.attr('type') != 'checkbox') {
     var rounded_box = field.closest('.grey_round_box');
-    var label = $("label[for='" + field.attr('name') + "']").children('b');
-    var box_text = rounded_box.children('b');
     rounded_box.addClass( color + '_' + type);
+
+    var label = $("label[for='" + field.attr('id') + "']").children('b');
     label.addClass(color);
+
+    var box_text = rounded_box.children('b');
     box_text.addClass('white');
+    rounded_box.addClass('white');
+
     var message_content = $('<div class="clearer" /><span class="' + color + '" style="width:250px;display:block;">' + message + '</span>');
     rounded_box.after(message_content);
   } else {

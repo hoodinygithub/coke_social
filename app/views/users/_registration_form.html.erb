@@ -6,7 +6,7 @@
   <% if @user.errors.size > 0 %>
     $(document).ready(function(){
     field_with_errors = <%= @user.custom_errors.to_json %>;
-    Base.account_settings.highlight_field_with_errors();
+    Base.account_settings.highlight_field_with_errors(false, "content");
     });
   <% end %>
 <% end %>
