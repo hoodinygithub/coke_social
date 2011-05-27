@@ -1790,3 +1790,41 @@ Base.activity.show_more = function(button, slug) {
     $ul.append(response).fadeIn();
   });
 };
+
+Base.activity.count_chars = function() {
+  $textarea     = jQuery("#network_comment");
+  $chars_counter = jQuery("#chars_counter");
+
+  if ($textarea.val().length < 140) {
+    $chars_counter.removeClass("error");
+    $chars_counter.html(140 - $textarea.val().length);
+  } else {
+    $chars_counter.addClass("error");
+    $chars_counter.html("0");
+    $textarea.val( $textarea.val().substr(0, 140) );
+  }
+};
+
+Base.activity.pushUpdate = function(button) {
+  $(button).hide()
+  $.post(Base.currentSiteUrl() + '/activity/update/status', 
+         {'message':$("#network_comment").val()}, 
+         Base.activity.pushUpdateCallback);
+}
+
+Base.activity.pushUpdateCallback = function(response) {
+ var commentField = $("#network_comment");
+ if (response.success) {
+   commentField.val("");
+   var charsCounter = $(".chars_counter");
+       charsCounter.html(140);
+       charsCounter.removeClass("error");
+    
+    $('p.no_resultados').remove();   
+    $('ul.comments_list').prepend(response.latest)
+ }
+ else {
+   // show response.errors
+ }
+ $('a.compartir_button').show();
+}

@@ -1,10 +1,10 @@
 class DashboardsController < ApplicationController
   before_filter :login_required
   before_filter :auto_follow_profile
-  #before_filter :load_user_activities, :only => [:show]
-  ACTIVITIES_MAX           = 15
-  ACTIVITIES_DASHBOARD_MAX = 8
-  ACTIVITY_SHOW_MORE_SIZE  = 5
+  before_filter :load_user_activities, :only => [:show]
+
+  ACTIVITIES_MAX           = 50
+  ACTIVITIES_PAGE_SIZE     = 3
 
   layout_except_xhr 'application'
 
@@ -13,7 +13,7 @@ class DashboardsController < ApplicationController
     @top_playlists_limit = 6
     @top_playlists = current_site.top_playlists.all(:limit => @top_playlists_limit)
     @notifications = profile_owner? ? profile_user.badge_awards.notifications : []
-    
+    @activity = @activity[0..ACTIVITIES_PAGE_SIZE-1]
     
     respond_to do |format|
       format.html
@@ -25,35 +25,33 @@ class DashboardsController < ApplicationController
   
   private
   def load_user_activities
-    @has_more = true
-
-    if profile_account
-      @account = profile_account
-    else
-      @account = get_account_by_slug(params[:slug])
-    end
+    @has_more = false
 
     group = :all
-    
-    if params[:profile_owner] and params[:profile_owner].to_i == 0
-      group = :just_me
+    if params[:sort_by]
+      @filter_type = (params[:sort_by] =~ /(user_followings|user|followings)/i) ? params[:sort_by] : "user_followings"
+      group        = :all            if @filter_type == 'user_followings'
+      group        = :just_me        if @filter_type == 'user'
+      group        = :just_following if @filter_type == 'followings'
     end
     
-    if params[:filter_by]
-      @filter_type = params[:filter_by]
-      group        = :all            if @filter_type == 'all'
-      group        = :just_me        if @filter_type == 'me'
-      group        = :just_following if @filter_type == 'following'
+    if Rails.env.development?
+      # TESTING - Update info if this user is not in your DB
+      test_item = {"timestamp"=>"1297971608", :pk=>"1600280/status/1297971608", "user_avatar"=>"/images/multitask/djs/sim_autor.jpg", "account_id"=>"1600280", "type"=>"status", "id"=>"23688250472120", "user_id"=>"1600280", "user_slug"=>"sue008"}
+      collection = []
+      50.times do |i|
+        collection << test_item.merge("message" => "Message #{i+1}")
+      end
+    else
+      collection      = current_user.activity_feed(:group => group)
     end
+    @activity     = collection.sort_by {|a| a['timestamp'].to_i}.reverse
     
-    collection      = @account.activity_feed(:group => group)
-    @collection     = collection.sort_by {|a| a['timestamp'].to_i}.reverse
-    
-    if collection.size - ACTIVITIES_MAX > 0
+    if collection.size - ACTIVITIES_PAGE_SIZE > 0
       @has_more = true
     end
 
-    @collection.each do |a|
+    @activity.each do |a|
       account      =  Account.find(a['account_id'])
       a['account'] = account
       if a['type'] == 'station'

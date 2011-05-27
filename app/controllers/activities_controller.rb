@@ -70,11 +70,20 @@ class ActivitiesController < ApplicationController
         item = {:message => params[:message]}
       end
 
-      activity_status = Activity::Status.new(current_user)
+      success = false
+      
+      if Rails.env.development?
+        # TESTING - Update info if this user is not in your DB
+        activity_status = {"message" => params[:message], "timestamp"=>"1297971608", :pk=>"1600280/status/1297971608", "user_avatar"=>"/images/multitask/djs/sim_autor.jpg", "account_id"=>"1600280", "type"=>"status", "id"=>"23688250472120", "user_id"=>"1600280", "user_slug"=>"sue008"}
+        success = true
+      else
+        activity_status = Activity::Status.new(current_user)
+        success = true if activity_status.put(item)
+      end
 
-      if activity_status.put(item)
-        load_user_activities
-        render :json => { :success => true, :latest => render_to_string(latest_activity) }   
+      if success
+        set_activity_objects(activity_status)
+        render :json => { :success => true, :latest => render_to_string(:partial => 'activities/item', :locals => {:item => activity_status}) }   
       else
         render :json => { :success => false, :errors => activity_status.errors.to_json }
       end  
@@ -107,6 +116,16 @@ class ActivitiesController < ApplicationController
   end
 
   private
+  def set_activity_objects(a)
+    account      =  Account.find(a['account_id'])
+    a['account'] = account
+    if a['type'] == 'station'
+      station      = Station.find(a['item_id']).playable
+      a['station'] = station
+      a['artist']  = station.artist
+    end
+  end
+  
   def load_user_activities
     @has_more = false
 

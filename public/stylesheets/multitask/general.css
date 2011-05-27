@@ -353,6 +353,8 @@ input.btn_gris{width:130px;height:28px;background:url(/images/multitask/bg_eleme
 .mod_actividad h3{font-size:1.8em;font-weight:bold;color:#2c2c2c;margin:15px 0 10px 15px;width:350px;float:left;}
 .f_comentarios{background:#ececec;padding:10px 25px;height:150px;-moz-border-radius:5px;position:relative;margin-bottom:5px;clear:both;}
 .f_comentarios .caracteres{font-size:1.2em;color:#979797;text-align:right;margin-bottom:6px;}
+.f_comentarios .caracteres span{font-weight:bold;}
+.f_comentarios .caracteres span.error{color:#D60015;}
 .f_comentarios .bocadillo{border:0;background:url(/images/multitask/bg_elementos.png) no-repeat -3px -340px;width:463px;height:82px;padding:5px 5px 5px 25px;float:right;margin-bottom:10px;}
 .f_comentarios .network_text{width:187px;float:left;top:133px;left:127px;position:absolute;}
 .f_comentarios .network_text strong{width:125px;float:left;font-size:1.2em;color:#979797;padding:7px 0 0 2px;}
@@ -500,6 +502,7 @@ div.star-rating-readonly a{cursor:default !important;}
 /* modulo top mixes */
 .cont_columna.der .mod_top{margin-bottom:25px;padding-bottom:25px;}
 /* modulo actividad reciente */
+.network_update{margin-bottom:0;}
 .mod_actividad{margin-bottom:20px;}
 .recent_activity_list{padding:10px 14px;}
 .recent_activity_list li{width:100%;font-size:1.2em;color:#636363;line-height:14px;color:#828282;margin-top:5px ;}

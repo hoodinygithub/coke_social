@@ -1,7 +1,7 @@
 <% content_for :main_content do %>
   <%= render :partial => 'shared/multitask/profile/latest_mixes', :locals => {:user => current_user} %>
   <%= render :partial => 'shared/multitask/profile/latest_badges', :locals => {:user => current_user} %>
-  <%#= render :partial => 'shared/multitask/profile/my_activity', :locals => {:user => current_user, :activity => @activity} %>
+  <%= render :partial => 'shared/multitask/profile/my_activity', :locals => {:user => current_user, :activity => @activity} %>
 <% end %>
 
 <% content_for :right_side_content do %>
