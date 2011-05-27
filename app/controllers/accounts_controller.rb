@@ -84,7 +84,7 @@ private
   def load_user_activities
     group = :just_me
     
-    if Rails.env.development?
+    if false #Rails.env.development?
       # TESTING - Update info if this user is not in your DB
       test_item = {"timestamp"=>"1297971608", :pk=>"1600280/status/1297971608", "user_avatar"=>"/images/multitask/djs/sim_autor.jpg", "account_id"=>"1600280", "type"=>"status", "id"=>"23688250472120", "user_id"=>"1600280", "user_slug"=>"sue008"}
       activity = []

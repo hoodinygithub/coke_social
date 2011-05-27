@@ -72,7 +72,7 @@ class ActivitiesController < ApplicationController
 
       success = false
       
-      if Rails.env.development?
+      if false #Rails.env.development?
         # TESTING - Update info if this user is not in your DB
         activity_status = {"message" => params[:message], "timestamp"=>"1297971608", :pk=>"1600280/status/1297971608", "user_avatar"=>"/images/multitask/djs/sim_autor.jpg", "account_id"=>"1600280", "type"=>"status", "id"=>"23688250472120", "user_id"=>"1600280", "user_slug"=>"sue008"}
         success = true
@@ -143,7 +143,7 @@ class ActivitiesController < ApplicationController
       group        = :just_following if @filter_type == 'followings'
     end
     
-    if Rails.env.development?
+    if false #Rails.env.development?
       # TESTING - Update info if this user is not in your DB
       test_item = {"timestamp"=>"1297971608", :pk=>"1600280/status/1297971608", "user_avatar"=>"/images/multitask/djs/sim_autor.jpg", "account_id"=>"1600280", "type"=>"status", "id"=>"23688250472120", "user_id"=>"1600280", "user_slug"=>"sue008"}
       collection = []
