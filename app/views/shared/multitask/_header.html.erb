@@ -114,7 +114,7 @@
       <% if logged_in? %>
         <a class="btn_grande btn_mix" href="<%= playlist_create_path %>" content_switch_enabled="true" title="<%= t('actions.create_a_playlist') %>" content_switch_enabled="true">
       <% else %>
-        <a class="btn_grande btn_mix" href="#" onclick="$.alert_layer('/registration_layers/create_playlist?return_to=<%= playlist_create_path %>')" title="<%= t('actions.create_a_playlist') %>">
+        <a class="btn_grande btn_mix" href="#" onclick="Base.utils.showRegistrationLayer('<%= playlist_create_path %>', 'create_playlist');" title="<%= t('actions.create_a_playlist') %>">
       <% end %>
           <span class="ico"><%= t('playlists.create_new') %></span>
           <span class="txt"><%= t('playlists.create_new') %></span>

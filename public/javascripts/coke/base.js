@@ -1837,3 +1837,15 @@ Base.activity.pushUpdateCallback = function(response) {
  }
  $('a.compartir_button').show();
 }
+
+Base.utils.showRegistrationLayer = function(url, type) {
+  if (url == undefined) {
+    url = '/my/dashboard';
+  }
+  type || (type = '');
+  $.get('/registration_layers/' + type + '?return_to=' + url, function(response) {
+      $.simple_popup(response);
+      });
+  return false;
+};
+
