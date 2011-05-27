@@ -84,7 +84,16 @@ private
   def load_user_activities
     group = :just_me
     
-    activity      = Rails.env.development? ? [] : profile_account.activity_feed(:group => group)
+    if Rails.env.development?
+      # TESTING - Update info if this user is not in your DB
+      test_item = {"timestamp"=>"1297971608", :pk=>"1600280/status/1297971608", "user_avatar"=>"/images/multitask/djs/sim_autor.jpg", "account_id"=>"1600280", "type"=>"status", "id"=>"23688250472120", "user_id"=>"1600280", "user_slug"=>"sue008"}
+      activity = []
+      50.times do |i|
+        activity << test_item.merge("message" => "Message #{i+1}")
+      end
+    else
+      activity      = profile_account.activity_feed(:group => group)
+    end
     @activity     = activity.sort_by {|a| a['timestamp'].to_i}.reverse
     
     @has_more = (activity.size > ACTIVITIES_MAX) rescue true

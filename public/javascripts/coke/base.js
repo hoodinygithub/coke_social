@@ -132,6 +132,7 @@ var Base = {
   playlists: {},
   stations: {},
   reviews: {},
+  activity: {},
   utils: {},
   share: {},
   locale: {},
@@ -1776,3 +1777,16 @@ String.prototype.cleanupURL = function(regex, sub) {
   cleanup = cleanup.replace(/\?&/g, "?");
   return cleanup;
 }
+
+// Activity
+Base.activity.show_more = function(button, slug) {
+  $button = $(button);
+  $ul = $button.parent();
+  $button.remove();
+  
+  item_count = $ul.children().length
+  
+  $.get(Base.currentSiteUrl() + "/" + slug + "/activities", {'count':item_count}, function (response) {
+    $ul.append(response).fadeIn();
+  });
+};
