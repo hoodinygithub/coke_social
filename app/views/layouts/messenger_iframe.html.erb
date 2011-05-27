@@ -51,8 +51,7 @@
           proxyFrame.style.visibility = "hidden";
           proxyFrame.style.position = "absolute";
           proxyFrame.style.top = proxyFrame.style.left = proxyFrame.style.width = proxyFrame.style.height = "0";
-          <% # /messenger_player/alert_layer/$layer = alert_layer_path($layer).  Keep these in sync. %>
-          proxyFrame.src = "<%= current_site_url %>/proxyframe_alertlayer.html?layer=/messenger_player/alert_layer/" + p_layer + "&locked=" + p_locked;
+          proxyFrame.src = "<%= current_site_url %>/proxyframe_alertlayer.html?layer=<%= alert_layer_path("") %>" + p_layer + "&locked=" + p_locked;
           document.body.appendChild(proxyFrame);
         } else {
           alert("layer should be in a secure IFRAME.");
