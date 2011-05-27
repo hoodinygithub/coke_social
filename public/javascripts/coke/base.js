@@ -501,12 +501,17 @@ Base.UI = {
 
   contentswp: function(data)
   {
-    if(data.status == "200") {
-      $('#content').empty().html(data.responseText);
-      
-      // Scrolls up to top of page after load showing just header nav
-      setTimeout("window.scrollTo(0,135)",0);
+    if (typeof data == "object")
+    {
+      if (data.status == "200")
+        $('#content').empty().html(data.responseText);
     }
+    else if (typeof data == "string")
+    {
+      $('#content').empty().html(data);
+    }
+    // Scrolls up to top of page after load showing just header nav
+    setTimeout("window.scrollTo(0,135)",0);
   },
   
   xhrerror: function(data)
