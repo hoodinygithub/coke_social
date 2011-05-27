@@ -587,6 +587,7 @@ span.title {font-size: 18px; font-weight: bold;}
 .privacy_check {float: left; margin-left: 20px;}
 
 /* end reg page css additions */
+
 img.avatar.small {
   width: 50px;
   height: 50px;
@@ -614,3 +615,11 @@ big {
   width: 200px;
   padding-left: 5px;
 }
+
+/* flash styles */
+#flash_messages {left: 0px; position: absolute; width: 100%; z-index: -100;}
+.message {width: 100%; text-align: center; color: #fff; font-size: 12px; font-weight: bold; line-height: 25px;}
+.confirmation_message {background: #0a872b url("../../images/confirmation_message_bg.gif") repeat-x left top; border: solid 3px #086b22; border-top: none;}
+.error_message {background-color: #bf0b10; border: solid 3px #640604; border-top: none;}
+/* end flash styles */
+
