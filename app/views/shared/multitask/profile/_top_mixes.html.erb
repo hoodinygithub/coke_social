@@ -8,7 +8,7 @@
     <span class="bg_fin">&nbsp;</span>
   </h2>
   
-  <% if user.playlists.size < 1 %>
+  <% if user.total_playlists.zero? %>
     <p class="no_resultados"><%= possessive :has_not_playlists %></p>
   <% else %>
     <ul class="mixes">
