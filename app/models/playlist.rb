@@ -234,15 +234,15 @@ class Playlist < ActiveRecord::Base
     update_attribute(:rating_cache, rating) if rating_cache != rating
   end
 
-   def to_s
+  def to_s
     self.name
   end
 
   def valid_tags
     tags.all(:joins => "INNER JOIN valid_tags ON valid_tags.tag_id = tags.id",
-      :conditions => ["valid_tags.site_id = ? and valid_tags.deleted_at IS NULL", ApplicationController.current_site.id])
+             :conditions => ["valid_tags.site_id = ? and valid_tags.deleted_at IS NULL", ApplicationController.current_site.id])
   end
-  
+
   # defaults to xmas promo
   def promo_tags(p_promo_id = 1)
     tags.all(:joins => "INNER JOIN valid_tags ON valid_tags.tag_id = tags.id",
