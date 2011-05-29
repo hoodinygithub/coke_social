@@ -106,7 +106,7 @@ class User < Account
            :foreign_key => :user_id,
            :conditions => "commentable_type = 'Playlist'"
 
-  has_many :playlists, :foreign_key => :owner_id, :conditions => 'playlists.deleted_at IS NULL' do
+  has_many :playlists, :foreign_key => :owner_id, :conditions => 'playlists.deleted_at IS NULL', :include => :station do
     def top(limit = 4)
       all(:order => 'total_plays DESC', :limit => limit)
     end
