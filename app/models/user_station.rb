@@ -75,10 +75,11 @@ class UserStation < ActiveRecord::Base
     update_attribute(:total_artists, new_artists.size)
   end
 
-  def includes(limit=3)
-    refresh_included_artists unless total_artists > 0
-    user_station_artists.limited_to(limit)
-  end
+  #def includes(limit=3)
+  #  refresh_included_artists unless total_artists > 0
+  #  user_station_artists.limited_to(limit)
+  #end
+  delegate :includes, :refresh_included_artists, :to => :abstract_station
 
   def station_queue(params={})
     params[:ip_address] ||= '67.63.37.2'

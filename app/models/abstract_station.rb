@@ -25,11 +25,11 @@ class AbstractStation < ActiveRecord::Base
 
   named_scope :available, :conditions => { :available => true }
 
-  def self.included(base)
-    base.class_eval do
-      serialize :includes_cache, Array
-    end
-  end
+  #def self.included(base)
+  #  base.class_eval do
+  #    serialize :includes_cache, Array
+  #  end
+  #end
 
   has_many :user_stations
   has_many :abstract_station_artists
