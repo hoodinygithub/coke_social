@@ -48,7 +48,7 @@ class Site < ActiveRecord::Base
   has_many :top_djs, :through => :summary_top_djs, :class_name => 'User', :foreign_key => 'dj_id', :source => :user, :order => 'top_djs.total_requests DESC', :conditions => 'networks.id = 2 AND accounts.deleted_at IS NULL', :include => :networks
 
   has_many :summary_top_playlists, :order => 'total_requests DESC', :class_name => 'TopPlaylist', :include => :playlist
-  has_many :top_playlists, :through => :summary_top_playlists, :class_name => 'Playlist', :foreign_key => 'playlist_id', :source => :playlist, :order => 'top_playlists.total_requests DESC', :include => :owner, :conditions => 'playlists.deleted_at IS NULL and accounts.deleted_at IS NULL'
+  has_many :top_playlists, :through => :summary_top_playlists, :class_name => 'Playlist', :foreign_key => 'playlist_id', :source => :playlist, :order => 'top_playlists.total_requests DESC', :include => [:owner, :station], :conditions => 'playlists.deleted_at IS NULL and accounts.deleted_at IS NULL'
 
   has_many :editorial_stations_sites
   has_many :stations, :through => :editorial_stations_sites, :class_name => 'EditorialStation', :source => :editorial_station, :conditions => "editorial_stations.deleted_at IS NULL"
