@@ -91,17 +91,12 @@ class Site < ActiveRecord::Base
   def tag_counts_from_playlists(limit=60)
     options = { :select => "DISTINCT tags.*",
                 :joins => "INNER JOIN #{Tagging.table_name} ON #{Tag.table_name}.id = #{Tagging.table_name}.tag_id INNER JOIN #{Playlist.table_name} ON #{Tagging.table_name}.taggable_id = #{Playlist.table_name}.id AND #{Tagging.table_name}.taggable_type = 'Playlist' INNER JOIN valid_tags ON valid_tags.tag_id = #{Tag.table_name}.id",
+                :include => :valid_tags,
                 :order => "tags.taggings_count DESC",
                 :conditions => ["playlists.site_id = ? and playlists.deleted_at IS NULL and valid_tags.deleted_at IS NULL and valid_tags.site_id = ? and taggings.created_at > ?", self.id, self.id, Time.now - 2.days],
                 :limit => limit }
     
     Tag.all(options)
-            
-    # options = { :limit => limit, 
-    #             :joins => "INNER JOIN #{Playlist.table_name} ON #{Tagging.table_name}.taggable_id = #{Playlist.table_name}.id AND #{Tagging.table_name}.taggable_type = 'Playlist'",
-    #             :order => "taggings.created_at DESC",
-    #             :conditions => "playlists.site_id = #{self.id}" }
-    # Tag.counts(options)    
   end
   
   def calendar_locale
