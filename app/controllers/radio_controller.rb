@@ -20,7 +20,11 @@ class RadioController < ApplicationController
       @top_playlists = current_site.top_playlists.all(:limit => @top_playlists_limit)
       
     else
-      redirect_to channel_mixes_path
+      if request.xhr?
+        redirect_to channel_mixes_path(:without_layout => 1)
+      else
+        redirect_to channel_mixes_path
+      end
       # @top_djs_limit = 5
       # @top_djs = current_site.top_djs.all(:limit => @top_djs_limit)
       # @top_playlists_limit = 6

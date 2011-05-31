@@ -29,6 +29,8 @@ class PagesController < ApplicationController
                                 :expires_delta => EXPIRATION_TIMES['top_modules_djs']) do
       current_site.top_djs.all(:limit => 5)
     end
+
+    render :layout => false if params.has_key? :without_layout
   end
 
   def messenger_home
