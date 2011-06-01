@@ -73,13 +73,13 @@
       <% if logged_in? %>
         <a class="tooltip r_compartir" href="#" rel="tip_compartir" title="Enviar por correo" content_switch_enabled="true">Enviar por correo</a>
       <% else %>
-        <a class="tooltip r_compartir" href="#" rel="tip_compartir" title="Enviar por correo" onclick="$.alert_layer('/messenger_player/alert_layer/share_mix');return false;">Enviar por correo</a>
+        <a class="tooltip r_compartir" href="#" rel="tip_compartir" title="Enviar por correo" onclick="return Base.utils.showRegistrationLayer();">Enviar por correo</a>
       <% end %>
       <span class="tip tip_ancho" id="tip_compartir">Enviar por correo</span>
       <% if logged_in? %>
         <a class="tooltip r_copiar" href="#" rel="tip_copiar" title="Copiar Mix" content_switch_enabled="true">Copiar</a>
       <% else %>
-        <a class="tooltip r_copiar" href="#" rel="tip_copiar" title="Copiar Mix" onclick="$.alert_layer('/messenger_player/alert_layer/copy_mix');return false;">Copiar</a>
+        <a class="tooltip r_copiar" href="#" rel="tip_copiar" title="Copiar Mix" onclick="return Base.utils.showRegistrationLayer(undefined, 'copy_playlist');">Copiar</a>
       <% end %>
       <span class="tip" id="tip_copiar">Copiar Mix</span>
       <a class="tooltip r_info" href="#" rel="tip_info" title="Información" content_switch_enabled="true">Info</a>

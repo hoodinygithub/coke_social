@@ -1837,3 +1837,36 @@ Base.activity.pushUpdateCallback = function(response) {
  }
  $('a.compartir_button').show();
 }
+
+Base.utils.showRegistrationLayer = function(url, type, accountId) {
+  if (url == undefined) {
+    url = '/my/dashboard';
+  }
+  type || (type = '');
+  var accountParam;
+  if (accountId == undefined) {
+    accountParam = "";
+  } else {
+    accountParam = "&account_id=" + accountId;
+  }
+  $.get('/registration_layers/' + type + '?return_to=' + url + accountParam, function(response) {
+      $.simple_popup(response);
+      });
+  return false;
+};
+
+Base.registration = {};
+Base.registration.layers = {
+removeSomeFaceboxStyles: function() {
+                           $('#facebox .body').css("padding", 0);
+                           $('#facebox .body').css("background-color", "transparent");
+                           $(document).bind("close.facebox", function(){
+                               setTimeout(function() {
+                                 $('#facebox .body').css("padding", "10px");
+                                 $('#facebox .body').css("background-color", "white");
+                                 }, 600);
+                               });
+                         }
+};
+
+
