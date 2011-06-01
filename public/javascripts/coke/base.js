@@ -148,6 +148,11 @@ Base.Util = {
     error_func = typeof(error_func) != 'undefined' ? error_func : Base.UI.xhrerror;
     var options = arguments[4];
 
+
+    // Checks if the request is coming from the artist idx page.
+    // suffix _partial to url to load partial document
+    if (req.match(/index-bands/)) req = req + "_partial";
+
     // Allows actions that respond to XHR differently to be overridden
     new_req = req + (req.indexOf('?') != -1 ? "&ajax=1" : "?ajax=1")
     

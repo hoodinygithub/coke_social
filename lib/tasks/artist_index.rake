@@ -10,6 +10,12 @@ namespace :artist_index do
         puts "-> /shared/#{app_path}/artist_index/#{query}.html"
         File.open("/shared/#{app_path}/artist_index/#{query}.html", 'w') { |file| file.write(page.read) }
       }
+      # for ajax navigation
+      puts "http://#{domain}/artists/list/#{query}?layout=0"
+      open("http://#{domain}/artists/list/#{query}?layout=0", :http_basic_authentication=>['happiness', 'd0ral8725'] ) { |page|
+        puts "-> /shared/#{app_path}/artist_index/#{query}_partial.html"
+        File.open("/shared/#{app_path}/artist_index/#{query}_partial.html", 'w') { |file| file.write(page.read) }
+      }
     end
 
     Site.all(:conditions=>"code LIKE 'coke%'").each { |site|
