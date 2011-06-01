@@ -1,7 +1,7 @@
 class SessionsController < ApplicationController
   before_filter :set_return_to, :only => :new
   skip_before_filter :login_required
-  before_filter :go_home_if_logged_in, :except => [:destroy, :status]
+  before_filter :go_home_or_return_if_logged_in, :except => [:destroy, :status]
   ssl_required_with_diff_domain :edit, :update, :create
 
   # Show header links on login page.
@@ -306,16 +306,5 @@ private
     end
   end
 
-  #def compute_layout
-  #  [:new, :create].include?(action_name.to_sym) ? "no_search_form" : "application" 
-  #end
-
-  # Skip login page if logged in.
-  def go_home_if_logged_in
-    if logged_in?
-      redirect_to(home_path)
-      false
-    end
-  end
 end
 

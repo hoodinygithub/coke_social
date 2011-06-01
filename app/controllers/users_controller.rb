@@ -8,8 +8,8 @@ class UsersController < ApplicationController
   # before_filter :login_required, :only => [:edit, :update, :destroy, :confirm_cancellation, :remove_avatar]
   skip_before_filter :login_required, :only => [:new, :create, :errors_on, :feedback, :confirm_cancellation, :forgot]
   
-  before_filter :set_return_to, :only => [:msn_login_redirect, :msn_registration_redirect, :new]
-  before_filter :set_dashboard_menu, :only => [:edit, :update]
+  before_filter :go_home_or_return_if_logged_in, :only => [:new]
+  #before_filter :set_dashboard_menu, :only => [:edit, :update]
 
   ssl_required_with_diff_domain :edit, :destroy, :new, :errors_on, :confirm_cancellation, :forgot, :feedback
   ssl_allowed_with_diff_domain :update, :create
@@ -147,7 +147,8 @@ class UsersController < ApplicationController
         render :js => js
       else
         respond_to do |format|
-          format.html { redirect_back_or_default(my_dashboard_path) }
+          #format.html { redirect_back_or_default(my_dashboard_path) }
+          format.html { go_home_or_return_if_logged_in }
           format.xml  { render :xml => Player::Message.new( :message => t('messenger_player.registration.success') ) }
         end
       end
@@ -362,11 +363,12 @@ class UsersController < ApplicationController
     account_slug = AccountSlug.find_by_slug(params[:user_slug])
     @account = account_slug.account
   end
-  
-  def set_dashboard_menu
-    @dashboard_menu = :settings
-  end
-  
+
+  # For the old user_data header partial with the drop-down menu
+  #def set_dashboard_menu
+  #  @dashboard_menu = :settings
+  #end
+
   protected
   def compute_layout
     [:new, :create, :forgot].include?(action_name.to_sym) ? "no_search_form" : "application" 

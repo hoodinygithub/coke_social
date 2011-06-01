@@ -164,7 +164,20 @@ class ApplicationController < ActionController::Base
       session[:follow_profile] = params[:follow_profile]
     end
   end
-    
+
+  # Skip a page if already logged in. Useful for login/reg pages.
+  def go_home_or_return_if_logged_in
+    if logged_in?
+      if session[:return_to]
+        redirect_to session[:return_to]
+        session[:return_to] = nil
+      else
+        redirect_to(home_path)
+      end
+      false
+    end
+  end
+
   def auto_follow_profile
     if session[:follow_profile] and logged_in?
       current_user.follow(session[:follow_profile])
