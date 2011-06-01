@@ -77,6 +77,14 @@ $(document).ready(function() {
       }
     }
 
+    if (String($(this).attr('href')).match(/index-bands/))
+    {
+      options.afterComplete = function()
+      {
+        $('body').attr('id', 'list');
+      }
+    }
+
     Base.Util.XHR($(this).attr('href'), 'text', Base.UI.contentswp, Base.UI.xhrerror, options);
 
     return false;
