@@ -79,7 +79,8 @@ $(document).ready(function() {
 
     if (String($(this).attr('href')).match(/index-bands/) ||
         String($(this).attr('href')).match(/index-music/) ||
-        String($(this).attr('href')).match(/badges-dj/))
+        String($(this).attr('href')).match(/badges-dj/) ||
+        String($(this).attr('href')).match(/privacy_policy/))
     {
       options.afterComplete = function()
       {
