@@ -1890,15 +1890,16 @@ removeSomeFaceboxStyles: function() {
 };
 
 Base.badges.filter = function() {
+  $("p.filter a").unbind('click', Base.badges.filter);
   $("table.coke tbody tr").hide();
   if ( $(this).attr('type') == "All" ) {
-	$("table.coke tbody tr").fadeIn();	
+    $("table.coke tbody tr").fadeIn();
   } else {
-    $("table.coke tbody tr:has(td:contains('" + $(this).attr('type') + "'))").fadeIn();		
+    $("table.coke tbody tr:has(td:contains('" + $(this).attr('type') + "'))").fadeIn();
   }
   var inactive_link = $("p.filter span.selected");
   inactive_link.replaceWith('<a href="#" type="' + inactive_link.attr('type') + '">' + inactive_link.text() + '</a>');
   $(this).replaceWith('<span class="selected" type="' + $(this).attr('type') + '">' + $(this).text() + '</span>');
-  $("p.filter a").click(Base.badges.filter);  
-  return false;	
+  $("p.filter a").bind('click', Base.badges.filter);
+  return false; 
 }
