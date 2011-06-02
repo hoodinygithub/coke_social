@@ -77,7 +77,9 @@ $(document).ready(function() {
       }
     }
 
-    if (String($(this).attr('href')).match(/index-bands/) || String($(this).attr('href')).match(/index-music/))
+    if (String($(this).attr('href')).match(/index-bands/) ||
+        String($(this).attr('href')).match(/index-music/) ||
+        String($(this).attr('href')).match(/badges-dj/))
     {
       options.afterComplete = function()
       {
@@ -134,6 +136,7 @@ var SoundEngines = {
 
 var Base = {
   getCurrentSiteUrl: function() {},
+  badges: {},
   account_settings: {},
   layout: {},
   community: {},
@@ -1883,3 +1886,17 @@ removeSomeFaceboxStyles: function() {
                                });
                          }
 };
+
+Base.badges.filter = function() {
+  $("table.coke tbody tr").hide();
+  if ( $(this).attr('type') == "All" ) {
+	$("table.coke tbody tr").fadeIn();	
+  } else {
+    $("table.coke tbody tr:has(td:contains('" + $(this).attr('type') + "'))").fadeIn();		
+  }
+  var inactive_link = $("p.filter span.selected");
+  inactive_link.replaceWith('<a href="#" type="' + inactive_link.attr('type') + '">' + inactive_link.text() + '</a>');
+  $(this).replaceWith('<span class="selected" type="' + $(this).attr('type') + '">' + $(this).text() + '</span>');
+  $("p.filter a").click(Base.badges.filter);  
+  return false;	
+}
