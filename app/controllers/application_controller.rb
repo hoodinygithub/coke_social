@@ -13,9 +13,11 @@ class ApplicationController < ActionController::Base
   sanitize_params
 
   # before_filter :do_basic_http_authentication
+  # before_filter :login_required
   before_filter :confirm_registration_code
-  #before_filter :login_required  
   before_filter :network_terms_required
+  # Whatever page the user is redirected to after a login/reg, do the queued follow task (if one exists)
+  before_filter :auto_follow_profile
 
   filter_parameter_logging :password, :password_confirmation
 
@@ -153,16 +155,7 @@ class ApplicationController < ActionController::Base
   helper_method :site_login_url, :site_register_url, :site_logout_url
 
   def set_return_to
-    if session[:display_layer]
-      session[:layer_to]  = params[:return_to] if params[:return_to]
-      session[:return_to] = session[:origin_to]
-    else
-      session[:layer_to]  = nil
-      session[:return_to] = params[:return_to] if params[:return_to]
-    end
-    if params[:follow_profile]
-      session[:follow_profile] = params[:follow_profile]
-    end
+    session[:return_to] = params[:return_to] if params[:return_to]
   end
 
   # Skip a page if already logged in. Useful for login/reg pages.
@@ -178,24 +171,26 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def set_follow_profile
+    session[:follow_profile] = if params[:follow_profile] 
+                                 params[:follow_profile]
+                               elsif params[:account_id]
+                                 params[:account_id]
+                               else
+                                 nil
+                               end
+  end
+
   def auto_follow_profile
     if session[:follow_profile] and logged_in?
       current_user.follow(session[:follow_profile])
       session[:follow_profile] = nil
     end
   end
-    
-  def display_layer
-    session[:display_layer] = true unless logged_in?
-  end
-    
-  def not_display_layer
-    session[:display_layer] = false
-  end
-    
-  def set_origin
-    session[:origin_to] = request.request_uri unless logged_in?
-  end
+
+  #def set_origin
+  #  session[:origin_to] = request.request_uri unless logged_in?
+  #end
          
   def current_site
     self.class.current_site

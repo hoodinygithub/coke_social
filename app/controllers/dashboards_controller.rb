@@ -1,6 +1,5 @@
 class DashboardsController < ApplicationController
   before_filter :login_required
-  before_filter :auto_follow_profile
   before_filter :load_user_activities, :only => [:show]
 
   ACTIVITIES_MAX           = 50

@@ -1,36 +1,12 @@
 class SessionsController < ApplicationController
   before_filter :set_return_to, :only => :new
   skip_before_filter :login_required
+  skip_before_filter :auto_follow_profile
   before_filter :go_home_or_return_if_logged_in, :except => [:destroy, :status]
   ssl_required_with_diff_domain :edit, :update, :create
 
   # Show header links on login page.
   # layout :compute_layout
-  
-  
-  def mock_win_login
-    render :layout => false
-  end
-  
-  def win_login_redirect
-    @login_status = (params[:login_status] =~ /(connected|connect|optin)/i) ? params[:login_status].to_s : "connected"
-    
-    # TEMPORARY
-    # Mimic the Login functionality
-    case @login_status
-    when "connected"
-      if user = (User.find(:last, :conditions => "sso_windows IS NOT NULL") rescue nil)
-        do_login(user, false, false)
-      end
-    when "connect"
-      
-    when "optin"
-      
-    end
-    
-    render :layout => false
-  end
-  
 
   # GET /session/new
   def new

@@ -2,7 +2,6 @@ class AccountsController < ApplicationController
   # caches_page :show
   before_filter :record_visit, :only => [:show]
   before_filter :assert_profile_is_available, :only => [ :show ]
-  before_filter :auto_follow_profile, :only => [ :show ]
   before_filter :load_user_activities, :only => [ :show ]
 
   current_tab :home
@@ -57,7 +56,7 @@ private
     rescue Exception => e
       Rails.logger.error("*** Could not record visit! #{e}\n#{e.backtrace.join("\n")}\n#{tracker_payload}") and return true
     end
-    session[:origin_to] = request.request_uri if !logged_in?
+    #session[:origin_to] = request.request_uri if !logged_in?
   end
 
   def activity
