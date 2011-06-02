@@ -77,7 +77,7 @@ $(document).ready(function() {
       }
     }
 
-    if (String($(this).attr('href')).match(/index-bands/))
+    if (String($(this).attr('href')).match(/index-bands/) || String($(this).attr('href')).match(/index-music/))
     {
       options.afterComplete = function()
       {
