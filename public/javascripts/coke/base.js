@@ -1875,6 +1875,19 @@ Base.utils.showRegistrationLayer = function(url, type, accountId) {
   return false;
 };
 
+Base.utils.showPopup = function(url) {
+  $.get(url, function(response) {
+    if (response.status == 'redirect')
+    {
+      $.simple_popup(response.html);
+    }
+    else
+    {
+      $.popup(response);
+    }
+  });
+};
+
 Base.registration = {};
 Base.registration.layers = {
 removeSomeFaceboxStyles: function() {
