@@ -496,6 +496,8 @@ Base.UI = {
       this.controlUI().find('a.r_info').attr('href', ('/playlists?station_id=' + Base.Station._station.sid));
       if (app == "multitask")
       {
+        this.controlUI().find('a.r_facebook').unbind('click');
+        this.controlUI().find('a.r_facebook').bind('click', function() { mix_share_fb('<%= current_site_url %>/playlists?station_id=' + Base.Station._station.sid) });
         this.controlUI().find('a.punt_botellas').attr('href', ('/playlists?station_id=' + Base.Station._station.sid));
         this.controlUI().find('a.r_copiar').attr('href', ('/playlists?station_id=' + Base.Station._station.sid + '&cmd=copy'));
         this.controlUI().find('a.r_compartir').attr('href', ('/playlists?station_id=' + Base.Station._station.sid + '&cmd=share'));

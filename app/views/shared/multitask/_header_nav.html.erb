@@ -1,20 +1,17 @@
 <script>
-  function fb_like()
+  function mix_share_fb(link)
   {
-    FB.getLoginStatus(function(response) {
+    FB.login(function(response) {
       if (response.session)
       {
-        console.log("UID " + response.session.access_token); 
-        //FB.api('/' + response.session.access_token+ '/likes', 'post', {url: window.location.origin, message: 'test like'}, function(response) {
-        FB.api('/me/likes', 'post', {}, function(response) {
-          if (!response || response.error)
-            //alert('ERROR: ' + response.error);
-            for (var e in response.error)
-            {
-              console.log('ERROR: ' + response.error[e]);
-            }
-          else
-            alert('Post ID: ' + response.id);
+        FB.ui({
+          method: 'feed',
+          name: 'Facebook Dialogs',
+          link: link,
+          description: 'Share with friend',
+          message: "Check out this link"
+        },
+        {
         });
       }
     });
@@ -61,7 +58,7 @@
       <span class="tip" id="tip_valorar"><%= t('coke_messenger.rating') %></span>
     </div><!-- .sonando -->
     <div class="compartir">
-      <a class="tooltip r_facebook" href="#" onclick="fb_like();" rel="tip_facebook" title="Compartir en Facebook">Facebook</a>
+      <a class="tooltip r_facebook" href="#" rel="tip_facebook" title="Compartir en Facebook">Facebook</a>
       <span class="tip tip_ancho" id="tip_facebook">Compartir en Facebook</span>
       <a class="tooltip r_orkut" href="#" rel="tip_orkut" title="Compartir en Orkut">Orkut</a>
       <span class="tip tip_ancho" id="tip_orkut">Compartir en Orkut</span>    
