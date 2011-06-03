@@ -34,7 +34,7 @@ class DashboardsController < ApplicationController
       group        = :just_following if @filter_type == 'followings'
     end
     
-    if false #Rails.env.development?
+    unless (Activity::Feed.db rescue nil)
       # TESTING - Update info if this user is not in your DB
       test_item = {"timestamp"=>"1297971608", :pk=>"1600280/status/1297971608", "user_avatar"=>"/images/multitask/djs/sim_autor.jpg", "account_id"=>"1600280", "type"=>"status", "id"=>"23688250472120", "user_id"=>"1600280", "user_slug"=>"sue008"}
       collection = []

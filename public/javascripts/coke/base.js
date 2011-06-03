@@ -1834,10 +1834,10 @@ Base.activity.count_chars = function() {
   }
 };
 
-Base.activity.pushUpdate = function(button) {
+Base.activity.pushUpdate = function(button, token) {
   $(button).hide()
   $.post(Base.currentSiteUrl() + '/activity/update/status', 
-         {'message':$("#network_comment").val()}, 
+         {'message':$("#network_comment").val(), 'authenticity_token':encodeURIComponent(token)}, 
          Base.activity.pushUpdateCallback);
 }
 

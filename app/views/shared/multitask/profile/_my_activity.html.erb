@@ -13,7 +13,7 @@
             <%= avatar_for(current_user, :small, :class => "network_icon") %>
             <textarea id="network_comment" onkeyup="Base.activity.count_chars();" onchange="Base.activity.count_chars();" name="comment" rows="2" cols="20" class="bocadillo"></textarea>
             <span class="share_button_container">
-              <a href="#" class="compartir_button post_button" onclick='Base.activity.pushUpdate(this);return false;')><%= t('actions.share').upcase %></a>
+              <a href="#" class="compartir_button post_button" onclick='Base.activity.pushUpdate(this, "<%=form_authenticity_token %>"); return false;'><%= t('actions.share').upcase %></a>
             </span>
         </form>
     </div>

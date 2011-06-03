@@ -4,7 +4,7 @@
     <div class="comment_text">
         
       <%= link_to(item['account'], item['account'], :class => "nombre") %>
-      <span class="grey"><%=  t('basics.created_at', :when => nice_elapsed_time(item['timestamp'])) %></span>
+      <span class="grey"><%=  t('basics.happened_at', :when => nice_elapsed_time(item['timestamp'])) %></span>
       <p><%= item['message'].gsub(/\n/, '<br />') %></p>
         
     </div><!-- .comment_text -->
