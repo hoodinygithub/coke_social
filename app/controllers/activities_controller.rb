@@ -82,8 +82,9 @@ class ActivitiesController < ApplicationController
       end
 
       if success
-        set_activity_objects(activity_status)
-        render :json => { :success => true, :latest => render_to_string(:partial => 'activities/item', :locals => {:item => activity_status}) }   
+        activity_item = current_user.activity_feed.first
+        set_activity_objects(activity_item)
+        render :json => { :success => true, :latest => render_to_string(:partial => 'activities/item', :locals => {:item => activity_item}) }   
       else
         render :json => { :success => false, :errors => activity_status.errors.to_json }
       end  

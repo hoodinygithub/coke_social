@@ -1837,8 +1837,8 @@ Base.activity.count_chars = function() {
 Base.activity.pushUpdate = function(button, token) {
   $(button).hide()
   $.post(Base.currentSiteUrl() + '/activity/update/status', 
-         {'message':$("#network_comment").val(), 'authenticity_token':encodeURIComponent(token)}, 
-         Base.activity.pushUpdateCallback);
+     {'message':$("#network_comment").val(), 'authenticity_token':window._token}, 
+     Base.activity.pushUpdateCallback );
 }
 
 Base.activity.pushUpdateCallback = function(response) {
