@@ -1585,6 +1585,7 @@ Note: This badge is earned only one time, for the max ranking by 3 people."
       category_profile: My Profile
       email: Email Address
   basics:
+    user: User
     mix: Mix
     ago: 'ago'
     plays: Plays
@@ -1709,8 +1710,8 @@ Note: This badge is earned only one time, for the max ranking by 3 people."
     newest: NEWEST
     latest: MOST RECENT
     top: TOP
-    user_followings: USER + FOLLOWEES
-    user: USER ONLY
+    user_followings: "{{user_name}} + FOLLOWEES"
+    user: "{{user_name}} ONLY"
     followings: FOLLOWEES ONLY
   reset:
     insert_valid_info: Insert Valid Info

@@ -86,7 +86,7 @@ module ApplicationHelper
   def sort_form(klass, *types)
     options = ""
     types.each do |type|
-      options << "<option value='#{current_url(:sort_by => type.to_s)}' #{"selected" if (params[:sort_by].to_s == type.to_s)}>#{t("sort.#{type}", :user_name => current_user.name).mb_chars.titleize}</option>"
+      options << "<option value='#{current_url(:sort_by => type.to_s)}' #{"selected" if (params[:sort_by].to_s == type.to_s)}>#{t("sort.#{type}", :user_name => (profile_user.name rescue t('basics.user'))).mb_chars.titleize}</option>"
     end
     "<form class='#{klass}' action='return false;'>
        <select onchange='Base.Util.xhr_call(this.value)'>#{options}</select>
