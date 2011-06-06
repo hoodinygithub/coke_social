@@ -67,7 +67,7 @@ class ApplicationController < ActionController::Base
   helper_method :current_site_url
 
   def ssl_site_url
-    if ENV_DEV
+    if Rails.env.development?
       "http://coca-cola.fm:3000"
     else
       "https://#{current_site.ssl_domain}"
@@ -203,7 +203,7 @@ class ApplicationController < ActionController::Base
   def msn_site_code
     site_code.gsub("msn","")
   end
-    
+
   def login_type
     self.class.login_type
   end
@@ -218,17 +218,13 @@ class ApplicationController < ActionController::Base
     login_type == "cyloop"
   end
 
-  helper_method :cyloop_login?, :cyloop_site?
-    
-  def wlid_web_login?
-    login_type == "wlid_web"
-  end
-    
-  def wlid_delegated_login?
-    login_type == "wlid_delegated"
-  end
-  helper_method :cyloop_login?, :wlid_web_login?, :wlid_delegated_login?, :login_type
-    
+  helper_method :cyloop_login?, :cyloop_site?, :login_type
+
+  #def wlid_web_login?
+  #  login_type == "wlid_web"
+  #end
+  #helper_method :wlid_web_login?
+
   def site_cache_key
     @site_cache_key ||= "#{current_site.cache_key}"
   end
@@ -496,10 +492,6 @@ class ApplicationController < ActionController::Base
     end
   end
   helper_method :add_ssl_to
-
-  # Cache these on startup.  Used in app helper (since I can't define "helper variables").
-  ENV_STAGING = (ENV['RAILS_ENV'] =~ /staging/i)
-  ENV_DEV = (ENV['RAILS_ENV'] =~ /development/i)
 
   # We logged you in, but you haven't accepted the terms of the current network.
   # Until you do, anywhere you go, with some exceptions, you'll be redirected to the opt-in page

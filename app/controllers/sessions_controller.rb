@@ -25,7 +25,7 @@ class SessionsController < ApplicationController
       # render :nothing => true
     elsif params[:wrap_verification_code]
       # Windows Connect through popup login
-      callback = ENV_STAGING ? 'http://staging.login.hoodiny.com:8081/coke' : 'http://login.cyloop.com:8081/coke'
+      callback = Rails.env.staging? ? 'http://staging.login.hoodiny.com:8081/coke' : 'http://login.cyloop.com:8081/coke'
       callback += new_session_path
       user = WindowsConnect.parse_verification_code(params[:wrap_verification_code], callback, cookies, params[:wrap_client_state], params[:exp])
       
@@ -69,9 +69,9 @@ class SessionsController < ApplicationController
     cookies.delete(:auth_token, :domain => ".#{request.domain}") unless cookies[:auth_token].nil?
     reset_session
 
-    if wlid_web_login?
-      redirect_to(msn_logout_url)
-    elsif params.has_key? :redirect_to
+    #if wlid_web_login?
+    #  redirect_to(msn_logout_url)
+    if params.has_key? :redirect_to
       redirect_to params[:redirect_to]
     else
       redirect_back_or_default('/')

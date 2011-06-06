@@ -1,5 +1,5 @@
 <%
-  src = env_staging? ? "http://staging.login.hoodiny.com:8081/" : "http://login.cyloop.com:8081/"
+  src = Rails.env.staging? ? "http://staging.login.hoodiny.com:8081/" : "http://login.cyloop.com:8081/"
   src += "winconnect_button/coke?host=#{current_site_url}"
 %>
 <%= content_tag(:iframe, nil, :frameborder=>"no", :framespacing => '0', :scrolling=>"no", :width=>"67", :height=>"20", :border => '0', :src=>src) %>

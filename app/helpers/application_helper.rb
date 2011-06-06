@@ -1148,12 +1148,5 @@ def cyloop_logo_path(sm=true)
       ""
     end  
   end
-
-  def env_staging?
-    ApplicationController::ENV_STAGING
-  end
-  def env_dev?
-    ApplicationController::ENV_DEV
-  end
 end
 

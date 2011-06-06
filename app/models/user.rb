@@ -171,7 +171,7 @@ class User < Account
   validates_uniqueness_of :sso_facebook, :scope => :deleted_at, :allow_nil => true
   validates_uniqueness_of :msn_live_id, :scope => :deleted_at, :allow_nil => true
 
-  def self.forgot?(attributes, current_site=nil)
+  def self.forgot(attributes)
     user = User.new(attributes)
     if user.email.to_s.blank?
       user.errors.add(:email, I18n.t("activerecord.errors.messages.blank"))
@@ -179,12 +179,16 @@ class User < Account
       user.errors.add(:email, I18n.t("activerecord.errors.messages.invalid"))
     end
 
-    if user.slug.to_s.blank?
-      user.errors.add(:slug, I18n.t("activerecord.errors.messages.blank"))
-    end
+    #if user.slug.to_s.blank?
+    #  user.errors.add(:slug, I18n.t("activerecord.errors.messages.blank"))
+    #end
+
+    # Later we may want to add a check for a safe question or verify a captcha.
+    # user.verify_question(params[:safe_question]) && verify_recaptcha(:model => @user, :message => I18n.t("forgot.captcha_invalid"))
 
     if user.errors.empty?
-      user = User.find_by_email_and_slug_and_deleted_at( attributes[:email], attributes[:slug], nil )
+      #user = User.find_by_email_and_slug_and_deleted_at( attributes[:email], attributes[:slug], nil )
+      user = User.find_by_email_with_exclusive_scope(user.email)
     end
     user
   end
