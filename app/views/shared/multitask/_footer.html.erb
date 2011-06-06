@@ -1,24 +1,20 @@
 <div class="bloque">
   <ul class="submenu">
     <li class="activo"><a class="link_gris" target="_blank" href="<%= poll_link %>" title="Sugerencias"><%= t('footer.feedback') %></a></li>
-    
+
     <% unless site_code == "cokebre" %>
       <li><a class="link_gris" href="<%= terms_and_conditions_url %>" content_switch_enabled="true" title="<%= t('footer.terms_and_conditions') %>"><%= t('footer.terms_and_conditions') %></a></li>
       <li><a class="link_gris" href="<%= privacy_policy_url %>" content_switch_enabled="true" title="<%= t('footer.privacy_policy') %>"><%= t('footer.privacy_policy') %></a></li>
     <% end %>
-    
+
     <li><a class="link_gris" href="<%= list_badges_url %>" content_switch_enabled="true" title="<%= t('footer.badges_listing') %>"><%= t('footer.badges_listing') %></a></li>
 
     <li><a class="link_gris" href="/index-bands/index" content_switch_enabled="true" title="<%= t('footer.index_of_bands') %>"><%= t('footer.index_of_bands') %></a></li>
     <li><a class="link_gris" href="<%= index_of_music_url %>" content_switch_enabled="true" title="<%= t('footer.index_of_music') %>"><%= t('footer.index_of_music') %></a></li>
   </ul><!-- .submenu -->
-  <%= image_tag 'multitask/logo_cyloop.png', :class=>"powered", :alt=>"Cyloop" %>
-  <div class="info">
-    <%= image_tag 'multitask/cocacola_pie.png', :alt=>"Coca Cola" %>
-    <p>&copy; 2010 The Coca-Cola Company, all rights reserved.</p>
-
-    <p><small>Coca-Cola&reg;, &quot;Open Happiness&quot;, and the Contour Bottle are registered trademarks of The Coca-Cola Company.</small></p>
-  </div><!-- .info -->
+  <a href="http://www.cyloop.com/" target="_blank" title="<%=h t('basics.go_to_link', :where => 'Cyloop') %>">
+    <%= image_tag 'multitask/logo_cyloop.png', :class => "powered", :alt => "Cyloop" %>
+  </a>
 </div><!-- .bloque -->
 
 <script>
@@ -77,3 +73,4 @@ function licensing_message(){
     <div class="bottom_right corner"></div>
   </div>
 </div><!--/end popup -->
+

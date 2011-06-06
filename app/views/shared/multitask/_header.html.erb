@@ -1,4 +1,25 @@
 <% logged_out = false unless local_assigns[:logged_out] %>
+<div class="patrocinios">
+  <ul>
+    <li>
+      <a href="http://www.prisa.com/" target="_blank" title="<%=h t('basics.go_to_link', :where => 'Prisa Digital') %>">
+        <%= image_tag 'multitask/logo-prisa-min.png', :alt => "Prisa Digital" %>
+      </a>
+    </li>
+    <li class="cyl">
+      <a href="http://www.cyloop.com/" target="_blank" title="<%=h t('basics.go_to_link', :where => 'CYLOOP') %>">
+        <%= image_tag 'multitask/logo-cyloop-min.png', :alt => "CYLOOP" %>
+      </a>
+    </li>
+    <li class="cc">
+      <span>Sponsored by:</span>
+      <a href="http://www.coca-cola.com" target="_blank" title="<%=h t('basics.go_to_link', :where => 'Coca-Cola') %>">
+        <%= image_tag 'multitask/logo-coke-min.png', :alt => "Coca-Cola" %>
+      </a>
+    </li>
+  </ul>
+</div><!--/patrocinios-->
+
 <div class="sound_engines">
   <div id="coke_player"></div>
   <div id="goom_player"></div>
@@ -123,3 +144,4 @@
       </a>
   </div><!-- .botones -->
 </div><!-- .bloque -->
+
