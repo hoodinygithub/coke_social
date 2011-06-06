@@ -165,7 +165,7 @@ Base.Social = {
             method: "feed",
             name: "Mix: " + Base.Station._station.playlistName,
             link: current_url_site + "/playlists?station_id=" + Base.Station._station.sid,
-            picture: current_url_site + Base.Station._station.playlistAvatar,
+            picture: (String(Base.Station._station.playlistAvatar).match(/http/) ? "" : current_url_site) + Base.Station._station.playlistAvatar,
             message: $('.compartir').attr('message')
           });
         }
@@ -184,7 +184,7 @@ Base.Social = {
       // Options below does not seem to be working
       // These are optional query parameters available in the GET api
       q.push('uc=' + escape($('.compartir').attr('message')));
-      q.push('tn=' + current_url_site + Base.Station._station.playlistAvatar);
+      q.push('tn=' + (String(Base.Station._station.playlistAvatar).match(/http/) ? "" : current_url_site) + Base.Station._station.playlistAvatar);
       window.open(String(b + '?' + q.join('&')), 'orkut', 'width=655,height=400,status=0,toolbar=1,scrollbars=0,menubar=0,location=0');
       return false;
     }
