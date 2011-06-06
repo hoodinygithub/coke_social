@@ -188,7 +188,7 @@ class User < Account
 
     if user.errors.empty?
       #user = User.find_by_email_and_slug_and_deleted_at( attributes[:email], attributes[:slug], nil )
-      user = User.find_by_email_with_exclusive_scope(user.email)
+      user = User.find_by_email_with_exclusive_scope(user.email, :first)
     end
     user
   end
