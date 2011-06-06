@@ -86,6 +86,7 @@ class Account < ActiveRecord::Base
   include Account::AccountActivity
   include SongListen::Most
   include ProfileVisit::Most
+  include Account::FolloweeCache
 
   index [:type]
 
