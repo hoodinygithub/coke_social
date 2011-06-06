@@ -179,9 +179,11 @@ Base.Social = {
       var q = [];
       q.push('nt=orkut.com');
       q.push('du=' + current_url_site + '/playlists?station_id=' + Base.Station._station.sid);
-      q.push('tt=' + escape('Listen to this mix'));
-      q.push('cn=' + escape('Mix: ' + Base.Station._station.playlistName));
-      q.push('uc=' + $('.compartir').attr('message'));
+      q.push('tt=' + escape('Mix: ' + Base.Station._station.playlistName));
+      q.push('cn=' + escape($('.compartir').attr('message')));
+      // Options below does not seem to be working
+      // These are optional query parameters available in the GET api
+      q.push('uc=' + escape($('.compartir').attr('message')));
       q.push('tn=' + current_url_site + Base.Station._station.playlistAvatar);
       window.open(String(b + '?' + q.join('&')), 'orkut', 'width=655,height=400,status=0,toolbar=1,scrollbars=0,menubar=0,location=0');
       return false;
