@@ -1,23 +1,3 @@
-<script>
-  function mix_share_fb(link)
-  {
-    FB.login(function(response) {
-      if (response.session)
-      {
-        FB.ui({
-          method: 'feed',
-          name: 'Facebook Dialogs',
-          link: link,
-          description: 'Share with friend',
-          message: "Check out this link"
-        },
-        {
-        });
-      }
-    });
-  }
-</script>
-
 <div class="bloque">
   <ul class="menu">
     <li><a href="<%= home_path %>" title="<%= t('main.navigation.home') %>" content_switch_enabled="true"><%= t('main.navigation.home') %></a></li><!-- .activo para el enlace activo -->
@@ -57,12 +37,13 @@
       </a><!-- .punt_botellas -->
       <span class="tip" id="tip_valorar"><%= t('coke_messenger.rating') %></span>
     </div><!-- .sonando -->
-    <div class="compartir">
-      <a class="tooltip r_facebook" href="#" rel="tip_facebook" title="Compartir en Facebook">Facebook</a>
+    <!--div message="<%= t('social.share_mix') %>" class="compartir"-->
+    <div message="I'm listening to a mix. You can hear it too in coca-cola.fm" class="compartir">
+      <a class="tooltip r_facebook" href="#" onclick="Base.Social.Facebook.shareMix();" rel="tip_facebook" title="Compartir en Facebook">Facebook</a>
       <span class="tip tip_ancho" id="tip_facebook">Compartir en Facebook</span>
-      <a class="tooltip r_orkut" href="#" rel="tip_orkut" title="Compartir en Orkut">Orkut</a>
+      <a class="tooltip r_orkut" href="#" rel="tip_orkut" onclick="Base.Social.Orkut.shareMix();" title="Compartir en Orkut">Orkut</a>
       <span class="tip tip_ancho" id="tip_orkut">Compartir en Orkut</span>    
-      <a class="tooltip r_twitter" href="#" rel="tip_twitter" title="Compartir en Twitter">Twitter</a>
+      <a class="tooltip r_twitter" href="#" rel="tip_twitter" onclick="Base.Social.Twitter.shareMix();" title="Compartir en Twitter">Twitter</a>
       <span class="tip tip_ancho" id="tip_twitter">Compartir en Twitter</span>
     </div><!-- .compartir -->
     <div class="info">

@@ -154,6 +154,51 @@ var Base = {
   playlist_search: {}
 };
 
+// Social sharing
+Base.Social = {
+  Facebook: {
+    shareMix: function() {
+      FB.login(function(response) {
+        if (response.session)
+        {
+          FB.ui({
+            method: "feed",
+            name: "Mix: " + Base.Station._station.playlistName,
+            link: current_url_site + "/playlists?station_id=" + Base.Station._station.sid,
+            picture: current_url_site + Base.Station._station.playlistAvatar,
+            message: $('.compartir').attr('message')
+          });
+        }
+      });
+      return false;
+    }
+  },
+  Orkut: {
+    shareMix: function() {
+      var b = "http://promote.orkut.com/preview";
+      var q = [];
+      q.push('nt=orkut.com');
+      q.push('du=' + current_url_site + '/playlists?station_id=' + Base.Station._station.sid);
+      q.push('tt=' + escape('Listen to this mix'));
+      q.push('cn=' + escape('Mix: ' + Base.Station._station.playlistName));
+      q.push('uc=' + $('.compartir').attr('message'));
+      q.push('tn=' + current_url_site + Base.Station._station.playlistAvatar);
+      window.open(String(b + '?' + q.join('&')), 'orkut', 'width=655,height=400,status=0,toolbar=1,scrollbars=0,menubar=0,location=0');
+      return false;
+    }
+  },
+  Twitter: {
+    shareMix: function() {
+      var b = "http://twitter.com/share";
+      var q = [];
+      q.push('url=' + current_url_site + '/playlists?station_id=' + Base.Station._station.sid);
+      q.push('text=' + escape($('.compartir').attr('message')));
+      window.open(String(b + '?' + q.join('&')), 'twitter', 'width=655,height=343,status=0,toolbar=1,scrollbars=0,menubar=0,location=0');
+      return false;
+    }
+  }
+}
+
 // Helpers
 Base.Util = {
   XHR: function(req, type, func, error_func)
@@ -175,9 +220,7 @@ Base.Util = {
       complete: function(data) {
         if (typeof options != "undefined" && typeof options.afterComplete != "undefined") options.afterComplete();
         func(data);
-      },
-      error: error_func
-    });
+      }, error: error_func });
   },
   
   xhr_call: function(href)
@@ -496,8 +539,8 @@ Base.UI = {
       this.controlUI().find('a.r_info').attr('href', ('/playlists?station_id=' + Base.Station._station.sid));
       if (app == "multitask")
       {
-        this.controlUI().find('a.r_facebook').unbind('click');
-        this.controlUI().find('a.r_facebook').bind('click', function() { mix_share_fb('<%= current_site_url %>/playlists?station_id=' + Base.Station._station.sid) });
+        //this.controlUI().find('a.r_facebook').unbind('click');
+        //this.controlUI().find('a.r_facebook').bind('click', function() { Base.Social.Facebook.share_mix() });
         this.controlUI().find('a.punt_botellas').attr('href', ('/playlists?station_id=' + Base.Station._station.sid));
         this.controlUI().find('a.r_copiar').attr('href', ('/playlists?station_id=' + Base.Station._station.sid + '&cmd=copy'));
         this.controlUI().find('a.r_compartir').attr('href', ('/playlists?station_id=' + Base.Station._station.sid + '&cmd=share'));
@@ -613,6 +656,10 @@ function StationBean(data)
   this.sid = _xmlRoot.attr('station_id');
 
   this.pid = _xmlRoot.attr('playlist_id');
+
+  this.playlistName = _xmlRoot.attr('playlist_name');
+
+  this.playlistAvatar = _xmlRoot.attr('playlist_avatar');
 
   this.getSongs = function(s)
   {
@@ -1839,8 +1886,8 @@ Base.activity.count_chars = function() {
 Base.activity.pushUpdate = function(button, token) {
   $(button).hide()
   $.post(Base.currentSiteUrl() + '/activity/update/status', 
-     {'message':$("#network_comment").val(), 'authenticity_token':window._token}, 
-     Base.activity.pushUpdateCallback );
+         {'message':$("#network_comment").val(), 'authenticity_token':encodeURIComponent(token)}, 
+         Base.activity.pushUpdateCallback);
 }
 
 Base.activity.pushUpdateCallback = function(response) {

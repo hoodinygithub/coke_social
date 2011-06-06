@@ -1,4 +1,4 @@
-xml.player :autoStart => 'yes', :canRate => '', :owner => @playlist.owner.id, :ownerProfile => "/#{@playlist.owner.slug}", :numResults => @playlist.songs_count, :playlist_name => @playlist.name, :rating => @playlist.rating_cache, :station_id => @playlist.station.id, :playlist_id => @playlist.id, :ownerName => @playlist.owner.name do
+xml.player :autoStart => 'yes', :canRate => '', :owner => @playlist.owner.id, :ownerProfile => "/#{@playlist.owner.slug}", :numResults => @playlist.songs_count, :playlist_name => @playlist.name, :playlist_avatar => AvatarsHelper.avatar_path(@playlist, :album), :rating => @playlist.rating_cache, :station_id => @playlist.station.id, :playlist_id => @playlist.id, :ownerName => @playlist.owner.name do
   playlist_id = @playlist.id
   songs = @playlist.songs.sort_by { rand }
   songs.each do |song|
