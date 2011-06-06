@@ -1,59 +1,76 @@
+<% content_for :head do %>
+  <% # general.css imports cab-pie-player, then overrides it.  This page then overrides the overrides.  Blame the dumb slices. %>
+  <%= stylesheet_link_tag 'multitask/cab-pie-player.css' %>
+<% end %>
+
 <% content_for :javascript do %>
   <% if @user && @user.errors.size > 0 %>
-  $(document).ready(function(){
-    field_with_errors = <%= @user.custom_errors.to_json %>;
-    Base.account_settings.highlight_field_with_errors();
-  });
+    $(document).ready(function(){
+      field_with_errors = <%= @user.custom_errors.to_json %>;
+      Base.account_settings.highlight_field_with_errors();
+    });
   <% end %>
 <% end %>
 
-<div class="auth_area">
+<div id="flash_messages">
+  <%= render_flash_messages %>
+</div>
 
-  <div class="auth_title">
-    <%= t("user.forgot_your_password")%>
-  </div>
+<div id="container">
+  <div id="main_content" class="users">
 
-  <div class="auth_left">
-    <% form_for :user, :html => { :class => "account_settings" } do |f| %>
-      <div class="form_row last">
-        <%= f.label :email, "<b>#{t("user.email")}</b>" %>
-        <div class="grey_round_box">
-          <%= f.text_field :email, :class => 'input full_width' %>
-        </div>
-      </div><!--/end form_row -->  
-      
-      <div class="form_row last">
-        <%= f.label :slug, "<b>#{t("registration.your_profile_name")}</b>" %>
-        <div class="grey_round_box">
-          <b>Coca-Cola.fm/</b><%= f.text_field :slug, :class => 'input half_width2' %>
-        </div>
-      </div><!--/end form_row -->  
-      
-      <div class="form_row last hidden">    
-        <label><strong>Safe question:</strong></label>
-        <div class="grey_round_box">
-          <%= text_field_tag "safe_question", nil, :class => 'input full_width' %>
-        </div>
+    <div class="auth_area">
+
+      <h1 class="tit_bloque gris">
+        <span class="txt">¿Se te olvidó tu contraseña?</span>
+        <span class="bg_fin">&nbsp;</span>
+      </h1>
+
+      <div class="auth_left2">
+        <% form_for :user, :html => { :class => "account_settings" } do |f| %>
+          <div class="form_row last">
+            <%= f.label :email, "#{t("user.email")}" %>
+            <div class="grey_round_box">
+              <%= f.text_field :email, :class => 'input full_width' %>
+            </div>
+          </div><!--/end form_row -->  
+
+          <div class="form_row last hidden">
+            <%= f.label :slug, "<b>#{t("registration.your_profile_name")}</b>" %>
+            <div class="grey_round_box">
+              <b>Coca-Cola.fm/</b><%= f.text_field :slug, :class => 'input half_width2' %>
+            </div>
+          </div><!--/end form_row -->  
+
+          <div class="form_row last hidden">    
+            <label><strong>Safe question:</strong></label>
+            <div class="grey_round_box">
+              <%= text_field_tag "safe_question", nil, :class => 'input full_width' %>
+            </div>
+          </div>
+
+          <div class="form_row last">
+            <div class="right_side">
+              <a href="#" class="red_button submit_button" onclick="$(this).closest('form').submit();return false;"><span><span><%= t("actions.submit") %></span></span></a>
+            </div>
+            <br class="clearer" />
+          </div><!--/end form_row -->
+        <% end %>
       </div>
-      
-      <div class="form_row last">
-        <div class="right_side">
-          <a href="#" class="red_button submit_button" onclick="$(this).closest('form').submit();return false;"><span><span><%= t("actions.submit") %></span></span></a>
-        </div>
-        <br class="clearer" />
-      </div><!--/end form_row -->
-    <% end %>
-  </div>
 
-  <div class="auth_right">
-    <ul class="icons_list">
-      <li class="forgot">
-        <big><b><%= t("user.dont_stay_locked_out") %></b></big><br />
-        <%= t("user.forgot_message") %>
-      </li>
-    </ul>
-  </div><!--/end auth_right -->
+      <div class="auth_right">
+        <ul class="icons_list">
+          <li class="forgot">
+          <big><b><%= t("user.dont_stay_locked_out") %></b></big><br />
+          <%= t("user.forgot_message") %>
+          </li>
+        </ul>
+      </div><!--/end auth_right -->
 
-  <div class="clearer"></div>
+      <div class="clearer"></div>
 
-</div><!--/end  auth_area -->
+    </div><!--/end auth_area -->
+
+  </div><!-- end main_content -->
+</div><!--/end container -->
+
