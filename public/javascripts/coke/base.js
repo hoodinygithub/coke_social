@@ -578,7 +578,7 @@ Base.UI = {
     }
     // Scrolls up to top of page after load showing just header nav
     //setTimeout("window.scrollTo(0,135)",0);
-    if ($('.navegacion').offset().top > 135) window.scrollTo(0, 135);
+    if ($('.navegacion').offset().top > 180) window.scrollTo(0, 180);
   },
   
   xhrerror: function(data)
