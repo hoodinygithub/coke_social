@@ -171,6 +171,21 @@ Base.Social = {
         }
       });
       return false;
+    },
+    sharePage: function() {
+      FB.login(function(response) {
+        if (response.session)
+        {
+          FB.ui({
+            method: "feed",
+            name: "CocaCola.fm",
+            link: current_url_site,
+            //picture: (String(Base.Station._station.playlistAvatar).match(/http/) ? "" : current_url_site) + Base.Station._station.playlistAvatar,
+            message: $('.sociales').attr('message')
+          });
+        }
+      });
+      return false;
     }
   },
   Orkut: {
@@ -187,6 +202,20 @@ Base.Social = {
       //q.push('tn=' + (String(Base.Station._station.playlistAvatar).match(/http/) ? "" : current_url_site) + Base.Station._station.playlistAvatar);
       window.open(String(b + '?' + q.join('&')), 'orkut', 'width=655,height=400,status=0,toolbar=1,scrollbars=0,menubar=0,location=0');
       return false;
+    },
+    sharePage: function() {
+      var b = "http://promote.orkut.com/preview";
+      var q = [];
+      q.push('nt=orkut.com');
+      q.push('du=' + current_url_site);
+      q.push('tt=' + escape('CocaCola.fm'));
+      q.push('cn=' + escape($('.sociales').attr('message')));
+      // Options below does not seem to be working
+      // These are optional query parameters available in the GET api
+      q.push('uc=' + escape($('.sociales').attr('message')));
+      //q.push('tn=' + (String(Base.Station._station.playlistAvatar).match(/http/) ? "" : current_url_site) + Base.Station._station.playlistAvatar);
+      window.open(String(b + '?' + q.join('&')), 'orkut', 'width=655,height=400,status=0,toolbar=1,scrollbars=0,menubar=0,location=0');
+      return false;
     }
   },
   Twitter: {
@@ -194,6 +223,14 @@ Base.Social = {
       var b = "http://twitter.com/share";
       var q = [];
       q.push('url=' + current_url_site + '/playlists?station_id=' + Base.Station._station.sid);
+      q.push('text=' + escape($('.compartir').attr('message')));
+      window.open(String(b + '?' + q.join('&')), 'twitter', 'width=655,height=343,status=0,toolbar=1,scrollbars=0,menubar=0,location=0');
+      return false;
+    },
+    sharePage: function() {
+      var b = "http://twitter.com/share";
+      var q = [];
+      q.push('url=' + current_url_site);
       q.push('text=' + escape($('.compartir').attr('message')));
       window.open(String(b + '?' + q.join('&')), 'twitter', 'width=655,height=343,status=0,toolbar=1,scrollbars=0,menubar=0,location=0');
       return false;

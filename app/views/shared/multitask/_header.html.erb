@@ -36,11 +36,11 @@
       autostart:1
     };
     var cParams = {
-    allowScriptAccess: 'sameDomain'
+      allowScriptAccess: 'sameDomain'
     };
     var cAttribs = {
-    id:'coke_engine',
-       name:'coke_engine'
+      id:'coke_engine',
+      name:'coke_engine'
     };
     swfobject.embedSWF('<%= current_site_url %>/flash/sound_stub.swf', 'coke_player', '1', '1', '9.0.0', false, cFlashVars, cParams, cAttribs);
     /*****************************/
@@ -54,12 +54,12 @@
     };
 
     var gFlashVars = {
-    urlApi:'http://api.goomradio.com',
-           eStatUrl:'http://www.goomradio.com/mini-audio/eStatNativeFlashTag.swf',
-           defaultVolume:'50',
-           uiid:'goom_callbacks',
-           defaultRadioId:'4242705',
-           autoPlay:'0'
+      urlApi:'http://api.goomradio.com',
+      eStatUrl:'http://www.goomradio.com/mini-audio/eStatNativeFlashTag.swf',
+      defaultVolume:'50',
+      uiid:'goom_callbacks',
+      defaultRadioId:'4242705',
+      autoPlay:'0'
     };
     var gParams = {
     allowscriptaccess:'always'
@@ -102,14 +102,12 @@
     <div id="bocadillo_claim"></div>
     <script type="text/javascript" charset="utf-8">
       var fFlashVars = {
-
       };
       var fParams = {
         quality: 'high',
         wmode: 'transparent'
       };
       var fAttribs = {
-
       };
       swfobject.embedSWF('<%= current_site_url %>/images/multitask/swfs/bocadillo_<%= site_code %>.swf', 'bocadillo_claim', '310', '35', '9.0.0', false, fFlashVars, fParams, fAttribs);
     </script>
