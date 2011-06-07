@@ -1,12 +1,21 @@
 %meta{"http-equiv" => 'Content-Type', :content => 'text/html;charset=utf-8'}
 %meta{"http-equiv" => 'Content-Script-Type', :content => 'text/javascript'}
 %title= h(@title || t("meta.title"))
-= yield :fbmeta
 %meta{'name' => 'keywords', :content => t("meta.keywords") }
 %meta{'name' => 'description', :content => t("meta.description") }
 %meta{'name' => 'robots', :content => "ALL"}
 %meta{'name' => 'site', :content => current_site.id}
 %meta{'name' => 'created', :content => Time.now }
+
+- if site_code == "cokemx"
+  <!-- fb sdk auth and meta info -->
+  %meta{'name' => 'og:title', :content => t('social.goom_like')}
+  %meta{'name' => 'og:type', :content => 'station'}
+  %meta{'name' => 'og:url', :content => "#{current_site_url}/gradio/424705"}
+  %meta{'name' => 'og:site_name', :content => 'Coca-Cola.fm' }
+  %meta{'name' => 'fb:app_id', :content => fb_appid }
+  <!---->
+
 %link{:rel=>"shortcut icon", :href=>"#{current_site_url}/favicon.ico"}
 - if site_code == "cokebr"
   %link{:rel=>"canonical", :href=>"http://br.coca-cola.fm#{request.path}"}

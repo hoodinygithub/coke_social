@@ -1,3 +1,12 @@
+<% content_for :fbmeta do %>
+  <!-- fb sdk auth and meta info -->
+  <meta property="og:title"       content="Your music, your voice and your way to share it with the world.">
+  <meta property="og:type"        content="station"/>
+  <meta property="og:url"         content="<%= current_site_url %>/gradio/424705"/>
+  <meta property="og:site_name"   content="Coca-Cola.fm"/>
+  <meta property="fb:app_id"      content="<%= fb_appid %>"/>
+  <!---->
+<% end %>
 <% logged_out = false unless local_assigns[:logged_out] %>
 <div class="patrocinios">
   <ul>
