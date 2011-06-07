@@ -7,15 +7,6 @@
 %meta{'name' => 'site', :content => current_site.id}
 %meta{'name' => 'created', :content => Time.now }
 
-- if site_code == "cokemx"
-  <!-- fb sdk auth and meta info -->
-  %meta{'name' => 'og:title', :content => t('social.goom_like')}
-  %meta{'name' => 'og:type', :content => 'station'}
-  %meta{'name' => 'og:url', :content => "#{current_site_url}/gradio/424705"}
-  %meta{'name' => 'og:site_name', :content => 'Coca-Cola.fm' }
-  %meta{'name' => 'fb:app_id', :content => fb_appid }
-  <!---->
-
 %link{:rel=>"shortcut icon", :href=>"#{current_site_url}/favicon.ico"}
 - if site_code == "cokebr"
   %link{:rel=>"canonical", :href=>"http://br.coca-cola.fm#{request.path}"}
@@ -24,3 +15,12 @@
 
 - if protect_against_forgery?
   %meta{:name => 'authenticity_token', :content => form_authenticity_token}
+
+- if site_code == "cokemx"
+  <!-- fb sdk auth and meta info -->
+  %meta{'name' => 'og:title', :content => t('social.goom_like')}
+  %meta{'name' => 'og:type', :content => 'station'}
+  %meta{'name' => 'og:url', :content => "#{current_site_url}/gradio/424705"}
+  %meta{'name' => 'og:site_name', :content => 'Coca-Cola.fm' }
+  %meta{'name' => 'fb:app_id', :content => fb_appid }
+  <!---->
