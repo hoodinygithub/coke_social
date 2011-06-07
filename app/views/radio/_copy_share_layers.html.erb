@@ -38,10 +38,10 @@
               <p class="accion"><%= t('coke_messenger.layers.share_mix_layer.share') %></p>
               <h2><%= t('coke_messenger.layers.share_mix_layer.social_net') %></h2>
 
-              <ul class="iconos">
-                  <li><a title="<%= t('coke_messenger.layers.share_mix_layer.share_fb') %>" href="#" class="btn_facebook"><span class="link_decor">Facebook</span></a></li>
-                  <li><a title="<%= t('coke_messenger.layers.share_mix_layer.share_or') %>" href="#" class="btn_orkut"><span class="link_decor">Orkut</span></a></li>
-                  <li><a title="<%= t('coke_messenger.layers.share_mix_layer.share_tw') %>" href="#" class="btn_twitter"><span class="link_decor">Twitter</span></a></li>
+              <ul class="iconos sociales" message="I'm listening to a mix. You can hear it too in coca-cola.fm">
+                  <li><a title="<%= t('coke_messenger.layers.share_mix_layer.share_fb') %>" href="#" onclick="Base.Social.Facebook.shareMix();" class="btn_facebook"><span class="link_decor">Facebook</span></a></li>
+                  <li><a title="<%= t('coke_messenger.layers.share_mix_layer.share_or') %>" href="#" onclick="Base.Social.Orkut.shareMix();" class="btn_orkut"><span class="link_decor">Orkut</span></a></li>
+                  <li><a title="<%= t('coke_messenger.layers.share_mix_layer.share_tw') %>" href="#" onclick="Base.Social.Twitter.shareMix();" class="btn_twitter"><span class="link_decor">Twitter</span></a></li>
               </ul>
           </div><!-- .mix_izq -->
           <div class="mix_der">
