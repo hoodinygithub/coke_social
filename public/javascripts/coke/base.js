@@ -1568,6 +1568,30 @@ Base.reviews.edit = function(review, full) {
   });
 };
 
+Base.reviews.pushUpdate = function(button, id) {
+  $(button).hide()
+  $.post(Base.currentSiteUrl() + '/playlists/' + id + '/reviews', 
+         {'comment':$("#network_comment").val()}, 
+         Base.reviews.pushUpdateCallback);
+}
+Base.reviews.pushUpdateCallback = function(response) {
+ var commentField = $("#network_comment");
+ if (response.success) {
+   commentField.val("");
+   var charsCounter = $(".chars_counter");
+       charsCounter.html(140);
+       charsCounter.removeClass("error");
+    
+    // $('p.no_resultados').remove();   
+    $('ul.comments_list').prepend(response.html)
+ }
+ else {
+   // show response.errors
+   // console.log("****ERROR:" + response.errors)
+ }
+ $('a.compartir_button').show();
+}
+
 Base.reviews.update = function(review, full) {
   var params = Base.reviews.getParams(review);
   params['id'] = review;

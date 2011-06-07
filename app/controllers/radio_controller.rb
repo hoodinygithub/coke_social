@@ -19,6 +19,8 @@ class RadioController < ApplicationController
       @top_playlists_limit = 10
       @top_playlists = current_site.top_playlists.all(:limit => @top_playlists_limit)
       
+      sort_order = (params[:sort_by] =~ /highest_rated/i )? "comments.rating DESC" : "comments.updated_at DESC"
+      @comments = @station_obj.playable.comments.valid(:order => sort_order).paginate :page => params[:page], :per_page => 5
     else
       if request.xhr?
         redirect_to channel_mixes_path(:without_layout => 1)

@@ -1,0 +1,12 @@
+<% show_delete = owner rescue false %>
+<% user = list_item.user %>
+<li id="review_<%= list_item.id %>">
+    <%= link_to avatar_for(user, :small), user, :content_switch_enabled => true %>
+    <div class="comment_text">
+        <%= link_to_function( t('actions.delete'), "Base.reviews.confirm_remove(#{list_item.id})", :title => t('actions.delete'), :class => "close_btn" ) if show_delete %>
+        <p class="data"><%= t('basics.created_by') %>: <%= link_to user, user_path(user), :content_switch_enabled => true, :class => "nombre" %>
+        <span class="grey"><%= nice_elapsed_time(list_item.updated_at) %> <%= t('basics.ago') %></span></p>
+        <p><%= list_item.comment %></p>
+        <%= multitask_rating(list_item, 5) %>
+    </div><!-- .comment_text -->
+</li>

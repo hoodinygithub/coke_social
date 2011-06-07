@@ -65,24 +65,30 @@ class ReviewsController < ApplicationController
   end
 
   def create
-    @playlist = Playlist.find(params[:playlist_id])
-    review  = Comment.new(:comment => params[:comment],
-                          :rating  => params[:rating] ? params[:rating] : 0,
-                          :user_id => current_user.id )
-    if review.valid?
-      has_commented = @playlist.comments.find_by_user_id(current_user.id) if @playlist
-      if has_commented
-        @review_params = params
-        render :json => { :success => false, :redirect_to => "reviews/#{has_commented.id}/duplicate_warning" }
+    if @playlist = (Playlist.find(params[:playlist_id]) rescue nil)
+    
+      review  = Comment.new(:comment => params[:comment],
+                            :rating  => params[:rating] ? params[:rating] : 0,
+                            :user_id => current_user.id )
+      if review.valid?
+        has_commented = @playlist.comments.find_by_user_id(current_user.id) if @playlist
+        if has_commented
+          @review_params = params
+          # render :json => { :success => false, :redirect_to => "reviews/#{has_commented.id}/duplicate_warning" }
+          render :json => { :success => false, :errors => t('reviews.duplicate_warning_text') }
+        else
+          @playlist.rate_with(review)
+          UserNotification.send_review_notification({:playlist_id => params[:playlist_id], :reviewer_id => current_user.id }) unless !@playlist.owner.receives_reviews_notifications?
+          render :json => { :success => true,
+                            #:html => render_to_string( :partial => 'playlist_review_item', :collection => [review] )
+                            :html => render_to_string( :partial => 'list_item', :collection => [review] )
+                          }
+        end
       else
-        @playlist.rate_with(review)
-        UserNotification.send_review_notification({:playlist_id => params[:playlist_id], :reviewer_id => current_user.id }) unless !@playlist.owner.receives_reviews_notifications?
-        render :json => { :success => true,
-                          :html => render_to_string( :partial => 'playlist_review_item', :collection => [review] )
-                        }
+        render :json => { :success => false, :errors => review.errors.to_json }
       end
     else
-      render :json => { :success => false, :errors => review.errors.to_json }
+      render :json => { :success => false, :errors => "" }
     end
   end
 
