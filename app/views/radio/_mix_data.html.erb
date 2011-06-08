@@ -1,7 +1,8 @@
 <%
   avatar = avatar_for(p, :large, :class => "portada", :height => 98, :width => 98)
 %>
-<% if true || params[:load_mix] %>
+<%# if params[:load_mix] %>
+<% unless params[:sort_by] || params[:page] %>
   <script type="text/javascript">
     $(document).ready(function() {
       Base.Station.request('/playlists/<%= p.id %>.xml', 'xml', Base.Station.stationCollection);

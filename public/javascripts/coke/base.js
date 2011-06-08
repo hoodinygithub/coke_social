@@ -1576,19 +1576,20 @@ Base.reviews.pushUpdate = function(button, id) {
 }
 Base.reviews.pushUpdateCallback = function(response) {
  var commentField = $("#network_comment");
+     commentField.val("");
+ var charsCounter = $("#chars_counter");
+     charsCounter.html(140);
+     charsCounter.removeClass("error");
+     
  if (response.success) {
-   commentField.val("");
-   var charsCounter = $(".chars_counter");
-       charsCounter.html(140);
-       charsCounter.removeClass("error");
-    
     // $('p.no_resultados').remove();   
     $('ul.comments_list').prepend(response.html)
  }
  else {
    // show response.errors
-   // console.log("****ERROR:" + response.errors)
+   alert( response.errors );
  }
+      
  $('a.compartir_button').show();
 }
 
@@ -1957,7 +1958,7 @@ Base.activity.pushUpdateCallback = function(response) {
  var commentField = $("#network_comment");
  if (response.success) {
    commentField.val("");
-   var charsCounter = $(".chars_counter");
+   var charsCounter = $("#chars_counter");
        charsCounter.html(140);
        charsCounter.removeClass("error");
     
@@ -2027,4 +2028,13 @@ Base.badges.filter = function() {
   $(this).replaceWith('<span class="selected" type="' + $(this).attr('type') + '">' + $(this).text() + '</span>');
   $("p.filter a").bind('click', Base.badges.filter);
   return false; 
+}
+
+function IsJsonString(str) {
+   try {
+       JSON.parse(str);
+   } catch (e) {
+       return false;
+   }
+   return true;
 }

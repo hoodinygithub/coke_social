@@ -306,6 +306,7 @@ module ApplicationHelper
 
   def tag_links(item, active_scope = :playlists, limit=3, include_text=true, link_options={})
     links = []
+    link_options[:content_switch_enabled] = true unless (link_options.has_key? :content_switch_enabled)
     conditions = "valid_tags.site_id = #{current_site.id} and valid_tags.deleted_at IS NULL"
     joins      = "INNER JOIN valid_tags ON valid_tags.tag_id = #{Tag.table_name}.id"
     tags = item.tags.all(:limit => limit, :joins => joins, :conditions => conditions)

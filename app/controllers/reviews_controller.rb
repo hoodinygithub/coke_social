@@ -85,10 +85,10 @@ class ReviewsController < ApplicationController
                           }
         end
       else
-        render :json => { :success => false, :errors => review.errors.to_json }
+        render :json => { :success => false, :errors => review.errors[:comment] }
       end
     else
-      render :json => { :success => false, :errors => "" }
+      render :json => { :success => false, :errors => t('coke_messenger.registration.layers.error') }
     end
   end
 
