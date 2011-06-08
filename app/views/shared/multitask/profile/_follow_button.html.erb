@@ -11,7 +11,7 @@
     <% end %>
   <% end %>
 <% else %>
-  <a slug="<%=user.slug%>" id="not_following" class="follow_button btn_rojo btn_rojo_grande" href="#" onclick="return Base.utils.showRegistrationLayer('<%= user_path(user.slug) %>', 'follow_user', <%= user.id %>);">
+  <a slug="<%=user.slug%>" id="not_following" class="follow_button btn_rojo btn_rojo_grande" href="#" onclick="return Base.utils.showRegistrationLayer('<%= current_site_url + user_path(user.slug) %>', 'follow_user', <%= user.id %>);">
     <%= t('actions.follow').upcase %><span class="bg_fin">&nbsp;</span>
   </a>
 <% end %>
