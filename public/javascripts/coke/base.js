@@ -223,7 +223,7 @@ Base.Social = {
       var b = "http://twitter.com/share";
       var q = [];
       q.push('url=' + current_url_site + '/playlists?station_id=' + Base.Station._station.sid);
-      q.push('text=' + escape($('.compartir').attr('message')));
+      q.push('text=' + $('.compartir').attr('message'));
       window.open(String(b + '?' + q.join('&')), 'twitter', 'width=655,height=343,status=0,toolbar=1,scrollbars=0,menubar=0,location=0');
       return false;
     },
@@ -231,7 +231,7 @@ Base.Social = {
       var b = "http://twitter.com/share";
       var q = [];
       q.push('url=' + current_url_site);
-      q.push('text=' + escape($('.compartir').attr('message')));
+      q.push('text=' + $('.sociales').attr('message'));
       window.open(String(b + '?' + q.join('&')), 'twitter', 'width=655,height=343,status=0,toolbar=1,scrollbars=0,menubar=0,location=0');
       return false;
     }
