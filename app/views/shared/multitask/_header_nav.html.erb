@@ -50,19 +50,22 @@
     <div class="info">
 
       <% if logged_in? %>
-        <a class="tooltip r_compartir" href="#" rel="tip_compartir" title="Enviar por correo" content_switch_enabled="true">Enviar por correo</a>
+        <a class="tooltip r_compartir" href="#" rel="tip_compartir" title="<%= t('coke_messenger.share_mix_tooltip') %>" content_switch_enabled="true"><%= t('coke_messenger.share_mix_tooltip') %></a>
       <% else %>
-        <a class="tooltip r_compartir" href="#" rel="tip_compartir" title="Enviar por correo" onclick="return Base.utils.showRegistrationLayer();">Enviar por correo</a>
+        <a class="tooltip r_compartir" href="#" rel="tip_compartir" title="<%= t('coke_messenger.share_mix_tooltip') %>" onclick="return Base.utils.showRegistrationLayer('<%= current_site_url + radio_path %>?station_id=' + Base.Station._station.sid, 'share_playlist');"><%= t('coke_messenger.share_mix_tooltip') %></a>
       <% end %>
-      <span class="tip tip_ancho" id="tip_compartir">Enviar por correo</span>
+
+      <span class="tip tip_ancho" id="tip_compartir"><%= t('coke_messenger.share_mix_tooltip') %></span>
+
       <% if logged_in? %>
-        <a class="tooltip r_copiar" href="#" rel="tip_copiar" title="Copiar Mix" content_switch_enabled="true">Copiar</a>
+        <a class="tooltip r_copiar" href="#" rel="tip_copiar" title="<%= t('coke_messenger.copy_mix_tooltip') %>" content_switch_enabled="true"><%= t('actions.copy') %></a>
       <% else %>
-        <a class="tooltip r_copiar" href="#" rel="tip_copiar" title="Copiar Mix" onclick="return Base.utils.showRegistrationLayer(undefined, 'copy_playlist');">Copiar</a>
+        <a class="tooltip r_copiar" href="#" rel="tip_copiar" title="<%= t('coke_messenger.copy_mix_tooltip') %>" onclick="return Base.utils.showRegistrationLayer('<%= current_site_url + radio_path %>?station_id=' + Base.Station._station.sid, 'copy_playlist');"><%= t('actions.copy') %></a>
       <% end %>
-      <span class="tip" id="tip_copiar">Copiar Mix</span>
-      <a class="tooltip r_info" href="#" rel="tip_info" title="Información" content_switch_enabled="true">Info</a>
-      <span class="tip" id="tip_info">Información</span>
+
+      <span class="tip" id="tip_copiar"><%= t('coke_messenger.copy_mix_tooltip') %></span>
+      <a class="tooltip r_info" href="#" rel="tip_info" title="<%= t('coke_messenger.information') %>" content_switch_enabled="true"><%= t('coke_messenger.info') %></a>
+      <span class="tip" id="tip_info"><%= t('coke_messenger.information') %></span>
 
     </div><!-- .info -->
     <div class="volumen">
