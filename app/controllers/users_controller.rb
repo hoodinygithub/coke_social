@@ -148,7 +148,7 @@ class UsersController < ApplicationController
       else
         respond_to do |format|
           #format.html { redirect_back_or_default(my_dashboard_path) }
-          format.html { go_home_or_return_if_logged_in }
+          format.html { redirect_to home_path }
           format.xml  { render :xml => Player::Message.new( :message => t('messenger_player.registration.success') ) }
         end
       end
