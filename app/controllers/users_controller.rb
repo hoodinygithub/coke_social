@@ -171,8 +171,12 @@ class UsersController < ApplicationController
     if request.post?
       @user = User.forgot(params[:user])
 
-      if !@user.errors.empty?
-        # Validation errors exist, but we're pretending that everything was ok b/c of Coke security policies.
+      if @user.nil? or !@user.errors.empty?
+        # Email not found.
+        # ...or...
+        # Validation errors exist.
+        #
+        # We're pretending that everything was ok b/c of Coke security policies.
         # Don't want to reveal a valid email address.
         flash[:success] = t('forgot.reset_message_sent')
         render_forgot_xhr(false, "show error msgs", t('coke_messenger.layers.forgot_password_layer.error_msg')) if request.xhr?
