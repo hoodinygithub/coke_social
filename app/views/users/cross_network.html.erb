@@ -1,41 +1,58 @@
-<div class="auth_area">
+<% content_for :head do %>
+  <% # general.css imports cab-pie-player, then overrides it.  This page then overrides the overrides.  Blame the dumb slices. %>
+  <% # stylesheet_link_tag 'multitask/cab-pie-player.css' %>
+<% end %>
 
-  <div class="auth_title">
-    <%= "Hello #{@user.name}" %>
-  </div>
+<div id="flash_messages">
+  <%= render_flash_messages %>
+</div>
 
-  <div class="auth_left">
+<div id="container">
+  <div id="main_content" class="users">
 
-    <div>
-      Untranslated - We see you are already part of the Cyloop Network.  All you have to do is accept the Coca-Cola.fm Terms and Conditions and your profile information will already be populated.
-    </div>
+    <div class="auth_area">
 
-    <div class="form_content">
-      <% form_tag nil, { :class => "account_settings" } do %>
-        <div class="form_row last">
-          <%= check_box_tag :opt_in, 1, false, { :class => "privacy_check" } %>
+      <h1 class="tit_bloque gris">
+        <span class="txt"><%= t('registration.cross_network.welcome') %></span>
+        <span class="bg_fin">&nbsp;</span>
+      </h1>
 
-          <div class="privacy_text checkbox">
-            <%= t("registration.terms_and_privacy", :terms_link => link_to(t("registration.terms_of_use"), terms_and_conditions_url), :privacy_link => link_to(t("registration.privacy_policy"), privacy_policy_url)) %>
-          </div>
+
+      <div class="auth_left2">
+
+        <div class="grey_round_box">
+          <%= t('registration.cross_network.message') %>
         </div>
 
-        <div class="clearer"></div>
+        <div class="form_content">
+          <% form_tag nil, { :class => "account_settings" } do %>
+            <div class="form_row last">
+              <%= check_box_tag :opt_in, 1, false, { :class => "privacy_check" } %>
 
-        <br/><br/>
+              <div class="privacy_text checkbox">
+                <%= t("registration.terms_and_privacy", :terms_link => link_to(t("registration.terms_of_use"), terms_and_conditions_url), :privacy_link => link_to(t("registration.privacy_policy"), privacy_policy_url)) %>
+              </div>
+            </div>
 
-        <div class="right_side">
-          <big class="grey"><%= t("registration.thats_it") %></big> &nbsp; <a class="red_button valign_middle" onclick="$(this).closest('form').submit();"><span><span><%= t("registration.complete") %></span></span></a>
+            <div class="clearer"></div>
+
+            <br/><br/>
+
+            <div class="right_side">
+              <big class="grey"><%= t("registration.thats_it") %></big> &nbsp; <a class="red_button valign_middle" onclick="$(this).closest('form').submit();"><span><span><%= t("registration.complete") %></span></span></a>
+            </div>
+
+          <% end %>
         </div>
+      </div>
 
-      <% end %>
-    </div>
-  </div>
+      <div class="auth_right">
+        <%= render '/users/registration_sidebox' %>
+      </div><!--/end auth_right -->
 
-  <div class="auth_right">
-    <%= render '/users/registration_sidebox' %>
-  </div><!--/end auth_right -->
+      <div class="clearer"></div>
 
-  <div class="clearer"></div>
+    </div><!--/end  auth_area -->
+  </div><!-- end main_content -->
+</div><!--/end container -->
 
-</div><!--/end  auth_area -->
