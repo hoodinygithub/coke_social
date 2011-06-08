@@ -1,6 +1,17 @@
 <div class="contenido">
   <div class="bloque">
 
+    <%
+     # This block is to set a default scope if the "all" scope is returned
+     if params[:scope] == "all" and !@results[:playlists].empty?
+       params[:scope] = "playlists"
+       @search_types = [:playlists]
+     elsif params[:scope] == "all" and @results[:playlists].empty? and !@results[:users].empty?
+       params[:scope] = "users"
+       @search_types = [:users]
+     end
+    %>
+
     <% form_tag '/search', :method => :get, :class => 'buscador_big', :onsubmit => 'Base.Search.query(this); return false;' do %>
       <%= label_tag 'lupa', 'lupa', :class => 'lupa_buscar' %>
       <%= hidden_field_tag 'scope', params[:scope] %>
