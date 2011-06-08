@@ -97,6 +97,7 @@ class UsersController < ApplicationController
       end
     else 
       @user = current_user
+      flash[:error] = t('registration.cross_network.error') if request.referrer =~ /cross_network/
       if request.xhr?
         @msg = "opt_layer"
         @error_msgs = "show error msgs"
