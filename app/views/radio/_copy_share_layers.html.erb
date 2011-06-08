@@ -69,17 +69,25 @@
       //slide copiar compartir
       $("a.btn_slide").click(function(event) {
         $(this).attr("href", "#");
-    	  event.preventDefault(); //detengo clic
-    	  var elem = $(this).attr("rel");
-    	  var ancho = $("#"+elem).width();
-    	  if(elem=="sub_home"){ //si llamamos a la home, volver
-    		  $(this).parent().parent().animate({"left":"+="+ancho+"px"});
-      		$("#sub_home").animate({"left":"+="+ancho+"px"});
-    	  }else{ //si llamamos a una pantalla, copiar, compartir
-    		  $("#sub_home").animate({"left":"-="+ancho+"px"});
-    		  $("#"+elem).animate({"left":"-="+ancho+"px"});
-    	  }
+    	event.preventDefault(); //detengo clic
+    	var elem = $(this).attr("rel");
+    	var ancho = $("#"+elem).width();
+    	if (elem=="sub_home"){ //si llamamos a la home, volver
+    	  $(this).parent().parent().animate({"left":"+="+ancho+"px"});
+      	  $("#sub_home").animate({"left":"+="+ancho+"px"});
+    	} else { //si llamamos a una pantalla, copiar, compartir
+    	  $("#sub_home").animate({"left":"-="+ancho+"px"});
+    	  $("#"+elem).animate({"left":"-="+ancho+"px"});
+    	}
       });
+
+      <% if session[:copy_playlist]
+        session[:copy_playlist] = nil %>
+        $("a.btn_slide.[rel='sub_copiar']").click();
+      <% elsif session[:share_playlist]
+        session[:share_playlist] = nil %>
+        $("a.btn_slide.[rel='sub_compartir']").click();
+      <% end %>
 
       //mostrar ocultar listas mixes usuario
       $(".mod_tab[id!=masmixes]").animate({"opacity":0},0);

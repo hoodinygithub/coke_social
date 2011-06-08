@@ -49,7 +49,8 @@ ActionController::Routing::Routes.draw do |map|
      :max_radio       => :any,
      :create_playlist => :any,
      :review_playlist => :any,
-     :copy_playlist   => :any
+     :copy_playlist   => :any,
+     :share_playlist  => :any
   }
 
   map.signup 'signup', :controller => 'users', :action => 'new'

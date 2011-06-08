@@ -39,9 +39,18 @@
           
           
           <div class="mix_lateral">
-            <a class="btn_rojo btn_slide" rel="sub_copiar" href="#" onclick="return Base.utils.showRegistrationLayer(undefined, 'copy_playlist');" title="<%= t('coke_messenger.copy_mix').upcase %>">
+            <%
+              if logged_in? 
+                copy_onclick = "return true;"
+                share_onclick = "return true;"
+              else
+                copy_onclick = "return Base.utils.showRegistrationLayer('#{current_site_url + radio_path(:station_id => p.station.id)}', 'copy_playlist');"
+                share_onclick = "return Base.utils.showRegistrationLayer('#{current_site_url + radio_path(:station_id => p.station.id)}', 'share_playlist');"
+              end
+            %>
+            <a class="btn_rojo btn_slide" rel="sub_copiar" href="#" onclick="<%= copy_onclick %>" title="<%= t('coke_messenger.copy_mix').upcase %>">
               <%= t('coke_messenger.copy_mix').upcase %><span class="bg_fin">&nbsp;</span></a>
-            <a class="btn_rojo btn_slide" rel="sub_compartir" href="#" onclick="return Base.utils.showRegistrationLayer();" title="<%= t('coke_messenger.share_mix').upcase %>">
+            <a class="btn_rojo btn_slide" rel="sub_compartir" href="#" onclick="<%= share_onclick %>" title="<%= t('coke_messenger.share_mix').upcase %>">
               <%= t('coke_messenger.share_mix').upcase %><span class="bg_fin">&nbsp;</span></a>
 
             <% if profile_owner? %>

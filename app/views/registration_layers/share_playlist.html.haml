@@ -1,0 +1,6 @@
+.registration_layer
+  .top{:style => "background-image: url(/images/layers/#{layer_background_image});"}
+    %h2.channel_headline=t('registration.layers.share_playlist', :link => link_to(t("registration.layers.click_here"), site_login_url))
+    = render :partial => '/registration_layers/stats'
+  = render :partial => '/registration_layers/bottom'
+

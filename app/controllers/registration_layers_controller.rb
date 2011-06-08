@@ -35,12 +35,17 @@ class RegistrationLayersController < ApplicationController
   end  
 
   def copy_playlist
+    session[:copy_playlist] = true
   end
 
   def create_playlist
   end
 
   def review_playlist
+  end
+
+  def share_playlist
+    session[:share_playlist] = true
   end
     
   private
