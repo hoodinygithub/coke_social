@@ -1575,22 +1575,28 @@ Base.reviews.pushUpdate = function(button, id) {
          Base.reviews.pushUpdateCallback);
 }
 Base.reviews.pushUpdateCallback = function(response) {
- var commentField = $("#network_comment");
-     commentField.val("");
- var charsCounter = $("#chars_counter");
-     charsCounter.html(140);
-     charsCounter.removeClass("error");
-     
  if (response.success) {
+    Base.reviews.clearForm();        
     // $('p.no_resultados').remove();   
     $('ul.comments_list').prepend(response.html)
  }
  else {
    // show response.errors
-   alert( response.errors );
+   if( response.redirect_to )
+     Base.utils.showPopup(response.redirect_to);
+   else
+     alert( response.errors );
  }
       
  $('a.compartir_button').show();
+}
+
+Base.reviews.clearForm = function() {
+  var commentField = $("#network_comment");
+      commentField.val("");
+  var charsCounter = $("#chars_counter");
+      charsCounter.html(140);
+      charsCounter.removeClass("error");
 }
 
 Base.reviews.update = function(review, full) {
@@ -1639,10 +1645,12 @@ Base.reviews.overwriteCallback = function(response) {
   if (response.success) {
     $(document).trigger("close.facebox");
     $('#review_'+ response.id).replaceWith(response.html);
-    $('input[type=radio].star').rating();
-    Base.reviews.resetForm();
+    // $('input[type=radio].star').rating();
+    // Base.reviews.resetForm();
+    Base.reviews.clearForm();
   } else {
-    Base.reviews.showErrors(response.errors);
+    // Base.reviews.showErrors(response.errors);
+    alert(response.errors)
   }
 };
 

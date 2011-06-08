@@ -57,7 +57,7 @@ class ReviewsController < ApplicationController
       review.commentable.update_attribute(:rating_cache, review.commentable.rating) if review.commentable.rating_cache != review.commentable.rating
       render :json => { :success => true,
                         :id      => review.id,
-                        :html    => render_to_string( :partial => partial, :collection => [review] )
+                        :html => render_to_string( :partial => 'list_item', :collection => [review] )
                       }
     else
       render :json => { :success => false, :errors => review.errors.to_json }
@@ -74,8 +74,8 @@ class ReviewsController < ApplicationController
         has_commented = @playlist.comments.find_by_user_id(current_user.id) if @playlist
         if has_commented
           @review_params = params
-          # render :json => { :success => false, :redirect_to => "reviews/#{has_commented.id}/duplicate_warning" }
-          render :json => { :success => false, :errors => t('reviews.duplicate_warning_text') }
+          render :json => { :success => false, :redirect_to => "reviews/#{has_commented.id}/duplicate_warning" }
+          # render :json => { :success => false, :errors => t('reviews.duplicate_warning_text'), :duplicate => true }
         else
           @playlist.rate_with(review)
           UserNotification.send_review_notification({:playlist_id => params[:playlist_id], :reviewer_id => current_user.id }) unless !@playlist.owner.receives_reviews_notifications?

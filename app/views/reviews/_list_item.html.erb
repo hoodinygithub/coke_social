@@ -1,5 +1,5 @@
 <% show_delete = owner rescue false %>
-<% user = list_item.user %>
+<% user = User.find(list_item.user_id) %>
 <li id="review_<%= list_item.id %>">
     <%= link_to avatar_for(user, :small), user, :content_switch_enabled => true %>
     <div class="comment_text">
