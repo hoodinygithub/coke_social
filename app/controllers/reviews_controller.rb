@@ -52,12 +52,12 @@ class ReviewsController < ApplicationController
     review = Comment.find(params[:id])
     review.comment = params[:comment]
     review.rating  = params[:rating] ? params[:rating] : 0
-    partial = params[:full] ? 'item' : 'playlist_review_item'
+    partial = params[:full] ? 'item' : 'list_item'
     if review.save
       review.commentable.update_attribute(:rating_cache, review.commentable.rating) if review.commentable.rating_cache != review.commentable.rating
       render :json => { :success => true,
                         :id      => review.id,
-                        :html => render_to_string( :partial => 'item', :collection => [review] )
+                        :html => render_to_string( :partial => partial, :collection => [review] )
                       }
     else
       render :json => { :success => false, :errors => review.errors.to_json }
@@ -74,7 +74,7 @@ class ReviewsController < ApplicationController
         has_commented = @playlist.comments.find_by_user_id(current_user.id) if @playlist
         if has_commented
           @review_params = params
-          render :json => { :success => false, :redirect_to => "reviews/#{has_commented.id}/duplicate_warning" }
+          render :json => { :success => false, :redirect_to => "/reviews/#{has_commented.id}/duplicate_warning" }
           # render :json => { :success => false, :errors => t('reviews.duplicate_warning_text'), :duplicate => true }
         else
           @playlist.rate_with(review)

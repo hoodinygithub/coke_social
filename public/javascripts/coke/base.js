@@ -623,8 +623,10 @@ Base.UI = {
       $('#content').empty().html(data);
     }
     // Scrolls up to top of page after load showing just header nav
-    //setTimeout("window.scrollTo(0,135)",0);
     if ($('.navegacion').offset().top > 180) window.scrollTo(0, 180);
+    
+    // Sets rating bottles onload
+    $('#content input[type=radio].star').rating();
   },
   
   xhrerror: function(data)
