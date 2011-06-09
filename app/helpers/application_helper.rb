@@ -1017,10 +1017,10 @@ def cyloop_logo_path(sm=true)
     rating
   end
 
-  def multitask_rating(rateable, bottles=5, klass='rating')
-    rating = "<span class='#{klass}'><span class='star-rating-control'>"
+  def multitask_rating(rateable, bottles=5, klass='rating', can_rate=false)
+    rating = "<span class='#{klass}'><span class='star-rating-control' id='#{rateable.id}' type='#{rateable.class}'>"
     (1..bottles).each_with_index do |b, idx|
-      rating << "<div class=\"star-rating star-rating-readonly #{ 'star-rating-on' if rateable.rating_cache.to_i.floor >= b }\"><a>#{idx}</a></div>"
+      rating << "<div class=\"star-rating star-rating-#{can_rate ? "rateable" : "readonly"} #{ 'star-rating-on' if rateable.rating_cache.to_i.floor >= b }\"><a onclick='#{"return Base.rating.rate(this);" if can_rate}' title='#{idx+1}'>#{idx+1}</a></div>"
     end
     rating << "</span></span>"
     rating

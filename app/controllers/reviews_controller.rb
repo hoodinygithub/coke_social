@@ -57,7 +57,7 @@ class ReviewsController < ApplicationController
       review.commentable.update_attribute(:rating_cache, review.commentable.rating) if review.commentable.rating_cache != review.commentable.rating
       render :json => { :success => true,
                         :id      => review.id,
-                        :html => render_to_string( :partial => 'list_item', :collection => [review] )
+                        :html => render_to_string( :partial => 'item', :collection => [review] )
                       }
     else
       render :json => { :success => false, :errors => review.errors.to_json }
@@ -85,10 +85,10 @@ class ReviewsController < ApplicationController
                           }
         end
       else
-        render :json => { :success => false, :errors => review.errors[:comment] }
+        render :json => { :success => false, :errors => review.errors.to_json }
       end
     else
-      render :json => { :success => false, :errors => t('coke_messenger.registration.layers.error') }
+      render :json => { :success => false, :error_message => t('coke_messenger.registration.layers.error') }
     end
   end
 

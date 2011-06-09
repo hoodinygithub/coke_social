@@ -1,9 +1,9 @@
 module ReviewsHelper
   
-  def reviews_actions_for(review)
+  def reviews_actions_for(review, review_size=90)
     read_more = "<a href=\"#\" onclick=\"Base.reviews.show(#{review.id}); return false;\">
                    #{t('actions.read_more')}
-                 </a>" if review.comment.size > 90
+                 </a>" if review.comment.size > review_size
 
     edit = "<a href=\"#\" onclick=\"Base.reviews.edit(#{review.id}, true); return false;\">
               #{t('actions.edit')}

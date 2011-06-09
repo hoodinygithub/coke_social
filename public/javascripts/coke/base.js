@@ -151,7 +151,8 @@ var Base = {
   locale: {},
   header_search: {},
   account: {},
-  playlist_search: {}
+  playlist_search: {},
+  rating: {}
 };
 
 // Social sharing
@@ -1430,7 +1431,7 @@ Base.reviews.load_playlist_reviews_list = function(container, playlist) {
 Base.reviews.getParams = function(review) {
   var params = {};
   if (review) {
-    params['comment'] = $.trim($("#comment_update").val());
+    params['comment'] = $.trim($("#network_comment").val());
     params['rating']  = $('input[name=rating_' + review + ']:checked').last().val();
   } else {
     params['comment'] = $.trim($("#network_comment").val());
@@ -1569,10 +1570,13 @@ Base.reviews.edit = function(review, full) {
 };
 
 Base.reviews.pushUpdate = function(button, id) {
-  $(button).hide()
+  $(button).hide();
+  var params = Base.reviews.getParams(id);
   $.post(Base.currentSiteUrl() + '/playlists/' + id + '/reviews', 
-         {'comment':$("#network_comment").val()}, 
+         params, 
          Base.reviews.pushUpdateCallback);
+         
+  return false;
 }
 Base.reviews.pushUpdateCallback = function(response) {
  if (response.success) {
@@ -1584,19 +1588,13 @@ Base.reviews.pushUpdateCallback = function(response) {
    // show response.errors
    if( response.redirect_to )
      Base.utils.showPopup(response.redirect_to);
+  else if( response.errors )
+     Base.reviews.showErrors($.parseJSON(response.errors), $("#network_update_form"));
    else
      alert( response.errors );
  }
       
  $('a.compartir_button').show();
-}
-
-Base.reviews.clearForm = function() {
-  var commentField = $("#network_comment");
-      commentField.val("");
-  var charsCounter = $("#chars_counter");
-      charsCounter.html(140);
-      charsCounter.removeClass("error");
 }
 
 Base.reviews.update = function(review, full) {
@@ -1629,8 +1627,8 @@ Base.reviews.updateCallback = function(response) {
   }
 };
 
-Base.reviews.overwrite = function(review) {
-  var params = Base.reviews.getParams();
+Base.reviews.overwrite = function(review,playlist) {
+  var params = Base.reviews.getParams(playlist);
   params['id'] = review;
 
   $.ajax({
@@ -1653,6 +1651,14 @@ Base.reviews.overwriteCallback = function(response) {
     alert(response.errors)
   }
 };
+
+Base.reviews.clearForm = function() {
+  var commentField = $("#network_comment");
+      commentField.val("");
+  var charsCounter = $("#chars_counter");
+      charsCounter.html(140);
+      charsCounter.removeClass("error");
+}
 
 Base.reviews.remote_sort = function() {
   var sort_link = $(this);
@@ -2038,11 +2044,13 @@ Base.badges.filter = function() {
   return false; 
 }
 
-function IsJsonString(str) {
-   try {
-       JSON.parse(str);
-   } catch (e) {
-       return false;
-   }
-   return true;
+
+Base.rating.rate = function(t) {
+  bottle = $(t);
+  rating_control = bottle.parent().parent();
+  rateable_id = rating_control.attr('id');
+  rateable_type = rating_control.attr('type');
+  // console.log(rateable_type + ":" + rateable_id + ":" + bottle.html())
+  
+  return false;
 }

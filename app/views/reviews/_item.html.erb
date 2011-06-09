@@ -6,11 +6,11 @@
     <strong><%= t('modules.latest_comments.by', :user_name => link_to(user.name, user_path(user), :content_switch_enabled => true)) %></strong>
     <span class="grey">
       <%= nice_elapsed_time(item.updated_at) %> <%= t('basics.ago') %>
-      <%= (reviews_actions_for(item) rescue nil) if profile_owner? %>
+      <%= (reviews_actions_for(item, 250) rescue nil) if profile_owner? %>
     </span>
     <%= multitask_rating(item.commentable, 5) %>
     <div class="rev_text">
-      <p><%= truncate(item.comment, :length=>90) %></p>
+      <p><%= truncate(item.comment, :length=>250) %></p>
     </div>
 
     <% user = item.commentable.owner %>

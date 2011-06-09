@@ -17,9 +17,12 @@
             <%= avatar_for(current_user, :small, :class => "network_icon") if current_user %>
             <textarea id="network_comment" onkeyup="Base.activity.count_chars();" onchange="Base.activity.count_chars();" name="comment" rows="2" cols="20" class="bocadillo"></textarea>
             <span class="share_button_container">
-              <a href="#" class="compartir_button post_button red_button" onclick="<%= logged_in? ? "Base.reviews.pushUpdate(this, #{p.id});" : "return Base.utils.showRegistrationLayer('#{current_site_url + radio_path(:station_id => p.station.id)}', 'review_playlist');" %>"><%= t('reviews.post_your_review').upcase %></a>
+              <a href="#" class="compartir_button post_button red_button" onclick="<%= logged_in? ? "Base.reviews.pushUpdate(this, #{p.id});" : "Base.utils.showRegistrationLayer('#{current_site_url + radio_path(:station_id => p.station.id)}', 'review_playlist');" %> return false;"><%= t('reviews.post_your_review').upcase %></a>
             </span>
-            <%= multitask_rating(p, 5) %>
+            <%#= multitask_rating(p, 5) %>
+            <span class="rating_inputs">
+              <%= rating(p, true) %>
+            </span>
         </form>
         
       <% end %>  
