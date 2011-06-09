@@ -77,6 +77,14 @@ $(document).ready(function() {
       }
     }
 
+    if (String($(this).attr('href')).match(/my/))
+    {
+      options.afterComplete = function()
+      {
+        $('body').attr('id', 'usuario');
+      }
+    }
+
     if (String($(this).attr('href')).match(/index-bands/) ||
         String($(this).attr('href')).match(/index-music/) ||
         String($(this).attr('href')).match(/badges-dj/) ||
