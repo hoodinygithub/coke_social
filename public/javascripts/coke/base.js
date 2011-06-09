@@ -907,7 +907,7 @@ Base.account_settings.delete_account_submit_as_cyloop = function() {
         if (data.errors) {
           validator.showErrors(data.errors);
         } else {
-          jQuery.popup(data);
+          $.popup(data);
         }
       }
     });
