@@ -11,7 +11,7 @@ class UsersController < ApplicationController
   before_filter :go_home_or_return_if_logged_in, :only => [:new, :forgot]
   #before_filter :set_dashboard_menu, :only => [:edit, :update]
 
-  ssl_required_with_diff_domain :new, :errors_on, :confirm_cancellation, :forgot, :feedback #, :edit, :destroy,
+  ssl_required_with_diff_domain :new, :errors_on, :forgot, :feedback #, :edit, :destroy, :confirm_cancellation
   ssl_allowed_with_diff_domain :update, :create
   
   current_tab :settings
