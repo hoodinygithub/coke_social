@@ -2,7 +2,7 @@ class DashboardsController < ApplicationController
   before_filter :login_required
   before_filter :load_user_activities, :only => [:show]
 
-  ACTIVITIES_MAX           = 50
+  #ACTIVITIES_MAX           = 50
   ACTIVITIES_PAGE_SIZE     = 3
 
   layout_except_xhr 'application'
@@ -12,7 +12,8 @@ class DashboardsController < ApplicationController
     @top_playlists_limit = 6
     @top_playlists = current_site.top_playlists.all(:limit => @top_playlists_limit)
     @notifications = profile_owner? ? profile_user.badge_awards.notifications : []
-    @activity = @activity[0..ACTIVITIES_PAGE_SIZE-1]
+    # Perf: Don't get activity and throw it away.  Slice it before you get here.
+    #@activity = @activity[0..ACTIVITIES_PAGE_SIZE-1]
     
     respond_to do |format|
       format.html
@@ -50,7 +51,8 @@ class DashboardsController < ApplicationController
       @has_more = true
     end
 
-    @activity.each do |a|
+    # perf todo: We're saving db time, but not Tyrant time.  Activity model needs to support a limit param.
+    @activity[0..ACTIVITIES_PAGE_SIZE-1].each do |a|
       account      =  Account.find(a['account_id'])
       a['account'] = account
       if a['type'] == 'station'
