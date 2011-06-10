@@ -10,20 +10,32 @@ class RadioController < ApplicationController
     @station_obj = station if station and station.playable and station.playable.owner and station.playable.owner.active?
     
     if @station_obj
+      @profile_account = @station_obj.playable.owner
       @section = "player_page" #used for css styling
       @station_queue = @station_obj.playable.station_queue(:ip_address => remote_ip)
       @station_obj.playable.track_a_play_for(current_user) if @station_obj.playable
-      set_origin
-    else
-      @top_djs_limit = 5
-      @top_djs = current_site.top_djs.all(:limit => @top_djs_limit)
-      @top_playlists_limit = 6
-      @top_playlists = current_site.top_playlists.all(:limit => @top_playlists_limit)
-
-      @latest_badges = BadgeAward.latest(6)
+      #set_origin
       
-      @top_artists_limit = 5    
-      @top_artists = current_site.top_artists.all(:limit => @top_artists_limit)
+      @top_playlists_limit = 10
+      @top_playlists = current_site.top_playlists.all(:limit => @top_playlists_limit)
+      
+      sort_order = (params[:sort_by] =~ /highest_rated/i )? "comments.rating DESC" : "comments.updated_at DESC"
+      @comments = @station_obj.playable.comments.valid(:order => sort_order).paginate :page => params[:page], :per_page => 5
+    else
+      if request.xhr?
+        redirect_to channel_mixes_path(:without_layout => 1)
+      else
+        redirect_to channel_mixes_path
+      end
+      # @top_djs_limit = 5
+      # @top_djs = current_site.top_djs.all(:limit => @top_djs_limit)
+      # @top_playlists_limit = 6
+      # @top_playlists = current_site.top_playlists.all(:limit => @top_playlists_limit)
+      # 
+      # @latest_badges = BadgeAward.latest(6)
+      # 
+      # @top_artists_limit = 5    
+      # @top_artists = current_site.top_artists.all(:limit => @top_artists_limit)
     end
   end
 

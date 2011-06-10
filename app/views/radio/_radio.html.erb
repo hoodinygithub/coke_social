@@ -1,132 +1,43 @@
-<!-- fb sdk auth and meta info -->
-<% content_for :fbmeta do %>
-  <meta property="og:title"       content="<%= @station_obj.playable.name %>"/>
-  <meta property="og:type"        content="station"/>
-  <meta property="og:url"         content="<%= host_with_port(request.request_uri) %>"/>
-  <meta property="og:image"       content="<%=host_with_port("/images/FB_logo.jpeg")%>"/>
-  <meta property="og:site_name"   content="Coca-Cola.fm"/>
-  <meta property="fb:app_id"      content="<%= fb_appid %>"/>
-  <meta property="og:description" content="<%= "#{@station_obj.playable.name} includes #{@station_obj.playable.includes.map { |s| s.artist.name }.join(', ') }" %>"/>
-<% end %>
+<div class="contenido" id="mix">
+  <div class="bloque">
+    <%= render :partial => 'radio/mix_data', :locals => {:p => @station_obj.playable} %>
+    <div class="cont_columna doble">
+                
+        <div class="mod_perfil">
+            <h2 class="tit_bloque">
+                <span class="txt"><%= t('modules.mix_detail.title') %><em><%= @station_obj.playable.name %></em></span>
+                <span class="bg_fin">&nbsp;</span>
+            </h2><!-- .tit_bloque -->
+            <%= render :partial => 'shared/multitask/profile/user_data', :locals => {:user => @station_obj.playable.owner} %>
+        </div><!-- .mod_perfil -->
 
-<%= render "shared/social/fbconnect" %>
-
-<% blank_msg = t('modules.edit_station.blank_station_name_message').gsub(/\"/, '\"') %>
-<script type="text/javascript">
-  var blank_station_alert = "<%= blank_msg  %>";
-  $(document).ready(function() {
-    Base.radio.initialize();
-    initTopButtons();
-  });
-  function load_licensing_message(){
-    <% if @station_obj.playable.is_a?(Playlist) && @station_obj.playable.owner_is?(current_user) && @station_obj.playable.songs_count < 60 %>
-      $('#licensing_popup').fadeIn('slow');
-    <% end %>    
-  }
-
-  // Flash max skips callback
-  function max_skips_message() {
-    $('#max_skips_popup').fadeIn('slow');
-    // block weird default click handler for the facebox
-    $('max_skips_popup').unbind('click');
-  }
-</script>
-
-<div class="two_columns">
-  <div class="mix_box grey_accents">
-    <form name='station_form' action="">
-      <input type="hidden" id="station_to_delete" value="" />
-      <input type="hidden" id="radio_tab_scope" value="" />
-      <input type="hidden" id="my_stations_toggle" value="0" />
-      <input type="hidden" id="msn_stations_toggle" value="0" />
-      <input type="hidden" id="create_station_toggle" value="0" />
-    </form>
-    <%= render 'top_buttons' %> 
-    <div id="my_stations_container">
-      <%= render "my_#{@station_obj.playable.class.to_s.pluralize.underscore}" if logged_in? && current_user && current_user.total_playlists > 0 %>
-      <!--%= render 'my_playlists' if logged_in? && current_user && current_user.total_user_stations > 0 %-->
-    </div>
-    <!--%= render 'msn_stations' unless @msn_stations.empty? %-->
-    <!--%= render 'create_new_station' %-->
-    <div class="album_detail" id="current_station_info">
-      <%= render @station_obj.playable.class.to_s.underscore %>
-      <br class="clearer" />
-    </div><!--/end album_detail -->
-    <div id="radio_player">
-      <script type="text/javascript" charset="utf-8">
-        var flashvars = "urlContext=/&market=<%= current_site.code %>&playerId=radio_<%= current_site.code %>";
-        flashvars += "&stationId=<%= @station_obj.id %>&station=<%= @station_queue %>";
-        AC_FL_RunContent(
-          "src", "/flash/coke_radio",
-          "wmode", "opaque",
-          "width", "628",
-          "height", "196",
-          "align", "middle",
-          "id", "coke_radio",
-          "quality", "high",
-          "bgcolor", "#f2f2f2",
-          "name", "coke_radio",
-          "allowScriptAccess", "sameDomain",
-          "type", "application/x-shockwave-flash",
-          "pluginspage", "http://www.adobe.com/go/getflashplayer",
-          "flashVars", flashvars
-        );
-      </script>
-    </div>
-
-    <div class="artist_radio_info radio_row hide"></div>
-  </div><!--/end mix_box -->
-
-  <br/><br/><br/>
-
-  <%= render 'reviews' %>
-  <div class="popup" id="licensing_popup">
-      <div class="top_shadow">
-          <div class="top_left corner"></div>
-          <div class="center_shadow"></div>
-          <div class="top_right corner"></div>
-          <a href="#" onclick="$('#licensing_popup').fadeOut('fast'); return false;"><img src="/images/popup_close.png" class="popup_close png_fix" alt="X" title="Close" /></a>
-      </div>
-      <div class="popup_content">
-          <div class="title"><%= t('player.license_message.header') %></div>
-          <div class="form_row">
-              <div class="auto_fill_text">
-                  <%= t('player.license_message.body') %> 
-              </div>
-              <br/>
-          </div>
-      </div>
-      <div class="bottom_shadow">
-          <div class="bottom_left corner"></div>
-          <div class="center_shadow"></div>
-          <div class="bottom_right corner"></div>
-      </div>
-  </div><!--/end popup -->
-
-  <div class="popup" id="max_skips_popup">
-      <div class="top_shadow">
-          <div class="top_left corner"></div>
-          <div class="center_shadow"></div>
-          <div class="top_right corner"></div>
-          <a href="#" onclick="$('#max_skips_popup').fadeOut('fast'); return false;"><img src="/images/popup_close.png" class="popup_close png_fix" alt="X" title="Close" /></a>
-      </div>
-      <div class="popup_content">
-          <div class="title"><%= t('player.max_skips_message.header') %></div>
-          <div class="form_row">
-              <div class="auto_fill_text">
-                  <%= t('player.max_skips_message.body') %>
-              </div>
-              <br/>
-          </div>
-      </div>
-      <div class="bottom_shadow">
-          <div class="bottom_left corner"></div>
-          <div class="center_shadow"></div>
-          <div class="bottom_right corner"></div>
-      </div>
-  </div><!--/end popup -->
-
-
-</div><!--/end two_columns -->
-<div class="clearer"></div>
-
+    
+        <%= render :partial => 'radio/reviews', :locals => {:p => @station_obj.playable} %>
+        <%= render :partial => 'radio/top_mixes', :locals => {:collection => @top_playlists} %>        
+        
+      
+    </div><!-- .cont_columna doble -->
+            
+    <div class="cont_columna der">
+        <div class="open_happiness_box">
+            <%= banner_ad("square_banner") %>
+        </div>        
+        
+        <div class="mod_top mod_masmixes columna">
+          <% user = @station_obj.playable.owner %>
+          <h2 class="tit_bloque gris">
+            <span class="txt"><%= t('modules.mix_detail.top_mixes') %><em><%= user.name %></em></span>
+            <span class="bg_fin">&nbsp;</span>
+          </h2>
+          <ul class="mixes">
+            <% user.playlists.top(5).each do |p| %>
+              <%= render :partial => 'radio/top_mix', :locals => {:p => p} %>
+            <% end %>
+          </ul>
+          <a class="ico_mas" href="<%= profile_owner? ? my_playlists_path : user_playlists_path(user) %>" title="<%= t('actions.view_more') %>" content_switch_enabled="true"><%= t('actions.view_more') %><span class="bg_flecha">&nbsp;</span></a>
+        </div><!-- .mod_top -->          
+          
+    </div><!-- .cont_columna der -->
+            
+  </div><!-- /bloque -->
+</div><!-- .contenido -->

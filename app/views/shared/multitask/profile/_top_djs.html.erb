@@ -1,0 +1,14 @@
+<div class="mod_siguiendo">
+    <h2 class="tit_bloque gris">
+        <span class="txt"><%= t('modules.top_djs.title') %><em><%= t('modules.top_djs.description') %></em></span>
+        <span class="bg_fin">&nbsp;</span>
+    </h2><!-- .tit_bloque -->
+    <% cache("#{site_cache_key}/modules/profiles/top_djs", :expires_in => EXPIRATION_TIMES["top_modules_djs"]) do %>
+      <% current_site.top_djs.all(:limit => 5).each_with_index do |dj, index| %>
+        <div class="thumb_small">
+          <%= link_to avatar_for(dj, :small), dj, :content_switch_enabled => true %>
+          <%= link_to truncate(dj.name,:length => 18), dj, :content_switch_enabled => true %>
+        </div>
+      <% end %>
+    <% end %>
+</div><!-- .mod_siguiendo -->

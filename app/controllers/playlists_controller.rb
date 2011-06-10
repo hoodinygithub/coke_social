@@ -3,8 +3,8 @@ class PlaylistsController < ApplicationController
   current_filter :all
   
   before_filter :geo_check, :only => :show
-  before_filter :xhr_login_required, :only => :copy
-  before_filter :login_required, :except => [:index, :widget, :avatar_update, :show, :copy]
+  before_filter :xhr_login_required, :only => [:copy,:messenger_copy]
+  before_filter :login_required, :except => [:index, :widget, :avatar_update, :show, :copy, :messenger_copy, :messenger_mixes, :messenger_dj_mix_details]
 
   def index
     @dashboard_menu = :playlists
@@ -25,7 +25,7 @@ class PlaylistsController < ApplicationController
 
     @collection = profile_account.playlists.all(opts).paginate :page => params[:page], :per_page => 6
 
-    if request.xhr?
+    if request.xhr? && ! params[:ajax]
       render :partial => 'ajax_list'
     else
       respond_to do |format|
@@ -35,6 +35,71 @@ class PlaylistsController < ApplicationController
     end
   end
 
+  def messenger_mixes
+    @title = t('messenger_player.mixes.title')
+    @mixes = current_site.top_playlists.all(:limit => 50).sortable(
+          :mixes,
+          [:popularity, :total_plays],
+          [:rating, :rating_cache],
+          [:most_recent, :updated_at],
+          [:alpha, :name]
+    )
+    render 'coke_messenger/mixes', :layout => layout_unless_xhr('messenger')
+  end
+
+  def messenger_my_mixes
+    @my_mixes = current_user.playlists.paginate(:page => params[:page], :per_page => 10, :order => 'total_plays DESC')
+    @total_pages = @my_mixes.total_pages
+    if params.has_key? :page
+      render :partial => 'coke_messenger/my_mix', :collection => @my_mixes
+    else
+      @my_mixes = @my_mixes.sortable(
+        :mixes, 
+        [:popularity, :total_plays],
+        [:most_recent, :updated_at],
+        [:rating, :rating_cache],
+        [:alpha, :name]
+      )
+      render 'coke_messenger/my_mixes', :layout => layout_unless_xhr('messenger')
+    end
+  end
+
+  def messenger_dj_mix_details
+    @dj_mixes = User.find_by_id(params[:id]).playlists.paginate(:page => params[:page], :per_page => 10, :order => 'total_plays DESC')
+    @total_pages = @dj_mixes.total_pages
+    if params.has_key? :page
+      render :partial => 'coke_messenger/dj_mix_detail', :collection => @dj_mixes
+    else
+      @dj_mixes = @dj_mixes.sortable(
+        :mixes,
+        [:popularity, :total_plays],
+        [:most_recent, :updated_at],
+        [:rating, :rating_cache],
+        [:alpha, :name]
+      )
+      @dj_name = User.find_by_id(params[:id]) rescue nil
+      @title = t('coke_messenger.default_messenger_title')+@dj_name.to_s
+      render 'coke_messenger/dj_mix_details', :layout => layout_unless_xhr('messenger')
+    end
+  end
+  
+  def messenger_my_friends
+    @my_friends = current_user.followees.paginate(:page => params[:page], :per_page => 10, :conditions => 'last_playlist_played_id IS NOT NULL', :joins => 'LEFT JOIN playlists ON playlists.id = accounts.last_playlist_played_id', :order => 'playlists.last_played_at DESC')
+    @total_pages = @my_friends.total_pages
+    if params.has_key? :page
+      render :partial => 'coke_messenger/friend', :collection => @my_friends
+    else
+      @my_friends = @my_friends.sortable(
+        :friends,
+        [:popularity, :default],
+        [:most_recent, :last_playlist_played, :updated_at],
+        [:rating, :last_playlist_played, :rating_cache],
+        [:alpha, :last_playlist_played, :name]
+      )
+      render 'coke_messenger/my_friends', :layout => layout_unless_xhr('messenger')
+    end
+  end
+  
   def avatar_update
     @playlist = Playlist.find(params[:id])
     if @playlist
@@ -64,12 +129,11 @@ class PlaylistsController < ApplicationController
 
 
   def create
-
     @page = params[:page] || 1
     #@per_page = (params[:term] and (params[:scope]=='artist' or params[:scope]=='album')) ? 7 : 12
     @per_page = 30
     @results,@scope,@result_text = get_seeded_results
-    unless request.xhr?
+    unless request.xhr? && !params[:ajax]
       if request.post?
         session[:playlist_ids] = nil
         @playlist_item_ids = []
@@ -87,6 +151,10 @@ class PlaylistsController < ApplicationController
                 song = @playlist_item_ids.select{ |s| s && s.id.equal?(item.to_i) }.first rescue nil
                 @playlist.items.create(:song => song, :artist_id => song.artist_id, :position => index + 1) if song
               end
+              
+              # If no avatar is defined set the default avatar
+              @playlist.set_default_image(@playlist.items[0].song.album) unless params[:avatar] 
+
               @playlist.update_tags(params[:tags].downcase.split(','))
               @playlist.create_station
               current_user.increment!(:total_playlists);
@@ -274,9 +342,8 @@ class PlaylistsController < ApplicationController
   def show
     if params[:id] != "0"
       begin
-
-        @playlist = Playlist.find(params[:id])
-
+        # This find is optimized for the XML.  Might want less for the HTML.
+        @playlist = Playlist.find(params[:id], :include => { :songs => [ {:album => :label}, {:artist => :genre} ] })
         if request.xhr?
           respond_to do |format|
             format.html { render :layout => false, :partial => "playlist_result", :object => @playlist }
@@ -349,6 +416,10 @@ class PlaylistsController < ApplicationController
     @playlist = Playlist.find(params[:id])
   end
 
+  def messenger_copy
+    @playlist = Playlist.find(params[:id])
+  end
+
   def duplicate
     orig_playlist = Playlist.find(params[:id])
 
@@ -362,7 +433,7 @@ class PlaylistsController < ApplicationController
     
     new_playlist = Playlist.new(attributes)
  
-    new_playlist.name  = params[:playlist][:name].blank? ? nil : params[:playlist][:name]
+    new_playlist.name  = params[:copy][:name].blank? ? nil : params[:copy][:name]
     new_playlist.owner = current_user
     
     if new_playlist.save
@@ -396,7 +467,7 @@ class PlaylistsController < ApplicationController
                                })
       end
     end
-
+    
     def get_seeded_results
       results = nil
       result_text = ""
@@ -517,7 +588,7 @@ class PlaylistsController < ApplicationController
               if scope == :song
                 results = obj_item.songs.paginate(search_opts)
               else
-                puts search_opts.inspect
+                #puts search_opts.inspect
                 results = Song.search(search_opts)
               end
             end

@@ -1,0 +1,14 @@
+<div class="aviso">
+  <% if @orig_msg%>
+    <div class="aviso_cab">
+      <% unless @locked %>
+        <a class="btn_cerrar" href="#" onclick="$.alert_layer.close();" title="<%= t('actions.close') %>"><strong>X</strong> <%= t('actions.close') %></a>
+      <% end %>
+    </div>	
+    <%= yield %>
+    <%= render "shared/social/winconnect", { :page => :header } %>
+  <% else %>
+    <%= yield %>
+  <% end %>
+</div>
+

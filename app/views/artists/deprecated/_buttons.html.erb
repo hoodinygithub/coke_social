@@ -3,7 +3,7 @@
   <span>
     <b>&nbsp;&nbsp;
       <span class="blue">
-        <%= link_to profile_artist.station.name, radio_path(:station_id => profile_artist.station.id) %>
+        <%= link_to profile_artist.station.name, radio_path(:station_id => profile_artist.station.id, :load_mix => true) %>
       </span>
     </b>
     <br/>

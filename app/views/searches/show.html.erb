@@ -1,42 +1,75 @@
-<script type="text/javascript">
-   $(document).ready(function() {
-      Base.main_search.initialize_scope_toggle();
-    });
-</script>
-<% content_for :header_space_content do %>
-  <div class="search_box">
-    <%= render :partial =>'search_form' %>
-  </div><!--/end search_box -->
-<% end %>
+<div class="contenido">
+  <div class="bloque">
 
-<div class="two_columns">
-  <% unless true %>
-    <div class="search_term">
-        <%= "#{t('search.search_results_for')} \"#{@query.nil? ? '' : @query}\"" %>
-    </div>
-  <% end %>
+    <%
+     # This block is to set a default scope if the "all" scope is returned
+     if params[:scope] == "all" and !@results[:playlists].empty?
+       params[:scope] = "playlists"
+       @search_types = [:playlists]
+     elsif params[:scope] == "all" and @results[:playlists].empty? and !@results[:users].empty?
+       params[:scope] = "users"
+       @search_types = [:users]
+     end
+    %>
 
-  <div id="left_column">
-    <%= render 'scope_toggle' %>
-  </div><!--/end left_column -->
-  <div id="center_column" class="search_results">
-    <% @search_types.each do |type| %>
-    <div id="<%= type.to_s %>_result" class="scope_result<%= @active_scope == type ? '' : ' hide' %>" result_count="<%= @counts[type] %>">
-      <h1><%= t("basics.#{type.to_s}")%></h1>
-      <%= render :partial => "#{type.to_s}_sorting" %>
-      <div id="<%= type.to_s %>_result_details">
-        <%= render type.to_s unless @results[type].empty? %>
-      </div>
-    </div>
+    <% form_tag '/search', :method => :get, :class => 'buscador_big', :onsubmit => 'Base.Search.query(this); return false;' do %>
+      <%= label_tag 'lupa', 'lupa', :class => 'lupa_buscar' %>
+      <%= hidden_field_tag 'scope', params[:scope] %>
+      <%= hidden_field_tag 'result_only', '1' %>
+      <%= text_field_tag 'q', params[:q], :class => 'text_buscar' %>
+      <%= tag 'input', :type => 'button', :value => 'USUARIOS', :scope => 'users', :class => "btn_buscar btn_bususuarios #{"activo" if params[:scope] == 'users'}", :onclick => 'Base.Search.toggleScope(this, event);' %>
+      <%= tag 'input', :type => 'button', :value => 'MIXES', :scope => 'playlists', :class => "btn_buscar btn_busmixes #{"activo" if params[:scope] == 'playlists'}", :onclick => 'Base.Search.toggleScope(this);' %>
     <% end %>
-  </div><!--/end center_column -->
-</div><!--/end two_columns -->
 
-<div id="right_column">
-  <div class="ad_box">
-    <%= banner_ad("square_banner") %>
-    <!-- img alt="Coca-Cola.FM" src="/images/bucket-Coca-Fm.jpg" -->
-  </div>
-</div><!--/end right_column -->
+    <div class="cont_columna doble">
 
-<div class="clearer"></div>
+      <div class="mod_mixes">
+        <h2 class="tit_bloque">
+          <span class="txt"><%= params[:scope] == 'playlists' ? t('basics.playlists') : t('basics.users') %><em><%= "#{params[:scope] == 'playlists' ? @results[:playlists].length : @results[:users].length} #{t('basics.results')}" %> </em></span>
+          <span class="bg_fin">&nbsp;</span>
+        </h2><!-- .tit_bloque -->
+
+        <% form_tag "/search/#{params[:scope]}/#{params[:q]}", :method => :get, :class => 'f_ordenar' do %>
+          <%= hidden_field_tag 'result_only', '1' %>
+          <%
+            options = if params[:scope] == 'playlists'
+                        [
+                          [t('sort.relevance'), 'relevance'],
+                          [t('sort.top'), 'top'],
+                          [t('sort.highest_rated'), 'highest_rated'],
+                          [t('sort.alphabetical'), 'alphabetical'],
+                          [t('sort.latest'), 'latest']
+                        ]
+                      else
+                        [
+                          [t('sort.relevance'), 'relevance'],
+                          [t('sort.alphabetical'), 'alphabetical'],
+                          [t('sort.latest'), 'latest']
+                        ]
+                      end
+          %>
+          <%= select_tag 'sort_by', options_for_select(options, params[:sort_by].to_s), :onchange => 'Base.Search.query(this.form);' %>
+        <% end %>
+
+        <% @search_types.each do |type| %>
+          <%= render type.to_s unless @results[type].empty? %>
+        <% end %>
+
+        </div><!-- .mod_seguidores -->
+
+      </div><!-- .cont_columna doble -->
+
+      <div class="cont_columna der">
+        <div class="open_happiness_box">
+          <%= banner_ad("square_banner") %>
+        </div><!-- .open_happiness_box -->      
+        <div class="mod_emociones">
+          <div class="mod_tags">
+            <% cache("#{site_cache_key}/modules/tag_cloud", :expires_in => EXPIRATION_TIMES["home_tag_cloud"]) do %>
+              <%= render :partial => "shared/tag_cloud", :locals => { :tags => current_site.tag_counts_from_playlists } %>
+            <% end %>
+          </div><!-- .mod_tags -->
+        </div><!-- .mod_emociones -->
+      </div><!-- .cont_columna der -->
+    </div><!-- /bloque -->
+  </div><!-- .contenido -->

@@ -45,10 +45,10 @@ class Site < ActiveRecord::Base
   has_many :top_user_stations, :through => :summary_top_user_stations, :class_name => 'UserStation', :foreign_key => 'user_station_id', :source => :user_station, :order => 'top_user_stations.total_requests DESC'
 
   has_many :summary_top_djs, :order => 'total_requests DESC', :class_name => 'TopDj', :include => :dj
-  has_many :top_djs, :through => :summary_top_djs, :class_name => 'User', :foreign_key => 'dj_id', :source => :user, :order => 'top_djs.total_requests DESC', :conditions => 'accounts.network_id = 2 AND accounts.deleted_at IS NULL'
+  has_many :top_djs, :through => :summary_top_djs, :class_name => 'User', :foreign_key => 'dj_id', :source => :user, :order => 'top_djs.total_requests DESC', :conditions => 'networks.id = 2 AND accounts.deleted_at IS NULL', :include => [:networks, :country]
 
   has_many :summary_top_playlists, :order => 'total_requests DESC', :class_name => 'TopPlaylist', :include => :playlist
-  has_many :top_playlists, :through => :summary_top_playlists, :class_name => 'Playlist', :foreign_key => 'playlist_id', :source => :playlist, :order => 'top_playlists.total_requests DESC', :conditions => 'playlists.deleted_at IS NULL'
+  has_many :top_playlists, :through => :summary_top_playlists, :class_name => 'Playlist', :foreign_key => 'playlist_id', :source => :playlist, :order => 'top_playlists.total_requests DESC', :include => [:owner, :station], :conditions => 'playlists.deleted_at IS NULL and accounts.deleted_at IS NULL'
 
   has_many :editorial_stations_sites
   has_many :stations, :through => :editorial_stations_sites, :class_name => 'EditorialStation', :source => :editorial_station, :conditions => "editorial_stations.deleted_at IS NULL"
@@ -60,7 +60,7 @@ class Site < ActiveRecord::Base
   has_many :networks, :through => :network_sites
   
   has_many :valid_tags
-  has_many :tags, :through => :valid_tags, :conditions => "valid_tags.deleted_at IS NULL", :order => "valid_tags.promo_id DESC, tags.name ASC"
+  has_many :tags, :through => :valid_tags, :conditions => "valid_tags.deleted_at IS NULL", :include => :valid_tags, :order => "valid_tags.promo_id DESC, tags.name ASC"
   
   belongs_to :login_type
   has_many :site_genres
@@ -91,17 +91,12 @@ class Site < ActiveRecord::Base
   def tag_counts_from_playlists(limit=60)
     options = { :select => "DISTINCT tags.*",
                 :joins => "INNER JOIN #{Tagging.table_name} ON #{Tag.table_name}.id = #{Tagging.table_name}.tag_id INNER JOIN #{Playlist.table_name} ON #{Tagging.table_name}.taggable_id = #{Playlist.table_name}.id AND #{Tagging.table_name}.taggable_type = 'Playlist' INNER JOIN valid_tags ON valid_tags.tag_id = #{Tag.table_name}.id",
-                :order => "taggings.created_at DESC",
+                :include => :valid_tags,
+                :order => "tags.taggings_count DESC",
                 :conditions => ["playlists.site_id = ? and playlists.deleted_at IS NULL and valid_tags.deleted_at IS NULL and valid_tags.site_id = ? and taggings.created_at > ?", self.id, self.id, Time.now - 2.days],
                 :limit => limit }
     
     Tag.all(options)
-            
-    # options = { :limit => limit, 
-    #             :joins => "INNER JOIN #{Playlist.table_name} ON #{Tagging.table_name}.taggable_id = #{Playlist.table_name}.id AND #{Tagging.table_name}.taggable_type = 'Playlist'",
-    #             :order => "taggings.created_at DESC",
-    #             :conditions => "playlists.site_id = #{self.id}" }
-    # Tag.counts(options)    
   end
   
   def calendar_locale

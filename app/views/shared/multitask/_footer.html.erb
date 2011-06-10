@@ -1,0 +1,76 @@
+<div class="bloque">
+  <ul class="submenu">
+    <li class="activo"><a class="link_gris" target="_blank" href="<%= poll_link %>" title="Sugerencias"><%= t('footer.feedback') %></a></li>
+
+    <% unless site_code == "cokebre" %>
+      <li><a class="link_gris" href="<%= terms_and_conditions_url %>" content_switch_enabled="true" title="<%= t('footer.terms_and_conditions') %>"><%= t('footer.terms_and_conditions') %></a></li>
+      <li><a class="link_gris" href="<%= privacy_policy_url %>" content_switch_enabled="true" title="<%= t('footer.privacy_policy') %>"><%= t('footer.privacy_policy') %></a></li>
+    <% end %>
+
+    <li><a class="link_gris" href="<%= list_badges_url %>" content_switch_enabled="true" title="<%= t('footer.badges_listing') %>"><%= t('footer.badges_listing') %></a></li>
+
+    <li><a class="link_gris" href="/index-bands/index" content_switch_enabled="true" title="<%= t('footer.index_of_bands') %>"><%= t('footer.index_of_bands') %></a></li>
+    <li><a class="link_gris" href="<%= index_of_music_url %>" content_switch_enabled="true" title="<%= t('footer.index_of_music') %>"><%= t('footer.index_of_music') %></a></li>
+  </ul><!-- .submenu -->
+  <a href="http://www.cyloop.com/" target="_blank" title="<%=h t('basics.go_to_link', :where => 'Cyloop') %>">
+    <%= image_tag 'multitask/logo_cyloop.png', :class => "powered", :alt => "Cyloop" %>
+  </a>
+</div><!-- .bloque -->
+
+<script>
+  function max_skips_message() {
+    $('#max_skips_popup').fadeIn('slow');
+    // block weird default click handler for the facebox
+    $('max_skips_popup').unbind('click');
+  }
+function licensing_message(){
+    $('#licensing_popup').fadeIn('slow');
+  }
+</script>
+
+<div class="popup" id="max_skips_popup">
+  <div class="top_shadow">
+    <div class="top_left corner"></div>
+    <div class="center_shadow"></div>
+    <div class="top_right corner"></div>
+    <a href="#" onclick="$('#max_skips_popup').fadeOut('fast'); return false;"><img src="/images/popup_close.png" class="popup_close png_fix" alt="X" title="Close" /></a>
+  </div>
+  <div class="popup_content">
+    <div class="title"><%= t('player.max_skips_message.header') %></div>
+    <div class="form_row">
+      <div class="auto_fill_text">
+        <%= t('player.max_skips_message.body') %>
+      </div>
+      <br/>
+    </div>
+  </div>
+  <div class="bottom_shadow">
+    <div class="bottom_left corner"></div>
+    <div class="center_shadow"></div>
+    <div class="bottom_right corner"></div>
+  </div>
+</div><!--/end popup -->
+
+<div class="popup" id="licensing_popup">
+  <div class="top_shadow">
+    <div class="top_left corner"></div>
+    <div class="center_shadow"></div>
+    <div class="top_right corner"></div>
+    <a href="#" onclick="$('#licensing_popup').fadeOut('fast'); return false;"><img src="/images/popup_close.png" class="popup_close png_fix" alt="X" title="Close" /></a>
+  </div>
+  <div class="popup_content">
+    <div class="title"><%= t('player.license_message.header') %></div>
+    <div class="form_row">
+      <div class="auto_fill_text">
+        <%= t('player.license_message.body') %> 
+      </div>
+      <br/>
+    </div>
+  </div>
+  <div class="bottom_shadow">
+    <div class="bottom_left corner"></div>
+    <div class="center_shadow"></div>
+    <div class="bottom_right corner"></div>
+  </div>
+</div><!--/end popup -->
+

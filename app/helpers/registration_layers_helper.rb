@@ -12,8 +12,4 @@ module RegistrationLayersHelper
     "#{current_site.code.to_s}/1.jpg"
   end
 
-  def registered_link_to(text, params)
-    link_to text, new_user_path(params)
-  end
-
 end

@@ -25,13 +25,18 @@ module ApplicationHelper
     end
   end
 
+  # Look into caching for 24 hrs
+  def top_playlists(count=50)
+    current_site.top_playlists.all(:limit => count, :order => 'total_requests DESC')
+  end
+
   def ssl_login_path
     if request.ssl?
       session_path
-    elsif request.host =~ /localhost/
+    elsif request.host =~ /localhost/ or request.port == 3000
       "http://#{request.host}:#{request.port}#{session_path}"
     else
-      "https://#{current_site.ssl_domain}#{session_path}"
+      "#{ssl_site_url}#{session_path}"
     end
   end
 
@@ -77,8 +82,28 @@ module ApplicationHelper
 
     link_to t("sort.#{type}").mb_chars.upcase.to_s, url, options
   end
+  
+  def sort_form(klass, *types)
+    options = ""
+    types.each do |type|
+      options << "<option value='#{current_url(:sort_by => type.to_s)}' #{"selected" if (params[:sort_by].to_s == type.to_s)}>#{t("sort.#{type}", :user_name => (profile_user.name rescue t('basics.user'))).mb_chars.titleize}</option>"
+    end
+    "<form class='#{klass}' action='return false;'>
+       <select onchange='Base.Util.xhr_call(this.value)'>#{options}</select>
+     </form>"
+  end
+  
+  def current_url(overwrite={})
+    url_for :only_path => true, :params => params.merge(overwrite)
+  end
 
   def short_date(date)
+    #I18n.localize(date, :format => :long) rescue ""
+    if current_site.default_locale.to_s == "en"
+      date.strftime("%m/%d/%Y")
+    else
+      date.strftime("%d/%m/%Y")
+    end
   end
   
   def profile_owner?
@@ -156,6 +181,7 @@ module ApplicationHelper
   def yellow_button(button_label, options = {})
     special_button(:yellow_button, button_label, options)
   end
+  
   def orange_button(button_label, options = {})
     special_button(:orange_button, button_label, options)
   end
@@ -280,6 +306,7 @@ module ApplicationHelper
 
   def tag_links(item, active_scope = :playlists, limit=3, include_text=true, link_options={})
     links = []
+    link_options[:content_switch_enabled] = true unless (link_options.has_key? :content_switch_enabled)
     conditions = "valid_tags.site_id = #{current_site.id} and valid_tags.deleted_at IS NULL"
     joins      = "INNER JOIN valid_tags ON valid_tags.tag_id = #{Tag.table_name}.id"
     tags = item.tags.all(:limit => limit, :joins => joins, :conditions => conditions)
@@ -303,7 +330,7 @@ module ApplicationHelper
     end
   end
 
-  def station_contains(item, limit=3, include_text=true, link_options={})
+  def station_contains(item, limit=3, include_text=true, link_options={}, options={})
     links = []
     name_concat = []
     station_artists = item.includes(limit)
@@ -314,8 +341,26 @@ module ApplicationHelper
       links << link_to(station_artist.artist.name, main_search_path(:scope => 'playlists', :q => CGI::escape(station_artist.artist.name)), link_options) unless station_artist.artist.nil?
     end
 
+    if options.has_key?(:make_list)
+      "<li>#{links.join("</li><li>")}</li>"
+    else
+      "#{(t('basics.contains') + ": ") if include_text}#{links.join(", ")}#{station_artists.size > links.size ? "..." : "."}"
+    end
+  end
+
+  def messenger_station_contains(item, limit=3, include_text=true, link_options={})
+    links = []
+    name_concat = []
+    station_artists = item.includes(limit)
+
+    station_artists.each do |station_artist|
+      name_concat << station_artist.artist.name unless station_artist.artist.nil?
+      break if link_options[:limit] && name_concat.to_s.length > link_options[:limit].to_i
+      links << station_artist.artist.name unless station_artist.artist.nil?
+    end
+
     if include_text
-      "#{t('basics.contains')}: #{links.join(", ")}..."
+      "<strong>#{t('basics.contains')}:</strong> #{links.join(", ")}..."
     else
       "#{links.join(", ")}..."
     end
@@ -410,11 +455,8 @@ module ApplicationHelper
   end  
 
   def application_html_attrs
-    attrs = if is_msn_messenger_enabled? && current_site.is_msn?
-      html_attrs.merge( 'xmlns:msgr' => 'http://messenger.live.com/2009/ui-tags', 'xml:lang' => current_site.default_locale.to_s.downcase.split('_').join('-') )
-    else
+    attrs =
       html_attrs.merge( 'xmlns:og' => 'http://opengraphprotocol.org/schema/', 'xmlns:fb' => 'http://www.facebook.com/2008/fbml' )
-    end
     attrs.map{|k,v| "#{k}='#{v}'"}.join(" ")
   end
 
@@ -457,6 +499,19 @@ module ApplicationHelper
       "UA-19631092-5"
     end
 
+  end
+  
+  def messenger_gatracker_id
+    case current_site.code
+    when "cokear"
+      "UA-19631092-6"
+    when "cokebr"
+      "UA-19631092-7"
+    when "cokelatam"
+      "UA-19631092-8"
+    when "cokemx"
+      "UA-19631092-9"
+    end
   end
   
   def messenger_player_gatracker_id
@@ -711,9 +766,10 @@ module ApplicationHelper
 
   def pagination_args
     {
+      :class => "paginacion",
       :previous_label => "«",
       :next_label => "»",
-      :renderer => PaginationRenderer
+      :renderer => MultitaskPaginationRenderer
     }
   end
 
@@ -951,6 +1007,25 @@ def cyloop_logo_path(sm=true)
      </span>"
   end
 
+  # Helper for coke messenger ratings
+  def messenger_rating(rateable, bottles=5)
+    rating = "<div class='punt_botellas'>"
+    (1..bottles).each do |b|
+      rating << "<span class=#{rateable.rating_cache.to_i.floor >= b ? 'llena' : 'vacia' }></span>"
+    end
+    rating << "</div>"
+    rating
+  end
+
+  def multitask_rating(rateable, bottles=5, klass='rating', can_rate=false)
+    rating = "<span class='#{klass}'><span class='star-rating-control' id='#{rateable.id}' type='#{rateable.class}'>"
+    (1..bottles).each_with_index do |b, idx|
+      rating << "<div class=\"star-rating star-rating-#{can_rate ? "rateable" : "readonly"} #{ 'star-rating-on' if rateable.rating_cache.to_i.floor >= b }\"><a onclick='#{"return Base.rating.rate(this);" if can_rate}' title='#{idx+1}'>#{idx+1}</a></div>"
+    end
+    rating << "</span></span>"
+    rating
+  end
+
   def ajax_pagination_for(url, collection, per_page)
     total_pages = collection.paginate(:per_page => 5, :page => 1).total_pages
     if total_pages > 1
@@ -967,12 +1042,41 @@ def cyloop_logo_path(sm=true)
   end
 
 
+  def multitask_tag_bottle(tags, max_tags=60)
+    # <div class="tags_botella">
+    #   <a class="tag_tam2" href="#" title="Romantico">Romantico</a>
+    # </div><!-- .tags_botella -->
+    # <div class="tags_botella_trans">&nbsp;</div><!-- .tags_botella_trans -->
+    # <div class="tags_botella outer">
+    #   <a class="tag_tam2" href="#" title="Romantico">Romantico</a>
+    # </div><!-- .tags_botella -->
+    
+    
+    tag_links = []
+    tag_cloud tags, %w(tag_tam1 tag_tam2 tag_tam3 tag_tam4, tag_tam5) do |tag, css_class, index| 
+      if tag_links.length <= max_tags && tag.taggings_count > 0
+        tag_links << link_to(tag.nickname, main_search_path(:scope => 'playlists', :q => CGI::escape(tag.name)), :title => tag.nickname, :class => "#{css_class}", :content_switch_enabled => true) rescue nil
+      end
+    end
+    <<-EOF
+    <div class="tags_botella">
+      #{tag_links.compact.join(' ')}
+    </div>
+    <div class="tags_botella_trans">&nbsp;</div>
+    <div class="tags_botella outer">
+      #{tag_links.compact.join(' ')}
+    </div>
+    EOF
+  end
+  
   def tag_bottle(tags)
     outer_tag_links = []
     inner_tag_links = []
     tag_cloud tags, %w(tag_css1 tag_css2 tag_css3 tag_css4, tag_css5) do |tag, css_class, index| 
-      outer_tag_links << link_to(tag.nickname, main_search_path(:scope => 'playlists', :q => CGI::escape(tag.name)), :class => "tag_outer red #{css_class}", :id => "tag_outer_#{index}") rescue nil
-      inner_tag_links << link_to(tag.nickname, main_search_path(:scope => 'playlists', :q => CGI::escape(tag.name)), :class => "tag_inner red #{css_class}", :id => "tag_inner_#{index}") rescue nil
+      if tag.taggings_count > 0
+        outer_tag_links << link_to(tag.nickname, main_search_path(:scope => 'playlists', :q => CGI::escape(tag.name)), :class => "tag_outer red #{css_class}", :id => "tag_outer_#{index}") rescue nil
+        inner_tag_links << link_to(tag.nickname, main_search_path(:scope => 'playlists', :q => CGI::escape(tag.name)), :class => "tag_inner red #{css_class}", :id => "tag_inner_#{index}") rescue nil
+      end
     end
     <<-EOF
     <script type="text/javascript">
@@ -1045,5 +1149,5 @@ def cyloop_logo_path(sm=true)
       ""
     end  
   end
-  
 end
+

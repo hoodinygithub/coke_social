@@ -1,40 +1,57 @@
-<div class="support_pages">
+<script>
+  $(document).ready(function() {
+    $("p.filter a").click(Base.badges.filter);
+  });
+</script>
+<div class="contenido">
+  <div id="container">
+    <div id="main_content">
+      <div class="support_pages">
 
-  <% content_for :title do %>
-    <%= t("badges.list_page.title") %>
-  <% end %>
+        <% content_for :title do %>
+          <%= t("badges.list_page.title") %>
+        <% end %>
 
-  <h1><%= t("badges.list_page.title") %></h1>
+        <!-- integracion -->
+        <h1 class="tit_bloque gris">
+          <span class="txt"><%= t("badges.list_page.title") %></span>
+          <span class="bg_fin">&nbsp;</span>
+        </h1><!-- .tit_bloque -->  
+        <!-- fin integracion -->
 
-  <p class="preamble">
-    <%= t("badges.list_page.description") %>  
-  </p>
+        <p class="preamble">
+        <%= t("badges.list_page.description") %>  
+        </p>
 
-  <p class="filter">
-	<span class="selected" type="All"><%= t("badges.list_page.see_all_badges") %></span><br />
-	<%= link_to t("badges.list_page.see_all_active_badges"), "#", :type => t("badges.status.active") %><br />
-	<%= link_to t("badges.list_page.see_all_retired_badges"), "#", :type => t("badges.status.inactive") %><br />
-  <p>
+        <p class="filter">
+        <span class="selected" type="All"><%= t("badges.list_page.see_all_badges") %></span><br />
+        <%= link_to t("badges.list_page.see_all_active_badges"), "#", :type => t("badges.status.active") %><br />
+        <%= link_to t("badges.list_page.see_all_retired_badges"), "#", :type => t("badges.status.inactive") %><br />
+        <p>
 
-  <table class="coke">
-	<thead>
-      <tr>
-	    <td><%= t("badges.list_page.badge") %></td>
-	    <td><%= t("badges.list_page.name") %></td>
-		<td><%= t("badges.list_page.qualification") %></td>
-	    <td><%= t("badges.list_page.status") %></td>
-	  </tr>
-	</thead>
-	<tbody>
-	  <% @badges.each do |b|%>
-	  <tr>
-	    <td><%= image_tag b.image, :class => "detail_img" %></td>
-	   	<td><%= t("badges.#{b.badge_key}.name") %></td>
-	    <td><%= t("badges.#{b.badge_key}.qualification", :playlist_name => t("badges.playlist_name")) %></td>
-	    <td><%= t("badges.status.#{b.status}") %></td>
-	  </tr>
-	  <% end %>
-	</tbody>
-  </table>	
+        <table class="coke">
+          <thead>
+            <tr>
+              <td><%= t("badges.list_page.badge") %></td>
+              <td><%= t("badges.list_page.name") %></td>
+              <td><%= t("badges.list_page.qualification") %></td>
+              <td><%= t("badges.list_page.status") %></td>
+            </tr>
+          </thead>
+          <tbody>
+            <% @badges.each do |b|%>
+              <tr>
+                <td><%= image_tag b.image, :class => "detail_img" %></td>
+                <td><%= t("badges.#{b.badge_key}.name") %></td>
+                <td><%= t("badges.#{b.badge_key}.qualification", :playlist_name => t("badges.playlist_name")) %></td>
+                <td><%= t("badges.status.#{b.status}") %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>	
 
+      </div>
+    </div>
+  </div>
+  <script>Cufon.replace('.txt');</script>
 </div>

@@ -1,0 +1,75 @@
+<div class="contenido">
+  <div class="bloque">
+    <div class="cont_columna doble">
+
+      <div class="mod_topmixes">
+        <h2 class="tit_bloque">
+          <span class="txt"><%= t("modules.top_playlists.title") %><em><%= t("modules.top_playlists.description") %></em></span>
+          <span class="bg_fin">&nbsp;</span>
+        </h2>
+
+        <% @top_mixes.each_with_index do |mix, idx| %> 
+          <div class="clasif_mixes">
+            <span class="num_mixes"><%= idx + 1 %></span>
+            <%= render :partial => 'playlists/box', :locals => {:p => mix, :i => idx} %>
+          </div><!-- .clasif_mixes -->
+      <% end %>
+
+      </div><!-- .mod_topmixes -->
+
+      <div class="mod_topartistas">
+        <h2 class="tit_bloque">
+          <span class="txt"><%= t("modules.top_artists.title") %><em><%= t("modules.top_artists.description") %></em></span>
+          <span class="bg_fin">&nbsp;</span>
+        </h2>
+          <ul class="lista_tops">
+            <% @top_artists.each_with_index do |artist, idx| %>
+              <li class="estirar">
+              <span class="ord"><%= idx + 1 %></span>
+              <%= avatar_for artist %>
+              <div class="datos">
+                <h3><a href="<%= main_search_path :playlists, CGI::escape(artist.name), :result_only => 1 %>" title="<%= artist.name %>" class="link_rojo" content_switch_enabled='true'><%= artist.name %></a></h3>
+              </div>
+              </li>
+            <% end %>
+          </ul>
+        </div><!-- .mod_topartistas -->
+
+        <div class="mod_topdjs">
+          <h2 class="tit_bloque">
+            <span class="txt"><%= t("modules.top_djs.title") %><em><%= t("modules.top_djs.description") %></em></span>
+            <span class="bg_fin">&nbsp;</span>
+          </h2>
+          <ul class="lista_tops">
+            <% @top_djs.each_with_index do |dj, idx| %>
+              <li class="estirar">
+              <span class="ord"><%= idx + 1 %></span>
+              <%= avatar_for dj %>
+              <div class="datos">
+                <h3><a href="<%= user_path dj.slug %>" title="<%= dj.name %>" content_switch_enabled="true" class="link_rojo"><%= dj.name %></a></h3>
+                <p>(<%= dj.country.name %>)</p>
+              </div>
+              </li>
+            <% end %>
+          </ul>
+        </div><!-- .mod_topdjs -->
+
+      </div><!-- .cont_columna doble -->
+      <div class="cont_columna der">
+        <div class="open_happiness_box">
+          <%= banner_ad("square_banner") %>
+        </div><!-- .open_happiness_box -->
+        <div class="mod_emociones">
+          <div class="mod_tags">
+            <% cache("#{site_cache_key}/modules/tag_cloud", :expires_in => EXPIRATION_TIMES["home_tag_cloud"]) do %>
+              <%= render :partial => "shared/tag_cloud", :locals => { :tags => current_site.tag_counts_from_playlists } %>
+            <% end %>
+          </div><!-- .mod_tags -->
+      </div><!-- .mod_emociones -->
+    </div><!-- .cont_columna der -->
+  </div><!-- /bloque -->
+</div><!-- .contenido -->
+
+<div class="badges">
+  <%= render 'shared/multitask/badges' %>
+</div>

@@ -25,7 +25,6 @@ class FacebookConnect
     Rails.logger.info response.to_str
 
     if response.code == 200
-      # response_params = response_str.split("&").map{|param| param.split("=")}.inject({}) { |result, param| result[param[0]] = param[1]; result }
       response_params = CGI::parse(response.to_str)
       access_token = response_params["access_token"].first
       expires = response_params["expires"].first

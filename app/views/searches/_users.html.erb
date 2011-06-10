@@ -1,31 +1,21 @@
-<script type="text/javascript">
-  $(document).ready(function(){
-    Base.main_search.init_pagination();
-  });
-</script>
 <ul class="followers_list">
   <% @results[:users].each do |user| %>
-  <% is_self = (current_user and current_user == user) %>
-    <li>
-      <%= link_to(avatar_for(user, :small, :class => "follower_image"), user) %>
-      <div class="follower_text">
-          <b><%= link_to user.name, user %></b><br/>
-          <span><%= user.country.name %></span><br/>
-          <%= link_to number_with_delimiter(user.total_playlists), is_self ? my_playlists_path : user_playlists_path(user) %> <%= t('basics.playlists') %> / <%= link_to number_with_delimiter(user.follower_count), is_self ? my_followers_path : user_followers_path(user) %> <%= t('users.stats.followers') %> / <%= link_to number_with_delimiter(user.total_badges), is_self ? my_badges_path : user_badges_path(user) %> <%= t('basics.badges') %>
-      </div>
-      <div class="follower_actions">
-        <%= follow_button(:account => user, :remove_div => false) unless is_self %>
-        <div class="blocked">
-          <% if current_user && current_user.blocks?(user) %>
-          <%= image_tag('blocked.gif') %> <%= t('blocks.blocked') %>
-          <% end %>
-        </div>
-      </div>
-      <br class="clearer" />
-    </li>
-  <% end %>
-</ul><!--/end followers_list -->
-<div class="pagination">
-  <%= will_paginate @results[:users], pagination_args %>
-</div>
+    <% is_self = (current_user and current_user == user) %>
+    <li class="follow_user">
+    <%= link_to avatar_for(user, :small, :class => 'follower_image'), user_path(user), :content_switch_enabled => true %>
+    <div class="follower_text">
+      <%= link_to user.name, user_path(user), :content_switch_enabled => true %>
+      <span>(<%= user.country.name %>)</span>
+    </div>
+    <ul class="follower_data">
+      <li><%= "#{link_to number_with_delimiter(user.total_playlists), is_self ? my_playlists_path : user_playlists_path(user), :content_switch_enabled => true} #{t('basics.playlists')}" %></li>
+      <li><%= "#{link_to number_with_delimiter(user.total_badges), is_self ? my_badges_path : user_badges_path(user), :content_switch_enabled => true} #{t('basics.badges')}" %></li>
+      <li><%= "#{link_to number_with_delimiter(user.follower_count), is_self ? my_followers_path : user_followers_path(user), :content_switch_enabled => true} #{t('users.stats.followers')}" %></li>
+    </ul>
+    <%= render :partial => 'shared/multitask/profile/follow_button', :locals => {:user => user} unless is_self %>
+    </li><!-- .follow_user -->
 
+  <% end %>
+</ul>
+
+<%= will_paginate @results[:users], pagination_args %>

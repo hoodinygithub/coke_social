@@ -1,0 +1,21 @@
+
+- if @login_status == "connect"
+  :javascript
+    window.opener.$.alert_layer('/messenger_player/alert_layer/login_layer')
+- elsif @login_status == "optin"
+  :javascript
+    window.opener.$.alert_layer('/messenger_player/alert_layer/opt_layer')
+- else
+  / - if session[:return_to] && !session[:return_to].blank?
+  /   :javascript
+  /     opener.location.href = "#{session[:return_to]}";
+  /   - session[:return_to] = nil
+  / - else
+  :javascript
+    if(window.opener) {
+      window.opener.$.alert_layer.showOverlay(true);
+      window.opener.location.reload();
+    }
+    
+:javascript
+  window.close();

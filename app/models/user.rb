@@ -91,7 +91,6 @@ class User < Account
 
   after_update :update_followings_with_partial_name
 
-  default_scope :conditions => { :network_id => 2 }  
   has_one :bio, :autosave => true, :foreign_key => :account_id
   validates_associated :bio
 
@@ -107,7 +106,7 @@ class User < Account
            :foreign_key => :user_id,
            :conditions => "commentable_type = 'Playlist'"
 
-  has_many :playlists, :foreign_key => :owner_id, :conditions => 'playlists.deleted_at IS NULL' do
+  has_many :playlists, :foreign_key => :owner_id, :conditions => 'playlists.deleted_at IS NULL', :include => :station do
     def top(limit = 4)
       all(:order => 'total_plays DESC', :limit => limit)
     end
@@ -135,7 +134,7 @@ class User < Account
     :conditions => (ApplicationController.current_site.id == 22 ? { :promo_id => nil } : nil)
 
   has_many :followings, :foreign_key => 'follower_id'
-  has_many :followees, :through => :followings, :conditions => "accounts.type = 'User' AND accounts.network_id = 2 AND followings.approved_at IS NOT NULL", :source => :followee do
+  has_many :followees, :through => :followings, :include => :networks, :conditions => "accounts.type = 'User' AND networks.id = 2 AND followings.approved_at IS NOT NULL", :source => :followee do
     def with_badge(badge, limit=9)
       badge = if badge.is_a?(BadgeAward)
         badge.badge_id
@@ -160,7 +159,6 @@ class User < Account
   has_many :messages
 
   belongs_to :entry_point, :class_name => 'Site', :foreign_key => 'entry_point_id'
-  belongs_to :network
   
   validates_presence_of :entry_point_id
   validates_presence_of :born_on_string
@@ -173,7 +171,7 @@ class User < Account
   validates_uniqueness_of :sso_facebook, :scope => :deleted_at, :allow_nil => true
   validates_uniqueness_of :msn_live_id, :scope => :deleted_at, :allow_nil => true
 
-  def self.forgot?(attributes, current_site=nil)
+  def self.forgot(attributes)
     user = User.new(attributes)
     if user.email.to_s.blank?
       user.errors.add(:email, I18n.t("activerecord.errors.messages.blank"))
@@ -181,13 +179,16 @@ class User < Account
       user.errors.add(:email, I18n.t("activerecord.errors.messages.invalid"))
     end
 
-    if user.slug.to_s.blank?
-      user.errors.add(:slug, I18n.t("activerecord.errors.messages.blank"))
-    end    
-    
+    #if user.slug.to_s.blank?
+    #  user.errors.add(:slug, I18n.t("activerecord.errors.messages.blank"))
+    #end
+
+    # Later we may want to add a check for a safe question or verify a captcha.
+    # user.verify_question(params[:safe_question]) && verify_recaptcha(:model => @user, :message => I18n.t("forgot.captcha_invalid"))
+
     if user.errors.empty?
-      network_ids = current_site.networks.collect(&:id)
-      user = User.find_by_email_and_slug_and_deleted_at_and_network_id( attributes[:email], attributes[:slug], nil, network_ids )
+      #user = User.find_by_email_and_slug_and_deleted_at( attributes[:email], attributes[:slug], nil )
+      user = User.find_by_email_with_exclusive_scope(user.email, :first)
     end
     user
   end
@@ -284,8 +285,18 @@ class User < Account
     true
   end
 
+  # User is part of the current site's network
   def part_of_network?
-    ApplicationController.current_site.networks.include? self.network
+    my_network_ids = self.networks.map(&:id)
+    ApplicationController.current_site.networks.each { |n|
+      return true if my_network_ids.include? n.id
+    }
+    false
+  end
+
+  # User is part of a secure network with encrypted demographics
+  def secure_network?
+    (self.networks.count(:conditions => { :is_secure => true }) > 0)
   end
 
   def private?
@@ -346,6 +357,18 @@ class User < Account
     Date.parse(born_on_string) unless born_on_string.nil?
   end
 
+  # AccountUni - set encrypted demographics from unencrypted
+  def encrypt_demographics
+    self.name = self['name'] if self.name.nil?
+    self['name'] = nil
+    self.email = self['email'] if self.email.nil?
+    self['email'] = nil
+    self.gender = self['gender'] if self.gender.nil?
+    self['gender'] = nil
+    self.born_on_string = self['born_on'].to_s if self.born_on_string.nil?
+    self['born_on'] = nil
+  end
+
   protected
   def check_born_on_in_future
     errors.add(:born_on, :cant_be_in_future) if born_on > Date.today
@@ -362,18 +385,23 @@ class User < Account
     end
   end
 
-
-  def self.find_by_email_on_all_networks(email)
-    unless email.nil?
-      with_exclusive_scope do
-        encrypted_email = User.encrypt_email(email)
-        users = User.find_by_sql ["SELECT * FROM accounts WHERE type = 'User' AND (email = ? or encrypted_email = ?) AND deleted_at IS NULL", 
-          email, 
-          encrypted_email]
-        users.first
-      end
+  def self.find_with_exclusive_scope( *args )
+    with_exclusive_scope do
+      find(*args)
     end
   end
 
+  # Don't use this directly.  Use find_by_email_with_exclusive_scope to find across all sites.
+  named_scope :with_email, lambda { |email|
+    { :conditions => ["deleted_at IS NULL AND (email = ? OR encrypted_email = ?)", email, User.encrypt_email(email)] }
+  }
+  # Find by email, ignoring default scopes.  Supports additional find options.
+  def self.find_by_email_with_exclusive_scope(email, *args)
+    args = [ :all ] if args.size == 0
+
+    with_exclusive_scope {
+      with_email(email).find(*args)
+    }
+  end
 end
 

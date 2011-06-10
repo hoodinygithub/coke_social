@@ -1,49 +1,89 @@
-<% content_for :header_space_content do %>
-  <div class="header_spacer"></div>
-<% end %>
-<%= javascript_include_tag 'playlist' %>
-<%= javascript_include_tag 'jquery.ui' %>
-<%= javascript_include_tag 'playlist_create' %>
-<%= javascript_include_tag 'AC_OETags' %>
+<script>
+  $(document).ready(function() {
+    //observe .rule_tooltip mouse over
+    $('.rule.info_text, .rule.info_default_text, .rule.info_success_text').live('mouseenter mouseout', function(event) {
+      $t= $('.rule_tooltip', this);
+      if (event.type == 'mouseenter') {
+        $t.css('top', -($t.height()/2));
+        $t.stop();
+        $t.fadeTo(400, 1);
+        } else {
+        $t.fadeOut(400);
+      }
+    });
 
-<div class="two_columns">
-  <h1><%= t('playlists.create_new') %></h1>
-  <h2><%= t('playlists.search_for_music') %></h2>
-  <% form_for :search, :url => search_path, :html => { :onsubmit => 'return Base.playlist_search.buildSearchUrl();', :method => :get, :id => :playlist_search_form, :class => "account_settings search_music" } do |f| %>  
-    <%= render :partial => 'playlists/create/search_box' %>
-  <% end %>
-  <div id="search_results_container">
-    <%= render :partial => 'playlists/create/search_results' %>
+    $('.rule_tooltip').live('hover', function() {
+      $(this).stop();
+      $(this).fadeTo(100,1);
+    });
+  });
+
+  jQuery("#playlist_search_query").keyup(function(e) {
+    //jQuery('.search_results_ajax').show();
+    var keyCode = e.keyCode || window.event.keyCode;
+    //var form_values = jQuery("#playlist_search_form").serializeArray();
+    //var q = Base.header_search.getFieldValue(form_values,'q');
+    var q = jQuery('#playlist_search_query').val();
+
+    if(keyCode == 37 || keyCode == 38 || keyCode == 39 || keyCode == 40){
+      return false;
+    }
+    if(keyCode == 13 || keyCode == 27 || q.length <= 1){
+      //jQuery('.search_results_ajax').show();
+      jQuery('.content_search_results_ajax').hide();
+      jQuery('.create_box').hide();
+      return false;
+    }
+    //jQuery('.search_results_box').show();
+    setTimeout(function () {Base.playlist_search.autocomplete(q)}, 500);
+    return true;
+  });
+</script>
+<%= stylesheet_link_tag 'coke' %>
+
+<div id="container">
+  <div id="main_content" class="playlists">
+    <%= javascript_include_tag 'playlist' %>
+    <%= javascript_include_tag 'playlist_create' %>
+
+    <h1 class="tit_bloque_old gris">
+      <span class="txt">Crear nuevo mix</span>
+      <span class="bg_fin">&nbsp;</span>
+    </h1><!-- .tit_bloque -->
+
+    <div class="two_columns">
+      <h1><%= t('playlists.create_new') %></h1>
+      <h2><%= t('playlists.search_for_music') %></h2>
+      <% form_for :search, :url => search_path, :html => { :onsubmit => 'return Base.playlist_search.buildSearchUrl();', :method => :get, :id => :playlist_search_form, :class => "account_settings search_music" } do |f| %>  
+        <%= render :partial => 'playlists/create/search_box' %>
+      <% end %>
+      <div id="search_results_container">
+        <%= render :partial => 'playlists/create/search_results' %>
+      </div>
+      <div id="playlist_recommended_artists_container">
+        <%= render :partial => 'playlists/create/recommendations' %>
+      </div>
+    </div><!--/end two_columns -->
+
+    <div id="right_column">
+      <h1><%= t('playlists.rules') %></h1>
+      <%= render :partial => 'playlists/create/track_list' %>
+    </div><!--/end right_column -->
+
+    <div class="clearer"></div>
+    <div id="stream_connector"></div>
+    <script type="text/javascript">
+      var sFlashVars = {
+        playerId:<%= @player_id %>
+      };
+      var sParams = {
+        allowScriptAccess: 'sameDomain'
+      };
+      var sAttribs = {
+        id:'stream_connect',
+        name:'stream_connect'
+      };
+      swfobject.embedSWF('/flash/stream_connect.swf', 'stream_connector', '1', '1', '9.0.0', false, sFlashVars, sParams, sAttribs);
+    </script>
   </div>
-  <div id="playlist_recommended_artists_container">
-    <%= render :partial => 'playlists/create/recommendations' %>
-  </div>
-</div><!--/end two_columns -->
-
-<div id="right_column">
-  <h1><%= t('playlists.rules') %></h1>
-  <%= render :partial => 'playlists/create/track_list' %>
-</div><!--/end right_column -->
-
-<div class="clearer"></div>
-
-<div id="stream_connector">
-  <script type="text/javascript" charset="utf-8">
-  var flashvars = "playerId=<%= @player_id %>";
-  AC_FL_RunContent(
-    "src", "/flash/stream_connect",
-    "wmode", "opaque",
-    "width", "1",
-    "height", "1",
-    "align", "middle",
-    "id", "stream_connect",
-    "quality", "high",
-    "bgcolor", "#FFFFFF",
-    "name", "stream_connect",
-    "allowScriptAccess", "sameDomain",
-    "type", "application/x-shockwave-flash",
-    "pluginspage", "http://www.adobe.com/go/getflashplayer",
-    "flashVars", flashvars
-  );
-  </script>
 </div>

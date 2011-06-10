@@ -1,0 +1,154 @@
+<% content_for :fbmeta do %>
+  <!-- fb sdk auth and meta info -->
+  <meta property="og:title"       content="Your music, your voice and your way to share it with the world.">
+  <meta property="og:type"        content="station"/>
+  <meta property="og:url"         content="<%= current_site_url %>/gradio/424705"/>
+  <meta property="og:site_name"   content="Coca-Cola.fm"/>
+  <meta property="fb:app_id"      content="<%= fb_appid %>"/>
+  <!---->
+<% end %>
+<% logged_out = false unless local_assigns[:logged_out] %>
+<div class="patrocinios">
+  <ul>
+    <li>
+      <a href="http://www.prisa.com/" target="_blank" title="<%=h t('basics.go_to_link', :where => 'Prisa Digital') %>">
+        <%= image_tag 'multitask/logo-prisa-min.png', :alt => "Prisa Digital" %>
+      </a>
+    </li>
+    <li class="cyl">
+      <a href="http://www.cyloop.com/" target="_blank" title="<%=h t('basics.go_to_link', :where => 'CYLOOP') %>">
+        <%= image_tag 'multitask/logo-cyloop-min.png', :alt => "CYLOOP" %>
+      </a>
+    </li>
+    <li class="cc">
+      <span>Sponsored by:</span>
+      <a href="http://www.coca-cola.com" target="_blank" title="<%=h t('basics.go_to_link', :where => 'Coca-Cola') %>">
+        <%= image_tag 'multitask/logo-coke-min.png', :alt => "Coca-Cola" %>
+      </a>
+    </li>
+  </ul>
+</div><!--/patrocinios-->
+
+<div class="sound_engines">
+  <div id="coke_player"></div>
+  <div id="goom_player"></div>
+  <div id="goom_callbacks"></div>
+  <script type="text/javascript">
+    var pl = [<%= top_playlists.map { |p| "'/playlists/#{p.id}.xml'" }.join(',') %>];
+    /* Coke player configuration */
+    var cFlashVars = {
+      debug:1,
+      protocol:'rtmp',
+      serviceHost:'cdn.cyloop.com/cfx/st',
+      player:'messengerradio_<%= current_site.code %>',
+      key:<%= Player.find_by_player_key("messengerradio_#{current_site.code}").id %>,
+      autostart:1
+    };
+    var cParams = {
+      allowScriptAccess: 'sameDomain'
+    };
+    var cAttribs = {
+      id:'coke_engine',
+      name:'coke_engine'
+    };
+    swfobject.embedSWF('<%= current_site_url %>/flash/sound_stub.swf', 'coke_player', '1', '1', '9.0.0', false, cFlashVars, cParams, cAttribs);
+    /*****************************/
+    /* Goom player configuration */
+    // Exposed goom engine callbacks
+    var goomui = document.getElementById('goom_callbacks');
+    goomui.currentMediaChanged = function(eobj)
+    {
+      var song = $.parseJSON(eobj);
+      if (song.title) Base.UI.render(song);
+    };
+
+    var gFlashVars = {
+      urlApi:'http://api.goomradio.com',
+      eStatUrl:'http://www.goomradio.com/mini-audio/eStatNativeFlashTag.swf',
+      defaultVolume:'50',
+      uiid:'goom_callbacks',
+      defaultRadioId:'4242705',
+      autoPlay:'0'
+    };
+    var gParams = {
+    allowscriptaccess:'always'
+    };
+    var gAttribs = {
+    id:'goom_engine',
+       name:'goom_engine'
+    };
+    swfobject.embedSWF('http://www.goomradio.com/mini-audio/goom-miniAudioLib.swf', 'goom_player', '1', '1', '9.0.0', {}, gFlashVars, gParams, gAttribs);
+    /*****************************/
+    </script>
+</div>
+
+<script type="text/javascript">
+  window.fbAsyncInit = function() {
+    FB.init({
+      appId  : <%= FacebookConnect::APP_ID %>,
+      status : true,
+      cookie : true,
+      xfbml  : true
+    });
+  };
+  (function() {
+    var body = document.getElementsByTagName('body')[0];
+    var fbroot = document.createElement('div');
+    fbroot.id = "fb-root";
+    body.insertBefore(fbroot, body.firstChild);
+    var scr = document.createElement('script');
+    scr.src = document.location.protocol + '//connect.facebook.net/<%= current_site.fb_locale %>/all.js';
+    scr.async = true;
+    document.getElementById('fb-root').appendChild(scr);
+   }());
+</script>
+<%= javascript_tag "window._token = '#{form_authenticity_token}'" %>
+
+<div class="bloque">
+
+  <h1 class="logo <%= site_code %>"><%= link_to "Coca Cola FM", home_path, :content_switch_enabled => true %></h1>
+  <div class="claimanimado">
+    <div id="bocadillo_claim"></div>
+    <script type="text/javascript" charset="utf-8">
+      var fFlashVars = {
+      };
+      var fParams = {
+        quality: 'high',
+        wmode: 'transparent'
+      };
+      var fAttribs = {
+      };
+      swfobject.embedSWF('<%= current_site_url %>/images/multitask/swfs/bocadillo_<%= site_code %>.swf', 'bocadillo_claim', '310', '35', '9.0.0', false, fFlashVars, fParams, fAttribs);
+    </script>
+    <noscript>
+      <object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=9,0,28,0" width="310" height="35">
+        <param name="movie" value="/images/multitask/swfs/bocadillo_<%= site_code %>.swf" />
+        <param name="quality" value="high" />
+        <param name="wmode" value="transparent" />
+        <embed src="/images/multitask/swfs/bocadillo_<%= site_code %>.swf" quality="high" pluginspage="http://www.adobe.com/shockwave/download/download.cgi?P1_Prod_Version=ShockwaveFlash" type="application/x-shockwave-flash" width="310" height="35"></embed>
+      </object>
+    </noscript>
+  </div>
+  <ul class="acceso">
+    <%= render :partial => 'shared/multitask/user_data', :locals => {:logged_out => logged_out} %>
+  </ul><!-- .acceso -->
+  <div class="botones">
+      <% if site_code == "cokemx" %>
+        <a class="btn_grande btn_envivo" href="#" title="<%= t('coke_messenger.live_radio')%>">
+            <span class="ico"><%= t('coke_messenger.live_radio')%></span>
+            <span class="txt"><%= t('coke_messenger.live_radio')%></span>
+            <span class="bg_fin">&nbsp;</span>  
+        </a><!-- incluir clase .activo cuando este activa la radio -->
+      <% end %>
+      <% if logged_in? %>
+        <a class="btn_grande btn_mix" href="<%= playlist_create_path %>" content_switch_enabled="true" title="<%= t('actions.create_a_playlist') %>" content_switch_enabled="true">
+      <% else %>
+        <a class="btn_grande btn_mix" href="#" onclick="return Base.utils.showRegistrationLayer('<%= current_site_url + playlist_create_path %>', 'create_playlist');" title="<%= t('actions.create_a_playlist') %>">
+      <% end %>
+          <span class="ico"><%= t('playlists.create_new') %></span>
+          <span class="txt"><%= t('playlists.create_new') %></span>
+          <span class="bg_fin">&nbsp;</span>  
+      </a>
+  </div><!-- .botones -->
+</div><!-- .bloque -->
+

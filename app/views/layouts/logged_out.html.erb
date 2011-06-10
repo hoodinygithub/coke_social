@@ -2,39 +2,27 @@
 <html xmlns="http://www.w3.org/1999/xhtml" <%= application_html_attrs %>>
   <head>
     <%= render 'shared/meta' %>
+    <script>var app = 'multitask';</script>
     <%= render 'shared/javascripts' %>
     <%= render 'shared/stylesheets' %>
     <%= yield :head %>
-
-    <script type="text/javascript">
-      $(window).load(function() {
-        if (typeof $("#slider").nivoSlider != "undefined")
-        {
-          $('#slider').nivoSlider({
-            effect:    'fade',
-            pauseTime: 5000
-          });
-        }
-      });
-    </script>
-
     <%= render 'shared/google_analytics' %>
-
   </head>
-  <body locale="<%= current_site.default_locale %>" market="<%= current_site.code %>" current_site_url="<%= ENV['RAILS_ENV'] == "development" ? "" : current_site_url %>">
-    <div id="container">
-      <div id="header">
-          <%= market_logo %>
-          <%= render 'shared/header_nav' %>
-          <%= render 'shared/search_form' %>
-          <%= render :partial => 'shared/user_data', :locals => {:logged_out => logged_in? ? false : true} %>
-          <div class="clearer"></div>
-      </div><!--/end header -->      
-      <%#= user_navigation %>
-      <%= yield :header_space_content %> 
+  <body locale="<%= current_site.default_locale %>" market="<%= current_site.code %>" current_site_url="<%= current_site_url %>" id="<%= action_name %>">
+    <div class="cabecera">
+      <%= render 'shared/multitask/header', :locals => {:logged_out => true} %>
+    </div>
+    <div class="navegacion">
+      <%= render 'shared/multitask/header_nav' %>
+    </div>
 
-      <div id="main_content"><%= yield %></div>
-      <%= render 'shared/footer' %>
-    </div><!--/end container -->
+    <div id="content"><%= yield %></div>
+
+    <div class="pie">
+      <%= render 'shared/multitask/footer' %>
+    </div>
+    <script language="text/javascript">
+      Cufon.now();
+    </script>
   </body>
 </html>

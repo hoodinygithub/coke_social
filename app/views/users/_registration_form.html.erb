@@ -4,45 +4,46 @@
 
 <% content_for :javascript do %>
   <% if @user.errors.size > 0 %>
-  $(document).ready(function(){
+    $(document).ready(function(){
     field_with_errors = <%= @user.custom_errors.to_json %>;
-    Base.account_settings.highlight_field_with_errors();
-  });
+    Base.account_settings.highlight_field_with_errors(false, "content");
+    });
   <% end %>
 <% end %>
 
 <% form_for @user, :url => users_path, :html => { :multipart => true, :class => "account_settings" } do |f| %>
-  <%= f.hidden_field :sso_facebook unless @user.sso_facebook.nil? %>
+  <%= f.hidden_field :sso_facebook unless @user['sso_facebook'].nil? %>
+  <%= f.hidden_field :sso_windows unless @user['sso_windows'].nil? %>
   <div class="form_content">
     <div class="form_row last">
-      <%= f.label :gender, "<b>#{t("registration.you_are")}</b>" %>
+      <%= f.label :gender, "#{t("registration.you_are")}" %>
       <%= f.radio_button :gender, "Female", :checked => true %><%= t("user.female") %>&nbsp;
       <%= f.radio_button :gender, "Male" %><%= t("user.male") %>
     </div><!--/end form_row -->
 
     <div class="form_row last">
-      <%= f.label :name, "<b>#{t("registration.your_name")}</b>" %>
+      <%= f.label :name, "#{t("registration.your_name")}" %>
       <div class="grey_round_box">
         <%= f.text_field :name, :class => 'input full_width' %>
       </div>
     </div><!--/end form_row -->
 
     <div class="form_row last">
-      <%= f.label :email, "<b>#{t("registration.email_address")}</b> <small class=\"grey\">#{t("registration.email_address_tip")}</small>" %>
+      <%= f.label :email, "#{t("registration.email_address")} <small class=\"grey\">#{t("registration.email_address_tip")}</small>" %>
       <div class="grey_round_box">
         <%= f.text_field :email, :class => 'input full_width' %>
       </div>
     </div><!--/end form_row -->
 
     <div class="form_row last">
-      <%= f.label :slug, "<b>#{t("registration.your_profile_name")}</b> <small class=\"grey\">#{t("registration.your_profile_name_tip")}</small>" %>
+      <%= f.label :slug, "#{t("registration.your_profile_name")} <small class=\"grey\">#{t("registration.your_profile_name_tip")}</small>" %>
       <div class="grey_round_box">
-        <b>Coca-Cola.fm/</b><%= f.text_field :slug, :class => 'input half_width2' %>
+        Coca-Cola.fm/<%= f.text_field :slug, :class => 'input half_width2' %>
       </div>
     </div><!--/end form_row -->
 
     <div class="form_row last left_side">
-      <%= f.label :born_on, "<b>#{t("user.born_on")}</b>" %>
+      <%= f.label :born_on, "#{t("user.born_on")}" %>
       <div class="grey_round_box">
         <%= f.date_select :born_on, :start_year => Time.now.year, :end_year => 1900, :use_month_numbers => true %>
       </div>
@@ -51,16 +52,16 @@
 
     <div class="clearer"></div>
 
-    <% if @user.sso_facebook.nil? %>
+    <% if @user['sso_facebook'].nil? and @user['sso_windows'].nil? %>
       <div class="form_row last">
-        <%= f.label :password, "<b>#{t("registration.your_password")}</b>" %>
+        <%= f.label :password, "#{t("registration.your_password")}" %>
         <div class="grey_round_box">
           <%= f.password_field :password, :class => 'input full_width', :autocomplete => "off" %>
         </div>
       </div><!--/end form_row -->
 
       <div class="form_row last">
-        <%= f.label :password_confirmation, "<b>#{t("registration.confirm_your_password")}</b>" %>
+        <%= f.label :password_confirmation, "#{t("registration.confirm_your_password")}" %>
         <div class="grey_round_box">
           <%= f.password_field :password_confirmation, :class => 'input full_width', :autocomplete => "off" %>
         </div>
@@ -73,10 +74,7 @@
       <%= f.check_box :terms_and_privacy, :class => "privacy_check" %>
 
       <div class="privacy_text checkbox">
-        <%= t("registration.terms_and_privacy",
-            :terms_link => link_to(t("registration.terms_of_use"),
-            terms_and_conditions_url),
-            :privacy_link => link_to(t("registration.privacy_policy"), privacy_policy_url)) %>
+        <%= t("registration.terms_and_privacy", :terms_link => link_to(t("registration.terms_of_use"), terms_and_conditions_url), :privacy_link => link_to(t("registration.privacy_policy"), privacy_policy_url)) %>
       </div>
     </div>
 
@@ -87,5 +85,5 @@
     <div class="right_side">
       <big class="grey"><%= t("registration.thats_it") %></big> &nbsp; <a class="red_button valign_middle" onclick="$(this).closest('form').submit();"><span><span><%= t("registration.complete") %></span></span></a>
     </div>
-  </div><!--/end form_content -->
-<% end %><!--/end account_settings -->
+  </div><!-- /end form_content -->
+<% end %><!--/end account_settings-->

@@ -7,20 +7,34 @@ class ActivitiesController < ApplicationController
   before_filter :login_required, :only => [:update_status]
   before_filter :load_user_activities, :only => [:index, :latest]
 
-  ACTIVITIES_MAX           = 15
-  ACTIVITIES_DASHBOARD_MAX = 8
-  ACTIVITY_SHOW_MORE_SIZE  = 5
+  ACTIVITIES_MAX                 = 50
+  ACTIVITIES_PAGE_SIZE           = 12
+  ACTIVITIES_DASHBOARD_PAGE_SIZE = 8
+  ACTIVITY_SHOW_MORE_SIZE        = 12
 
   def index
-    @collection = @collection[0..ACTIVITIES_MAX-1]
-    @dashboard_menu = :activity
-    if request.xhr?
-      render :partial => 'ajax_list'
+    if params[:count]
+      get_more(ACTIVITIES_PAGE_SIZE)
+    else
+      @collection = @collection[0..ACTIVITIES_PAGE_SIZE-1]
+      @dashboard_menu = :activity
+      if request.xhr? && !params[:ajax]
+        render :partial => 'ajax_list'
+      end
     end
   end
 
-  def more
-    @collection = @collection[0..ACTIVITIES_DASHBOARD_MAX-1]
+  def get_more(page_size)
+    activity_count = params[:count].to_i rescue page_size
+    if activity_count < ACTIVITIES_MAX
+      activity_to = activity_count+page_size-1
+      activity_to = ACTIVITIES_MAX-1 if activity_to > ACTIVITIES_MAX-1
+      @collection = @collection[activity_count..activity_to]
+      @has_more = (ACTIVITIES_MAX-activity_to > 1)
+      render :partial => "activities/list", :layout => false
+    else
+      render :nothing => true
+    end
   end
 
   def get_activity
@@ -56,11 +70,21 @@ class ActivitiesController < ApplicationController
         item = {:message => params[:message]}
       end
 
-      activity_status = Activity::Status.new(current_user)
+      success = false
+      
+      unless (Activity::Feed.db rescue nil)
+        # TESTING - Update info if this user is not in your DB
+        activity_status = {"message" => params[:message], "timestamp"=>"1297971608", :pk=>"1600280/status/1297971608", "user_avatar"=>"/images/multitask/djs/sim_autor.jpg", "account_id"=>"1600280", "type"=>"status", "id"=>"23688250472120", "user_id"=>"1600280", "user_slug"=>"sue008"}
+        success = true
+      else
+        activity_status = Activity::Status.new(current_user)
+        success = true if activity_status.put(item)
+      end
 
-      if activity_status.put(item)
-        load_user_activities
-        render :json => { :success => true, :latest => render_to_string(latest_activity) }   
+      if success
+        activity_item = current_user.activity_feed.first
+        set_activity_objects(activity_item)
+        render :json => { :success => true, :latest => render_to_string(:partial => 'activities/item', :locals => {:item => activity_item}) }   
       else
         render :json => { :success => false, :errors => activity_status.errors.to_json }
       end  
@@ -76,7 +100,7 @@ class ActivitiesController < ApplicationController
       last_element_index = @collection.collect {|a| a['timestamp']}.index(params[:after])
       @collection        = @collection.slice(0, last_element_index + ACTIVITY_SHOW_MORE_SIZE + 1)
     else
-      @collection = @collection[0..ACTIVITIES_DASHBOARD_MAX-1]
+      @collection = @collection[0..ACTIVITIES_DASHBOARD_PAGE_SIZE-1]
     end
 
     if params[:public]
@@ -93,8 +117,18 @@ class ActivitiesController < ApplicationController
   end
 
   private
+  def set_activity_objects(a)
+    account      =  Account.find(a['account_id'])
+    a['account'] = account
+    if a['type'] == 'station'
+      station      = Station.find(a['item_id']).playable
+      a['station'] = station
+      a['artist']  = station.artist
+    end
+  end
+  
   def load_user_activities
-    @has_more = true
+    @has_more = false
 
     if profile_account
       @account = profile_account
@@ -103,22 +137,26 @@ class ActivitiesController < ApplicationController
     end
 
     group = :all
-    
-    if params[:profile_owner] and params[:profile_owner].to_i == 0
-      group = :just_me
+    if params[:sort_by]
+      @filter_type = (params[:sort_by] =~ /(user_followings|user|followings)/i) ? params[:sort_by] : "user_followings"
+      group        = :all            if @filter_type == 'user_followings'
+      group        = :just_me        if @filter_type == 'user'
+      group        = :just_following if @filter_type == 'followings'
     end
     
-    if params[:filter_by]
-      @filter_type = params[:filter_by]
-      group        = :all            if @filter_type == 'all'
-      group        = :just_me        if @filter_type == 'me'
-      group        = :just_following if @filter_type == 'following'
+    unless (Activity::Feed.db rescue nil)
+      # TESTING - Update info if this user is not in your DB
+      test_item = {"timestamp"=>"1297971608", :pk=>"1600280/status/1297971608", "user_avatar"=>"/images/multitask/djs/sim_autor.jpg", "account_id"=>"1600280", "type"=>"status", "id"=>"23688250472120", "user_id"=>"1600280", "user_slug"=>"sue008"}
+      collection = []
+      50.times do |i|
+        collection << test_item.merge("message" => "Message #{i+1}")
+      end
+    else
+      collection      = @account.activity_feed(:group => group)
     end
-    
-    collection      = @account.activity_feed(:group => group)
     @collection     = collection.sort_by {|a| a['timestamp'].to_i}.reverse
     
-    if collection.size - ACTIVITIES_MAX > 0
+    if collection.size - ACTIVITIES_PAGE_SIZE > 0
       @has_more = true
     end
 

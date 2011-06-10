@@ -1,23 +1,24 @@
-<% content_for :title do %>
-  <%= possessive :network_activity %>
+<% content_for :main_content do %>
+
+  <div class="mod_actividad">
+    <h2 class="tit_bloque">
+        <span class="txt"><%= profile_owner? ? t('possessives.first_person.network_activity') : t('modules.network_activity.title') %><em><%= t('modules.network_activity.description', :user_name => profile_user.name) unless profile_owner? %></em></span>
+        <span class="bg_fin">&nbsp;</span>
+    </h2><!-- .tit_bloque -->
+    
+    <%= sort_form("f_ordenar", :user_followings, :user, :followings) %>
+
+    <% if @collection.empty? %>
+      <p class="no_resultados"><%= possessive :has_not_activities %></p>
+    <% else %>
+      <ul class="comments_list">
+        <%= render :partial => 'activities/list' %>
+      </ul><!-- .comments_list -->
+    <% end %>
+    
+</div><!-- .mod_actividad -->
+
 <% end %>
 
-<% if @filter_type %>
-  <% content_for :javascript do %>
-    Base.network.FILTER_BY = "<%= @filter_type.to_s %>";
-  <% end %>
-<% end %>
+<%= render :partial => 'shared/multitask/profile/layout', :locals => {:user => profile_user, :id => "usuario"} %>
 
-<%= render 'shared/ajax_modules' %>
-
-<% content_for :sorting do %>
-  <%= filter_link_by( t('activity.user_following', :user => profile_account.first_name).upcase, :type => :all ) + "/" unless profile_account.is_a?(Artist) %>
-  <%= filter_link_by( profile_account.first_name.upcase, :type => :me ) %>
-  <%= "/" + filter_link_by( t('activity.just_following', :user => profile_account.first_name).upcase, :type => :following )  unless profile_account.is_a?(Artist) %>
-<% end %>
-
-<% content_for :list do %>
-  <%= render !@collection.empty? ? 'list' : 'blank_slate' %>
-<% end %>
-
-<%= render 'shared/list' %>

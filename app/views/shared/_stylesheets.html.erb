@@ -1,11 +1,25 @@
-<%= stylesheet_link_tag 'application' %>
-<%= stylesheet_link_tag 'facebox' %>
-<%= stylesheet_link_tag 'registration' %>
-<!--[if lte IE 7]>
-<%= stylesheet_link_tag 'ie' %>
-<![endif]-->
-<%= stylesheet_link_tag 'coke' %>
-<%= stylesheet_link_tag 'styles_radio' %>
-<%= stylesheet_link_tag 'jquery.rating' %>
-<%= stylesheet_link_tag 'jquery.textboxlist' %>
-<%= stylesheet_link_tag "#{(request.ssl?) ? 'promos/cultural_relevance_sslmx' : 'promos/cultural_relevance' }" if site_code.to_s == "cokemx" %>
+<% if true # MULTITASK %>
+  <%= stylesheet_link_tag 'multitask/reset' %>
+  <%= stylesheet_link_tag 'application' %>
+  <%= stylesheet_link_tag 'multitask/general' %>
+  <%= stylesheet_link_tag 'alert_layers' %>
+  <%= stylesheet_link_tag 'facebox' %>
+  <%= stylesheet_link_tag 'styles_radio' %>
+  <%= stylesheet_link_tag 'jquery.rating' %>
+  <%= stylesheet_link_tag 'jquery.textboxlist' %>
+  <%= stylesheet_link_tag "#{(request.ssl?) ? 'promos/cultural_relevance_sslmx' : 'promos/cultural_relevance' }" if site_code.to_s == "cokemx" %>
+  <%= stylesheet_link_tag 'nivoslider.pack2_.4/nivo-slider' %>
+  <%= stylesheet_link_tag 'registration' %>
+<% else %>
+  <%= stylesheet_link_tag 'application' %>
+  <%= stylesheet_link_tag 'facebox' %>
+  <%= stylesheet_link_tag 'registration' %>
+  <!--[if lte IE 7]>
+  <%= stylesheet_link_tag 'ie' %>
+  <![endif]-->
+  <%= stylesheet_link_tag 'coke' %>
+  <%= stylesheet_link_tag 'styles_radio' %>
+  <%= stylesheet_link_tag 'jquery.rating' %>
+  <%= stylesheet_link_tag 'jquery.textboxlist' %>
+  <%= stylesheet_link_tag "#{(request.ssl?) ? 'promos/cultural_relevance_sslmx' : 'promos/cultural_relevance' }" if site_code.to_s == "cokemx" %>
+<% end %>

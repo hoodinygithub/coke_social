@@ -1,0 +1,37 @@
+<%
+  src = Rails.env.staging? ? "http://staging.login.hoodiny.com:8081/" : "http://login.cyloop.com:8081/"
+  src += "winconnect_button/coke?host=#{current_site_url}"
+%>
+<%= content_tag(:iframe, nil, :frameborder=>"no", :framespacing => '0', :scrolling=>"no", :width=>"67", :height=>"20", :border => '0', :src=>src) %>
+
+<% # I wish content_for :head worked here, but it doesn't (in the messenger tab). %>
+<%- javascript_tag do -%>
+  function onWinConnectLoginSuccess() {
+    if (window['current_site_mode'] && window['current_site_mode'].toLowerCase() == "msn") {
+      $.ajax({
+        url: '<%= status_path(:format => :json) %>',
+        success: function(response) { 
+          if (response.logged_in) {
+            if (response.opted_in)
+              window.location.reload(true);
+            else
+              $.alert_layer('/messenger_player/alert_layer/opt_layer_locked', true)
+          } else {
+            if (response.sso_user) {
+              $.alert_layer('/messenger_player/alert_layer/login_layer?iframe=true')
+            }
+            else if (response.sso_user == false) {
+              $.alert_layer('/messenger_player/alert_layer/registration_layer?iframe=true')
+            } else {
+              // sso_user == nil means canceled, do nothing
+            }
+          }
+        },
+        error: function(error) { alert('error getting session status.'); }
+      });
+    } else {
+      document.location = current_url_site + '/login?' + document.location.search
+        + '&page=<%= page if defined? page %>';
+    }
+  };
+<%- end -%>

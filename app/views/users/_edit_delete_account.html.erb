@@ -1,9 +1,9 @@
-<% content_for :javascript do %>
+<script>
   $(document).ready(function(){
     $("#delete_account_submit").unbind('click');
-    $("#delete_account_submit").click(Base.account_settings.delete_account_submit_as_cyloop);
+    $("#delete_account_submit").bind('click', Base.account_settings.delete_account_submit_as_cyloop);
   });
-<% end %>
+</script>
 
 <div class="accordion_title"><%= t('account_settings.delete_account') %></div>
 <div class="accordion_box">

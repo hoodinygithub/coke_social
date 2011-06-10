@@ -1,0 +1,19 @@
+ <div class="aviso_cab">
+ 	<h1><%= t('coke_messenger.layers.authentication_layer.forgot_pwd') %></h1>
+    <% unless @locked %>
+      <a class="btn_cerrar" href="#" onclick="$.alert_layer.close();" title="<%= t('actions.close') %>"><strong>X</strong> <%= t('actions.close') %></a>
+    <% end %>
+  </div>
+<p><%= t('coke_messenger.layers.authentication_layer.not_left') %></p>
+<p><%= t('coke_messenger.layers.authentication_layer.instructions') %></p>
+  <form class="f_authen" action="#">
+            <label>
+              <span><%= t('coke_messenger.layers.authentication_layer.email') %></span>
+              <input class="texto" type="text" />
+            </label>
+            <label>
+              <span><%= t('coke_messenger.layers.authentication_layer.nickname') %></span><span><strong class="ck_lbl"><%= t('coke_messenger.layers.authentication_layer.coke_fm') %></strong></span>
+              <input class="texto_nk" type="text" />
+            </label>
+            <input class="boton" type="submit" value="ENVIAR" />
+          </form>

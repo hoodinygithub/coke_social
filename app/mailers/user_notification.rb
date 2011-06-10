@@ -58,6 +58,21 @@ class UserNotification < BaseMailer
     body options
     content_type  "text/html"
   end
+  
+  def share_multitask_station(options)
+    subject options[:subject_line]
+    bcc options[:mailto]
+    from ActionMailer::Base.smtp_settings[:default_from]
+    body options
+  end
+
+  def send_email_share_mix(options)
+    subject options[:subject_line]
+    recipients options[:recipient_mail] 
+    from ActionMailer::Base.smtp_settings[:default_from]
+    body :recipient_name => options[:recipient_name], :user_name => options[:sender_name],:link => options[:link],:msg => options[:message]
+    content_type  "text/html"
+  end
 
   def feedback_message(options)
     reply_to options[:address]
@@ -161,6 +176,19 @@ class UserNotification < BaseMailer
 
       I18n.with_locale(options[:locale]) do
         UserNotification.deliver_share_station(options)
+      end
+    end
+    
+    def send_share_multitask_station( options )
+      # begin
+      #   return [true, nil] if options[:mailto].blank?
+      #   TMail::Address.parse(options[:mailto])
+      # rescue TMail::SyntaxError
+      #   return [true, nil]
+      # end
+
+      I18n.with_locale(options[:locale]) do
+        UserNotification.deliver_share_multitask_station(options)
       end
     end
 

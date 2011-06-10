@@ -1,0 +1,120 @@
+<% if logged_in? %>
+  <div class="mix_sub" id="sub_copiar" style="<%= 'left:0px' if params[:cmd] == 'copy'%>">
+    <div class="mix_lateral">
+        <a class="btn_rojo btn_slide" rel="sub_home" href="#" title="<%= t('basics.back') %>"><%= t('basics.back').upcase %><span class="bg_fin">&nbsp;</span></a>
+        <ul class="error_list"></ul>
+    </div><!-- .mix_lateral -->
+
+    <div class="mix_contenido">
+        <p class="accion"><%= t('actions.copy') %></p>
+        <h2><%= t('basics.mix') %></h2>
+        <%= avatar %>
+        <div class="mix_incluidos">
+            <h3><%= p.name %></h3>
+            <p><%= t('basics.by') %>: <%= link_to p.owner.name, p.owner, :class=>"link_gris", :title => p.owner.name %></p>
+
+            <p><%= t('basics.contains') %>:</p>
+            <p><%= station_contains(p, 11, false, {:content_switch_enabled => true}) %></p>
+
+        </div><!-- .mix_datos -->
+        <form action="<%= duplicate_user_playlist_path(p.owner, p) %>" class="f_copiar" onsubmit="Base.playlists.multitask_layer_submit('sub_copiar', Base.playlists.multitask_duplicateCallback); return false;">
+            <label class="estirar">
+              <span><%= t('coke_messenger.layers.copy_mix_layer.new_mix_name') %>:</span>                      
+              <input id="playlist_name" name="copy[name]" type="text" class="texto" /></label>
+            <input type="submit" value="<%= t('actions.submit').upcase %>" class="btn_rojo" />
+            <input type="reset" value="<%= t('actions.cancel').upcase %>" onclick="Base.playlists.multitask_layer_clear('sub_copiar');" class="btn_gris" />
+        </form><!-- .f_copiar -->
+    </div><!-- .mix_contenido -->
+  </div><!-- #sub_copiar -->
+
+
+  <div class="mix_sub" id="sub_compartir" style="<%= 'left:0px' if params[:cmd] == 'share'%>">
+      <div class="mix_lateral">
+          <a class="btn_rojo btn_slide" rel="sub_home" href="#" title="<%= t('basics.back') %>"><%= t('basics.back').upcase %><span class="bg_fin">&nbsp;</span></a>
+          <ul class="error_list"></ul>
+      </div><!-- .mix_lateral -->
+      <div class="mix_contenido">
+          <div class="mix_izq">
+              <p class="accion"><%= t('coke_messenger.layers.share_mix_layer.share') %></p>
+              <h2><%= t('coke_messenger.layers.share_mix_layer.social_net') %></h2>
+
+              <ul class="iconos sociales" message="I'm listening to a mix. You can hear it too in coca-cola.fm">
+                  <li><a title="<%= t('coke_messenger.layers.share_mix_layer.share_fb') %>" href="#" onclick="Base.Social.Facebook.shareMix();" class="btn_facebook"><span class="link_decor">Facebook</span></a></li>
+                  <li><a title="<%= t('coke_messenger.layers.share_mix_layer.share_or') %>" href="#" onclick="Base.Social.Orkut.shareMix();" class="btn_orkut"><span class="link_decor">Orkut</span></a></li>
+                  <li><a title="<%= t('coke_messenger.layers.share_mix_layer.share_tw') %>" href="#" onclick="Base.Social.Twitter.shareMix();" class="btn_twitter"><span class="link_decor">Twitter</span></a></li>
+              </ul>
+          </div><!-- .mix_izq -->
+          <div class="mix_der">
+
+              <p class="accion"><%= t('coke_messenger.layers.share_mix_layer.share') %></p>
+              <h2><%= t('coke_messenger.layers.share_mix_layer.email').downcase %> <span>(<%= t('coke_messenger.layers.share_mix_layer.enter_below') %>)</span></h2>
+              <form action="<%= share_with_friend_path(:media => "station", :multitask => true) %>" class="f_compartir" onsubmit="Base.playlists.multitask_layer_submit('sub_compartir', Base.playlists.multitask_shareCallback); return false;">
+                  <%= hidden_field_tag "item_id", p.station.id %>
+                  <%= hidden_field_tag "user_name", current_user.name %>
+                  <%= hidden_field_tag "user_email", current_user.email %>
+                  <label class="estirar"><span><%= t('coke_messenger.layers.share_mix_layer.email_to') %></span> <input name="email" type="text" class="texto" /></label>
+                  <label class="estirar"><span><%= t('coke_messenger.layers.share_mix_layer.name') %></span> <input name="name" type="text" class="texto" /></label>
+                  <label class="estirar"><span><%= t('coke_messenger.layers.share_mix_layer.msg') %></span> <textarea name="message" rows="4" cols="15"></textarea></label>
+
+                  <input type="submit" value="<%= t('actions.send').upcase %>" class="btn_rojo" />
+                  <input type="reset" value="<%= t('actions.cancel').upcase %>" onclick="Base.playlists.multitask_layer_clear('sub_compartir');" class="btn_gris" />
+              </form><!-- .f_compartir -->
+          </div><!-- .mix_der -->
+      </div><!-- .mix_contenido -->
+  </div><!-- #sub_compartir -->
+
+  <script type="text/javascript">
+    $(document).ready(function(){
+
+      //slide copiar compartir
+      $("a.btn_slide").click(function(event) {
+        $(this).attr("href", "#");
+    	event.preventDefault(); //detengo clic
+    	var elem = $(this).attr("rel");
+    	var ancho = $("#"+elem).width();
+    	if (elem=="sub_home"){ //si llamamos a la home, volver
+    	  $(this).parent().parent().animate({"left":"+="+ancho+"px"});
+      	  $("#sub_home").animate({"left":"+="+ancho+"px"});
+    	} else { //si llamamos a una pantalla, copiar, compartir
+    	  $("#sub_home").animate({"left":"-="+ancho+"px"});
+    	  $("#"+elem).animate({"left":"-="+ancho+"px"});
+    	}
+      });
+
+      <% if session[:copy_playlist]
+        session[:copy_playlist] = nil %>
+        $("a.btn_slide.[rel='sub_copiar']").click();
+      <% elsif session[:share_playlist]
+        session[:share_playlist] = nil %>
+        $("a.btn_slide.[rel='sub_compartir']").click();
+      <% end %>
+
+      //mostrar ocultar listas mixes usuario
+      $(".mod_tab[id!=masmixes]").animate({"opacity":0},0);
+      $("#menu_topmixes li:first-child").addClass("activo");
+      $("#menu_topmixes a").click(function(event) {
+    	  event.preventDefault(); //detengo clic
+    	  var elem = $(this).attr("href");
+    	  if($.browser.msie){//evitar bug png en animacion
+    	    $(elem).css("background","#fff");
+    	  }
+    	  $("#menu_topmixes li").removeClass("activo");
+    	  $(this).parent().addClass("activo");
+          $(".mod_tab").animate({"opacity":0},500);
+          $(elem).animate({"opacity":1},500);
+      });
+
+      //recojo anchor de la URL
+      var urlentrada = $(location).attr('href');
+      if (urlentrada.match('#')){
+        var urlanchor = urlentrada.split('#')[1];
+    	if(urlanchor=="comparto"){ //si viene para compartir por email
+          var ancho = $("#sub_compartir").width();
+    	  $("#sub_home").animate({"left":"-="+ancho+"px"});
+    	  $("#sub_compartir").animate({"left":"-="+ancho+"px"});
+    	}
+      }
+
+    });
+  </script>
+<% end %>

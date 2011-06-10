@@ -1,44 +1,31 @@
 <% content_for :head do %>
-  <%= javascript_include_tag 'AC_OETags', 'nivoslider.pack2_.2/jquery.nivo.slider.pack' %>
-  <%= stylesheet_link_tag 'nivoslider.pack2_.2/nivo-slider' %>
   <% # The Coke homepage isn't cached, so don't overwrite the login partial with JS. %>
   <!-- %= render :partial => 'shared/logged_in_callback' % -->
 <% end %>
 
-<% content_for :header_space_content do %>
-  <%= render :partial => 'shared/create_playlist' %>
-  <div class="clearer"></div>
+<div class="contenido" id="home">
+  <% if params.has_key? :goom_id %>
+    <script type="text/javascript">var set_player = "goom";</script>
+  <% end %>
   <%= render :partial => 'black_banner' %>
-  <% if current_site.code == "cokemx" && false %>
-      <div id="goomRadio">
-        <script type="text/javascript">
-          goomDefaultRadio='4242705';
-          goomPartnerId='COCA-COLA-MX';
-          goomAutoPlay='1';
-          goomPopUpMode='1';
-          goomAutoPopup='0';
-          goomCustomUI='coca-cola-mexico';
-          goomOneStreamMode='1';
-          goomJsUI='0';
-          goomBgColor='0';
-          goomWidth='488';
-          goomFbUrl='http%3A//mx.coca-cola.fm';
-          goomFbX='338';
-          goomFbY='57';
-          goomTwtMsg='iCheca Coca Cola FM y comparte con tus amigos todas las emociones que la radio en vivo tiene para ti!';
-          goomTwtUrl='http%3A//mx.coca-cola.fm'
-          goomTwtX='278';
-          goomTwtY='57';
-        </script>
-        <script type="text/javascript" src="http://sunbear.goomradio.com/include.js"></script>
-      </div>
-    <% end %>
-<% end %>
 
-<% cache("#{site_cache_key}/modules/tag_cloud", :expires_in => EXPIRATION_TIMES["home_tag_cloud"]) do %>
-  <%= render :partial => "shared/tag_cloud", :locals => { :tags => current_site.tag_counts_from_playlists } %>
-<% end %>
-<%= render :partial => 'shared/today_top_djs' %>
-<%= render :partial => 'shared/today_top_playlists' %>
-<%= render :partial => 'shared/latest_badges' %>
-<div class="clearer"></div>
+  <div class="bloque">
+    <div class="cont_columna izq">
+      <% cache("#{site_cache_key}/modules/tag_cloud", :expires_in => EXPIRATION_TIMES["home_tag_cloud"]) do %>
+        <%= render :partial => "shared/tag_cloud", :locals => { :tags => current_site.tag_counts_from_playlists } %>
+      <% end %>
+    </div><!-- .cont_columna izq -->
+
+    <div class="cont_columna cen">
+      <%= render :partial => 'shared/today_top_playlists' %>
+    </div><!-- .cont_columna cen -->
+
+    <div class="cont_columna der">
+      <%= render :partial => 'shared/today_top_djs' %>
+    </div><!-- .cont_columna der -->
+  </div><!-- .bloque -->
+</div>
+
+<div class="badges">
+  <%= render 'shared/multitask/badges' %>
+</div>

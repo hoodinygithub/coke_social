@@ -1,30 +1,41 @@
-<div class="support_pages">
+<div class="contenido">
+  <div id="container">
+    <div id="main_content">
+      <div class="support_pages">
 
-  <% content_for :title do %>
-    <%= t("music_index.title") %>
-  <% end %>
+        <% content_for :title do %>
+          <%= t("music_index.title") %>
+        <% end %>
 
-  <h1><%= t("music_index.title") %></h1>
 
-  <p class="preamble">
-    <%= t("music_index.description") %>  
-  </p>
+        <!-- integracion -->
+        <h1 class="tit_bloque gris">
+          <span class="txt"><%= t("music_index.title") %></span>
+          <span class="bg_fin">&nbsp;</span>
+        </h1><!-- .tit_bloque -->  
+        <!-- fin integracion -->
 
-  
+        <p class="preamble">
+        <%= t("music_index.description") %>  
+        </p>
 
-  <table class="coke">
-	<thead>
-      <tr>
-	    <td><%= t("music_index.table_header") %></td>
-	  </tr>
-	</thead>
-	<tbody>
-	  <% @site_genres.each do |sg|%>
-	  <tr>
-	   	<td><h2><a href="/search/playlists/<%=sg.genre.name%>"><%=sg.genre.name%></a></h2></td>
-	  </tr>
-	  <% end %>
-	</tbody>
-  </table>	
+        <table class="coke">
+          <thead>
+            <tr>
+              <td><%= t("music_index.table_header") %></td>
+            </tr>
+          </thead>
+          <tbody>
+            <% @site_genres.each do |sg|%>
+              <tr>
+                <td><h2><a href="/search/playlists/<%=sg.genre.name%>" content_switch_enabled="true"><%=sg.genre.name%></a></h2></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>	
 
+      </div>
+    </div>
+  </div>
+  <script>Cufon.replace('.txt');</script>
 </div>

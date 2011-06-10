@@ -19,7 +19,7 @@ set :shared_base,         "/shared"
 set :user,                "hoodiny"
 set :password,            "Xh00d17ME71z"
 set :deploy_to,           "#{deploy_base}/#{application}"
-set :monit_group,         ENV['DEPLOY_SITE'] || ARGV[0]
+set :monit_group,         "unicorn_#{ENV['DEPLOY_SITE'] || ARGV[0]}"
 set :runner,              "hoodiny"
 set :repository,          "git@github.com:hoodinygithub/coke_social.git"
 set :cyqueue,             "/data/cyqueue/current"
@@ -50,7 +50,7 @@ ssh_options[:paranoid] = false
 # can also specify options that can be used to single out a specific subset of boxes in a
 # particular role, like :primary => true.
 
-set :branch, "master"
+set :branch, "multitask"
 
 # Production
 task :production do
@@ -149,6 +149,65 @@ task :symlink_remaining, :roles => :app, :except => {:no_release => true, :no_sy
   end
 end
 
+namespace :unicorn do
+  desc <<-DESC
+  Start the Unicorn Master.  This uses the :use_sudo variable to determine whether to use
+  sudo or not. By default, :use_sudo is set to true.
+  DESC
+  task :start, :roles => [:app], :except => {:unicorn => false} do
+    sudo "/usr/bin/monit start all -g #{monit_group}"
+    sudo "/usr/bin/monit start all -g #{monit_group}_ssl"
+  end
+
+  desc <<-DESC
+  Restart the Unicorn processes on the app server by starting and stopping the master.
+  This uses the :use_sudo variable to determine whether to use sudo or not. By default,
+  :use_sudo is set to true.
+  DESC
+  task :restart, :roles => [:app], :except => {:unicorn => false} do
+    sudo "/usr/bin/monit restart all -g #{monit_group}"
+    sudo "/usr/bin/monit restart all -g #{monit_group}_ssl"
+  end
+
+  desc <<-DESC
+  Stop the Unicorn processes on the app server.  This uses the :use_sudo
+  variable to determine whether to use sudo or not. By default, :use_sudo is
+  set to true.
+  DESC
+  task :stop, :roles => [:app], :except => {:unicorn => false} do
+    sudo "/usr/bin/monit stop all -g #{monit_group}"
+    sudo "/usr/bin/monit stop all -g #{monit_group}_ssl"
+  end
+
+  desc <<-DESC
+  Reloads the unicorn works gracefully - Use deploy task for deploys
+  DESC
+  task :reload, :roles => [:app], :except => {:unicorn => false} do
+    sudo "/engineyard/bin/unicorn #{application} reload"
+  end
+
+  desc <<-DESC
+  Adds a Unicorn worker - Beware of causing your host to swap, this setting isn't permanent
+  DESC
+  task :aworker, :roles => [:app], :except => {:unicorn => false} do
+    sudo "/engineyard/bin/unicorn #{application} aworker"
+  end
+
+  desc <<-DESC
+  Removes a unicorn worker (gracefully)
+  DESC
+  task :rworker, :roles => [:app], :except => {:unicorn => false} do
+    sudo "/engineyard/bin/unicorn #{application} rworker"
+  end
+
+  desc <<-DESC
+  Deploys app gracefully with USR2 and unicorn.rb combo
+  DESC
+  task :deploy, :roles => [:app], :except => {:unicorn => false} do
+    sudo "/engineyard/bin/unicorn #{application} deploy"
+  end
+end #namespace
+
 namespace :deploy do
   # Try and get around EY gem
   task :symlink_configs, :roles => :app, :except => {:no_release => true} do
@@ -158,7 +217,7 @@ namespace :deploy do
       ln -nfs #{shared_path}/config/database.yml #{latest_release}/config/database.yml
     CMD
   end
-  
+
   task :symlink_cyqueue do
     run "ln -nfs #{cyqueue} #{latest_release}/vendor/cyqueue"
   end
@@ -171,8 +230,18 @@ namespace :deploy do
     campfire_notification "#{ENV['USER']} finished deploying #{application} to #{rails_env} (#{branch})"
   end
 
-  task :restart do
-    run "touch #{latest_release}/tmp/restart.txt"
+  task :restart, :roles => :app do
+    unicorn.deploy
+  end
+
+  desc "Start the Unicorn processes on the app slices."
+  task :start, :roles => :app do
+    unicorn.start
+  end
+
+  desc "Stop the Unicorn processes on the app slices."
+  task :stop, :roles => :app do
+    unicorn.stop
   end
 
   task :save_current_branch do

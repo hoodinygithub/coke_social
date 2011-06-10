@@ -86,6 +86,7 @@ class Account < ActiveRecord::Base
   include Account::AccountActivity
   include SongListen::Most
   include ProfileVisit::Most
+  include Account::FolloweeCache
 
   index [:type]
 
@@ -104,7 +105,7 @@ class Account < ActiveRecord::Base
 
   after_create :add_slug_to_accounts_slugs
 
-  has_and_belongs_to_many :sites, :join_table => 'accounts_excluded_sites'
+  has_and_belongs_to_many :excluded_sites, :class_name => 'Site', :join_table => 'accounts_excluded_sites', :readonly=>true
 
   # Paperclip Plugin http://dev.thoughtbot.com/paperclip/
   has_attached_file :avatar, :styles => { :original => '600x600>', :album => "300x300#", :medium => "86x86#", :small => "60x60#", :tiny => "30x30#"}
@@ -128,7 +129,7 @@ class Account < ActiveRecord::Base
   end
 
   has_many :followings_as_followee, :class_name => 'Following', :foreign_key => 'followee_id'
-  has_many :followers, :through => :followings_as_followee, :conditions => "accounts.type = 'User' AND accounts.network_id = 2 AND followings.approved_at IS NOT NULL", :source => :follower do
+  has_many :followers, :through => :followings_as_followee, :include => :networks, :conditions => "accounts.type = 'User' AND networks.id = 2 AND followings.approved_at IS NOT NULL", :source => :follower do
     def with_limit(limit=10)
       find(:all, :limit => limit)
     end
@@ -140,7 +141,6 @@ class Account < ActiveRecord::Base
 
   has_many :account_slugs, :dependent => :destroy
   belongs_to :site, :foreign_key => :entry_point_id
-  delegate :networks, :to => :site
 
   def follow_requests
     followings_as_followee.pending
@@ -169,7 +169,7 @@ class Account < ActiveRecord::Base
 
   
   def available_at_current_site?( current_site_id = ApplicationController.current_site.id )
-    !(self.sites.count( :conditions => { :id => current_site_id } ) > 0)
+    (self.excluded_sites.count( :conditions => { :id => current_site_id } ) == 0)
   end
 
   def first_name
@@ -202,6 +202,10 @@ class Account < ActiveRecord::Base
   attr_accessor :country_name
   def find_country_by_name
     self.country = Country.find_by_name(country_name) if country_name && country_name.empty
+  end
+
+  def last_playlist_played
+    Playlist.find last_playlist_played_id rescue nil
   end
 
   def city_name
@@ -337,6 +341,12 @@ class Account < ActiveRecord::Base
     self.next_chat = profile_chats.find(:first, :order => "chat_date asc", :conditions => "status <> 'disabled'")
     !next_chat.nil? && next_chat.markets.include?(current_site.id.to_s)
   end
+
+  has_many :accounts_networks
+  has_many :networks, :through=>:accounts_networks, :readonly=>true, :uniq => true
+  # TODO: validate :networks :check_for_duplicate_network
+  #   because validates_uniqueness_of doesn't work with has_many_through models
+  #   without the validation, you get a MySQL error on the unique index if you attempt to add a duplicate
 
   class << self
 

@@ -1,7 +1,7 @@
 
 -if profile_artist.has_station?
   .clearfix#launch_radio
-    = large_link_button_to :launch_radio, (logged_in?)? queue_my_station_path(profile_artist.station.id) : radio_path(:station_id => profile_artist.station.id)
+    = large_link_button_to :launch_radio, (logged_in?)? queue_my_station_path(profile_artist.station.id) : radio_path(:station_id => profile_artist.station.id, :load_mix => true)
 
   / - if logged_in?
   /   =link_to "LAUNCH #{profile_artist} RADIO", queue_my_station_path(profile_artist.station.id), :class => "launch_radio_link #{I18n.locale}"

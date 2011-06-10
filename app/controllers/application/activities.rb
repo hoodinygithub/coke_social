@@ -1,4 +1,3 @@
-
 module Application::Activities
 
   def self.included( base )
@@ -69,10 +68,9 @@ module Application::Activities
         }
         Resque.enqueue(StationJob, tracker_payload)
       rescue Exception => e
-                Rails.logger.error("*** Could not record station activity! payload: #{tracker_payload}") and return true
+        Rails.logger.error("*** Could not record station activity! payload: #{tracker_payload}") and return true
       end
     end
 
-    end
-
   end
+end

@@ -1,0 +1,60 @@
+<script type="text/javascript">
+  $(document).ready(function() {
+      if (Base.Station._station)
+      {
+        if ($('.mixes li').hasClass('sonando'))
+        {
+          $('.mixes li.sonando').toggleClass('sonando');
+          $('.play').remove();
+        }
+        $('.mixes').find('#' + Base.Station._station.pid).parent().toggleClass('sonando').prepend("<span class='play'>Sonando</span>");
+      }
+  });
+</script>
+<div class="submenu">
+  <div class="columna">
+    <h2><%= t('coke_messenger.mixes_tab.tab_title') %></h2>
+    <%= sortable_options_tag @mixes, :name => "mixes", :class => "ord_mixes", :i18n_base => "coke_messenger.order_filter" %>
+  </div>
+</div><!-- .submenu -->
+<div class="contenido">
+  <div class="columna">
+
+    <% sortable_list(@mixes, {:name => "mixes", :class => "mixes", :li_class => "estirar"}) do |playlist, index| %>
+        <span class="ord"><%= index + 1 %></span>
+        <%= avatar_for(playlist, :small, :class => 'avatar', :disable_default_css => true, :alt => playlist.name)%>
+        <div class="datos" id="<%= playlist.id %>">
+          <h3><%= playlist.name %></h3>
+          <p><%= t("basics.by")%>: <%= link_to playlist.owner.name, djs_details_path(playlist.owner.id) ,:class => "link_gris",:title => playlist.owner.name %></a></p>
+        </div>
+        <div class="messenger_rating" style="margin-top: 12px;"><%= messenger_rating(playlist) %></div>
+        <%= link_to_function t('coke_messenger.play'), "Base.Station.request('/playlists/#{playlist.id}.xml', 'xml', Base.Station.stationCollection);Base.Player.random(false)", :class => 'btn_play',:title => t('coke_messenger.play_hover') %>
+        <!-- a class="btn_seguir" href="#" title="<%= t('coke_messenger.follow_the_author') %>"><%= t('coke_messenger.follow_the_author') %></a -->
+
+ 					<% layer_path = send("follow_user_registration_layers_path",
+                            :return_to => request.request_uri,
+                            :account_id => playlist.owner.id,
+                            :follow_profile => playlist.owner.id) %>
+					 <% if current_user 
+              if current_user.id != playlist.owner.id  %>
+                <div id="following" style="display:<%= current_user.follows?(playlist.owner) ? 'block' : 'none' %>" >
+                  <%= link_to t('coke_messenger.unfollow_the_author'), "javascript:", :onclick => "Base.community.text_unfollow('#{playlist.owner.slug}', this)" ,:class => "btn_seguir_green"  %>
+                </div>
+                <div id="not_following" style="display:<%= current_user.follows?(playlist.owner) ? 'none' : 'block' %>" >
+                  <%= link_to t('coke_messenger.follow_the_author'), "javascript: ", :onclick => "Base.community.text_follow('#{playlist.owner.slug}', this, '#{layer_path}')" ,:class => "btn_seguir_red" %>
+                </div>
+              <% end %>  
+            <% else %>
+            <div id="not_following" style="display: block" >
+                  <%= link_to t('coke_messenger.follow_the_author'), "javascript: ",:onclick => "Base.community.text_follow('#{playlist.owner.slug}', this, '#{layer_path}')",:class => "btn_seguir_red" %>
+              </div>
+            <% end %>
+
+
+    <% end %>
+
+  </div><!-- .columna -->
+</div><!-- .contenido -->
+<script type="text/javascript">
+  _gaq.push(['_trackPageview', '/mixes']);
+</script>

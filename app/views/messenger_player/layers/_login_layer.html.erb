@@ -1,0 +1,57 @@
+<div class="overlay">
+    <div class="aviso login">
+   <div class="aviso_cab">
+   	<h1><%= t('coke_messenger.layers.login_link_layer.login_fm') %></h1>
+    <% unless @locked %>
+      <a class="btn_cerrar" href="#" onclick="closeFrameOnClick(event);" title="<%= t('coke_messenger.layers.login_link_layer.close') %>"><strong>X</strong> <<%= t('coke_messenger.layers.login_link_layer.close') %>><%= t('coke_messenger.layers.login_link_layer.close') %></a>
+    <% end %>
+  </div><!-- .aviso_cab -->
+      <div class="scroll">
+        <div class="columna_izq">
+          <h2><%= t('coke_messenger.layers.login_link_layer.login_using') %> <strong><%= t('coke_messenger.layers.login_link_layer.cokefm_account') %></strong></h2>
+          <p><%= t('coke_messenger.layers.login_link_layer.login_msg') %></p>
+          <% #form_tag ssl_login_path, :class=> "f_acceso" do %>
+          <% form_tag session_path, :class=> "f_acceso" do %>
+            <label>
+              <span><%= t('coke_messenger.layers.login_link_layer.email') %></span>
+              <input class="texto" type="text" name="email" />
+            </label>
+            <label>
+              <span><%= t('coke_messenger.layers.login_link_layer.password') %></span>
+              <input class="texto" type="password" name="password" />
+            </label>
+			      <label class="<%= class_name%>">
+              <small class="txt_error"><%= t('coke_messenger.registration.errors.login') %></small>
+            </label>
+            
+            <p><%= link_to_function t('coke_messenger.layers.login_link_layer.pwd_title'), "alertLayerFrameOnClick(event, 'forgot_password', #{@locked == true})", :class => "link_rojob", :title => t('coke_messenger.layers.login_link_layer.pwd_title') %></p>
+            <input class="boton" type="submit" value="<%= t('coke_messenger.layers.login_link_layer.accept')%>" />
+          <% end %>
+          <div class="fb_acceso">
+            <p><%= t('coke_messenger.layers.login_link_layer.log_data_network') %></p>
+            <div class="fb_api_boton">
+              <!-- API facebook para el boton -->
+              <div id="fb-root"></div>
+              <script src="http://connect.facebook.net/en_US/all.js"></script>
+              <script>
+               FB.init({ 
+                  appId:'YOUR_APP_ID', cookie:true, 
+                  status:true, xfbml:true 
+               });
+              </script>
+              <fb:login-button><%= t('coke_messenger.layers.login_link_layer.login') %></fb:login-button>
+              <!-- fin de API facebook -->
+            </div><!-- .fb_api_boton -->
+          </div><!-- .fb_acceso -->
+        </div><!-- .columna_izq -->
+        <div class="columna_der">
+          <h2><%= t('coke_messenger.layers.login_link_layer.reg_free') %><strong><%= t('coke_messenger.layers.login_link_layer.register_free')%></strong></h2>
+          <p><%= t('coke_messenger.layers.login_link_layer.follow') %></p>
+          <form>
+            <p><a class="boton register_btn" href="#" onclick="alertLayerFrameOnClick(event, 'registration_layer')" rel="layer" title="<%= t('coke_messenger.layers.login_link_layer.sign_up')%>">
+              <span style="float:left;margin-top:7px;margin-left:30px;"><%= t('coke_messenger.layers.login_link_layer.sign_up')%></span></a></p>
+          </form>    
+        </div><!-- .columna_der -->
+      </div><!-- .scroll -->
+    </div><!-- .aviso login -->
+  </div><!-- .overlay -->

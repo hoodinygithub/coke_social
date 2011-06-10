@@ -20,4 +20,4 @@
           - if logged_in?
             = link_to '', queue_my_station_path(station_activity["item"]["id"]), :class => "play", :title => t('actions.play')
           -else
-            = link_to '', radio_path(:station_id => station_activity["item"]["id"]), :class => "play", :title => t('actions.play')
+            = link_to '', radio_path(:station_id => station_activity["item"]["id"], :load_mix => true), :class => "play", :title => t('actions.play')

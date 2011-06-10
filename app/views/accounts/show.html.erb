@@ -1,9 +1,13 @@
-<% content_for :header_space_content do %>
-  <%= render 'users/stats' %>
+<% content_for :main_content do %>
+  <%= render :partial => 'shared/multitask/profile/latest_mixes', :locals => {:user => profile_user} %>
+  <%= render :partial => 'shared/multitask/profile/latest_badges', :locals => {:user => profile_user} %>
+  <%= render :partial => 'shared/multitask/profile/latest_comments', :locals => {:user => profile_user, :reviews => @reviews} %>
 <% end %>
 
-<%= render 'shared/ajax_modules' %>
-<%= render 'left_column' %>
-<%= render 'center_column' %>
-<%= render 'right_column' %>
-<div class="clearer"></div>
+<% content_for :right_side_content do %>
+  <%= render :partial => 'shared/multitask/profile/following', :locals => {:user => profile_user} %>
+  <%= render :partial => 'shared/multitask/profile/top_mixes', :locals => {:user => profile_user} %>
+  <%= render :partial => 'shared/multitask/profile/recent_activity', :locals => {:user => profile_user, :activity => @activity} %>
+<% end %>
+
+<%= render :partial => 'shared/multitask/profile/layout', :locals => {:user => profile_user, :id => "usuario"} %>

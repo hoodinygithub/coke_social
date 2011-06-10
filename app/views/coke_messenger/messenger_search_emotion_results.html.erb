@@ -1,0 +1,59 @@
+<script type="text/javascript">
+  $(document).ready(function() {
+
+      if (Base.Station._station)
+      {
+        if ($('.mis_mixes li').hasClass('sonando'))
+        { 
+          $('.mis_mixes li.sonando').toggleClass('sonando');
+          $('.play').remove();
+        }
+        $('.mis_mixes').find('#' + Base.Station._station.pid).parent().toggleClass('sonando').prepend("<span class='play'>Sonando</span>");
+      }
+
+      <% if @total_pages > 1 %>
+        /* Infinite scroll */
+        var page = 1;
+        var pages = <%= @total_pages %>;
+        var domContainer = ".contenido";
+        var reqURL = "<%= request.path %>";
+        var domAppend = "#sortable_options_ul_results";
+        $(domContainer).scrollLoad({
+          url: reqURL,
+          ScrollAfterHeight: 95,
+          getData: function() {
+          return {page:++page};
+          },
+          continueWhile: function()
+          {
+            return page < pages ? true : false;
+          },
+          onload: function(data) {
+            $(this).find(domAppend).append(data);
+          }
+        });
+        /*******************/
+      <% end %>
+  });
+</script>
+<div class="submenu">
+  <div class="columna">
+    <h2><%= "#{t('coke_messenger.emotions.tab_title')} \"#{@query.nil? ? '' : @query}\"" %></h2>
+    <%= sortable_options_tag @results[:playlists], :name => "results", :class => "ord_mixes", :i18n_base => "coke_messenger.order_filter" %>
+  </div>
+</div><!-- .submenu -->
+<div class="contenido">
+  <div class="columna">
+    <% sortable_list(@results[:playlists], {:name => "results", :class => "mis_mixes", :li_class => "estirar", :no_results_class => "no_resultados", :no_results_text => t('coke_messenger.emotions.no_results')}) do |playlist, index| %>
+      <%= avatar_for(playlist, :small, :alt => playlist.name) %>
+      <div class="datos" id="<%= playlist.id %>">
+        <h3><%= playlist.name %></h3>
+      </div>
+      <div class="messenger_rating" style="margin-top: 10px;"><%= messenger_rating(playlist) %></div>
+  		<%= link_to_function t('coke_messenger.play'), "Base.Station.request('/playlists/#{playlist.id}.xml', 'xml', Base.Station.stationCollection);Base.Player.random(false)", :title => t('coke_messenger.play_hover'), :class => 'btn_play' %>
+    <% end %>
+  </div><!-- .columna -->
+</div><!-- .contenido -->
+<script type="text/javascript">
+  _gaq.push(['_trackPageview', '/home/emotions']);
+</script>

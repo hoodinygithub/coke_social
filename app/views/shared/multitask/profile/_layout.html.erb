@@ -1,0 +1,31 @@
+<div class="contenido" id="<%= id %>">
+  <div class="bloque">
+
+    <%= render :partial => 'shared/multitask/profile/nav', :locals => {:user => user} %>
+    
+    <div class="cont_columna doble">
+    
+      <%= render :partial => 'shared/multitask/profile/user_data', :locals => {:user => user} %>
+      
+      <%= yield :main_content %>
+      
+    </div><!-- .cont_columna doble -->
+    
+    <div class="cont_columna der">
+        
+      <div class="open_happiness_box">
+        <%= banner_ad("square_banner") %>
+      </div><!-- .open_happiness_box -->
+      
+      <div class="mod_emociones">
+        <% cache("#{site_cache_key}/#{user.slug_cache_key}/profiles/tag_cloud", :expires_in => EXPIRATION_TIMES['profile_tag_cloud']) do %>
+          <%= render :partial => 'shared/tag_cloud', :locals => { :tags => user.tag_counts_from_playlists(current_site) } %>
+        <% end %>
+      </div><!-- .mod_emociones -->                
+
+      <%= yield :right_side_content %>
+
+    </div><!-- .cont_columna der -->
+
+  </div><!-- /bloque -->
+</div><!-- .contenido -->

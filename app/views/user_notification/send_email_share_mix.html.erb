@@ -1,0 +1,23 @@
+<html>
+    <body style="margin: 0px 0px 0px 0px;">
+        <p>
+            <%= t('coke_messenger.email_share.body.hello') %><%= @recipient_name %>
+        </p>
+        <p>
+            <%= @user_name %> <%= t('coke_messenger.email_share.body.share_mix') %>
+        </p>
+        <p>
+            <%= @msg %>
+        </p>
+        <p>
+            <%= t('coke_messenger.email_share.body.click_here') %>
+            <br/>
+            <%= @link %>
+        </p>
+        <p>
+            <%= t('coke_messenger.email_share.body.friends') %>
+            <br/>
+            <%= t('coke_messenger.email_share.body.coke_fm') %>
+        </p>
+    </body>
+</html>

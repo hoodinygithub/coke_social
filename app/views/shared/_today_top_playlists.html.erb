@@ -1,9 +1,12 @@
-<div class="top_playlists_column">
-  <h1><%= t("modules.top_playlists.title").upcase %></h1>
-  
+<h2 class="tit_bloque">
+  <span class="txt"><%= t("modules.top_playlists.title") %> <em><%= t("modules.top_playlists.description") %></em></span>
+  <span class="bg_fin">&nbsp;</span>
+</h2>
+<div class="mod_top">
   <% cache("#{site_cache_key}/modules/home/top_playlists/#{@top_playlists.size}", :expires_in => EXPIRATION_TIMES["top_modules_playlists"]) do %>
-    <ul class="list_items">
+    <ul class="mixes">
       <%= render :partial => 'shared/top_playlist_item', :collection => @top_playlists %>
     </ul>
   <% end %>
 </div>
+<!-- .mod_top -->

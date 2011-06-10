@@ -1,0 +1,21 @@
+<!-- ASYNC GOOGLE TRACKING CODE -->
+<% if messenger_gatracker_id %>
+  <script type="text/javascript">
+
+    var urlPath = "<%= @code || (flash[:google_code] unless flash[:google_code].blank?) %>";
+    var trackObj = urlPath != '' ? ['_trackPageview', urlPath] : ['_trackPageview'];
+
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', '<%= messenger_gatracker_id %>']);
+    _gaq.push(['_setDomainName', <%= "'" +  (ENV['RAILS_ENV'] == 'staging' ? ".hoodiny.com" : ".coca-cola.fm") + "'" %>]);
+    _gaq.push(trackObj);
+
+    (function() {
+     var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+     ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+     var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+     })();
+
+  </script>
+<% end %>
+<!---->

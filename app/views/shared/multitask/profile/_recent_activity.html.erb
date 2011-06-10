@@ -1,0 +1,31 @@
+<div class="mod_actividad">
+  <h2 class="tit_bloque gris">
+    <span class="txt"><%= t('modules.recent_activity.title').capitalize %><em><%= user.name %></em></span>
+    <span class="bg_fin">&nbsp;</span>
+  </h2>
+  
+  
+  <% if activity.nil? || activity.size < 1 %>
+    <p class="no_resultados"><%= t("user.has_no_activity", :user_name => user.first_name) %></p>
+  <% else %>
+    <ul class="recent_activity_list">
+      <% 
+        count = 0
+        activity.each do |item|
+          break if count > 4
+          if item['type'] == 'status'
+      %>
+            <li>
+                <a class="nombre" target="_blank" href="#" title=""><%= link_to(item['account'], item['account'], :content_switch_enabled => true) %></a>
+                <span class="grey"><%= nice_elapsed_time(item['timestamp']) %></span>
+                <p><%= item['message'].gsub(/\n/, '<br />') %></p>
+            </li>
+      <% 
+            count = (count + 1)
+          end
+        end
+      %>
+    </ul>
+    <a class="ico_mas" href="<%= user_activities_path(user) %>" title="<%= t('actions.view_more') %>" content_switch_enabled="true"><%= t('actions.view_more') %><span class="bg_flecha">&nbsp;</span></a>
+  <% end %>
+</div><!-- .mod_actividad -->

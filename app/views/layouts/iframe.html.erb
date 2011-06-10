@@ -1,0 +1,27 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" <%= application_html_attrs %>>
+  <head>
+    <script>
+      var app = 'multitask';
+      function iframe_onload()
+      {
+        x = document.getElementById("iframetest");
+         y = x.getElementById("container");
+         if (document.all) // IE problem; wont show clientHeight if style height hasn't been set
+          y.style.height = "1px";
+         margin = 30;
+         x.style.height = parseInt(y.clientHeight + margin) + "px";
+      }
+    </script>
+    <%= render 'shared/javascripts' %>
+    <%= render 'shared/stylesheets' %>
+  </head>
+  <body locale="<%= current_site.default_locale %>" market="<%= current_site.code %>" current_site_url="<%= current_site_url %>" id="<%= action_name %>">
+    <div id="content">
+      <iframe id="iframetest" width="100%" src="<%= yield %>" onload="return iframe_onload()" scrolling="no"></iframe>
+    </div>
+    <script language="text/javascript">
+      // Cufon.now();
+    </script>
+  </body>
+</html>

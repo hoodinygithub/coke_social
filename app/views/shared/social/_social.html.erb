@@ -1,7 +1,13 @@
 <%= render "/shared/social/fbconnect", { :page => page } %>
 <div id="social">
   <div class="container">
-    <span class="title"><%= t('sessions.new.social') %></span><br /><br />
-    <fb:login-button id="fb_login" perms="user_birthday, email"></fb:login-button>
+    <span class="title"><%= t('sessions.new.social') %></span>
+    <br /><br class="clearer"/>
+    <div>
+      <fb:login-button id="fb_login" perms="user_birthday, email, publish_stream"></fb:login-button>
+    </div>
+    <div>
+      <%= render "/shared/social/winconnect", { :page => page } %>
+    </div>
   </div>
 </div>

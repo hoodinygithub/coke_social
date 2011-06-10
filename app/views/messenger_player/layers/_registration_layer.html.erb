@@ -1,0 +1,100 @@
+<div class="overlay">
+  <div class="aviso login registro">
+    <div class="aviso_cab">
+      <h1><%= t('coke_messenger.layers.registration_form_view.register') %></h1>
+      <% unless @locked %>
+        <a class="btn_cerrar" href="#" onclick="closeFrameOnClick(event);" title="<%= t('actions.close') %>"><strong>X</strong> <%= t('actions.close') %></a>
+      <% end %>
+    </div><!-- .aviso_cab -->
+    <div class="scroll">
+
+      <div class="columna_izq">
+        <h2><%= t('coke_messenger.layers.registration_form_view.sign_up') %><strong><%= t('coke_messenger.layers.registration_form_view.coke_fm') %></strong></h2>
+        <p><%= t('coke_messenger.layers.registration_form_view.way_coke') %></p>
+        <p><%= "<b>#{t('sessions.new.already_own')} #{link_to_function t('sessions.new.sign_in'), "alertLayerFrameOnClick(event, 'login_layer', #{@locked == true})" }</b>" %></p>
+        
+        <% form_for @user, :url => "#{users_path}?iframe=true", :html => { :method => :post, :class => "f_registro" } do |f| %>
+          <%= f.hidden_field :sso_facebook unless @user['sso_facebook'].nil? %>
+          <%= f.hidden_field :sso_windows unless @user['sso_windows'].nil? %>
+
+          <div class="gender_div">
+            <span class="gender_class" style="padding-right:30px"><%= t('coke_messenger.layers.registration_form_view.you') %></span>
+            <span class="gender_class"><%= radio_button_tag "user[gender]", :female, :checked => true %><%= t("user.female") %></span>
+            <span class="gender_class"><%= radio_button_tag "user[gender]", :male %><%= t("user.male") %></span>
+          </div>
+          <label class="<%= @user.errors[:name] ? "error" : "" %>">
+            <span><%= t('coke_messenger.layers.registration_form_view.your_name') %></span>
+            <%= f.text_field :name, :class => 'texto' %>
+            <small class="txt_error"><%= t('coke_messenger.registration.errors.name') %></small>
+          </label>
+
+          <label class="<%= @user.errors[:email] ? "error" : "" %>">
+            <span><%= t('coke_messenger.layers.registration_form_view.email') %></span>
+            <%= f.text_field :email, :class => 'texto' %>
+            <small class="txt_error"><%= t('coke_messenger.registration.errors.email') %></small>
+          </label>
+
+          <p><%= t('coke_messenger.layers.registration_form_view.profile') %> <small><%= t('coke_messenger.layers.registration_form_view.share') %></small>:</p>
+
+          <label class="urlname <%= @user.errors[:slug] ? "error" : "" %>">
+            <span><%= t('coke_messenger.layers.registration_form_view.coke') %></span>
+            <%= f.text_field :slug, :class => 'texto' %>
+            <small class="txt_error"><%= t('coke_messenger.registration.errors.slug') %></small>
+          </label>
+
+          <label class="fnacimiento" style="margin-bottom:-10px">
+            <span><%= t('coke_messenger.layers.registration_form_view.dob') %>:</span>
+          </label>
+          <%= date_select :user,:born_on, :start_year => Time.now.year, :end_year => 1900, :use_month_numbers => true %>
+          <label class="<%= @user.errors[:born_on] ? "error" : "" %>">
+            <small class="txt_error"><%= t('coke_messenger.registration.errors.age') %></small>
+          </label> 
+
+          <label class="<%= @user.errors[:terms_and_privacy] ? "error" : "" %>">
+            <%= f.check_box :terms_and_privacy, :class => "check" %>
+            <small><%= t('coke_messenger.layers.registration_form_view.accept') %></small>
+            <small class="txt_error"><%= t('coke_messenger.registration.errors.terms') %></small>
+          </label>
+          <div class="alerta"><%= t('coke_messenger.layers.registration_form_view.thats_it') %></div>
+          <input class="boton" type="submit" value="COMPLETE" />
+        <% end %>
+      </div><!-- .columna_izq -->
+      <div class="columna_der">
+        <h2><%= t('coke_messenger.layers.registration_form_view.reasons') %><strong><%= t('coke_messenger.layers.registration_form_view.coke_fm') %></strong></h2>
+
+        <ul class="razones">
+          <li>
+          <span class="ico_lupa"><%= t('coke_messenger.layers.registration_form_view.view') %></span>
+          <h3><%= t('coke_messenger.layers.registration_form_view.discover') %></h3>
+          <p><%= t('coke_messenger.layers.registration_form_view.find_music') %></p>
+
+          </li>
+          <li>
+          <span class="ico_premio"><%= t('coke_messenger.layers.registration_form_view.recommendations') %></span>
+          <h3><%= t('coke_messenger.layers.registration_form_view.badgets') %></h3>
+          <p><%= t('coke_messenger.layers.registration_form_view.radio_stations') %></p>
+          </li>
+
+          <li>
+          <span class="ico_seguir"><%= t('coke_messenger.layers.registration_form_view.friends') %></span>
+          <h3><%= t('coke_messenger.layers.registration_form_view.follow') %></h3>
+          <p><%= t('coke_messenger.layers.registration_form_view.click_follow') %></p>
+          </li>
+          <li>
+          <span class="ico_mixes"><%= t('coke_messenger.layers.registration_form_view.create') %></span>
+
+          <h3><%= t('coke_messenger.layers.registration_form_view.create_mix') %></h3>
+          <p><%= t('coke_messenger.layers.registration_form_view.dj_create_mix') %></p>
+          </li>
+          <li>
+          <span class="ico_opinar"><%= t('coke_messenger.layers.registration_form_view.view') %></span>
+
+          <h3><%= t('coke_messenger.layers.registration_form_view.put_work') %></h3>
+          <p><%= t('coke_messenger.layers.registration_form_view.comment') %></p>
+          </li>
+        </ul>
+      </div><!-- .columna_der -->
+    </div><!-- .scroll -->
+  </div><!-- .aviso login registro -->
+</div><!-- .overlay -->
+

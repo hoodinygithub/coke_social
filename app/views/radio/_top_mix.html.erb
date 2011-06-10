@@ -1,0 +1,8 @@
+<li class="estirar">
+    <%= avatar_for(p) %>
+    <div class="datos">
+        <h3><%= link_to p.name, radio_path(:station_id => p.station.id) ,:class => "link_rojo", :content_switch_enabled => true, :title => p.name %></h3>
+        <p><%= t('basics.contains') %>: <%= station_contains(p, 3, false, {:class => "link_rojo", :content_switch_enabled => true}) %></p>
+        <%= multitask_rating(p) %>
+    </div>
+</li>

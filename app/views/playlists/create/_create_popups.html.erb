@@ -25,6 +25,7 @@
 <div id="save_mix_popup" style="display:none;">
   <%= form_tag playlist_create_path, :class => "save_playlist_form account_settings", :method => :post, :multipart => true %>
     <input type="hidden" name="item_ids" value="">
+    <input type="hidden" name="ajax" value="1">
     <div class="title"><%= t('playlists.save_your_playlist') %></div>
     <div class="form_row">
       <label><b><%= t('playlists.name_your_playlist') %></b></label>
@@ -113,7 +114,7 @@
       <a href="#" onclick="$(document).trigger('close.facebox'); return false;" class="red_button valign_middle">
         <span><span><%= t('basics.yes') %></span></span>
       </a>&nbsp;&nbsp;
-      <a href="<%= my_playlists_path %>" class="red_button valign_middle">
+      <a href="<%= my_playlists_path %>" content_switch_enabled="true" onclick="$(document).trigger('close.facebox'); return false;" class="red_button valign_middle">
         <span><span><%= t('basics.no') %></span></span>
       </a>
     </div>

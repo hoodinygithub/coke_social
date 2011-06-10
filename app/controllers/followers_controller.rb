@@ -16,7 +16,7 @@ class FollowersController < ApplicationController
       @pending    = profile_user.follow_requests
       @collection = profile_user.followers.paginate :page => params[:page], :per_page => 15, :order => sort_types[@sort_type]
     end
-    if request.xhr?
+    if request.xhr? && !params[:ajax]
       render :partial => 'followings/ajax_list'
     end
   end

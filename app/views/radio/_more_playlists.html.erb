@@ -1,4 +1,4 @@
-<% playlists = current_playlist.kind_of? (Array) ? current_playlist : current_playlist.playable.owner.playlists.latest(20) %>
+<% playlists = current_playlist.kind_of?(Array) ? current_playlist : current_playlist.playable.owner.playlists.latest(20) %>
 <% playlists.each do |playlist| %>
   <div class="radio_station_row">
     <%= link_to avatar_for(playlist, :small, 
@@ -22,7 +22,7 @@
       <% end %>
       <br />
       <span class="big_btn_box hoverable_item">
-        <%= link_to "Play", radio_path(:station_id => playlist.station.id), :class => "big_btn play_btn" ,:title=> t('actions.play') %>
+        <%= link_to "Play", radio_path(:station_id => playlist.station.id, :load_mix => true), :class => "big_btn play_btn" ,:title=> t('actions.play') %>
       </span>
       <!--img src="images/play_button.png" /></a!--> 
      </div>

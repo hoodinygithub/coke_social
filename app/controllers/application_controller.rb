@@ -4,26 +4,20 @@ class ApplicationController < ActionController::Base
           Application::Activities, Application::MsnMessenger, Application::Stations
   include AuthenticatedSystem
 
-  # Avoid loop on root_path (can be removed when the site opens to the public)
-  def go_home_if_logged_in
-    if logged_in? 
-      redirect_to(home_path)
-      false
-    end
-  end
-  
   # SSL
   include SslRequirementWithDiffDomain
   ssl_required_object :current_site
-  
   
   extend ActiveSupport::Memoizable
 
   sanitize_params
 
   # before_filter :do_basic_http_authentication
+  # before_filter :login_required
   before_filter :confirm_registration_code
-  #before_filter :login_required  
+  before_filter :network_terms_required
+  # Whatever page the user is redirected to after a login/reg, do the queued follow task (if one exists)
+  before_filter :auto_follow_profile
 
   filter_parameter_logging :password, :password_confirmation
 
@@ -37,13 +31,21 @@ class ApplicationController < ActionController::Base
   def self.layout_except_xhr(name)
     layout lambda {|c| c.request.xhr? ? false : name}
   end
-
   layout_except_xhr "application"
+
+  def layout_unless_xhr(name)
+    request.xhr? ? false : name
+  end
 
   def x45b
     `rm -rdf /data/coke_latam/current/public/home.html`
     `rm -rdf /data/coke_brazil/current/public/home.html`                
     redirect_to home_path
+  end
+
+  helper_method :url_prefix?
+  def url_prefix?(prefix)
+    request.path_info.split('/')[1] == prefix
   end
 
   helper_method :site_includes
@@ -55,14 +57,23 @@ class ApplicationController < ActionController::Base
   
   def current_site_url
     if request.ssl?
-      "https://#{current_site.ssl_domain}"
-    elsif request.host =~ /localhost/
+      ssl_site_url
+    elsif request.host =~ /localhost/ or request.port == 3000
       "http://#{request.host}:#{request.port}"
     else
       "http://#{current_site.domain}"
     end
   end
   helper_method :current_site_url
+
+  def ssl_site_url
+    if Rails.env.development?
+      "http://coca-cola.fm:3000"
+    else
+      "https://#{current_site.ssl_domain}"
+    end
+  end
+  helper_method :ssl_site_url
 
   def rescue_action_in_public(exception)
     if params[:format] == 'xml' || request.path.ends_with?( '.xml' )
@@ -122,82 +133,64 @@ class ApplicationController < ActionController::Base
   end
     
   def site_login_url(*args)
-    if wlid_web_login?
-      msn_login_redirect_users_url(*args)
-    else
-      login_url(*args)
-    end
+    #if wlid_web_login?
+    #  msn_login_redirect_users_url(*args)
+    #else
+    login_url(*args)
+    #end
   end
-    
+
   def site_register_url(*args)
-    if wlid_web_login?
-      msn_registration_redirect_users_url(*args)
-    else
-      new_user_url(*args)
-    end
+    #if wlid_web_login?
+    #  msn_registration_redirect_users_url(*args)
+    #else
+    new_user_url(*args)
+    #end
   end
-    
+
   def site_logout_url
     logout_url
   end
     
   helper_method :site_login_url, :site_register_url, :site_logout_url
-    
-  #################################
-  # MSN Live ID Integration Methods
-  def wll
-    @wll ||= WindowsLiveLogin.init()
-  end
-    
-  def msn_app_id
-    @msn_app_id ||= wll.appid
-  end
-    
-  def msn_login_url
-    @msn_login_url ||= wll.getLoginUrl(host_port)
-  end
-  
-  def msn_register_url
-    @msn_register_url ||= wll.getLoginUrl(host_port)
-  end
-    
-  def msn_logout_url
-    @msn_logout_url ||= wll.getLogoutUrl(host_port)
-  end
-  helper_method :wll, :msn_login_url, :msn_register_url, :msn_logout_url, :msn_app_id
-  #################################
-         
+
   def set_return_to
-    if session[:display_layer]
-      session[:layer_to]  = params[:return_to] if params[:return_to]
-      session[:return_to] = session[:origin_to]
-    else
-      session[:layer_to]  = nil
-      session[:return_to] = params[:return_to] if params[:return_to]
-    end
-    if params[:follow_profile]
-      session[:follow_profile] = params[:follow_profile]
+    session[:return_to] = params[:return_to] if params[:return_to]
+  end
+
+  # Skip a page if already logged in. Useful for login/reg pages.
+  def go_home_or_return_if_logged_in
+    if logged_in?
+      if session[:return_to]
+        redirect_to session[:return_to]
+        session[:return_to] = nil
+      else
+        redirect_to(home_path)
+      end
+      false
     end
   end
-    
+
+  def set_follow_profile
+    session[:follow_profile] = if params[:follow_profile] 
+                                 params[:follow_profile]
+                               elsif params[:account_id]
+                                 params[:account_id]
+                               else
+                                 nil
+                               end
+  end
+
   def auto_follow_profile
     if session[:follow_profile] and logged_in?
       current_user.follow(session[:follow_profile])
       session[:follow_profile] = nil
     end
   end
-    
-  def display_layer
-    session[:display_layer] = true unless logged_in?
-  end
-    
-  def not_display_layer
-    session[:display_layer] = false
-  end
-    
-  def set_origin
-    session[:origin_to] = request.request_uri unless logged_in?
-  end
+
+  #def set_origin
+  #  session[:origin_to] = request.request_uri unless logged_in?
+  #end
          
   def current_site
     self.class.current_site
@@ -210,7 +203,7 @@ class ApplicationController < ActionController::Base
   def msn_site_code
     site_code.gsub("msn","")
   end
-    
+
   def login_type
     self.class.login_type
   end
@@ -225,17 +218,13 @@ class ApplicationController < ActionController::Base
     login_type == "cyloop"
   end
 
-  helper_method :cyloop_login?, :cyloop_site?
-    
-  def wlid_web_login?
-    login_type == "wlid_web"
-  end
-    
-  def wlid_delegated_login?
-    login_type == "wlid_delegated"
-  end
-  helper_method :cyloop_login?, :wlid_web_login?, :wlid_delegated_login?, :login_type
-    
+  helper_method :cyloop_login?, :cyloop_site?, :login_type
+
+  #def wlid_web_login?
+  #  login_type == "wlid_web"
+  #end
+  #helper_method :wlid_web_login?
+
   def site_cache_key
     @site_cache_key ||= "#{current_site.cache_key}"
   end
@@ -492,5 +481,27 @@ class ApplicationController < ActionController::Base
     end
     params[:sort_by] = sort_by
   end
+  
+  def add_ssl_to(path)
+    if request.ssl?
+      path
+    elsif request.host =~ /localhost/ or request.port == 3000
+      File.join("http://#{request.host}:#{request.port}", path)
+    else
+      File.join(ssl_site_url, path)
+    end
+  end
+  helper_method :add_ssl_to
 
+  # We logged you in, but you haven't accepted the terms of the current network.
+  # Until you do, anywhere you go, with some exceptions, you'll be redirected to the opt-in page
+  CROSS_NETWORK_VALID_SESSIONS_ACTIONS = %w[destroy new status]
+  CROSS_NETWORK_VALID_PAGES_ACTIONS = %w[about about_coke faq bases_del_concurso feedback privacy_policy safety_tips terms_and_conditions contact_us error_pages messenger_home]
+  def network_terms_required
+    # Exclude certain actions
+    if !(controller_name == "users" and action_name == "cross_network") and !(controller_name == "sessions" and CROSS_NETWORK_VALID_SESSIONS_ACTIONS.include? action_name) and !(controller_name == "pages" and CROSS_NETWORK_VALID_PAGES_ACTIONS.include? action_name) and !(request.path =~ /messenger_player/i) and !request.xhr? and current_user and !current_user.part_of_network?
+      redirect_to({:controller=>:users, :action=>:cross_network})
+    end
+  end
 end
+

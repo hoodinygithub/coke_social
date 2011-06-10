@@ -1,0 +1,66 @@
+<script type="text/javascript">
+  $(document).ready(function() {
+      /* Now playing state */
+      if (Base.Station._station)
+      {
+        if ($('ul.djs li').hasClass('sonando'))
+        {
+          $('.djs li.sonando').toggleClass('sonando');
+          $('.play').remove();
+        }
+        $('ul.djs').find('#' + Base.Station._station.pid).parent().toggleClass('sonando').prepend("<span class='play'>Sonando</span>");
+      }
+      /*********************/
+  });
+</script>
+
+  <div class="submenu">
+    <div class="columna">
+      <h2><%= t('coke_messenger.dj.tab_title') %></h2>
+      <%= sortable_options_tag @djs, :name => "djs", :class => "ord_mixes", :i18n_base => "coke_messenger.order_filter" %>
+    </div>
+  </div><!-- .submenu -->
+
+
+  <div class="contenido">
+    <div class="columna">
+      <% sortable_list(@djs, {:name => "djs", :class => "djs", :li_class => "estirar"}) do |dj, index| %>
+
+        <span class="ord"><%=index+1%></span>
+	<%= avatar_for(dj, :small, :class => 'avatar', :disable_default_css => true, :alt => dj.name) %>
+        <div id="<%= dj.playlists.latest(1)[0].id %>" class="datos">
+          <h3><%= link_to dj.name, djs_details_path(dj.id), :class => "link_rojo", :title => dj.name, :content_switch_enabled => true %></h3>
+		
+          <p>(<%= dj.country.name %>)</p>
+        </div>
+        <div class="num_mixes"><strong><%= dj.total_playlists %></strong> <%= t('coke_messenger.mixes').downcase %></div>
+				<div class= "follow_unfollow_btns">
+				<%= link_to_function t('coke_messenger.play'), "Base.Station.request('/playlists/#{dj.playlists.latest(1)[0].id}.xml', 'xml', Base.Station.stationCollection);Base.Player.random(false)", :class => 'btn_play',:title => t('coke_messenger.play_hover') %>
+         <% layer_path = send("follow_user_registration_layers_path",
+                            :return_to => request.request_uri,
+                            :account_id => dj.id,
+                            :follow_profile => dj.id) %>
+					 
+					 <% if current_user 
+              if current_user.id != dj.id  %>
+                <div id="following" style="display:<%= current_user.follows?(dj) ? 'block' : 'none' %>" >
+                  <%= link_to t('coke_messenger.unfollow_the_author'), "javascript:", :onclick => "Base.community.text_unfollow('#{dj.slug}', this)" ,:class => "btn_seguir_green"  %>
+                </div>
+                <div id="not_following" style="display:<%= current_user.follows?(dj) ? 'none' : 'block' %>" >
+                  <%= link_to t('coke_messenger.follow_the_author'), "javascript: ", :onclick => "Base.community.text_follow('#{dj.slug}', this, '#{layer_path}')" ,:class => "btn_seguir_red" %>
+                </div>
+              <% end %> 
+            <% else %>
+            <div id="not_following" style="display: block" >
+                  <%= link_to t('coke_messenger.follow_the_author'), "javascript: ",:onclick => "Base.community.text_follow('#{dj.slug}', this, '#{layer_path}')",:class => "btn_seguir_red" %>
+              </div>
+            <% end %>
+           </div>
+		  <% end %>
+
+    </div><!-- .columna -->
+  </div><!-- .contenido -->
+  
+<script type="text/javascript">
+  _gaq.push(['_trackPageview', '/djs']);
+</script>

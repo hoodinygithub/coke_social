@@ -8,10 +8,10 @@ class UsersController < ApplicationController
   # before_filter :login_required, :only => [:edit, :update, :destroy, :confirm_cancellation, :remove_avatar]
   skip_before_filter :login_required, :only => [:new, :create, :errors_on, :feedback, :confirm_cancellation, :forgot]
   
-  before_filter :set_return_to, :only => [:msn_login_redirect, :msn_registration_redirect, :new]
-  before_filter :set_dashboard_menu, :only => [:edit, :update]
+  before_filter :go_home_or_return_if_logged_in, :only => [:new, :forgot]
+  #before_filter :set_dashboard_menu, :only => [:edit, :update]
 
-  ssl_required_with_diff_domain :edit, :destroy, :new, :errors_on, :confirm_cancellation, :forgot, :feedback
+  ssl_required_with_diff_domain :new, :errors_on, :forgot, :feedback #, :edit, :destroy, :confirm_cancellation
   ssl_allowed_with_diff_domain :update, :create
   
   current_tab :settings
@@ -23,13 +23,20 @@ class UsersController < ApplicationController
   
   # GET /users/id
   def show
-    redirect_to :action => :edit
+    @user = current_user
+    if params[:ajax]
+    #   render :text => my_settings_path(:iframe => true), :layout => 'iframe'
+    # elsif params[:iframe]
+      render :action => :edit, :layout => false
+    else
+      redirect_to :action => :edit
+    end
   end
 
   # GET /users/id/edit
   def edit
-    @user = User.find(current_user.id)
-    # puts request.host
+    @user = current_user
+    render :layout => false if params[:ajax]
   end
 
   # POST /users/id
@@ -65,11 +72,39 @@ class UsersController < ApplicationController
   # This is a temp fix for the flash player to handle registration.
   # Temp as of 8/17/09
   def new
-    if cyloop_login? || session[:msn_live_id]
-      # pre-populate user object with sso fields
-      @user = session[:sso_user].nil? ? User.new : session[:sso_user]
-    else
-      msn_registration_redirect
+    # pre-populate user object with sso fields
+    @user = session[:sso_user].nil? ? User.new : session[:sso_user]
+  end
+
+  # Cached on startup
+  COKE_NETWORK = Network.find(2)
+
+  # Cross-network opt-in action
+  def cross_network
+    if params[:opt_in] and params[:opt_in] == "1"
+      u = current_user
+      u.encrypt_demographics
+      u.networks << COKE_NETWORK
+      u.save!
+      
+      if request.xhr?
+        js = "_gaq.push(['_trackPageview', '/auth/optin/confirm']);"
+        js << "$.alert_layer.showOverlay(true);"
+        js << "window.location.reload();"
+        render :js => js
+      else
+        redirect_back_or_default(home_path)
+      end
+    else 
+      @user = current_user
+      flash[:error] = t('registration.cross_network.error') if request.referrer =~ /cross_network/
+      if request.xhr?
+        @msg = "opt_layer"
+        @error_msgs = "show error msgs"
+        @locked = true
+        layer_html = render_to_string '/messenger_player/layers/alert_layer'
+        render(:json => {:status => 'redirect', :html => layer_html}, :layout => false)
+      end
     end
   end
 
@@ -84,56 +119,100 @@ class UsersController < ApplicationController
     @user = User.new(params[:user])
     @user.entry_point = current_site
     @user.ip_address  = remote_ip
-    @user.msn_live_id = session[:msn_live_id] if wlid_web_login?
+    @user.msn_live_id = session[:msn_live_id] if session[:msn_live_id] # wlid_web_login?
     @user.born_on_string = "#{born_on_year}-#{born_on_month}-#{born_on_day}"
+    @user.networks << COKE_NETWORK
 
     @user.email = email.downcase if email
 
     if @user.save
       cookies.delete(:auth_token) if cookies.include?(:auth_token)
-      session[:msn_live_id] = nil if wlid_web_login?
+      session[:msn_live_id] = nil #if wlid_web_login?
       session[:registration_layer] = true
       session[:sso_user] = nil
       session[:sso_type] = nil
       self.current_user = @user
 
       subject = t("registration.email.subject")
-      UserNotification.send_registration( :user_id => @user.id, :subject => subject, :host_url => request.host, :site_id => current_site.code, :global_url => global_url, :locale => current_site.default_locale)
+      UserNotification.send_registration( :user_id => @user.id, :subject => subject, :host_url => request.host, :site_id => current_site.code, :global_url => global_url, :locale => current_site.default_locale) unless Rails.env.development?
 
       # Background validation to twitter username
       Resque.enqueue(TwitterJob, {
         :user_id => @user.id, :twitter_username => @user.twitter_username
       }) if @user.twitter_username_changed?
 
-      respond_to do |format|
-        format.html { redirect_back_or_default(my_dashboard_path) }
-        format.xml  { render :xml => Player::Message.new( :message => t('messenger_player.registration.success') ) }
+      if request.xhr?
+        js = "_gaq.push(['_trackPageview', '/auth/registration/confirm']);"
+        js << "$.alert_layer.showOverlay(true);"
+        js << "window.location.reload();"
+        render :js => js
+      else
+        respond_to do |format|
+          #format.html { redirect_back_or_default(my_dashboard_path) }
+          format.html { redirect_to home_path }
+          format.xml  { render :xml => Player::Message.new( :message => t('messenger_player.registration.success') ) }
+        end
       end
     else
-      respond_to do |format|
-        format.html { render :action => :new }
-        format.xml  { render_xml_errors( @user.errors ) }
+      if request.xhr?
+        @msg = "registration_layer"
+        @error_msgs = "show error msgs"
+        layer_html = render_to_string '/messenger_player/layers/alert_layer'
+        render(:json => {:status => 'redirect', :html => layer_html}, :layout => false)
+      else
+        respond_to do |format|
+          format.html { render :action => :new }
+          format.xml  { render_xml_errors( @user.errors ) }
+        end
       end
     end
   end
 
   def forgot
     if request.post?
-      @user = User.forgot?( params[:user], current_site )
-      if @user && @user.msn_live_id && wlid_web_login?
+      @user = User.forgot(params[:user])
+
+      if @user.nil? or !@user.errors.empty?
+        # Email not found.
+        # ...or...
+        # Validation errors exist.
+        #
+        # We're pretending that everything was ok b/c of Coke security policies.
+        # Don't want to reveal a valid email address.
+        flash[:success] = t('forgot.reset_message_sent')
+        render_forgot_xhr(false, "show error msgs", t('coke_messenger.layers.forgot_password_layer.error_msg')) if request.xhr?
+      elsif (@user.msn_live_id || @user.sso_windows)
+        # Can't change pw here.  Must go to MSN.
         flash.now[:error] = t('reset.msn_account')
-      elsif @user && @user.errors.empty? && params[:safe_question].empty? # && verify_recaptcha(:model => @user, :message => I18n.t("forgot.captcha_invalid"))
+        render_forgot_xhr(false, "show error msgs", t('reset.msn_account')) if request.xhr?
+      elsif @user.sso_facebook
+        # Can't change pw here.  Must go to Facebook.
+        flash.now[:error] = t('reset.facebook_account')
+        render_forgot_xhr(false, "show error msgs", t('reset.facebook_account')) if request.xhr?
+      else
+        # Everything checks out.
         UserNotification.send_reset_notification(
           :user_id => @user.id,
           :password => @user.reset_password,
-          :site_id => request.host)
+          :site_id => request.host) unless Rails.env.development?
+
         flash[:success] = t('forgot.reset_message_sent')
-      elsif @user.nil?
-        flash[:success] = t('forgot.reset_message_sent')        
+
+        render_forgot_xhr(true, nil, nil) if request.xhr?
       end
+
     elsif !request.referer.blank? && request.referer !=~ /forgot|session/
       session[:return_to] = request.referer
     end
+  end
+
+  def render_forgot_xhr(p_success, p_error_msgs, p_error_msg)
+    @msg = "forgot_password"
+    @success = p_success
+    @error_msgs = p_error_msgs
+    @error_msg = p_error_msg
+    layer = render_to_string '/messenger_player/layers/alert_layer'
+    render(:json => {:status => 'redirect', :html => layer}, :layout => false)
   end
 
   # GET /users/errors_on?field=slug&value=foo
@@ -200,11 +279,11 @@ class UsersController < ApplicationController
         UserNotification.send_cancellation(options)
         cookies.delete(:auth_token) if cookies.include?(:auth_token)
         result[:success] = true
-        if wlid_web_login?
-          result[:redirect_to] = msn_logout_url
-        else
-          result[:redirect_to] = root_url
-        end
+        #if wlid_web_login?
+        #  result[:redirect_to] = msn_logout_url
+        #else
+        result[:redirect_to] = root_url
+        #end
         result[:email] = user.email
       end
     else
@@ -288,11 +367,12 @@ class UsersController < ApplicationController
     account_slug = AccountSlug.find_by_slug(params[:user_slug])
     @account = account_slug.account
   end
-  
-  def set_dashboard_menu
-    @dashboard_menu = :settings
-  end
-  
+
+  # For the old user_data header partial with the drop-down menu
+  #def set_dashboard_menu
+  #  @dashboard_menu = :settings
+  #end
+
   protected
   def compute_layout
     [:new, :create, :forgot].include?(action_name.to_sym) ? "no_search_form" : "application" 

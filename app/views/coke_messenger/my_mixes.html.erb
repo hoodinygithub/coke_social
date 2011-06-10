@@ -1,0 +1,67 @@
+<script type="text/javascript">
+  $(document).ready(function() {
+      if (Base.Station._station)
+      {
+        if ($('.mis_mixes li').hasClass('sonando')) 
+        {
+          $('.mis_mixes li.sonando').toggleClass('sonando');
+          $('.play').remove();
+        }
+        $('.mis_mixes').find('#' + Base.Station._station.pid).parent().toggleClass('sonando').prepend("<span class='play'>Sonando</span>");
+      }
+
+      <% if @total_pages > 1 %>
+        /* Infinite scroll */
+        var page = 1;
+        var pages = <%= @total_pages %>;
+        var domContainer = ".contenido";
+        var reqURL = "<%= request.path %>";
+        var domAppend = "#sortable_options_ul_mixes";
+        $(domContainer).scrollLoad({
+          url: reqURL,
+          ScrollAfterHeight: 95,
+          getData: function() {
+            return {page:++page};
+          },
+          continueWhile: function()
+          {
+            return page < pages ? true : false;
+          },
+          onload: function(data) {
+            $(this).find(domAppend).append(data);
+          }
+        });
+        /*******************/
+      <% end %>
+  });
+</script>
+
+<div class="submenu">
+  <div class="columna">
+    <h2><%= t('coke_messenger.my_mixes') %></h2>
+    <a class="btn_perfil" href="<%= user_path(current_user) %>" target="_blank" title="<%= t('coke_messenger.my_mixes_view_profile') %>"><%= t('coke_messenger.my_mixes_view_profile') %></a>
+    <%= sortable_options_tag @my_mixes, :name => "mixes", :class => "ord_mixes", :i18n_base => "coke_messenger.order_filter" %>
+  </div>
+</div><!-- .submenu -->
+<div class="contenido">
+  <div class="columna">
+    <% sortable_list(@my_mixes, {:name => "mixes", :class => "mis_mixes", :li_class => "estirar", :no_results_class => "no_resultados", :no_results_partial => "coke_messenger/my_mixes_no_result"}) do |playlist, index| %>
+    
+       <%= avatar_for(playlist, :small, :class => 'avatar', :disable_default_css => true, :alt => playlist.name) %>
+      <div id="<%= playlist.id %>" class="datos">
+        <h3><%= playlist.name %></h3>
+      </div>
+      <em class="mix_count"><%= playlist.songs.size %></label> <%= t('coke_messenger.my_mixes_mixes_count') %> </em>
+      <div class="messenger_rating" style="margin-top: 10px;"><%= messenger_rating(playlist) %></div>
+      <%= link_to_function t('coke_messenger.play'), "Base.Station.request('/playlists/#{playlist.id}.xml', 'xml', Base.Station.stationCollection);Base.Player.random(false)", :class => 'btn_play',:title => t('coke_messenger.play_hover') %>
+
+    <% end %>
+		 <% if @my_mixes.size > 2 and @my_mixes[2..-1].size < 3 %>
+		    <a class="btn_nuevomix create_mix_btn" href="/playlist/create" target= "_blank" title="<%= t('coke_messenger.create_mix') %>" ><%= t('coke_messenger.create_mix') %></a>
+     <% end%>
+
+  </div><!-- .columna -->
+</div><!-- .contenido -->
+<script type="text/javascript">
+  _gaq.push(['_trackPageview', '/my/mixes']);
+</script>

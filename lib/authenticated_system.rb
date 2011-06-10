@@ -115,11 +115,27 @@ module AuthenticatedSystem
     respond_to do |format|
       format.html do
         store_location
-        redirect_to new_session_path
+        login_redirect
       end
       format.xml { render :xml => Player::Error.new( :code => 403, :error => t('messenger_player.authentication_required') ) }
     end
   end
+  
+  ## OVERRIDE ########################
+  ## From lib/authenticated_system.rb
+  # def login_redirect
+  #   redirect_to new_session_path
+  # end
+  ####################################
+  def login_redirect
+    session[:return_to] = request.url
+    if request.xhr?
+      render :text => alert_layer_path("generic"), :status => 403
+    else
+      redirect_to new_session_path
+    end
+  end
+  ####################################
 
   # Store the URI of the current request in the session.
   #

@@ -1,0 +1,118 @@
+
+<div class="bloque">
+  <ul class="menu">
+    <li><a href="<%= home_path %>" title="<%= t('main.navigation.home') %>" content_switch_enabled="true"><%= t('main.navigation.home') %></a></li><!-- .activo para el enlace activo -->
+    <li><a href="<%= channel_mixes_path %>" title="<%= t('main.navigation.mixes') %>" content_switch_enabled="true"><%= t('main.navigation.mixes') %></a></li>
+  </ul><!-- .menu -->
+
+
+  <%= render 'shared/multitask/search_form' %>
+
+  <div id="coke_ui" class="player">
+    <div class="controles">
+      <%= link_to_function t('actions.play'), "Base.Player.playPause();", :class => "r_play", :title => t('actions.play') %>
+      <%= link_to_function t('actions.next'), "Base.Player.next();", :class => "r_forward", :title => t('actions.next') %>
+      <a class="r_random active" href="javascript:void(0)" title="Random">Random</a>
+    </div><!-- .controles -->
+
+    <div class="titulo_mix">
+    </div>
+
+    <div class="sonando">
+      <div class="caratula">
+        <%= image_tag 'coke_messenger/cds/sim_caratula1.jpg', :alt=>"CD", :width=>"35", :height=>"35" %>
+      </div><!-- .caratula -->
+      <div class="cancion">
+        <div class="mascara"></div>
+      </div><!-- .cancion -->
+      <div class="tiempo">
+        <div class="barra">
+          <div class="relleno" style="width:0%;">
+            <a class="puntero" href="#">Puntero</a>
+          </div>
+        </div><!-- .barra -->
+        <span class="minuto">-00:00</span>
+      </div><!-- .tiempo -->
+
+        <a class="tooltip punt_botellas" href="#" content_switch_enabled="true" rel="tip_valorar" onclick="Base.Player.pause()" title="Valorar Mix">
+      </a><!-- .punt_botellas -->
+      <span class="tip" id="tip_valorar"><%= t('coke_messenger.rating') %></span>
+    </div><!-- .sonando -->
+    <!--div message="<%= t('social.share_mix') %>" class="compartir"-->
+    <div message="<%= t('social.share_mix') %>" class="compartir">
+      <a class="tooltip r_facebook" href="#" onclick="Base.Social.Facebook.shareMix();" rel="tip_facebook" title="Compartir en Facebook">Facebook</a>
+      <span class="tip tip_ancho" id="tip_facebook">Compartir en Facebook</span>
+      <a class="tooltip r_orkut" href="#" rel="tip_orkut" onclick="Base.Social.Orkut.shareMix();" title="Compartir en Orkut">Orkut</a>
+      <span class="tip tip_ancho" id="tip_orkut">Compartir en Orkut</span>    
+      <a class="tooltip r_twitter" href="#" rel="tip_twitter" onclick="Base.Social.Twitter.shareMix();" title="Compartir en Twitter">Twitter</a>
+      <span class="tip tip_ancho" id="tip_twitter">Compartir en Twitter</span>
+    </div><!-- .compartir -->
+    <div class="info">
+
+      <% if logged_in? %>
+        <a class="tooltip r_compartir" href="#" rel="tip_compartir" title="<%= t('coke_messenger.share_mix_tooltip') %>" content_switch_enabled="true"><%= t('coke_messenger.share_mix_tooltip') %></a>
+      <% else %>
+        <a class="tooltip r_compartir" href="#" rel="tip_compartir" title="<%= t('coke_messenger.share_mix_tooltip') %>" onclick="return Base.utils.showRegistrationLayer('<%= current_site_url + radio_path %>?station_id=' + Base.Station._station.sid, 'share_playlist');"><%= t('coke_messenger.share_mix_tooltip') %></a>
+      <% end %>
+
+      <span class="tip tip_ancho" id="tip_compartir"><%= t('coke_messenger.share_mix_tooltip') %></span>
+
+      <% if logged_in? %>
+        <a class="tooltip r_copiar" href="#" rel="tip_copiar" title="<%= t('coke_messenger.copy_mix_tooltip') %>" content_switch_enabled="true"><%= t('actions.copy') %></a>
+      <% else %>
+        <a class="tooltip r_copiar" href="#" rel="tip_copiar" title="<%= t('coke_messenger.copy_mix_tooltip') %>" onclick="return Base.utils.showRegistrationLayer('<%= current_site_url + radio_path %>?station_id=' + Base.Station._station.sid, 'copy_playlist');"><%= t('actions.copy') %></a>
+      <% end %>
+
+      <span class="tip" id="tip_copiar"><%= t('coke_messenger.copy_mix_tooltip') %></span>
+      <a class="tooltip r_info" href="#" rel="tip_info" title="<%= t('coke_messenger.information') %>" content_switch_enabled="true"><%= t('coke_messenger.info') %></a>
+      <span class="tip" id="tip_info"><%= t('coke_messenger.information') %></span>
+
+    </div><!-- .info -->
+    <div class="volumen">
+      <a class="vol_menos">Menos</a>
+      <div class="barra">
+        <div class="relleno" style="width:64px;left:-9px;"> <!-- relleno barra del volumen -->
+          <a class="puntero" href="#">Puntero</a>
+        </div>
+      </div><!-- .barra -->
+      <a class="vol_mas">Mas</a>
+    </div><!-- .volumen -->
+  </div><!-- .player -->    
+
+
+  <div id="goom_ui" class="player player_radio">
+    <div class="controles">
+      <a class="r_play activo" onclick="Base.Player.playPause()" href="#" title="Play">Play</a>
+      <a class="r_random" href="#" onclick="Base.Station.random();" title="Random">Random</a>
+    </div><!-- .controles -->
+    <div class="sonando">
+      <div class="caratula">
+        <%= image_tag 'coke_messenger/cds/sim_caratula1.jpg', :alt=>"Radio", :width=>"35", :height=>"35" %>
+      </div><!-- .caratula -->
+      <div class="cancion">
+        <p>Live Radio M&eacute;xico</p>
+        <div class="mascara"></div>
+        <ul>
+        </ul>
+      </div>
+    </div><!-- .sonando -->
+    <div class="botones_like">
+      <!-- boton like facebook, modificar con la url correcta -->
+      <fb:like href="<%= current_site_url %>/gradio/4242705" width="104" colorscheme="light" layout="button_count" show_faces="false" style="float:left"></fb:like>
+      <!-- fin boton like facebook -->
+      <!-- boton compartir twitter -->
+      <a href="http://twitter.com/share" class="twitter-share-button" data-url="<%= current_site_url %>/gradio/4242705" data-text="<%= t("social.goom_tweet", :name => 'Coke Radio') %>" style="float:left" data-counturl="<%= current_site_url %>/gradio/4242705" data-count="horizontal">Tweet</a><script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>
+      <!-- fin compartir twitter -->
+    </div><!-- .botones_like -->
+    <div class="volumen">
+      <a class="vol_menos" href="#" title="Bajar volumen">Menos</a>
+      <div class="barra">
+        <div class="relleno" style="width:64px;left:-9px;"><!-- relleno de la barra de volumen -->
+          <a class="puntero" href="#">Puntero</a>
+        </div>
+      </div><!-- .barra -->
+      <a class="vol_mas" href="#" title="Subir volumen">Mas</a>
+    </div><!-- .volumen -->
+  </div><!-- .player .player_radio -->    
+
+</div><!-- .bloque -->

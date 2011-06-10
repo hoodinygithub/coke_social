@@ -51,6 +51,8 @@ class ArtistsController < ApplicationController
     else
       @accounts = nil
     end
+
+    render :layout => false if params.has_key? :layout
   end
 
   private

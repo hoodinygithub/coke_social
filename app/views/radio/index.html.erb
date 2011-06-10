@@ -1,4 +1,10 @@
-<% content_for :head do %>
-  <%= javascript_include_tag "AC_OETags", "swf_utils", "radio", "htmlcomponent" %>
+<% if @station_obj.nil? %>
+
+<% else %>
+
+  <% content_for :head do %>
+    <%= javascript_include_tag "AC_OETags", "swf_utils", "radio", "htmlcomponent" %>
+  <% end %>
+  <%= render 'radio' %>
+
 <% end %>
-<%= render @station_obj.nil? && 'playlists' || 'radio' %>

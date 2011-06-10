@@ -1,0 +1,24 @@
+- class_name = @error_msgs.nil? ? "" : " error"
+- case @msg 
+  - when 'max_skips'
+    = render :partial =>"/messenger_player/layers/max_layer"
+  - when 'login_layer'
+    = render :partial =>"/messenger_player/layers/login_layer", :locals =>{:class_name => class_name}  
+  - when 'forgot_password'
+    = render :partial =>"/messenger_player/layers/forgot_password", :locals =>{:class_name => class_name}
+  - when 'license_message'
+    = render :partial =>"/messenger_player/layers/license_message"
+  - when 'opt_layer'
+    = render :partial =>"/messenger_player/layers/opt_layer",:locals =>{:class_name => class_name} 
+  - when 'authentication_layer'
+    = render :partial =>"/messenger_player/layers/authentication_layer"
+  - when 'registration_layer'
+    = render :partial =>"/messenger_player/layers/registration_layer", :locals =>{:class_name => class_name}  
+  - when 'share_mix_layer'
+    = render :partial =>"/messenger_player/layers/share_mix_layer",:locals => {:station_id => @station_id}
+- else
+  %h1.destacado.estirar= @alert_text
+  
+
+:javascript
+  _gaq.push(['_trackPageview', '#{@ga_tracking_id}']);

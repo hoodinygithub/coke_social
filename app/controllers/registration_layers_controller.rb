@@ -1,9 +1,12 @@
 class RegistrationLayersController < ApplicationController
   before_filter :find_stats
-  before_filter :not_display_layer, :except => [:add_song, :radio_add_song]  
-  before_filter :display_layer, :only => [:add_song, :radio_add_song]  
+  #before_filter :not_display_layer, :except => [:add_song, :radio_add_song]  
+  #before_filter :display_layer, :only => [:add_song, :radio_add_song]  
   before_filter :set_return_to
-  before_filter :set_return_to_with_back, :only => [:radio_add_song, :max_radio, :add_mixer, :max_song, :copy_playlist, :review_playlist]
+  #before_filter :set_return_to_with_back, :only => [:radio_add_song, :max_radio, :add_mixer, :max_song, :copy_playlist, :review_playlist]
+  before_filter :set_follow_profile, :only => [:follow_user, :follow_artist]
+  
+  layout 'layer'
     
   def index
   end
@@ -32,12 +35,17 @@ class RegistrationLayersController < ApplicationController
   end  
 
   def copy_playlist
+    session[:copy_playlist] = true
   end
 
   def create_playlist
   end
 
   def review_playlist
+  end
+
+  def share_playlist
+    session[:share_playlist] = true
   end
     
   private
@@ -50,8 +58,9 @@ class RegistrationLayersController < ApplicationController
       # @users   = current_site.site_statistic.total_global_users   rescue 0
     end
     
-    def set_return_to_with_back
-      # return_to should be a relative path so it works on the ssl domain
-      session[:return_to] = request.referer.gsub("http://#{request.host}", '') # request.referer
-    end
+    # There's no "back" in AJAX land.
+    #def set_return_to_with_back
+    #  # return_to should be a relative path so it works on the ssl domain
+    #  session[:return_to] = request.referer.gsub("http://#{request.host}", '') if request.referer # request.referer
+    #end
 end

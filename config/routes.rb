@@ -1,10 +1,17 @@
 ActionController::Routing::Routes.draw do |map|
-  map.root  :controller => 'pages', :action => 'home'
+  map.with_options(:controller => 'pages') do |ch|
+    ch.root :action => 'home'
+    ch.home_goom '/gradio/:goom_id', :action => 'home'
+    ch.channel_mixes '/mixes', :action => 'mixes'
+  end
+  # map.root  :controller => 'pages', :action => 'home'
   map.resources :valid_tags
   map.home "/home", :controller => "pages", :action => 'home'
   map.login  'login',  :controller => 'sessions', :action => 'new'
   map.logout 'logout', :controller => 'sessions', :action => 'destroy'
+  
   map.resource :session
+  map.status '/sessions/status', :controller => :sessions, :action => :status
 
   # Ads - OpenX
   map.messenger_ads '/messenger_ads', :controller => 'ads', :action => 'show', :position => 'messenger', :iframe => 1, :no_padding_and_margin => 1
@@ -39,7 +46,9 @@ ActionController::Routing::Routes.draw do |map|
      :max_song        => :any,
      :max_radio       => :any,
      :create_playlist => :any,
-     :review_playlist => :any
+     :review_playlist => :any,
+     :copy_playlist   => :any,
+     :share_playlist  => :any
   }
 
   map.signup 'signup', :controller => 'users', :action => 'new'
@@ -48,6 +57,7 @@ ActionController::Routing::Routes.draw do |map|
   map.confirmation 'users/confirm/:code', :controller => 'users', :action => 'confirm'
   map.share_with_friend 'share/share_with_friend/:media.:format', :controller => 'share', :action => 'share_with_friend'
   map.share 'share/:media/:id.:format', :controller => 'share', :action => 'show'
+  map.share_mix 'email_share_mix/:id.:format', :controller => 'share', :action => 'email_share_mix'
 
   map.x45b 'x45b', :controller => 'application', :action => 'x45b'
   map.x46b 'x46b', :controller => 'pages', :action => 'x46b'
@@ -139,16 +149,31 @@ ActionController::Routing::Routes.draw do |map|
     url.get_latest_tweet 'activity/latest_tweet', :action => 'latest_tweet'
   end
 
-  map.messenger_player '/messengerplayer', :controller => 'messenger_player/player', :action => 'index'
-  map.connect '/messenger_player', :controller => 'messenger_player/player', :action => 'index'
-  map.connect '/messenger_player/player/stats.:format', :controller => 'messenger_player/player', :action => 'stats'
-  map.messenger_player_sign_in '/messenger_player/msn_sign_in', :controller => 'messenger_player/player', :action => 'msn_sign_in'
-  map.namespace :messenger_player do |player|
-    player.resources :stations
-    player.resources :translations
-    player.resources :users, :collection => { :status => :get }
-  end
+  # map.messenger_player '/messengerplayer', :controller => 'messenger_player/player', :action => 'index'
+  # map.connect '/messenger_player', :controller => 'messenger_player/player', :action => 'index'
+  # map.connect '/messenger_player/player/stats.:format', :controller => 'messenger_player/player', :action => 'stats'
+  # map.messenger_player_sign_in '/messenger_player/msn_sign_in', :controller => 'messenger_player/player', :action => 'msn_sign_in'
+  # map.namespace :messenger_player do |player|
+  #   player.resources :stations
+  #   player.resources :translations
+  #   player.resources :users, :collection => { :status => :get }
+  # end
 
+  map.with_options(:path_prefix => 'messenger_player') do |player|
+    player.messenger '/', :controller => 'pages', :action => 'messenger_home'
+    player.messenger_home '/home', :controller => 'pages', :action => 'messenger_home'
+    player.mixes '/mixes', :controller => 'playlists', :action => 'messenger_mixes'
+    player.djs '/djs', :controller => 'pages', :action => 'messenger_djs'
+    player.djs_details '/dj_mix_details/:id', :controller => 'playlists', :action => 'messenger_dj_mix_details'
+    player.my_mixes '/my_mixes', :controller => 'playlists', :action => 'messenger_my_mixes'
+    player.messenger_search '/search', :controller => 'searches', :action => 'messenger_searchresults'
+    player.messenger_search_emotions '/search_emotions/:q', :controller => 'searches', :action => 'messenger_search_emotion_results'
+    player.max_skips '/max_skips', :controller => 'messenger_player/player', :action => 'max_skips'
+    player.alert_layer '/alert_layer/:alert_type', :controller => 'messenger_player/layers', :action => 'alert_layer'
+    player.copy_mix_layer '/copy_mix_layer/:id', :controller => 'messenger_player/layers', :action => 'messenger_copy'
+    player.friends '/my_friends', :controller => 'playlists', :action => 'messenger_my_friends'
+    player.popup '/popup', :controller => 'pages', :action => 'messenger_popup'
+  end
 
   map.resources :campaigns, :member => {:activate => :post, :deactivate => :post}
 
@@ -175,7 +200,7 @@ ActionController::Routing::Routes.draw do |map|
     map.with_options(:controller => 'badges') do |url|
       url.badges_set_notified '/:slug/badges/set_notified', :action => 'set_notified'
     end
-    profile.resources :playlists, :member => {:delete_confirmation => :get, :copy => :get, :duplicate => :post }
+    profile.resources :playlists, :member => {:delete_confirmation => :get, :copy => :get, :duplicate => :post,:messenger_copy => :get  }
     profile.resources :playlist_items,:member => {:delete_confirmation => :get}, :only => [:new, :create]
     profile.resources :playlists do |playlist|
       playlist.resources :items, :controller => 'playlist_items', :only => [:show, :update, :destroy]

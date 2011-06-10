@@ -26,7 +26,7 @@ class BadgeAward < ActiveRecord::Base
   named_scope :latest, lambda { |*num| {
      :limit => num.flatten.first || 6,
      :order => 'badge_awards.created_at DESC',
-     :include => [:winner, :badge],
+     :include => [{:winner => :country}, :badge],
      # Upate this when promo table is finalized.
      # include :promo, condition "promos.site_id = #{current_site.id}"
      :conditions => "accounts.deleted_at IS NULL #{ApplicationController.current_site.id == 22 ? ' AND badges.promo_id IS NULL' : ''}"

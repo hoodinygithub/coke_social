@@ -1,0 +1,93 @@
+<script type="text/javascript">
+  $(document).ready(function() {
+      if (Base.Station._station)
+      {
+        if ($('.busquedas li').hasClass('sonando'))
+        { 
+          $('.busquedas li.sonando').toggleClass('sonando');
+          $('.play').remove();
+        }
+        $('.busquedas').find('#' + Base.Station._station.pid).parent().toggleClass('sonando').prepend("<span class='play'>Sonando</span>");
+      }
+
+      <% if @total_pages > 1 %>
+        /* Infinite scroll */
+        var page = 1;
+        var pages = <%= @total_pages %>;
+        var domContainer = ".contenido";
+        var reqURL = "<%= request.path %>";
+        $(domContainer).scrollLoad({
+          url: reqURL,
+          ScrollAfterHeight: 95,
+          getData: function() {
+            return {page:++page, q:'<%= params[:q] %>'};
+          },
+          continueWhile: function()
+          {
+            return page < pages ? true : false;
+          },
+          onload: function(data) {
+            var playlists = $(data).find('#li_playlists').children();
+            var users = $(data).find('#li_users').children();
+            $(this).find('#ul_playlists').append(playlists);
+            $(this).find('#ul_users').append(users);
+          }
+        });
+        /*******************/
+      <% end %>
+  });
+</script>
+<div class="submenu">
+  <div class="columna">
+    <!--h2>RESULTADOS DE LA B&Uacute;SQUEDA</h2-->
+    <h2><%= "#{t('coke_messenger.search.tab_title')} \"#{@query.nil? ? '' : @query}\"" %></h2>
+  </div>
+</div><!-- .submenu -->
+<div class="contenido">
+  <div class="columna_busq">
+    <h3 class="busq_titulo"><%=  t('coke_messenger.mixes').capitalize %></h3>
+    <p class="busq_resultados"><span><%= @counts[:playlists] %></span> <%=  t('coke_messenger.search.results') %></p>
+    <ul class="busquedas" id="ul_playlists">
+      <% if !@results[:playlists].blank? and @results[:playlists].size > 0 %>
+        <% @results[:playlists].each do|playlist| %>
+          <li class="estirar">
+          <%= link_to_function avatar_for(playlist, :small), "Base.Station.request('/playlists/#{playlist.id}.xml', 'xml', Base.Station.stationCollection);Base.Player.random(false)", :alt => playlist.name %>
+          <div id="<%= playlist.id %>" class="datos">
+            <h3><%= link_to_function playlist.name, "Base.Station.request('/playlists/#{playlist.id}.xml', 'xml', Base.Station.stationCollection);Base.Player.random(false)", :class => 'link_rojo' %></h3>
+          </div>
+          <div class="messenger_rating" style="margin-top: 10px;"><%= messenger_rating(playlist) %></div>
+          </li>
+        <% end %>
+      <% else %>
+        <li class="no_resultados">
+        <%= t('coke_messenger.search.no_results') %>
+        </li>
+      <% end %>
+    </ul>
+  </div><!-- .columna_busq -->
+  <div class="columna_busq">
+    <h3 class="busq_titulo"><%=  t('coke_messenger.search.users') %></h3>
+    <p class="busq_resultados"><span><%= @counts[:users]%></span> <%=  t('coke_messenger.search.results') %></p>
+    <ul class="busquedas" id="ul_users">
+      <% if !@results[:users].blank? and @results[:users].size > 0 %>
+        <% @results[:users].each do|user|%>
+          <li class="estirar">
+          <%= avatar_for(user, :small, :class => 'avatar',:alt=>user.name) %>
+          <div class="datos">
+            <h3><%= link_to user.name, djs_details_path(user.id),  :class => "link_rojo", :content_switch_enabled => true %></h3>
+            <p><%= user.country.name %></p>
+          </div>
+          <div class="num_mixes"><strong><%= number_with_delimiter(user.total_playlists) %></strong> <%= t('coke_messenger.mixes').downcase %></div>
+          </li>
+        <% end %>
+      <% else %>
+        <li class="no_resultados">
+        <%= t('coke_messenger.search.no_results') %>
+        </li>
+      <% end%>
+    </ul>
+  </div><!-- .columna_busq -->
+</div><!-- .contenido -->
+<script type="text/javascript">
+  _gaq.push(['_trackPageview', '/search/all/<%= @query %>']);
+</script>

@@ -50,8 +50,8 @@ module SslRequirementWithDiffDomain
           logger.info "[DEBUG] With path"
           session[:return_to].gsub(path, "")
         elsif request.ssl? && !(session[:return_to] =~ Regexp.new("^#{path}"))
-          logger.info "[DEBUG] No Path With path"          
-          "#{path}/#{session[:return_to]}"
+          logger.info "[DEBUG] No Path With path"
+          "#{path}#{(session[:return_to] && session[:return_to][0..0] === "/") ? session[:return_to] : "/"+session[:return_to].to_s}"
         end
       end
       logger.info "[DEBUG] #{return_to} - #{session[:return_to]}"
@@ -122,11 +122,13 @@ module SslRequirementWithDiffDomain
         logger.info "[DEBUG] SSL: true - request: false - referer: #{request.env['HTTP_REFERER']} - request: #{request.request_uri} - controller: #{controller_name}##{action_name} - xhr: #{request.xhr?}" 
         redirect_to(ssl_protocol + ssl_domain + ssl_request_uri)
         flash.keep
+        flash[:redirected_from] = request.url
         return false
       elsif request_ssl? && !ssl_required?
         logger.info "[DEBUG] SSL: false - request: true - referer: #{request.env['HTTP_REFERER']} - request: #{request.request_uri} - controller: #{controller_name}##{action_name} - xhr: #{request.xhr?}"        
         redirect_to(ssl_protocol + ssl_domain(false) + ssl_request_uri(false))
         flash.keep
+        flash[:redirected_from] = request.url
         return false
       else
         logger.info "[DEBUG] Nothing - referer: #{request.env['HTTP_REFERER']} - request: #{request.request_uri} - controller: #{controller_name}##{action_name} - xhr: #{request.xhr?}"

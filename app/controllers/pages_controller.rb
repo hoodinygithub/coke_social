@@ -4,15 +4,70 @@ class PagesController < ApplicationController
   # before_filter :login_required, :only => [:home]
   skip_before_filter :login_required, :except => [:home]
 
-  layout "logged_out"
+  layout_except_xhr('logged_out')
 
   def home
-    @latest_badges = BadgeAward.latest(5)
-    @top_djs_limit = 5
+    @latest_badges = BadgeAward.latest(6)
+    @top_djs_limit = 10
     @top_djs = current_site.top_djs.all(:limit => @top_djs_limit)
-    @top_playlists_limit = 5
+    @top_playlists_limit = 10
     @top_playlists = current_site.top_playlists.all(:limit => @top_playlists_limit)
     @drupal_feed = drupal_feed("http://cm-#{site_code}.cyloop.com/feeds/#{site_code}/coke_home_featured.xml", 6, true) if ["cokemx"].include? site_code
+  end
+
+  def mixes
+    @latest_badges = BadgeAward.latest(6)
+    @top_mixes = Rails.cache.fetch("#{site_cache_key}/modules/shared/top_playlists/9",
+                                  :expires_delta => EXPIRATION_TIMES['top_modules_playlists']) do
+      current_site.top_playlists.all(:limit => 9)
+    end
+    @top_artists = Rails.cache.fetch("#{site_cache_key}/modules/shared/top_artists/5",
+                                     :expires_delta => EXPIRATION_TIMES['top_modules_artists']) do
+      current_site.top_artists.all(:limit => 5)
+    end
+    @top_djs = Rails.cache.fetch("#{site_cache_key}/modules/shared/top_djs/5",
+                                :expires_delta => EXPIRATION_TIMES['top_modules_djs']) do
+      current_site.top_djs.all(:limit => 5)
+    end
+
+    render :layout => false if params.has_key? :without_layout
+  end
+
+  def messenger_home
+    @recent_playlists = Rails.cache.fetch("modules/#{current_site.code}/last_playlists_played",
+                                          :expires_delta => EXPIRATION_TIMES['sites_latest_playlists_played']) do
+      # This request is very heavy and needs to be aggressively cached.  The :include is a big part of the problem.
+      #
+      # The songs.albums relations are included to display playlist coverart.  This should be a cache column in playlists.  Remove when that's done.
+      # 
+      # The owner is for dj owner details.
+      #
+      # Sometimes this result is too big to fit in MemCached (1MB per key limit), which is bad.  Might need to reduce the limit.
+      current_site.playlists.all(:limit => 50, :order => 'last_played_at DESC', :include => :owner).sortable(
+        :mixes,
+        [:popularity, :total_plays],
+        [:rating, :rating_cache],
+        [:most_recent, :updated_at],
+        [:alpha, :name]
+      )
+    end
+    @title = t('coke_messenger.default_messenger_title')+t('coke_messenger.messenger_home.title')
+    render 'coke_messenger/home', :layout => layout_unless_xhr('messenger')
+  end
+
+  def messenger_popup
+    render 'coke_messenger/popup', :layout => false
+  end
+
+  def messenger_djs
+    @title = t('messenger_player.dj.title')
+    @djs = current_site.top_djs.all(:limit => 50).sortable(
+      :djs,
+      [:popularity, :default], # Can use :default if this is the default sort order
+      [:most_followers, :follower_count],
+      [:alpha, :name]
+    )
+    render 'coke_messenger/djs', :layout => layout_unless_xhr('messenger')
   end
 
   def flash_callback
@@ -51,7 +106,7 @@ class PagesController < ApplicationController
 
   def privacy_policy
     @title = t 'site.privacy_policy'
-    render "pages/#{site_code}/privacy_policy", :layout => "support_page"
+    render "pages/#{site_code}/privacy_policy"
   end
 
   def safety_tips
@@ -61,7 +116,7 @@ class PagesController < ApplicationController
 
   def terms_and_conditions
     @title = t 'site.terms_and_conditions'
-    render "pages/#{site_code}/terms_and_conditions", :layout => "support_page"
+    render "pages/#{site_code}/terms_and_conditions"
   end
 
   def block_alert
@@ -159,4 +214,3 @@ class PagesController < ApplicationController
     end
 
 end
-

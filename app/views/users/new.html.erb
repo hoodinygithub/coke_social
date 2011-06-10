@@ -1,31 +1,42 @@
-<div class="auth_area">
+<% content_for :head do %>
+  <% # general.css imports cab-pie-player, then overrides it.  This page then overrides the overrides.  Blame the dumb slices. %>
+  <%= stylesheet_link_tag 'multitask/cab-pie-player.css' %>
+<% end %>
 
-  <div class="auth_title">
-    <%= t('registration.customize')%>
-  </div>
+<div id="container"> 
+  <div id="main_content" class="users">
+    <div class="auth_area">
 
+      <h1 class="tit_bloque gris">
+        <span class="txt"><%= t('registration.customize')%></span>
+        <span class="bg_fin">&nbsp;</span>
+      </h1>
 
-  <div class="auth_left">
-    <% unless session.has_key? :sso_user %>
-      <%= render "shared/social/social", { :page => :registration } %>
-    <% else %>
-      <div id="social">
-        <div class="container">
-          <span class="title"><%= t('sessions.new.almost_done') %></span><br /><br />
-          <b><%= t('sessions.new.create_link_acct', :provider => session[:sso_type].to_s) %></b><br /><br />
-          <%= "<b>#{t('sessions.new.already_own')} #{link_to t('sessions.new.sign_in'), login_path(:return_to => my_dashboard_path) }</b>" %>
+      <div class="auth_left">
+
+        <% unless session.has_key? :sso_user %>
+          <%= render "shared/social/social", { :page => :registration } %>
+        <% else %>
+          <div id="social">
+            <div class="container">
+              <span class="title"><%= t('sessions.new.almost_done') %></span><br /><br />
+              <b><%= t('sessions.new.create_link_acct', :provider => session[:sso_type].to_s) %></b><br /><br />
+              <%= "<b>#{t('sessions.new.already_own')} #{link_to t('sessions.new.sign_in'), login_path(:return_to => my_dashboard_path) }</b>" %>
+            </div>
+          </div>
+        <% end %>
+
+        <div class="form_content">
+          <%= render 'registration_form' %>
         </div>
       </div>
-    <% end %>
-    <div class="form_content">
-      <%= render 'registration_form' %>
-    </div>
-  </div>
 
-  <div class="auth_right">
-    <%= render 'registration_sidebox' %>
-  </div><!--/end auth_right -->
+      <div class="auth_right">
+        <%= render 'registration_sidebox' %>
+      </div><!--/end auth_right -->
 
-  <div class="clearer"></div>
+      <div class="clearer"></div>
 
-</div><!--/end  auth_area -->
+    </div><!--/end  auth_area -->
+  </div><!-- end main_content -->
+</div><!-- end container -->

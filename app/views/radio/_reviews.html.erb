@@ -1,8 +1,42 @@
-<% content_for :javascript do %>
-  $(document).ready(function(){
-    Base.reviews.load_playlist_reviews_list($("#playlist_reviews"), '<%= @station_obj.playable.id %>');
-  });
-<% end %>
+<div id="comments_top" class="mod_comentarios <%="mod_eliminar" if profile_owner?%>">
 
-<div class="reviews_box" id="playlist_reviews">
-</div>
+  <h2 class="tit_bloque">
+      <span class="txt"><%= t("modules.reviews.title") %><em><%= t("modules.reviews.description") %></em></span>
+      <span class="bg_fin">&nbsp;</span>
+  </h2><!-- .tit_bloque -->
+  <div class="network_update_multi">
+      <div class="botones_like">
+          <a href="http://twitter.com/share" class="twitter-share-button" data-count="horizontal">Tweet</a>
+
+          <script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>
+          <iframe src="http://www.facebook.com/plugins/like.php?href=<%=current_site_url%>%2Fplaylists%3Fstation_id=<%=p.station.id%>&amp;layout=button_count&amp;show_faces=false&amp;width=80&amp;action=like&amp;font&amp;colorscheme=light&amp;height=21" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:100px; height:21px;" allowTransparency="true"></iframe>
+      </div><!-- .botones_like -->
+      <% unless profile_owner? %>
+        <form class="f_comentarios" id="network_update_form">
+            <p class="caracteres"><span id="chars_counter">140</span> <%= t('modules.recent_activity.chars_left') %></p>
+            <%= avatar_for(current_user, :small, :class => "network_icon") if current_user %>
+            <textarea id="network_comment" onkeyup="Base.activity.count_chars();" onchange="Base.activity.count_chars();" name="comment" rows="2" cols="20" class="bocadillo"></textarea>
+            <span class="share_button_container">
+              <a href="#" class="compartir_button post_button red_button" onclick="<%= logged_in? ? "Base.reviews.pushUpdate(this, #{p.id});" : "Base.utils.showRegistrationLayer('#{current_site_url + radio_path(:station_id => p.station.id)}', 'review_playlist');" %> return false;"><%= t('reviews.post_your_review').upcase %></a>
+            </span>
+            <%#= multitask_rating(p, 5) %>
+            <span class="rating_inputs">
+              <%= rating(p, true) %>
+            </span>
+        </form>
+        
+      <% end %>  
+  </div>
+                  
+  <%= sort_form("f_ordenar", :latest, :highest_rated) do
+    "<p class='n_comentarios'><strong>#{@comments.size}</strong> #{pluralize(@comments.size, t('basics.comment'))}</p>"
+  end %>
+  
+  <ul class="comments_list">
+    <%= render :partial => 'reviews/list_item', :collection => @comments, :locals => {:owner => profile_owner?} %>
+  </ul>
+  
+  <%= will_paginate @comments, pagination_args %>
+
+  
+</div><!-- .mod_comentarios -->

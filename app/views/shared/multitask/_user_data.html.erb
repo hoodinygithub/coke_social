@@ -1,0 +1,33 @@
+<% logged_out = false unless local_assigns[:logged_out] %>
+
+<% if logged_out || !logged_in? %>
+
+  <% if @follow_profile %>
+    <li>
+    <%= link_to "<span class='bg_icono'>&nbsp;</span>#{t("sessions.new.sign_in")}", site_login_url(:return_to => nav_aux_login_url, :follow_profile => @follow_profile), :class => "acceso_sesion link_decor", :title => t("sessions.new.sign_in") %></li>
+    <li>
+    <%= link_to t("registration.sign_up"), new_user_path(:return_to => my_dashboard_path, :follow_profile => @follow_profile), {:class => "acceso_registro link_decor", :title => t("registration.sign_up")} %></li>
+  <% else %>
+    <li>
+    <%= link_to "<span class='bg_icono'>&nbsp;</span>#{t("sessions.new.sign_in")}", site_login_url(:return_to => nav_aux_login_url), :class => "acceso_sesion link_decor", :title => t("sessions.new.sign_in") %></li>
+    <li>
+    <%= link_to t("registration.sign_up"), new_user_path(:return_to => my_dashboard_path), {:class => "acceso_registro link_decor", :title => t("registration.sign_up")}%></li>
+  <% end %>
+
+<% else %>
+
+  <li>
+    <%= t('demographics.email.welcome', :user => link_to(current_user.name, my_dashboard_path, :class => "acceso_usuario link_decor", :title => current_user.name, :content_switch_enabled => true))%>
+  </li>
+  <li>
+    <a class="acceso_sesion link_decor" href="<%= logout_url %>" title="<%= t("coke_messenger.logout") %>">
+    <span class="bg_icono">&nbsp;</span><%= t("coke_messenger.logout") %></a>
+  </li>
+
+<% end %>
+
+<li class="sociales" message="<%= t('social.share_page') %>">
+  <a class="ico facebook" href="#" onclick="Base.Social.Facebook.sharePage();" title="Facebook">Facebook</a>
+  <a class="ico orkut" href="#" onclick="Base.Social.Orkut.sharePage();" title="Orkut">Orkut</a>
+  <a class="ico twitter" href="#" onclick="Base.Social.Twitter.sharePage();" title="Twitter">Twitter</a>
+</li>

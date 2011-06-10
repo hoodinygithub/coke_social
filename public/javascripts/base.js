@@ -1389,19 +1389,19 @@ Base.content_search.dropdown = function() {
 
 
 Base.content_search.autocomplete = function(last_value) {
-  jQuery('.content_search_results_ajax').show();
+  $('.content_search_results_ajax').show();
   var form_values = jQuery("#content_search_form").serializeArray();
   var q = Base.header_search.getFieldValue(form_values,'q');
   if( last_value != q || q == ''){
-    jQuery('.content_search_results_ajax').hide();
+    $('.content_search_results_ajax').hide();
     return;
   }
-  jQuery.get(Base.currentSiteUrl() + '/search/content/all/' + q, function(data) {
-      jQuery('.create_box').html(data);
+  $.get(Base.currentSiteUrl() + '/search/content/all/' + q, function(data) {
+      $('.create_box').html(data);
       Base.utils.resetIndexes();
       jQuery('.create_box').show();
 
-      jQuery('.content_search_results_ajax').hide();
+      $('.content_search_results_ajax').hide();
   });
 };
 

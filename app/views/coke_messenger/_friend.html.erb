@@ -1,0 +1,10 @@
+<li class="estirar" alpha="<%= friend.last_playlist_played.name %>" most_recent="<%= friend.last_playlist_played.updated_at %>" popularity="" ratings="<%= friend.last_playlist_played.rating_cache %>">
+  <%= avatar_for(friend.last_playlist_played, :small, :class => 'avatar', :disable_default_css => true,:alt =>friend.last_playlist_played.name) unless friend.last_playlist_played.nil? %>
+  <%= avatar_for(friend, :small, :class => 'avatar', :disable_default_css => true,:alt =>friend.name) %>
+  <div id="<%= friend.last_playlist_played.id %>" class="datos">
+    <h3><%= link_to friend.name, djs_details_path(friend.id), :class => "link_rojo", :title => friend.name, :content_switch_enabled => true %></h3>
+    <p><%= friend.last_playlist_played.name unless friend.last_playlist_played.nil? %></p>
+  </div>
+  <%= link_to_function t('coke_messenger.play'), "Base.Station.request('/playlists/#{friend.last_playlist_played.id}.xml', 'xml', Base.Station.stationCollection);Base.Player.random(false)", :class => 'btn_play play_btn_top',:title => t('coke_messenger.play_hover') unless friend.last_playlist_played.nil? %>
+  <a class="btn_perfil" href="<%= user_path(friend) %>" target="_blank" title="<%= t('coke_messenger.my_mixes_view_profile') %>"><%= t('coke_messenger.my_mixes_view_profile') %></a>
+</li> 

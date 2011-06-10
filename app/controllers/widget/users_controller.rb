@@ -13,11 +13,11 @@ class Widget::UsersController < Widget::WidgetController
     @user = User.new(params[:user])
     @user.entry_point = current_site
     @user.ip_address  = remote_ip
-    @user.msn_live_id = session[:msn_live_id] if wlid_web_login?
+    @user.msn_live_id = session[:msn_live_id] if session[:msn_live_id] # wlid_web_login?
 
     if @user.save
       cookies.delete(:auth_token) if cookies.include?(:auth_token)
-      session[:msn_live_id] = nil if wlid_web_login?
+      session[:msn_live_id] = nil # if wlid_web_login?
       session[:registration_layer] = true
       self.current_user = @user
 

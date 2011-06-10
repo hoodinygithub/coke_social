@@ -10,8 +10,8 @@
     <br/>
 
     <div class="align_right">
-        <big><a href="#" onclick="$(document).trigger('close.facebox');return false;" class="black valign_middle popup_close_action"><%= t('actions.cancel') %></a></big>
+        <big><a href="#" onclick="$(document).trigger('close.facebox'); Base.reviews.clearForm(); return false;" class="black valign_middle popup_close_action"><%= t('actions.cancel') %></a></big>
 
-        <a href="#" class="red_button valign_middle" onclick="Base.reviews.overwrite('<%= @review.id %>');return false;"><span><span><%= t('actions.submit') %></span></span></a>
+        <a href="#" class="red_button valign_middle" onclick="Base.reviews.overwrite('<%= @review.id %>', '<%= @review.commentable_id%>');return false;"><span><span><%= t('actions.submit') %></span></span></a>
     </div>
 </form>

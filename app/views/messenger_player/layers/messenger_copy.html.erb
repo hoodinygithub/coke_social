@@ -1,0 +1,31 @@
+	  <div class="aviso copiar"> 
+	    <div class="aviso_cab">
+	    <h1><%= t('playlists.copy') %></h1>	
+	    <% unless @locked %>
+        <a class="btn_cerrar" href="#" onclick="$.alert_layer.close();" title="<%= t('actions.close') %>"><strong>X</strong> <%= t('actions.close') %></a>
+      <% end %>
+	  </div>
+		<div class="mix_portada">
+         <%= avatar_for(@playlist, :large)%>
+        </div>
+        <div class="mix_datos">
+	    <h3><%=  @playlist.name %></h3>
+        <p><strong><%= t('basics.by').camelize %>:</strong>
+        <%= @playlist.owner %></p>
+        <p><%= messenger_station_contains(@playlist.station.playable, 3, true, :target => '_blank') %></p>
+	   
+	    </div>
+        <form class="f_copiar estirar" action="" method="post">
+          <label><span><%= t('coke_messenger.layers.copy_mix_layer.new_mix_name') %></span> 
+		  <input type="text" class="texto" name="playlist[name]" id="playlist_name" />
+		  </label>
+		  <a href="#" id="duplicate_button" class="boton" style="text-decoration:none;"
+	      onclick="Base.playlists.duplicate('<%= @playlist.owner.slug%>',<%= @playlist.id %>); return false;">
+	      <span><span class="copy_mix_layer_save_btn" style="color:#ffffff;"><%= t('actions.save').upcase %></span></span>
+	    </a>
+		  <input class="boton_gris" type="reset" value="<%= t('coke_messenger.layers.copy_mix_layer.cancel') %>" onclick="$.alert_layer.close();"/>
+        </form>
+	</div>
+<script type="text/javascript">
+  _gaq.push(['_trackPageview', '/layer/copy']);
+</script>

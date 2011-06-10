@@ -41,7 +41,7 @@
           </div>
 
         <div class="right_side post_button">
-          <a class="red_button compartir_button" onclick="<%= logged_in? ? "Base.reviews.post('#{@playlist.id}');" : "Base.utils.showRegistrationLayer(document.location, 'review_playlist');" %> return false;"
+          <a class="red_button compartir_button" onclick="<%= logged_in? ? "Base.reviews.post('#{@playlist.id}');" : "Base.utils.showRegistrationLayer('#{current_site_url + radio_path(:station_id => p.station.id}', 'review_playlist');" %> return false;"
              href="#"><span><span><%= t('reviews.post_your_review')%></span></span></a>
 
           <% if false %>
