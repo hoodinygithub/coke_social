@@ -897,7 +897,10 @@ Base.account_settings.delete_account_submit_as_msn = function() {
 
 Base.account_settings.delete_account_submit_as_cyloop = function() {
   var form = $(this).closest('form');
-  var validator = form.validate({ showErrors : Base.account_settings.show_validations});
+  var validator = form.validate({
+    rules:{delete_info_accepted:{required:true}},
+    showErrors:Base.account_settings.show_validations
+  });
   if (form.valid()) {
     $.ajax({
       type : "DELETE",
