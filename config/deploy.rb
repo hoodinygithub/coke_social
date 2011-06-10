@@ -50,7 +50,7 @@ ssh_options[:paranoid] = false
 # can also specify options that can be used to single out a specific subset of boxes in a
 # particular role, like :primary => true.
 
-set :branch, "multitask"
+set :branch, "master"
 
 # Production
 task :production do
