@@ -7,7 +7,7 @@
 
     var _gaq = _gaq || [];
     _gaq.push(['_setAccount', '<%= gatracker_id %>']);
-    _gaq.push(['_setDomainName', '.<%= request.host %>']);
+    _gaq.push(['_setDomainName', '.<%= request.domain %>']);
     _gaq.push(trackObj);
 
     (function() {
