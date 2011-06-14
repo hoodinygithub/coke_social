@@ -97,10 +97,32 @@ $(document).ready(function() {
       }
     }
 
-    Base.Util.XHR($(this).attr('href'), 'text', Base.UI.contentswp, Base.UI.xhrerror, options);
+    var url = $(this).attr('href').replace(/^.*#/, '');
+    $.history.load(url, {url:url, type:'text', func:Base.UI.contentswp, err:Base.UI.xhrerror, opt:options});
 
     return false;
   });
+
+  var optcache = {};
+  $.history.init(function(url) {
+    var options = arguments[1];
+    if (options && url != "")
+    {
+      optcache[url] = options;
+      loadXHRPage(options.url, options.type, options.func, options.err, options.opt);
+    }
+    else if (url != "")
+    {
+      options = optcache[url];
+      console.dir(options);
+      loadXHRPage(options.url, options.type, options.func, options.err, options.opt);
+    }
+    else
+    {
+      loadXHRPage('/', 'text', Base.UI.contentswp, Base.UI.xhrerror);
+    }
+  }, {unescape:true});
+  function loadXHRPage(url, type, func, err, opt) { Base.Util.XHR(url, type, func, err, opt); }
 
   $('.artist_box').livequery(function() {
     $(this).hover(function() {
@@ -254,14 +276,13 @@ Base.Util = {
     error_func = typeof(error_func) != 'undefined' ? error_func : Base.UI.xhrerror;
     var options = arguments[4];
 
-
     // Checks if the request is coming from the artist idx page.
     // suffix _partial to url to load partial document
     if (req.match(/index-bands/)) req = req + "_partial";
 
     // Allows actions that respond to XHR differently to be overridden
     new_req = req + (req.indexOf('?') != -1 ? "&ajax=1" : "?ajax=1")
-    
+
     $.ajax({
       url: new_req,
       dataType: type,
