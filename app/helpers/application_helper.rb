@@ -500,6 +500,18 @@ module ApplicationHelper
     end
   end
 
+  def gadomain_name
+    if ENV['RAILS_ENV'] =~ /production/
+      if %w(cokebr cokear).include? current_site.code
+        ".cfm.cyloop.com"
+      else
+        ".coca-cola.fm"
+      end
+    else
+      ".hoodiny.com"
+    end
+  end
+  
   def messenger_gatracker_id
     case current_site.code
     when "cokear"
