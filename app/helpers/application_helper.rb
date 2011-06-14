@@ -490,11 +490,11 @@ module ApplicationHelper
   def gatracker_id
     case current_site.code
     when "cokelatam"
-      "UA-19631092-3"
+      "UA-19631092-12"
     when "cokebr"
       "UA-19631092-13"
     when "cokemx"
-      "UA-19631092-4"
+      "UA-19631092-10"
     when "cokear"
       "UA-19631092-11"
     end
@@ -502,11 +502,7 @@ module ApplicationHelper
 
   def gadomain_name
     if ENV['RAILS_ENV'] =~ /production/
-      if %w(cokebr cokear).include? current_site.code
-        ".cfm.cyloop.com"
-      else
-        ".coca-cola.fm"
-      end
+      ".cfm.cyloop.com"
     else
       ".hoodiny.com"
     end
