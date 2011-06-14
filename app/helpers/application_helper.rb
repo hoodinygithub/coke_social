@@ -492,15 +492,14 @@ module ApplicationHelper
     when "cokelatam"
       "UA-19631092-3"
     when "cokebr"
-      "UA-19631092-2"
+      "UA-19631092-13"
     when "cokemx"
       "UA-19631092-4"
     when "cokear"
-      "UA-19631092-5"
+      "UA-19631092-11"
     end
-
   end
-  
+
   def messenger_gatracker_id
     case current_site.code
     when "cokear"
