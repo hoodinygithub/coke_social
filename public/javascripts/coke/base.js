@@ -97,10 +97,85 @@ $(document).ready(function() {
       }
     }
 
-    Base.Util.XHR($(this).attr('href'), 'text', Base.UI.contentswp, Base.UI.xhrerror, options);
+    var url = $(this).attr('href').replace(/^.*#/, '');
+    $.history.load(url, {url:url, type:'text', func:Base.UI.contentswp, err:Base.UI.xhrerror, opt:options});
 
     return false;
   });
+
+  var optcache = {};
+  $.history.init(function(url) {
+    var options = arguments[1];
+    if (options && url != "")
+    {
+      optcache[url] = options;
+      loadXHRPage(options.url, options.type, options.func, options.err, options.opt);
+    }
+    else if (url != "")
+    {
+      options = optcache[url];
+      if (options)
+      {
+        loadXHRPage(options.url, options.type, options.func, options.err, options.opt);
+      }
+      else
+      {
+        var options = {};
+        if (String(url).match(/mixes/) ||
+            String(url).match(/home/))
+        {
+          options.afterComplete = function()
+          {
+            $('body').attr('id', String(url).slice(1));
+          }
+        }
+
+        // In case the dispatch comes from search link
+        if (String(url).match(/search/))
+        {
+          options.afterComplete = function()
+          {
+            $('body').attr('id', 'busqueda');
+          }
+        }
+
+        if (String(url).match(/playlists/))
+        {
+          options.afterComplete = function()
+          {
+            $('body').attr('id', '');
+          }
+        }
+
+        if (String(url).match(/my/))
+        {
+          options.afterComplete = function()
+          {
+            $('body').attr('id', 'usuario');
+          }
+        }
+
+        if (String(url).match(/index-bands/) ||
+            String(url).match(/index-music/) ||
+            String(url).match(/badges-dj/) ||
+            String(url).match(/terms_and_conditions/) ||
+            String(url).match(/privacy_policy/))
+        {
+          options.afterComplete = function()
+          {
+            $('body').attr('id', 'list');
+          }
+        }
+        loadXHRPage(url||'/', 'text', Base.UI.contentswp, Base.UI.xhrerror, options);
+      }
+    }
+    else
+    {
+      url = document.location.href.replace(document.location.origin, '');
+      loadXHRPage(url||'/', 'text', Base.UI.contentswp, Base.UI.xhrerror);
+    }
+  }, {unescape:true});
+  function loadXHRPage(url, type, func, err, opt) { Base.Util.XHR(url, type, func, err, opt); }
 
   $('.artist_box').livequery(function() {
     $(this).hover(function() {
@@ -254,14 +329,13 @@ Base.Util = {
     error_func = typeof(error_func) != 'undefined' ? error_func : Base.UI.xhrerror;
     var options = arguments[4];
 
-
     // Checks if the request is coming from the artist idx page.
     // suffix _partial to url to load partial document
     if (req.match(/index-bands/)) req = req + "_partial";
 
     // Allows actions that respond to XHR differently to be overridden
     new_req = req + (req.indexOf('?') != -1 ? "&ajax=1" : "?ajax=1")
-    
+
     $.ajax({
       url: new_req,
       dataType: type,
