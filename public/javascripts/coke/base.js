@@ -36,146 +36,14 @@ $(document).ready(function() {
     drag:slider.ondrag});
 
   $('a[content_switch_enabled=true]').livequery('click', function() {
-    // Class switch if main navigation was clicked.
-    // Note. May want to move this out into its own class.
-
-    //console.log($(this).attr('onclick'));
-
-    if ($(this).parent().parent().hasClass('menu_principal'))
-    {
-      $(this).parent().parent().find('.activo').toggleClass('activo');
-      $(this).parent().toggleClass('activo');
-    }
-    /**************************************************************/
-
-    var options = {};
-
-    // In case the dispatch comes from the main navigation
-    if ($(this).parent().parent().hasClass('menu'))
-    {
-      var ref = $(this);
-      options.afterComplete = function()
-      {
-        $('body').attr('id', String(ref.attr('href')).slice(1));
-      }
-    }
-
-    // In case the dispatch comes from search link
-    if (String($(this).attr('href')).match(/search/))
-    {
-      options.afterComplete = function()
-      {
-        $('body').attr('id', 'busqueda');
-      }
-    }
-
-    if (String($(this).attr('href')).match(/playlists/))
-    {
-      options.afterComplete = function()
-      {
-        $('body').attr('id', '');
-      }
-    }
-
-    if (String($(this).attr('href')).match(/my/))
-    {
-      options.afterComplete = function()
-      {
-        $('body').attr('id', 'usuario');
-      }
-    }
-
-    if (String($(this).attr('href')).match(/index-bands/) ||
-        String($(this).attr('href')).match(/index-music/) ||
-        String($(this).attr('href')).match(/badges-dj/) ||
-        String($(this).attr('href')).match(/terms_and_conditions/) ||
-        String($(this).attr('href')).match(/privacy_policy/))
-    {
-      options.afterComplete = function()
-      {
-        $('body').attr('id', 'list');
-      }
-    }
-
     var url = $(this).attr('href').replace(/^.*#/, '');
-    $.history.load(url, {url:url, type:'text', func:Base.UI.contentswp, err:Base.UI.xhrerror, opt:options});
-
+    $.history.load(url);
     return false;
   });
 
-  var optcache = {};
   $.history.init(function(url) {
-    var options = arguments[1];
-    if (options && url != "")
-    {
-      optcache[url] = options;
-      loadXHRPage(options.url, options.type, options.func, options.err, options.opt);
-    }
-    else if (url != "")
-    {
-      options = optcache[url];
-      if (options)
-      {
-        loadXHRPage(options.url, options.type, options.func, options.err, options.opt);
-      }
-      else
-      {
-        var options = {};
-        if (String(url).match(/mixes/) ||
-            String(url).match(/home/))
-        {
-          options.afterComplete = function()
-          {
-            $('body').attr('id', String(url).slice(1));
-          }
-        }
-
-        // In case the dispatch comes from search link
-        if (String(url).match(/search/))
-        {
-          options.afterComplete = function()
-          {
-            $('body').attr('id', 'busqueda');
-          }
-        }
-
-        if (String(url).match(/playlists/))
-        {
-          options.afterComplete = function()
-          {
-            $('body').attr('id', '');
-          }
-        }
-
-        if (String(url).match(/my/))
-        {
-          options.afterComplete = function()
-          {
-            $('body').attr('id', 'usuario');
-          }
-        }
-
-        if (String(url).match(/index-bands/) ||
-            String(url).match(/index-music/) ||
-            String(url).match(/badges-dj/) ||
-            String(url).match(/terms_and_conditions/) ||
-            String(url).match(/privacy_policy/))
-        {
-          options.afterComplete = function()
-          {
-            $('body').attr('id', 'list');
-          }
-        }
-        loadXHRPage(url||'/', 'text', Base.UI.contentswp, Base.UI.xhrerror, options);
-      }
-    }
-    else
-    {
-      url = document.location.href.replace(document.location.origin, '');
-      loadXHRPage(url||'/', 'text', Base.UI.contentswp, Base.UI.xhrerror);
-    }
+    Base.Routing.route(url != "" ? url : document.location.href.replace(document.location.origin, ''));
   }, {unescape:true});
-  function loadXHRPage(url, type, func, err, opt) { Base.Util.XHR(url, type, func, err, opt); }
 
   $('.artist_box').livequery(function() {
     $(this).hover(function() {
