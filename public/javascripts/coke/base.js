@@ -114,11 +114,65 @@ $(document).ready(function() {
     else if (url != "")
     {
       options = optcache[url];
-      loadXHRPage(options.url, options.type, options.func, options.err, options.opt);
+      if (options)
+      {
+        loadXHRPage(options.url, options.type, options.func, options.err, options.opt);
+      }
+      else
+      {
+        var options = {};
+        if (String(url).match(/mixes/) ||
+            String(url).match(/home/))
+        {
+          options.afterComplete = function()
+          {
+            $('body').attr('id', String(url).slice(1));
+          }
+        }
+
+        // In case the dispatch comes from search link
+        if (String(url).match(/search/))
+        {
+          options.afterComplete = function()
+          {
+            $('body').attr('id', 'busqueda');
+          }
+        }
+
+        if (String(url).match(/playlists/))
+        {
+          options.afterComplete = function()
+          {
+            $('body').attr('id', '');
+          }
+        }
+
+        if (String(url).match(/my/))
+        {
+          options.afterComplete = function()
+          {
+            $('body').attr('id', 'usuario');
+          }
+        }
+
+        if (String(url).match(/index-bands/) ||
+            String(url).match(/index-music/) ||
+            String(url).match(/badges-dj/) ||
+            String(url).match(/terms_and_conditions/) ||
+            String(url).match(/privacy_policy/))
+        {
+          options.afterComplete = function()
+          {
+            $('body').attr('id', 'list');
+          }
+        }
+        loadXHRPage(url||'/', 'text', Base.UI.contentswp, Base.UI.xhrerror, options);
+      }
     }
     else
     {
-      loadXHRPage('/', 'text', Base.UI.contentswp, Base.UI.xhrerror);
+      url = document.location.href.replace(document.location.origin, '');
+      loadXHRPage(url||'/', 'text', Base.UI.contentswp, Base.UI.xhrerror);
     }
   }, {unescape:true});
   function loadXHRPage(url, type, func, err, opt) { Base.Util.XHR(url, type, func, err, opt); }

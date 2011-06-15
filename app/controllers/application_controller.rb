@@ -1,7 +1,8 @@
 class ApplicationController < ActionController::Base
 
   include Application::Sites, Application::Rescues, Application::Paginator, 
-          Application::Activities, Application::MsnMessenger, Application::Stations
+          Application::Activities, Application::MsnMessenger, Application::Stations,
+          Application::Megatron
   include AuthenticatedSystem
 
   # SSL
@@ -29,7 +30,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery # :secret => '2b6c80782aadce40577fa1e003ece9a9'
   
   def self.layout_except_xhr(name)
-    layout lambda {|c| c.request.xhr? ? false : name}
+    layout proc { |c| c.request.xhr? ? false : (is_megatron?(c.request.user_agent) ? name : "xhrframe") }
   end
   layout_except_xhr "application"
 
