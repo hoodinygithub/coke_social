@@ -14,7 +14,7 @@ Base.Routing = {
              String(url).match(/badges-dj/) ||
              String(url).match(/terms_and_conditions/) ||
              String(url).match(/privacy_policy/)) this.call['consolidated'](url);
-    else this.call['default'](url);
+    else this.call['pipe'](url);
   },
 
   call: {
@@ -48,7 +48,7 @@ Base.Routing = {
         $('body').attr('id', 'list');
       }});
     },
-    default: function(url) {
+    pipe: function(url) {
       Base.Routing.request(url, Base.UI.contentswp);
     }
   },
