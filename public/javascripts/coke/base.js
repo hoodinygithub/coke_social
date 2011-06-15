@@ -114,7 +114,6 @@ $(document).ready(function() {
     else if (url != "")
     {
       options = optcache[url];
-      console.dir(options);
       loadXHRPage(options.url, options.type, options.func, options.err, options.opt);
     }
     else
