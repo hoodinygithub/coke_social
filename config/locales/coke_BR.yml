@@ -340,13 +340,13 @@ coke_BR:
       title: "M\xC3\xB3dulo do Moderador"
   actions: 
     skip: Pular
+    play: Tocar
     rate_it: AVALIE
     login: Login
     approve: Aprovar
     save: Salvar
     forgot_password: Esqueceu sua senha?
     unfollow: Seguindo
-    play: Tocar
     show: Mostrar
     hide: Ocultar
     share_station: "Compartilhar esta esta\xC3\xA7\xC3\xA3o com um amigo"
@@ -368,8 +368,8 @@ coke_BR:
     alphabetical: "ALFAB\xC3\x89TICA"
     awaiting_approval: "Aprova\xC3\xA7\xC3\xA3o Pendente"
     delete: Excluir
-    listen: ouvir
     add_into_a_new_playlist: Adicionar em uma nova playlist
+    listen: ouvir
     select_store: Selecionar Loja
     add_more: Adicionar Mais
     follow: Seguir
@@ -379,24 +379,24 @@ coke_BR:
     unfollow_account: Parar de seguir {{name}}
     send: Enviar
     search_text: "Pesquisar M\xC3\xBAsica na Coca-Cola.fm"
-    view_all: ver todas
     block: Bloquear
+    view_all: ver todas
     create_station: "Criar Esta\xC3\xA7\xC3\xA3o"
     reset: Reinicializar
     block_this_person: "Bloquear Este Usu\xC3\xA1rio"
     select_playlist: Selecionar playlist
+    or: ou
     read_more: leia mais
     follow_account: Seguir {{name}}
     connect: Conectar
     show_more: MOSTRAR MAIS
-    or: ou
     close: Fechar
     submit: Enviar
     share: Compartilhar
-    relevance: "RELEV\xC3\x82NCIA"
     latest: MAIS RECENTES
     go: Ir
     newest: MAIS NOVOS
+    relevance: "RELEV\xC3\x82NCIA"
     add_song_to_playlist: "Adicionar M\xC3\xBAsica a uma Playlist"
     next: "Pr\xC3\xB3ximo"
     buy_album: "Comprar \xC3\x81lbum"
@@ -848,13 +848,13 @@ coke_BR:
   badges: 
     beginner: 
       name: Principiante
-      qualification: "Por ter criado tamb\xC3\xA9m uma playlist, ou seguido outro usu\xC3\xA1rio, ou rankeado algu\xC3\xA9m."
+      qualification: "Por ter criado uma playlist, ou seguido ou avaliado/comentado algu\xC3\xA9m."
     xmas_record_gold: 
       name: ""
       qualification: ""
     ratings_flying_tomatoes: 
       name: Tomates Voadores
-      qualification: "Porque a maioria recebeu uma pontua\xC3\xA7\xC3\xA3o de 1 ou 2 das minhas primeiras 25 playlists"
+      qualification: "Por ter recebido a maioria de 1 ou 2 estrelas de avalia\xC3\xA7\xC3\xA3o pelas minhas primeiras 25 playlists"
     unlocked_by_user_on: Desbloqueado por {{user}} em {{date_won}}
     dj_superstar: 
       name: "DJ Superstar "
@@ -867,7 +867,7 @@ coke_BR:
       qualification: Por ter criado 50 playlists
     que_bolas: 
       name: Que bolas
-      qualification: "Quando eu recebo o m\xC3\xA1ximo no ranking (5 garrafas) por 3 pessoas por um mix que criei "
+      qualification: "Quando eu recebo o ranking m\xC3\xA1ximo (5 garrafas) de 3 pessoas por um s\xC3\xB3 mix espec\xC3\xADfico que eu tenha criado e que tenha associado ao menos um tag natalino a ele. Nota: Esse badge \xC3\xA9 ganho apenas uma vez, pelo ranking m\xC3\xA1ximo de 3 pessoas. "
     leader: 
       name: !binary |
         TMOtZGVy
@@ -882,13 +882,13 @@ coke_BR:
       name: My First Playlist
     dj_unbeatable: 
       name: "DJ Imbat\xC3\xADvel"
-      qualification: "Por ter criado cinco playlists em um per\xC3\xADodo de 24 horas"
+      qualification: "Por ter criado 5 playlists em um per\xC3\xADodo de 24 horas"
     record_gold: 
       name: Disco de Ouro
-      qualification: Sua playlist {{playlist_name}} foi ouvida por 20 pessoas
+      qualification: "Quando 20 pessoas diferentes ouviram a playlist {{playlist_name}} "
     rey_mago: 
-      name: Garoto Esperto
-      qualification: ""
+      name: "Home S\xC3\xA1bio"
+      qualification: Por Ter Criado 1 ou mais playlists em 6 de Janeiro com tag natalino
     xmas_rocker: 
       name: ""
       qualification: ""
@@ -897,13 +897,13 @@ coke_BR:
       qualification: Por ter criado 25 playlists
     critic_objective: 
       name: "Doutor em tend\xC3\xAAncias: Cr\xC3\xADtico Objetivo"
-      qualification: Por ter pontuado mais de 25 playlists com 3
+      qualification: Por ter avaliado a maioria das 25 playlists com 3 estrelas
     xmas_xpert: 
       name: ""
       qualification: ""
     merry_dj: 
       name: DJ Animado
-      qualification: "Quando um usu\xC3\xA1rio cria uma primeira playlist com uma tag de Natal associada. (ou quando associado a qualquer tag de Natal anterior)"
+      qualification: "Quando um usu\xC3\xA1rio cria um primeiro Mix com uma tag de Natal associada. (ou: quando apenas por associar uma tag de Natal a qualquer mix criado anteriormente)"
     idol: 
       name: !binary |
         w41kb2xv
@@ -914,7 +914,7 @@ coke_BR:
       qualification: "\xC3\xA9 obtido quando 1000 pessoas ouvem minhas playlists"
     bota: 
       name: Bota Bota Booo!!
-      qualification: ""
+      qualification: Por ter criado 10 mixes com um ou mais tags natalinos
     king_of_djs: 
       name: King of Djs
     networker_gold: 
@@ -922,33 +922,33 @@ coke_BR:
       qualification: "Por seguir 100 usu\xC3\xA1rios"
     ratings_standing_ovation: 
       name: "Aplausos de P\xC3\xA9  "
-      qualification: Por ter sido pontuado com 4 ou 5, entre as minhas primeiras 25 playlists
+      qualification: "Por ter recebido a maioria de 4 ou 5 estrelas de avalia\xC3\xA7\xC3\xA3o pelas minhas primeiras 25 playlists"
     playlist_name: Nome da Playlist
     master: 
-      name: Mestre
+      name: Master
       qualification: "Por ser seguido por 25 usu\xC3\xA1rios"
     critic_harsh: 
       name: "Doutor em tend\xC3\xAAncias: Cr\xC3\xADtico Ferrenho"
-      qualification: "Por ter pontuado a maioria das 25 playlists com 1 ou 2 "
+      qualification: Por ter avaliado a maioria das 25 playlists com 1 ou 2 estrelas
     critic_best_friend: 
       name: "Doutor em tend\xC3\xAAncias: Melhor Amigo"
-      qualification: "Por ter dado uma pontua\xC3\xA7\xC3\xA3o de 4 ou 5, entre a maioria das 25 avalia\xC3\xA7\xC3\xB5es das playlists que voc\xC3\xAA fez"
+      qualification: Por ter avaliado a maioria das 25 playlists com 4 ou 5 estrelas
     networker_diamond: 
       name: "Networker: Diamante"
       qualification: "Por seguir 500 usu\xC3\xA1rios"
     unlocked_on: Desbloqueado por
     dj_bedroom: 
-      name: DJ de chuveiro
+      name: DJ de quarto
       qualification: "\xC3\xA9 obtido quando 5 pessoas ouvem minhas playlists"
     cool_lo: 
-      name: ""
-      qualification: ""
+      name: Cool-lo
+      qualification: "A primeira vez, quando eu recebo o ranking m\xC3\xA1ximo (5 garrafas), por um s\xC3\xB3 mix espec\xC3\xADfico criado que tem ao menos um tag natalino associado a ele. Nota: este badge se ganha somente uma vez , a primeira vez que se verifica a regra. Os demais mixes natalinos que obt\xC3\xAAm uma pontua\xC3\xA7\xC3\xA3o de 5 N\xC3\x83O oferecem unidades adicionais deste badge.\r\n"
     record_platinum: 
       name: Disco de Platina
-      qualification: Sua playlist {{playlist_name}} foi ouvida por 100 pessoas
+      qualification: "Quando 100 pessoas diferentes ouviram a playlist {{playlist_name}} "
     santa_claus: 
-      name: ""
-      qualification: ""
+      name: Papai Noel
+      qualification: Por Ter Criado 1 ou mais playlists em 25 de Dezembro com tag natalino
     dj_club: 
       name: DJ de Boate
       qualification: "\xC3\xA9 obtido quando 100 pessoas ouvem minhas playlists"
@@ -957,20 +957,20 @@ coke_BR:
       name: "Networker: Prata"
       qualification: "Por seguir 50 usu\xC3\xA1rios"
     regalo: 
-      name: ""
-      qualification: ""
+      name: Generoso no Natal
+      qualification: Por ter avaliado mais de 5 playlists natalinos com 4 ou 5 garrafas
     master_of_hip_hop: 
       name: Master of Hip-Hop
       qualification: For having collected 100 Hip-Hop songs across all my playlists
     ratings_ok: 
       name: O.K.
-      qualification: Por ter sido pontuado com 3, entre as minhas primeiras 25 playlists
+      qualification: "Por ter recebido a maioria de 3 estrelas de avalia\xC3\xA7\xC3\xA3o pelas minhas primeiras 25 playlists"
     record_diamond: 
       name: Disco de Diamante
-      qualification: Sua playlist {{playlist_name}} foi ouvida por 500 pessoas
+      qualification: "Quando 500 pessoas diferentes ouviram a playlist {{playlist_name}} "
     recalentado: 
-      name: ""
-      qualification: ""
+      name: Requentado
+      qualification: "A primeira vez, quando eu recebo duas vezes o mesmo ranking, por um s\xC3\xB3 mix espec\xC3\xADfico que eu tenha criado com ao menos um tag natalino associado a ele. Por exemplo, voc\xC3\xAA obt\xC3\xA9m um ranking de 2 pelo mix natalino A, um ranking de 3 pelo mix natalino B, e de 5 pelo mix natalino C, e de 3 pelo mix natalino D. Ao obter o ranking repetido de 3 pelo mix D \xC3\xA9 quando se cumpre a regra. Todos os mixes natalinos que t\xC3\xAAm um ranking \"duplicado\" N\xC3\x83O OFERECEM unidades adicionais a este badge."
     dj_private_party: 
       name: DJ de Festinhas Privadas
       qualification: "\xC3\xA9 obtido quando 10 pessoas ouvem minhas playlists"
@@ -979,10 +979,10 @@ coke_BR:
       qualification: ""
     superuser: 
       name: "Super Usu\xC3\xA1rio"
-      qualification: "Porque durante sete dias consecutivos, todos os dias voc\xC3\xAA se dedicou criando pelo menos uma playlist, ou avaliando uma playlist, ou come\xC3\xA7ou a seguir algu\xC3\xA9m. Usu\xC3\xA1rios como voc\xC3\xAA enaltecem a realeza da Coca-Cola.fm\r\n"
+      qualification: "Por ter criado durante sete dias consecutivos, no m\xC3\xADnimo, um dos seguintes:  1 playlist, 1 avalia\xC3\xA7\xC3\xA3o de playlist, ou come\xC3\xA7ou a seguir algu\xC3\xA9m. "
     opinion_leader: 
       name: "L\xC3\xADder de Opini\xC3\xA3o"
-      qualification: "Por ter avaliado mais de 15 playlists diferentes. Nem todos se animam em dar opini\xC3\xB5es tanto quanto voc\xC3\xAA!"
+      qualification: "Por ter avaliado mais de 15 playlists diferentes. "
     networker: 
       name: Networker
       qualification: "Por seguir 5 usu\xC3\xA1rios"
@@ -994,11 +994,11 @@ coke_BR:
       qualification: "Por seguir 250 usu\xC3\xA1rios"
     others_that_have_this_badge: "Outros usu\xC3\xA1rios que possuem este badge"
     list_page: 
-      see_all_active_badges: Veja todos os Badges ativos
       name: Nome
-      see_all_badges: Veja todos os Badges
+      see_all_active_badges: Veja Todos os Badges Ativos
+      see_all_badges: Veja Todos os Badges
       title: "T\xC3\xADtulo"
-      see_all_retired_badges: Veja todos os Badges antigos
+      see_all_retired_badges: VejaTtodos os Badges Antigos
       badge: Badge
       description: !binary |
         RGVzY3Jpw6fDo28=
@@ -1019,7 +1019,7 @@ coke_BR:
       qualification: "Por seguir 25 usu\xC3\xA1rios"
     trifecta: 
       name: Trifecta
-      qualification: "Porque em menos de 25 horas, voc\xC3\xAA criou 3 playlists, come\xC3\xA7ou a seguir 3 usu\xC3\xA1rios, e deixou avalia\xC3\xA7\xC3\xB5es para 3 playlists. Perfeita harmonia"
+      qualification: "Por ter criado 3 playlists, seguido 3 novos usu\xC3\xA1rios e avaliado 3 novas playlists no espa\xC3\xA7o de 24 horas"
     mixmaster_yellow: 
       name: "Mixmaster: Faixa Amarela"
       qualification: Por ter criado 5 playlists
