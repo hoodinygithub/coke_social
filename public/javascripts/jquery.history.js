@@ -126,7 +126,7 @@
             if(hash != self._appState) {
                 locationWrapper.put(hash);
                 self._appState = hash;
-                arguments.length > 1 ? self.callback(hash, arguments[1]) : self.callback(hash);
+                self.callback(hash);
             }
         }
     };
@@ -161,30 +161,20 @@
                 locationWrapper.put(hash);
                 iframeWrapper.put(hash);
                 self._appState = hash;
-                arguments.length > 1 ? self.callback(hash, arguments[1]) : self.callback(hash);
+                self.callback(hash);
             }
         }
     };
 
     implementations.hashchangeEvent = {
-        _opt: {},
         _init: function() {
             self.callback(locationWrapper.get());
             $(window).bind('hashchange', self.check);
         },
         check: function() {
-            if (self._opt.url)
-            {
-              self.callback(locationWrapper.get(), self._opt);
-              self._opt = {};
-            }
-            else
-            {
-              self.callback(locationWrapper.get());
-            }
+            self.callback(locationWrapper.get());
         },
         load: function(hash) {
-            if (arguments.length > 1) this._opt = arguments[1];
             locationWrapper.put(hash);
         }
     };
