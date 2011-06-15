@@ -281,11 +281,11 @@ coke_BR:
       RHVyYcOnw6Nv
 
     cancel_playlist_text: "Cancelar a sua playlist ir\xC3\xA1 desfazer todas as suas altera\xC3\xA7\xC3\xB5es.<br/>Voc\xC3\xAA tem certeza que deseja cancelar?"
-    autofill_option_text: "A op\xC3\xA7\xC3\xA3o de auto-preenchimento permite que voc\xC3\xAA complete a sua playlist com m\xC3\xBAsicas recomendadas baseadas nos estilos que voc\xC3\xAA j\xC3\xA1 escolheu."
     edit: Editar Sua Playlist
+    autofill_option_text: "A op\xC3\xA7\xC3\xA3o de auto-preenchimento permite que voc\xC3\xAA complete a sua playlist com m\xC3\xBAsicas recomendadas baseadas nos estilos que voc\xC3\xAA j\xC3\xA1 escolheu."
     cancel_playlist: Cancelar playlist?
-    total_time: Tempo Total
     save_confirmation: "Confirma\xC3\xA7\xC3\xA3o de Salvar"
+    total_time: Tempo Total
     tracks_remaining: faixas restando para publicar
     songs_from: "m\xC3\xBAsicas de"
     unable_save: "N\xC3\xA3o foi poss\xC3\xADvel salvar esta playlist"
@@ -296,18 +296,18 @@ coke_BR:
     full_listen: "<li>Voc\xC3\xAA precisa <b class='red'>{{songsleft}}</b> mais m\xC3\xBAsicas para poder ouvir a sua lista na \xC3\xADntegra. Quando chegar a sua lista {{maxsongs}} m\xC3\xBAsicas, esta notifica\xC3\xA7\xC3\xA3o vai ficar verde.<br /><br /><b>TIP:</b> Use a <b class='green'>'Autofill'</b> bot\xC3\xA3o de ajuda para adicionar m\xC3\xBAsicas \xC3\xA0 sua lista! </li>"
     please_remove: por favor remova
     name_your_playlist: Nome da sua playlist
-    rules: Regras da Playlist
-    delete_text: "Voc\xC3\xAA tem certeza de que quer deletar esta playlist?"
     add_tags: Adicionar tags
+    delete_text: "Voc\xC3\xAA tem certeza de que quer deletar esta playlist?"
+    rules: Regras da Playlist
     lucky_10: Lucky 10
     search_for_music: "Pesquisar m\xC3\xBAsicas para adicionar na sua playlist"
     playlist_name: Nome da Playlist
     lucky_10_desc: "Toda vez que voc\xC3\xAA clicar em \"Lucky 10\" n\xC3\xB3s adicionaremos 10 m\xC3\xBAsicas que n\xC3\xB3s achamos que voc\xC3\xAA vai gostar..."
     seperated_commas: "separados por v\xC3\xADrgulas"
     avatar_delete_confirm_title: "Confirma\xC3\xA7\xC3\xA3o de Avatar Exclu\xC3\xADdo"
-    select_your_songs_text: "Resultados da buscar por m\xC3\xBAsica ir\xC3\xA3o aparecer aqui<br />\r\n\
+    select_your_songs_text: "Os resultados da pesquisa por m\xC3\xBAsica ir\xC3\xA3o aparecer aqui<br />\r\n\
       arraste as m\xC3\xBAsicas que voc\xC3\xAA gostar do recipiente para<br />\r\n\
-      a direita para criar a sua playlist"
+      a direita, para criar a sua playlist"
     last_playlist: "\xC3\x9Altima Playlist"
     maximum_songs_from: "m\xC3\xA1ximo de {{num}} m\xC3\xBAsicas do mesmo {{type}} "
     click_here_to_add_tags: clique aqui para adicionar tags
@@ -335,8 +335,8 @@ coke_BR:
     picture: Imagem da sua playlist
     select_your_songs: "Selecione Suas M\xC3\xBAsicas"
     you_have: "Voc\xC3\xAA tem"
-    copy: Copiar Playlist
     song_from_album: "m\xC3\xBAsica do \xC3\xA1lbum"
+    copy: Copiar Playlist
     congrats: "<li><b>Parab\xC3\xA9ns!</b> Agora voc\xC3\xAA pode escutar sua playlist completa!</li>"
   chat: 
     moderator: 
@@ -578,14 +578,14 @@ coke_BR:
       stations: "Esta\xC3\xA7\xC3\xB5es de r\xC3\xA1dios de {{subject}}"
       playlists: Playlists de {{subject}}
       has_not_reviews: "{{subject}} n\xC3\xA3o publicou nenhum coment\xC3\xA1rio."
-      followers: "Quem est\xC3\xA1 seguindo {{subject}}"
       has_not_badges: "{{subject}} n\xC3\xA3o ganhou nenhum badge."
-      albums: Discos de {{subject}}
+      followers: "Quem est\xC3\xA1 seguindo {{subject}}"
+      albums: "\xC3\x81lbuns de {{subject}}"
       top_playlists: Top playlists de {{subject}}
       has_not_playlists: "{{subject}} n\xC3\xA3o tem nenhuma playlist."
       has_not_followers: "{{subject}} n\xC3\xA3o tem nenhum seguidor."
-      others_dont_have_badge: "Ningu\xC3\xA9m mais tem esse badge. {{subject}} \xC3\xA9 o primeiro a ganhar!"
       followees: "Quem {{subject}} est\xC3\xA1 seguindo "
+      others_dont_have_badge: "Ningu\xC3\xA9m mais tem esse badge. {{subject}} \xC3\xA9 o primeiro a ganhar!"
       is_not_following: "{{subject}} n\xC3\xA3o est\xC3\xA1 seguindo ningu\xC3\xA9m."
       badges: Badges de {{subject}}
       reviews: "Coment\xC3\xA1rios de {{subject}}"
@@ -593,32 +593,34 @@ coke_BR:
       has_not_followees: "{{subject}} ainda n\xC3\xA3o est\xC3\xA1 seguindo ningu\xC3\xA9m."
       follow_requests: Pedidos de seguidores de {{subject}}
       friends_dont_have_badge: Nenhum dos amigos de {{subject}} tem esse badge.
-      has_not_activities: "{{subject}} n\xC3\xA3o tem nenhuma novidade."
+      has_not_activities: "{{subject}} n\xC3\xA3o tem atividades."
       charts: Ranking de {{subject}}
     first_person: 
       has_not_subscribed: "Voc\xC3\xAA n\xC3\xA3o est\xC3\xA1 inscrito em nenhuma playlist"
-      network_activity: Minha Atividade Recente
+      network_activity: Minha Atividade na Rede
+      comments: "Meus Coment\xC3\xA1rios"
       friends_that_have_this_badge: Meus amigos que possuem este badge
-      subscriptions: "MInha Inscri\xC3\xA7\xC3\xA3o"
-      stations: "Minhas r\xC3\xA1dios"
+      subscriptions: "MInhas Inscri\xC3\xA7\xC3\xB5es"
+      stations: "Minhas R\xC3\xA1dios"
       playlists: Minhas Playlists
       has_not_reviews: "Voc\xC3\xAA n\xC3\xA3o postou nenhum coment\xC3\xA1rio."
-      has_not_badges: "Voc\xC3\xAA ainda n\xC3\xA3o ganhou nenhum badge."
       followers: "Quem est\xC3\xA1 me seguindo"
-      albums: Meus Discos
-      top_playlists: Minhas Playlists mais tocadas
-      has_not_playlists: "Voc\xC3\xAA n\xC3\xA3o tem nenhuma playlist"
-      has_not_followers: "Voc\xC3\xAA n\xC3\xA3o tem nenhum seguidor."
-      followees: Quem estou seguindo
+      has_not_badges: "Voc\xC3\xAA ainda n\xC3\xA3o ganhou nenhum badge."
+      albums: "Meus \xC3\x81lbuns"
+      top_playlists: "Minhas Top Playlists "
+      has_not_playlists: "Voc\xC3\xAA n\xC3\xA3o tem playlists"
+      has_not_followers: "Voc\xC3\xAA n\xC3\xA3o tem seguidor."
       others_dont_have_badge: "Ningu\xC3\xA9m mais tem esse badge. Voc\xC3\xAA \xC3\xA9 o primeiro a ganhar!"
+      followees: Quem estou seguindo
       is_not_following: "Voc\xC3\xAA n\xC3\xA3o est\xC3\xA1 seguindo ningu\xC3\xA9m."
       badges: Meus badges
       reviews: "Meus Coment\xC3\xA1rios"
       latest_reviews: "Meus \xC3\x9Altimos Coment\xC3\xA1rios"
-      follow_requests: Meus pedidos de seguidores
+      follow_requests: Meus Pedidos de Seguidores
       friends_dont_have_badge: Nenhum de seus amigos tem esse badge.
-      has_not_activities: "Voc\xC3\xAA n\xC3\xA3o tem novidades"
-      charts: Meu ranking
+      mixes: Meus Mixes
+      has_not_activities: "Voc\xC3\xAA n\xC3\xA3o tem atividades"
+      charts: "Meus Gr\xC3\xA1ficos"
   artist: 
     be_the_first_to_create_station: "Seja o primeiro a criar uma r\xC3\xA1dio para {{user_name}}"
   contact_us: 
@@ -706,18 +708,18 @@ coke_BR:
     delete: EXCLUIR
     title: "CONFIGURA\xC3\x87\xC3\x95ES DA CONTA"
     email_me_subscribes_mixes: "Envie-me um e-mail quando algu\xC3\xA9m se inscrever em uma das minhas mixes"
-    email_me_reviews_mixes: "Envie-me um e-mail quando algu\xC3\xA9m comentar/qualificar uma das minhas mixes"
+    email_me_reviews_mixes: "Envie-me um e-mail quando algu\xC3\xA9m comentar/avaliar uma das minhas mixes"
     email_me_coke_newsletter: "Envie-me publica\xC3\xA7\xC3\xB5es e comunicados peri\xC3\xB3dicos da Coca-Cola "
     email_me_communications: "Envie-me publica\xC3\xA7\xC3\xB5es peri\xC3\xB3dicas da Coca-Cola.fm "
     email_me_win_badges: Envie-me um e-mail quando eu ganhar um novo badge
     delete_my_account: EXCLUIR A MINHA CONTA
-    delete_info: "Ao marcar essa op\xC3\xA7\xC3\xA3o, eu estou ciente de que ao eliminar a minha conta, a minha p\xC3\xA1gina Coca-Cola.fm, a minha biblioteca de m\xC3\xBAsicas e fotos ser\xC3\xA3o excluidas. Eu entendo que para retornar \xC3\xA0 Coca-Cola.fm, terei que criar uma nova conta com um novo nome de usu\xC3\xA1rio."
+    delete_info: "Ao marcar esta op\xC3\xA7\xC3\xA3o, eu estou ciente de que ao eliminar a minha conta, a minha p\xC3\xA1gina Coca-Cola.fm, a minha biblioteca de m\xC3\xBAsicas e fotos ser\xC3\xA3o exclu\xC3\xADdas. Eu entendo que para retornar \xC3\xA0 Coca-Cola.fm, terei que criar uma nova conta com um novo nome de usu\xC3\xA1rio."
     password_required: "Voc\xC3\xAA deve digitar uma senha v\xC3\xA1lida"
     delete_info_required: "Marque a op\xC3\xA7\xC3\xA3o ao lado para continuar"
     new_password: Nova Senha
     save: SALVAR
     delete_account: EXCLUIR CONTA
-    add_update: INCLUIR/ATUALIZAR
+    add_update: INCLUIR / ATUALIZAR
     update: ATUALIZAR
     email_notifications: "NOTIFICA\xC3\x87\xC3\x95ES POR EMAIL"
     password: Senha
@@ -1479,12 +1481,12 @@ coke_BR:
     welcome: Bem-vindo
     click_to_unfollow: Clique {{follow_link}} para parar de seguir
     results: Resultados
-    time: !binary |
-      RHVyYcOnw6Nv
-
     service_unavailable: "Este servi\xC3\xA7o est\xC3\xA1 temporariamente inacess\xC3\xADvel. Por favor, volte mais tarde."
     next: "Pr\xC3\xB3ximo"
     played_by: Reproduzido por
+    time: !binary |
+      RHVyYcOnw6Nv
+
     sorry: Desculpe!
     created_by: Criado por
     following: seguindo
@@ -1839,17 +1841,17 @@ coke_BR:
     we_hope_you_enjoyed: "Esperamos que voc\xC3\xAA tenha gostado das m\xC3\xBAsicas que voc\xC3\xAA escutou. Para escutar mais m\xC3\xBAsicas,"
     click_here: clique aqui
     sign_in: entre com o seu Windows Live ID
-    station: 
-      name: "Nome da esta\xC3\xA7\xC3\xA3o de r\xC3\xA1dio"
-      edit: "Editar nome da esta\xC3\xA7\xC3\xA3o de r\xC3\xA1dio"
-      delete: "Excluir esta esta\xC3\xA7\xC3\xA3o de r\xC3\xA1dio"
-      would_delete: "Gostaria de excluir esta esta\xC3\xA7\xC3\xA3o de r\xC3\xA1dio?"
     actions: 
       edit: Editar
       submit: Enviar
       close: Fechar
       delete: Excluir
       save: Salvar
+    station: 
+      name: "Nome da esta\xC3\xA7\xC3\xA3o de r\xC3\xA1dio"
+      edit: "Editar nome da esta\xC3\xA7\xC3\xA3o de r\xC3\xA1dio"
+      delete: "Excluir esta esta\xC3\xA7\xC3\xA3o de r\xC3\xA1dio"
+      would_delete: "Gostaria de excluir esta esta\xC3\xA7\xC3\xA3o de r\xC3\xA1dio?"
     edit_station: "Para editar esta esta\xC3\xA7\xC3\xA3o,"
     missing_api_key: "Voc\xC3\xAA n\xC3\xA3o forneceu uma chave API v\xC3\xA1lida ou a sua chave foi desabilitada."
     record_not_found: "O item que voc\xC3\xAA est\xC3\xA1 procurando n\xC3\xA3o p\xC3\xB4de ser encontrado "
@@ -1877,9 +1879,9 @@ coke_BR:
       listen: Escute
       terms_and_privacy: "Ao marcar a caixa, voc\xC3\xAA confirma que voc\xC3\xAA sabe que Coca-Cola.fm \xC3\xA9 um site operado pela Hoodiny Entertainment Group nos E.U.A., e voc\xC3\xAA concorda com a transfer\xC3\xAAncia de seus dados pessoais para os E.U.A., onde os seus dados pessoais estar\xC3\xA3o sujeitos \xC3\xA0s leis dos E.U.A. onde o n\xC3\xADvel de prote\xC3\xA7\xC3\xA3o de dados \xC3\xA9 diferente em rela\xC3\xA7\xC3\xA3o ao seu pa\xC3\xADs. Voc\xC3\xAA tamb\xC3\xA9m concorda com os {{terms_link}} e a {{privacy_link}}  da Coca-Cola.fm que descrevem como os seus dados pessoais ser\xC3\xA3o usados."
       confirm_your_password: Confirme sua senha
+    authentication_required: "Voc\xC3\xAA precisa estar logado para fazer isso"
     album: 
       released: "Lan\xC3\xA7ado"
-    authentication_required: "Voc\xC3\xAA precisa estar logado para fazer isso"
     internal_error: "N\xC3\xA3o foi poss\xC3\xADvel executar seu pedido devido a um erro interno. Fomos notificados sobre este problema e vamos solucion\xC3\xA1-lo em breve."
     activate_your_account: Ative sua conta na Coca-Cola.fm
     buy: Comprar
@@ -1907,8 +1909,8 @@ coke_BR:
       network_update: "ATUALIZA\xC3\x87\xC3\x83O DE REDE"
       type_artist_name: Escreva o nome do artista
       recommended_mixes: MIXES RECOMENDADOS PELA COCA-COLA.FM
-      top_songs: "M\xC3\xBAsicas mais tocadas"
-      top_stations: "R\xC3\xA1dios mais tocadas"
+      top_songs: "Top m\xC3\xBAsicas"
+      top_stations: "Top esta\xC3\xA7\xC3\xB5es de r\xC3\xA1dios"
       recommended_playlists: PLAYLISTS RECOMENDADAS
       recommended_artists: Artistas Recomendados
     recengineerror_NO_RADIO: "Nenhuma esta\xC3\xA7\xC3\xA3o de r\xC3\xA1dio encontrada"
