@@ -21,7 +21,6 @@ coke_BR:
     artist_login_denied: Em breve teremos cadastro para artistas!
     sign_in: Login
     sign_up_exclamation: Cadastre-se!
-    your_profile_name_tip: "(Seu endere\xC3\xA7o para que voc\xC3\xAA possa enviar aos seus amigos)"
     sidebox: 
       loop_text: "descubra em tempo real o que eles est\xC3\xA3o ouvindo, e escolha as m\xC3\xBAsicas para ouvir em streaming as que voc\xC3\xAA mais curte"
       work_title: coloque seus conhecimentos para trabalhar
@@ -33,9 +32,14 @@ coke_BR:
       badges_text: "nosso sistema de recomenda\xC3\xA7\xC3\xB5es cria esta\xC3\xA7\xC3\xB5es de r\xC3\xA1dios especificamente adaptadas para voc\xC3\xAA com todos os seus artistas favoritos."
       create_text: "se voc\xC3\xAA quiser se tornar um DJ, crie seus pr\xC3\xB3prios mixes, adicionando suas m\xC3\xBAsicas preferidas para compartilhar m\xC3\xBAltiplas r\xC3\xA1dios online"
       work_text: "deixe que seus amigos saibam o que voc\xC3\xAA pensa sobre seus gostos musicais atrav\xC3\xA9s da revis\xC3\xA3o e coment\xC3\xA1rios de seus playlists.\r\n"
+    your_profile_name_tip: "(Seu endere\xC3\xA7o para que voc\xC3\xAA possa enviar aos seus amigos)"
     msg: 
       privacy: deve-se aceitar
       terms: deve-se aceitar
+    messages: 
+      terms_of_use: deve-se aceitar
+      pivacy_policy: deve-se aceitar
+      privacy_policy: deve-se aceitar
     confirmation: 
       click_here: clique aqui
       here_is_your_confirmation_link: "Aqui est\xC3\xA1 o seu link de confirma\xC3\xA7\xC3\xA3o"
@@ -58,15 +62,11 @@ coke_BR:
         sig: |-
           Aproveite!
           Equipe Coca-Cola.fm
-          Cyloop.com | 555 Washington Avenue | Suite 340| Miami | FL | 33139
+          Coca-Cola.fm | 555 Washington Avenue | Suite 340| Miami | FL | 33139
         opt_out: "Para n\xC3\xA3o receber mais mensagens como esta, por favor clique aqui."
         message: "Para confirmar a sua conta, por favor clique no link abaixo ou copie o link e cole no seu navegador:\r\n\
           {{confirm_url}}\r\n\
           Use o endere\xC3\xA7o de e-mail {{email}} e a senha criada quando voc\xC3\xAA se cadastrou para acessar {{host_url}}."
-    messages: 
-      terms_of_use: deve-se aceitar
-      pivacy_policy: deve-se aceitar
-      privacy_policy: deve-se aceitar
     remember_me: Lembrar
     terms_of_use: Termos de uso
     is_available_exclamation: "E-mail est\xC3\xA1 dispon\xC3\xADvel!"
@@ -81,8 +81,8 @@ coke_BR:
       click_here: clique aqui
       do_not_have_account: "Registrar-se \xC3\xA9 f\xC3\xA1cil, basta  {{link}}"
       follow_user: "Para seguir {{slug}} e descobrir o que {{gender}} est\xC3\xA1 escutando, {{link}} para fazer login."
-      discover_text: "mais de {{count}} artistas, todos de gra\xC3\xA7a"
       create_playlist: Para criar um mix, {{link}} para entrar.
+      discover_text: "mais de {{count}} artistas, todos de gra\xC3\xA7a"
       sign_in_with_your_coke_id: entre com seus dados
       know: Encontre pessoas
       female: "ela est\xC3\xA1"
@@ -98,17 +98,17 @@ coke_BR:
       index: "Se voc\xC3\xAA j\xC3\xA1 possui uma conta na Coca-Cola.fm, {{link}} para fazer login."
       msn_music_is_free: "A Coca-Cola.fm \xC3\xA9 gr\xC3\xA1tis, {{link}}"
       listen_text: "mais de {{count}} m\xC3\xBAsicas, todas de gra\xC3\xA7a"
-      sign_in_with_your_windows_live_id: entre com o seu Windows Live ID
       max_song: "Esperamos que voc\xC3\xAA tenha gostado das m\xC3\xBAsicas que voc\xC3\xAA escutou. Para escutar mais m\xC3\xBAsicas, {{link}} para fazer login. "
+      sign_in_with_your_windows_live_id: entre com o seu Windows Live ID
       create: Criar
       share_playlist: Para compartilhar este mix,  {{link}} para entrar.
-      place: Coca-Cola.fm
       discover: Descubra
+      place: Coca-Cola.fm
       listen: Escute
       still_do_not_have_msn_account: "Ainda n\xC3\xA3o tem sua conta da Coca-Cola.fm?"
       add_song: "Para adicionar esta m\xC3\xBAsica a uma playlist, {{link}} para fazer login."
-      follow_artist: Para seguir {{name}} e outros artistas favoritos, {{link}} para fazer login.
       copy: Para copiar este mix, {{link}}  para entrar.
+      follow_artist: Para seguir {{name}} e outros artistas favoritos, {{link}} para fazer login.
       search: Buscar
     birth_date: Data de nascimento
     year_of_birth: Data de nascimento
@@ -120,7 +120,6 @@ coke_BR:
     complete_all_fields_in_red: Complete todos os campos em vermelho
     msn_login_error: Erro com o login! Tente fazer o login novamente.
     complete: Complete
-    associate_msn_login: "Quase pronto. Por favor insira seus dados da Coca-Cola.fm "
     sidebar: 
       radio_title: "escute r\xC3\xA1dios personalizadas"
       chat_text: "ao final de cada p\xC3\xA1gina voc\xC3\xAA encontrar\xC3\xA1 uma barra do Windows Messenger. Fa\xC3\xA7a login e  poder\xC3\xA1 bater papo com seus amigos, enquanto desfrutas da melhor m\xC3\xBAsica.\r\n"
@@ -132,6 +131,7 @@ coke_BR:
       follow_text: "com apenas um clique voc\xC3\xAA pode seguir aos seu artistas favoritos e manter-se por dentro de seu Twitter e outras not\xC3\xADcias."
       radio_text: "nosso sistema cria r\xC3\xA1dios sob medida para voc\xC3\xAA, com seus artistas favoritos e novidades que podem agradar voc\xC3\xAA."
       follow_title: siga seus artistas favoritos
+    associate_msn_login: "Quase pronto. Por favor insira seus dados da Coca-Cola.fm "
     send: Enviar
     email_address: "Endere\xC3\xA7o de email"
     cross_network: 
@@ -146,20 +146,20 @@ coke_BR:
     not_a_user: !binary |
       TsOjbyDDqSB1c3XDoXJpbz8=
 
-    login_failed: "Email e/ou senha inv\xC3\xA1lidos"
     email: 
       button: "Comece j\xC3\xA1!"
       title: Bem-vindo, obrigado por registrar-se na Coca-Cola.fm!
       subtitle: "Como membro da Coca-Cola.fm, veja o que voc\xC3\xAA pode fazer:"
       subject: Bem-vindo! Obrigado por registrar-se na Coca-Cola.fm!
       closing_statement: "Coca-Cola.fm |  O que voc\xC3\xAA deseja ouvir?"
-      terms_and_legal_text: "Copyright \xC2\xA9 2008 Cyloop LLC. Todos os direitos reservados. Cyloop, Cyloop.com, o logo do Cyloop e todas as marcas Cyloop<br> \r\n\
+      terms_and_legal_text: "Copyright \xC2\xA9 2008 Cyloop LLC. Todos os direitos reservados. Cyloop, Coca-Cola.fm, o logo do Cyloop e todas as marcas Cyloop<br> \r\n\
         aqui contidas s\xC3\xA3o registradas e propriedade da Hoodiny Entertainment Group  e/ou suas empresas afiliadas.<br> \r\n\
         Todas as outras marcas aqui contidas s\xC3\xA3o de propriedade dos seus respectivos donos.<br>\r\n\
         A reprodu\xC3\xA7\xC3\xA3o total ou parcial em qualquer forma ou meio sem autoriza\xC3\xA7\xC3\xA3o expressa por escrito da Cyloop LLC fica proibida.<br>\r\n\
         <br>\r\n\
         Cyloop, LLC, 8725 NW 18 Terrace, Suite 401, Doral, FL 33172, USA<br> \r\n\
         Todos os direitos reservados."
+    login_failed: "Email e/ou senha inv\xC3\xA1lidos"
     confirm_your_password: Confirme a sua senha
   radio: 
     search_hint: Digite o nome de um artista
@@ -218,14 +218,14 @@ coke_BR:
   sessions: 
     new: 
       complete_registration: Registro completo
-      sign_in: Log in
       already_own: "J\xC3\xA1 possui uma\xC2\xA0conta\xC2\xA0Coca-Cola.fm?"
+      sign_in: Log in
       register_link_msn: "Se voc\xC3\xAA n\xC3\xA3o possui uma conta Coca-Cola.fm, v\xC3\xA1 em frente e registre-se para que possamos conect\xC3\xA1-la no seu MSN ID"
       register_cyloop: Registre-se na Coca-Cola.fm
-      remember_me: Lembre-me
       join: Cadastre-se agora
-      listener_account: "Conta do usu\xC3\xA1rio"
+      remember_me: Lembre-me
       title: Bem-vindo, por favor entre.
+      listener_account: "Conta do usu\xC3\xA1rio"
       create_link_acct: "Precisamos de\xC2\xA0um\xC2\xA0pouco mais de informa\xC3\xA7\xC3\xA3o\xC2\xA0para criar\xC2\xA0o seu\xC2\xA0perfil\xC2\xA0completo\xC2\xA0e conseguir se conectar\xC2\xA0com {{provider}}."
       link_acct: "Apenas\xC2\xA0fa\xC3\xA7a login na sua conta de {{provider}} para se conectar\xC2\xA0\xC3\xA0\xC2\xA0Coca-Cola.fm."
       account: "N\xC3\xA3o tem\xC2\xA0uma\xC2\xA0conta de\xC2\xA0Coca-Cola.fm?"
@@ -249,9 +249,9 @@ coke_BR:
       search: Pesquisar
   settings: 
     background_not_saved_image_too_large: "Imagem de background n\xC3\xA3o pode ser maior que 1 MB"
-    page_title: Controle sua Coca-Cola.fm
     customization: 
       colors_reset_to_default: ""
+    page_title: Controle sua Coca-Cola.fm
     private_profile: 
       description: "Descri\xC3\xA7\xC3\xA3o da fun\xC3\xA7\xC3\xA3o \"Manter Perfil Privado?\""
     cancel_my_account: Cancelar minha conta
@@ -1289,8 +1289,8 @@ coke_BR:
     terms_and_conditions: "Termos e condi\xC3\xA7\xC3\xB5es"
     support: Suporte
     safety_tips: "Dicas de seguran\xC3\xA7a"
-    profile_not_available: "Perfil n\xC3\xA3o est\xC3\xA1 dispon\xC3\xADvel"
     about_cyloop: Sobre a Coca-Cola.fm
+    profile_not_available: "Perfil n\xC3\xA3o est\xC3\xA1 dispon\xC3\xADvel"
     feedback: "Sua opini\xC3\xA3o"
     about_hoodiny: Sobre a Hoodiny
     profile_not_available_sorry: "Lamentamos, mas este perfil n\xC3\xA3o est\xC3\xA1 dispon\xC3\xADvel para o seu pa\xC3\xADs"
@@ -1347,7 +1347,7 @@ coke_BR:
     song: 
       submit: "Compartilhar m\xC3\xBAsica"
       subject: "{{user}} gostaria de compartilhar esta m\xC3\xBAsica com voc\xC3\xAA."
-      marketing: "Copyright 2008 Cyloop LLC. Todos os direitos reservador. Cyloop, Cyloop.com, e o logo do Cyloop logo e todas as outras marcas Cyloop aqui contidas s\xC3\xA3o propriedade registrada do Hoodiny Entertainment Group e/ou suas empresas afiliadas. \r\n\
+      marketing: "Copyright 2008 Cyloop LLC. Todos os direitos reservador. Cyloop, Coca-Cola.fm, e o logo do Cyloop logo e todas as outras marcas Cyloop aqui contidas s\xC3\xA3o propriedade registrada do Hoodiny Entertainment Group e/ou suas empresas afiliadas. \r\n\
         Todas as outras marcas aqui contidas s\xC3\xA3o de propriedade dos seus respectivos donos. A reprodu\xC3\xA7\xC3\xA3o total ou parcial em qualquer tipo de m\xC3\xADdia \xC3\xA9 proibida, salvo com expressa autoriza\xC3\xA7\xC3\xA3o por escrito do Cyloop LLC.\r\n\
         Cyloop, LLC, 555 Washington Avenue, Miami Beach, FL 33139 \r\n\
         Microsoft Corporation, One Microsoft Way, Redmond, WA 98052-6399, USA \\xC2\\xA9; 2008 Microsoft Corporation. \r\n\
@@ -1476,12 +1476,12 @@ coke_BR:
     welcome: Bem-vindo
     click_to_unfollow: Clique {{follow_link}} para parar de seguir
     results: Resultados
-    service_unavailable: "Este servi\xC3\xA7o est\xC3\xA1 temporariamente inacess\xC3\xADvel. Por favor, volte mais tarde."
-    next: "Pr\xC3\xB3ximo"
-    played_by: Reproduzido por
     time: !binary |
       RHVyYcOnw6Nv
 
+    service_unavailable: "Este servi\xC3\xA7o est\xC3\xA1 temporariamente inacess\xC3\xADvel. Por favor, volte mais tarde."
+    next: "Pr\xC3\xB3ximo"
+    played_by: Reproduzido por
     sorry: Desculpe!
     created_by: Criado por
     following: seguindo
@@ -1503,8 +1503,8 @@ coke_BR:
     me: Mim
     person: Pessoa
     albums_by: "\xC3\x81lbuns por"
-    mix: Mix
     followees: Seguidos
+    mix: Mix
     comments: "Coment\xC3\xA1rios"
     "no": !binary |
       TsOjbw==
