@@ -83,6 +83,7 @@ class UsersController < ApplicationController
       # u.encrypt_demographics
       u.networks << ApplicationController::CYLOOP_NETWORK
       u.save!
+      send_registration_notification
       
       if request.xhr?
         js = "_gaq.push(['_trackPageview', '/auth/optin/confirm']);"
@@ -121,6 +122,7 @@ class UsersController < ApplicationController
     # You accepted the Cyloop terms.
     # Just logging into Coke means you're in the Coke network.
     @user.networks = [ApplicationController::CYLOOP_NETWORK, ApplicationController::COKE_NETWORK]
+    @user.network_id = 1
 
     @user.email = email.downcase if email
 
@@ -132,8 +134,7 @@ class UsersController < ApplicationController
       session[:sso_type] = nil
       self.current_user = @user
 
-      subject = t("registration.email.subject")
-      UserNotification.send_registration( :user_id => @user.id, :subject => subject, :host_url => request.host, :site_id => current_site.code, :global_url => global_url, :locale => current_site.default_locale) unless Rails.env.development?
+      send_registration_notification
 
       # Background validation to twitter username
       Resque.enqueue(TwitterJob, {
@@ -376,5 +377,8 @@ class UsersController < ApplicationController
   def compute_layout
     [:new, :create, :forgot].include?(action_name.to_sym) ? "no_search_form" : "application" 
   end
-  
+
+  def send_registration_notification
+    UserNotification.send_registration( :user_id => @user.id, :subject => t("registration.email.subject"), :host_url => request.host, :site_id => current_site.code, :global_url => global_url, :locale => current_site.default_locale) unless Rails.env.development?
+  end  
 end
