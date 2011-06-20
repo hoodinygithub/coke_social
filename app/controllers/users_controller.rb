@@ -76,15 +76,12 @@ class UsersController < ApplicationController
     @user = session[:sso_user].nil? ? User.new : session[:sso_user]
   end
 
-  # Cached on startup
-  COKE_NETWORK = Network.find(2)
-
   # Cross-network opt-in action
   def cross_network
     if params[:opt_in] and params[:opt_in] == "1"
       u = current_user
-      u.encrypt_demographics
-      u.networks << COKE_NETWORK
+      # u.encrypt_demographics
+      u.networks << ApplicationController::CYLOOP_NETWORK
       u.save!
       
       if request.xhr?
@@ -121,7 +118,9 @@ class UsersController < ApplicationController
     @user.ip_address  = remote_ip
     @user.msn_live_id = session[:msn_live_id] if session[:msn_live_id] # wlid_web_login?
     @user.born_on_string = "#{born_on_year}-#{born_on_month}-#{born_on_day}"
-    @user.networks << COKE_NETWORK
+    # You accepted the Cyloop terms.
+    # Just logging into Coke means you're in the Coke network.
+    @user.networks = [ApplicationController::CYLOOP_NETWORK, ApplicationController::COKE_NETWORK]
 
     @user.email = email.downcase if email
 
