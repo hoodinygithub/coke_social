@@ -2,6 +2,7 @@
 #
 # To ban all spiders from the entire site uncomment the next two lines:
  User-Agent: *
- Disallow: /my/ #covers all private pages
- Disallow: /images/ # covers all images
- Disallow: /messenger_player
+Disallow: /
+# Disallow: /my/ #covers all private pages
+# Disallow: /images/ # covers all images
+# Disallow: /messenger_player
