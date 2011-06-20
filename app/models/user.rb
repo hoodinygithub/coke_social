@@ -285,10 +285,9 @@ class User < Account
     true
   end
 
-  # User is part of the current site's network
-  def part_of_network?
+  def part_of_network?(p_networks = ApplicationController.current_site.networks)
     my_network_ids = self.networks.map(&:id)
-    ApplicationController.current_site.networks.each { |n|
+    Array(p_networks).each { |n|
       return true if my_network_ids.include? n.id
     }
     false
@@ -358,15 +357,16 @@ class User < Account
   end
 
   # AccountUni - set encrypted demographics from unencrypted
+  # If you're in both networks, you have both encrypted and unencrypted demographics, which is dumb.
   def encrypt_demographics
     self.name = self['name'] if self.name.nil?
-    self['name'] = nil
+    #self['name'] = nil
     self.email = self['email'] if self.email.nil?
-    self['email'] = nil
+    #self['email'] = nil
     self.gender = self['gender'] if self.gender.nil?
-    self['gender'] = nil
+    #self['gender'] = nil
     self.born_on_string = self['born_on'].to_s if self.born_on_string.nil?
-    self['born_on'] = nil
+    #self['born_on'] = nil
   end
 
   protected

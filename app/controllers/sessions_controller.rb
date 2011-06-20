@@ -82,7 +82,7 @@ class SessionsController < ApplicationController
     result = nil
     if logged_in?
       # Don't expose encrypted data fields here (email, name, gender, dob).
-      result = { :logged_in => true, :id => current_user.id, :slug => current_user.slug, :opted_in => current_user.part_of_network? }
+      result = { :logged_in => true, :id => current_user.id, :slug => current_user.slug, :opted_in => current_user.part_of_network?(ApplicationController::CYLOOP_NETWORK) }
     else
       result = { :logged_in => false }
     end
@@ -157,7 +157,7 @@ private
       session[:registered_from] = nil
       flash[:google_code] = 'loginOK'
 
-      if account.part_of_network?
+      if account.part_of_network? ApplicationController::CYLOOP_NETWORK
         flash.discard(:error)
 
         if p_render
@@ -172,10 +172,6 @@ private
         end
       else
         # cross-network login
-        unless account.secure_network?
-          account.encrypt_demographics
-          account.save!
-        end
         if p_render
           if request.xhr?
             @msg = "login_layer"

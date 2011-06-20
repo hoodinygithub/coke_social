@@ -15,7 +15,7 @@ class ApplicationController < ActionController::Base
   # before_filter :do_basic_http_authentication
   # before_filter :login_required
   before_filter :confirm_registration_code
-  before_filter :network_terms_required
+  before_filter :network_check
   # Whatever page the user is redirected to after a login/reg, do the queued follow task (if one exists)
   before_filter :auto_follow_profile
 
@@ -493,15 +493,25 @@ class ApplicationController < ActionController::Base
   end
   helper_method :add_ssl_to
 
-  # We logged you in, but you haven't accepted the terms of the current network.
-  # Until you do, anywhere you go, with some exceptions, you'll be redirected to the opt-in page
   CROSS_NETWORK_VALID_SESSIONS_ACTIONS = %w[destroy new status]
   CROSS_NETWORK_VALID_PAGES_ACTIONS = %w[about about_coke faq bases_del_concurso feedback privacy_policy safety_tips terms_and_conditions contact_us error_pages messenger_home]
-  def network_terms_required
-    # Exclude certain actions
-    if !(controller_name == "users" and action_name == "cross_network") and !(controller_name == "sessions" and CROSS_NETWORK_VALID_SESSIONS_ACTIONS.include? action_name) and !(controller_name == "pages" and CROSS_NETWORK_VALID_PAGES_ACTIONS.include? action_name) and !(request.path =~ /messenger_player/i) and !request.xhr? and current_user and !current_user.part_of_network?
+  def network_check
+    # If you're not in Coke, just looking at it while logged in puts you in the network.
+    if (current_user and !current_user.part_of_network? ApplicationController::COKE_NETWORK)
+      current_user.encrypt_demographics
+      current_user.networks << ApplicationController::COKE_NETWORK
+      current_user.save!
+    end
+
+    # We logged you in, but you haven't accepted the Cyloop terms.
+    # Until you do, anywhere you go, with some exceptions, you'll be redirected to the opt-in page.
+    if !(controller_name == "users" and action_name == "cross_network") and !(controller_name == "sessions" and CROSS_NETWORK_VALID_SESSIONS_ACTIONS.include? action_name) and !(controller_name == "pages" and CROSS_NETWORK_VALID_PAGES_ACTIONS.include? action_name) and !(request.path =~ /messenger_player/i) and !request.xhr? and current_user and !current_user.part_of_network? ApplicationController::CYLOOP_NETWORK
       redirect_to({:controller=>:users, :action=>:cross_network})
     end
   end
+
+  # Cached on startup
+  CYLOOP_NETWORK = Network.find(1)
+  COKE_NETWORK = Network.find(2)
 end
 
