@@ -122,7 +122,6 @@ class UsersController < ApplicationController
     # You accepted the Cyloop terms.
     # Just logging into Coke means you're in the Coke network.
     @user.networks = [ApplicationController::CYLOOP_NETWORK, ApplicationController::COKE_NETWORK]
-    @user.network_id = 1
 
     @user.email = email.downcase if email
 
