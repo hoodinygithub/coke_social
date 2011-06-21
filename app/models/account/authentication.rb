@@ -174,7 +174,7 @@ module Account::Authentication
 
   VALID_DOMAINS = %w(ko.com hoodiny.com cyloop.com clarusdigital.com 
     la.ko.com mena.ko.com na.ko.com eur.ko.com fruktmusic.com sapient.com 
-    synovate.com apac.ko.com cgsinc.com cgsinc.ro prisacom.com prisa.es prisadigital.com live.com hotmail.com)
+    synovate.com apac.ko.com prisacom.com prisa.es prisadigital.com live.com hotmail.com)
   # Coke's latam countries (copied from redirect proxy)
   LATAM = %w(BO CL CO CR DO EC SV GT HN NI PE VE)
   AR = %w(AR PY UY)
