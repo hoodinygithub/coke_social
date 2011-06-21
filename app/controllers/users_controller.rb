@@ -83,7 +83,7 @@ class UsersController < ApplicationController
       # u.encrypt_demographics
       u.networks << ApplicationController::CYLOOP_NETWORK
       u.save!
-      send_registration_notification
+      send_registration_notification u
       
       if request.xhr?
         js = "_gaq.push(['_trackPageview', '/auth/optin/confirm']);"
@@ -134,7 +134,7 @@ class UsersController < ApplicationController
       session[:sso_type] = nil
       self.current_user = @user
 
-      send_registration_notification
+      send_registration_notification @user
 
       # Background validation to twitter username
       Resque.enqueue(TwitterJob, {
@@ -378,7 +378,8 @@ class UsersController < ApplicationController
     [:new, :create, :forgot].include?(action_name.to_sym) ? "no_search_form" : "application" 
   end
 
-  def send_registration_notification
-    UserNotification.send_registration( :user_id => @user.id, :subject => t("registration.email.subject"), :host_url => request.host, :site_id => current_site.code, :global_url => global_url, :locale => current_site.default_locale) unless Rails.env.development?
+  def send_registration_notification(p_user)
+    UserNotification.send_registration( :user_id => p_user.id, :subject => t("registration.email.subject"), :host_url => request.host, :site_id => current_site.code, :global_url => global_url, :locale => current_site.default_locale) unless Rails.env.development?
   end  
 end
+
