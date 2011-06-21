@@ -287,6 +287,14 @@ class User < Account
 
   def part_of_network?(p_networks = ApplicationController.current_site.networks)
     my_network_ids = self.networks.map(&:id)
+
+    # Backwards-compatible with Cyloop, which is using the old network_id column
+    if my_network_ids.empty?
+      my_network_ids << self.network_id
+      self.networks << Network.find(self.network_id)
+      save!
+    end
+
     Array(p_networks).each { |n|
       return true if my_network_ids.include? n.id
     }
