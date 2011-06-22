@@ -6,7 +6,7 @@
   <script type="text/javascript">
     $(document).ready(function() {
 
-        // Conditional if player is ready, action: request mix details station
+        // Conditional if player is ready and mix details id neq loaded mix id, action: request mix details station
         // else if player not ready, action: override ready callback function
         // else current station is loaded but paused, action: unpause
         if (Base.Player.STATE == "READY" && Base.Station._station.pid != <%= p.id %>)
