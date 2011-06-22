@@ -5,9 +5,31 @@
 <% unless params[:sort_by] || params[:page] %>
   <script type="text/javascript">
     $(document).ready(function() {
-      Base.Station.request('/playlists/<%= p.id %>.xml', 'xml', Base.Station.stationCollection);
-      Base.Player.random(false)
+
+        // Conditional if player is ready, action: request mix details station
+        // else if player not ready, action: override ready callback function
+        // else current station is loaded but paused, action: unpause
+        if (Base.Player.STATE == "READY" && Base.Station._station.pid != <%= p.id %>)
+        {
+          mixStationLoad();
+        }
+        else if (Base.Player.STATE == "NOT_READY")
+        {
+          Base.Player.ready = mixStationLoad;
+        }
+        else
+        {
+          if (Base.Player._player == "coke" && !Base.Player.isPlaying()) Base.Player.playPause();
+        }
     });
+
+    function mixStationLoad()
+    {
+      if (Base.Player.STATE == "NOT_READY") Base.Player.STATE = "READY";
+      if (Base.Station._initial == true) Base.Station._initial = false; // Force autoplay
+      Base.Station.request('/playlists/<%= p.id %>.xml', 'xml', Base.Station.stationCollection);
+      Base.Player.random(false);
+    }
   </script>
 <% end %>
 

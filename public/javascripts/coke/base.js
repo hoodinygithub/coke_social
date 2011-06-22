@@ -307,10 +307,13 @@ Base.Station = {
 Base.Player = {
 
   _init:true,
+  STATE: "NOT_READY",
   ready: function()
   {
+    this.STATE = "READY";
     if (pl.length > 0 && this._player == "coke") Base.Station.request(pl[Math.round(Math.random() * (pl.length - 1))], 'xml', Base.Station.stationCollection);
   },
+
 
   _player: "",
   player: function(p)
