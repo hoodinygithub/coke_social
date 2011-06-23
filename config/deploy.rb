@@ -184,6 +184,7 @@ namespace :unicorn do
   DESC
   task :reload, :roles => [:app], :except => {:unicorn => false} do
     sudo "/engineyard/bin/unicorn #{application} reload"
+    sudo "/engineyard/bin/unicorn #{application}_ssl reload"
   end
 
   desc <<-DESC
@@ -191,6 +192,7 @@ namespace :unicorn do
   DESC
   task :aworker, :roles => [:app], :except => {:unicorn => false} do
     sudo "/engineyard/bin/unicorn #{application} aworker"
+    sudo "/engineyard/bin/unicorn #{application}_ssl aworker"
   end
 
   desc <<-DESC
@@ -198,6 +200,7 @@ namespace :unicorn do
   DESC
   task :rworker, :roles => [:app], :except => {:unicorn => false} do
     sudo "/engineyard/bin/unicorn #{application} rworker"
+    sudo "/engineyard/bin/unicorn #{application}_ssl rworker"
   end
 
   desc <<-DESC
@@ -205,6 +208,7 @@ namespace :unicorn do
   DESC
   task :deploy, :roles => [:app], :except => {:unicorn => false} do
     sudo "/engineyard/bin/unicorn #{application} deploy"
+    sudo "/engineyard/bin/unicorn #{application}_ssl deploy"
   end
 end #namespace
 
