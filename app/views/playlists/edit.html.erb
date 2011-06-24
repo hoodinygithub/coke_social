@@ -46,90 +46,90 @@
     <%= javascript_include_tag 'playlist_create' %>
     <script type="text/javascript">
       has_custom_avatar = <%= @playlist.avatar_file_name.nil? ? 0 : 1 %>;
-    </script>
-    <%= form_tag playlist_edit_path(@playlist), :class => "account_settings search_music", :id => "update_playlist_form", :method => :post, :multipart => true %>
-    <input type="hidden" name="item_ids" value="">
+      </script>
+      <div class="two_columns">
+      <%= form_tag playlist_edit_path(@playlist), :class => "account_settings search_music", :id => "update_playlist_form", :method => :post, :multipart => true %>
+      <input type="hidden" name="item_ids" value="">
 
-    <div class="two_columns">
-      <h1><%= t('playlists.edit') %></h1>
-      <div class="form_row last">
-        <h2><%= t('playlists.name_your_playlist') %></h2>
+        <h1><%= t('playlists.edit') %></h1>
+        <div class="form_row last">
+          <h2><%= t('playlists.name_your_playlist') %></h2>
 
-        <div class="grey_round_box align_center">
-          <input type="text" class="input full_width3" name="playlist[name]" value="<%= @playlist.name %>"/>
-        </div>
-      </div><!--/end form_row -->
+          <div class="grey_round_box align_center">
+            <input type="text" class="input full_width3" name="playlist[name]" value="<%= @playlist.name %>"/>
+          </div>
+        </div><!--/end form_row -->
 
-      <div class="form_row last">
-        <h2><%= t('playlists.tag_your_playlist') %>&nbsp;
-          <a href="#" onclick ="Base.playlists.showTagsLayer();return false;"class="red">
-            <%= t('playlists.click_here_to_add_tags') %>
-          </a>
-        </h2>
+        <div class="form_row last">
+          <h2><%= t('playlists.tag_your_playlist') %>&nbsp;
+            <a href="#" onclick ="Base.playlists.showTagsLayer();return false;"class="red">
+              <%= t('playlists.click_here_to_add_tags') %>
+            </a>
+          </h2>
 
-        <div class="grey_round_box align_center">
-          <input type="text" class="input full_width3 edit_tags" value="<%= @playlist.valid_tags.join(',') %>" name="playlist[tags]" />
-        </div>
-      </div><!--/end form_row -->
+          <div class="grey_round_box align_center">
+            <input type="text" class="input full_width3 edit_tags" value="<%= @playlist.valid_tags.join(',') %>" name="playlist[tags]" />
+          </div>
+        </div><!--/end form_row -->
 
-      <h2><%= t('playlists.search_for_music') %></h2>
-      <%= render :partial => 'playlists/create/search_box' %>
-      <div id="search_results_container">
-        <%= render :partial => 'playlists/create/search_results' %>
-      </div>
-      <div id="playlist_recommended_artists_container">
-        <%= render :partial => 'playlists/create/recommendations' %>
-      </div>
-    </div><!--/end two_columns -->
-  </form>
-
-  <div id="right_column">
-    <h2><%= t('playlists.picture') %></h2>
-    <div class="playlist_image_container">
-      <div id="update_layer_avatar_container">
-        <div id="update_layer_loading"><%= image_tag 'loading.gif' %></div>
-        <%= avatar_for @playlist, :album, :class => "icon playlist valign_middle float_left", :id => "update_layer_avatar" %>
-      </div>
-      &nbsp;
-      <%= form_tag playlist_avatar_update_path(:format => 'js'), :multipart => true, :target => 'upload_frame', :method => :post, :id => :update_avatar_form %>
-      <label class='label_holder'>
-        <a href="#" id="avatar_upload_button" class="red_button valign_middle"><span><span><%= t('account_settings.update') %></span></span></a>
-        <input id="playlist_avatar" type="file" class="file" name="playlist[avatar]" size="25" onchange="playlist_image_preview();"/>
-        <iframe id='upload_frame' name="upload_frame" style="width:1px;height:1px;border:0px" src="about:blank"></iframe>
-      </label>
-      <div id="remove_playlist_avatar" <%= 'style="display:none;"' unless @playlist.avatar_file_name %>
-        <b><%= link_to("[ #{t('account_settings.delete')} ]", playlist_avatar_delete_path(@playlist), :onclick => "Base.playlists.avatarDelete(); return false;") %></b>
-      </div>
-
+        <h2><%= t('playlists.search_for_music') %></h2>
+        <%= render :partial => 'playlists/create/search_box' %>
     </form>
-    <div id="uploaded_image_name">filename</div>
-  </div>
+        <div id="search_results_container">
+          <%= render :partial => 'playlists/create/search_results' %>
+        </div>
+        <div id="playlist_recommended_artists_container">
+          <%= render :partial => 'playlists/create/recommendations' %>
+        </div>
+      </div><!--/end two_columns -->
 
-  <h1><%= t('playlists.rules') %></h1>
-  <%= render :partial => 'playlists/create/track_list' %>
-</div><!--/end right_column -->
+    <div id="right_column">
+      <h2><%= t('playlists.picture') %></h2>
+      <div class="playlist_image_container">
+        <div id="update_layer_avatar_container">
+          <div id="update_layer_loading"><%= image_tag 'loading.gif' %></div>
+          <%= avatar_for @playlist, :album, :class => "icon playlist valign_middle float_left", :id => "update_layer_avatar" %>
+        </div>
+        &nbsp;
+        <%= form_tag playlist_avatar_update_path(:format => 'js'), :multipart => true, :target => 'upload_frame', :method => :post, :id => :update_avatar_form %>
+        <label class='label_holder'>
+          <a href="#" id="avatar_upload_button" class="red_button valign_middle"><span><span><%= t('account_settings.update') %></span></span></a>
+          <input id="playlist_avatar" type="file" class="file" name="playlist[avatar]" size="25" onchange="playlist_image_preview();"/>
+          <iframe id='upload_frame' name="upload_frame" style="width:1px;height:1px;border:0px" src="about:blank"></iframe>
+        </label>
+        <div id="remove_playlist_avatar" <%= 'style="display:none;"' unless @playlist.avatar_file_name %>
+          <b><%= link_to("[ #{t('account_settings.delete')} ]", playlist_avatar_delete_path(@playlist), :onclick => "Base.playlists.avatarDelete(); return false;") %></b>
+        </div>
+
+      </form>
+      <div id="uploaded_image_name">filename</div>
+    </div>
+
+    <h1><%= t('playlists.rules') %></h1>
+    <%= render :partial => 'playlists/create/track_list' %>
+  </div><!--/end right_column -->
 
 
-<div class="clearer"></div>
-<div id="stream_connector"></div>
-<script type="text/javascript">
-  <% if @edited %>
-    $.popup({ div: '#edit_conf_popup' });
-  <% end %>
+  <div class="clearer"></div>
+  <div id="stream_connector"></div>
+  <script type="text/javascript">
+    <% if @edited %>
+      $.popup({ div: '#edit_conf_popup' });
+    <% end %>
 
-  $tag_box = new $.TextboxList('input.edit_tags', {  });
+    $tag_box = new $.TextboxList('input.edit_tags', {  });
 
-  var sFlashVars = {
-  playerId:<%= @player_id %>
+    var sFlashVars = {
+playerId:<%= @player_id %>
     };
-  var sParams = {
-  allowScriptAccess: 'sameDomain'
-  };
-  var sAttribs = {
-  id:'stream_connect',
-     name:'stream_connect'
-  };
-  swfobject.embedSWF('/flash/stream_connect.swf', 'stream_connector', '1', '1', '9.0.0', false, sFlashVars, sParams, sAttribs);
+var sParams = {
+allowScriptAccess: 'sameDomain'
+};
+var sAttribs = {
+id:'stream_connect',
+   name:'stream_connect'
+};
+swfobject.embedSWF('/flash/stream_connect.swf', 'stream_connector', '1', '1', '9.0.0', false, sFlashVars, sParams, sAttribs);
 </script>
 </div>
 </div>
