@@ -202,7 +202,8 @@ Base.Util = {
     if (req.match(/index-bands/)) req = req + "_partial";
 
     // Allows actions that respond to XHR differently to be overridden
-    new_req = req + (req.indexOf('?') != -1 ? "&ajax=1" : "?ajax=1")
+    new_req = req + (req.indexOf('?') != -1 ? "&ajax=1" : "?ajax=1");
+    new_req = new_req + (new_req.indexOf('?') != -1 ? ("&app=" + app) : ("?app=" + app));
 
     $.ajax({
       url: new_req,

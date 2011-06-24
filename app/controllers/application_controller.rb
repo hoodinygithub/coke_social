@@ -495,7 +495,7 @@ class ApplicationController < ActionController::Base
   helper_method :add_ssl_to
 
   CROSS_NETWORK_VALID_SESSIONS_ACTIONS = %w[destroy new status]
-  CROSS_NETWORK_VALID_PAGES_ACTIONS = %w[about about_coke faq bases_del_concurso feedback privacy_policy safety_tips terms_and_conditions contact_us error_pages messenger_home]
+  CROSS_NETWORK_VALID_PAGES_ACTIONS = %w[about about_coke faq bases_del_concurso feedback privacy_policy safety_tips terms_and_conditions contact_us error_pages messenger_home home]
   def network_check
     # If you're not in Coke, just looking at it while logged in puts you in the network.
     if (current_user and !current_user.part_of_network? ApplicationController::COKE_NETWORK)
@@ -506,8 +506,10 @@ class ApplicationController < ActionController::Base
 
     # We logged you in, but you haven't accepted the Cyloop terms.
     # Until you do, anywhere you go, with some exceptions, you'll be redirected to the opt-in page.
-    if !(controller_name == "users" and action_name == "cross_network") and !(controller_name == "sessions" and CROSS_NETWORK_VALID_SESSIONS_ACTIONS.include? action_name) and !(controller_name == "pages" and CROSS_NETWORK_VALID_PAGES_ACTIONS.include? action_name) and !(request.path =~ /messenger_player/i) and !request.xhr? and current_user and !current_user.part_of_network? ApplicationController::CYLOOP_NETWORK
-      redirect_to({:controller=>:users, :action=>:cross_network})
+    if !(controller_name == "users" and action_name == "cross_network") and !(controller_name == "sessions" and CROSS_NETWORK_VALID_SESSIONS_ACTIONS.include? action_name) and !(controller_name == "pages" and CROSS_NETWORK_VALID_PAGES_ACTIONS.include? action_name) and !(request.path =~ /messenger_player/i) and current_user and !current_user.part_of_network? ApplicationController::CYLOOP_NETWORK
+      opts = {:controller=>:users, :action=>:cross_network}
+      opts.merge!({"app" => params[:app]}) if params.has_key? :app and params[:app] == "multitask"
+      redirect_to(opts)
     end
   end
 

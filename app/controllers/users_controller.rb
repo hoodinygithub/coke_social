@@ -100,8 +100,10 @@ class UsersController < ApplicationController
         @msg = "opt_layer"
         @error_msgs = "show error msgs"
         @locked = true
-        layer_html = render_to_string '/messenger_player/layers/alert_layer'
-        render(:json => {:status => 'redirect', :html => layer_html}, :layout => false)
+        unless params.has_key? :app and params[:app] == "multitask"
+          layer_html = render_to_string '/messenger_player/layers/alert_layer'
+          render(:json => {:status => 'redirect', :html => layer_html}, :layout => false)
+        end
       end
     end
   end
