@@ -762,6 +762,7 @@ h2 {
 .account_settings {
     position: relative;
     zoom: 1;
+    float: left;
 }
 
 .account_settings.search_music {
@@ -1351,9 +1352,10 @@ h2 {
 }
 
 .added_items_box {
-    height: 430px;
+    height: 397px;
     background: #fff;
     overflow-y: auto;
+    position: relative;
 }
 
 .added_items {
