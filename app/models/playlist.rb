@@ -63,7 +63,7 @@ class Playlist < ActiveRecord::Base
   default_scope :conditions => { :deleted_at => nil }  
 
   define_index do
-    where "playlists.deleted_at IS NULL AND playlists.locked = 0 AND accounts.deleted_at IS NULL AND networks.id = 2"
+    where "playlists.deleted_at IS NULL AND playlists.locked_at IS NULL AND accounts.deleted_at IS NULL AND networks.id = 2"
     indexes :cached_tag_list
     indexes "UPPER(playlists.name)", :as => :normalized_name, :sortable => true
     indexes :cached_artist_list
