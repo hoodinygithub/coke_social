@@ -64,11 +64,9 @@
           <%= banner_ad("square_banner") %>
         </div><!-- .open_happiness_box -->      
         <div class="mod_emociones">
-          <div class="mod_tags">
-            <% cache("#{site_cache_key}/modules/tag_cloud", :expires_in => EXPIRATION_TIMES["home_tag_cloud"]) do %>
-              <%= render :partial => "shared/tag_cloud", :locals => { :tags => current_site.tag_counts_from_playlists } %>
-            <% end %>
-          </div><!-- .mod_tags -->
+          <% cache("#{site_cache_key}/modules/tag_cloud", :expires_in => EXPIRATION_TIMES["home_tag_cloud"]) do %>
+            <%= render :partial => "shared/tag_cloud", :locals => { :tags => current_site.tag_counts_from_playlists } %>
+          <% end %>
         </div><!-- .mod_emociones -->
       </div><!-- .cont_columna der -->
     </div><!-- /bloque -->
