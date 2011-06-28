@@ -486,7 +486,7 @@ div.star-rating-readonly a{cursor:default !important;}
 .tags_botella{padding:70px 45px 0 30px;position:absolute;z-index:1;text-align:center;bottom:22px;}
 .tags_botella_trans{width:297px;height:555px;background:url(/images/multitask/bg_botella_trans.png) no-repeat 0 0;position:absolute;top:-26px;left:0;z-index:2;}
 .tags_botella.outer{z-index:3;position:absolute;}
-.tags_botella.outer a{opacity:.2;}
+.tags_botella.outer a{opacity:.2;filter: alpha(opacity=20);}
 .mod_tags a{color:#e12422;text-decoration:none;}
 .mod_tags a:hover{color:#333;opacity:1;}
 .mod_tags .tag_tam1{font-size:1.4em;}
