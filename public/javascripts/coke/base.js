@@ -1922,6 +1922,7 @@ Base.activity.count_chars = function() {
 
 Base.activity.pushUpdate = function(button, token) {
   $(button).hide()
+  $(button).parent().html('<img class="loading" src="/images/loading.gif"/>');
   $.post(Base.currentSiteUrl() + '/activity/update/status', 
          {'message':$("#network_comment").val(), 'authenticity_token':encodeURIComponent(token)}, 
          Base.activity.pushUpdateCallback);
@@ -1942,6 +1943,7 @@ Base.activity.pushUpdateCallback = function(response) {
    // show response.errors
  }
  $('a.compartir_button').show();
+ $('.share_button_container .loading').hide();
 }
 
 Base.utils.showRegistrationLayer = function(url, type, accountId) {
