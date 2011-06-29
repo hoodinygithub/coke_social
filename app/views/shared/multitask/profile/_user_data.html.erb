@@ -22,9 +22,9 @@
               
               <li><span><%= t('profile.navigation.badges') %></span><%= link_to user.total_badges, (profile_owner? ? my_badges_path : user_badges_path(user)), :title => user.total_badges, :content_switch_enabled => true %></li>
               
-              <li><span><%= t('profile.navigation.followers') %></span><%= link_to user.follower_count, (profile_owner? ? my_followers_path : user_followers_path(user)), :title => user.follower_count, :content_switch_enabled => true %></li>
+              <li><span><%= t('profile.navigation.followers') %></span><%= link_to user.followers.count, (profile_owner? ? my_followers_path : user_followers_path(user)), :title => user.follower_count, :content_switch_enabled => true %></li>
 
-              <li><span><%= t('profile.navigation.following') %></span><%= link_to user.followee_count, (profile_owner? ? my_following_index_path : user_following_index_path(user)), :title => user.followee_count, :content_switch_enabled => true %></li>
+              <li><span><%= t('profile.navigation.following') %></span><%= link_to user.followees.count, (profile_owner? ? my_following_index_path : user_following_index_path(user)), :title => user.followee_count, :content_switch_enabled => true %></li>
           </ul>
           
           <% if profile_owner? %>

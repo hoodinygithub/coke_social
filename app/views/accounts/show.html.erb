@@ -5,7 +5,7 @@
 <% end %>
 
 <% content_for :right_side_content do %>
-  <%= render :partial => 'shared/multitask/profile/following', :locals => {:user => profile_user} %>
+  <%= render :partial => 'shared/multitask/profile/followers', :locals => {:user => profile_user} %>
   <%= render :partial => 'shared/multitask/profile/top_mixes', :locals => {:user => profile_user} %>
   <%= render :partial => 'shared/multitask/profile/recent_activity', :locals => {:user => profile_user, :activity => @activity} %>
 <% end %>
