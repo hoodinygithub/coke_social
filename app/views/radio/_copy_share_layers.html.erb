@@ -19,8 +19,7 @@
         </div><!-- .mix_datos -->
         <form action="<%= duplicate_user_playlist_path(p.owner, p) %>" class="f_copiar" onsubmit="Base.playlists.multitask_layer_submit('sub_copiar', Base.playlists.multitask_duplicateCallback); return false;">
             <label class="estirar">
-              <span><%= t('coke_messenger.layers.copy_mix_layer.new_mix_name') %>:</span>                      
-              <input id="playlist_name" name="copy[name]" type="text" class="texto" /></label>
+            <span><%= t('coke_messenger.layers.copy_mix_layer.new_mix_name') %>:</span></label><input id="playlist_name" name="copy[name]" type="text" class="texto" />
             <input type="submit" value="<%= t('actions.submit').upcase %>" class="btn_rojo" />
             <input type="reset" value="<%= t('actions.cancel').upcase %>" onclick="Base.playlists.multitask_layer_clear('sub_copiar');" class="btn_gris" />
         </form><!-- .f_copiar -->
