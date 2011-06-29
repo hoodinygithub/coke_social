@@ -2,8 +2,8 @@ class DashboardsController < ApplicationController
   before_filter :login_required
   before_filter :load_user_activities, :only => [:show]
 
-  #ACTIVITIES_MAX           = 50
-  ACTIVITIES_PAGE_SIZE     = 3
+  ACTIVITIES_MAX           = 50
+  ACTIVITIES_PAGE_SIZE     = 12
 
   layout_except_xhr 'application'
 
@@ -37,22 +37,23 @@ class DashboardsController < ApplicationController
     
     unless (Activity::Feed.db rescue nil)
       # TESTING - Update info if this user is not in your DB
-      test_item = {"timestamp"=>"1297971608", :pk=>"1600280/status/1297971608", "user_avatar"=>"/images/multitask/djs/sim_autor.jpg", "account_id"=>"1600280", "type"=>"status", "id"=>"23688250472120", "user_id"=>"1600280", "user_slug"=>"sue008"}
+      user = User.first
+      test_item = {"timestamp"=>"1297971608", :pk=>"1600280/status/1297971608", "user_avatar"=>"#{user.avatar.path}", "account_id"=>"#{user.id}", "type"=>"status", "id"=>"23688250472120", "user_id"=>"#{user.id}", "user_slug"=>"#{user.slug}"}
       collection = []
-      50.times do |i|
+      (ACTIVITIES_PAGE_SIZE+1).times do |i|
         collection << test_item.merge("message" => "Message #{i+1}")
       end
     else
       collection      = current_user.activity_feed(:group => group)
     end
-    @activity     = collection.sort_by {|a| a['timestamp'].to_i}.reverse
+    @activity     = collection.sort_by {|a| a['timestamp'].to_i}.reverse[0..ACTIVITIES_PAGE_SIZE-1]
     
     if collection.size - ACTIVITIES_PAGE_SIZE > 0
       @has_more = true
     end
 
     # perf todo: We're saving db time, but not Tyrant time.  Activity model needs to support a limit param.
-    @activity[0..ACTIVITIES_PAGE_SIZE-1].each do |a|
+    @activity.each do |a|
       account      =  Account.find(a['account_id'])
       a['account'] = account
       if a['type'] == 'station'
