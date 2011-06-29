@@ -14,6 +14,7 @@
           <%= link_to truncate(follow.name,:length => 18), follow, :content_switch_enabled => true %>
       </div><!-- .thumb_small -->
     <% end %>
+    <div style="clear:both"></div>
     <a class="ico_mas" href="<%= profile_owner? ? my_following_index_path : user_following_index_path(user) %>" title="<%= t('actions.view_more') %>" content_switch_enabled="true"><%= t('actions.view_more') %><span class="bg_flecha">&nbsp;</span></a>
   <% end %>
 </div><!-- .mod_siguiendo -->
