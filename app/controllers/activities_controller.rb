@@ -146,15 +146,16 @@ class ActivitiesController < ApplicationController
     
     unless (Activity::Feed.db rescue nil)
       # TESTING - Update info if this user is not in your DB
-      test_item = {"timestamp"=>"1297971608", :pk=>"1600280/status/1297971608", "user_avatar"=>"/images/multitask/djs/sim_autor.jpg", "account_id"=>"1600280", "type"=>"status", "id"=>"23688250472120", "user_id"=>"1600280", "user_slug"=>"sue008"}
+      user = User.first
+      test_item = {"timestamp"=>"1297971608", :pk=>"1600280/status/1297971608", "user_avatar"=>"#{user.avatar.path}", "account_id"=>"#{user.id}", "type"=>"status", "id"=>"23688250472120", "user_id"=>"#{user.id}", "user_slug"=>"#{user.slug}"}
       collection = []
-      50.times do |i|
+      (ACTIVITIES_PAGE_SIZE+1).times do |i|
         collection << test_item.merge("message" => "Message #{i+1}")
       end
     else
       collection      = @account.activity_feed(:group => group)
     end
-    @collection     = collection.sort_by {|a| a['timestamp'].to_i}.reverse
+    @collection     = collection.sort_by {|a| a['timestamp'].to_i}.reverse[0..ACTIVITIES_PAGE_SIZE-1]
     
     if collection.size - ACTIVITIES_PAGE_SIZE > 0
       @has_more = true
