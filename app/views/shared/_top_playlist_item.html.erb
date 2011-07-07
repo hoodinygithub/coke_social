@@ -2,7 +2,7 @@
   <span class="ord"><%= (top_playlist_item_counter + 1) %></span>
   <%= avatar_for(top_playlist_item, :small, :class => "avatar", :disable_default_css => true) %>
   <div class="datos">
-    <h3><%= link_to top_playlist_item.name, radio_path(:station_id => top_playlist_item.station.id) ,:class => "link_rojo", :content_switch_enabled => true %></h3>
+    <h3><%= link_to truncate(top_playlist_item.name, :length => 22), radio_path(:station_id => top_playlist_item.station.id) ,:class => "link_rojo", :content_switch_enabled => true, :title => top_playlist_item.name %></h3>
     <p><%= t("basics.by")%>: <%= link_to top_playlist_item.owner.name, user_path(top_playlist_item.owner) ,:class => "link_gris link_decor", :content_switch_enabled => true %></p>
   </div>
 

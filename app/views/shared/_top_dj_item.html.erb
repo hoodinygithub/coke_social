@@ -2,7 +2,7 @@
   <span class="ord"><%= (top_dj_item_counter + 1) %></span>
   <%= avatar_for(top_dj_item, :small, :class => "avatar", :disable_default_css => true) %>
   <div class="datos">
-    <h3><%= link_to top_dj_item.name, user_path(top_dj_item) ,:class => "link_rojo", :content_switch_enabled => true %></h3>
+    <h3><%= link_to truncate(top_dj_item.name, :length => 22), user_path(top_dj_item) ,:class => "link_rojo", :content_switch_enabled => true, :title => top_dj_item.name %></h3>
     <p>(<%= top_dj_item.country.name %>)</p>
   </div>
 
