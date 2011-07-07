@@ -58,6 +58,7 @@ Rails::Initializer.run do |config|
   config.gem 'rest-client',             :version => '1.6.1'
   config.gem 'hoptoad_notifier',        :version => '2.2.2'
   config.gem 'system_timer'
+  config.gem 'mysql'
   
   # config.gem "methodmissing-scrooge", :lib => 'scrooge', :source => 'http://gems.github.com'
   # Only load the plugins named here, in the order given. By default, all
@@ -70,7 +71,7 @@ Rails::Initializer.run do |config|
 
   # Add additional load paths for your own custom dirs
 
-  config.load_paths += %W(
+  config.autoload_paths += %W(
     #{RAILS_ROOT}/app/observers
     #{RAILS_ROOT}/app/middlewares
     #{RAILS_ROOT}/app/mailers
@@ -94,7 +95,7 @@ Rails::Initializer.run do |config|
   # Make sure the secret is at least 30 characters and all random,
   # no regular words or you'll be exposed to dictionary attacks.
   config.action_controller.session = {
-    :session_key => '_coke_session',
+    :key => '_coke_session',
     :secret      => '594277ca5ce59b371b451a4da2211838f92008860360e661ffc3b5fc4fcd53d957a48109811196d335aec8a0ea93d5d954cec6619a86694f4fc11515513dee31'
   }
 
