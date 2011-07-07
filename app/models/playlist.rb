@@ -44,7 +44,7 @@ class Playlist < ActiveRecord::Base
   delegate :networks, :to => :owner
 
   has_many :items, :class_name => 'PlaylistItem', :conditions => "songs.deleted_at IS NULL AND accounts.deleted_at IS NULL", :order => "playlist_items.position ASC", :include => { :song => :artist }
-  has_many :songs, :through => :items, :order => "playlist_items.position ASC", :include => :artist, :conditions => { :deleted_at => nil }
+  has_many :songs, :through => :items
   has_one :editorial_station, :foreign_key => 'mix_id'
 
   has_attached_file :avatar, :styles => { :album => "300x300#", :medium => "86x86#", :small => "60x60#", :large => "150x150#" }, :url => "/system/playlists/:sharded_id/:style/:basename.:extension", :path => ':rails_root/public/system/playlists/:sharded_id/:style/:basename.:extension'
