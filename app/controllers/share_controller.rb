@@ -40,8 +40,11 @@ class ShareController < ApplicationController
     if request.xhr? && params[:multitask]
       recipients = []
       errors << [:name, t('coke_messenger.layers.share_mix_layer.name_blank')] if params[:name].blank?
-      errors << [:email, t('coke_messenger.layers.share_mix_layer.email_blank')] if params[:email].blank?
-      errors << [:email, t('coke_messenger.layers.share_mix_layer.invalid_email')] unless valid_email?(params[:email])
+      if params[:email].blank?
+        errors << [:email, t('coke_messenger.layers.share_mix_layer.email_blank')]
+      else
+        errors << [:email, t('coke_messenger.layers.share_mix_layer.invalid_email')] unless valid_email?(params[:email])
+      end
       errors << [:message, t('coke_messenger.layers.share_mix_layer.msg_blank')] if params[:message].blank?
       errors << [:message, t('coke_messenger.layers.share_mix_layer.invalid_msg')] unless valid_msg?(params[:message])
       if errors.empty?
