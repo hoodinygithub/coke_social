@@ -28,9 +28,9 @@
       <% end %>  
   </div>
                   
-  <%= sort_form("f_ordenar", :latest, :highest_rated) do
-    "<p class='n_comentarios'><strong>#{@comments.size}</strong> #{pluralize(@comments.size, t('basics.comment'))}</p>"
-  end %>
+  <% sort_form("f_ordenar", :latest, :highest_rated) do %>
+    <%= "<p class='n_comentarios'><strong>#{@comments.size}</strong> #{t('basics.comments')}</p>" %>
+  <% end %>
   
   <ul class="comments_list">
     <%= render :partial => 'reviews/list_item', :collection => @comments, :locals => {:owner => profile_owner?} %>

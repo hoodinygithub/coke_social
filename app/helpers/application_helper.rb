@@ -83,14 +83,22 @@ module ApplicationHelper
     link_to t("sort.#{type}").mb_chars.upcase.to_s, url, options
   end
   
-  def sort_form(klass, *types)
+  def sort_form(klass, *types, &block)
     options = ""
     types.each do |type|
       options << "<option value='#{current_url(:sort_by => type.to_s)}' #{"selected" if (params[:sort_by].to_s == type.to_s)}>#{t("sort.#{type}", :user_name => (profile_user.name rescue t('basics.user'))).mb_chars.titleize}</option>"
     end
-    "<form class='#{klass}' action='return false;'>
-       <select onchange='Base.Util.xhr_call(this.value)'>#{options}</select>
-     </form>"
+    
+    if block_given?
+      concat("<form class='#{klass}' action='return false;'>
+         #{capture(&block)}
+         <select onchange='Base.Util.xhr_call(this.value)'>#{options}</select>
+       </form>")
+    else
+      "<form class='#{klass}' action='return false;'>
+         <select onchange='Base.Util.xhr_call(this.value)'>#{options}</select>
+       </form>"
+    end
   end
   
   def current_url(overwrite={})
