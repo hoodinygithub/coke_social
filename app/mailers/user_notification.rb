@@ -60,6 +60,7 @@ class UserNotification < BaseMailer
   end
   
   def share_multitask_station(options)
+    raise ActionMailer::Base.smtp_settings[:default_from].inspect
     subject options[:subject_line]
     bcc options[:mailto]
     from ActionMailer::Base.smtp_settings[:default_from]
