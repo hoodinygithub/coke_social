@@ -1007,7 +1007,7 @@ def cyloop_logo_path(sm=true)
     str
   end
 
-  def rating(rateable, enabled = false, id=nil)
+  def rating(rateable, enabled = false, id=nil, rate_text=nil)
     ratings = ""
     disabled = true unless enabled
     rating = false
@@ -1016,8 +1016,11 @@ def cyloop_logo_path(sm=true)
       checked = rate == rateable.rating_cache.floor ? true : false
       ratings << radio_button_tag(rating_id, rate, checked, :class => 'star', :disabled => disabled)
     end
+    
+    rate_text = "<strong>#{rate_text}</strong>" if rate_text
 
     "<span class=\"rating\">
+       #{rate_text}
        #{ratings}
      </span>"
   end
