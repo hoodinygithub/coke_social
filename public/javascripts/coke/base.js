@@ -1921,8 +1921,8 @@ Base.activity.count_chars = function() {
 };
 
 Base.activity.pushUpdate = function(button, token) {
-  $(button).hide()
-  $(button).parent().html('<img class="loading" src="/images/loading.gif"/>');
+  // $(button).hide();
+  $('.share_button_container .loading').show();
   $.post(Base.currentSiteUrl() + '/activity/update/status', 
          {'message':$("#network_comment").val(), 'authenticity_token':encodeURIComponent(token)}, 
          Base.activity.pushUpdateCallback);
@@ -1942,8 +1942,9 @@ Base.activity.pushUpdateCallback = function(response) {
  else {
    // show response.errors
  }
- $('a.compartir_button').show();
+ 
  $('.share_button_container .loading').hide();
+ // $('a.compartir_button').show();
 }
 
 Base.utils.showRegistrationLayer = function(url, type, accountId) {
