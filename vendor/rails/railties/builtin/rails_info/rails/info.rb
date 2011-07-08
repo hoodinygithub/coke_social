@@ -55,7 +55,7 @@ module Rails
       alias inspect to_s
 
       def to_html
-        '<table>'.tap do |table|
+        returning table = '<table>' do
           properties.each do |(name, value)|
             table << %(<tr><td class="name">#{CGI.escapeHTML(name.to_s)}</td>)
             table << %(<td class="value">#{CGI.escapeHTML(value.to_s)}</td></tr>)

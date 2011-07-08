@@ -65,14 +65,15 @@ class AdapterTest < ActiveRecord::TestCase
     end
 
     def test_not_specifying_database_name_for_cross_database_selects
-      begin
-        assert_nothing_raised do
-          ActiveRecord::Base.establish_connection(ActiveRecord::Base.configurations['arunit'].except(:database))
-          ActiveRecord::Base.connection.execute "SELECT activerecord_unittest.pirates.*, activerecord_unittest2.courses.* FROM activerecord_unittest.pirates, activerecord_unittest2.courses"
-        end
-      ensure
-        ActiveRecord::Base.establish_connection 'arunit'
+      assert_nothing_raised do
+        ActiveRecord::Base.establish_connection({
+          :adapter  => 'mysql',
+          :username => 'rails'
+        })
+        ActiveRecord::Base.connection.execute "SELECT activerecord_unittest.pirates.*, activerecord_unittest2.courses.* FROM activerecord_unittest.pirates, activerecord_unittest2.courses"
       end
+
+      ActiveRecord::Base.establish_connection 'arunit'
     end
   end
 

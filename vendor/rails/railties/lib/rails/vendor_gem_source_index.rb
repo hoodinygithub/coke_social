@@ -31,7 +31,7 @@ module Rails
 
     def refresh!
       # reload the installed gems
-      # HACK: I don't think this is needed: @installed_source_index.refresh!
+      @installed_source_index.refresh!
       vendor_gems = {}
 
       # handle vendor Rails gems - they are identified by having loaded_from set to ""
@@ -101,8 +101,8 @@ module Rails
     end
 
     def version_for_dir(d)
-      version = d.split('-').find { |s| s.match(/^\d(\.\d|\.\w+)*$/) }
-      Gem::Version.new(version)
+      matches = /-([^-]+)$/.match(d)
+      Gem::Version.new(matches[1]) if matches
     end
 
     def load_specification(gem_dir)

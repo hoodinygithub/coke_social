@@ -8,16 +8,15 @@ module ActiveRecord
     #
     # You can define a scope that applies to all finders using ActiveRecord::Base.default_scope.
     def self.included(base)
-      base.extend ClassMethods
+      base.class_eval do
+        extend ClassMethods
+        named_scope :scoped, lambda { |scope| scope }
+      end
     end
 
     module ClassMethods
       def scopes
         read_inheritable_attribute(:scopes) || write_inheritable_attribute(:scopes, {})
-      end
-
-      def scoped(scope, &block)
-        Scope.new(self, scope, &block)
       end
 
       # Adds a class method for retrieving and querying objects. A scope represents a narrowing of a database query,
@@ -85,22 +84,18 @@ module ActiveRecord
       #   assert_equal expected_options, Shirt.colored('red').proxy_options
       def named_scope(name, options = {}, &block)
         name = name.to_sym
-
         scopes[name] = lambda do |parent_scope, *args|
           Scope.new(parent_scope, case options
             when Hash
               options
             when Proc
-              if self.model_name != parent_scope.model_name
-                options.bind(parent_scope).call(*args)
-              else
-                options.call(*args)
-              end
+              options.call(*args)
           end, &block)
         end
-
-        singleton_class.send :define_method, name do |*args|
-          scopes[name].call(self, *args)
+        (class << self; self end).instance_eval do
+          define_method name do |*args|
+            scopes[name].call(self, *args)
+          end
         end
       end
     end
@@ -120,7 +115,7 @@ module ActiveRecord
         options ||= {}
         [options[:extend]].flatten.each { |extension| extend extension } if options[:extend]
         extend Module.new(&block) if block_given?
-        unless (Scope === proxy_scope || ActiveRecord::Associations::AssociationCollection === proxy_scope)
+        unless Scope === proxy_scope
           @current_scoped_methods_when_defined = proxy_scope.send(:current_scoped_methods)
         end
         @proxy_scope, @proxy_options = proxy_scope, options.except(:extend)

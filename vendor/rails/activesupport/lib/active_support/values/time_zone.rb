@@ -387,11 +387,7 @@ module ActiveSupport
       def [](arg)
         case arg
           when String
-            if tz = zones_map[arg]
-              tz
-            elsif tz = lookup(arg)
-              zones_map[arg] = tz
-            end
+            zones_map[arg] ||= lookup(arg)
           when Numeric, ActiveSupport::Duration
             arg *= 3600 if arg.abs <= 13
             all.find { |z| z.utc_offset == arg.to_i }

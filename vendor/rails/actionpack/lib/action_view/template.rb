@@ -45,8 +45,8 @@ module ActionView #:nodoc:
       end
 
       def self.new_and_loaded(path)
-        new(path).tap do |_path|
-          _path.load!
+        returning new(path) do |path|
+          path.load!
         end
       end
 

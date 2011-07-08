@@ -21,9 +21,9 @@ rescue Gem::LoadError
 end
 
 begin
-  gem 'i18n', '>= 0.4.1'
+  gem 'i18n', '>= 0.3.3'
 rescue Gem::LoadError
-  $:.unshift "#{File.dirname(__FILE__)}/vendor/i18n-0.4.1"
+  $:.unshift "#{File.dirname(__FILE__)}/vendor/i18n-0.3.7"
 end
 require 'i18n'
 

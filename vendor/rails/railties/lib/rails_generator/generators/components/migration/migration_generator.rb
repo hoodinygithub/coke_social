@@ -8,7 +8,7 @@ class MigrationGenerator < Rails::Generator::NamedBase
   
   private  
     def get_local_assigns
-      {}.tap do |assigns|
+      returning(assigns = {}) do
         if class_name.underscore =~ /^(add|remove)_.*_(?:to|from)_(.*)/
           assigns[:migration_action] = $1
           assigns[:table_name]       = $2.pluralize

@@ -659,7 +659,7 @@ module ActionController
       end
 
       def add_conditions_for(conditions, method)
-        ({:conditions => conditions.dup}).tap do |options|
+        returning({:conditions => conditions.dup}) do |options|
           options[:conditions][:method] = method unless method == :any
         end
       end

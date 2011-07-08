@@ -53,8 +53,7 @@ class OptimisticLockingTest < ActiveRecord::TestCase
     assert_raises(ActiveRecord::StaleObjectError) { p2.destroy }
 
     assert p1.destroy
-    assert p1.frozen?
-    assert p1.destroyed?
+    assert_equal true, p1.frozen?
     assert_raises(ActiveRecord::RecordNotFound) { Person.find(1) }
   end
 

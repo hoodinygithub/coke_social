@@ -516,7 +516,7 @@ module ActiveRecord
             raise DuplicateMigrationNameError.new(name.camelize) 
           end
           
-          klasses << (MigrationProxy.new).tap do |migration|
+          klasses << returning(MigrationProxy.new) do |migration|
             migration.name     = name.camelize
             migration.version  = version
             migration.filename = file

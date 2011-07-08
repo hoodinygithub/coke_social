@@ -716,11 +716,6 @@ class TestController < ActionController::Base
     render :partial => "customer"
   end
 
-  def partial_with_implicit_local_assignment_and_nil_local
-    @customer = Customer.new("Marcel")
-    render :partial => "customer", :locals => { :customer => nil }
-  end
-
   def render_call_to_partial_with_layout
     render :action => "calling_partial_with_layout"
   end
@@ -1545,13 +1540,6 @@ class RenderTest < ActionController::TestCase
     assert_deprecated do
       get :partial_with_implicit_local_assignment
       assert_equal "Hello: Marcel", @response.body
-    end
-  end
-
-  def test_partial_with_implicit_local_assignment_and_nil_local
-    assert_not_deprecated do
-      get :partial_with_implicit_local_assignment_and_nil_local
-      assert_equal "Hello: Anonymous", @response.body
     end
   end
 

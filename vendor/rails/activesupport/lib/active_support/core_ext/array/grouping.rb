@@ -33,7 +33,7 @@ module ActiveSupport #:nodoc:
           if block_given?
             collection.each_slice(number) { |slice| yield(slice) }
           else
-            [].tap do |groups|
+            returning [] do |groups|
               collection.each_slice(number) { |group| groups << group }
             end
           end
