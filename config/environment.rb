@@ -1,6 +1,6 @@
 
 # Specifies gem version of Rails to use when vendor/rails is not present
-RAILS_GEM_VERSION = '2.3.5' unless defined? RAILS_GEM_VERSION
+RAILS_GEM_VERSION = '2.3.8' unless defined? RAILS_GEM_VERSION
 
 # Bootstrap the Rails environment, frameworks, and default configuration
 require File.join(File.dirname(__FILE__), 'boot')
@@ -42,7 +42,7 @@ Rails::Initializer.run do |config|
   config.gem "geoip",                   :version => '0.8.6', :lib => false
   config.gem "nokogiri",                :version => '1.4.1', :source => 'http://gemcutter.org'
   config.gem "rubyist-aasm",            :version => "2.1.1", :lib => "aasm", :source => 'http://gems.github.com'
-  config.gem "newrelic_rpm",            :version => '2.12.0'
+  config.gem "newrelic_rpm",            :version => '3.1.0'
   config.gem 'htmlentities',            :version => "4.2.0"
   config.gem 'will_paginate',           :version => '2.3.11', :source => 'http://gemcutter.org'
   config.gem 'rufus-tokyo',             :version => '1.0.5', :lib => 'rufus/tokyo'
@@ -71,7 +71,7 @@ Rails::Initializer.run do |config|
 
   # Add additional load paths for your own custom dirs
 
-  config.autoload_paths += %W(
+  config.load_paths += %W(
     #{RAILS_ROOT}/app/observers
     #{RAILS_ROOT}/app/middlewares
     #{RAILS_ROOT}/app/mailers
