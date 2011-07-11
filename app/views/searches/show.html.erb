@@ -25,7 +25,7 @@
 
       <div class="mod_mixes">
         <h2 class="tit_bloque">
-          <span class="txt"><%= params[:scope] == 'playlists' ? t('basics.playlists') : t('basics.users') %><em><%= "#{params[:scope] == 'playlists' ? @results[:playlists].length : @results[:users].length} #{t('basics.results')}" %> </em></span>
+          <span class="txt"><%= params[:scope] == 'playlists' ? t('basics.playlists') : t('basics.users') %><em><%= "#{params[:scope] == 'playlists' ? @results[:playlists].total_entries : @results[:users].total_entries} #{t('basics.results')}" %> </em></span>
           <span class="bg_fin">&nbsp;</span>
         </h2><!-- .tit_bloque -->
 
