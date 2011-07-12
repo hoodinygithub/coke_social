@@ -5,7 +5,7 @@
         <%= link_to item.name, item, :content_switch_enabled => true %>
         <span>(<%= item.country %>)</span>
     </div>
-    <ul class="follower_data">
+    <ul class="follower_data no_padding_top">
         <li><a href="#" title="<%= t('profile.navigation.mixes') %>"><%= link_to item.total_playlists, user_playlists_path(item), :content_switch_enabled => true %></a> <%= t('profile.navigation.mixes') %></li>
         <li><a href="#" title="<%= t('profile.navigation.badges') %>"><%= link_to item.total_badges, user_badges_path(item), :content_switch_enabled => true %></a> <%= t('profile.navigation.badges') %></li>
         <li><a href="#" title="<%= t('profile.navigation.followers') %>"><%= link_to item.follower_count, user_followers_path(item), :content_switch_enabled => true %></a> <%= t('profile.navigation.followers') %></li>
