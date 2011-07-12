@@ -16,7 +16,7 @@ $(document).ready(function() {
     $(this).addClass('activo');
   }).mouseout(function() {
     $(idtip).hide();
-    $(this).removeClass('active');
+    $(this).removeClass('activo');
   });
 
   if (app == "multitask")
