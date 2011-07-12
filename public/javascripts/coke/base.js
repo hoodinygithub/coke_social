@@ -765,6 +765,7 @@ Base.account_settings.show_validations = function(errorMap, errorList) {
   $.each (errorList, function() {
     field = $(this.element);
     error = this.message;
+    if (error == "This field is required.") error = FIELD_REQUIRED_ERROR;
     Base.account_settings.clear_info_and_errors_on(field);
     Base.account_settings.add_message_on(field, error, 'error');
   });

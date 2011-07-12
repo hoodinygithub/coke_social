@@ -3,6 +3,7 @@
     $("#delete_account_submit").unbind('click');
     $("#delete_account_submit").bind('click', Base.account_settings.delete_account_submit_as_cyloop);
   });
+  var FIELD_REQUIRED_ERROR = "<%= t('account_settings.delete_info_required') %>"
 </script>
 
 <div class="accordion_title"><%= t('account_settings.delete_account') %></div>
