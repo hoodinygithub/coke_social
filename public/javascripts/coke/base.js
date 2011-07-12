@@ -1541,7 +1541,8 @@ Base.reviews.pushUpdateCallback = function(response) {
  if (response.success) {
     Base.reviews.clearForm();        
     // $('p.no_resultados').remove();   
-    $('ul.comments_list').prepend(response.html)
+    $('ul.comments_list').prepend(response.html);
+    $("p.n_comentarios strong").html(parseInt($("p.n_comentarios strong").html()) + 1);
  }
  else {
    // show response.errors
