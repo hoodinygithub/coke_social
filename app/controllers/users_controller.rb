@@ -195,7 +195,8 @@ class UsersController < ApplicationController
         UserNotification.send_reset_notification(
           :user_id => @user.id,
           :password => @user.reset_password,
-          :site_id => request.host) unless Rails.env.development?
+          :site_locale => current_site.default_locale,
+          ) unless Rails.env.development?
 
         flash[:success] = t('forgot.reset_message_sent')
 

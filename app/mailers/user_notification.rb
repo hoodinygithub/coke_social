@@ -114,7 +114,7 @@ class UserNotification < BaseMailer
 
     def send_reset_notification( options )
       user = User.find(options[:user_id])
-      I18n.with_locale( current_site.default_locale ) do
+      I18n.with_locale( options[:site_locale] ) do
         UserNotification.deliver_reset_notification( I18n.t("reset.email.subject") , user, options[:password])
       end
     end
