@@ -6,17 +6,17 @@
         <a href="#" title=""><%= avatar_for playlist, :large %></a>
         <div class="overlay">
           <div class="hidden fh">
-            <a href="#" title=""><strong><%= playlist.name %></strong></a>
+            <a href="/playlists?station_id=<%= playlist.station.id  %>" content_switch_enabled="true" title=""><strong><%= playlist.name %></strong></a>
             <%= multitask_rating playlist %>
             <div class="tag_links">
               <%= tag_links playlist %>
             </div>
             <div class="align_right box_buttons">
-              <a href="#" onclick="Base.Station.request('/playlists/<%= playlist.id %>.xml', 'xml', Base.Station.stationCollection);Base.Player.random(false); return false;" title="Reproducir"><img src="/images/play_button.png" class="png_fix" alt="Play_button" /></a>
+              <a href="/playlists?load_mix=true&station_id=<%= playlist.station.id %>" content_switch_enabled="true" title="Reproducir"><img src="/images/play_button.png" class="png_fix" alt="Play_button" /></a>
             </div>
           </div><!-- .hidden -->
           <div class="visible fh">
-            <a href="#" onclick="Base.Station.request('/playlists/<%= playlist.id %>.xml', 'xml', Base.Station.stationCollection);Base.Player.random(false); return false;" title=""><img alt="" class="play_button png_fix" src="/images/play_button.png"  /></a>
+            <a href="/playlists?load_mix=true&station_id=<%= playlist.station.id %>" content_switch_enabled="true" title="Reproducir"><img alt="" class="play_button png_fix" src="/images/play_button.png"  /></a>
             <a href="#" title=""><%= playlist.name %></a>
             <%= multitask_rating playlist %>
           </div><!-- .visible -->
