@@ -10,7 +10,7 @@
     <div class="ficha_top">&nbsp;</div>
 
     <div class="ficha_cont">
-        <a class="mas_info menos_info" href="#" title="<%= hide_info ? t('actions.show') : t('actions.hide') %>"><%= hide_info ? t('actions.show') : t('actions.hide') %><span class="bg_flecha">&nbsp;</span></a>
+        <a class="mas_info <%= "menos_info" unless hide_info %>" href="#" title="<%= hide_info ? t('actions.show') : t('actions.hide') %>"><%= hide_info ? t('actions.show') : t('actions.hide') %><span class="bg_flecha <%= hide_info ? "show" : "hide" %>">&nbsp;</span></a>
         <%= avatar_for(user, :album, :class => "avatar", :width => "229", :height => "229", :disable_default_css => true) %>
         <div class="datos">
           <h2><%= user.name %></h2>
