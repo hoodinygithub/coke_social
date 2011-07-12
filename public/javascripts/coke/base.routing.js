@@ -14,6 +14,7 @@ Base.Routing = {
              String(url).match(/badges-dj/) ||
              String(url).match(/terms_and_conditions/) ||
              String(url).match(/privacy_policy/)) this.call['consolidated'](url);
+    else if (String(url).match(/comments_top/)) return true;
     else this.call['pipe'](url);
   },
 
@@ -52,7 +53,6 @@ Base.Routing = {
       Base.Routing.request(url, Base.UI.contentswp);
     }
   },
-
   request: function(url, callback, options)
   {
     if (Base.UI.contentswp === callback)
