@@ -698,7 +698,7 @@ var restoreInput = function(value, input) {
  * Account settings page
  */
 Base.account_settings.edit = function() {
-  var form = $(event.target).closest('form');
+  var form = $(event.srcElement).closest('form');
   form.ajaxSubmit({
     success: function(response)
     {
