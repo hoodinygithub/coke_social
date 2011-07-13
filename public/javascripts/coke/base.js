@@ -705,7 +705,7 @@ Base.account_settings.edit = function() {
       Base.UI.contentswp(response);
     }
   });
-}
+};
 
 Base.account_settings.highlight_field_with_errors = function(multitask, id, field_object) {
   if (typeof(field_with_errors) != 'undefined') {
