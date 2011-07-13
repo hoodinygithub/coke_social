@@ -697,6 +697,16 @@ var restoreInput = function(value, input) {
 /*
  * Account settings page
  */
+Base.account_settings.edit = function() {
+  var form = $(event.target).closest('form');
+  form.ajaxSubmit({
+    success: function(response)
+    {
+      Base.UI.contentswp(response);
+    }
+  });
+}
+
 Base.account_settings.highlight_field_with_errors = function(multitask, id, field_object) {
   if (typeof(field_with_errors) != 'undefined') {
     // Clear current error list
