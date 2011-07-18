@@ -62,3 +62,11 @@ Base.Routing = {
   }
 
 };
+
+$(document).ready(function() {
+
+  $.history.init(function(url) {
+    Base.Routing.route(url != "" ? url : document.location.href.replace(document.location.origin, ''));
+  }, {unescape:true});
+
+});
