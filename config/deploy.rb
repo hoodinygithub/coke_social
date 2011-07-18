@@ -184,7 +184,7 @@ namespace :unicorn do
   DESC
   task :reload, :roles => [:app], :except => {:unicorn => false} do
     sudo "/engineyard/bin/unicorn #{application} reload"
-    sudo "/engineyard/bin/unicorn #{application}_ssl reload"
+    # sudo "/engineyard/bin/unicorn #{application}_ssl reload"
   end
 
   desc <<-DESC
@@ -208,7 +208,7 @@ namespace :unicorn do
   DESC
   task :deploy, :roles => [:app], :except => {:unicorn => false} do
     sudo "/engineyard/bin/unicorn #{application} deploy"
-    sudo "/engineyard/bin/unicorn #{application}_ssl deploy"
+    # sudo "/engineyard/bin/unicorn #{application}_ssl deploy"
   end
 end #namespace
 
