@@ -186,7 +186,11 @@ Base.Util = {
       complete: function(data) {
         if (typeof options != "undefined" && typeof options.afterComplete != "undefined") options.afterComplete();
         func(data);
-      }, error: error_func });
+      }, 
+      error: function(data) {
+        if (data.status == "500") document.location = "/500.html";
+      }
+    });
   },
   
   xhr_call: function(href)
