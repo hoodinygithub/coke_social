@@ -1,10 +1,17 @@
-<% content_for :head do %>
-  <%= stylesheet_link_tag "errors" %>
-<% end %>
-<div id="error_pages" class="dyn">
-  <h2><%= t('site.profile_not_found') %></h2>
-  <p>
-    <%= t('site.profile_not_found_sorry', :profile => params[:profile]) %>
-  </p>  
+<div class="contenido">
+  <div id="container">
+    <div id="main_content" class="pages">
+      <div class="support_pages">
+        <!-- integracion -->
+        <h1 class="tit_bloque gris">
+          <span class="txt">Perfil no encontrado</span>
+          <span class="bg_fin">&nbsp;</span>
+        </h1><!-- .tit_bloque -->  
+        <!-- fin integracion -->
+        <div id="error_pages" class="dyn">
+          <h2><%= t('site.profile_not_found_sorry', :profile => params[:profile]) %></h2>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
-
