@@ -25,7 +25,7 @@ Rails::Initializer.run do |config|
   # -- all .rb files in that directory are automatically loaded.
   # See Rails::Configuration for more options.
 
-  # Skip frameworks you're not going to use. To use Rails without a dat abase
+  # Skip frameworks you're not going to use. To use Rails without a database
   # you must remove the Active Record framework.
   # config.frameworks -= [ :active_record, :active_resource, :action_mailer ]
 
@@ -47,7 +47,7 @@ Rails::Initializer.run do |config|
   config.gem 'will_paginate',           :version => '2.3.11', :source => 'http://gemcutter.org'
   config.gem 'rufus-tokyo',             :version => '1.0.5', :lib => 'rufus/tokyo'
   config.gem 'oauth',                   :version => '0.3.4'
-  # config.gem 'moomerman-twitter_oauth', :version => '0.2.1', :lib => 'twitter_oauth', :source => 'http://gems.github.com'
+  #config.gem 'moomerman-twitter_oauth', :version => '0.2.1', :lib => 'twitter_oauth', :source => 'http://gems.github.com'
   config.gem 'httparty',                :version => '0.4.5'
   config.gem 'ar_mailer',               :version => '1.5.0', :lib => 'action_mailer/ar_mailer', :source => 'http://gemcutter.org'
   config.gem "block_helpers",           :source => "http://gemcutter.org"
@@ -56,6 +56,8 @@ Rails::Initializer.run do |config|
   config.gem 'attr_encrypted',          :version => '1.1.2'
   # config.gem "ambethia-recaptcha",      :lib => "recaptcha/rails", :source => "http://gems.github.com"
   config.gem 'rest-client',             :version => '1.6.1'
+  config.gem 'hoptoad_notifier',        :version => '2.2.2'
+  config.gem 'system_timer'
   
   # config.gem "methodmissing-scrooge", :lib => 'scrooge', :source => 'http://gems.github.com'
   # Only load the plugins named here, in the order given. By default, all
@@ -102,4 +104,5 @@ Rails::Initializer.run do |config|
     require 'ruby_core_extensions' # Look here for Hash and String additions
     require 'iconv'
   end
+
 end
