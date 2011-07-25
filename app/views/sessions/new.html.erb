@@ -4,6 +4,14 @@
   <%= stylesheet_link_tag 'multitask/cab-pie-player.css' %>
 <% end %>
 
+  <script>
+    $(document).ready(function() {
+      if (typeof flashMessage != "undefined"  && $('#flash_messages').children().size() < 1)
+        $('#flash_messages').append(flashMessage);
+        flashMessage = null;
+    });
+  </script>
+
 <div id="flash_messages">
   <%= render_flash_messages %>
 </div>

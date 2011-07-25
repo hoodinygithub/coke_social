@@ -393,6 +393,21 @@ module ApplicationHelper
     html
   end
 
+  def javascript_flash_messages(flash_message)
+    message = stylesheet_class = ""
+    flash_message.each do |key, value|
+      stylesheet_class = key.to_s == "error" ? "error_message" : "confirmation_message"
+      message = value.to_s
+    end
+
+    html = ""
+    if defined? message and !message.blank?
+      html = content_tag(:div, content_tag(:div, message, :class => stylesheet_class), :class => 'message')
+    end
+
+    html
+  end
+
   def four_thumbs_to(station, options = {})
     station      = station.try(:playable)
     station_link = radio_path(:station_id => station.station.id)
