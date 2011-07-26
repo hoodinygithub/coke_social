@@ -10,11 +10,6 @@ class SessionsController < ApplicationController
 
   # GET /session/new
   def new
-    if !flash[:success].nil? or !flash[:error].nil?
-      @flash_message = flash
-      @flash_message = @flash_message.reject { |key,value| value.nil? }
-    end
-
     if params[:code]
       # Faceboook Connect through full page login
       # FacebookConnect.parse_facebook_code(params[:code], current_site.domain)
@@ -129,7 +124,8 @@ private
         login_layer = render_to_string '/messenger_player/layers/alert_layer'
         render(:json => {:status => 'redirect', :html => login_layer}, :layout => false)
       else
-        redirect_to login_path
+        # redirect_to login_path
+        render :new
       end
       
       false
