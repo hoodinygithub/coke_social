@@ -162,7 +162,8 @@ class UsersController < ApplicationController
         render(:json => {:status => 'redirect', :html => layer_html}, :layout => false)
       else
         respond_to do |format|
-          format.html { render :action => :new }
+          # format.html { render :action => :new }
+          format.html { redirect_to :action => :new }
           format.xml  { render_xml_errors( @user.errors ) }
         end
       end
