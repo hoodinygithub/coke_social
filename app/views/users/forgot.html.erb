@@ -28,7 +28,6 @@
 
       <div class="auth_left2">
         <% form_for :user, :html => { :class => "account_settings" } do |f| %>
-          <%= hidden_field_tag :no_ajax, 1 %>
           <div class="form_row last">
             <%= f.label :email, "#{t("user.email")}" %>
             <div class="grey_round_box">

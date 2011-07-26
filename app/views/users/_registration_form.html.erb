@@ -12,7 +12,6 @@
 <% end %>
 
 <% form_for @user, :url => users_path, :html => { :multipart => true, :class => "account_settings", :method => :post } do |f| %>
-  <%= hidden_field_tag :no_ajax, 1  %>
   <%= f.hidden_field :sso_facebook unless @user['sso_facebook'].nil? %>
   <%= f.hidden_field :sso_windows unless @user['sso_windows'].nil? %>
   <div class="form_content">

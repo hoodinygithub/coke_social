@@ -65,7 +65,7 @@ Base.Routing = {
 
 $(document).ready(function() {
     $.history.init(function(url) {
-      if (typeof fullPage == "undefined" || fullPage != 1)
+      if (document.location.hash != "" || typeof fullPage == "undefined" || fullPage != 1)
       {
         Base.Routing.route(url != "" ? url : document.location.href.replace(document.location.origin, ''));
       }
