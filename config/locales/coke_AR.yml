@@ -15,12 +15,11 @@ coke_AR:
         {{reset_link}}\r\n\
         Consejo: cre\xC3\xA1 una contrase\xC3\xB1a que contenga letras y n\xC3\xBAmeros para que sea m\xC3\xA1s segura."
   registration: 
-    sign_in: ""
-    sign_up_exclamation: "\xC2\xA1Registrate!"
     your_profile_name_tip: "(Tu direcci\xC3\xB3n para que pod\xC3\xA1s envi\xC3\xA1rsela a tus amigos)"
     you_are: Sos...
     sign_up: Registrate
     artist_login_denied: "\xC2\xA1El login para artistas estar\xC3\xA1 disponible muy pronto!"
+    sign_in: ""
     sidebox: 
       friends_text: "Con tan s\xC3\xB3lo un clic, comenz\xC3\xA1 a seguir a tus amigos, para estar al tanto de sus actividades en Twitter y otras noticias."
       loop_text: "Enterate en tiempo real de lo que est\xC3\xA1n oyendo, y coleccion\xC3\xA1 o escuch\xC3\xA1 las canciones que m\xC3\xA1s te gusten por streaming"
@@ -30,11 +29,16 @@ coke_AR:
       friends_title: "Segu\xC3\xAD a tus amigos"
       loop_title: "Descubr\xC3\xAD m\xC3\xBAsica con tus amigos"
       badges_text: "Nuestro sistema de recomendaciones crea estaciones de radio hechas espec\xC3\xADficamente a tu medida con todos tus artistas favoritos."
-      create_text: "Si te gustar\xC3\xADa convertirte en un DJ, cre\xC3\xA1 aqu\xC3\xAD tus propios mixes, agregando las canciones que quer\xC3\xA1s a tus mixes."
       work_text: "Us\xC3\xA1 los comentarios y los puntajes para opinar sobre los gustos musicales de tus amigos y sus mixes."
+      create_text: "Si te gustar\xC3\xADa convertirte en un DJ, cre\xC3\xA1 aqu\xC3\xAD tus propios mixes, agregando las canciones que quer\xC3\xA1s a tus mixes."
+    sign_up_exclamation: "\xC2\xA1Registrate!"
     msg: 
       privacy: Debe aceptarse
       terms: Debe aceptarse
+    messages: 
+      terms_of_use: Debe aceptarse
+      pivacy_policy: Debe aceptarse
+      privacy_policy: Debe aceptarse
     confirmation: 
       click_here: "clic aqu\xC3\xAD"
       here_is_your_confirmation_link: "Este es tu link de confirmaci\xC3\xB3n"
@@ -52,108 +56,104 @@ coke_AR:
           - Segu\xC3\xAD a otros usuarios de Coca-Cola.FM y dej\xC3\xA1 que otros te sigan\r\n\
           - Cuanto m\xC3\xA1s us\xC3\xA1s Coca-Cola.FM estando registrado, m\xC3\xA1s aprende Coca-Cola.FM a reconocer qu\xC3\xA9 m\xC3\xBAsica es la que m\xC3\xA1s te interesa\r\n\
           - Conoc\xC3\xA9 nuevos amigos y otros fan\xC3\xA1ticos a los que les gusta la misma m\xC3\xBAsica que a vos, y  te ayudar\xC3\xA1n a conocer nuevos artistas"
+        opt_out: "Para dejar de recibir mensajes como \xC3\xA9ste, hac\xC3\xA9 clic aqu\xC3\xAD."
         sig: "\xC2\xA1Divertite e invit\xC3\xA1 a tus amigos a que se unan!\r\n\
           \r\n\
           El equipo de Coca-Cola.FM\r\n"
-        opt_out: "Para dejar de recibir mensajes como \xC3\xA9ste, hac\xC3\xA9 clic aqu\xC3\xAD."
         message: "Para confirmar tu cuenta, por favor hac\xC3\xA9 clic en el enlace aqu\xC3\xAD abajo o copialo y pegalo en tu navegador:\r\n\
           {{confirm_url}}\r\n\
           Us\xC3\xA1 la direcci\xC3\xB3n de correo electr\xC3\xB3nico {{email}} y la clave que proporcionaste durante el registro para acceder a {{host_url}}.\r\n"
-    messages: 
-      terms_of_use: Debe aceptarse
-      pivacy_policy: Debe aceptarse
-      privacy_policy: Debe aceptarse
     terms_of_use: "T\xC3\xA9rminos de uso"
     remember_me: ""
     is_available_exclamation: "\xC2\xA1Est\xC3\xA1 disponible el Email!"
-    sign_out: ""
     slug_available_exclamation: "\xC2\xA1El perfil est\xC3\xA1 disponible!"
     your_name: !binary |
       wr9Dw7NtbyB0ZSBsbGFtw6FzPw==
 
+    sign_out: ""
+    terms_and_conditions: "T\xC3\xA9rminos y condiciones"
     your_profile_name: "Escog\xC3\xA9 un nickname"
     link_sso_account: "La direcci\xC3\xB3n de email ya est\xC3\xA1 registrada. Por favor ingres\xC3\xA1 y vincularemos tus cuentas"
-    terms_and_conditions: "T\xC3\xA9rminos y condiciones"
     layers: 
+      click_here: "clic aqu\xC3\xAD"
       do_not_have_account: "Si a\xC3\xBAn no ten\xC3\xA9s una cuenta gratis de Coca-Cola.FM, {{link}}"
       share: "Compart\xC3\xAD"
-      click_here: "clic aqu\xC3\xAD"
-      create_playlist: Para crear un mix, {{link}} para ingresar.
       follow_user: "Para seguir a {{slug}} y saber lo que {{gender}} est\xC3\xA1 escuchando, {{link}} para hacer tu login"
+      create_playlist: Para crear un mix, {{link}} para ingresar.
       discover_text: "m\xC3\xA1s de {{count}} artistas, todos gratis"
       know: "Encontr\xC3\xA1 personas"
       sign_in_with_your_coke_id: "Registrate aqu\xC3\xAD."
       female: "ella est\xC3\xA1"
-      still_do_not_have_coke_account: "\xC2\xBFTodav\xC3\xADa no ten\xC3\xA9s una cuenta de Coca-Cola.fm?"
       add_mixer: Para guardar este mix, {{link}} para hacer tu login
+      still_do_not_have_coke_account: "\xC2\xBFTodav\xC3\xADa no ten\xC3\xA9s una cuenta de Coca-Cola.fm?"
       review: Para comentar o calificar este playlist, {{link}} para ingresar.
       coke_music_is_free: Coca-Cola.FM es gratis. {{link}}
       know_text: "m\xC3\xA1s de {{count}} usuarios en {{place}}"
       still_do_not_have_coke_acount: "\xC2\xBFAun no tienes una cuenta de Coca-Cola.fm?"
+      share_text: canciones, mixes y estaciones de radio con tus amigos
+      follow: !binary |
+        U2VndcOt
+
       male: !binary |
         w6lsIGVzdMOh
 
       win: !binary |
         R2Fuw6E=
 
-      follow: !binary |
-        U2VndcOt
-
-      share_text: canciones, mixes y estaciones de radio con tus amigos
-      max_song: "Esperamos que te hayan gustado las canciones que escuchaste. Para escuchar m\xC3\xA1s canciones, {{link}} para hacer tu login"
       index: "Si ya ten\xC3\xA9s tu cuenta de Coca-Cola.FM, {{link}} para hacer tu login"
       sign_in_with_your_windows_live_id: "ingres\xC3\xA1 con tu Windows Live ID"
       msn_music_is_free: Coca-Cola.FM es gratis. {{link}}
+      max_song: "Esperamos que te hayan gustado las canciones que escuchaste. Para escuchar m\xC3\xA1s canciones, {{link}} para hacer tu login"
       listen_text: "m\xC3\xA1s de {{count}} canciones, todas gratis"
       create: !binary |
         Q3Jlw6E=
 
-      place: Coca-Cola.FM
-      share_playlist: Para compartir este mix, {{link}} para entrar.
       discover: "Descubr\xC3\xAD"
+      place: Coca-Cola.FM
       listen: "Escuch\xC3\xA1"
-      still_do_not_have_msn_account: "\xC2\xBFTodav\xC3\xADa no ten\xC3\xA9s una cuenta de Cyloop.com?"
+      share_playlist: Para compartir este mix, {{link}} para entrar.
       add_song: "Para agregar esta canci\xC3\xB3n a un mix, {{link}} para hacer tu login"
-      copy: Para copiar este mix, {{link}} para ingresar.
       follow_artist: Para seguir a {{name}} y tus otros artistas favoritos, {{link}} para hacer tu login
+      copy: Para copiar este mix, {{link}} para ingresar.
+      still_do_not_have_msn_account: "\xC2\xBFTodav\xC3\xADa no ten\xC3\xA9s una cuenta de Cyloop.com?"
       search: !binary |
         QnVzY8Oh
 
-    year_of_birth: "\xC2\xBFCu\xC3\xA1ndo es tu cumplea\xC3\xB1os?"
     birth_date: "\xC2\xBFCu\xC3\xA1ndo es tu cumplea\xC3\xB1os?"
+    year_of_birth: "\xC2\xBFCu\xC3\xA1ndo es tu cumplea\xC3\xB1os?"
+    opt_out: "\xC2\xBFPrefer\xC3\xADs salirte?"
     email_address_tip: (En la que prefieres recibir mensajes, etc.)
     terms_and_privacy_must_be_accepted: "Los t\xC3\xA9rminos de uso y la pol\xC3\xADtica de privacidad deben aceptarse"
-    opt_out: "\xC2\xBFPrefer\xC3\xADs salirte?"
     cross_network_failed: "\xC2\xA1Pr\xC3\xB3ximamente habr\xC3\xA1 soporte t\xC3\xA9cnico de Cyloop!"
-    msn_login_error: "Error de Login de Cyloop.com. Intent\xC3\xA1 ingresar nuevamente"
     customize: "Registrate y cre\xC3\xA1 tus mixes"
     complete_all_fields_in_red: "Complet\xC3\xA1 todos los campos en rojo"
     complete: Completar
-    thats_it: "\xC2\xA1Listo!"
-    associate_msn_login: "Ya casi terminamos. Por favor, ingres\xC3\xA1 tus datos de Coca-Cola.FM, as\xC3\xAD podemos relacionarlos con tu Live ID"
-    send: "Enviar "
+    msn_login_error: "Error de Login de Cyloop.com. Intent\xC3\xA1 ingresar nuevamente"
     sidebar: 
       chat_text: "En la parte inferior de cada p\xC3\xA1gina encontrar\xC3\xA1s una barra de Windows Messenger. Ingres\xC3\xA1 y pod\xC3\xA9s chatear con tus amigos mientras disfrut\xC3\xA1s de la mejor m\xC3\xBAsica."
       radio_title: "Disfrut\xC3\xA1 estaciones de radio personalizadas"
       discover_text: "Enterate en tiempo real de lo que est\xC3\xA1n oyendo tus amigos, y escuch\xC3\xA1 o guard\xC3\xA1 las canciones que m\xC3\xA1s te gusten."
-      playlist_title: "Cre\xC3\xA1 tus mixes de canciones"
       chat_title: "Chate\xC3\xA1 con tus amigos"
       discover_title: "Descubr\xC3\xAD m\xC3\xBAsica con tus amigos"
+      playlist_title: "Cre\xC3\xA1 tus mixes de canciones"
       playlist_text: "Si quer\xC3\xA9s convertirte en DJ, cre\xC3\xA1 tus propios mixes agregando canciones que te gusten."
       follow_text: "Con s\xC3\xB3lo un clic pod\xC3\xA9s seguir a tus artistas favoritos y mantenerte al tanto de su Twitter y otras noticias."
       radio_text: "Nuestro sistema de recomendaciones crea estaciones de radio hechas espec\xC3\xADficamente a tu medida con todos tus artistas favoritos."
       follow_title: "Segu\xC3\xAD a tus artistas favoritos"
+    send: "Enviar "
     cross_network: 
       welcome: Bienvenido a Coca-Cola.FM
       message: "Ya form\xC3\xA1s parte de la red social Cyloop.com, as\xC3\xAD que s\xC3\xB3lo deb\xC3\xA9s aceptar los t\xC3\xA9rminos y condiciones de Cyloop y tendr\xC3\xA1s disponible tu informaci\xC3\xB3n de perfil."
       error: "Deb\xC3\xA9s aceptar los t\xC3\xA9rminos y condiciones de Cyloop para continuar."
     email_address: "Tu direcci\xC3\xB3n de mail"
+    thats_it: "\xC2\xA1Listo!"
+    associate_msn_login: "Ya casi terminamos. Por favor, ingres\xC3\xA1 tus datos de Coca-Cola.FM, as\xC3\xAD podemos relacionarlos con tu Live ID"
     privacy_policy: "Pol\xC3\xADtica de privacidad"
     your_password: "Tu contrase\xC3\xB1a"
     must_be_13_years_older: "Deb\xC3\xA9s tener 13 a\xC3\xB1os o m\xC3\xA1s para poder usar este sitio"
+    confirm_your_password: "Confirm\xC3\xA1 tu contrase\xC3\xB1a"
     not_a_user: "\xC2\xBFA\xC3\xBAn no eres usuario?"
     login_failed: "Email y/o contrase\xC3\xB1a inv\xC3\xA1lidos."
-    terms_and_privacy: "Al hacer clic en este casillero, est\xC3\xA1s confirmando que sab\xC3\xA9s que Cyloop.com es un sitio web operado por Hoodiny Entertainment Group en los Estados Unidos, y est\xC3\xA1s otorgando tu consentimiento de transferir todos tus datos personales a los Estados Unidos, donde tus datos personales estar\xC3\xA1n sujetos a las leyes de los Estados Unidos y donde el nivel de protecci\xC3\xB3n de datos es diferente en comparaci\xC3\xB3n con el de tu pa\xC3\xADs. Tambi\xC3\xA9n confirmas estar de acuerdo con los T\xC3\xA9rminos de uso y la Pol\xC3\xADtica de privacidad de Cyloop.com, la cual describe c\xC3\xB3mo ser\xC3\xA1n usados tus datos personales."
     email: 
       button: "\xC2\xA1Empez\xC3\xA1 ahora!"
       title: "Bienvenido. \xC2\xA1Gracias por registarte en Coca-Cola.FM!"
@@ -167,7 +167,7 @@ coke_AR:
         <br> \r\n\
         <br> \r\n\
         Cyloop, LLC, 8725 NW 18 Terrace, Suite 401, Doral, FL 33172, USA\r\n"
-    confirm_your_password: "Confirm\xC3\xA1 tu contrase\xC3\xB1a"
+    terms_and_privacy: "Al hacer clic en este casillero, est\xC3\xA1s confirmando que sab\xC3\xA9s que Cyloop.com es un sitio web operado por Hoodiny Entertainment Group en los Estados Unidos, y est\xC3\xA1s otorgando tu consentimiento de transferir todos tus datos personales a los Estados Unidos, donde tus datos personales estar\xC3\xA1n sujetos a las leyes de los Estados Unidos y donde el nivel de protecci\xC3\xB3n de datos es diferente en comparaci\xC3\xB3n con el de tu pa\xC3\xADs. Tambi\xC3\xA9n confirmas estar de acuerdo con los T\xC3\xA9rminos de uso y la Pol\xC3\xADtica de privacidad de Cyloop.com, la cual describe c\xC3\xB3mo ser\xC3\xA1n usados tus datos personales."
   radio: 
     search_hint: "Ingres\xC3\xA1 el nombre de un artista"
     select_recommended_stations_below: "Si no se te ocurre ninguno, seleccion\xC3\xA1 cualquiera de las estaciones de radio recomendadas que aparecen aqu\xC3\xAD abajo"
@@ -178,40 +178,40 @@ coke_AR:
   albums: 
     label: Disquera
     song_count: Conteo de Canciones
+    show: 
+      about_this_album: "Sobre este \xC3\xA1lbum"
     year: !binary |
       QcOxbw==
 
-    show: 
-      about_this_album: "Sobre este \xC3\xA1lbum"
-    release_date: Fecha de lanzamiento
     total_plays: Reproducciones totales
+    release_date: Fecha de lanzamiento
   profile: 
     header: 
       customize_page: "Personalizar la p\xC3\xA1gina"
     navigation: 
-      artists: Artistas
       all: Todo
+      artists: Artistas
       songs: Canciones
-      comments: Comentarios
-      subscriptions: Suscripciones
       dashboard: Dashboard
+      subscriptions: Suscripciones
+      comments: Comentarios
       stations: Estaciones de radio
       playlists: Mixes
       followers: Seguidores
       activity: Actividad
       albums: "\xC3\x81lbumes"
       account_settings: "Configuraci\xC3\xB3n de cuenta"
-      reviews: Comentarios
       settings: "Configuraci\xC3\xB3n"
-      music: "M\xC3\xBAsica"
+      reviews: Comentarios
       badges: Badges
-      community: Comunidad
+      music: "M\xC3\xBAsica"
       follow_requests: Peticiones de seguir
+      community: Comunidad
       home: Inicio
       age: Edad
+      charts: Listas
       biography: Bio
       mixes: Mixes
-      charts: Listas
       following: Siguiendo
   player: 
     license_message: 
@@ -223,21 +223,21 @@ coke_AR:
   sessions: 
     new: 
       already_own: "\xC2\xBFTen\xC3\xA9s ya una cuenta de Coca-Cola.FM?"
-      sign_in: Log In
       register_link_msn: "Si no ten\xC3\xA9s una cuenta de Coca-Cola.FM, continu\xC3\xA1 y registrate para tener una."
       register_cyloop: Registrarse en Coca-Cola.FM
       complete_registration: Completar registro
+      sign_in: Log In
       join: Unite ya
       remember_me: Recordarme
       title: "Ingres\xC3\xA1 para o\xC3\xADr m\xC3\xBAsica por Internet"
       listener_account: Cuenta de Usuario
       create_link_acct: "Necesitamos un poco m\xC3\xA1s de informaci\xC3\xB3n para poder crear tu perfil completo y poderlo vincular con {{provider}}."
       social: "Ingres\xC3\xA1 con tus datos de tu red social"
-      account: "\xC2\xBFNo ten\xC3\xA9s una cuenta de Coca-Cola.fm? "
       sign_up_for_free: Registrate gratis
       link_acct: "\xC3\x9Anicamente ingres\xC3\xA1 tu cuenta de {{provider}} para conectarla con la de Coca-Cola.FM"
-      sign_up_tag_line: "Segu\xC3\xAD a tus artistas favoritos y descubr\xC3\xAD m\xC3\xBAsica a trav\xC3\xA9s de amigos de manera gratuita y online."
+      account: "\xC2\xBFNo ten\xC3\xA9s una cuenta de Coca-Cola.fm? "
       not_registered: "\xC2\xBFNo est\xC3\xA1s registrado a\xC3\xBAn?"
+      sign_up_tag_line: "Segu\xC3\xAD a tus artistas favoritos y descubr\xC3\xAD m\xC3\xBAsica a trav\xC3\xA9s de amigos de manera gratuita y online."
       dont_have_account: "\xC2\xBFNo ten\xC3\xA9s una cuenta?"
       almost_done: "\xC2\xA1Casi terminamos!"
       site_credentials: "O ingres\xC3\xA1 tus datos de esta p\xC3\xA1gina "
@@ -255,19 +255,19 @@ coke_AR:
   settings: 
     background_not_saved_image_too_large: "Las im\xC3\xA1genes de fondo no pueden ser mayores a 1MB"
     page_title: "Control\xC3\xA1 tu Coca-Cola.FM"
+    cancel_my_account: Cancelar mi cuenta
+    private_profile: 
+      description: "Descripci\xC3\xB3n de la funci\xC3\xB3n \"\xC2\xBFMantener Perfil Privado?\""
     customizations: 
       header_background: Fondo del encabezado
-      link_font_color: "Color para tipograf\xC3\xADas de enlaces"
       main_background_color: Color del fondo principal
+      link_font_color: "Color para tipograf\xC3\xADas de enlaces"
       main_font_color: "Color de la tipograf\xC3\xADa principal"
       reset_to_default: "El dise\xC3\xB1o de tu perfil ha vuelto a su formato original por default."
       remove_background_image: Quitar imagen
       restore_defaults: Volver al original
       colors: Colores
       browse: Navegar...
-    private_profile: 
-      description: "Descripci\xC3\xB3n de la funci\xC3\xB3n \"\xC2\xBFMantener Perfil Privado?\""
-    cancel_my_account: Cancelar mi cuenta
     not_saved: Tus preferencias no fueron guardadas correctamente.
     notifications: ""
     saved: Tus preferencias han sido guardadas.
@@ -277,65 +277,65 @@ coke_AR:
       password: "Contrase\xC3\xB1a"
   playlists: 
     autofill: Autollenado
-    duration: "Duraci\xC3\xB3n"
     song_from: "canci\xC3\xB3n de"
-    save_confirmation: Mix guardado
-    cancel_playlist_text: "Si cancel\xC3\xA1s tu mix los cambios desaparecer\xC3\xA1n, al igual que las canciones que hay\xC3\xA1s agregado. <br/> \xC2\xBFEst\xC3\xA1s seguro que quer\xC3\xA9s cancelarlo?"
-    total_time: Tiempo total
-    edit: "Modific\xC3\xA1 tu mix"
+    duration: "Duraci\xC3\xB3n"
     autofill_option_text: "La opci\xC3\xB3n de autollenado te permitir\xC3\xA1 completar tu mix con canciones recomendadas seg\xC3\xBAn el estilo de las que ya hay\xC3\xA1s agregado."
     cancel_playlist: "\xC2\xBFCancelar mix?"
-    unable_save: No se puede guardar este mix
+    edit: "Modific\xC3\xA1 tu mix"
+    total_time: Tiempo total
+    save_confirmation: Mix guardado
+    cancel_playlist_text: "Si cancel\xC3\xA1s tu mix los cambios desaparecer\xC3\xA1n, al igual que las canciones que hay\xC3\xA1s agregado. <br/> \xC2\xBFEst\xC3\xA1s seguro que quer\xC3\xA9s cancelarlo?"
     saving_order: Orden de guardar
     tracks_remaining: tracks pendientes de publicar
     songs_from: canciones de
-    please_remove: Eliminar por favor
-    full_listen: "<li>Necesit\xC3\xA1s agregar <b class='red'>{{songsleft}}</b> canciones m\xC3\xA1s para que pod\xC3\xA1s escuchar completas las canciones de tu propio mix. Cuando tu mix tenga {{maxsongs}} canciones, este alerta cambia a color verde.<br /><br /><b>TIP:</b> \xC2\xA1Us\xC3\xA1 el b\xC3\xB3t\xC3\xB3n <b class='green'>'Autofill'</b> para agregar 10 canciones m\xC3\xA1s a tu mix!</li>"
+    unable_save: No se puede guardar este mix
     delete_text: "\xC2\xBFSeguro quer\xC3\xA9s borrar este mix?"
     name_your_playlist: Nombre de tu mix
-    add_tags: Agregar tags
     tag_your_playlist: Etiqueta tu mix
     minimum_songs_full: "m\xC3\xADnimo {{num}} canciones para escucharlas vos"
-    rules: Reglas del mix
+    please_remove: Eliminar por favor
     edit_confirm_text: "La canciones seleccionadas para tu mix han quedado guardadas. \xC2\xBFQuer\xC3\xA9s hacer alguna modificaci\xC3\xB3n?"
+    rules: Reglas del mix
+    add_tags: Agregar tags
+    full_listen: "<li>Necesit\xC3\xA1s agregar <b class='red'>{{songsleft}}</b> canciones m\xC3\xA1s para que pod\xC3\xA1s escuchar completas las canciones de tu propio mix. Cuando tu mix tenga {{maxsongs}} canciones, este alerta cambia a color verde.<br /><br /><b>TIP:</b> \xC2\xA1Us\xC3\xA1 el b\xC3\xB3t\xC3\xB3n <b class='green'>'Autofill'</b> para agregar 10 canciones m\xC3\xA1s a tu mix!</li>"
+    avatar_delete_confirm_title: "Confirmaci\xC3\xB3n de avatar eliminado"
+    playlist_name: Nombre del mix
+    lucky_10: 10 de la suerte
+    search_for_music: "Busc\xC3\xA1 m\xC3\xBAsica para agregar a tu mix"
     lucky_10_desc: "Us\xC3\xA1 este bot\xC3\xB3n para agregar 10 canciones m\xC3\xA1s que creemos te van a gustar..."
     seperated_commas: (separalas con comas)
-    avatar_delete_confirm_title: "Confirmaci\xC3\xB3n de avatar eliminado"
-    lucky_10: 10 de la suerte
-    playlist_name: Nombre del mix
-    search_for_music: "Busc\xC3\xA1 m\xC3\xBAsica para agregar a tu mix"
     click_here_to_add_tags: "Clic aqu\xC3\xAD para agregar tags"
     select_your_songs_text: "Los resultados de la b\xC3\xBAsqueda de canciones aparecer\xC3\xA1n aqu\xC3\xAD.<br/>Arrastr\xC3\xA1 las canciones que te gustan<br/>y ponelas en la columna de la derecha<br/>para crear tu mix"
     last_playlist: "\xC3\x9Altimo mix"
     maximum_songs_from: "m\xC3\xA1ximo de {{num}} canciones de un mismo {{type}}"
-    autofill_option: "Opci\xC3\xB3n de autollenado"
     why_not_try: Artistas relacionados que te pueden gustar
     drag_songs_here: "Arrastr\xC3\xA1 las canciones aqu\xC3\xAD"
     avatar_delete_confirm_text: "\xC2\xBFConfirmar?"
     continue_btn: Continuar
     delete_title: Borrar mix
+    autofill_option: "Opci\xC3\xB3n de autollenado"
     songs_from_album: "canciones del \xC3\xA1lbum"
     drag_songs_here_text: "Inclu\xC3\xAD por lo menos 10 canciones,<br/>usando m\xC3\xA1ximo 3 canciones<br/>de un mismo artista<br/>o de un mismo \xC3\xA1lbum<br/>dentro del mismo mix. Deb\xC3\xA9s tener 60 canciones para que pod\xC3\xA1s escucharlo vos tambi\xC3\xA9n. Con m\xC3\xA1s de 10 pero menos 60, s\xC3\xB3lo tus amigos pueden escucharlo."
     no_results_found: No se encontraron resultados. Por favor intentalo de nuevo
     add_update: AGREGAR / ACTUALIZAR
-    name_dialog: "\xC2\xBFC\xC3\xB3mo quer\xC3\xA9s que se llame tu mix?"
     song_from_mix: "canci\xC3\xB3n de este mix"
-    from_mix: "canci\xC3\xB3n/es de este mix"
-    continue: Continuar
+    name_dialog: "\xC2\xBFC\xC3\xB3mo quer\xC3\xA9s que se llame tu mix?"
     unable_save_text: "Tu mix tiene errores. Deben corregirse para que pod\xC3\xA1s compartirlo con todos."
+    continue: Continuar
     create_new: Crear un nuevo mix
     remove_all_tags: Remover todos
     no_thanks: No, gracias
-    you_have: !binary |
-      VGVuw6lz
-
-    select_your_songs: "Seleccion\xC3\xA1 tus canciones"
+    from_mix: "canci\xC3\xB3n/es de este mix"
     congrats: "<li><b>\xC2\xA1Felicidades!</b> \xC2\xA1Ya pod\xC3\xA9s escuchar tu mix completo!</li>"
     song_from_album: "canci\xC3\xB3n del \xC3\xA1lbum"
     songs_from_mix: canciones de este mix
-    copy: Copiar mix
     save_your_playlist: "Guard\xC3\xA1 tu mix"
+    copy: Copiar mix
+    you_have: !binary |
+      VGVuw6lz
+
     picture: Foto para tu mix
+    select_your_songs: "Seleccion\xC3\xA1 tus canciones"
   chat: 
     moderator: 
       title: "M\xC3\xB3dulo del moderador"
@@ -345,54 +345,54 @@ coke_AR:
     login: Ingreso
     approve: Aceptar
     save: Guardar
-    forgot_password: "\xC2\xBFOlvidaste la contrase\xC3\xB1a?"
     unfollow: Siguiendo
+    forgot_password: "\xC2\xBFOlvidaste la contrase\xC3\xB1a?"
     play: Reproducir
     show: Mostrar
     hide: Ocultar
-    disaprove: Rechazar
     share_station: "Compartir esta estaci\xC3\xB3n de radio con un amigo"
     pending: Pendientes
+    disaprove: Rechazar
     create: Crear
     edit: Editar
     submitting: Enviando
     add_song: "Agregar canci\xC3\xB3n"
-    create_a_mix: Crear un Mix
     rate_mix: "Valor\xC3\xA1 este mix"
+    create_a_mix: Crear un Mix
     view_more_songs: "ver m\xC3\xA1s canciones"
-    awaiting_approval: "Aprobaci\xC3\xB3n Pendiente"
+    add_this_song_into_the_following_playlists: "Agregar esta canci\xC3\xB3n a los siguientes mixes"
     alphabetical: "ALFAB\xC3\x89TICO"
     view: Ver
     launch_radio: Iniciar Radio
-    add_this_song_into_the_following_playlists: "Agregar esta canci\xC3\xB3n a los siguientes mixes"
     view_more: "Ver M\xC3\xA1s"
     buy_song: "Comprar canci\xC3\xB3n"
     cancel: Cancelar
+    awaiting_approval: "Aprobaci\xC3\xB3n Pendiente"
     delete: Borrar
     listen: escuchar
-    results_for: Resultados para
-    add_more: "Agregar m\xC3\xA1s"
     select_store: Seleccionar Tienda
+    add_more: "Agregar m\xC3\xA1s"
     add_into_a_new_playlist: Agregar en un nuevo mix
     follow: Seguir
     stop: Parar
     go_with_exclamation: !binary |
       wqFJciE=
 
+    results_for: Resultados para
     unfollow_account: Dejar de seguir a {{name}}
     send: Enviar
     search_text: "Buscar m\xC3\xBAsica en Coca-Cola.FM"
     block: Bloquear
     view_all: ver todos
-    select_playlist: Seleccionar mix
     create_station: "Crear una estaci\xC3\xB3n"
     reset: Restablecer
     block_this_person: Bloquear a esta persona
-    or: o
+    select_playlist: Seleccionar mix
     read_more: "leer m\xC3\xA1s"
     follow_account: Seguir a {{name}}
-    connect: Conectar
     show_more: "VER M\xC3\x81S"
+    connect: Conectar
+    or: o
     close: Cerrar
     submit: Enviar
     share: Compartir
@@ -408,12 +408,12 @@ coke_AR:
     to: a
     search_again: Buscar nuevamente
     enter: Entrar
+    deny: Denegar
     create_a_playlist: Crear un mix
     copy: Copiar
-    deny: Denegar
     filter_by: Filtrar por
-    previous: Anterior
     share_with_a_friend: "Compartir esta canci\xC3\xB3n con un amigo"
+    previous: Anterior
     add: agregar
     search: Buscar
     aprove: Aceptar
@@ -421,161 +421,155 @@ coke_AR:
   alert: 
     blocking: ""
   feedback: 
-    submit: "Env\xC3\xADa tus sugerencias"
     country: !binary |
       UGHDrXM=
 
+    submit: "Env\xC3\xADa tus sugerencias"
     title: Sugerencias
     os: Sistema operativo
     feedback: Sugerencias
     browser: Navegador
     email: Tu mail
   messenger_player: 
-    sign_in: "ingres\xC3\xA1 con tu Live ID de Windows"
+    click_here: "clic aqu\xC3\xAD"
     buylink: 
       select_store: "Seleccion\xC3\xA1 tu tienda"
       song: "Comprar esta canci\xC3\xB3n"
-    share: 
-      title: Enviar a un amigo
-      message: Mensaje
-      email: Tu mail
-      friend: El mail de tu amigo
+    edit_station: "Para editar esta estaci\xC3\xB3n,"
     we_hope_you_enjoyed: "Esperamos que te hayan gustado las canciones que escuchaste. Para escuchar m\xC3\xA1s, "
-    click_here: "clic aqu\xC3\xAD"
+    sign_in: "ingres\xC3\xA1 con tu Live ID de Windows"
     station: 
       name: "Nombre de la estaci\xC3\xB3n de radio"
       edit: "Editar nombre de la estaci\xC3\xB3n de radio"
       delete: "Eliminar estaci\xC3\xB3n de radio"
       would_delete: "\xC2\xBFQuer\xC3\xA9s eliminar esta estaci\xC3\xB3n de radio?"
-    edit_station: "Para editar esta estaci\xC3\xB3n,"
+    share: 
+      title: Enviar a un amigo
+      message: Mensaje
+      friend: El mail de tu amigo
+      email: Tu mail
     record_not_found: "El material que busc\xC3\xA1s no pudo encontrarse"
     checkout_today_polular_stations: "Checar las estaciones de radio m\xC3\xA1s populares de hoy"
     recengineerror_UNKNOWN: Error desconocido
-    take_a_moment: Tomate unos segundos para activar tu cuenta de Coca-Cola.FM
     msn_stations: Estaciones de radio de Cyloop.com
+    take_a_moment: Tomate unos segundos para activar tu cuenta de Coca-Cola.FM
     registration: 
       success: "\xC2\xA1Felicidades! Ya est\xC3\xA1s registrado"
       email: "Tu direcci\xC3\xB3n de mail"
     to_login: para ingresar
+    activate_your_account: "Activ\xC3\xA1 tu cuenta de Coca-Cola.FM"
     buy: Comprar
     album: 
       released: Lanzado
     authentication_required: "Necesit\xC3\xA1s ingresar para poder hacer eso"
     internal_error: "No se pudo ejecutar tu petici\xC3\xB3n debido a una falla interna. Ya estamos al tanto de esta situaci\xC3\xB3n y en breve la solucionaremos."
-    activate_your_account: "Activ\xC3\xA1 tu cuenta de Coca-Cola.FM"
     recengineerror_NO_PLAYLIST: No se pudo encontrar un mix
+    station_edit_success: "El nombre de la estaci\xC3\xB3n de radio ha sido actualizado"
     now_playing: Tocando ahora
     msn_music_is_free: Coca-Cola.FM es gratis
-    station_edit_success: "El nombre de la estaci\xC3\xB3n de radio ha sido actualizado"
     view_your_stations: "Para ver tus estaciones de radio, "
     continue: Continuar
     still_dont_have: "\xC2\xBFA\xC3\xBAn no ten\xC3\xA9s una cuenta de Coca-Cola.FM?"
     recengineerror_NO_RADIO: "No se pudo encontrar una estaci\xC3\xB3n de radio"
   user: 
-    is_not_following_anybody: "{{user_name}} no est\xC3\xA1 siguiendo a nadie"
-    name: Nombre
+    forgot_message: "Coca-Cola.FM te enviar\xC3\xA1 instrucciones al mail registrado con tu cuenta. Por favor, ingres\xC3\xA1 tu mail."
     background_align: Alineamiento del fondo
+    name: Nombre
+    receives_following_notifications: Avisarme cuando alguien empiece a seguirme
+    marketing_opt_out: "Por favor no me env\xC3\xADen mails de parte de Coca-Cola.FM o sus sitios relacionados."
+    city_name: Ciudad
+    slug: "Eleg\xC3\xAD tu nickname"
+    is_not_following_anybody: "{{user_name}} no est\xC3\xA1 siguiendo a nadie"
     background_repeats: 
       horizontal_repeat: "Repetici\xC3\xB3n horizontal"
       full_repeat: "Repetici\xC3\xB3n completa"
       no_repeat: No repetir
       vertical_repeat: "Repetici\xC3\xB3n vertical"
-    receives_following_notifications: Avisarme cuando alguien empiece a seguirme
-    marketing_opt_out: "Por favor no me env\xC3\xADen mails de parte de Coca-Cola.FM o sus sitios relacionados."
-    city_name: Ciudad
-    background_fixed_false: "No"
-    slug: "Eleg\xC3\xAD tu nickname"
-    forgot_message: "Coca-Cola.FM te enviar\xC3\xA1 instrucciones al mail registrado con tu cuenta. Por favor, ingres\xC3\xA1 tu mail."
     color_links: Color del enlace
+    background_fixed_false: "No"
+    background_fixed_true: !binary |
+      U8Ot
+
+    doesnt_have_any_subscriptions: "{{user_name}} no est\xC3\xA1 suscrito a nada a\xC3\xBAn"
     confirmation: 
       click_here: "clic aqu\xC3\xAD"
       email_resend_failed: "El mail de confirmaci\xC3\xB3n no pudo ser reenviado. Por favor intent\xC3\xA1 m\xC3\xA1s tarde."
       still_pending: "Tu cuenta no ha sido confirmada a\xC3\xBAn. Te pedimos buscar en tus emails y seguir las instrucciones para confirmaci\xC3\xB3n, o {{click_here}} para reenviar tu enlace de confirmaci\xC3\xB3n."
       email_resent: "Tu e-mail de confirmaci\xC3\xB3n ha sido enviado de nuevo."
     terms_of_use: "T\xC3\xA9rminos de uso"
-    background_fixed_true: !binary |
-      U8Ot
-
-    doesnt_have_any_subscriptions: "{{user_name}} no est\xC3\xA1 suscrito a nada a\xC3\xBAn"
-    cyloop_password: "Contrase\xC3\xB1a"
-    reset_password: "Cambio de contrase\xC3\xB1a"
-    terms_of_use_instructions: "Al registrarte, acept\xC3\xA1s los {{link}} y confirm\xC3\xA1s que tienes por lo menos 13 a\xC3\xB1os."
-    private_profile: "\xC2\xBFMantener tu perfil privado?"
     forgot_your_password: "\xC2\xBFSe te olvid\xC3\xB3 tu contrase\xC3\xB1a?"
+    reset_password: "Cambio de contrase\xC3\xB1a"
+    private_profile: "\xC2\xBFMantener tu perfil privado?"
+    cyloop_password: "Contrase\xC3\xB1a"
+    terms_of_use_instructions: "Al registrarte, acept\xC3\xA1s los {{link}} y confirm\xC3\xA1s que tienes por lo menos 13 a\xC3\xB1os."
     twitter_username: Nombre de usuario en Twitter
-    cyloop_email: Email de Coca-Cola.FM
+    female: Mujer
     current_password: "Contrase\xC3\xB1a actual"
     background: Imagen de fondo
-    female: Mujer
-    color_bg: Color del fondo
+    cyloop_email: Email de Coca-Cola.FM
     background_alignments: 
       left: Izquierda
       upper_right: Superior derecha
-      center: Centro
       lower_right: Inferior derecha
+      center: Centro
       upper_left: Superior izquierda
       lower_left: Inferior izquierda
       right: Derecha
       upper_center: Centro superior
       lower_center: Centro inferior
+    color_bg: Color del fondo
     password_confirmation: "Confirmar contrase\xC3\xB1a"
     websites: Sitios web
     doesnt_have_any_followers: "{{user_name}} no tiene seguidores"
-    remove_avatar: Eliminar Imagen
     terms_and_conditions: "t\xC3\xA9rminos y condiciones"
-    background_fixed: Fondo ajustado
+    remove_avatar: Eliminar Imagen
     short_bio: Bio en corto
-    privacy_policy_instructions: "\xC2\xA1Nuestra {{link}} existe para protegerte! Por favor revisala y confirm\xC3\xA1 que s\xC3\xAD est\xC3\xA1s de acuerdo con sus t\xC3\xA9rminos."
+    background_fixed: Fondo ajustado
     color_main_font: "Color de la tipograf\xC3\xADa principal"
     gender: Sexo
     avatar: Imagen
-    negative_captcha: No completar este campo
     background_repeat: "Repetici\xC3\xB3n del fondo"
-    male: Hombre
+    negative_captcha: No completar este campo
+    privacy_policy_instructions: "\xC2\xA1Nuestra {{link}} existe para protegerte! Por favor revisala y confirm\xC3\xA1 que s\xC3\xAD est\xC3\xA1s de acuerdo con sus t\xC3\xA9rminos."
     new_password: "Nueva contrase\xC3\xB1a"
     has_no_followers: "{{user_name}} no tiene seguidores"
     has_no_tweet: "{{user_name}} no tiene tweets"
+    male: Hombre
     safety_tips: Consejos de seguridad
     dont_stay_locked_out: "\xC2\xA1No te qued\xC3\xA9s fuera!"
     time_zone: Zona horaria
-    password: "Contrase\xC3\xB1a"
-    saved: Tus preferencias han sido guardadas.
-    color_header_bg: Color del encabezado
     hasnt_create_any_station: "{{user_name}} no ha creado estaciones de radio"
     privacy_policy: "Pol\xC3\xADtica de  privacidad"
-    has_no_activity: "{{user_name}} no tiene actividad"
+    password: "Contrase\xC3\xB1a"
+    color_header_bg: Color del encabezado
+    saved: Tus preferencias han sido guardadas.
     born_on: Fecha de nacimiento
     email: Mail
+    has_no_activity: "{{user_name}} no tiene actividad"
   activity: 
     created_playlist: "Cre\xC3\xB3 el mix '{{playlist}}'"
-    just_user: "S\xC3\xB3lo {{user}}"
     just_following: Siguiendo solamente
+    just_user: "S\xC3\xB3lo {{user}}"
     listened_to: "Escuch\xC3\xB3 '{{song}}' de '{{artist}}'"
     push_notification_refresh: Recargar
-    push_notification: "Ten\xC3\xA9s {{count}} actualizaciones nuevas. {{link}} la actividad en tu Dashboard para verlas."
-    twitter_you_following: "Tweets de artistas que est\xC3\xA1s siguiendo"
     filters: 
       all: TODOS
       songs: CANCIONES
       stations: ESTACIONES DE RADIO
       playlists: MIXES
+    push_notification: "Ten\xC3\xA9s {{count}} actualizaciones nuevas. {{link}} la actividad en tu Dashboard para verlas."
+    twitter_you_following: "Tweets de artistas que est\xC3\xA1s siguiendo"
     no_more_activity: "No hay m\xC3\xA1s actividad"
     push_notification_more_than: "Ten\xC3\xA9s m\xC3\xA1s de {{count}} actualizaciones nuevas. {{link}} la actividad en tu Dashboard para verlas."
-    user_following: "{{user}} + Siguiendo"
     created_station: "{{creator}} cre\xC3\xB3 la estaci\xC3\xB3n de radio: {{station}}"
     twitter_following: "Tweets de los artistas que {{user}} est\xC3\xA1 siguiendo"
-  playlist_items: 
-    delete_text: "\xC2\xBFSeguro que quer\xC3\xA9s borrar esta canci\xC3\xB3n?"
-    delete_title: "Borrar canci\xC3\xB3n"
-    create: 
-      errors: 
-        click_checkbox_first: "Para agregar esta canci\xC3\xB3n, deb\xC3\xA9s seleccionar el cuadro de verificaci\xC3\xB3n del mix al que dese\xC3\xA1s agregarlo"
+    user_following: "{{user}} + Siguiendo"
   possessives: 
     third_person: 
       has_not_subscribed: "{{subject}} no se ha suscrito a alg\xC3\xBAn mix."
       network_activity: Actividad de {{subject}} en la red
-      friends_that_have_this_badge: Amigos de {{subject}} que se han ganado este badge
       subscriptions: Suscripciones de {{subject}}
+      friends_that_have_this_badge: Amigos de {{subject}} que se han ganado este badge
       latest_playlists: "\xC3\x9Altimos mixes de {{subject}}"
       stations: Estaciones de radio de {{subject}}
       playlists: Mixes de {{subject}}
@@ -583,26 +577,26 @@ coke_AR:
       has_not_badges: "{{subject}} no ha ganado ning\xC3\xBAn badge a\xC3\xBAn."
       has_not_reviews: "{{subject}} no ha escrito ning\xC3\xBAn comentario a\xC3\xBAn."
       albums: "\xC3\x81lbumes de {{subject}} "
-      top_playlists: Top mixes de {{subject}}
       has_not_playlists: "{{subject}} no tiene mixes."
+      top_playlists: Top mixes de {{subject}}
       others_dont_have_badge: "Nadie m\xC3\xA1s tiene este badge. \xC2\xA1{{subject}} es el primer ganador!"
-      followees: "Gente que  {{subject}} est\xC3\xA1 siguiendo"
       has_not_followers: "{{subject}} no tiene seguidores."
-      reviews: Comentarios hechos por {{subject}}
-      latest_reviews: "\xC3\x9Altimos comentarios de {{subject}}"
-      badges: Badges de {{subject}}
+      followees: "Gente que  {{subject}} est\xC3\xA1 siguiendo"
       is_not_following: "{{subject}} no est\xC3\xA1 siguiendo a nadie ahora."
+      reviews: Comentarios hechos por {{subject}}
+      badges: Badges de {{subject}}
+      latest_reviews: "\xC3\x9Altimos comentarios de {{subject}}"
       has_not_followees: "{{subject}} no est\xC3\xA1 siguiendo a otros amigos a\xC3\xBAn"
-      friends_dont_have_badge: "Ning\xC3\xBAn amigo de {{subject}} tiene este badge."
       follow_requests: Pedidos de gente a seguir de {{subject}}
-      has_not_activities: "{{subject}} no tiene actividades."
+      friends_dont_have_badge: "Ning\xC3\xBAn amigo de {{subject}} tiene este badge."
       charts: Listas de {{subject}}
+      has_not_activities: "{{subject}} no tiene actividades."
     first_person: 
       has_not_subscribed: "No ten\xC3\xA9s suscripciones a ning\xC3\xBAn mix"
       network_activity: Actividad de mi red
+      subscriptions: Mis suscripciones
       friends_that_have_this_badge: "Amigos m\xC3\xADos que tienen este badge"
       comments: Mis Comentarios
-      subscriptions: Mis suscripciones
       latest_playlists: "Mis \xC3\x9Altimas Reviews"
       stations: Mis estaciones de radio
       playlists: Mis mixes
@@ -610,20 +604,26 @@ coke_AR:
       has_not_badges: "No hab\xC3\xA9s ganado ning\xC3\xBAn badge a\xC3\xBAn."
       has_not_reviews: "No hab\xC3\xA9s dejado ning\xC3\xBAn comentario a\xC3\xBAn."
       albums: "Mis \xC3\xA1lbumes"
-      top_playlists: "Mis top mixes "
       has_not_playlists: "No ten\xC3\xA9s mixes."
+      top_playlists: "Mis top mixes "
       others_dont_have_badge: "Nadie tiene este badge. \xC2\xA1Vos eres el primer ganador!"
-      followees: "Gente que estoy siguiendo "
       has_not_followers: "No ten\xC3\xA9s seguidores."
-      reviews: Mis comentarios
-      latest_reviews: "Mis comentarios m\xC3\xA1s recientes"
-      badges: Mis badges
+      followees: "Gente que estoy siguiendo "
       is_not_following: "No est\xC3\xA1s siguiendo a nadie."
-      friends_dont_have_badge: Ninguno de tus amigos tiene este badge
+      reviews: Mis comentarios
+      badges: Mis badges
+      latest_reviews: "Mis comentarios m\xC3\xA1s recientes"
       follow_requests: Mis Pedidos de seguir
+      friends_dont_have_badge: Ninguno de tus amigos tiene este badge
+      charts: Mis listas
       has_not_activities: "A\xC3\xBAn no registr\xC3\xA1s actividad. Escrib\xC3\xAD comentarios en los mixes que te gustan."
       mixes: Mis Mixes
-      charts: Mis listas
+  playlist_items: 
+    delete_text: "\xC2\xBFSeguro que quer\xC3\xA9s borrar esta canci\xC3\xB3n?"
+    delete_title: "Borrar canci\xC3\xB3n"
+    create: 
+      errors: 
+        click_checkbox_first: "Para agregar esta canci\xC3\xB3n, deb\xC3\xA9s seleccionar el cuadro de verificaci\xC3\xB3n del mix al que dese\xC3\xA1s agregarlo"
   artist: 
     be_the_first_to_create_station: "S\xC3\xA9 el primero en crear una estaci\xC3\xB3n de radio de {{user_name}}"
   contact_us: 
@@ -632,42 +632,42 @@ coke_AR:
       title: "Confirmaci\xC3\xB3n"
       body: Tu formulario ha sido enviado
     form: 
-      faq: "Preguntas m\xC3\xA1s frecuentes"
       feedback_default: Por favor da los mayores detalles posibles
       category_error: Reporte de errores
+      faq: "Preguntas m\xC3\xA1s frecuentes"
       category_business: "Informaci\xC3\xB3n sobre negocios generales o relaciones p\xC3\xBAblicas"
       category_security: Mi seguridad
       category: Categoria
-      support_form: "Formulario de soporte t\xC3\xA9cnico"
+      submit: "Envi\xC3\xA1 tu mensaje"
       country: !binary |
         UGHDrXM=
 
-      submit: "Envi\xC3\xA1 tu mensaje"
+      support_form: "Formulario de soporte t\xC3\xA9cnico"
       welcome: "\xC2\xA1Bienvenido a la secci\xC3\xB3n de Soporte T\xC3\xA9cnico de Cyloop.com!"
       category_account: Mi cuenta
-      privacy_text: "Enterate c\xC3\xB3mo maneja Cyloop.com temas como spam, suplantaci\xC3\xB3n, marcas, derechos reservados y otros aspectos legales."
-      os: Sistema operativo
-      business_inquires: "\xC2\xBFInformaci\xC3\xB3n sobre negocios generales?"
-      business_inquires_text: Por favor contactar
-      header: "Queremos responder tus preguntas lo m\xC3\xA1s rapido posible para que puedas seguir disfrutando de Cyloop.com"
-      support_form_text: "Si ten\xC3\xA9s alguna pregunta o problema que no hab\xC3\xA9s podido resolver con la informaci\xC3\xB3n incluida en esta p\xC3\xA1gina o el link, o quer\xC3\xA9s dejar alg\xC3\xBAn comentario, pod\xC3\xA9s enviarnos un mensaje completando este formulario."
       category_other_features: Otras funciones en Coca-Cola.FM
-      resources: Recursos
+      os: Sistema operativo
+      privacy_text: "Enterate c\xC3\xB3mo maneja Cyloop.com temas como spam, suplantaci\xC3\xB3n, marcas, derechos reservados y otros aspectos legales."
+      business_inquires: "\xC2\xBFInformaci\xC3\xB3n sobre negocios generales?"
+      header: "Queremos responder tus preguntas lo m\xC3\xA1s rapido posible para que puedas seguir disfrutando de Cyloop.com"
+      business_inquires_text: Por favor contactar
+      support_form_text: "Si ten\xC3\xA9s alguna pregunta o problema que no hab\xC3\xA9s podido resolver con la informaci\xC3\xB3n incluida en esta p\xC3\xA1gina o el link, o quer\xC3\xA9s dejar alg\xC3\xBAn comentario, pod\xC3\xA9s enviarnos un mensaje completando este formulario."
       information: "Por favor incluir toda la informaci\xC3\xB3n posible"
+      resources: Recursos
       new_cyloop: "\xC2\xBFNuevo en Cyloop.com?"
       category_music: "Sobre la m\xC3\xBAsica"
       category_photos: Sobre las fotos
       feedback: Mensaje
       category_feedback: Sugerencias, ideas o feedback
-      browser: Navegador
-      privacy: "\xC2\xBFPrivacidad y seguridad?"
       category_other: Otro
       new_cyloop_text: "Para encontrar las respuestas a las preguntas m\xC3\xA1s comunes segu\xC3\xAD nuestro link. Si no encontr\xC3\xA1s la respuesta adecuada, por favor us\xC3\xA1 el formulario en el siguiente link para comunicarte con nosotros"
-      category_profile: Mi perfil
+      browser: Navegador
+      privacy: "\xC2\xBFPrivacidad y seguridad?"
       email: Direccion de mail
+      category_profile: Mi perfil
   followings: 
-    has_blocked_you: "Este usuario te tiene bloqueado/a. \xC2\xA1No pod\xC3\xA9s seguirlo/a!"
     awaiting_approval: "Est\xC3\xA1s esperando que este usuario te apruebe."
+    has_blocked_you: "Este usuario te tiene bloqueado/a. \xC2\xA1No pod\xC3\xA9s seguirlo/a!"
     create_success: "Est\xC3\xA1s siguiendo a {{name}}"
     followers: Seguidores
     create_error: 
@@ -697,16 +697,17 @@ coke_AR:
     email_me_subscribes_radios: Quiero recibir un mail cuando alguien agregue una de mis estaciones de radio
     change_password: "CAMBIAR CONTRASE\xC3\x91A"
     email_me_following_me: Quiero recibir un mail cuando alguien empiece a seguirme
+    email_me_reviews_mixes: Quiero recibir un mail cuando alguien califique o deje un comentario en alguno de mis mixes
     delete: ELIMINAR
     title: "CONFIGURACI\xC3\x93N DE CUENTA"
-    email_me_subscribes_mixes: Quiero recibir un mail cuando alguien agregue uno de mis mixes
-    email_me_reviews_mixes: Quiero recibir un mail cuando alguien califique o deje un comentario en alguno de mis mixes
     cancel: Cancelar
+    email_me_subscribes_mixes: Quiero recibir un mail cuando alguien agregue uno de mis mixes
     email_me_communications: "Deseo recibir notificaciones peri\xC3\xB3dicas y newsletters de Coca-Cola.FM"
     email_me_win_badges: Quiero recibir un mail cuando me gane un nuevo badge
     delete_my_account: "ELIMINAR MI CUENTA (TE VAMOS A EXTRA\xC3\x91AR)"
     email_me_coke_newsletter: "Deseo recibir notificaciones peri\xC3\xB3dicas y newsletters de Coca-Cola.FM"
     delete_info: "Al marcar este casillero, entiendo que mi cuenta en Coca-Cola.fm, mi colecci\xC3\xB3n de m\xC3\xBAsica y mis fotos ser\xC3\xA1n eliminadas. Entiendo que para ingresar nuevamente a Coca-Cola.fm, tendr\xC3\xA9 que volver a crear una cuenta con un nuevo nombre de usuario."
+    password_changed: "Su contrase\xC3\xB1a fue cambiada exitosamente"
     password_required: "Deb\xC3\xA9s ingresar una contrase\xC3\xB1a v\xC3\xA1lida"
     new_password: "Contrase\xC3\xB1a nueva"
     delete_info_required: "Deb\xC3\xA9s marcar el casillero para continuar"
@@ -714,66 +715,13 @@ coke_AR:
     delete_account: ELIMINAR CUENTA
     add_update: AGREGAR / ACTUALIZAR
     update: ACTUALIZAR
-    password: "Contrase\xC3\xB1a"
     basic_info: "INFORMACI\xC3\x93N B\xC3\x81SICA"
+    password: "Contrase\xC3\xB1a"
     email_notifications: NOTIFICACIONES POR EMAIL
     old_password: "Contrase\xC3\xB1a anterior"
   gender: 
     female: "Mujer "
     male: "Hombre "
-  date: 
-    month_names: 
-    - 
-    - January
-    - February
-    - March
-    - April
-    - May
-    - June
-    - July
-    - August
-    - September
-    - October
-    - November
-    - December
-    abbr_day_names: 
-    - Sun
-    - Mon
-    - Tue
-    - Wed
-    - Thu
-    - Fri
-    - Sat
-    order: 
-    - :month
-    - :day
-    - :year
-    formats: 
-      default: "%d/%m/%Y"
-      short: "%b %d"
-      long: "%B %d, %Y"
-    day_names: 
-    - Sunday
-    - Monday
-    - Tuesday
-    - Wednesday
-    - Thursday
-    - Friday
-    - Saturday
-    abbr_month_names: 
-    - 
-    - Jan
-    - Feb
-    - Mar
-    - Apr
-    - May
-    - Jun
-    - Jul
-    - Aug
-    - Sep
-    - Oct
-    - Nov
-    - Dec
   datetime: 
     prompts: 
       minute: Minuto
@@ -825,18 +773,14 @@ coke_AR:
         one: "m\xC3\xA1s de 1 a\xC3\xB1o"
         other: "m\xC3\xA1s de {{count}} a\xC3\xB1os"
       half_a_minute: medio minuto
-  playlist: 
-    edit_your_playlist: Editar tu mix
-    review: COMENTA ESTE MIX
-    doesnt_have_any_reviews: Este mix no tiene comentarios
   cancellation: 
     confirmation: 
+      are_you_sure: "\xC2\xBFEst\xC3\xA1s seguro que quer\xC3\xA9s cancelar tu cuenta?"
       title: "\xC2\xA1Te vamos a extra\xC3\xB1ar en Coca-Cola.FM!"
       body: "La cancelaci\xC3\xB3n de tu cuenta de Coca-Cola.fm eliminar\xC3\xA1 en forma permanente toda la informaci\xC3\xB3n de tu perfil, incluyendo tus fotos, canales de actividad y tu red personal de seguidores. Esta informaci\xC3\xB3n no podr\xC3\xA1 ser recuperada una vez borrada."
-      are_you_sure: "\xC2\xBFEst\xC3\xA1s seguro que quer\xC3\xA9s cancelar tu cuenta?"
-      cancel_account: "S\xC3\xAD, cancelar mi cuenta"
       irreversible_note: "Esta acci\xC3\xB3n es irreversible"
       keep_account: No, conservar mi cuenta
+      cancel_account: "S\xC3\xAD, cancelar mi cuenta"
     feedback: 
       label: Feedback
       title: "\xC2\xBFPor qu\xC3\xA9 te vas de Coca-Cola.FM?"
@@ -848,108 +792,162 @@ coke_AR:
       body: Este mensaje confirma que tu cuenta en Coca-Cola.FM ha quedado cancelada
       subject: "Cancelaci\xC3\xB3n de cuenta en Coca-Cola.FM"
       goodbye: Gracias
+  playlist: 
+    edit_your_playlist: Editar tu mix
+    review: COMENTA ESTE MIX
+    doesnt_have_any_reviews: Este mix no tiene comentarios
+  date: 
+    month_names: 
+    - 
+    - January
+    - February
+    - March
+    - April
+    - May
+    - June
+    - July
+    - August
+    - September
+    - October
+    - November
+    - December
+    order: 
+    - :month
+    - :day
+    - :year
+    abbr_day_names: 
+    - Sun
+    - Mon
+    - Tue
+    - Wed
+    - Thu
+    - Fri
+    - Sat
+    formats: 
+      default: "%d/%m/%Y"
+      short: "%b %d"
+      long: "%B %d, %Y"
+    day_names: 
+    - Sunday
+    - Monday
+    - Tuesday
+    - Wednesday
+    - Thursday
+    - Friday
+    - Saturday
+    abbr_month_names: 
+    - 
+    - Jan
+    - Feb
+    - Mar
+    - Apr
+    - May
+    - Jun
+    - Jul
+    - Aug
+    - Sep
+    - Oct
+    - Nov
+    - Dec
   badges: 
+    ratings_flying_tomatoes: 
+      name: Tomatazo
+      qualification: "Por haber recibido una calificaci\xC3\xB3n de s\xC3\xB3lo 1 o 2 en la mayor\xC3\xADa de tus primeros 25 mixes en los que te han dejado comentarios. \xC2\xA1Vamos, segu\xC3\xAD adelante!"
+    unlocked_by_user_on: Desbloqueado por {{user}} {{date_won}}
+    xmas_musician: 
+      name: "M\xC3\xBAsico navide\xC3\xB1o"
+      qualification: "Ya hay 3 Mixes en tu colecci\xC3\xB3n que tienen alg\xC3\xBAn tipo de tag navide\xC3\xB1o asignado.\r\n"
+    dj_superstar: 
+      name: DJ Superstar
+      qualification: "se obtiene cuando 5000 personas han escuchado mis mixes. \xC2\xA1Ya puedes ser DJ en un estadio!"
     beginner: 
       name: Principiante
       qualification: "Por haber creado un Mix, o haber comenzado a seguir a alguien, o haber dejado una calificaci\xC3\xB3n."
     xmas_record_gold: 
       name: "Disco navide\xC3\xB1o de oro"
       qualification: "\xC2\xA1Acab\xC3\xA1s de superar tu propio record navide\xC3\xB1o! Ahora son 20 los usuarios en Coca-Cola.fm  que ya han escuchado alguno de tus mixes etiquetados con tags navide\xC3\xB1os.\r\n"
-    xmas_musician: 
-      name: "M\xC3\xBAsico navide\xC3\xB1o"
-      qualification: "Ya hay 3 Mixes en tu colecci\xC3\xB3n que tienen alg\xC3\xBAn tipo de tag navide\xC3\xB1o asignado.\r\n"
-    ratings_flying_tomatoes: 
-      name: Tomatazo
-      qualification: "Por haber recibido una calificaci\xC3\xB3n de s\xC3\xB3lo 1 o 2 en la mayor\xC3\xADa de tus primeros 25 mixes en los que te han dejado comentarios. \xC2\xA1Vamos, segu\xC3\xAD adelante!"
-    unlocked_by_user_on: Desbloqueado por {{user}} {{date_won}}
-    dj_superstar: 
-      name: DJ Superstar
-      qualification: "se obtiene cuando 5000 personas han escuchado mis mixes. \xC2\xA1Ya puedes ser DJ en un estadio!"
-    mixmaster_black: 
-      name: "Mixmaster: Cintur\xC3\xB3n Negro"
-      qualification: "Has creado 50 mixes. Este \"Cintur\xC3\xB3n Negro\" inspira respeto."
     que_bolas: 
       name: "Contagia alegr\xC3\xADa"
       qualification: "Cuando recib\xC3\xADs el ranking m\xC3\xA1ximo (5) de tres personas por un solo mix espec\xC3\xADfico que hab\xC3\xA9s creado y tiene asignado al menos un tag navide\xC3\xB1o. Nota: este badge se gana s\xC3\xB3lo una vez."
-    favorite_dj: 
-      name: Dj Favorito
+    mixmaster_black: 
+      name: "Mixmaster: Cintur\xC3\xB3n Negro"
+      qualification: "Has creado 50 mixes. Este \"Cintur\xC3\xB3n Negro\" inspira respeto."
     mixmaster_green: 
       name: "Mixmaster: Cintur\xC3\xB3n Verde"
       qualification: "Hab\xC3\xA9s creado 10 mixes. \xC2\xBFCu\xC3\xA1ntos m\xC3\xA1s cre\xC3\xA9s que sos capaz de hacer?"
-    my_first_playlist: 
-      name: Mi Primera Playlist
-    dj_unbeatable: 
-      name: DJ Imbatible
-      qualification: "Creaste 5 mixes en 24 horas. \xC2\xA1Eso es algo muy dif\xC3\xADcil de superar!"
+    favorite_dj: 
+      name: Dj Favorito
     leader: 
       name: !binary |
         TMOtZGVy
 
       qualification: "5 personas te est\xC3\xA1n siguiendo."
-    xmas_xpert: 
-      name: "Experto navide\xC3\xB1o"
-      qualification: "\xC2\xA1El esp\xC3\xADritu navide\xC3\xB1o se te subi\xC3\xB3 a la cabeza! Ya dejaste comentarios o calificaciones en por lo menos 10 Mixes de otros usuarios, que tienen alg\xC3\xBAn tipo de tag navide\xC3\xB1o asignado.\r\n"
-    mixmaster_brown: 
-      name: "Mixmaster: Cintur\xC3\xB3n Marr\xC3\xB3n"
-      qualification: "Hab\xC3\xA9s creado 25 mixes. Ya sos parte de las ligas mayores."
-    record_gold: 
-      name: Disco de oro
-      qualification: Tu mix {{playlist_name}} ha sido escuchado por 20 personas
+    my_first_playlist: 
+      name: Mi Primera Playlist
+    dj_unbeatable: 
+      name: DJ Imbatible
+      qualification: "Creaste 5 mixes en 24 horas. \xC2\xA1Eso es algo muy dif\xC3\xADcil de superar!"
     critic_objective: 
       name: "Doctor en Tendencias: Cr\xC3\xADtico Objetivo"
       qualification: "Por haber calificado con 3 a la mayor\xC3\xADa de 25 mixes"
-    rey_mago: 
-      name: Rey mago
-      qualification: "Por haber creado 1 o m\xC3\xA1s mixes con al menos un tag navide\xC3\xB1o, el 6 de enero."
+    xmas_xpert: 
+      name: "Experto navide\xC3\xB1o"
+      qualification: "\xC2\xA1El esp\xC3\xADritu navide\xC3\xB1o se te subi\xC3\xB3 a la cabeza! Ya dejaste comentarios o calificaciones en por lo menos 10 Mixes de otros usuarios, que tienen alg\xC3\xBAn tipo de tag navide\xC3\xB1o asignado.\r\n"
     xmas_rocker: 
       name: Rocknxmas
       qualification: "\xC2\xA1Esta navidad est\xC3\xA1s imparable! Ya recibiste comentarios o calificaciones de por lo menos 20 personas distintas, en Mixes tuyos que tienen alg\xC3\xBAn tag navide\xC3\xB1o.\r\n"
+    rey_mago: 
+      name: Rey mago
+      qualification: "Por haber creado 1 o m\xC3\xA1s mixes con al menos un tag navide\xC3\xB1o, el 6 de enero."
+    record_gold: 
+      name: Disco de oro
+      qualification: Tu mix {{playlist_name}} ha sido escuchado por 20 personas
+    mixmaster_brown: 
+      name: "Mixmaster: Cintur\xC3\xB3n Marr\xC3\xB3n"
+      qualification: "Hab\xC3\xA9s creado 25 mixes. Ya sos parte de las ligas mayores."
     bota: 
       name: "Bota Navide\xC3\xB1a"
       qualification: "Por haber creado 10 mixes con uno o m\xC3\xA1s tags navide\xC3\xB1os."
+    networker_gold: 
+      name: "Networker: Oro"
+      qualification: "Est\xC3\xA1s siguiendo a 100 personas. Ten\xC3\xA9s un toque de oro para seguir gente."
+    master: 
+      name: Master
+      qualification: "25 personas te est\xC3\xA1n siguiendo. \xC2\xA1Algo deb\xC3\xA9s estar haciendo bien!"
+    playlist_name: Nombre del mix
     ratings_standing_ovation: 
       name: "Ovaci\xC3\xB3n de pie"
       qualification: "Por haber recibido una calificaci\xC3\xB3n de 4 o 5 en tus primeros 25 mixes en los que te han dejado comentarios. \xC2\xA1Hab\xC3\xA9s conquistado al p\xC3\xBAblico!"
+    merry_dj: 
+      name: "Muscalizador navide\xC3\xB1o"
+      qualification: "Tu primer Mix con un tag navide\xC3\xB1o asignado acaba de hacerse realidad en Coca-Cola.fm. \xC2\xA1La navidad ya se siente en el aire!\r\n"
     dj_radio: 
       name: DJ de radio
       qualification: "1000 personas han escuchado tus mixes. \xC2\xA1Tu p\xC3\xBAblico no para de crecer y te aclama!"
+    king_of_djs: 
+      name: El Rey de Djs
     idol: 
       name: !binary |
         w41kb2xv
 
       qualification: "500 personas te est\xC3\xA1n siguendo. \xC2\xA1\xC3\x8Ddolo de multitudes!"
-    merry_dj: 
-      name: "Muscalizador navide\xC3\xB1o"
-      qualification: "Tu primer Mix con un tag navide\xC3\xB1o asignado acaba de hacerse realidad en Coca-Cola.fm. \xC2\xA1La navidad ya se siente en el aire!\r\n"
-    networker_gold: 
-      name: "Networker: Oro"
-      qualification: "Est\xC3\xA1s siguiendo a 100 personas. Ten\xC3\xA9s un toque de oro para seguir gente."
-    playlist_name: Nombre del mix
-    master: 
-      name: Master
-      qualification: "25 personas te est\xC3\xA1n siguiendo. \xC2\xA1Algo deb\xC3\xA9s estar haciendo bien!"
-    king_of_djs: 
-      name: El Rey de Djs
-    critic_best_friend: 
-      name: "Doctor en Tendencias: Mejor Amigo"
-      qualification: "Por haber calificado con 4 o 5 a la mayor\xC3\xADa de 25 mixes"
-    unlocked_on: Desbloqueado
-    networker_diamond: 
-      name: "Networker: Diamante"
-      qualification: "Est\xC3\xA1s siguiendo a 500 personas. \xC2\xA1Puedes considerarte un Seguidor VIP!"
-    cool_lo: 
-      name: Magia hecha realidad
-      qualification: "La primera vez, cuando recib\xC3\xADs el ranking m\xC3\xA1ximo (5 botellas) por un solo mix espec\xC3\xADfico creado que incluye al menos un tag navide\xC3\xB1o asignado. Nota: este badge se gana s\xC3\xB3lo una vez, la primera en que se verifica la regla. Los dem\xC3\xA1s mixes navide\xC3\xB1os que obtienen una puntuaci\xC3\xB3n de 5 NO ofrecen unidades adicionales de este badge."
-    dj_bedroom: 
-      name: DJ casero
-      qualification: se gana cuando 5 personas han escuchado mis mixes
     critic_harsh: 
       name: "Doctor en Tendencias: Cr\xC3\xADtico Inflexible"
       qualification: "Por haber calificado con 1 o 2 a la mayor\xC3\xADa de 25 mixes"
+    cool_lo: 
+      name: Magia hecha realidad
+      qualification: "La primera vez, cuando recib\xC3\xADs el ranking m\xC3\xA1ximo (5 botellas) por un solo mix espec\xC3\xADfico creado que incluye al menos un tag navide\xC3\xB1o asignado. Nota: este badge se gana s\xC3\xB3lo una vez, la primera en que se verifica la regla. Los dem\xC3\xA1s mixes navide\xC3\xB1os que obtienen una puntuaci\xC3\xB3n de 5 NO ofrecen unidades adicionales de este badge."
+    critic_best_friend: 
+      name: "Doctor en Tendencias: Mejor Amigo"
+      qualification: "Por haber calificado con 4 o 5 a la mayor\xC3\xADa de 25 mixes"
+    networker_diamond: 
+      name: "Networker: Diamante"
+      qualification: "Est\xC3\xA1s siguiendo a 500 personas. \xC2\xA1Puedes considerarte un Seguidor VIP!"
+    unlocked_on: Desbloqueado
+    dj_bedroom: 
+      name: DJ casero
+      qualification: se gana cuando 5 personas han escuchado mis mixes
     user_has_not_won_any_badges: "{{name}} todav\xC3\xADa no ha ganado badges"
-    santa_claus: 
-      name: "Pap\xC3\xA1 Noel"
-      qualification: "Por haber creado 1 o m\xC3\xA1s mixes con al menos un tag navide\xC3\xB1o, el 25 de diciembre."
     record_platinum: 
       name: Disco de platino
       qualification: Tu mix {{playlist_name}} ha sido escuchado por 100 personas
@@ -959,85 +957,88 @@ coke_AR:
     dj_club: 
       name: DJ de club
       qualification: "100 personas han escuchado tus mixes. \xC2\xA1Est\xC3\xA1s con todo!"
+    santa_claus: 
+      name: "Pap\xC3\xA1 Noel"
+      qualification: "Por haber creado 1 o m\xC3\xA1s mixes con al menos un tag navide\xC3\xB1o, el 25 de diciembre."
+    regalo: 
+      name: "Regalo so\xC3\xB1ado"
+      qualification: "Por haberle otorgado 4 o 5 bondadosas botellitas a la mayor\xC3\xADa de entre 5 mixes calificados. \xC2\xA1Le cumpl\xC3\xADs el sue\xC3\xB1o a cualquiera con tu capacidad para regalar! :)"
     ratings_ok: 
       name: O.K.
       qualification: "Por haber recibido una calificaci\xC3\xB3n de 3 en tus primeros 25 mixes en los que te han dejado comentarios. Ni muy-muy, ni tan-tan."
     master_of_hip_hop: 
       name: Maestro de Hip-Hop
       qualification: Por haber incluido 100 canciones Hip hop, en total entre all plists creados.
-    regalo: 
-      name: "Regalo so\xC3\xB1ado"
-      qualification: "Por haberle otorgado 4 o 5 bondadosas botellitas a la mayor\xC3\xADa de entre 5 mixes calificados. \xC2\xA1Le cumpl\xC3\xADs el sue\xC3\xB1o a cualquiera con tu capacidad para regalar! :)"
-    dj_private_party: 
-      name: DJ de fiesta privada
-      qualification: "10 personas han escuchado tus mixes. \xC2\xA1Naciste para esto!"
     superuser: 
       name: Super usuario
       qualification: "Porque durante siete d\xC3\xADas consecutivos te dedicaste a crear por lo menos un mix, o a dejar un comentario en un mix, o comenzaste a seguir a alguien. Usuarios como vos conforman la crema y nata de Coca-Cola.fm\r\n"
     opinion_leader: 
       name: "L\xC3\xADder de Opini\xC3\xB3n"
       qualification: "Por haber rese\xC3\xB1ado 15 mixes distintos. \xC2\xA1No todos se animan a opinar tanto como t\xC3\xBA!"
-    recalentado: 
-      name: "\xC2\xA1Otra vez!"
-      qualification: "La primera ocasi\xC3\xB3n, cuando recib\xC3\xADs dos veces el mismo ranking por un solo mix espec\xC3\xADfico que hab\xC3\xA9s creado y tiene, al menos, un tag navide\xC3\xB1o asignado. Por ejemplo, obten\xC3\xA9s un ranking de 2 por el mix navide\xC3\xB1o A, de 3 por el mix navide\xC3\xB1o B, de 5 por el mix navide\xC3\xB1o C, y de 3 por el mix navide\xC3\xB1o D. Al obtener el ranking repetido de 3 por el mix D es cuando se cumple la regla. Todos los mixes navide\xC3\xB1os que tienen un ranking \"duplicado\" NO APORTAN unidades adicionales de este badge."
     record_diamond: 
       name: Disco de diamante
       qualification: Tu mix {{playlist_name}} ha sido escuchado por 500 personas
+    recalentado: 
+      name: "\xC2\xA1Otra vez!"
+      qualification: "La primera ocasi\xC3\xB3n, cuando recib\xC3\xADs dos veces el mismo ranking por un solo mix espec\xC3\xADfico que hab\xC3\xA9s creado y tiene, al menos, un tag navide\xC3\xB1o asignado. Por ejemplo, obten\xC3\xA9s un ranking de 2 por el mix navide\xC3\xB1o A, de 3 por el mix navide\xC3\xB1o B, de 5 por el mix navide\xC3\xB1o C, y de 3 por el mix navide\xC3\xB1o D. Al obtener el ranking repetido de 3 por el mix D es cuando se cumple la regla. Todos los mixes navide\xC3\xB1os que tienen un ranking \"duplicado\" NO APORTAN unidades adicionales de este badge."
     twinkle: 
       name: Estrella fugaz
       qualification: "Cuando cre\xC3\xA1s, por lo menos, 5 mixes con, por lo menos, un tag navide\xC3\xB1o asignado a cada uno, dentro de un solo d\xC3\xADa calend\xC3\xA1rico. Importante: NO SE TRATA de \"24 horas\", lo cual es una variable relativa, sino de \"un d\xC3\xADa calend\xC3\xA1rico \xC3\xBAnico\", que es un valor absoluto, definido como el periodo entre las 00:00:00 y las 23:59:59 hrs. de cada d\xC3\xADa."
-    mixmaster_red: 
-      name: "Mixmaster: Cintur\xC3\xB3n Rojo"
-      qualification: "Hab\xC3\xA9s creado 100 mixes. Bienvenido al exclusivo c\xC3\xADrculo elite de los Cinturones Rojos."
+    dj_private_party: 
+      name: DJ de fiesta privada
+      qualification: "10 personas han escuchado tus mixes. \xC2\xA1Naciste para esto!"
+    list_page: 
+      name: Nombre
+      see_all_active_badges: "Clic aqui para ver solamente los Badges actualmente activados. \xC2\xBFYa los ten\xC3\xA9s todos? \xC2\xBFCu\xC3\xA1les te faltan a\xC3\xBAn?"
+      see_all_badges: "Clic aqu\xC3\xAD para ver todos los Badges de Coca-Cola.FM. Tanto los actualmente activados como los que ya no est\xC3\xA1n."
+      title: Listado Completo de Badges
+      see_all_retired_badges: "Clic aqu\xC3\xAD para ver solamente Badges que no est\xC3\xA1n activados actualmente. \xC2\xBFRecord\xC3\xA1s haber ganado uno de \xC3\xA9stos alguna vez?"
+      badge: Badge
+      description: "Encontr\xC3\xA1 ac\xC3\xA1 la enciclopedia completa de todos los badges que pod\xC3\xA9s ganarte en Coca-Cola.FM"
+      qualification: "Explicaci\xC3\xB3n"
+      status: Status
     dj_on_fire: 
       name: DJ Imbatible
       qualification: Si un usuario crea 5 playlists dentro de 24 hs.
-    networker: 
-      name: Networker
-      qualification: "Est\xC3\xA1s siguiendo a 5 personas"
+    mixmaster_red: 
+      name: "Mixmaster: Cintur\xC3\xB3n Rojo"
+      qualification: "Hab\xC3\xA9s creado 100 mixes. Bienvenido al exclusivo c\xC3\xADrculo elite de los Cinturones Rojos."
     xmas_record: 
       name: "Disco navide\xC3\xB1o de plata"
       qualification: "\xC2\xA1Tus selecciones para estas navidades ya son un record! 10 usuarios en Coca-Cola.fm  ya han escuchados alguno de tus mixes etiquetado con tags navide\xC3\xB1os.\r\n"
+    networker: 
+      name: Networker
+      qualification: "Est\xC3\xA1s siguiendo a 5 personas"
     others_that_have_this_badge: Otros usarios que han ganado este badge
-    networker_platinum: 
-      name: "Networker: Platino"
-      qualification: "Est\xC3\xA1s siguiendo a 250 personas. Tu capacidad de seguimiento no conoce l\xC3\xADmites"
-    list_page: 
-      see_all_active_badges: "Clic aqui para ver solamente los Badges actualmente activados. \xC2\xBFYa los ten\xC3\xA9s todos? \xC2\xBFCu\xC3\xA1les te faltan a\xC3\xBAn?"
-      name: Nombre
-      title: Listado Completo de Badges
-      see_all_badges: "Clic aqu\xC3\xAD para ver todos los Badges de Coca-Cola.FM. Tanto los actualmente activados como los que ya no est\xC3\xA1n."
-      see_all_retired_badges: "Clic aqu\xC3\xAD para ver solamente Badges que no est\xC3\xA1n activados actualmente. \xC2\xBFRecord\xC3\xA1s haber ganado uno de \xC3\xA9stos alguna vez?"
-      badge: Badge
-      qualification: "Explicaci\xC3\xB3n"
-      description: "Encontr\xC3\xA1 ac\xC3\xA1 la enciclopedia completa de todos los badges que pod\xC3\xA9s ganarte en Coca-Cola.FM"
-      status: Status
     status: 
       inactive: Inactivo
       active: Activo
-    networker_bronze: 
-      name: "Networker : Bronce"
-      qualification: "Est\xC3\xA1s siguiendo a 25 personas. Tu c\xC3\xADrculo de contactos se hace m\xC3\xA1s grande."
-    xmas_dj: 
-      name: "DJ  navide\xC3\xB1o"
-      qualification: "\xC2\xA1Feiiz Navidad!  Ya ten\xC3\xA9s tus primeros 5 mixes con por lo menos un tag navide\xC3\xB1o en cada uno.\r\n"
+    networker_platinum: 
+      name: "Networker: Platino"
+      qualification: "Est\xC3\xA1s siguiendo a 250 personas. Tu capacidad de seguimiento no conoce l\xC3\xADmites"
     guru: 
       name: !binary |
         R3Vyw7o=
 
       qualification: "100 personas te est\xC3\xA1n siguiendo. \xC2\xA1La gente acude a vos como a un gur\xC3\xBA!"
-    email: 
-      subject: "\xC2\xA1Felicidades! Hab\xC3\xA9s ganado un nuevo badge en Coca-Cola.FM"
-      message: "\xC2\xA1Felicidades! Ganaste {{badge_name}}: {{badge_qualification}}. Ingres\xC3\xA1 al sitio: Coca-Cola.FM para ver tu badge y ver qui\xC3\xA9n m\xC3\xA1s lo tiene."
     mixmaster_yellow: 
       name: "Mixmaster: Cintur\xC3\xB3n Amarillo"
       qualification: "Hab\xC3\xA9s creado 5 mixes. Bien hecho, peque\xC3\xB1o saltamontes"
+    xmas_dj: 
+      name: "DJ  navide\xC3\xB1o"
+      qualification: "\xC2\xA1Feiiz Navidad!  Ya ten\xC3\xA9s tus primeros 5 mixes con por lo menos un tag navide\xC3\xB1o en cada uno.\r\n"
     trifecta: 
       name: Trifecta
       qualification: "Porque en 24 horas creaste 3 mixes, comenzaste a seguir a 3 usuarios y dejaste comentarios para 3 nuevos mixes. Todo de a tres, en armon\xC3\xADa perfecta."
     mixmaster_white: 
       name: "Mixmaster: Cintur\xC3\xB3n Blanco"
       qualification: "\xC2\xA1Creaste tu primer mix!"
+    networker_bronze: 
+      name: "Networker : Bronce"
+      qualification: "Est\xC3\xA1s siguiendo a 25 personas. Tu c\xC3\xADrculo de contactos se hace m\xC3\xA1s grande."
+    email: 
+      subject: "\xC2\xA1Felicidades! Hab\xC3\xA9s ganado un nuevo badge en Coca-Cola.FM"
+      message: "\xC2\xA1Felicidades! Ganaste {{badge_name}}: {{badge_qualification}}. Ingres\xC3\xA1 al sitio: Coca-Cola.FM para ver tu badge y ver qui\xC3\xA9n m\xC3\xA1s lo tiene."
   information: 
     influences: Influencias
     location: "Ubicaci\xC3\xB3n"
@@ -1045,8 +1046,8 @@ coke_AR:
   band_index: 
     title: "\xC3\x8Dndice de artistas"
     no_results_found: "No se encontraron resultados. Intent\xC3\xA1 otra b\xC3\xBAsqueda"
-    description: "Busc\xC3\xA1 a tus artistas favoritos por orden alfab\xC3\xA9tico"
     table_header: Nombre del artista
+    description: "Busc\xC3\xA1 a tus artistas favoritos por orden alfab\xC3\xA9tico"
   number: 
     format: 
       separator: .
@@ -1069,21 +1070,21 @@ coke_AR:
         separator: .
         delimiter: ","
   modules: 
-    popular_tags: Emociones + destapadas
-    mix_detail: 
-      title: Sobre el autor de
-      top_mixes: Top Mixes de
-      tags_text: Emociones destapadas
-      dj_text: "\xC2\xBFVos tambi\xC3\xA9n te sent\xC3\xADs DJ?"
-      create: "CRE\xC3\x81 TU PROPIO MIX"
-    latest_mixes: 
-      title: "\xC3\x9Altimos mixes"
-      description: hechos por {{user_name}}
     edit_station: 
       new_name: Nuevo nombre
       title: "Modificar estaci\xC3\xB3n de radio"
       no_edit_rights: "No ten\xC3\xA9s privilegios suficientes para modificar esta estaci\xC3\xB3n de radio"
       blank_station_name_message: "Deb\xC3\xA9s ingresar un nombre para esta estaci\xC3\xB3n de radio"
+    latest_mixes: 
+      title: "\xC3\x9Altimos mixes"
+      description: hechos por {{user_name}}
+    popular_tags: Emociones + destapadas
+    mix_detail: 
+      top_mixes: Top Mixes de
+      title: Sobre el autor de
+      dj_text: "\xC2\xBFVos tambi\xC3\xA9n te sent\xC3\xADs DJ?"
+      create: "CRE\xC3\x81 TU PROPIO MIX"
+      tags_text: Emociones destapadas
     latest_badge_awards: 
       title: Badges
       description: "m\xC3\xA1s recientes"
@@ -1093,30 +1094,21 @@ coke_AR:
     network_activity: 
       title: Actividad de la red
       description: de {{user_name}}
+    top_mixes: Top Mixes de
     recommended_djs: 
       title: DJ'S RECOMENDADOS
-    top_mixes: Top Mixes de
+    emotions: 
+      title: Emociones
     profile: 
       top_playlists: 
         title: Top mixes
-    emotions: 
-      title: Emociones
-    more_playlists: 
-      title: "M\xC3\xA1s mixes"
     photos: 
       title: Fotos
     latest_badges: 
       title: Badges
       description: de {{user_name}}
-    recently_created_stations: 
-      title: Estaciones de radio creadas recientemente
-    concerts: 
-      title: Conciertos
-    top_artists: 
-      title: Artistas top
-      description: "Los m\xC3\xA1s escuchados"
-    user_info: 
-      title: "Informaci\xC3\xB3n del usuario"
+    more_playlists: 
+      title: "M\xC3\xA1s mixes"
     badge_detail: 
       other_title: Otros usuarios que han ganado este badge
       title: Badges desbloqueados
@@ -1126,29 +1118,38 @@ coke_AR:
     delete_station: 
       title: "Eliminar estaci\xC3\xB3n de radio"
       confirmation_text: "\xC2\xBFConfirm\xC3\xA1s que quer\xC3\xA9s eliminar la {{station_name}}?"
-    top_playlists: 
-      title: Top mixes
+    recently_created_stations: 
+      title: Estaciones de radio creadas recientemente
+    concerts: 
+      title: Conciertos
+    top_artists: 
+      title: Artistas top
       description: "Los m\xC3\xA1s escuchados"
-    recent_listeners: 
-      title: Escuchas recientes
+    user_info: 
+      title: "Informaci\xC3\xB3n del usuario"
     information: 
       title: "Informaci\xC3\xB3n"
+    recent_listeners: 
+      title: Escuchas recientes
     top_activity: 
       title: Actividad principal
-    recommended_stations: 
-      title: Estaciones de radio recomendadas
     latest_comments: 
       by: Comentarios de {{user_name}}
       title: "\xC3\x9Altimos comentarios"
       description: de {{user_name}}
-    delete_playlist: 
-      title: Borrar este mix
-      confirmation_text: "El borrado de este mix es una acci\xC3\xB3n permanente. \xC2\xBFEst\xC3\xA1s seguro de que dese\xC3\xA1s eliminar este mix?"
+    recommended_stations: 
+      title: Estaciones de radio recomendadas
+    top_playlists: 
+      title: Top mixes
+      description: "Los m\xC3\xA1s escuchados"
+    recommendations: 
+      title: Recomendaciones
     followees: "Gente a la que est\xC3\xA1 siguiendo"
     similar_artists: 
       title: Artistas similares
-    recommendations: 
-      title: Recomendaciones
+    delete_playlist: 
+      title: Borrar este mix
+      confirmation_text: "El borrado de este mix es una acci\xC3\xB3n permanente. \xC2\xBFEst\xC3\xA1s seguro de que dese\xC3\xA1s eliminar este mix?"
     reviews: 
       comment: Comenta el mix
       title: Comentarios
@@ -1163,29 +1164,29 @@ coke_AR:
       title: Noticias
     features_and_galleries: 
       title: "Especiales y fotogaler\xC3\xADas"
+    top_stations: 
+      title: Top de estaciones de radio
+    top_songs: 
+      title: Top de canciones
+    interviews: 
+      title: Entrevistas
     my_stations: 
       includes: Incluye
       station_name: "Nombre de la estaci\xC3\xB3n de radio"
-    top_songs: 
-      title: Top de canciones
-    top_stations: 
-      title: Top de estaciones de radio
-    interviews: 
-      title: Entrevistas
+    biography: 
+      title: Bio
     recent_activity: 
       title: ACTIVIDAD RECIENTE
       chars_left: caracteres restantes
-    biography: 
-      title: Bio
-    todays_top_artists: 
-      title: Artistas top de hoy
     recommended_artists: 
       title: Artistas recomendados
+    search: 
+      title: Buscar
     following: 
       title: "Gente que est\xC3\xA1 siguiendo"
       description: a {{user_name}}
-    search: 
-      title: Buscar
+    todays_top_artists: 
+      title: Artistas top de hoy
   valid_tag: 
     tag_id: Tag
     tag_name: Tag
@@ -1202,24 +1203,24 @@ coke_AR:
       title: Pendientes
     messages: 
       artist_not_found: "No hemos encontrado ning\xC3\xBAn artista con ese nombre. Por favor intent\xC3\xA1 nuevamente"
+    user_latest_reviews: "\xC3\x9ALTIMOS COMENTARIOS DE {{name}}"
+    latest_tweet: "TWEET M\xC3\x81S RECIENTE"
     followers: 
       title: Seguidores
       user_followers: LOS SEGUIDORES DE {{user_name}}
       my_followers: MIS SEGUIDORES
-    user_latest_reviews: "\xC3\x9ALTIMOS COMENTARIOS DE {{name}}"
-    latest_tweet: "TWEET M\xC3\x81S RECIENTE"
     follows: "{{user_name}} EST\xC3\x81 SIGUIENDO"
     artist_latest_albums: "\xC3\x81LBUMES MAS RECIENTES DE {{name}}"
     user_latest_stations: "ESTACIONES DE RADIO M\xC3\x81S RECIENTES DE {{name}}"
-    user_badges: BADGES DE {{name}}
     user_has_not_won_any_badges: "{{name}} no ha ganado ning\xC3\xBAn badge"
     user_has_not_posted_any_reviews: "{{name}} no ha publicado ning\xC3\xBAn comentario"
+    user_badges: BADGES DE {{name}}
     show: 
       activity_feed_title: Canal de actividad
       what_do_you_want_to_listen_to: "\xC2\xBFQu\xC3\xA9 te gustar\xC3\xADa escuchar?"
     user_has_no_playlists: "{{name}} no tiene mixes"
-    artist_latest_stations: "ESTACIONES DE RADIO M\xC3\x81S RECIENTES QUE INCLUYEN A {{name}}"
     top_stations: ESTACIONES TOP DE {{user_name}}
+    artist_latest_stations: "ESTACIONES DE RADIO M\xC3\x81S RECIENTES QUE INCLUYEN A {{name}}"
     recent_activity: ACTIVIDAD RECIENTE
     recommended_artists: 
       title: Artistas Recomendados
@@ -1274,10 +1275,10 @@ coke_AR:
     private_profile: Perfil privado
     terms_and_conditions: "T\xC3\xA9rminos y condiciones"
     support: Soporte
+    profile_not_available: Perfil no disponible
     feedback: Feedback
     about_cyloop: Sobre Cyloop.com
     safety_tips: Consejos de seguridad
-    profile_not_available: Perfil no disponible
     about_hoodiny: Sobre Hoodiny
     privacy_policy: "Pol\xC3\xADtica de privacidad"
     profile_not_available_sorry: "Ouch... este perfil no est\xC3\xA1 disponible en tu pa\xC3\xADs"
@@ -1297,16 +1298,16 @@ coke_AR:
     create_your_own_personalized_radio_station: "Cre\xC3\xA1 tu propia estaci\xC3\xB3n de radio personalizada"
     create_radio: "Crear estaci\xC3\xB3n de radio"
     top_radios: TOP DE ESTACIONES DE RADIO
-    user_latest_stations: "LAS ESTACIONES DE RADIO M\xC3\x81S RECIENTES DE {{name}}"
-    latest_stations: "ESTACIONES DE RADIO M\xC3\x81S RECIENTES"
     explaing_what_is_and_why_create_a_new_radio: "Ingres\xC3\xA1 el nombre de tu artista favorito. Cyloop.com generar\xC3\xA1 una estaci\xC3\xB3n de radio personalizada con m\xC3\xBAsica de tus artistas favoritos."
+    user_latest_stations: "LAS ESTACIONES DE RADIO M\xC3\x81S RECIENTES DE {{name}}"
     recommended_stations: ESTACIONES DE RADIO RECOMENDADAS POR Cyloop.com
+    latest_stations: "ESTACIONES DE RADIO M\xC3\x81S RECIENTES"
     network_update: ACTIVIDAD RECIENTE DE  {{user_name}}
     type_artist_name: "Escrib\xC3\x8D el nombre de un artista"
     recommended_mixes: MIXES RECOMENDADOS POR Cyloop.com
-    create_your_own_station_now: "\xC2\xA1Cre\xC3\xA1 tu propia estaci\xC3\xB3n de radio ahora!"
-    top_songs: Top canciones
     top_stations: Top de estaciones de radio
+    top_songs: Top canciones
+    create_your_own_station_now: "\xC2\xA1Cre\xC3\xA1 tu propia estaci\xC3\xB3n de radio ahora!"
     radios_recomended_for_you: ESTACIONES DE RADIO RECOMENDADAS PARA VOS
     cyloop_recommends: Coca-Cola.FM RECOMIENDA
     recommended_artists: Artistas recomendados
@@ -1346,8 +1347,8 @@ coke_AR:
   footer: 
     faq: FAQ
     help: Ayuda
-    index_of_music: "\xC3\x8Dndice de M\xC3\xBAsica"
     badges_listing: Lista de badges
+    index_of_music: "\xC3\x8Dndice de M\xC3\xBAsica"
     about_coke: Sobre Coca-Cola
     index_of_bands: "\xC3\x8Dndice de artistas"
     terms_and_conditions: "T\xC3\xA9rminos y condiciones"
@@ -1372,8 +1373,8 @@ coke_AR:
     alphabetical: "ALFAB\xC3\x89TICO"
     user_followings: "{{user_name}} + SIGUIENDO"
     relevance: RELEVANCIA
-    newest: "M\xC3\x81S NUEVOS"
     followings: SOLO SIGUIENDO
+    newest: "M\xC3\x81S NUEVOS"
     user: "S\xC3\x93LO {{user_name}}"
     latest: "M\xC3\x81S RECIENTE"
     top: TOP
@@ -1387,25 +1388,29 @@ coke_AR:
   downloads: 
     title: Descargas
     description: "Descripci\xC3\xB3n de la descarga"
+  music_index: 
+    title: "\xC3\x8Dndice de m\xC3\xBAsica"
+    table_header: "G\xC3\xA9neros musicales"
+    description: "Estos son los principales estilos de m\xC3\xBAsica en Cyloop.com"
   following: 
     approval: "{{name}} comenzar\xC3\xA1 a recibir tus actualizaciones a partir de ahora"
     denial: "{{name}} no podr\xC3\xA1 recibir tus actualizaciones"
   basics: 
-    radio: Radio
     stations_created_by: Estaciones de Radio creadas por
     album: !binary |
       w4FsYnVt
 
+    radio: Radio
     albums: "\xC3\x81lbumes"
     created_at: Creada hace {{when}}
     my: Mi
     play: Reproducir
-    listens: Escucha
     people: Gente
     playlists: Mixes
     followers: Seguidores
-    charts: Tablas
+    listens: Escucha
     song: "Canci\xC3\xB3n"
+    charts: Tablas
     message: Mensaje
     tags: Etiquetas
     unknown: Desconocido
@@ -1417,37 +1422,37 @@ coke_AR:
     happened_at: "{{when}} atr\xC3\xA1s"
     no_results: No hay resultados
     done: Listo
-    last_modified_at: "\xC3\x9Altima modificaci\xC3\xB3n hace {{when}}"
+    and_more: "y m\xC3\xA1s..."
+    email: Email
     more: !binary |
       TcOhcw==
 
-    email: Email
-    and_more: "y m\xC3\xA1s..."
     click_to_follow: Clic {{follow_link}} para seguir a
     followers_of: Seguidores de
+    last_modified_at: "\xC3\x9Altima modificaci\xC3\xB3n hace {{when}}"
     created_on: Creada el
     plays: Reproducciones
     chart: Tabla
-    follow_requests: Peticiones de seguir
     comment: Comentario
-    badges: Badges
+    follow_requests: Peticiones de seguir
     song_name: "Nombre de la canci\xC3\xB3n"
-    followees_of: Lo sigue
+    badges: Badges
     station: "Estaci\xC3\xB3n de radio"
     you_are: !binary |
       RXN0w6Fz
 
+    followees_of: Lo sigue
     city: Ciudad
+    contains: Incluye
     here: !binary |
       YXF1w60=
 
-    contains: Incluye
     stations: Estaciones
-    album_name: "Nombre del \xC3\xA1lbum"
+    my_plural: Mis
     "yes": !binary |
       U8Ot
 
-    my_plural: Mis
+    album_name: "Nombre del \xC3\xA1lbum"
     name: Nombre
     country: !binary |
       UGHDrXM=
@@ -1456,42 +1461,38 @@ coke_AR:
     welcome: Bienvenido/a
     click_to_unfollow: Clic {{follow_link}}  para dejar de seguir
     results: Resultados
-    sorry: !binary |
-      wqFQZXJkw7NuIQ==
-
+    time: Hora
     service_unavailable: "Este servicio no est\xC3\xA1 disponible en este momento, por favor regres\xC3\xA1 m\xC3\xA1s tarde."
     next: Siguiente
     played_by: Reproducida por
-    time: Hora
-    following: siguiendo
-    playlists_created_by: Mixes creados por
+    sorry: !binary |
+      wqFQZXJkw7NuIQ==
+
     created_by: Creada por
-    includes: Incluye
+    following: siguiendo
     artists: Artistas
+    playlists_created_by: Mixes creados por
+    includes: Incluye
     users: Usuarios
     by: Por
     last_modified: "\xC3\x9Atima modificaci\xC3\xB3n"
     follow_requests_for: Pedidos de seguidores de
     previous: Anterior
     charts_for: Tablas de
+    go_to_link: Ir a {{where}}
     mixes: Mixes
-    albums_by: "\xC3\x81lbumes por"
     ago: !binary |
       YXRyw6Fz
 
-    go_to_link: Ir a {{where}}
-    me: mi
     followwes: ""
+    me: mi
     person: Persona
-    mix: Mix
-    songs: Canciones
+    albums_by: "\xC3\x81lbumes por"
     followees: Personas con seguidores
+    mix: Mix
     comments: Comentarios
     "no": "No"
-  music_index: 
-    title: "\xC3\x8Dndice de m\xC3\xBAsica"
-    description: "Estos son los principales estilos de m\xC3\xBAsica en Cyloop.com"
-    table_header: "G\xC3\xA9neros musicales"
+    songs: Canciones
   users: 
     new: 
       step_1_vignette_get_music_recommendations: "Recib\xC3\xAD recomendaciones de m\xC3\xBAsica elegida especialmente para ti"
@@ -1502,9 +1503,9 @@ coke_AR:
       step_1_vignette_start_collecting_songs: "Comenz\xC3\xA1 a coleccionar canciones  y a crear tus propios mixes de m\xC3\xBAsica"
       step_2_title: "Paso 2: Informaci\xC3\xB3n Adicional"
       step_2_vignette_with_more_info: "Con m\xC3\xA1s datos tuyos, Coca-Cola.FM puede ofrecerte mejor calidad de recomendaciones de m\xC3\xBAsica elegida especialmente para vos."
-      step_1_description: "Unite GRATIS a Coca-Cola.FM, es muy r\xC3\xA1pido."
       step_3_description: "Comenz\xC3\xA1 a seguir a tus artistas favoritos. Probablemente ya sos fan de algunos de \xC3\xA9stos.<br />Seleccion\xC3\xA1 todos los nombres que te gustar\xC3\xADa comenzar a seguir.\r\n"
       step_2_vignette_header: "\xC2\xBFPara qu\xC3\xA9 es \xC3\xA9sto?"
+      step_1_description: "Unite GRATIS a Coca-Cola.FM, es muy r\xC3\xA1pido."
       step_1_slug_explanation: "Esta ser\xC3\xA1 la direcci\xC3\xB3n de la p\xC3\xA1gina de tu perfil de Coca-Cola.FM en Internet."
       step_2_description: "Personaliz\xC3\xA1 a\xC3\xBAn m\xC3\xA1s tu experiencia en Coca-Cola.FM completando unos datos m\xC3\xA1s sobre vos."
       step_1_vignette_header: "\xC2\xBFPor qu\xC3\xA9 registrarse?"
@@ -1534,22 +1535,20 @@ coke_AR:
     start_date_gt_end_date: "La fecha de inicio debe ser anterior a la fecha de t\xC3\xA9rmino"
     updated_success: "Campa\xC3\xB1a actualizada con \xC3\xA9xito"
   coke_messenger: 
-    rating: "Calificaci\xC3\xB3n "
-    share_mix_tooltip: Enviar por mail
     follow_the_author: Follow
     play: Play
     mix_page_blank_desc: "A\xC3\xBAn no hab\xC3\xA9s creado tus propios mixes"
+    rating: "Calificaci\xC3\xB3n "
     order_filter: 
       rating: "Ordenar por calificaci\xC3\xB3n"
       popularity: Ordenar por popularidad
       most_recent: "Ordenar por m\xC3\xA1s reciente"
-      most_followers: "Ordenar por n\xC3\xBAmero de seguidores"
       date: Ordenar por fecha
+      most_followers: "Ordenar por n\xC3\xBAmero de seguidores"
       alpha: "Ordenar alfab\xC3\xA9ticamente"
+    share_mix_tooltip: Enviar por mail
     logout: Logout
     my_mixes: MIS MIXES
-    djs: DJs
-    copy_mix_tooltip: Copiar Mix
     messenger_home: 
       title: "\xC3\x9ALTIMOS MIXES / EMOCIONES"
       emotions: EMOCIONES
@@ -1560,69 +1559,74 @@ coke_AR:
       title: "CokeFM Messenger: Emociones"
       no_results: "Tu b\xC3\xBAsqueda no produjo resultados"
       tab_title: "NOMBRE DE LA EMOCI\xC3\x93N"
+    djs: DJs
+    copy_mix_tooltip: Copiar Mix
     my_mixes_view_profile: Ver perfil
     unfollow_the_author: Dejar de seguir
     my_friends: AMIGOS
+    mixes_tab: 
+      title: "CokeFM Messenger: Mixes"
+      tab_title: MIXES
     my_friends_tab: 
       follow_the_author: Seguir al autor
       play: Play
       view_more: "Ver m\xC3\xA1s"
       easy: "No te preocup\xC3\xA9s, es f\xC3\xA1cil. Para mezclar las listas hac\xC3\xA9 clic en el icono"
-      dnt_hav_frnds: "\xC2\xBFNo ten\xC3\xA9s amigos?"
       follow: para seguir a tus DJs favoritos
+      dnt_hav_frnds: "\xC2\xBFNo ten\xC3\xA9s amigos?"
       latest: "\xC3\x9ALTIMOS MIXES DE MIS AMIGOS"
     layers: 
       opt_layer_view: 
         find_music: "Averigu\xC3\xA1 en tiempo real qu\xC3\xA9 est\xC3\xA1n oyendo y reun\xC3\xAD o escuch\xC3\xA1 las canciones que m\xC3\xA1s te gustan para streaming."
-        comment: "Us\xC3\xA1 los comentarios y calificaciones para hacer comentarios sobre los gustos musicales de tus amigos y sus mixes"
         dj_create_mix: "Si dese\xC3\xA1s ser DJ, cre\xC3\xA1 tus propios mixes aqu\xC3\xAD, agregando las canciones que quer\xC3\xA9s para compartir m\xC3\xBAltiples estaciones de radio en l\xC3\xADnea"
-        and: y
-        terms_of_use: "t\xC3\xA9rminos de uso"
+        comment: "Us\xC3\xA1 los comentarios y calificaciones para hacer comentarios sobre los gustos musicales de tus amigos y sus mixes"
         friends: Amigos
+        terms_of_use: "t\xC3\xA9rminos de uso"
+        and: y
+        close: cerrar
         coke_fm: Coca-Cola.FM
         describe: "donde se explica c\xC3\xB3mo se utilizar\xC3\xA1n tus datos personales"
-        close: cerrar
         welcome: Bienvenido a Coca-Cola.FM
         put_work: "Pon\xC3\xA9 en pr\xC3\xA1ctica tus habilidades"
         roger: Entendido
         text_info: "donde se explica c\xC3\xB3mo se utilizar\xC3\xA1n tus datos personales"
-        radio_stations: "nuestro sistema de recomendaciones crea estaciones de radio adaptadas a tus necesidades espec\xC3\xADficas con todos tus artistas favoritos."
         create_mix: Crear Mix
-        badgets: Ganar badges
+        radio_stations: "nuestro sistema de recomendaciones crea estaciones de radio adaptadas a tus necesidades espec\xC3\xADficas con todos tus artistas favoritos."
+        recommendations: Recomendaciones
         cyloop: "Ya form\xC3\xA1s parte de la red Cyloop.com, por lo que lo \xC3\xBAnico que necesit\xC3\xA1s es aceptar los t\xC3\xA9rminos y condiciones de Cyloop.com y compartiremos la informaci\xC3\xB3n de tu perfil"
         follow: Dar seguimiento a tus amigos
-        recommendations: Recomendaciones
-        user_name: Hola {{user_name}}
-        view: Ver
+        badgets: Ganar badges
         cyloop_privacy: "Ten\xC3\xA9 en cuenta que si seleccion\xC3\xA1s esta casilla, confirmar\xC3\xA1s que est\xC3\xA1s enterado de que Cyloop.com es un sitio web operado por Hoodiny Entertainment Group en Estados Unidos y que otorg\xC3\xA1s tu consentimiento para que tus datos personales se transfieran a Estados Unidos, donde quedar\xC3\xA1n sujetos a las leyes estadounidenses y donde el nivel de protecci\xC3\xB3n de los datos es distinto en comparaci\xC3\xB3n con el de tu pa\xC3\xADs. Tambi\xC3\xA9n acept\xC3\xA1s los t\xC3\xA9rminos de Cyloop.com."
+        view: Ver
+        user_name: Hola {{user_name}}
+        reasons: Razones para afiliarte
+        create: Crear
         thats_it: "\xC2\xA1Eso es!"
         privacy: "Pol\xC3\xADtica de privacidad"
-        create: Crear
-        reasons: Razones para afiliarte
-        terms: "T\xC3\xA9rminos de uso"
         discover: "Descubr\xC3\xAD m\xC3\xBAsica con amigos"
-        login: Ingreso
         privacy_policy: "Pol\xC3\xADtica de privacidad"
+        login: Ingreso
+        terms: "T\xC3\xA9rminos de uso"
         click_follow: "Con s\xC3\xB3lo un clic, empez\xC3\xA1 a dar seguimiento a tus amigos para enterarte de sus actividades en Twitter y otras noticias"
       authentication_layer: 
-        coke_fm: Coca-Cola.FM/
         close: cerrar
+        coke_fm: Coca-Cola.FM/
         nickname: "Tu sobrenombre:"
         forgot_pwd: "\xC2\xBFOlvidaste tu contrase\xC3\xB1a?"
         not_left: "\xC2\xA1No te qued\xC3\xA9s fuera! Llen\xC3\xA1 esta forma y Coca-Cola.FM te mandar\xC3\xA1 instrucciones al mail registrado en tu cuenta\r\n"
         instructions: "Cola-Cola.fm te enviar\xC3\xA1 instrucciones al mail registrado con tu cuenta. Por favor, ingres\xC3\xA1 tu mail"
         email: "Tu mail:"
       login_link_layer: 
-        sign_up: REGISTRARSE
         pwd_title: "\xC2\xBFOlvidaste tu contrase\xC3\xB1a?"
+        sign_up: REGISTRARSE
         accept: ACEPTAR
         close: cerrar
         login_msg: "\xC2\xA1Ya casi! S\xC3\xB3lo ingres\xC3\xA1 tu mail y contrase\xC3\xB1a de Coca-Cola.FM y enlazaremos Messenger Connect con tu cuenta de Coca-Cola.FM."
         log_data_network: "O ingres\xC3\xA1 con tu red de datos"
         register: REGISTRARSE
         login_using: "Ingres\xC3\xA1 con"
-        forgot_pwd: "Contrase\xC3\xB1a extraviada"
         reg_free: "Si no ten\xC3\xA9s cuenta"
+        forgot_pwd: "Contrase\xC3\xB1a extraviada"
         follow: "Segu\xC3\xAD a tus artistas favoritos y descubr\xC3\xAD m\xC3\xBAsica con tus amigos de manera gratuita y en l\xC3\xADnea"
         cokefm_account: Cuenta de Coca-Cola.FM
         password: "Contrase\xC3\xB1a:"
@@ -1631,96 +1635,91 @@ coke_AR:
         register_free: Registrate gratis
         email: "Email:"
       forgot_password_layer: 
-        slug: "Tu nickname:"
         pwd_title: "\xC2\xBFOlvidaste tu contrase\xC3\xB1a?"
+        slug: "Tu nickname:"
         error_msg: "El mail o nickname no es v\xC3\xA1lido"
         send: ENVIAR
         pwd_msg: "\xC2\xA1No te qued\xC3\xA9s fuera! Rellen\xC3\xA1 este formulario y Coca-Cola.FM te enviar\xC3\xA1 instrucciones al mail registrado con tu cuenta."
         email: Mail
+      max_skip_layer: 
+        sorry: Lo sentimos...
+        max_skip_msg: "Por desgracia, la licencia de m\xC3\xBAsica que tenemos limita la cantidad de veces que pod\xC3\xA9s omitir una canci\xC3\xB3n cada hora. Para o\xC3\xADr algo diferente, trat\xC3\xA1 de crear otras estaciones de radio usando un artista diferente."
       license_layer: 
         sorry: "Lo sentimos\xE2\x80\xA6"
         close: cerrar
         license_msg: "Lo sentimos\xE2\x80\xA6 Nuestras licencias requieren que los mixes que cre\xC3\xA1s incluyan por lo menos 60 canciones para que pod\xC3\xA1s escucharlos. Si tu mix incluye menos de 60 canciones, tus amigos podr\xC3\xA1n escuchar las canciones completas, pero vos s\xC3\xB3lo escuchar\xC3\xA1s una muestra con los 30 segundos iniciales de cada canci\xC3\xB3n. Por supuesto, pod\xC3\xA9s escuchar los mixes de tus amigos, no importa cu\xC3\xA1ntas canciones incluyan."
-      max_skip_layer: 
-        sorry: Lo sentimos...
-        max_skip_msg: "Por desgracia, la licencia de m\xC3\xBAsica que tenemos limita la cantidad de veces que pod\xC3\xA9s omitir una canci\xC3\xB3n cada hora. Para o\xC3\xADr algo diferente, trat\xC3\xA1 de crear otras estaciones de radio usando un artista diferente."
       registration_form_view: 
         find_music: "Averigu\xC3\xA1 en tiempo real qu\xC3\xA9 est\xC3\xA1n oyendo y reun\xC3\xAD o escuch\xC3\xA1 las canciones que m\xC3\xA1s te gustan para streaming."
-        share: "(tu direcci\xC3\xB3n para compartir con amigos)"
-        comment: "Us\xC3\xA1 los comentarios y calificaciones para hacer comentarios sobre los gustos musicales de tus amigos y sus mixes."
         dj_create_mix: "Si dese\xC3\xA1s ser DJ, cre\xC3\xA1 tus propios mixes aqu\xC3\xAD, agregando las canciones que quer\xC3\xA1s para compartir m\xC3\xBAltiples estaciones de radio en l\xC3\xADnea."
         sign_up: Inscribite en
-        accept: Aceptar
-        dob: "Fecha de nacimiento:"
+        comment: "Us\xC3\xA1 los comentarios y calificaciones para hacer comentarios sobre los gustos musicales de tus amigos y sus mixes."
+        share: "(tu direcci\xC3\xB3n para compartir con amigos)"
         friends: Amigos
-        coke_fm: Coca-Cola.FM
+        dob: "Fecha de nacimiento:"
+        accept: Aceptar
         close: cerrar
+        coke_fm: Coca-Cola.FM
         profile: Nombre del perfil
-        register: Registrarse
         female: Mujer
-        put_work: "Pon\xC3\xA9 en pr\xC3\xA1ctica tus habilidades"
+        register: Registrarse
         your_name: "Tu nombre:"
+        put_work: "Pon\xC3\xA9 en pr\xC3\xA1ctica tus habilidades"
         way_coke: "\xC2\xA1Ya casi! S\xC3\xB3lo finaliz\xC3\xA1 tu registro y estar\xC3\xA1s listo para disfrutar de Coca-Cola.FM"
-        radio_stations: "nuestro sistema de recomendaciones crea estaciones de radio adaptadas a tus necesidades espec\xC3\xADficas con todos tus artistas favoritos."
-        create_mix: Crear Mix
         email_error: "Formato de mail no v\xC3\xA1lido"
-        male: Hombre
-        badgets: Ganar badges
-        profile_reserve: "El nombre del perfil est\xC3\xA1 reservado"
-        follow: "Segu\xC3\xAD a tus amigos"
-        coke: Coca-Cola.fm/
+        create_mix: Crear Mix
+        radio_stations: "nuestro sistema de recomendaciones crea estaciones de radio adaptadas a tus necesidades espec\xC3\xADficas con todos tus artistas favoritos."
         recommendations: Recomendaciones
+        coke: Coca-Cola.fm/
+        follow: "Segu\xC3\xAD a tus amigos"
+        badgets: Ganar badges
+        male: Hombre
+        profile_reserve: "El nombre del perfil est\xC3\xA1 reservado"
         age_limit: "deb\xC3\xA9s tener por lo menos 13 a\xC3\xB1os para usar este sitio"
         terms_privacy: "Acepto t\xC3\xA9rminos, condiciones y pol\xC3\xADtica de privacidad"
         view: Ver
-        thats_it: "\xC2\xA1Eso es!"
-        create: Aceptar
         reasons: Razones para afiliarte
-        name_error: "No pod\xC3\xA9s dejar el campo de nombre en blanco"
+        create: Aceptar
+        thats_it: "\xC2\xA1Eso es!"
         discover: "Descubr\xC3\xAD m\xC3\xBAsica con amigos"
         you: "Vos sos:"
+        name_error: "No pod\xC3\xA9s dejar el campo de nombre en blanco"
         click_follow: "Con s\xC3\xB3lo un clic, empez\xC3\xA1 a dar seguimiento a tus amigos para enterarte de sus actividades en Twitter y otras noticias."
         email: "Tu mail:"
       share_mix_layer: 
-        name_blank: El campo del nombre no puede quedar en blanco
         name: "Nombre:"
-        invalid_email: "Este formato de email no es v\xC3\xA1lido. Hay que usar ###@###.com"
+        name_blank: El campo del nombre no puede quedar en blanco
         share: Compartir en
+        invalid_email: "Este formato de email no es v\xC3\xA1lido. Hay que usar ###@###.com"
         msg: "Mensaje:"
         close: Cerrar
         social_net: Red Social
         msg_blank: "El cuerpo del mensaje no puede quedar vac\xC3\xADo"
         enter_below: Emociones destapadas
-        share_tw: Compartir en Twitter
         share_or: Compartir en Orkut
+        share_tw: Compartir en Twitter
         email_long_form: "correo electr\xC3\xB3nico"
         time_out_error: "\xC2\xA1Lo sentimos! Algo fall\xC3\xB3. Nuestro equipo t\xC3\xA9cnico ya est\xC3\xA1 trabajando para resolverlo"
         invalid_msg: "No se permite incorporar el c\xC3\xB3digo como embed en la caja de texto"
         seperate: "Ingres\xC3\xA1 los detalles de los destinatarios separados por una coma (,)"
+        share_mix: Compartir Mix
+        send: ENVIAR
         email_blank: El campo del email no puede quedar en blanco
         share_fb: Compartir en Facebook
-        send: ENVIAR
-        share_mix: Compartir Mix
         facebook: Facebook
         twitter: Twitter
-        email: Email
         email_to: "Email:"
+        email: Email
       copy_mix_layer: 
         cancel: CANCELAR
         info: "Pod\xC3\xA9s copiar este mix para luego agregarle los temas que te parece que le faltan."
         new_mix_name: Nombre del nuevo mix
-    mixes_tab: 
-      title: "CokeFM Messenger: Mixes"
-      tab_title: MIXES
-    default_messenger_title: "CokeFM Messenger :"
-    info: Info
-    create_mix: Crear Mix
+    information: "Informaci\xC3\xB3n"
     registration: 
       errors: 
         name: El espacio para el nombre no debe quedar sin completar
         slug: "Ese nombre de perfil ya est\xC3\xA1 ocupado"
-        terms: "Es necesario que acept\xC3\xA9s los T\xC3\xA9rminos y Condiciones y la Pol\xC3\xADtica de Privacidad"
         login: "Direcci\xC3\xB3n de email no v\xC3\xA1lida o no autorizada"
+        terms: "Es necesario que acept\xC3\xA9s los T\xC3\xA9rminos y Condiciones y la Pol\xC3\xADtica de Privacidad"
         age: "Necesit\xC3\xA1s tener al menos 13 a\xC3\xB1os para usar este sitio"
         email: "Direcci\xC3\xB3n de email no v\xC3\xA1lida o no autorizada"
       layers: 
@@ -1733,12 +1732,9 @@ coke_AR:
         share_mix: "Para compartir este mix, ingres\xC3\xA1 a Coca-Cola.fm"
         max_plays: "Esperamos que hayas disfrutado de las canciones que o\xC3\xADste. Para o\xC3\xADr m\xC3\xA1s canciones, ingres\xC3\xA1 a Coca-Cola.fm"
         error: "Ha ocurrido un error, por favor intent\xC3\xA1 de nuevo"
-    information: "Informaci\xC3\xB3n"
-    dj: 
-      follow_the_author: Seguir al autor
-      title: "CokeFM Messenger : DJs"
-      tab_title: DJ's
-      sort_by_popularity: Ordenar por popularidad
+    info: Info
+    default_messenger_title: "CokeFM Messenger :"
+    create_mix: Crear Mix
     email_share: 
       body: 
         click_here: "Clic para escuchar:"
@@ -1747,22 +1743,27 @@ coke_AR:
         hello: Hola,
         share_mix: quiere compartir contigo un mix en Coca-Cola.fm
       subject: "{{user}} quiere compartir contigo su m\xC3\xBAsica en Coca-Cola.fm"
+    dj: 
+      follow_the_author: Seguir al autor
+      title: "CokeFM Messenger : DJs"
+      tab_title: DJ's
+      sort_by_popularity: Ordenar por popularidad
     copy_mix: Copiar Mix
     greeting: Hi
     share_mix: Compartir Mix
     edit_mix: Editar Mix
     mix_page_blank: Sin mixes
-    home: INICIO
     my_mixes_mixes_count: Canciones
-    mixes: MIXES
-    live_radio: Radio en vivo
+    home: INICIO
     play_hover: Play
+    mixes: MIXES
     search: 
       results: resultados
       title: "CokeFM Messenger: Buscar"
       no_results: "Tu b\xC3\xBAsqueda no produjo resultados"
       tab_title: "RESULTADOS DE LA B\xC3\x9ASQUEDA"
       users: Usuarios
+    live_radio: Radio en vivo
   search: 
     messenger_search_hint: "Busc\xC3\xA1 amigos o mixes"
     search_results: "Resultados de b\xC3\xBAsqueda"
@@ -1788,35 +1789,35 @@ coke_AR:
       message: "{{reviewer}} te dej\xC3\xB3 un comentario en el mix: {{playlist}}.\r\n\
         Ingres\xC3\xA1 con tu cuenta en Coca-Cola.fm para ver el rating que recibiste y lo que escribieron."
   widget: 
-    sign_in: "ingres\xC3\xA1 con tu Live ID de Windows"
+    click_here: "clic aqu\xC3\xAD"
     buylink: 
       select_store: "Seleccion\xC3\xA1 tu tienda "
       song: "Comprar esta canci\xC3\xB3n"
-    share: 
-      title: Compartir con un amigo
-      message: Mensaje
-      email: Tu mail
-      friend: El mail de tu amigo
+    edit_station: "Para modificar esta estaci\xC3\xB3n,"
+    we_hope_you_enjoyed: "Esperamos que te hayan gustado las canciones que escuchaste. Para escuchar m\xC3\xA1s canciones,"
     actions: 
       edit: Modificar
-      submit: Enviar
-      close: Cerrar
       delete: Eliminar
+      close: Cerrar
+      submit: Enviar
       save: Guardar
-    we_hope_you_enjoyed: "Esperamos que te hayan gustado las canciones que escuchaste. Para escuchar m\xC3\xA1s canciones,"
-    click_here: "clic aqu\xC3\xAD"
-    edit_station: "Para modificar esta estaci\xC3\xB3n,"
+    sign_in: "ingres\xC3\xA1 con tu Live ID de Windows"
     station: 
       name: "Nombre de la estaci\xC3\xB3n de radio"
       edit: "Modificar el nombre de esta estaci\xC3\xB3n de radio"
       delete: "Eliminar esta estaci\xC3\xB3n de radio"
       would_delete: "\xC2\xBFQuer\xC3\xA9s borrar esta estaci\xC3\xB3n de radio?"
-    missing_api_key: "No hab\xC3\xA9s ingresado una clave API; es incorrecta o est\xC3\xA1 desactivada"
+    share: 
+      title: Compartir con un amigo
+      message: Mensaje
+      friend: El mail de tu amigo
+      email: Tu mail
     record_not_found: "No se pudo encontrar ning\xC3\xBAn resultado"
+    missing_api_key: "No hab\xC3\xA9s ingresado una clave API; es incorrecta o est\xC3\xA1 desactivada"
     checkout_today_polular_stations: "Estas son las estaciones de radio m\xC3\xA1s populares del d\xC3\xADa"
     recengineerror_UNKNOWN: Error desconocido
-    take_a_moment: "Activ\xC3\xA1 tu cuenta de Cyloop.com en apenas unos segundos"
     msn_stations: Estaciones de radio Cyloop.com
+    take_a_moment: "Activ\xC3\xA1 tu cuenta de Cyloop.com en apenas unos segundos"
     albums: 
       label: Disquera
     registration: 
@@ -1824,26 +1825,24 @@ coke_AR:
       share: Compartir
       discover_text: "m\xC3\xA1s de {{count}} artistas, todos gratis"
       your_name: Tu nombre
-      your_profile_name: Tu nickname
       terms_and_conditions: "T\xC3\xA9rminos y condiciones"
+      your_profile_name: Tu nickname
       share_text: canciones, mixes y estaciones de radio con tus amigos
       listen_text: "m\xC3\xA1s de {{count}} de canciones, todas gratis"
       discover: Descubrir
       privacy_policy: "Po\xC3\xADitica de privacidad"
       your_password: "Tu contrase\xC3\xB1a"
       listen: Escuchar
-      terms_and_privacy: "Al marcar el casillero, est\xC3\xA1s confirmando que sab\xC3\xA9s que Cyloop.com es un sitio web operado por Hoodiny Entertainment Group en los Estados Unidos, y est\xC3\xA1s otorgando tu consentimiento de transferir todos tus datos personales a los Estados Unidos, donde tus datos personales estar\xC3\xA1n sujetos a las leyes de los Estados Unidos y donde el nivel de protecci\xC3\xB3n de datos es diferente en comparaci\xC3\xB3n con el de tu pa\xC3\xADs. Tambi\xC3\xA9n confirm\xC3\xA1s estar de acuerdo con los {{terms_link}} y la {{privacy_link}} de Cyloop.com, la cual describe c\xC3\xB3mo ser\xC3\xA1n usados tus datos personales."
       confirm_your_password: "Confirm\xC3\xA1 tu contrase\xC3\xB1a"
+      terms_and_privacy: "Al marcar el casillero, est\xC3\xA1s confirmando que sab\xC3\xA9s que Cyloop.com es un sitio web operado por Hoodiny Entertainment Group en los Estados Unidos, y est\xC3\xA1s otorgando tu consentimiento de transferir todos tus datos personales a los Estados Unidos, donde tus datos personales estar\xC3\xA1n sujetos a las leyes de los Estados Unidos y donde el nivel de protecci\xC3\xB3n de datos es diferente en comparaci\xC3\xB3n con el de tu pa\xC3\xADs. Tambi\xC3\xA9n confirm\xC3\xA1s estar de acuerdo con los {{terms_link}} y la {{privacy_link}} de Cyloop.com, la cual describe c\xC3\xB3mo ser\xC3\xA1n usados tus datos personales."
     to_login: para ingresar
+    activate_your_account: "Activ\xC3\xA1 tu cuenta en Cyloop.com"
     buy: Comprar
     album: 
       released: Lanzado
     authentication_required: "Necesit\xC3\xA1s ingresar para hacer eso"
     internal_error: "No se pudo ejecutar tu solicitud debido a una falla interna. Ya estamos al tanto de esta situaci\xC3\xB3n y en breve la solucionaremos."
-    activate_your_account: "Activ\xC3\xA1 tu cuenta en Cyloop.com"
-    create_new_station: "Crear una estaci\xC3\xB3n nueva"
     recengineerror_NO_PLAYLIST: No se pudo encontrar un mix
-    now_playing: Tocando ahora
     basics: 
       by: Por
       includes: Incluye
@@ -1852,12 +1851,13 @@ coke_AR:
 
       message_sent: Tu mensaje ha sido enviado
       contains: Contiene
-    msn_music_is_free: Cyloop.com es gratis.
+    create_new_station: "Crear una estaci\xC3\xB3n nueva"
     station_edit_success: "La estaci\xC3\xB3n de radio se actualiz\xC3\xB3 con \xC3\xA9xito"
+    now_playing: Tocando ahora
+    msn_music_is_free: Cyloop.com es gratis.
     view_your_stations: Para ver tus estaciones de radio,
-    my_stations: Mis estaciones de radio
-    still_dont_have: "\xC2\xBFA\xC3\xBAn no ten\xC3\xA9s una cuenta en Cyloop.com?"
     continue: Continuar
+    my_stations: Mis estaciones de radio
     home: 
       create_your_own_personalized_radio_station: "Cre\xC3\xA1 tu propia estaci\xC3\xB3n de radio"
       create_radio: "Crear estaci\xC3\xB3n de radio"
@@ -1865,10 +1865,11 @@ coke_AR:
       network_update: "ACTUALIZACI\xC3\x93N DE RED"
       type_artist_name: "Escrib\xC3\xAD el nombre de un artista"
       recommended_mixes: MIXES RECOMENDADOS POR Cyloop.com
-      recommended_playlists: PLAYLISTS RECOMENDADAS
-      top_songs: Principales canciones
       top_stations: Principales estaciones de radio
+      top_songs: Principales canciones
+      recommended_playlists: PLAYLISTS RECOMENDADAS
       recommended_artists: Artistas recomendados
+    still_dont_have: "\xC2\xBFA\xC3\xBAn no ten\xC3\xA9s una cuenta en Cyloop.com?"
     recengineerror_NO_RADIO: "No se pudo encontrar una estaci\xC3\xB3n de radio"
   comments: 
     create_success: "El comentario se ha publicado "
@@ -1891,25 +1892,25 @@ coke_AR:
 
         slug: URL
         bios: Bio
-        location: "Ubicaci\xC3\xB3n"
         terms_of_use: "T\xC3\xA9rminos de uso"
+        location: "Ubicaci\xC3\xB3n"
         cyloop_password: "Contrase\xC3\xB1a Coca-Cola.FM"
         playlist_confirmation: "Tu mix se ha creado. \xC2\xA1Segu\xC3\xAD buscando!"
         twitter_username: Nombre de usuario en Twitter
-        cyloop_email: Mail de Coca-Cola.FM
-        current_password: "Contrase\xC3\xB1a actual"
         female: Mujer
+        current_password: "Contrase\xC3\xB1a actual"
+        cyloop_email: Mail de Coca-Cola.FM
         password_confirmation: "Confirmar contrase\xC3\xB1a"
         websites: Sitios web
         short_bio: Bio en corto
         gender: Sexo
-        male: Hombre
         new_password: "Nueva contrase\xC3\xB1a"
+        male: Hombre
         city_id: "\xC2\xBFEn qu\xC3\xA9 ciudad viv\xC3\xADs?"
         bio: Bio
         time_zone: Zona horaria
-        password: "Contrase\xC3\xB1a"
         privacy_policy: "Pol\xC3\xADtica de privacidad"
+        password: "Contrase\xC3\xB1a"
         age: !binary |
           wr9DdcOhbnRvcyBhw7FvcyB0ZW7DqXM/
 
@@ -1950,8 +1951,8 @@ coke_AR:
               cannot_start_with_punctuation: "no puede empezar con un signo de puntuaci\xC3\xB3n"
               taken: ya ha sido tomado
             current_password: 
-              incorrect: es incorrecto
               is_incorrect: ""
+              incorrect: es incorrecto
             negative_captcha: 
               must_be_blank: "debe quedar vac\xC3\xADo"
             base: 
@@ -1978,8 +1979,8 @@ coke_AR:
         empty: "no puede quedar vac\xC3\xADo"
         less_than: debe ser menor a {{count}}
         equal_to: debe ser igual a {{count}}
-        invalid_content_type: "Lo sentimos, pero s\xC3\xB3lo pod\xC3\xA9s subir im\xC3\xA1genes en formatos .jpg, .gif o .png"
         greater_than: debe ser mayor a {{count}}
+        invalid_content_type: "Lo sentimos, pero s\xC3\xB3lo pod\xC3\xA9s subir im\xC3\xA1genes en formatos .jpg, .gif o .png"
         too_long: "es demasiado largo (el m\xC3\xA1ximo es {{count}} caracteres)"
         taken: ya ha sido tomado
         accepted: debe ser aceptado
