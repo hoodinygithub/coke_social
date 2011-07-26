@@ -7,12 +7,6 @@
     <%= render 'shared/stylesheets' %>
     <%= yield :head %>
     <%= render 'shared/google_analytics' %>
-
-    <% if @flash_message %>
-      <script>
-        var flashMessage = '<%= javascript_flash_messages @flash_message %>';
-      </script>
-    <% end %>
   </head>
   <body locale="<%= current_site.default_locale %>" market="<%= current_site.code %>" current_site_url="<%= current_site_url %>" id="<%= action_name %>">
     <div class="cabecera">
