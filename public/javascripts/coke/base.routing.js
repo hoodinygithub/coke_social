@@ -64,9 +64,14 @@ Base.Routing = {
 };
 
 $(document).ready(function() {
-
-  $.history.init(function(url) {
-    Base.Routing.route(url != "" ? url : document.location.href.replace(document.location.origin, ''));
-  }, {unescape:true});
-
+    $.history.init(function(url) {
+      if (typeof fullPage == "undefined" || fullPage != 1)
+      {
+        Base.Routing.route(url != "" ? url : document.location.href.replace(document.location.origin, ''));
+      }
+      else
+      {
+        fullPage = 0;
+      }
+    }, {unescape:true});
 });
