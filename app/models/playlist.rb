@@ -36,6 +36,7 @@ class Playlist < ActiveRecord::Base
   acts_as_rateable(:class => 'Comment', :as => 'commentable')
 
   before_save :before_save_tasks
+  after_save :update_owner_cache_list
   # after_save :award_xmas_badges_playlist
   before_create :increment_owner_total_playlists
 
@@ -86,6 +87,10 @@ class Playlist < ActiveRecord::Base
   #     super(*args).compact        
   #   end
   # end
+  
+  def update_owner_cache_list
+    owner.update_cached_tag_list
+  end
 
   def includes(limit=3)
     songs.all(:limit => limit, :group => 'songs.artist_id')
@@ -131,6 +136,9 @@ class Playlist < ActiveRecord::Base
     if self.avatar.path.nil? and !songs.empty?
       set_default_image(songs.first.album)
     end
+
+    self.total_time = songs.sum(:duration)
+    self.songs_count = songs.size
   end
 
   def set_default_image(src)
@@ -193,16 +201,16 @@ class Playlist < ActiveRecord::Base
   end
 
   def update_tags(tags)
-    tags = tags.map { |m| m.gsub(/\"/,"") unless m.blank? }.compact
-    unless tags.empty?
-      transaction do
-        self.taggings.destroy_all
-        self.tag_list.clear
-        self.tag_list.add(tags) 
-        self.save
-        owner.update_cached_tag_list
-      end
-    end
+     tags = tags.map { |m| m.gsub(/\"/,"") unless m.blank? }.compact
+     self.tag_list = tags
+  #   unless tags.empty?
+  #     transaction do
+  #       self.taggings.destroy_all
+  #       self.tag_list.clear
+  #       self.save
+  #       owner.update_cached_tag_list
+  #     end
+  #   end
   end
   
   def add_tags(tags)
