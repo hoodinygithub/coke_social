@@ -2,11 +2,12 @@ Base.Routing = {
 
   route: function(url)
   {
-    if (String(url).match(/mixes/) ||
-        String(url).match(/home/) ||
-        String(url).match(/\//)) this.call['channel'](url);
-
+    if      (String(url).match(/mixes/) ||
+             String(url).match(/home/) ||
+             String(url).match(/^\/$/)) this.call['channel'](url);
     else if (String(url).match(/search/)) this.call['search'](url);
+    else if (String(url).match(/playlist\/create/) &&
+             !logged_in) this.call['playlist_create']();
     else if (String(url).match(/playlists/)) this.call['playlists'](url);
     else if (String(url).match(/my/)) this.call['dashboard'](url);
     else if (String(url).match(/index-bands/) ||
@@ -35,6 +36,12 @@ Base.Routing = {
     {
       Base.Routing.request(url, Base.UI.contentswp, {afterComplete: function() {
         $('body').attr('id', '');
+      }});
+    },
+    playlist_create: function() {
+      Base.Routing.request('/', Base.UI.contentswp, {afterComplete: function() {
+        Base.utils.showRegistrationLayer('http://cfm.cyloop.com:3000/playlist/create', 'create_playlist');
+        $('body').attr('id', "home");
       }});
     },
     dashboard: function(url)
