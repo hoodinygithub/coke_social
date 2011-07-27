@@ -14,11 +14,11 @@
 class PlaylistItem < ActiveRecord::Base
   acts_as_list :scope => :playlist
 
-  after_save :increment_playlist_total_time
-  before_destroy :decrement_playlist_total_time
+  # after_save :increment_playlist_total_time
+  # before_destroy :decrement_playlist_total_time
 
   belongs_to :song
-  belongs_to :playlist, :counter_cache => :songs_count
+  belongs_to :playlist#, :counter_cache => :songs_count
   
   validates_presence_of :song, :playlist
 
@@ -26,13 +26,13 @@ class PlaylistItem < ActiveRecord::Base
 
   delegate :artist, :title, :duration, :avatar, :to => :song, :allow_nil => true
 
-  def increment_playlist_total_time
-    playlist.update_attribute(:total_time, playlist.songs.sum(:duration))
-  end
+  # def increment_playlist_total_time
+  #   playlist.update_attribute(:total_time, playlist.songs.sum(:duration))
+  # end
 
-  def decrement_playlist_total_time
-    duration = 0 if duration.blank?
-    playlist.update_attribute(:total_time, playlist.songs.sum(:duration) - duration)
-  end
+  # def decrement_playlist_total_time
+  #   duration = 0 if duration.blank?
+  #   playlist.update_attribute(:total_time, playlist.songs.sum(:duration) - duration)
+  # end
 
 end
