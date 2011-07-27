@@ -4,9 +4,8 @@
     <%= render 'shared/meta' %>
     <script>
       var app = 'multitask';
-      <% if params.has_key? :no_ajax and params[:no_ajax] == "1" %>
-        var fullPage = 1;
-      <% end %>
+      var fullPage = 1;
+      var logged_in = <%= logged_in? %>;
     </script>
     <%= render 'shared/javascripts' %>
     <%= render 'shared/stylesheets' %>
