@@ -36,7 +36,7 @@
   </div><!--/end headers -->
 
   <div class="songs_box medium_height">
-    <% #cache("playlist_creation/song_results/#{@scope}/#{@item_id}/#{params[:order_by] || "*"}/#{params[:order_by]|| "*"}/#{params[:page]}", :expires_in => EXPIRATION_TIMES["playlist_creation_select_song_views"] ) do%>
+    <%# cache("playlist_creation/song_results/#{@scope}/#{@item_id}/#{params[:order_by] || "*"}/#{params[:order_by]|| "*"}/#{params[:page]}", :expires_in => EXPIRATION_TIMES["playlist_creation_select_song_views"] ) do%>
       <ul class="hoverable_list" id="result_container">
         <% @results.each do |song| %>
           <% if song.artist and song.album %>
