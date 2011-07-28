@@ -157,6 +157,7 @@ class PlaylistsController < ApplicationController
 
               @playlist.update_tags(params[:tags].downcase.split(','))
               @playlist.create_station
+              @playlist.save_tags
               current_user.increment!(:total_playlists);
             end
           end
