@@ -138,7 +138,7 @@ class Playlist < ActiveRecord::Base
     end
 
     self.total_time = songs.sum(:duration)
-    self.songs_count = songs.size
+    self.songs_count = songs.length
   end
 
   def set_default_image(src)
