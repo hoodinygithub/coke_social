@@ -282,7 +282,8 @@ label.label_holder input.file{
   width: auto;
   opacity: 0;
   -moz-opacity: 0;
-  left:-150px;top:0px;
+  left:-40px;
+  top:0px;
   position: relative;
   z-index:2;
   filter: alpha(opacity=0)!important; /* fix for ie */
@@ -761,10 +762,8 @@ label.label_holder {
     cursor:pointer;
     display:block;
     height:40px;
-    left:119px;
     overflow:hidden;
-    position:relative;
-    top:-51px;
+    position:absolute;
     width:125px;
     z-index:1;
 }
