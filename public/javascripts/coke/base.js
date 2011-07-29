@@ -432,14 +432,15 @@ var restoreInput = function(value, input) {
 /*
  * Account settings page
  */
-Base.account_settings.edit = function() {
-  var form = $(event.srcElement).closest('form');
+Base.account_settings.edit = function(p_target) {
+  var form = $(p_target).closest('form');
   form.ajaxSubmit({
     success: function(response)
     {
       Base.UI.contentswp(response);
     }
   });
+  return false;
 };
 
 Base.account_settings.highlight_field_with_errors = function(multitask, id, field_object) {
