@@ -9,6 +9,7 @@ Base.Routing = {
     else if (String(url).match(/playlist\/create/) &&
              !logged_in) this.call['playlist_create']();
     else if (String(url).match(/playlists/)) this.call['playlists'](url);
+    else if (String(url).match(/my\/settings/)) this.call['pipe']('/my/settings/edit');
     else if (String(url).match(/my/)) this.call['dashboard'](url);
     else if (String(url).match(/index-bands/) ||
              String(url).match(/index-music/) ||
