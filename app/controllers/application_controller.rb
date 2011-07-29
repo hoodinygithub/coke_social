@@ -80,13 +80,24 @@ class ApplicationController < ActionController::Base
   helper_method :ssl_site_url
 
   def rescue_action_in_public(exception)
+    log_error(exception) if logger
+
     if params[:format] == 'xml' || request.path.ends_with?( '.xml' )
-      # unless hoptoad_ignore_user_agent?
-      #   HoptoadNotifier.notify_or_ignore(exception, hoptoad_request_data)
-      # end
-      log_error(exception) if logger
       result = player_error_message(exception)
       render :xml => Player::Error.new( :code => result.first, :error => t("messenger_player.#{result.last}") )
+    else
+      unless hoptoad_ignore_user_agent?
+        HoptoadNotifier.notify_or_ignore(exception, hoptoad_request_data)
+      end
+
+      super
+    end
+  end
+
+  def rescue_action_locally(exception) 
+    # 404 image
+    if exception.is_a?(ActionController::RoutingError) and request.url =~ /\.jpg/
+      redirect_to "/images/ad.jpg"
     else
       super
     end
