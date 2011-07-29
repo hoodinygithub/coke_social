@@ -435,6 +435,7 @@ var restoreInput = function(value, input) {
 Base.account_settings.edit = function() {
   var form = $(event.srcElement).closest('form');
   form.ajaxSubmit({
+    dataType: 'xml',
     success: function(response)
     {
       Base.UI.contentswp(response);
