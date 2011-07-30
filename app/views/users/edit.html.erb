@@ -1,4 +1,6 @@
-<script language="text/javascript">
+<span></span>
+
+<% javascript_tag :defer => 'defer' do -%>
   $(document).ready(function(){
     <% if !@user.errors.empty? %>
       field_with_errors     = <%= @user.errors.to_json %>;
@@ -8,7 +10,9 @@
     $('#user_avatar').change(Base.account_settings.update_avatar_upload_info);
   });
 </script>
-<%= stylesheet_link_tag 'coke.css' %>
+<% end -%>
+
+<%= stylesheet_link_tag 'coke' %>
 
 <div id="flash_messages">
   <%= render_flash_messages %>
