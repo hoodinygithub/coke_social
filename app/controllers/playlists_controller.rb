@@ -162,7 +162,7 @@ class PlaylistsController < ApplicationController
             end
           end
           create_page_vars
-          redirect_to :action => 'edit', :id => @playlist.id, :edited => true
+          redirect_to :action => 'edit', :id => @playlist.id, :edited => true, :ajax => 1
         end
       else
         if session[:playlist_ids]
