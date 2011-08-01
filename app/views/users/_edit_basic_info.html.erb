@@ -54,31 +54,6 @@
     </div><!--/end form_row -->
 
     <div class="form_row">
-      <b><%= f.label :websites %></b>
-      <div class="grey_round_box left_side">
-        <input type="text" id="add_website" class="input full_width" name="user[websites][]" />
-      </div>
-      <script type="text/javascript">
-        $('#add_website').bind('keydown', 'return', Base.account_settings.add_website);
-        $('#add_website').bind('keydown', 'comma',  Base.account_settings.add_website);
-      </script>
-      <br class="clearer" />
-      <br/>
-      <div id="websites">
-      <% @user.websites.each_with_index do |site, index| %>
-        <div class="website_row">
-          <%= hidden_field_tag "user[websites][]", h(site) %>
-          <b>
-            <big><a href="http://<%= site %>"><%= site %></a></big> &nbsp;
-            <a href="#" class="black delete_site">[ <%= t('account_settings.delete') %> ]</a>
-          </b>
-        </div>
-      <% end %>
-      <br class="clearer" id="websites_clearer" />
-      </div>
-    </div><!--/end form_row -->
-
-    <div class="form_row">
       <div id="avatar_image">
         <%= avatar_for(profile_account, :medium, :class => 'upload_thumb') %>
       </div>
