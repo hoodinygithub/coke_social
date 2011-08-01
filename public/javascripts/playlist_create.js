@@ -747,9 +747,9 @@ function toggle_playlist_box()
 }
 
 function open_save_popup() {
-	$('#save_button span span').prepend('<img class="btn_red_loading" src="/images/red_loading.gif"/>');
 	if(_pv.valid) {
 		if(edit_mode) {
+	  if (!$('#save_button img').hasClass('btn_red_loading')) $('#save_button span span').prepend('<img class="btn_red_loading" src="/images/red_loading.gif"/>');
 			form = $('#update_playlist_form');
 			form.find("input[name='item_ids']").attr("value", _pv.item_ids);
 			$.ajax({
@@ -778,6 +778,7 @@ function open_save_popup() {
 			});
 		}
 	} else {
+  //$('#save_button span span .btn_red_loading').remove();
 		$.popup({
 			div: '#unable_popup'
 		});
