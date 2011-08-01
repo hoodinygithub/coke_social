@@ -1554,7 +1554,8 @@ Base.playlists.showTagsLayer = function() {
       $('ul.selected_tags li a').click(Base.playlists.removeTag);
     });
   }
-  $('ul.available_tags li a').click(Base.playlists.selectTag);
+  if ($('ul.available_tags li a').data('events') == undefined)
+    $('ul.available_tags li a').click(Base.playlists.selectTag);
   var left = $(window).width() / 2;
   var top  = getPageScroll()[1] + (getPageHeight() / 10)
   if (!top) {
