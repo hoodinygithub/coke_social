@@ -796,7 +796,6 @@ function submit_save_form() {
 
 			form.find("input[name='item_ids']").attr("value", _pv.item_ids);
 			setTimeout(function(){
-				//form.submit();
             form.ajaxSubmit({
               success: function(response)
               {
