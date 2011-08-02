@@ -270,6 +270,7 @@ div.empty_playlist {
 }
 
 /* Account Settings */
+/*
 #avatar_upload_button {
   position: absolute;
   top: 0px;
@@ -286,7 +287,7 @@ label.label_holder input.file{
   top:0px;
   position: relative;
   z-index:2;
-  filter: alpha(opacity=0)!important; /* fix for ie */
+  filter: alpha(opacity=0)!important; 
 }
 
 label.label_holder{
@@ -306,6 +307,7 @@ label.label_holder{
   top: 55px;
   left:760px;
 }
+*/
 
 #playlist_error_tag {
 	margin-top: 17px;
@@ -758,16 +760,6 @@ img.avatar.large {
   border: none;
 }
 
-label.label_holder {
-    cursor:pointer;
-    display:block;
-    height:40px;
-    overflow:hidden;
-    position:absolute;
-    width:125px;
-    z-index:1;
-}
-
 #update_layer_avatar_container {
     height: 100px;
     position: relative;
@@ -778,11 +770,6 @@ label.label_holder {
     left: 34px;
     position: absolute;
     top: 34px;
-}
-
-#save_mix_popup label.label_holder {
-    left:110px;
-    top:-50px;
 }
 
 #save_mix_popup #uploaded_image_name {

@@ -3796,3 +3796,51 @@ span.title {
   margin-top: 10px;
   float: right;
 }
+
+/* Account Settings */
+#avatar_upload_button {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+}
+
+label.label_holder input.file{
+  position: relative;
+  height: 100%;
+  width: auto;
+  opacity: 0;
+  -moz-opacity: 0;
+  left:-21px;
+  top:0px;
+  position: relative;
+  z-index:2;
+  filter: alpha(opacity=0)!important; /* fix for ie */
+}
+
+label.label_holder{
+  width: 125px;
+  height: 40px;
+  display: block;
+  overflow: hidden;
+  cursor: pointer;
+  position: absolute;
+  z-index: 1;
+}
+
+#right_column label.label_holder {
+  left: 119px;
+  top: -51px;
+  position: relative !important;
+}
+
+#save_mix_popup label.label_holder {
+  top: 280px;
+  left: 110px;
+}
+
+#update_playlist_form label.label_holder {
+  top: 55px;
+  left:760px;
+}
+
+
