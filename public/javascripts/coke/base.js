@@ -1765,3 +1765,21 @@ Base.rating.rate = function(t) {
   
   return false;
 }
+
+Base.playlists.avatarDelete = function() {
+  $.popup({ div: '#avatar_delete_popup' });
+}
+
+Base.playlists.avatarDeleteConfirm = function() {
+  var url = $("#remove_playlist_avatar a").attr("href");
+  $.get(url, Base.playlists.avatarDeleteCallback);
+}
+
+Base.playlists.avatarDeleteCallback = function(response) {
+  if (response.success) {
+    $("#update_layer_avatar_container img").replaceWith(response.avatar);
+    $("#remove_playlist_avatar").hide();
+    $(document).trigger('close.facebox');
+    has_custom_avatar = false;
+  }
+}
