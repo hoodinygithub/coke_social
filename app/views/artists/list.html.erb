@@ -31,62 +31,59 @@
           </thead>
           <tbody>
             <% unless @accounts.nil? or @accounts.blank? then %>
-              <%
-                @accounts.each { |account| %>
-                  <tr>
-                    <td>
-                      <h2>
-                        <a href="/search/playlists/<%= CGI::escape(account.name) %>" content_switch_enabled="true">
-                          <%= account.name %>
-                        </a>
-                      </h2>
-                    </td>
-                  </tr>
-
-                <% } %>
-              <% else %>
+              <% @accounts.each { |account| %>
                 <tr>
-                  <td>
-                    <h2>
-                      <%= t('band_index.no_results_found') %>
-                    </h2>
-                  </td>
-                </tr>
-              <% end %>
+                <td>
+                  <h2>
+                    <a href="/search/playlists/<%= CGI::escape(account.name) %>" content_switch_enabled="true">
+                      <%= account.name %>
+                    </a>
+                   </h2>
+                 </td>
+               </tr>
 
-
-            </tbody>
-          </table>
-          <br/>
-
-          <div class="alplabetic_filter_list">
-            <% "A".upto("Z") do | var | %>
-              <% if var == params[:q] then %>
-                <span id="current_alphabet"><a href="/index-bands/<%= var %>" content_switch_enabled="true"><%= var %></a>&nbsp;</span>
-              <% else %>
-                <a href="/index-bands/<%= var %>" content_switch_enabled="true"><%= var %></a>&nbsp;
-              <% end %>
-            <% end %>
-          </div>
-          <div class="numeric_filter_list">
-            <% 0.upto(9) do | var | %>
-              <% if var.to_s == params[:q] then %>
-                <span id="current_numeric"><a href="/index-bands/<%= var %>" content_switch_enabled="true"><%= var %></a>&nbsp;</span>
-              <% else %>
-                <a href="/index-bands/<%= var %>" content_switch_enabled="true"><%= var %></a>&nbsp;
-              <% end %>
-            <% end %>
-
-            <% if "special" == params[:q] then %>
-              <span id="current_numeric"><a href="/index-bands/special" content_switch_enabled="true">#</a>&nbsp;</span>
+              <% } %>
             <% else %>
-              <a href="/index-bands/special" content_switch_enabled="true">#</a>&nbsp;
+              <tr>
+                <td>
+                  <h2>
+                    <%= t('band_index.no_results_found') %>
+                  </h2>
+                </td>
+              </tr>
             <% end %>
-          </div>
+
+          </tbody>
+        </table>
+        <br/>
+
+        <div class="alplabetic_filter_list">
+          <% "A".upto("Z") do | var | %>
+            <% if var == params[:q] then %>
+              <span id="current_alphabet"><a href="/index-bands/<%= var %>" content_switch_enabled="true"><%= var %></a>&nbsp;</span>
+            <% else %>
+              <a href="/index-bands/<%= var %>" content_switch_enabled="true"><%= var %></a>&nbsp;
+            <% end %>
+          <% end %>
+        </div>
+        <div class="numeric_filter_list">
+          <% 0.upto(9) do | var | %>
+            <% if var.to_s == params[:q] then %>
+              <span id="current_numeric"><a href="/index-bands/<%= var %>" content_switch_enabled="true"><%= var %></a>&nbsp;</span>
+            <% else %>
+              <a href="/index-bands/<%= var %>" content_switch_enabled="true"><%= var %></a>&nbsp;
+            <% end %>
+          <% end %>
+
+          <% if "special" == params[:q] then %>
+            <span id="current_numeric"><a href="/index-bands/special" content_switch_enabled="true">#</a>&nbsp;</span>
+          <% else %>
+            <a href="/index-bands/special" content_switch_enabled="true">#</a>&nbsp;
+          <% end %>
         </div>
       </div>
     </div>
   </div>
-
-  <script>Cufon.replace('.txt');</script>
 </div>
+
+<script>Cufon.replace('.txt');</script>
