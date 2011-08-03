@@ -1532,7 +1532,7 @@ Base.stations.remove_from_layer = function(station_id, button) {
 
 Base.stations.remove = function(station_id) {
   $('#delete_loading').show();
-  $li = $("#station_to_delete").parent().parent().parent().parent();
+  $li = $("#station_to_delete").parent().parent().parent().parent().parent();
 
   $.post(Base.currentSiteUrl() + '/stations/' + station_id + '/delete', {'_method':'delete'}, function(response) {
     $(document).trigger('close.facebox');
