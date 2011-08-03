@@ -942,13 +942,17 @@ function init_draggable()
 {
 	liveDraggable(".draggable_item", {
 		scroll: false,
-		snap: true,
+		// snap: true, This is snapping on the search results instead of the mix.
 		helper: 'clone',
 		appendTo: 'body',
 		connectToSortable: true,
 		cursorAt: {
 			left: 100
-		}
+		},
+		// Drag+drop tries to text highlight.  Cancel selections while dragging.
+		// This is fixed in JQuery 1.8.6: http://bugs.jqueryui.com/ticket/4163
+		drag: function(event, ui) { document.getSelection().collapse(); }
+
 	});
   
 	$(".dotted_box").droppable({
