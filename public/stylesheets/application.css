@@ -3811,7 +3811,7 @@ label.label_holder input.file{
   opacity: 0;
   -moz-opacity: 0;
   left:-192px;
-  top:0px;
+  top:-10px;
   position: relative;
   z-index:2;
   filter: alpha(opacity=0)!important; /* fix for ie */
@@ -3831,11 +3831,6 @@ label.label_holder{
   left: 119px;
   top: -51px;
   position: relative !important;
-}
-
-#right_column label.label_holder input.file{
-  left: -9px;
-  top: -10px;
 }
 
 #save_mix_popup label.label_holder {

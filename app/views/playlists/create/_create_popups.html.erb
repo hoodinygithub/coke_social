@@ -49,7 +49,7 @@
       <div class="playlist_image_container">
         <img id="save_layer_avatar" alt="" class="save_layer_avatar valign_middle avatar playlist float_left" src="/images/upload_image_placeholder.gif" />
         <label class='label_holder'>
-          <a href="#" onclick="return false;" id="avatar_upload_button" class="red_button valign_middle"><span><span><%= t('playlists.add_update') %></span></span></a>
+          <a id="avatar_upload_button" class="red_button valign_middle"><span><span><%= t('playlists.add_update') %></span></span></a>
           <input id="playlist_avatar" type="file" class="playlist_avatar file" name="avatar" size="30" onchange="save_playlist_image_preview();"/>
         </label>
         <div id="uploaded_image_name" class="uploaded_image_name">filename</div>
