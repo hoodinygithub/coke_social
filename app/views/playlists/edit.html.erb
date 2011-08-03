@@ -49,7 +49,7 @@
     <%= javascript_include_tag 'playlist' %>
     <%= javascript_include_tag 'playlist_create' %>
     <script type="text/javascript">
-      has_custom_avatar = <%= @playlist.avatar_file_name.nil? ? 0 : 1 %>;
+      var has_custom_avatar = <%= @playlist.avatar_file_name.nil? ? 0 : 1 %>;
       </script>
       <div class="two_columns">
       <%= form_tag playlist_edit_path(@playlist), :class => "account_settings search_music", :id => "update_playlist_form", :method => :post, :multipart => true %>
@@ -121,7 +121,7 @@
       $.popup({ div: '#edit_conf_popup' });
     <% end %>
 
-    $tag_box = new $.TextboxList('input.edit_tags', {  });
+    var $tag_box = new $.TextboxList('input.edit_tags', {  });
 
     var sFlashVars = {
 playerId:<%= @player_id %>
