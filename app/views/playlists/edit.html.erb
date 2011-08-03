@@ -20,20 +20,20 @@
     });
   });
 
-  jQuery("#playlist_search_query").keyup(function(e) {
+  $("#playlist_search_query").keyup(function(e) {
     //jQuery('.search_results_ajax').show();
     var keyCode = e.keyCode || window.event.keyCode;
     //var form_values = jQuery("#playlist_search_form").serializeArray();
     //var q = Base.header_search.getFieldValue(form_values,'q');
-    var q = jQuery('#playlist_search_query').val();
+    var q = $('#playlist_search_query').val();
 
     if(keyCode == 37 || keyCode == 38 || keyCode == 39 || keyCode == 40){
       return false;
     }
     if(keyCode == 13 || keyCode == 27 || q.length <= 1){
       //jQuery('.search_results_ajax').show();
-      jQuery('.content_search_results_ajax').hide();
-      jQuery('.create_box').hide();
+      $('.content_search_results_ajax').hide();
+      $('.create_box').hide();
       return false;
     }
     //jQuery('.search_results_box').show();
