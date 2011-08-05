@@ -202,11 +202,10 @@ class PlaylistsController < ApplicationController
           render :text => 'updated'
           #redirect_to my_playlists_path
         end
+      else 
+        create_page_vars
+        render :layout => false if params[:ajax] == "1"
       end
-      create_page_vars
-      #else
-      #  render :layout => false
-      #end
     else
       redirect_to :action => :create
     end

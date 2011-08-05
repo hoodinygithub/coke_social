@@ -113,7 +113,7 @@
   function close_cancel_popup()
   {
     redirect_url = '<%= my_dashboard_path %>';
-    jQuery.get('/playlist/clear_state', function(data) {
+    $.get('/playlist/clear_state', function(data) {
         document.location.href = redirect_url;
     });
   }

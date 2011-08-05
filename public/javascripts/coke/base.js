@@ -435,6 +435,7 @@ var restoreInput = function(value, input) {
 Base.account_settings.edit = function(p_target) {
   var form = $(p_target).closest('form');
   form.ajaxSubmit({
+    type: "POST",
     success: function(response)
     {
       Base.UI.contentswp(response);
@@ -1522,6 +1523,7 @@ Base.playlist_search.buildSearchUrl = function () {
 
 // Stations
 Base.stations.remove_from_layer = function(station_id, button) {
+  $("#station_to_delete").remove();
   $(button).parent().append("<div id='station_to_delete' style='display:none'></div>")
   url = Base.currentSiteUrl() + '/stations/' + station_id + '/delete_confirmation';
   $.get(url, function(data) {
@@ -1531,7 +1533,13 @@ Base.stations.remove_from_layer = function(station_id, button) {
 
 Base.stations.remove = function(station_id) {
   $('#delete_loading').show();
-  $li = $("#station_to_delete").parent().parent().parent().parent();
+
+  // mixes page
+  $li = $("#station_to_delete").closest(".albums_item");
+  if ($li.length == 0) {
+    // dashboard page
+    $li = $("#station_to_delete").closest(".artist_box");
+  }
 
   $.post(Base.currentSiteUrl() + '/stations/' + station_id + '/delete', {'_method':'delete'}, function(response) {
     $(document).trigger('close.facebox');
@@ -1763,4 +1771,22 @@ Base.rating.rate = function(t) {
   // console.log(rateable_type + ":" + rateable_id + ":" + bottle.html())
   
   return false;
+}
+
+Base.playlists.avatarDelete = function() {
+  $.popup({ div: '#avatar_delete_popup' });
+}
+
+Base.playlists.avatarDeleteConfirm = function() {
+  var url = $("#remove_playlist_avatar a").attr("href");
+  $.get(url, Base.playlists.avatarDeleteCallback);
+}
+
+Base.playlists.avatarDeleteCallback = function(response) {
+  if (response.success) {
+    $("#update_layer_avatar_container img").replaceWith(response.avatar);
+    $("#remove_playlist_avatar").hide();
+    $(document).trigger('close.facebox');
+    has_custom_avatar = false;
+  }
 }

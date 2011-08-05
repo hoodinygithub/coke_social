@@ -31,8 +31,11 @@ class ApplicationController < ActionController::Base
   
   def self.layout_except_xhr(name)
     layout proc { |c| 
-        # c.request.xhr? ? false : (is_megatron?(c.request.user_agent) ? name : "xhrframe") 
-        c.request.xhr? ? false : name
+      if c.params.has_key? :no_ajax and c.params[:no_ajax] == '1'
+        name
+      else
+        c.request.xhr? ? false : (is_megatron?(c.request.user_agent) ? name : "xhrframe") 
+      end
     }
   end
   layout_except_xhr "application"
