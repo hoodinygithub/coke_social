@@ -88,12 +88,10 @@ class ApplicationController < ActionController::Base
     if params[:format] == 'xml' || request.path.ends_with?( '.xml' )
       result = player_error_message(exception)
       render :xml => Player::Error.new( :code => result.first, :error => t("messenger_player.#{result.last}") )
-    else
-      if !hoptoad_ignore_user_agent? and Rails.env.production?
-        HoptoadNotifier.notify_or_ignore(exception, hoptoad_request_data)
-      end
+    end
 
-      super
+    if Rails.env.production? and !hoptoad_ignore_user_agent?
+      HoptoadNotifier.notify_or_ignore(exception, hoptoad_request_data)
     end
   end
 
