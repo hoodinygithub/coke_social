@@ -89,7 +89,7 @@ class ApplicationController < ActionController::Base
       result = player_error_message(exception)
       render :xml => Player::Error.new( :code => result.first, :error => t("messenger_player.#{result.last}") )
     else
-      unless hoptoad_ignore_user_agent?
+      if !hoptoad_ignore_user_agent? and Rails.env.production?
         HoptoadNotifier.notify_or_ignore(exception, hoptoad_request_data)
       end
 
