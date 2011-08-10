@@ -29,14 +29,17 @@ class ApplicationController < ActionController::Base
 
   protect_from_forgery # :secret => '2b6c80782aadce40577fa1e003ece9a9'
   
+  # def self.layout_except_xhr(name)
+  #   layout proc { |c| 
+  #     if c.params.has_key? :no_ajax and c.params[:no_ajax] == '1'
+  #       name
+  #     else
+  #       c.request.xhr? ? false : (is_megatron?(c.request.user_agent) ? name : "xhrframe") 
+  #     end
+  #   }
+  # end
   def self.layout_except_xhr(name)
-    layout proc { |c| 
-      if c.params.has_key? :no_ajax and c.params[:no_ajax] == '1'
-        name
-      else
-        c.request.xhr? ? false : (is_megatron?(c.request.user_agent) ? name : "xhrframe") 
-      end
-    }
+    layout proc { |c| c.request.xhr? ? false : name }
   end
   layout_except_xhr "application"
 

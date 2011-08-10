@@ -2,7 +2,8 @@ Base.Routing = {
 
   route: function(url)
   {
-    if      (String(url).match(/mixes/) ||
+    if (url == document.location.href.replace(document.location.origin, '')) return true;
+    else if (String(url).match(/mixes/) ||
              String(url).match(/home/) ||
              String(url).match(/^\/$/)) this.call['channel'](url);
     else if (String(url).match(/search/)) this.call['search'](url);
@@ -16,7 +17,9 @@ Base.Routing = {
              String(url).match(/badges-dj/) ||
              String(url).match(/terms_and_conditions/) ||
              String(url).match(/privacy_policy/)) this.call['consolidated'](url);
-    else if (String(url).match(/comments_top/)) return true;
+    else if (String(url).match(/comments_top/) ||
+             String(url).match(/^\/session$/) ||
+             String(url).match(/^\/users$/)) return true;
     else this.call['pipe'](url);
   },
 
@@ -73,13 +76,6 @@ Base.Routing = {
 
 $(document).ready(function() {
     $.history.init(function(url) {
-      if (typeof fullPage == "undefined" || fullPage != 1)
-      {
-        Base.Routing.route(url != "" ? url : document.location.href.replace(document.location.origin, ''));
-      }
-      else
-      {
-        fullPage = 0;
-      }
+      Base.Routing.route(url != "" ? url : document.location.href.replace(document.location.origin, ''));
     }, {unescape:true});
 });
