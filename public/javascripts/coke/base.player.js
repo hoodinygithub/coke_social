@@ -264,7 +264,7 @@ $(document).ready(function() {
   else
     Base.Player.random(true);
 
-  window.onunload = function() {
+  window.onbeforeunload = function() {
     Base.Player.service()[SoundEngines.APIMappings[Base.Player._player].kill]();
   };
 });
