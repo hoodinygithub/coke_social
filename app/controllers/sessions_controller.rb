@@ -249,7 +249,7 @@ private
 
     # AccountUni search
     ## Rails validation enforces global email uniqueness
-    same_email_user = User.find_by_email_with_exclusive_scope(p_user.email, :first, :select => "id, slug, gender, encrypted_gender, email, encrypted_email, name, encrypted_name, born_on, encrypted_born_on_string")
+    same_email_user = User.find_by_email_with_exclusive_scope(p_user.email, :first, :select => "id, slug, gender, encrypted_gender, email, encrypted_email, name, encrypted_name, born_on, encrypted_born_on_string, network_id, country_id, ip_address")
     unless same_email_user.nil?
       # logger.info "Found same email user."
       same_email_user.sso_windows = p_user.sso_windows
