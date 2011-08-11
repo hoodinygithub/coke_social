@@ -48,6 +48,7 @@ class WindowsConnect
     p_cookies["wl_complete"] = "done"
 
     user = get_profile_user(cid, access_token)
+    # user is nil sometimes for some reason
 
     populate_pwid(user, p_wrap_verification_code, p_callback, p_cookies)
   end
@@ -194,6 +195,8 @@ class WindowsConnect
   # Necessary if the lookup by sso_windows would fail and we'll have to search again by msn_live_id afterwards.
   #
   def self.populate_pwid(p_user, p_wrap_verification_code, p_callback, p_cookies)
+    return nil if p_user.nil?
+
     # This check is redundant.  It happens again later when we handle the user.
     # The query results should be cached for the 2nd lookup.
     #
