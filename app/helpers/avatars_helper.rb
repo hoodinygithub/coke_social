@@ -29,7 +29,7 @@ module AvatarsHelper
         path = path.sub(%r{/hires/}, '/hi-thumbnail/') if type == :new_medium
         path = path.sub(%r{/hires/}, '/hi-thumbnail/') if type == :medium
         path = path.sub(%r{/hires/}, '/thumbnail/') unless type == :album
-        path = ("#{ENV['ASSETS_URL']}/storage/storage?fileName=" + path) unless (path.index("http://")==0)
+        asset_url(path) unless (path.index("http://")==0)
       elsif path =~ /\/avatars\/missing\/.*gif/
         path = path
       else

@@ -1,5 +1,7 @@
 require 'open-uri'
 module AvatarImporter
+  include AssetUrlUtils
+
   def self.included(base)
     base.named_scope :pending_avatar_import, lambda {|*args| {:conditions => "#{base.table_name}.avatar_file_name IS NOT NULL AND #{base.table_name}.avatar_content_type IS NULL", :limit => args.first}}
   end
@@ -7,7 +9,7 @@ module AvatarImporter
   def pending_avatar_url
     path = read_attribute(:avatar_file_name)
     if avatar_content_type.blank? && !path.blank?
-       "#{ENV['ASSETS_URL']}/storage?fileName=#{path}"
+      asset_url path
     end
   end
   def avatar_file_name
