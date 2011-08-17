@@ -19,7 +19,7 @@ set :shared_base,         "/shared"
 set :user,                "hoodiny"
 set :password,            "Xh00d17ME71z"
 set :deploy_to,           "#{deploy_base}/#{application}"
-set :monit_group,         "unicorn_#{ENV['DEPLOY_SITE'] || ARGV[0]}"
+#set :monit_group,         "unicorn_#{ENV['DEPLOY_SITE'] || ARGV[0]}"
 set :runner,              "hoodiny"
 set :repository,          "git@github.com:hoodinygithub/coke_social.git"
 set :cyqueue,             "/data/cyqueue/current"
@@ -149,75 +149,74 @@ task :symlink_remaining, :roles => :app, :except => {:no_release => true, :no_sy
   end
 end
 
-namespace :unicorn do
-  desc <<-DESC
-  Start the Unicorn Master.  This uses the :use_sudo variable to determine whether to use
-  sudo or not. By default, :use_sudo is set to true.
-  DESC
-  task :start, :roles => [:app], :except => {:unicorn => false} do
-    sudo "/usr/bin/monit start all -g #{monit_group}"
-    sudo "/usr/bin/monit start all -g #{monit_group}_ssl"
-  end
-
-  desc <<-DESC
-  Restart the Unicorn processes on the app server by starting and stopping the master.
-  This uses the :use_sudo variable to determine whether to use sudo or not. By default,
-  :use_sudo is set to true.
-  DESC
-  task :restart, :roles => [:app], :except => {:unicorn => false} do
-    sudo "/usr/bin/monit restart all -g #{monit_group}"
-    sudo "/usr/bin/monit restart all -g #{monit_group}_ssl"
-  end
-
-  desc <<-DESC
-  Stop the Unicorn processes on the app server.  This uses the :use_sudo
-  variable to determine whether to use sudo or not. By default, :use_sudo is
-  set to true.
-  DESC
-  task :stop, :roles => [:app], :except => {:unicorn => false} do
-    sudo "/usr/bin/monit stop all -g #{monit_group}"
-    sudo "/usr/bin/monit stop all -g #{monit_group}_ssl"
-  end
-
-  desc <<-DESC
-  Reloads the unicorn works gracefully - Use deploy task for deploys
-  DESC
-  task :reload, :roles => [:app], :except => {:unicorn => false} do
-    sudo "/engineyard/bin/unicorn #{application} reload"
-    # sudo "/engineyard/bin/unicorn #{application}_ssl reload"
-  end
-
-  desc <<-DESC
-  Adds a Unicorn worker - Beware of causing your host to swap, this setting isn't permanent
-  DESC
-  task :aworker, :roles => [:app], :except => {:unicorn => false} do
-    sudo "/engineyard/bin/unicorn #{application} aworker"
-    sudo "/engineyard/bin/unicorn #{application}_ssl aworker"
-  end
-
-  desc <<-DESC
-  Removes a unicorn worker (gracefully)
-  DESC
-  task :rworker, :roles => [:app], :except => {:unicorn => false} do
-    sudo "/engineyard/bin/unicorn #{application} rworker"
-    sudo "/engineyard/bin/unicorn #{application}_ssl rworker"
-  end
-
-  desc <<-DESC
-  Deploys app gracefully with USR2 and unicorn.rb combo
-  DESC
-  task :deploy, :roles => [:app], :except => {:unicorn => false} do
-    sudo "/engineyard/bin/unicorn #{application} deploy"
-    # sudo "/engineyard/bin/unicorn #{application}_ssl deploy"
-  end
-end #namespace
+#namespace :unicorn do
+#  desc <<-DESC
+#  Start the Unicorn Master.  This uses the :use_sudo variable to determine whether to use
+#  sudo or not. By default, :use_sudo is set to true.
+#  DESC
+#  task :start, :roles => [:app], :except => {:unicorn => false} do
+#    #sudo "/usr/bin/monit start all -g #{monit_group}"
+#    #sudo "/usr/bin/monit start all -g #{monit_group}_ssl"
+#  end
+#
+#  desc <<-DESC
+#  Restart the Unicorn processes on the app server by starting and stopping the master.
+#  This uses the :use_sudo variable to determine whether to use sudo or not. By default,
+#  :use_sudo is set to true.
+#  DESC
+#  task :restart, :roles => [:app], :except => {:unicorn => false} do
+#    #sudo "/usr/bin/monit restart all -g #{monit_group}"
+#    #sudo "/usr/bin/monit restart all -g #{monit_group}_ssl"
+#  end
+#
+#  desc <<-DESC
+#  Stop the Unicorn processes on the app server.  This uses the :use_sudo
+#  variable to determine whether to use sudo or not. By default, :use_sudo is
+#  set to true.
+#  DESC
+#  task :stop, :roles => [:app], :except => {:unicorn => false} do
+#    #sudo "/usr/bin/monit stop all -g #{monit_group}"
+#    #sudo "/usr/bin/monit stop all -g #{monit_group}_ssl"
+#  end
+#
+#  desc <<-DESC
+#  Reloads the unicorn works gracefully - Use deploy task for deploys
+#  DESC
+#  task :reload, :roles => [:app], :except => {:unicorn => false} do
+#    #sudo "/engineyard/bin/unicorn #{application} reload"
+#    #sudo "/engineyard/bin/unicorn #{application}_ssl reload"
+#  end
+#
+#  desc <<-DESC
+#  Adds a Unicorn worker - Beware of causing your host to swap, this setting isn't permanent
+#  DESC
+#  task :aworker, :roles => [:app], :except => {:unicorn => false} do
+#    #sudo "/engineyard/bin/unicorn #{application} aworker"
+#    #sudo "/engineyard/bin/unicorn #{application}_ssl aworker"
+#  end
+#
+#  desc <<-DESC
+#  Removes a unicorn worker (gracefully)
+#  DESC
+#  task :rworker, :roles => [:app], :except => {:unicorn => false} do
+#    #sudo "/engineyard/bin/unicorn #{application} rworker"
+#    #sudo "/engineyard/bin/unicorn #{application}_ssl rworker"
+#  end
+#
+#  desc <<-DESC
+#  Deploys app gracefully with USR2 and unicorn.rb combo
+#  DESC
+#  task :deploy, :roles => [:app], :except => {:unicorn => false} do
+#    #sudo "/engineyard/bin/unicorn #{application} deploy"
+#    #sudo "/engineyard/bin/unicorn #{application}_ssl deploy" if rails_env != "staging" # ssl turned off in staging
+#  end
+#end #namespace
 
 namespace :deploy do
   # Try and get around EY gem
   task :symlink_configs, :roles => :app, :except => {:no_release => true} do
     run <<-CMD
       cd #{latest_release} &&
-      rm -rf #{latest_release}/lib/tasks/hoptoad_notifier_tasks.rake &&
       ln -nfs #{shared_path}/config/database.yml #{latest_release}/config/database.yml
     CMD
   end
@@ -235,17 +234,20 @@ namespace :deploy do
   end
 
   task :restart, :roles => :app do
-    unicorn.deploy
+    #unicorn.deploy
+    run "touch #{latest_release}/tmp/restart.txt"
   end
 
   desc "Start the Unicorn processes on the app slices."
   task :start, :roles => :app do
-    unicorn.start
+    #unicorn.start
+    run "touch #{latest_release}/tmp/restart.txt"
   end
 
   desc "Stop the Unicorn processes on the app slices."
   task :stop, :roles => :app do
-    unicorn.stop
+    #unicorn.stop
+    run "touch #{latest_release}/tmp/restart.txt"
   end
 
   task :save_current_branch do
