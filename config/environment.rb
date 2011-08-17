@@ -59,7 +59,7 @@ Rails::Initializer.run do |config|
   config.gem 'hoptoad_notifier',        :version => '2.2.2'
   config.gem 'system_timer',            :version => '1.2.4'
   config.gem 'mysql',                   :version => '2.8.1'
-  config.gem 'rake',                    :version => '0.9.2'
+  config.gem 'rake',                    :version => '0.9.2' # Install this version of rake before running rake gems:install
   
   # config.gem "methodmissing-scrooge", :lib => 'scrooge', :source => 'http://gems.github.com'
   # Only load the plugins named here, in the order given. By default, all
