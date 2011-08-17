@@ -1,3 +1,4 @@
+require 'ostruct'
 class RecEngine::Station < RecEngine::Abstract
   # Example artist amg id: "P   440673"
 
@@ -29,8 +30,7 @@ class RecEngine::Station < RecEngine::Abstract
   end
 
   def avatar
-    require 'ostruct'
-    OpenStruct.new(:url => "#{ENV['ASSETS_URL']}#{image}")
+    OpenStruct.new(:url => asset_url_rec(image)) 
   end
 
   def to_s

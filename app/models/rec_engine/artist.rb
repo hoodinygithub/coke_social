@@ -17,7 +17,7 @@ class RecEngine::Artist < RecEngine::Abstract
   alias to_param slug
 
   def avatar
-    @avatar ||= OpenStruct.new(:url => "#{ENV['ASSETS_URL']}#{image}")
+    @avatar ||= OpenStruct.new(:url => asset_url_rec(image))
   end
 
   def to_s

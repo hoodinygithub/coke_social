@@ -1,3 +1,4 @@
+require 'ostruct'
 class RecEngine::SimilarArtist < RecEngine::Abstract
   # Example artist amg id: "P     5241"
   
@@ -15,8 +16,7 @@ class RecEngine::SimilarArtist < RecEngine::Abstract
   alias to_param slug
 
   def avatar
-    require 'ostruct'
-    OpenStruct.new(:url => "#{ENV['ASSETS_URL']}#{image}")
+    OpenStruct.new(:url => asset_url_rec(image)) 
   end
 
 end
