@@ -3,12 +3,12 @@ img {
 }
 
 a {
-    color: #ff0014;
+    /*color: #ff0014;*/
     text-decoration: none;
 }
 
 a:hover {
-    text-decoration: underline;
+    text-decoration: none;
 }
 
 input:focus {
@@ -274,12 +274,14 @@ h1 {
     border-bottom: solid 1px #ccc;
 }
 
+/*
 h2 {
     color:#191919;
     font-size:14px;
     font-weight:bold;
     line-height:22px;
 }
+*/
 
 #main_content .search_results_box {
     background: #fff;
@@ -1167,9 +1169,6 @@ h2 {
 
 .small_thumb_artist_name {
 	font-size: 14px;
-	font-weight: bold;
-
-
 }
 
 .artist_name_without_thumb {

@@ -1,0 +1,15 @@
+.menu-canciones
+  %ul
+    %li.crs cursor
+    %span.tip_arrastrar Puedes arrastrar las canciones a Tu mix
+    %li= link_to 'Nombre de la canc&oacute;n', '#', :class => 'sng arriba'
+    %li= link_to 'Artista', '#'
+    %li= link_to 'Album', '#'
+.contenido-mix
+  - @results.each do |song|
+    %ul.lista_canciones
+      %li.ply= link_to image_tag('/images/bt_play.png'), '#'
+      %li.n= link_to truncate(song.title, 23, '...'), '#'
+      %li= link_to song.artist.name, '#'
+      %li= link_to truncate(song.album.name, 16, '...'), '#'
+      %li.fin_list= image_tag('/images/bt_mover.png')

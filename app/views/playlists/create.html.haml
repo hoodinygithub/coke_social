@@ -1,0 +1,76 @@
+.contenido
+  .bloque.mix
+    %h2.txt Crea tu propio mix
+    = link_to 'Ayuda', '#', :title => 'ir a ayuda', :class => 'txt2 ayuda'
+    .mix_columna.izq
+      %h3.txt2 BUSCAR
+      .search.izq
+        %form{:action => '', :class => 'estirar', :method => :get }
+          = text_field_tag 'text', nil, :class => 'input-busqueda'
+          = image_submit_tag '/images/bt-buscar.png', :id => 'buscar', :class => 'bt-buscar', :name => 'buscar', :title => 'buscar'
+      .boca
+        .up.izq
+          %p.txt Comienza buscando tus artistas, canciones o &aacute;lbumes favoritos
+          %p.dudas.txt Si tienes dudas consulta nuestra <a href="#" title="ayuda">ayuda</a>
+        .down.izq
+    .mix_columna.centro
+      %h3.txt2 “¿Y QU&Eacute; TE PARECEN ESTAS RECOMENDACIONES...?
+      %h4.txt2 Los artistas más escuchados
+      .menu-canciones
+        %ul
+          %li.crs cursor
+          %span.tip_arrastrar Puedes arrastrar las canciones a Tu mix
+          %li= link_to 'Nombre de la canc&oacute;n', '#', :class => 'sng arriba'
+          %li= link_to 'Artista', '#'
+          %li= link_to 'Album', '#', :class => 'abajo'
+      .contenido-mix
+        %ul.lista_canciones
+          %li.ply= link_to image_tag('/images/bt_play.png'), '#'
+          %li.n= link_to 'Begin the beguine', '#'
+          %li= link_to 'Frank Sinatra', '#'
+          %li= link_to 'Frank Sinatra', '#'
+          %li.fin_list= image_tag('/images/bt_mover.png')
+      /.contenido-mix
+      /  - @recommended_artists.each do |artist|
+      /    .recomendado
+      /      .pict
+      /        = link_to avatar_for(artist, :large, :class => 'avatar', :title => 'musica'), '#'
+      /      .pict_name
+      /        = link_to truncate(artist.nick_name, 13, '...'), '#', :title => artist.nick_name, :class => 'small_thumb_artist_name'
+    .mix_columna.der
+      %h3.txt2 tu mix
+      %form{ :method => :get, :class => 'estirar' }
+        .form_nombre
+          = text_field_tag 'text', nil, :class => 'nombrar'
+        .form_nombre.dos
+          = submit_tag 'button', :id => 'button', :value => 'Nombrar', :class => 'bt_nombrar'
+      .numero_canciones
+        %p <span>0</span> canciones en tu mix
+      .boca.inst
+        .up.izq
+          %p.txt Sigue atentamente nuestras instrucciones. Recuerda que no podr&aacute;s guardar el mix si no cumples estos <strong>requisitos:</strong>
+          %p.txt.lst 1.-M&aacute;ximo tres canciones de un mismo <strong>artista</strong>
+          %p.txt.lst 2.-M&aacute;ximo tres canciones de un mismo <strong>&aacute;lbum</strong>
+          %p.txt.lst.ult 3.-M&iacute;nimo <strong>10 canciones</strong> para compartir con tus amigos y guardar tu mix pero <strong>60 para escucharlo t&uacute;</strong>
+        .down.izq
+    .pie_mix
+      %p.reglas.txt2 <strong>Reglas del mix:</strong> Restricciones en la selecci&oacute;n de canciones
+      .maximo
+        %p.txt2 M&aacute;ximo tres de un artista
+      .maximo
+        %p.txt2 M&aacute;ximo tres de un &aacute;lbum
+      .max-escuchar
+        .barra-e
+          .relleno-e{ :style => 'width:0' }
+        %p.txt2 <span>10</span> para escuchar
+        %p.txt2.g <span>60</span> para guardar
+      %span.tip_error.gr{ :style => 'display:none' } Debes anadir al menos <b>10</b> canciones para guardar
+      %a{ :href => '#', :class => 'btn_cmix pub' }
+        %span.txt2 PUBLICAR
+        %span.bg_final &nbsp;
+      %a{ :href => '#', :class => 'btn_cmix pub' }
+        %span.txt2 CANCELAR
+        %span.bg_final &nbsp;
+
+:javascript
+  Cufon.now();

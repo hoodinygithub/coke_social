@@ -19,9 +19,14 @@ $(document).ready(function() {
 
   //fuente Myriad
   $('.txt').livequery(function() {
-    Cufon.replace('.txt');
+     Cufon.replace('.txt');
   })
-  
+  $('.txt2').livequery(function() {
+     Cufon.replace('.txt2');
+  })
+
+  Cufon.replace('.txt');
+  Cufon.replace('.txt2');
   
   //observe accordion tabs
   $('.accordion_title').livequery('click', function() {

@@ -1,0 +1,6 @@
+- if @results.nil?
+  NOTHING
+- elsif @results.empty?
+  EMPTY
+- else
+  = render :partial => "playlists/create/#{@results.first.class.to_s.downcase}_results"

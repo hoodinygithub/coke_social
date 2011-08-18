@@ -178,6 +178,8 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :campaigns, :member => {:activate => :post, :deactivate => :post}
 
   map.playlist_create '/playlist/create', :controller => 'playlists', :action => 'create'
+  map.playlist_new '/playlist/new', :controller => 'playlists', :action => 'new'
+  map.get_songs '/playlist/get_songs', :controller => 'playlists', :action => 'get_songs'
   map.playlist_edit '/playlist/edit/:id', :controller => 'playlists', :action => 'edit'
   map.playlist_recommended_artists '/playlist/recommended_artists/:artist_id', :controller => 'playlists', :action => 'recommended_artists'
   map.playlist_save_state '/playlist/save_state', :controller => 'playlists', :action => 'save_state'
