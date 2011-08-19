@@ -1,6 +1,8 @@
 require "htmlentities"
 
 class RecEngine::Abstract
+  include AssetUrlUtils
+
   def marshal_dump
     @node.to_s
   end
