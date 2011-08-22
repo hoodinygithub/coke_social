@@ -492,3 +492,77 @@ p.ult {
   width: auto;
   padding: 2px 0 0 0;
 }
+
+/* Mini rec-artist-module */
+.rec-artistas {
+  position: absolute;
+  left: 0;
+  bottom: 10px;
+  width: 205px;
+  height: 66px;
+}
+
+.rec-artistas li {
+  float: left;
+  display: inline;
+  margin-right: 1px;
+  position: relative;
+}
+
+.rec-artistas img {
+  width: 40px;
+  height: 40px;
+}
+
+.rec-artistas .tip_aviso {
+  left: 0;
+  bottom: 25px;
+  display:none;
+}
+
+.tip_aviso {
+  position: absolute;
+  bottom: 35px;
+  left: 5px;
+  width: 96px;
+  height: 52px;
+  background: url(/images/ico-mix.png) no-repeat 0 -392px;
+  font-size: 11px;
+  color: #666;
+  padding: 10px 15px 0 15px;
+  z-index: 7;
+  display: block;
+}
+
+.tip_aviso h5 {
+  font-weight: bold;
+  font-size: 12px;
+}
+
+.cab-buscar {
+  height: 20px;
+  width: 172px;
+  padding: 6px 8px 0 8px;
+  background: url(/images/bg_elementos.png) no-repeat -3px -449px;
+  float: left;
+  position: relative;
+}
+
+.cab-buscar h5 {
+  font-size: 11px;
+  color: #555;
+  float: left;
+}
+
+.cab-buscar a {
+  float: right;
+  color: #666;
+  font-size: 11px;
+  text-decoration: underline;
+  padding: 0 8px 0 0;
+  background: url(/images/flechitas.gif) no-repeat right -13px;
+}
+
+.rec-artistas .cab-buscar {
+  width: 190px;
+  border-bottom: 1px solid white;

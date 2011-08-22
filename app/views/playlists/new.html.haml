@@ -8,6 +8,7 @@
         %form{:action => '', :class => 'estirar', :method => :get }
           = text_field_tag 'text', nil, :class => 'input-busqueda'
           = image_submit_tag '/images/bt-buscar.png', :id => 'buscar', :class => 'bt-buscar', :name => 'buscar', :title => 'buscar'
+      .rec-artistas
       .boca
         .up.izq
           %p.txt Comienza buscando tus artistas, canciones o &aacute;lbumes favoritos
@@ -16,14 +17,13 @@
     .mix_columna.centro
       %h3.txt2 “¿Y QU&Eacute; TE PARECEN ESTAS RECOMENDACIONES...?
       %h4.txt2 Los artistas más escuchados
-      .center-content
-        .contenido-mix
-          - @recommended_artists.each do |artist|
-            .recomendado
-              .pict
-                = link_to avatar_for(artist, :large, :class => 'avatar', :title => 'musica'), '#'
-              .pict_name
-                = link_to_function truncate(artist.nick_name, 13, '...'), "Base.Console.get_song_list('#{artist.id}','artist', null, null, null, #{artist.id})", :title => artist.nick_name, :class => 'small_thumb_artist_name'
+      .contenido-mix
+        - @recommended_artists.each do |artist|
+          .recomendado
+            .pict
+              = link_to avatar_for(artist, :large, :class => 'avatar', :title => 'musica'), '#'
+            .pict_name
+              = link_to_function truncate(artist.nick_name, 13, '...'), "Base.Console.get_song_list('#{artist.id}','artist', null, null, null, #{artist.id})", :title => artist.nick_name, :class => 'small_thumb_artist_name'
     .mix_columna.der
       %h3.txt2 tu mix
       %form{ :method => :get, :class => 'estirar' }

@@ -4,7 +4,7 @@ class PlaylistsController < ApplicationController
   
   before_filter :geo_check, :only => :show
   before_filter :xhr_login_required, :only => [:copy,:messenger_copy]
-  before_filter :login_required, :except => [:index, :new, :widget, :avatar_update, :show, :copy, :messenger_copy, :messenger_mixes, :messenger_dj_mix_details, :get_songs]
+  before_filter :login_required, :except => [:index, :new, :widget, :avatar_update, :show, :copy, :messenger_copy, :messenger_mixes, :messenger_dj_mix_details, :get_songs, :get_similar]
 
   def index
     @dashboard_menu = :playlists
@@ -136,6 +136,18 @@ class PlaylistsController < ApplicationController
     @per_page = 30
     @results,@scope,@result_text = get_seeded_results
     render :partial => "/playlists/create/search_results", :layout => false
+  end
+
+  def get_similar
+    artist = Artist.find(params[:artist_id]) rescue nil
+    @similar_artists = []
+    @similar_artists = artist.similar(5) if artist
+    if @similar_artists and @similar_artists.empty?
+      @similar_artists = current_site.top_artists.all(:limit => 5)
+    else
+     @similar_artists = @similar_artists.sort_by { rand }[0..4] if @similar_artists.size > 4
+    end
+    render :partial => 'playlists/create/recommendations'
   end
 
   def create 
