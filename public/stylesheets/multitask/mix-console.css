@@ -28,6 +28,10 @@
   margin-top: 3px;
 }
 
+.izq {
+  float: left;
+}
+
 .ayuda {
   position: absolute;
   padding: 5px 0 5px 30px;
@@ -563,6 +567,58 @@ p.ult {
   background: url(/images/flechitas.gif) no-repeat right -13px;
 }
 
+.cont-busquedas {
+  position: absolute;
+  top: 62px;
+  left: 0;
+  width: 205px;
+  height: 335px;
+  display: none;
+}
+
+.contenido-search {
+  width: 205px;
+  height: 335px;
+  overflow-y: scroll;
+}
+
+.listado_busquedas {
+  float: left;
+  width: 188px;
+  border-bottom: 1px solid gainsboro;
+  padding-top: 5px;
+  background-color: #FFF;
+}
+
+.listado_busquedas img {
+  width: 40px;
+  height: 40px;
+  margin: -4px 8px 1px 0px;
+  float: left;
+}
+
+.listado_busquedas a {
+  font-weight: bold;
+  color: #E40015;
+  font-size: 11px;
+  line-height: 14px;
+}
+
+.listado_busquedas p {
+  font-size: 11px;
+  color: #636363;
+}
+
+.listado_busquedas.select, .listado_busquedas:hover { 
+  background:#999
+}
+
+.listado_busquedas.select a, .listado_busquedas.select p, .listado_busquedas:hover a, .listado_busquedas:hover p { 
+  color:#fff; 
+  text-decoration:none
+}
+
 .rec-artistas .cab-buscar {
   width: 190px;
   border-bottom: 1px solid white;
+}

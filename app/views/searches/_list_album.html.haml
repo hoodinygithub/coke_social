@@ -1,0 +1,4 @@
+.listado_busquedas
+  = avatar_for list_album, :large
+  = link_to_function list_album.name, "Base.Console.get_song_list('#{list_album.id}','#{list_album.class.to_s.downcase}', null, null, null, #{list_album.id})"
+  %p= list_album.owner.name

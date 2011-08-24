@@ -5,9 +5,10 @@
     .mix_columna.izq
       %h3.txt2 BUSCAR
       .search.izq
-        %form{:action => '', :class => 'estirar', :method => :get }
-          = text_field_tag 'text', nil, :class => 'input-busqueda'
+        %form{:action => '/search', :id => 'playlist_search_form', :class => 'estirar account_settings search_music', :onsubmit => 'return Base.playlist_search.buildSearchUrl();', :method => :get }
+          = text_field_tag 'text', nil, :class => 'input-busqueda', :id => 'playlist_search_query', :autocomplete => 'off'
           = image_submit_tag '/images/bt-buscar.png', :id => 'buscar', :class => 'bt-buscar', :name => 'buscar', :title => 'buscar'
+      .cont-busquedas.izq
       .rec-artistas
       .boca
         .up.izq
