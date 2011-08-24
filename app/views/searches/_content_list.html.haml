@@ -3,7 +3,7 @@
     - if @local
       - if @counts[type]
         .cab-buscar
-          %h5= type.to_s
-          = link_to 'Ver 235', '#', :title => 'ver'
+          %h5= type.to_s.capitalize
+          = link_to 'Ver todos', '#', :title => 'ver'
     - if @counts[type] > 0
       = render :partial => "searches/list_#{type.to_s.singularize}", :collection => @results[type] unless @results[type].empty?

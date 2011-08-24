@@ -1,4 +1,4 @@
 .listado_busquedas
-  = avatar_for list_song.album, :large
+  = link_to_function avatar_for(list_song.album, :large), "Base.Console.get_song_list(#{list_song.id}, '#{list_song.class.to_s.downcase}', null, null, null, #{list_song.artist.id})"
   = link_to_function list_song.title, "Base.Console.get_song_list(#{list_song.id}, '#{list_song.class.to_s.downcase}', null, null, null, #{list_song.artist.id})"
   %p= list_song.artist.name
