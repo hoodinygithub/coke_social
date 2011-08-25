@@ -4,7 +4,8 @@ class UsersController < ApplicationController
 
   before_filter :find_account_by_slug, :only => [:follow, :unfollow, :block, :unblock, :approve, :deny]
   before_filter :xhr_login_required, :only => [:follow]
-  
+  before_filter :set_return_to, :only => :new
+
   # before_filter :login_required, :only => [:edit, :update, :destroy, :confirm_cancellation, :remove_avatar]
   skip_before_filter :login_required, :only => [:new, :create, :errors_on, :feedback, :confirm_cancellation, :forgot]
   
@@ -147,8 +148,8 @@ class UsersController < ApplicationController
         render :js => js
       else
         respond_to do |format|
-          #format.html { redirect_back_or_default(my_dashboard_path) }
-          format.html { redirect_to home_path }
+          format.html { redirect_back_or_default(my_dashboard_path) }
+          #format.html { redirect_to home_path }
           format.xml  { render :xml => Player::Message.new( :message => t('messenger_player.registration.success') ) }
         end
       end
