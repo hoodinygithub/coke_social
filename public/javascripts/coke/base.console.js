@@ -102,7 +102,7 @@ $(document).ready(function() {
         appendTo:          'body',
         connectToSortable: true,
         cursorAt:          { left: 5, top: 10 },
-        drag:              function(event, ui) { document.getSelection().collapse(); }
+        drag:              function(event, ui) { if (typeof document.getSelection().collapse != "undefined") document.getSelection().collapse(); }
       });
     }
 
