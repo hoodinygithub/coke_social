@@ -2,6 +2,7 @@ Base.Console = {
   current_artist: 0,
   previous_artist: 0,
   refreshing: false,
+  elemRef: null,
   get_song_list: function(id, scope, page, order_by, order_dir, artist_id) {
     $('.cont-busquedas.izq').hide();
     if (typeof(page) == "undefined") page = 1;
@@ -25,7 +26,8 @@ Base.Console = {
     $('.rec-artistas').fadeOut('slow', function() {
       $(this).empty();
       Base.Console.currentArtist = parseInt(id, 10);
-      if (!isNaN(Base.Console.currentArtist) && Base.Console.currentArtist != Base.Console.previousArtist && !Base.Console.refreshing) {
+      if (!isNaN(Base.Console.currentArtist) && Base.Console.currentArtist != Base.Console.previousArtist && !Base.Console.refreshing)
+      {
         Base.Console.refreshing = true;
         Base.Util.XHR('/playlist/get_similar/' + id, 'text', function(data) {
           $('.rec-artistas').html(data.responseText).fadeIn('slow');
@@ -46,12 +48,28 @@ Base.Console = {
     Base.Util.XHR(Base.currentSiteUrl() + '/search/content_local/all/' + q, 'text', function(data){
       $('.cont-busquedas.izq').html(data.responseText).show();
     });
-  }
+  },
 
+  addItem: function(obj) {
+    var itemElement = "<div class='def-song'>"
+      + "<a href='#' class='flecha_volver' title='arrastrar'>volver</a>"
+      + "<img alt='musica' class='avatar large' src='" + obj.image + "' title='musica'>"
+      + "<h5>" + unescape(obj.songTitle) + "</h5>"
+      + "<p>" + unescape(obj.albumName) + "</p>"
+      + "<p>" + unescape(obj.artistName) + "</p>"
+      + "</div>";
+     $('.contenedor-derecha').append(itemElement);
+     this.removeItemFromSearch(obj.songID);
+  },
+
+  removeItemFromSearch: function(id) {
+    Base.Console.elemRef = $('ul#' + id);
+    setTimeout(function(elem) { Base.Console.elemRef.remove(); }, 500);
+  }
 }
 
 $(document).ready(function() {
-  // Tool tip binding
+  // Binding: Tool tip
   $('.rec-artistas li').livequery(function() {
     $(this).mouseover(function() {
       $(this).find('.tip_aviso').css('display', 'block');
@@ -60,7 +78,8 @@ $(document).ready(function() {
     });
   });
 
-  $('#playlist_search_query').keyup(function(e) {
+  // Binding: Search form
+  $('#playlist_search_query').livequery('keyup', function(e) {
     var keyCode = e.keyCode || window.event.keyCode;
     var q = $(this).val();
     if (keyCode == 37 || keyCode == 38 || keyCode == 39 || keyCode == 40) return false;
@@ -68,7 +87,32 @@ $(document).ready(function() {
       $('.mix_columna.izq .boca').fadeOut('fast');
     }
     $('.cont-busquedas.izq').hide();
-    setTimeout(function() {Base.Console.autoComplete(q);}, 500);
+    setTimeout(function() { Base.Console.autoComplete(q); }, 500);
     return true;
   });
+
+  // Binding: Drag and Drop
+  $('.draggable_item').livequery('mouseover', function() {
+    if (!$(this).data('init'))
+    {
+      $(this).data('init', true);
+      $(this).draggable({
+        scroll:            false,
+        helper:            'clone',
+        appendTo:          'body',
+        connectToSortable: true,
+        cursorAt:          { left: 5, top: 10 },
+        drag:              function(event, ui) { document.getSelection().collapse(); }
+      });
+    }
+
+    $('.contenedor-derecha').droppable({
+      accept: '.draggable_item',
+      drop: function(event, ui) {
+        if ($('.boca.inst').is(':visible')) $('.boca.inst').hide();
+        $(ui.draggable).find("li.fin_list a").click();
+      }
+    });
+  });
+
 });

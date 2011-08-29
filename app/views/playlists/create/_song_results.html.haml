@@ -9,9 +9,11 @@
     %li= link_to 'Album', '#'
 .contenido-mix
   - @results.each do |song|
-    %ul.lista_canciones
+    %ul.lista_canciones.draggable_item{:id => "#{song.id}"}
+      %li.avt= avatar_for(song.album)
       %li.ply= link_to image_tag('/images/bt_play.png'), '#'
       %li.n= link_to truncate(song.title, 23, '...'), '#'
-      %li= link_to song.artist.name, '#'
-      %li= link_to truncate(song.album.name, 16, '...'), '#'
-      %li.fin_list= image_tag('/images/bt_mover.png')
+      %li.art= link_to song.artist.name, '#'
+      %li.alb= link_to truncate(song.album.name, 16, '...'), '#'
+      %li.fin_list
+        = link_to_function image_tag('/images/bt_mover.png'), "Base.Console.addItem({songID: #{song.id}, songTitle: '#{escape_for_js(song.title)}', artistID: '#{song.artist.id}', artistName: '#{escape_for_js(song.artist.name)}', albumID: '#{song.album.id}', albumName: '#{escape_for_js(song.album.name)}', image: '#{AvatarsHelper.avatar_path(song, :small)}', suppressValidation: false, itemID: 0, stationID: #{song.artist.station ? song.artist.station.id : 0} })"

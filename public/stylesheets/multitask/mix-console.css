@@ -466,33 +466,37 @@ p.ult {
   background: #CCC;
 }
 
-.lista_canciones li {
+.lista_canciones.draggable_item li {
   width: 97px;
   float: left;
   display: inline;
   padding: 10px 4px 0 4px;
 }
 
-.lista_canciones li a {
+.lista_canciones.draggable_item li a {
   font-size: 11px;
   color: #666;
 }
 
-.lista_canciones li.ply {
+.lista_canciones.draggable_item li.avt {
+  display: none;
+}
+
+.lista_canciones.draggable_item li.ply {
   padding: 5px 6px;
   width: auto;
 }
 
-.lista_canciones li.n {
+.lista_canciones.draggable_item li.n {
   width: 147px;
   font-weight: bold;
 }
 
-.lista_canciones li.n a {
+.lista_canciones.draggable_item li.n a {
   font-size: 12px;
 }
 
-.lista_canciones li.fin_list {
+.lista_canciones.draggable_item li.fin_list {
   width: auto;
   padding: 2px 0 0 0;
 }
@@ -621,4 +625,98 @@ p.ult {
 .rec-artistas .cab-buscar {
   width: 190px;
   border-bottom: 1px solid white;
+}
+
+/* Dragging styles */
+.contenedor-derecha {
+  width: 245px;
+  height: 315px;
+  overflow-y: auto;
+}
+
+.ui-draggable-dragging.draggable_item {
+  width: 227px;
+  height: 43px;
+  background: url(/images/ico-mix.png) no-repeat 0 -766px;
+  margin-top: 5px;
+  padding: 5px;
+  border-bottom: none;
+}
+
+.ui-draggable-dragging.draggable_item li {
+  display: block;
+  width: auto;
+  float: none;
+  padding: 0;
+  text-align: left;
+}
+
+.ui-draggable-dragging.draggable_item li.avt {
+  display: block;
+}
+
+.ui-draggable-dragging.draggable_item li.avt img {
+  float: left;
+  width: 40px;
+  height: 40px;
+  margin: 2px 5px 0 8px;
+}
+
+.ui-draggable-dragging.draggable_item li.ply,
+.ui-draggable-dragging.draggable_item li.fin_list {
+  display: none;
+}
+
+.ui-draggable-dragging.draggable_item li.n {
+  padding-top: 5px;
+  width: auto;
+}
+
+.ui-draggable-dragging.draggable_item li.n a {
+  font-weight: bold;
+  color: #2c2c2c;
+  font-size: 11px;
+}
+
+.ui-draggable-dragging.draggable_item li.alb,
+.ui-draggable-dragging.draggable_item li.art {
+  font-size: 10px;
+  color: #666;
+}
+
+.def-song {
+  position: relative;
+  width: 227px;
+  height: 43px;
+  background: url(/images/ico-mix.png) no-repeat 0 -661px;
+  margin-top: 5px;
+}
+
+.def-song img {
+  width: 40px;
+  height: 40px;
+  margin: 2px 5px 0 8px;
+  float: left;
+}
+
+.def-song h5 {
+  font-weight: bold;
+  color: #2C2C2C;
+  font-size: 11px;
+  padding-top: 5px;
+}
+
+.def-song p {
+  font-size: 10px;
+  color: #666;
+}
+
+.flecha_volver {
+  display: block;
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  top: 0;
+  right: 0;
+  text-indent: -9999px;
 }
