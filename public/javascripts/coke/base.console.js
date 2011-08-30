@@ -52,9 +52,6 @@ Base.Console = {
   },
 
   addItem: function(obj) {
-    console.dir(this.validator.contains(obj.songID));
-    console.dir(this.validator.item_count);
-    console.dir(this.validator.max_items);
     if (!this.validator.contains(obj.songID) && (this.validator.item_count < this.validator.max_items))
     {
       this.validator.add_item(obj.songID, obj.songTitle, obj.artistID, obj.artistName, obj.albumID, obj.albumName, obj.image, obj.suppressValidation, obj.itemID, obj.stationID);
