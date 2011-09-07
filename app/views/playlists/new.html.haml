@@ -24,7 +24,7 @@
             .pict
               = link_to avatar_for(artist, :large, :class => 'avatar', :title => 'musica'), '#'
             .pict_name
-              = link_to_function truncate(artist.nick_name, 13, '...'), "Base.Console.get_song_list('#{artist.id}','artist', null, null, null, #{artist.id})", :title => artist.nick_name, :class => 'small_thumb_artist_name'
+              = link_to_function truncate(artist.nick_name, :length => 13, :omission => '...'), "Base.Console.get_song_list('#{artist.id}','artist', null, null, null, #{artist.id})", :title => artist.nick_name, :class => 'small_thumb_artist_name'
     .mix_columna.der
       %h3.txt2 tu mix
       %form{ :method => :get, :class => 'estirar' }
@@ -42,6 +42,17 @@
             %p.txt.lst 2.-M&aacute;ximo tres canciones de un mismo <strong>&aacute;lbum</strong>
             %p.txt.lst.ult 3.-M&iacute;nimo <strong>10 canciones</strong> para compartir con tus amigos y guardar tu mix pero <strong>60 para escucharlo t&uacute;</strong>
           .down.izq
+      .personalizar_mix
+        .cab-buscar
+          %h5 Personaliza tu Mix
+        .foto-mix
+          %p Foto del Mix
+          = link_to 'Cambiar', '#'
+        .tags-mix
+          %p
+            %span 0
+            emociones
+          = link_to 'Añadir tags', '#'
     .pie_mix
       %p.reglas.txt2 <strong>Reglas del mix:</strong> Restricciones en la selecci&oacute;n de canciones
       .maximo

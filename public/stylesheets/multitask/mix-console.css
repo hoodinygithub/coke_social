@@ -284,6 +284,13 @@ p.ult {
   margin-left: 15px;
 }
 
+.maximo.red {
+  background-position: 0 -79px;
+}
+.maximo.green {
+  background-position: 0 -40px;
+}
+
 .maximo p {
   display: block;
   font-size: 12px;
@@ -692,6 +699,14 @@ p.ult {
   margin-top: 5px;
 }
 
+.def-song.fail {
+  background-position: 0 -712px;
+}
+
+.def-song.fail p, .def-song.fail h5 {
+  color: #FFF;
+}
+
 .def-song img {
   width: 40px;
   height: 40px;
@@ -719,4 +734,52 @@ p.ult {
   top: 0;
   right: 0;
   text-indent: -9999px;
+}
+
+.personalizar_mix {
+  position: absolute;
+  display: none;
+  width: 246px;
+  bottom: 0;
+}
+
+.personalizar_mix .cab-buscar {
+  width: 226px;
+  background-position: -3px -449px;
+}
+
+.personalizar_mix p {
+  font-size: 11px;
+  color: #666;
+}
+
+.personalizar_mix a {
+  font-size: 11px;
+  color: #666;
+  text-decoration: underline;
+  font-weight: bold;
+  padding-right: 6px;
+  background: url(/images/flechitas.gif) no-repeat right -11px;
+}
+
+.foto-mix {
+  width: 67px;
+  height: 36px;
+  background: #E2E2E2 url(/images/ico-mix.png) no-repeat -170px -37px;
+  padding: 11px 5px 0 60px;
+  float: left;
+}
+
+.tags-mix {
+  float: left;
+  width: 95px;
+  height: 36px;
+  background: #E2E2E2;
+  padding: 11px 5px 0 10px;
+  margin-left: 1px;
+}
+
+.tags-mix span {
+  font-weight: bold;
+  text-decoration: underline;
 }

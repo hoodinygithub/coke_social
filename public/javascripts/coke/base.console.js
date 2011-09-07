@@ -27,7 +27,9 @@ Base.Console = {
     $('.rec-artistas').fadeOut('slow', function() {
       $(this).empty();
       Base.Console.currentArtist = parseInt(id, 10);
-      if (!isNaN(Base.Console.currentArtist) && Base.Console.currentArtist != Base.Console.previousArtist && !Base.Console.refreshing)
+      if (!isNaN(Base.Console.currentArtist) && 
+          Base.Console.currentArtist != Base.Console.previousArtist &&
+          !Base.Console.refreshing)
       {
         Base.Console.refreshing = true;
         Base.Util.XHR('/playlist/get_similar/' + id, 'text', function(data) {
@@ -51,25 +53,27 @@ Base.Console = {
     });
   },
 
-  addItem: function(obj) {
-    if (!this.validator.contains(obj.songID) && (this.validator.item_count < this.validator.max_items))
+  addItem: function(iObj) {
+    // iObj == Item Object
+    if (!this.validator.contains(iObj.songID) && (this.validator.item_count < this.validator.max_items))
     {
-      this.validator.add_item(obj.songID, obj.songTitle, obj.artistID, obj.artistName, obj.albumID, obj.albumName, obj.image, obj.suppressValidation, obj.itemID, obj.stationID);
       if ($('.boca.inst').is(':visible')) $('.boca.inst').hide();
-      var itemElement = "<div class='def-song'>"
+      if (!$('.personalizar_mix').is(':visible')) $('.personalizar_mix').show();
+      var itemElement = "<div id='" + iObj.songID + "' class='def-song'>"
         + "<a href='#' class='flecha_volver' title='arrastrar'>volver</a>"
-        + "<img alt='musica' class='avatar large' src='" + obj.image + "' title='musica'>"
-        + "<h5>" + unescape(obj.songTitle) + "</h5>"
-        + "<p>" + unescape(obj.albumName) + "</p>"
-        + "<p>" + unescape(obj.artistName) + "</p>"
+        + "<img alt='musica' class='avatar large' src='" + iObj.image + "' title='musica'>"
+        + "<h5>" + unescape(iObj.songTitle) + "</h5>"
+        + "<p>" + unescape(iObj.albumName) + "</p>"
+        + "<p>" + unescape(iObj.artistName) + "</p>"
         + "</div>";
        $('.contenedor-derecha').append(itemElement);
-       this.removeItemFromSearch(obj.songID);
+       this.validator.add_item(iObj);
+       this.removeItemFromSearch(iObj.songID);
     }
   },
 
   removeItemFromSearch: function(id) {
-    Base.Console.elemRef = $('ul#' + id);
+    Base.Console.elemRef = $('ul#item-' + id);
     setTimeout(function(elem) { Base.Console.elemRef.remove(); }, 500);
   }
 };
@@ -194,7 +198,7 @@ function PlaylistValidator(items_req, max_artist, max_album, max_items, min_full
         if (!i)
           this.add_album_error(albums[i], this.albums.getItem(albums[i]));
         else
-          this.add>album_error(albums[i], this.albums.getItem(albums[i]), true);
+          this.add_album_error(albums[i], this.albums.getItem(albums[i]), true);
         this.valid = false;
       }
     }
@@ -248,14 +252,15 @@ function PlaylistValidator(items_req, max_artist, max_album, max_items, min_full
     this.station_ids = stationIDs;
   };
 
-  this.add_item = function(song_id, title, artist_id, artist_name, album_id, album_name, image_src, suppress_validation, item_id, station) {
-    this.items.setItem(song_id, new PlaylistItem(song_id, title, artist_id, album_name, image_src, suppress_validation, item_id, station));
-    this.item_ids.push(song_id);
+  this.add_item = function(iObj) {
+    // iObj == Item Object
+    this.items.setItem(iObj.songID, new PlaylistItem(iObj));
+    this.item_ids.push(iObj.songID);
     this.item_count = this.item_ids.length;
     this.fill_station_ids();
-    this.add_artist(artist_id, song_id);
-    this.add_album(album_id, song_id);
-    if (!suppress_validation) this.validate();
+    this.add_artist(iObj.artistID, iObj.songID);
+    this.add_album(iObj.albumID, iObj.songID);
+    if (!iObj.suppressValidation) this.validate();
   };
 
   this.remove_item = function(song_id) {
@@ -299,17 +304,18 @@ function PlaylistValidator(items_req, max_artist, max_album, max_items, min_full
   };
 }
 
-function PlaylistItem(song_id, song, artist_id, artist_name, album_id, album_name, image_src, item_id, station)
+function PlaylistItem(iObj)
 {
-  this.item_id     = item_id;
-  this.song_id     = song_id;
-  this.song        = song;
-  this.artist_id   = artist_id;
-  this.artist_name = artist_name;
-  this.album_id    = album_id;
-  this.album_name  = album_name;
-  this.image_src   = image_src;
-  this.station     = station;
+  // iObj == Item Object
+  this.item_id     = iObj.itemID;
+  this.song_id     = iObj.songID;
+  this.song        = iObj.songTitle;
+  this.artist_id   = iObj.artistID;
+  this.artist_name = iObj.artistName;
+  this.album_id    = iObj.albumID;
+  this.album_name  = iObj.albumName;
+  this.image_src   = iObj.image;
+  this.station     = iObj.stationID;
 }
 
 function ValidationList()
@@ -401,15 +407,36 @@ function ValidationList()
   };
 }
 
-function add_playlist_errors() {
+function add_playlist_errors()
+{
+  // console.log('add playlist error');
 }
 
-function add_artist_error() {
+function add_artist_error(artistID, songs)
+{
+  $('.maximo:eq(0)').addClass('red');
+  if (songs)
+  {
+    for (var s = 0; s < songs.length; s++)
+    {
+      $('#' + songs[s]).addClass('fail');
+    }
+  }
 }
 
-function add_album_error() {
+function add_album_error(artistID, songs)
+{
+  $('.maximo:eq(1)').addClass('red');
+  if (songs)
+  {
+    for (var s = 0; s < songs.length; s++)
+    {
+      $('#' + songs[s]).addClass('fail');
+    }
+  }
 }
 
 function clear_list_errors()
 {
+  $('.maximo').removeClass('red');
 }

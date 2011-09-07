@@ -71,7 +71,6 @@ Base.Routing = {
       Base.Util.XHR(url, 'text', callback, Base.UI.xhrerror, options);
     }
   }
-
 };
 
 $(document).ready(function() {
