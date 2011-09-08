@@ -57,11 +57,11 @@ Base.Console = {
     // iObj == Item Object
     if (!this.validator.contains(iObj.songID) && (this.validator.item_count < this.validator.max_items))
     {
-      if ($('.boca.inst').is(':visible')) {
-        $('.boca.inst').hide();
+      if ($('.boca.inst').is(':visible')) $('.boca.inst').hide();
+      if (!$('.personalizar_mix').is(':visible')) {
+        $('.personalizar_mix').show();
         $('.maximo').addClass('green');
       }
-      if (!$('.personalizar_mix').is(':visible')) $('.personalizar_mix').show();
       var itemElement = "<div id='" + iObj.songID + "' class='def-song'>"
         + "<a href='#' class='flecha_volver' title='arrastrar'>volver</a>"
         + "<img alt='musica' class='avatar large' src='" + iObj.image + "' title='musica'>"
@@ -417,7 +417,7 @@ function add_playlist_errors()
 
 function add_artist_error(artistID, songs)
 {
-  $('.maximo:eq(0)').addClass('red');
+  $('.maximo:eq(0)').removeClass('green').addClass('red');
   if (songs)
   {
     for (var s = 0; s < songs.length; s++)
@@ -429,7 +429,7 @@ function add_artist_error(artistID, songs)
 
 function add_album_error(artistID, songs)
 {
-  $('.maximo:eq(1)').addClass('red');
+  $('.maximo:eq(1)').removeClass('green').addClass('red');
   if (songs)
   {
     for (var s = 0; s < songs.length; s++)
