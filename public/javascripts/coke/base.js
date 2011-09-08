@@ -1459,7 +1459,7 @@ Base.playlists.playStream = function(obj, media, songId)
   {
     _activeStream = elem.parent().parent().addClass('selected_row');
     Base.playlists.onStreamStart(_activeStream);
-    elem.find('img').attr('src', Base.currentSiteUrl() + '/images/icon_stop_button.png');
+    //elem.find('img').attr('src', Base.currentSiteUrl() + '/images/icon_stop_button.png');
     swf('stream_connect').playSample(media, songId);
     _playing = true;
   }
@@ -1467,18 +1467,18 @@ Base.playlists.playStream = function(obj, media, songId)
   {
     //_activeStream.attr('class', 'draggable_item ui-draggable');
     _activeStream.removeClass('selected_row');
-    _activeStream.find('div.song_name img').attr('src', Base.currentSiteUrl() + '/images/icon_play_button.png');
+    //_activeStream.find('div.song_name img').attr('src', Base.currentSiteUrl() + '/images/icon_play_button.png');
     Base.playlists.onStreamEnd(_activeStream);
     _activeStream = elem.parent().parent().addClass('selected_row');
     Base.playlists.onStreamStart(_activeStream);
-    elem.find('img').attr('src', Base.currentSiteUrl() + '/images/icon_stop_button.png');
+    //elem.find('img').attr('src', Base.currentSiteUrl() + '/images/icon_stop_button.png');
     swf('stream_connect').playSample(media, songId);
   }
   else if(_playing && songId == _songId)
   {
     //_activeStream.attr('class', 'draggable_item ui-draggable');
     _activeStream.removeClass('selected_row');
-    _activeStream.find('div.song_name img').attr('src', Base.currentSiteUrl() + '/images/icon_play_button.png');
+    //_activeStream.find('div.song_name img').attr('src', Base.currentSiteUrl() + '/images/icon_play_button.png');
     Base.playlists.onStreamEnd(_activeStream);
     _activeStream = null;
     _playing = false;
@@ -1492,7 +1492,7 @@ Base.playlists.streamComplete = function()
   Base.playlists.onStreamEnd(_activeStream);
   //_activeStream.attr('class', 'draggable_item ui-draggable');
   _activeStream.removeClass('selected_row');
-  _activeStream.find('div.song_name img').attr('src', Base.currentSiteUrl() + '/images/icon_play_button.png');
+  //_activeStream.find('div.song_name img').attr('src', Base.currentSiteUrl() + '/images/icon_play_button.png');
   _activeStream = null;
   _playing = false;
 }

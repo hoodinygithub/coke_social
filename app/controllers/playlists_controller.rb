@@ -129,6 +129,7 @@ class PlaylistsController < ApplicationController
 
   def new
     get_recommended_artists
+    @player_id = current_site.players.all(:conditions => "player_key = 'ondemand_#{current_site.code}'")[0].id rescue nil
   end
 
   def get_songs

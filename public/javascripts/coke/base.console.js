@@ -57,7 +57,10 @@ Base.Console = {
     // iObj == Item Object
     if (!this.validator.contains(iObj.songID) && (this.validator.item_count < this.validator.max_items))
     {
-      if ($('.boca.inst').is(':visible')) $('.boca.inst').hide();
+      if ($('.boca.inst').is(':visible')) {
+        $('.boca.inst').hide();
+        $('.maximo').addClass('green');
+      }
       if (!$('.personalizar_mix').is(':visible')) $('.personalizar_mix').show();
       var itemElement = "<div id='" + iObj.songID + "' class='def-song'>"
         + "<a href='#' class='flecha_volver' title='arrastrar'>volver</a>"
