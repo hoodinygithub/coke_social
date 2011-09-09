@@ -71,8 +71,41 @@ Base.Console = {
         + "</div>";
        $('.contenedor-derecha').append(itemElement);
        this.validator.add_item(iObj);
+       this.updateUI();
        this.removeItemFromSearch(iObj.songID);
     }
+  },
+
+  updateUI: function() {
+    // song validation horizontal graph
+    var px;
+    var nm; // Numerator
+    var dm; // Denominator
+    var of; // Offset
+    if (this.validator.item_count <= this.validator.items_req)
+    {
+      px = 18;
+      of = 0;
+      nm = this.validator.item_count;
+      dm = this.validator.items_req;
+    }
+    else if (this.validator.item_count <= this.validator.min_full)
+    {
+      px = 68;
+      of = 18;
+      nm = this.validator.item_count - this.validator.items_req;
+      dm = this.validator.min_full - this.validator.items_req;
+    }
+    else if (this.validator.item_count <= this.validator.max_items)
+    {
+      px = 6;
+      of = 84;
+      nm = this.validator.item_count - this.validator.min_full;
+      dm = this.validator.max_items - this.validator.min_full;
+    }
+    $('.relleno-e').css('width', Math.ceil((nm/dm) * px) + of);
+    /***********/
+    $('.numero_canciones p span').html(this.validator.item_count);
   },
 
   removeItemFromSearch: function(id) {
