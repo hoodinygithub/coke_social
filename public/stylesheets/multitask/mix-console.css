@@ -1,0 +1,785 @@
+.bloque.mix {
+  background: url(/images/bg_container-mix.png) no-repeat center top;overflow:hidden; 
+  padding: 15px 35px 0 40px;
+  height: 600px; 
+  margin-top: 30px; 
+  *padding: 12px 25px 0 50px; 
+}
+
+.bloque.mix h2 {
+  font-size:24px;color:#fff;
+  height:40px; 
+}
+
+.bloque.mix h3 {
+  font-size: 18px;
+  color: #2C2C2C;
+  text-transform: uppercase;
+}
+
+.bloque.mix h4 {
+  width: 446px;
+  height: 26px;
+  padding: 12px 10px 0 10px;
+  background: url(/images/bg_elementos.png) no-repeat -506px -340px;
+  font-size: 14px;
+  color: #2C2C2C;
+  display: block;
+  margin-top: 3px;
+}
+
+.izq {
+  float: left;
+}
+
+.ayuda {
+  position: absolute;
+  padding: 5px 0 5px 30px;
+  display: block;
+  background: url(/images/iconografia.png) no-repeat 0 -718px;
+  color: #FFF;
+  font-size: 14px;
+  top: 15px;
+  right: 50px;
+}
+
+.search {
+  position: relative;
+  width: 205px;
+  height: 40px;
+  margin-top: 3px;
+}
+
+.input-busqueda {
+  background: url(/images/bg_elementos.png) no-repeat -691px -210px;
+  width: 153px;
+  height: 20px;
+  border: 0;
+  padding: 10px 42px 10px 10px;
+  font-size: 13px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.bt-buscar {
+  position: absolute;
+  right: 10px;
+  top: 12px;
+}
+
+.mix_columna {
+  position: relative;
+  width: 205px;
+  height: 480px;
+  margin-top: 12px;
+}
+
+.boca {
+  position: absolute;
+  top: 65px;
+  left: 0;
+}
+
+.boca .up {
+  background: url(/images/bg_bocadillo-peq.png) no-repeat 0 0;
+  width: 204px;
+  padding: 10px 0 0 0;
+}
+
+.boca p {
+  float: left;
+  width: 194px;
+  font-size: 16px;
+  color: #666;
+  padding: 10px 0 10px 10px;
+  border-bottom: 1px solid #FFF;
+}
+
+.boca p.dudas {
+  background: url(/images/ico-duda.png) no-repeat 10px 10px;
+  width: 150px;
+  padding-left: 40px;
+  font-size: 13px;
+  border: 0;
+}
+
+.boca a {
+  color: #666;
+  text-decoration: underline;
+}
+
+.boca .down {
+  background: url(/images/bg_bocadillo-peq.png) no-repeat 0 -143px;
+  width: 204px;
+  height: 10px;
+}
+
+.mix_columna.centro {
+  width: 457px;
+  margin: 12px 10px 0 16px;
+  float: left;
+}
+
+.contenido-mix {
+  width: 457px;
+  height: 380px;
+  overflow-y: auto;
+}
+
+.console-songs {
+  display: none;
+}
+
+.recomendado {
+  width: 84px;
+  float: left;
+  display: inline;
+  margin: 6px 0 6px 6px;
+}
+
+.recomendado .pict img {
+  float: left;
+  width: 84px;
+  height: 84px;
+}
+
+.recomendado .pict_name {
+  float: left;
+  display: block;
+  width: 84px;
+  text-align: center;
+  padding-top: 5px;
+}
+
+.recomendado .pict_name a {
+  color: #E10015;
+  font-size: 11px;
+}
+
+.der {
+  float: right;
+}
+
+.mix_columna.der {
+  width: 246px;
+  margin-right: 2px;
+}
+
+.mix_columna.der form {
+  position: relative;
+}
+
+.estirar {
+  display: inline-block;
+}
+
+.form_nombre {
+  width: 164px;
+  height: 38px;
+  background: url(/images/bg_elementos.png) no-repeat -507px -340px;
+  margin-top: 5px;
+  float: left;
+  display: inline;
+}
+
+.form_nombre.dos {
+  width: 82px;
+  background-position: -881px -340px;
+}
+
+.nombrar {
+  float: left;
+  width: 144px;
+  height: 28px;
+  background: url(/images/bg_elementos.png) no-repeat -528px -274px;
+  border: 0;
+  margin: 4px 0 0 4px;
+  color: #2C2C2C;
+  font-size: 13px;
+  padding: 2px 8px 0 8px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.bt_nombrar {
+  background: none;
+  width: 82px;
+  font-weight: bold;
+  font-size: 13px;
+  color: #2C2C2C;
+  border: 0;
+  padding: 0;
+  margin: 10px 0 0 0 ;
+  cursor: pointer;
+  text-align: center;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.numero_canciones {
+  background: url(/images/bg_elementos.png) no-repeat scroll -3px -449px;
+  height: 18px;
+  padding: 7px 10px 0 10px;
+  position: relative;
+}
+
+.numero_canciones p {
+  font-size: 11px;
+  color: #666;
+  float: left;
+}
+
+.boca.inst {
+  top: 90px;
+  left: 10px;
+}
+
+.boca.inst .up {
+  background: url(/images/bg_bocadillo.png) no-repeat 0 0 ;
+  width: 214px;
+  padding: 10px 0 0 0;
+}
+
+.boca.inst p {
+  width: 204px;
+}
+
+p.lst {
+  font-size: 14px;
+}
+
+p.ult {
+  border: 0;
+}
+
+.boca.inst .down {
+  background: url(/images/bg_bocadillo.png) no-repeat 0 -375px;
+  width: 214px;
+  height: 10px;
+}
+
+.pie_mix {
+  width: 930px;
+  height: 45px;
+  background: url(/images/bg_elementos.png) no-repeat -2px -58px;
+  float: left;
+  padding: 10px 10px 0 10px;
+  position: relative;
+}
+
+.reglas {
+  font-size: 13px;
+  color: #CCC;
+  width: 180px;
+  float: left;
+  margin: 5px 15px 0 10px;
+}
+
+.pie_mix div {
+  float: left;
+  display: inline;
+}
+
+.maximo {
+  background: url(/images/ico-mix.png) no-repeat 0 0;
+  width: 110px;
+  height: 35px;
+  margin-left: 15px;
+}
+
+.maximo.red {
+  background-position: 0 -79px;
+}
+.maximo.green {
+  background-position: 0 -40px;
+}
+
+.maximo p {
+  display: block;
+  font-size: 12px;
+  color: #333;
+  margin: 6px 0 0 30px;
+  width: 75px;
+  line-height: 8px;
+}
+
+.max-escuchar {
+  background: url(/images/ico-mix.png) no-repeat 0 -159px;
+  width: 205px;
+  height: 35px;
+  margin-left: 12px;
+  position: relative;
+  cursor: pointer;
+}
+
+.barra-e {
+  width: 90px;
+  height: 9px;
+  position: absolute;
+  top: 13px;
+  left: 7px;
+}
+
+.relleno-e {
+  height: 9px;
+  background: url(/images/barra-max.png);
+}
+
+.max-escuchar p {
+  display: block;
+  font-size: 12px;
+  color: #333;
+  margin: 6px 0 0 108px;
+  width: 120px;
+  line-height: 8px;
+}
+
+.max-escuchar p.g {
+  margin-top: 0;
+}
+
+.tip_error.gr {
+  width: 146px;
+  height: 73px;
+  background-position: 0 -557px;
+  left: 470px;
+  display: none;
+}
+
+.tip_error {
+  width: 106px;
+  height: 73px;
+  background: url(/images/ico-mix.png) no-repeat 0 -460px;
+  font-size: 12px;
+  color: #636363;
+  padding:10px 9px 0 9px;
+  position: absolute;
+  z-index: 7;
+  display: block;
+  bottom: 47px;
+  left: 220px;
+}
+
+.tip_error b {
+  color: #E40015;
+  font-weight: bold;
+}
+
+.btn_cmix {
+  background: url(/images/ico-mix.png) no-repeat 0 -203px;
+  position: relative;
+  padding: 11px 21px;
+  text-decoration: none;
+  display: block;
+  float: right;
+  margin-left: 5px;
+}
+
+.btn_cmix.pub {
+  background-position: 0 -283px;
+}
+
+.btn_cmix .txt2 {
+  color: #2C2C2C;
+  font-size: 16px;
+}
+
+.btn_cmix.pub .bg_final {
+  background-position: -143px -283px;
+}
+
+.btn_cmix .bg_final {
+  background: #2C2C2C url(/images/ico-mix.png) no-repeat -143px -203px;
+  display: block;
+  height: 36px;
+  width: 4px;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
+/* MENU CANCIONES */
+.menu-canciones {
+  height: 31px;
+  background: url(/images/bg_elementos.png) no-repeat -3px -448px;
+}
+
+.menu-canciones li {
+  float: left;
+  display: inline;
+}
+
+.menu-canciones a {
+  display: block;
+  font-size: 11px;
+  color: #666;
+  padding: 6px 0 0 5px;
+  width: 102px;
+  height: 20px;
+}
+
+.menu-canciones a.sng:hover, .menu-canciones a.sng.arriba {
+  background-position: 0 -328px;
+}
+
+.menu-canciones a.sng {
+  width: 147px;
+}
+
+.menu-canciones a:hover, .menu-canciones a.arriba {
+  text-decoration: none;
+  background: url(/images/ico-mix.png) no-repeat -45px -328px;
+}
+
+.menu-canciones a.abajo {
+  background: url(/images/ico-mix.png) no-repeat -45px -358px;
+}
+
+.menu-canciones .crs {
+  position: relative;
+  background: url(/images/ico-mix.png) no-repeat -190px 4px;
+  width: 33px;
+  height: 30px;
+  text-indent: -9999px;
+  cursor: pointer;
+}
+
+.tip_arrastrar {
+  position: absolute;
+  top: 7px;
+  left: -3px;
+  background: url(/images/ico-mix.png) no-repeat 0 -392px;
+  width: 96px;
+  height: 52px;
+  font-size: 11px;
+  color: #666;
+  padding: 10px 15px 0 15px;
+  z-index: 7;
+  display: none;
+}
+
+.cont-canciones .contenido-mix {
+  overflow-y: scroll;
+  height: 374px;
+}
+
+.lista_canciones {
+  height: 33px;
+  border-bottom: 1px solid #DDD;
+  background: #FFF;
+  float: left;
+  width: 440px;
+}
+
+.lista_canciones:hover {
+  cursor: pointer;
+  background: #CCC;
+}
+
+.lista_canciones.draggable_item li {
+  width: 97px;
+  float: left;
+  display: inline;
+  padding: 10px 4px 0 4px;
+}
+
+.lista_canciones.draggable_item li a {
+  font-size: 11px;
+  color: #666;
+}
+
+.lista_canciones.draggable_item li.avt {
+  display: none;
+}
+
+.lista_canciones.draggable_item li.ply {
+  padding: 5px 6px;
+  width: auto;
+}
+
+.lista_canciones.draggable_item li.n {
+  width: 147px;
+  font-weight: bold;
+}
+
+.lista_canciones.draggable_item li.n a {
+  font-size: 12px;
+}
+
+.lista_canciones.draggable_item li.fin_list {
+  width: auto;
+  padding: 2px 0 0 0;
+}
+
+/* Mini rec-artist-module */
+.rec-artistas {
+  position: absolute;
+  left: 0;
+  bottom: 10px;
+  width: 205px;
+  height: 66px;
+}
+
+.rec-artistas li {
+  float: left;
+  display: inline;
+  margin-right: 1px;
+  position: relative;
+}
+
+.rec-artistas img {
+  width: 40px;
+  height: 40px;
+}
+
+.rec-artistas .tip_aviso {
+  left: 0;
+  bottom: 25px;
+  display:none;
+}
+
+.tip_aviso {
+  position: absolute;
+  bottom: 35px;
+  left: 5px;
+  width: 96px;
+  height: 52px;
+  background: url(/images/ico-mix.png) no-repeat 0 -392px;
+  font-size: 11px;
+  color: #666;
+  padding: 10px 15px 0 15px;
+  z-index: 7;
+  display: block;
+}
+
+.tip_aviso h5 {
+  font-weight: bold;
+  font-size: 12px;
+}
+
+.cab-buscar {
+  height: 20px;
+  width: 172px;
+  padding: 6px 8px 0 8px;
+  background: url(/images/bg_elementos.png) no-repeat -3px -449px;
+  float: left;
+  position: relative;
+}
+
+.cab-buscar h5 {
+  font-size: 11px;
+  color: #555;
+  float: left;
+}
+
+.cab-buscar a {
+  float: right;
+  color: #666;
+  font-size: 11px;
+  text-decoration: underline;
+  padding: 0 8px 0 0;
+  background: url(/images/flechitas.gif) no-repeat right -13px;
+}
+
+.cont-busquedas {
+  position: absolute;
+  top: 62px;
+  left: 0;
+  width: 205px;
+  height: 335px;
+  display: none;
+}
+
+.contenido-search {
+  width: 205px;
+  height: 335px;
+  overflow-y: scroll;
+}
+
+.listado_busquedas {
+  float: left;
+  width: 188px;
+  border-bottom: 1px solid gainsboro;
+  padding-top: 5px;
+  background-color: #FFF;
+}
+
+.listado_busquedas img {
+  width: 40px;
+  height: 40px;
+  margin: -4px 8px 1px 0px;
+  float: left;
+}
+
+.listado_busquedas a {
+  font-weight: bold;
+  color: #E40015;
+  font-size: 11px;
+  line-height: 14px;
+}
+
+.listado_busquedas p {
+  font-size: 11px;
+  color: #636363;
+}
+
+.listado_busquedas.select, .listado_busquedas:hover { 
+  background:#999
+}
+
+.listado_busquedas.select a, .listado_busquedas.select p, .listado_busquedas:hover a, .listado_busquedas:hover p { 
+  color:#fff; 
+  text-decoration:none
+}
+
+.rec-artistas .cab-buscar {
+  width: 190px;
+  border-bottom: 1px solid white;
+}
+
+/* Dragging styles */
+.contenedor-derecha {
+  width: 245px;
+  height: 315px;
+  overflow-y: auto;
+}
+
+.ui-draggable-dragging.draggable_item {
+  width: 227px;
+  height: 43px;
+  background: url(/images/ico-mix.png) no-repeat 0 -766px;
+  margin-top: 5px;
+  padding: 5px;
+  border-bottom: none;
+}
+
+.ui-draggable-dragging.draggable_item li {
+  display: block;
+  width: auto;
+  float: none;
+  padding: 0;
+  text-align: left;
+}
+
+.ui-draggable-dragging.draggable_item li.avt {
+  display: block;
+}
+
+.ui-draggable-dragging.draggable_item li.avt img {
+  float: left;
+  width: 40px;
+  height: 40px;
+  margin: 2px 5px 0 8px;
+}
+
+.ui-draggable-dragging.draggable_item li.ply,
+.ui-draggable-dragging.draggable_item li.fin_list {
+  display: none;
+}
+
+.ui-draggable-dragging.draggable_item li.n {
+  padding-top: 5px;
+  width: auto;
+}
+
+.ui-draggable-dragging.draggable_item li.n a {
+  font-weight: bold;
+  color: #2c2c2c;
+  font-size: 11px;
+}
+
+.ui-draggable-dragging.draggable_item li.alb,
+.ui-draggable-dragging.draggable_item li.art {
+  font-size: 10px;
+  color: #666;
+}
+
+.def-song {
+  position: relative;
+  width: 227px;
+  height: 43px;
+  background: url(/images/ico-mix.png) no-repeat 0 -661px;
+  margin-top: 5px;
+}
+
+.def-song.fail {
+  background-position: 0 -712px;
+}
+
+.def-song.fail p, .def-song.fail h5 {
+  color: #FFF;
+}
+
+.def-song img {
+  width: 40px;
+  height: 40px;
+  margin: 2px 5px 0 8px;
+  float: left;
+}
+
+.def-song h5 {
+  font-weight: bold;
+  color: #2C2C2C;
+  font-size: 11px;
+  padding-top: 5px;
+}
+
+.def-song p {
+  font-size: 10px;
+  color: #666;
+}
+
+.flecha_volver {
+  display: block;
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  top: 0;
+  right: 0;
+  text-indent: -9999px;
+}
+
+.personalizar_mix {
+  position: absolute;
+  display: none;
+  width: 246px;
+  bottom: 0;
+}
+
+.personalizar_mix .cab-buscar {
+  width: 226px;
+  background-position: -3px -449px;
+}
+
+.personalizar_mix p {
+  font-size: 11px;
+  color: #666;
+}
+
+.personalizar_mix a {
+  font-size: 11px;
+  color: #666;
+  text-decoration: underline;
+  font-weight: bold;
+  padding-right: 6px;
+  background: url(/images/flechitas.gif) no-repeat right -11px;
+}
+
+.foto-mix {
+  width: 67px;
+  height: 36px;
+  background: #E2E2E2 url(/images/ico-mix.png) no-repeat -170px -37px;
+  padding: 11px 5px 0 60px;
+  float: left;
+}
+
+.tags-mix {
+  float: left;
+  width: 95px;
+  height: 36px;
+  background: #E2E2E2;
+  padding: 11px 5px 0 10px;
+  margin-left: 1px;
+}
+
+.tags-mix span {
+  font-weight: bold;
+  text-decoration: underline;
+}

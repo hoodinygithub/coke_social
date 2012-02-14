@@ -45,7 +45,7 @@ class SearchesController < ApplicationController
     @counts = {}
     @results = {}
     msg = "not_for_msgr"
-    @active_scope == :all ? search_results(msg,@search_types, 4) : search_results(@active_scope.to_a)
+    @active_scope == :all ? search_results(msg, @search_types, 3) : search_results(@active_scope.to_a)
 
     @local = true if params[:local]
     render :partial => 'searches/content_list'#, :layout => false

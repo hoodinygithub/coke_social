@@ -1,0 +1,10 @@
+.cab-buscar
+  %h5 Recomendamos
+  = link_to 'Ver 30'
+%ul
+  - @similar_artists.each do |artist| 
+    %li
+      = link_to_function avatar_for(artist), "Base.Console.get_song_list('#{artist.id}','artist', null, null, null, #{artist.id})", :title => artist.nick_name, :class => 'uno'
+      #primero.tip_aviso
+        %h5= artist.nick_name
+        %p= artist.genre_name unless artist.genre_name.nil?

@@ -4,7 +4,7 @@ class PlaylistsController < ApplicationController
   
   before_filter :geo_check, :only => :show
   before_filter :xhr_login_required, :only => [:copy,:messenger_copy]
-  before_filter :login_required, :except => [:index, :widget, :avatar_update, :show, :copy, :messenger_copy, :messenger_mixes, :messenger_dj_mix_details]
+  before_filter :login_required, :except => [:index, :new, :widget, :avatar_update, :show, :copy, :messenger_copy, :messenger_mixes, :messenger_dj_mix_details, :get_songs, :get_similar]
 
   def index
     @dashboard_menu = :playlists
@@ -127,55 +127,81 @@ class PlaylistsController < ApplicationController
     end
   end
 
+  def new
+    get_recommended_artists
+    @player_id = current_site.players.all(:conditions => "player_key = 'ondemand_#{current_site.code}'")[0].id rescue nil
+  end
 
-  def create
+  def get_songs
     @page = params[:page] || 1
-    #@per_page = (params[:term] and (params[:scope]=='artist' or params[:scope]=='album')) ? 7 : 12
     @per_page = 30
     @results,@scope,@result_text = get_seeded_results
-    unless request.xhr? && !params[:ajax]
-      if request.post?
-        session[:playlist_ids] = nil
-        @playlist_item_ids = []
-        @songs_in_order = params[:item_ids].split(',')
-        @playlist_item_ids = Song.find_all_by_id(@songs_in_order).to_a rescue []
-        #@playlist_item_ids = Song.find_all_by_id(params[:item_ids].split(',')).to_a rescue []
-        unless @playlist_item_ids.empty?
-          attributes = { :name => params[:name], :site_id => current_site.id }
-          attributes[:avatar] = params[:avatar] if params[:avatar]
-
-          ActiveRecord::Base.transaction do
-            if @playlist = current_user.playlists.create(attributes)
-              song = nil
-              @songs_in_order.each_with_index do |item, index|
-                song = @playlist_item_ids.select{ |s| s && s.id.equal?(item.to_i) }.first rescue nil
-                @playlist.items.create(:song => song, :artist_id => song.artist_id, :position => index + 1) if song
-              end
-              
-              # If no avatar is defined set the default avatar
-              @playlist.set_default_image(@playlist.items[0].song.album) unless params[:avatar] 
-
-              @playlist.update_tags(params[:tags].downcase.split(','))
-              @playlist.create_station
-              @playlist.save_tags
-              current_user.increment!(:total_playlists);
-            end
-          end
-          create_page_vars
-          redirect_to :action => 'edit', :id => @playlist.id, :edited => true, :ajax => 1
-        end
-      else
-        if session[:playlist_ids]
-          #logger.info session[:playlist_ids].inspect
-          @playlist_items = Song.find_all_by_id(session[:playlist_ids].split(',')).to_a rescue []
-          #@playlist_items = session[:playlist_ids].split(',').map { |i| Song.find(i) rescue nil }.compact
-        end
-        create_page_vars
-      end
-    else
-      render :partial => "/playlists/create/search_results", :layout => false
-    end
+    render :partial => "/playlists/create/search_results", :layout => false
   end
+
+  def get_similar
+    artist = Artist.find(params[:artist_id]) rescue nil
+    @similar_artists = []
+    @similar_artists = artist.similar(5) if artist
+    if @similar_artists and @similar_artists.empty?
+      @similar_artists = current_site.top_artists.all(:limit => 5)
+    else
+     @similar_artists = @similar_artists.sort_by { rand }[0..4] if @similar_artists.size > 4
+    end
+    render :partial => 'playlists/create/recommendations'
+  end
+
+  def create 
+  end
+
+  # def create
+  #   @page = params[:page] || 1
+  #   #@per_page = (params[:term] and (params[:scope]=='artist' or params[:scope]=='album')) ? 7 : 12
+  #   @per_page = 30
+  #   @results,@scope,@result_text = get_seeded_results
+  #   unless request.xhr? && !params[:ajax]
+  #     if request.post?
+  #       session[:playlist_ids] = nil
+  #       @playlist_item_ids = []
+  #       @songs_in_order = params[:item_ids].split(',')
+  #       @playlist_item_ids = Song.find_all_by_id(@songs_in_order).to_a rescue []
+  #       #@playlist_item_ids = Song.find_all_by_id(params[:item_ids].split(',')).to_a rescue []
+  #       unless @playlist_item_ids.empty?
+  #         attributes = { :name => params[:name], :site_id => current_site.id }
+  #         attributes[:avatar] = params[:avatar] if params[:avatar]
+
+  #         ActiveRecord::Base.transaction do
+  #           if @playlist = current_user.playlists.create(attributes)
+  #             song = nil
+  #             @songs_in_order.each_with_index do |item, index|
+  #               song = @playlist_item_ids.select{ |s| s && s.id.equal?(item.to_i) }.first rescue nil
+  #               @playlist.items.create(:song => song, :artist_id => song.artist_id, :position => index + 1) if song
+  #             end
+  #             
+  #             # If no avatar is defined set the default avatar
+  #             @playlist.set_default_image(@playlist.items[0].song.album) unless params[:avatar] 
+
+  #             @playlist.update_tags(params[:tags].downcase.split(','))
+  #             @playlist.create_station
+  #             @playlist.save_tags
+  #             current_user.increment!(:total_playlists);
+  #           end
+  #         end
+  #         create_page_vars
+  #         redirect_to :action => 'edit', :id => @playlist.id, :edited => true, :ajax => 1
+  #       end
+  #     else
+  #       if session[:playlist_ids]
+  #         #logger.info session[:playlist_ids].inspect
+  #         @playlist_items = Song.find_all_by_id(session[:playlist_ids].split(',')).to_a rescue []
+  #         #@playlist_items = session[:playlist_ids].split(',').map { |i| Song.find(i) rescue nil }.compact
+  #       end
+  #       create_page_vars
+  #     end
+  #   else
+  #     render :partial => "/playlists/create/search_results", :layout => false
+  #   end
+  # end
 
   def edit
     session[:playlist_ids] = nil
@@ -300,20 +326,20 @@ class PlaylistsController < ApplicationController
     render :text => "cleared", :layout => false
   end
 
-  def recommended_artists
-    artist = Artist.find(params[:artist_id]) rescue nil
-    
-    @recommended_artists = []
-    @recommended_artists = artist.similar(20) if artist
-    
-    if @recommended_artists and @recommended_artists.empty?
-      @recommended_artists = current_site.top_artists.all(:limit => 10)
-    else
-      @recommended_artists = @recommended_artists.sort_by {rand}[0..9] if @recommended_artists.size > 9
-    end
+  # def recommended_artists
+  #   artist = Artist.find(params[:artist_id]) rescue nil
+  #   
+  #   @recommended_artists = []
+  #   @recommended_artists = artist.similar(20) if artist
+  #   
+  #   if @recommended_artists and @recommended_artists.empty?
+  #     @recommended_artists = current_site.top_artists.all(:limit => 10)
+  #   else
+  #     @recommended_artists = @recommended_artists.sort_by {rand}[0..9] if @recommended_artists.size > 9
+  #   end
 
-    render :partial => 'playlists/create/recommendations'
-  end
+  #   render :partial => 'playlists/create/recommendations'
+  # end
 
   def autofill
     station = AbstractStation.find(params[:abstract_station_id]) rescue nil
@@ -449,6 +475,15 @@ class PlaylistsController < ApplicationController
   end
 
   private
+
+    def get_recommended_artists
+      recommended = rec_engine.get_recommended_artists(:number_of_records => 15)
+      @recommended_artists = if recommended.length == 15
+                               recommended
+                             else
+                               current_site.top_artists.all(:limit => 15)
+                             end
+    end
 
     def geo_check
       unless current_country.enable_radio

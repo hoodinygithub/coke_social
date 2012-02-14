@@ -147,11 +147,7 @@
             <span class="bg_fin">&nbsp;</span>  
         </a><!-- incluir clase .activo cuando este activa la radio -->
       <% end %>
-      <% if logged_in? %>
-        <a class="btn_grande btn_mix" href="<%= playlist_create_path %>" content_switch_enabled="true" title="<%= t('actions.create_a_playlist') %>" content_switch_enabled="true">
-      <% else %>
-        <a class="btn_grande btn_mix" href="#" onclick="return Base.utils.showRegistrationLayer('<%= current_site_url + playlist_create_path %>', 'create_playlist');" title="<%= t('actions.create_a_playlist') %>">
-      <% end %>
+        <a class="btn_grande btn_mix" href="<%= playlist_new_path %>" content_switch_enabled="true" title="<%= t('actions.create_a_playlist') %>" content_switch_enabled="true">
           <span class="ico"><%= t('playlists.create_new') %></span>
           <span class="txt"><%= t('playlists.create_new') %></span>
           <span class="bg_fin">&nbsp;</span>  
